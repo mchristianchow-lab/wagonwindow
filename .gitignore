@@ -2,3 +2,26 @@ dist/
 __pycache__/
 *.pyc
 .DS_Store
+
+# Vault files — not part of website
+.obsidian/
+.tools/
+.index.db*
+_maps/
+_templates/
+business/
+intelligence/
+people/
+skills/
+research/
+competitors/
+partners/
+content/
+sessions.log
+global.md
+setup-guide.html
+wagon-windows-setup-guide.pdf
+door-hanger.html
+"final black and white.jpeg"
+"final logo fin.jpeg"
+"phonto 5.JPG"
