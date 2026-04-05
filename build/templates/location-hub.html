@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a> › Window Cleaning in {{ location.name }}
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-badge">{{ location.name }}, {{ location.province }} · {{ location.region }}</div>
+    <h1>{{ h1 }}</h1>
+    <div class="quick-answer" itemscope itemtype="https://schema.org/WebPageElement" itemprop="speakable">
+      <p>Wagon Windows provides professional residential and commercial window cleaning throughout {{ location.name }}, BC.
+      {% if location.lake_proximity %}{{ location.name }}'s proximity to water creates specific cleaning challenges — mineral deposits, lake spray, and humidity — that our team handles with the right equipment and techniques.{% else %}We understand the seasonal dust, pollen, and weather patterns specific to {{ location.name }} and the {{ location.region }} region.{% endif %}
+      Transparent pricing, online booking, locally owned in Salmon Arm.</p>
+    </div>
+    <div class="hero-btns">
+      <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
+         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'location_hub_{{ location.slug }}'});">
+        Book Free Quote
+      </a>
+      <a href="tel:{{ config.phone_raw }}" class="btn-outline"
+         onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'location_hub_{{ location.slug }}'});">
+        {{ config.phone }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<article class="page-content">
+
+  <section class="content-section">
+    <h2>Window Cleaning Services Available in {{ location.name }}</h2>
+    <p>{{ location.geography }}</p>
+    <p>{{ location.climate_note }}</p>
+    {% if location.lake_proximity and location.lake_note %}<p>{{ location.lake_note }}</p>{% endif %}
+    <div class="services-grid-compact">
+      {% for svc in services %}
+      <a href="/{{ svc.slug }}/{{ location.slug }}/" class="service-link-card">
+        <span class="service-icon-sm">{{ svc.icon }}</span>
+        <div>
+          <strong>{{ svc.name }}</strong>
+          <span>{{ svc.service_description | truncate(80) }}</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>About {{ location.name }} Window Cleaning Needs</h2>
+    <p>{{ location.home_style_note }}</p>
+    <ul>
+      <li>{{ location.local_fact_1 }}</li>
+      <li>{{ location.local_fact_2 }}</li>
+      <li>{{ location.local_fact_3 }}</li>
+    </ul>
+  </section>
+
+  <section class="content-section">
+    <h2>Pricing for Window Cleaning in {{ location.name }}</h2>
+    <table class="pricing-table">
+      <thead><tr><th>Home Size</th><th>Windows</th><th>Exterior Only</th><th>Interior + Exterior</th></tr></thead>
+      <tbody>
+        <tr><td>Small</td><td>Up to 15</td><td>From $149</td><td>From $199</td></tr>
+        <tr><td>Medium</td><td>16–25</td><td>From $199</td><td>From $269</td></tr>
+        <tr><td>Large</td><td>26–35</td><td>From $269</td><td>From $349</td></tr>
+      </tbody>
+    </table>
+    <p>Commercial storefronts from $99. Screens $3–$4 each. Tracks from $50. Minimum job ${{ config.min_job }}.</p>
+    {% if location.drive_time_from_primary_min > 0 %}
+    <p><em>{{ location.name }} is ~{{ location.drive_time_from_primary_min }} min from our Salmon Arm base. {{ location.service_radius_note }}</em></p>
+    {% endif %}
+  </section>
+
+  {% if faqs %}
+  <section class="content-section faq-section">
+    <h2>FAQ — Window Cleaning in {{ location.name }}</h2>
+    <div class="faq-list">
+      {% for faq in faqs[:6] %}
+      <div class="faq-item">
+        <h3>{{ faq.q }}</h3>
+        <p>{{ faq.a }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="page-cta">
+    <h2>Get a Free Window Cleaning Quote in {{ location.name }}</h2>
+    <p>Book online or call us — we serve {{ location.name }} regularly and can often schedule within a week.</p>
+    <div class="cta-buttons">
+      <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
+         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'location_cta_{{ location.slug }}'});">Book Online</a>
+      <a href="tel:{{ config.phone_raw }}" class="btn-outline"
+         onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'location_cta_{{ location.slug }}'});">Call {{ config.phone }}</a>
+    </div>
+  </section>
+
+</article>
+{% endblock %}

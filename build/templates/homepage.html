@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Salmon Arm &amp; Shuswap Region, BC</div>
+  <h1>Crystal Clear Windows.<br /><span>Every Time.</span></h1>
+  <p>Professional window cleaning for homes and businesses across the Shuswap. Reliable, streak-free results — inside and out.</p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn-primary">Get a Free Quote</a>
+    <a href="#services" class="btn-outline">See Our Services</a>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <svg class="trust-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    Streak-Free Guarantee
+  </div>
+  <div class="trust-item">
+    <svg class="trust-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+    Locally Owned &amp; Operated
+  </div>
+  <div class="trust-item">
+    <svg class="trust-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+    Fast, Reliable Scheduling
+  </div>
+  <div class="trust-item">
+    <svg class="trust-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+    Eco-Friendly Products
+  </div>
+  <div class="trust-item trust-reviews">
+    <span class="stars">★★★★★</span>
+    <span>5-Star Service</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">What We Do</div>
+  <h2 class="section-title">Window Cleaning Services</h2>
+  <p class="section-sub">From single-story homes to commercial storefronts, we handle it all — professionally and on schedule.</p>
+  <div class="services-grid">
+    {% for svc in services %}
+    <div class="service-card">
+      <div class="service-icon-wrap">{{ svc.icon }}</div>
+      <h3>{{ svc.name }}</h3>
+      <p>{{ svc.service_description }}</p>
+      <a href="/services/{{ svc.slug }}/">Learn more →</a>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-label">Why Wagon Windows</div>
+  <h2 class="section-title">Built on Reliability</h2>
+  <p class="section-sub">We show up on time, do the job right, and leave your windows looking better than you've seen them.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-number">100%</div>
+      <h3>Streak-Free Results</h3>
+      <p>We don't leave until every pane is spotless. If you're not happy, we come back.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-number">Local</div>
+      <h3>Shuswap Owned</h3>
+      <p>We live and work here. We know the Shuswap climate and what your windows deal with every season.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-number">Fast</div>
+      <h3>Easy Booking</h3>
+      <p>Book online in minutes via Calendly, or reach us by phone, email, or text. We respond fast.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-number">Safe</div>
+      <h3>Insured &amp; Professional</h3>
+      <p>Fully insured. We treat your home with care — no shortcuts, no damage, no stress.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-label">Transparent Pricing</div>
+  <h2 class="section-title">Simple, Honest Rates</h2>
+  <p class="section-sub">No surprises, no hidden fees. Most window cleaners won't show you a number — we will.</p>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-tier">Small Home</div>
+      <div class="pricing-windows">Up to 15 windows</div>
+      <div class="pricing-price">from <span>$149</span></div>
+      <div class="pricing-desc">Exterior clean</div>
+      <div class="pricing-upgrade">Interior + exterior from $199</div>
+      <a href="#contact" class="btn-primary pricing-cta">Book Now</a>
+    </div>
+    <div class="pricing-card pricing-featured">
+      <div class="pricing-badge">Most Popular</div>
+      <div class="pricing-tier">Medium Home</div>
+      <div class="pricing-windows">16–25 windows</div>
+      <div class="pricing-price">from <span>$199</span></div>
+      <div class="pricing-desc">Exterior clean</div>
+      <div class="pricing-upgrade">Interior + exterior from $269</div>
+      <a href="#contact" class="btn-primary pricing-cta">Book Now</a>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-tier">Large Home</div>
+      <div class="pricing-windows">26–35 windows</div>
+      <div class="pricing-price">from <span>$269</span></div>
+      <div class="pricing-desc">Exterior clean</div>
+      <div class="pricing-upgrade">Interior + exterior from $349</div>
+      <a href="#contact" class="btn-primary pricing-cta">Book Now</a>
+    </div>
+  </div>
+  <div class="pricing-notes">
+    <div class="pricing-note">Commercial storefronts from $99/visit — recurring contracts available</div>
+    <div class="pricing-note">Screens $3–$4 each · Tracks from $50 · Hard water stain removal quoted separately</div>
+    <div class="pricing-note">Minimum job fee $99 · Large or custom homes quoted on-site</div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section id="area">
+  <div class="section-label">Where We Work</div>
+  <h2 class="section-title">Serving the Shuswap Region</h2>
+  <div class="area-box">
+    <p>Wagon Windows is based in Salmon Arm and proudly serves the surrounding Shuswap communities.</p>
+    <div class="area-list">
+      {% for loc in locations %}
+      <a href="/locations/{{ loc.slug }}/" class="area-tag">{{ loc.name }}</a>
+      {% endfor %}
+    </div>
+    <p class="area-note">Not sure if we cover your area? Send us a message — we're happy to travel for the right job.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get in Touch</div>
+  <h2 class="section-title">Get a Free Quote</h2>
+  <div class="contact-details-bar">
+    <div class="contact-detail">
+      <a href="tel:{{ config.phone_raw }}"
+         onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'phone_contact'});">{{ config.phone }}</a>
+    </div>
+    <div class="contact-detail">
+      <a href="mailto:{{ config.email }}">{{ config.email }}</a>
+    </div>
+    <div class="contact-detail">{{ config.address }}</div>
+  </div>
+  <div class="contact-tabs">
+    <div class="tab-btns">
+      <button class="tab-btn active" onclick="switchTab('book', this)">🗓 Book Online</button>
+      <button class="tab-btn" onclick="switchTab('message', this)">✉️ Send a Message</button>
+    </div>
+    <div class="tab-panel" id="tab-book">
+      <div class="calendly-inline-widget" data-url="{{ config.calendly_url }}" style="min-width:320px;height:660px;"></div>
+      <script defer src="https://assets.calendly.com/assets/external/widget.js"></script>
+    </div>
+    <div class="tab-panel hidden" id="tab-message">
+      <form action="https://formspree.io/f/{{ config.formspree_id }}" method="POST"
+            onsubmit="gtag('event','form_submit',{'event_category':'contact','event_label':'quote_form'});">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Email Address" required />
+        <input type="tel" name="phone" placeholder="Phone Number" />
+        <select name="service">
+          <option value="" disabled selected>What service are you looking for?</option>
+          {% for svc in services %}
+          <option>{{ svc.name }}</option>
+          {% endfor %}
+          <option>Not Sure — Please Advise</option>
+        </select>
+        <textarea name="message" placeholder="Tell us about your property (size, number of windows, any access notes...)"></textarea>
+        <button type="submit">Send My Quote Request →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

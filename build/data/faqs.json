@@ -1,0 +1,218 @@
+{
+  "global": [
+    {
+      "id": "g1",
+      "q": "What areas does Wagon Windows serve?",
+      "a": "Wagon Windows serves the entire Shuswap region from our Salmon Arm base: Salmon Arm, Sorrento, Tappen, Blind Bay, Sicamous, Chase, Enderby, and Armstrong. Contact us if your area isn't listed — we travel for the right job."
+    },
+    {
+      "id": "g2",
+      "q": "How do I get a quote from Wagon Windows?",
+      "a": "The fastest way is to book a free 30-minute consultation via our Calendly link at wagonwindows.com — you'll have a confirmed appointment within minutes. You can also call or text (403) 837-5092, or email davidhanna@wagonwindow.com. We respond within a few hours."
+    },
+    {
+      "id": "g3",
+      "q": "Is Wagon Windows insured?",
+      "a": "Yes — Wagon Windows carries liability insurance. We treat your property with care and take full responsibility for our work on every job."
+    },
+    {
+      "id": "g4",
+      "q": "What is the minimum job fee?",
+      "a": "Our minimum job fee is $99. This covers smaller jobs, single-room requests, and add-ons like screen cleaning or track cleaning on their own."
+    },
+    {
+      "id": "g5",
+      "q": "Do you use eco-friendly products?",
+      "a": "Yes — we use biodegradable, streak-free cleaning solutions that are safe for gardens, pets, and the Shuswap's waterways. We don't use harsh chemicals that could harm your landscaping or nearby water."
+    },
+    {
+      "id": "g6",
+      "q": "How long does a window cleaning appointment take?",
+      "a": "Most residential cleans take 1.5–3 hours depending on home size and number of windows. Commercial and large properties vary. We'll give you a time estimate when booking."
+    },
+    {
+      "id": "g7",
+      "q": "Can I book a window cleaning appointment online?",
+      "a": "Yes — we offer online booking via Calendly at wagonwindows.com. Pick a date and time that works for you without calling. We confirm all bookings within a few hours."
+    },
+    {
+      "id": "g8",
+      "q": "What payment methods does Wagon Windows accept?",
+      "a": "We accept e-transfer, cash, and credit card. E-transfer to davidhanna@wagonwindow.com. Payment is due upon job completion."
+    }
+  ],
+  "by_service": {
+    "residential-window-cleaning": [
+      {
+        "id": "r1",
+        "q": "Do you clean both inside and outside windows for residential homes?",
+        "a": "Yes — we offer exterior-only or full interior and exterior cleaning. Exterior-only is from $149 for small homes. Interior + exterior is from $199. Most customers choose full service for the best results."
+      },
+      {
+        "id": "r2",
+        "q": "Do I need to be home during the window cleaning?",
+        "a": "For exterior-only cleaning, you don't need to be home as long as we have access to the outside of your property. For interior cleaning, someone should be present. Let us know your preference when booking."
+      },
+      {
+        "id": "r3",
+        "q": "Do you clean window screens and tracks for residential properties?",
+        "a": "Screens and tracks are available as add-ons. Screens are $3–$4 each. Track cleaning starts at $50. These are often done at the same time as a window clean for the best results."
+      },
+      {
+        "id": "r4",
+        "q": "How often should I have my home's windows professionally cleaned?",
+        "a": "Most Shuswap homeowners benefit from 2–3 cleans per year: spring (post-pollen), midsummer, and fall (pre-freeze). Lakefront homes may need an extra clean due to mineral spray."
+      }
+    ],
+    "exterior-window-cleaning": [
+      {
+        "id": "e1",
+        "q": "What does an exterior window cleaning include?",
+        "a": "Our exterior clean covers all accessible exterior-facing windows, a squeegee + detail finish for streak-free results, sill and frame wipe-down, and any hard-to-reach windows using extension equipment."
+      },
+      {
+        "id": "e2",
+        "q": "Can you add interior cleaning later if I start with exterior only?",
+        "a": "Absolutely — many customers start with exterior-only to see the results and add interior cleaning on a follow-up visit. Just let us know when booking."
+      }
+    ],
+    "commercial-window-cleaning": [
+      {
+        "id": "c1",
+        "q": "Do you offer recurring commercial window cleaning contracts?",
+        "a": "Yes — we offer weekly, bi-weekly, and monthly recurring contracts for storefronts, offices, and commercial buildings. Recurring contracts get priority scheduling and consistent pricing."
+      },
+      {
+        "id": "c2",
+        "q": "Can you clean commercial windows outside business hours?",
+        "a": "We can arrange early morning or weekend scheduling for businesses that need cleaning done before opening. Contact us to discuss your schedule."
+      },
+      {
+        "id": "c3",
+        "q": "Do you provide invoices for commercial window cleaning?",
+        "a": "Yes — we provide commercial invoices and receipts for every job. GST/HST documentation available on request."
+      }
+    ],
+    "hard-water-stain-removal": [
+      {
+        "id": "h1",
+        "q": "Can hard water stains be completely removed from windows?",
+        "a": "In most cases, yes — mineral deposits from hard water and lake spray can be removed with specialist treatment. Severe cases of etching (where minerals have chemically bonded to the glass) may require professional-grade polishing. We assess the severity on-site before quoting."
+      },
+      {
+        "id": "h2",
+        "q": "What causes hard water stains on windows in the Shuswap?",
+        "a": "Hard water stains are caused by calcium and magnesium mineral deposits left behind when water evaporates. In the Shuswap, lake spray from Shuswap Lake is a major contributor — mineral-rich lake water leaves white residue on glass after drying. Irrigation systems and sprinklers also cause staining."
+      },
+      {
+        "id": "h3",
+        "q": "How much does hard water stain removal cost?",
+        "a": "Hard water stain removal is quoted on-site because severity varies significantly. Light staining may be resolved during a standard window clean. Moderate to heavy mineral buildup requires specialist treatment priced per window. Contact us for a free assessment."
+      }
+    ],
+    "seasonal-window-cleaning": [
+      {
+        "id": "s1",
+        "q": "When is the best time of year to book a seasonal window cleaning package?",
+        "a": "Book your spring clean in April or early May after pollen season peaks. Book fall cleaning in September or early October before temperatures drop below freezing. Midsummer cleaning is best in July when dust and UV haze accumulation is at its peak."
+      },
+      {
+        "id": "s2",
+        "q": "What is included in a seasonal window cleaning package?",
+        "a": "Seasonal packages include 2–3 pre-scheduled exterior cleans per year timed to the Shuswap climate cycle. Full interior + exterior option available. Priority scheduling for package holders. Pricing quoted based on home size."
+      }
+    ],
+    "screen-cleaning": [
+      {
+        "id": "sc1",
+        "q": "How often should window screens be cleaned?",
+        "a": "We recommend cleaning screens once per year at minimum — typically during a spring window clean. Screens in high-pollen or dusty areas (such as agricultural properties in Tappen or Armstrong) may benefit from twice-yearly cleaning."
+      }
+    ],
+    "track-cleaning": [
+      {
+        "id": "tr1",
+        "q": "Why should I have my window tracks professionally cleaned?",
+        "a": "Dirty window tracks accumulate grime, insect debris, and buildup that prevents windows from sliding smoothly and can damage seals over time. Professional cleaning removes compacted debris that vacuuming alone can't address."
+      }
+    ]
+  },
+  "by_location": {
+    "salmon-arm": [
+      {
+        "id": "l-sa-1",
+        "q": "How often should Salmon Arm homeowners clean their windows?",
+        "a": "We recommend 2–3 times per year for most Salmon Arm homes: spring (April–May, after pollen season), midsummer (July), and fall (September–October, before freeze). Lakefront properties on Shuswap Lake benefit from an additional clean due to calcium and mineral spray from the water."
+      },
+      {
+        "id": "l-sa-2",
+        "q": "Do you serve all neighborhoods in Salmon Arm including Canoe and Raven?",
+        "a": "Yes — we serve all of Salmon Arm including Canoe, Raven, Hillcrest, Silver Creek, Salmon Valley, and surrounding areas. Salmon Arm is our home base so we have the fastest response times and most flexible scheduling here."
+      }
+    ],
+    "blind-bay": [
+      {
+        "id": "l-bb-1",
+        "q": "Do you clean windows in Blind Bay?",
+        "a": "Yes — Blind Bay is one of our most active service areas. We're about 30 minutes from Salmon Arm and regularly serve lakefront homes and lake-view properties throughout the Blind Bay area."
+      },
+      {
+        "id": "l-bb-2",
+        "q": "Do Blind Bay lakefront homes need special window cleaning treatment?",
+        "a": "Yes — Blind Bay's proximity to Shuswap Lake means many properties develop mineral and calcium deposits from lake spray on exterior glass. We assess each property on arrival and apply appropriate treatment for mineral buildup, which differs from a standard window clean."
+      }
+    ],
+    "sorrento": [
+      {
+        "id": "l-so-1",
+        "q": "Do you travel to Sorrento for window cleaning?",
+        "a": "Yes — Sorrento is within our regular service area. We're approximately 35 minutes from our Salmon Arm base. For seasonal properties, we offer pre-arrival cleans booked in advance."
+      },
+      {
+        "id": "l-so-2",
+        "q": "Can you clean our Sorrento vacation property before we arrive for the season?",
+        "a": "Yes — pre-arrival seasonal cleans are one of our most popular services for Sorrento property owners. Book in advance (we recommend February or March for spring arrivals) to secure your preferred date."
+      }
+    ],
+    "sicamous": [
+      {
+        "id": "l-si-1",
+        "q": "Does Wagon Windows serve Sicamous?",
+        "a": "Yes — Sicamous is within our service area, approximately 45 minutes from Salmon Arm. We serve residential homes, vacation rentals, and commercial businesses in Sicamous. Summer is peak season — book early."
+      },
+      {
+        "id": "l-si-2",
+        "q": "Do you clean commercial windows for Sicamous businesses during tourist season?",
+        "a": "Yes — we work with Sicamous businesses including storefronts, restaurants, and accommodation operators. Summer pre-season cleans (May) are high demand — book your commercial clean by April to guarantee availability."
+      }
+    ],
+    "chase": [
+      {
+        "id": "l-ch-1",
+        "q": "Does Wagon Windows travel to Chase for window cleaning?",
+        "a": "Yes — Chase is within our service area, about 55 minutes from Salmon Arm. We travel to Chase regularly and can combine multiple jobs in the area. Contact us to arrange scheduling."
+      }
+    ],
+    "enderby": [
+      {
+        "id": "l-en-1",
+        "q": "Do you serve Enderby and the surrounding area?",
+        "a": "Yes — Enderby is about 35 minutes south of Salmon Arm and within our regular service area. We serve both residential homes and commercial businesses in Enderby, Grindrod, and the surrounding area."
+      }
+    ],
+    "armstrong": [
+      {
+        "id": "l-ar-1",
+        "q": "Does Wagon Windows serve Armstrong?",
+        "a": "Yes — Armstrong is about 45 minutes from our Salmon Arm base and within our regular service area. We serve residential homes and commercial businesses throughout Armstrong and the Spallumcheen Valley."
+      }
+    ],
+    "tappen": [
+      {
+        "id": "l-ta-1",
+        "q": "Do you serve Tappen for window cleaning?",
+        "a": "Yes — Tappen is in our regular service area, about 25 minutes from Salmon Arm. We serve both lakefront properties and inland acreages throughout the Tappen area."
+      }
+    ]
+  }
+}

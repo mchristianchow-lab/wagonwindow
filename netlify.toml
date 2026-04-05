@@ -1,0 +1,6 @@
+[build]
+  command   = "pip3 install jinja2 && python3 build/build.py"
+  publish   = "dist"
+
+[build.environment]
+  PYTHON_VERSION = "3.11"

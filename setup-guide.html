@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Wagon Windows — Setup Guide</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1f2937; margin: 0; padding: 40px; max-width: 700px; }
+  h1 { font-size: 1.8rem; color: #1a1a1a; margin-bottom: 0.3rem; }
+  .sub { color: #6b7280; font-size: 1rem; margin-bottom: 2rem; }
+  h2 { font-size: 1.1rem; color: #1a1a1a; margin: 2rem 0 0.5rem; border-left: 4px solid #e03800; padding-left: 0.75rem; }
+  p { margin: 0.4rem 0 0.8rem; line-height: 1.6; }
+  a { color: #e03800; }
+  .step { background: #fafafa; border: 1px solid #e5e5e5; border-radius: 8px; padding: 1rem 1.2rem; margin-bottom: 1rem; }
+  .step-num { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #e03800; margin-bottom: 0.3rem; }
+  .step p { margin: 0; font-size: 0.95rem; }
+  .note { background: #fff8e1; border-left: 4px solid #f59e0b; padding: 0.75rem 1rem; border-radius: 4px; font-size: 0.9rem; margin: 1rem 0; }
+  .done { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 0.75rem 1rem; border-radius: 4px; font-size: 0.9rem; margin: 1rem 0; }
+  hr { border: none; border-top: 1px solid #e5e5e5; margin: 2rem 0; }
+  code { background: #f3f4f6; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<h1>Wagon Windows — Website Setup Guide</h1>
+<p class="sub">Follow these steps to get your site live on wagonwindows.com</p>
+
+<hr />
+
+<h2>Step 1 — Deploy Your Site to Netlify</h2>
+<div class="step">
+  <div class="step-num">Action</div>
+  <p>Go to <a href="https://netlify.com/drop">netlify.com/drop</a> and drag your entire <strong>wagonwindows</strong> folder onto the page. Your site will be live at a temporary URL within seconds.</p>
+</div>
+<div class="step">
+  <div class="step-num">Then</div>
+  <p>You'll be prompted to create a free Netlify account to claim the site. Sign up with your email — no credit card required. Once claimed, the site is yours permanently.</p>
+</div>
+
+<h2>Step 2 — Connect wagonwindows.com</h2>
+<div class="step">
+  <div class="step-num">2a</div>
+  <p>In your Netlify dashboard, go to your site → <strong>Site settings</strong> → <strong>Domain management</strong> → <strong>Add custom domain</strong></p>
+</div>
+<div class="step">
+  <div class="step-num">2b</div>
+  <p>Type <strong>wagonwindows.com</strong> and click Verify. Netlify will show you 2 DNS records to add.</p>
+</div>
+<div class="step">
+  <div class="step-num">2c</div>
+  <p>Log into wherever you bought your domain (GoDaddy, Namecheap, etc.) and add those 2 DNS records. Not sure how? Reply with where you bought the domain and you'll get step-by-step instructions.</p>
+</div>
+<div class="step">
+  <div class="step-num">2d</div>
+  <p>Wait up to a few hours. Your site will be live at <strong>wagonwindows.com</strong> — Netlify sets up HTTPS (the padlock) automatically for free.</p>
+</div>
+
+<h2>Step 3 — Set Up Your Contact Form</h2>
+<div class="step">
+  <div class="step-num">Action</div>
+  <p>To receive quote requests by email, go to <a href="https://formspree.io">formspree.io</a> → create a free account → create a new form → copy your Form ID (looks like <em>xabcdefg</em>).</p>
+</div>
+<div class="step">
+  <div class="step-num">Then</div>
+  <p>Open <strong>index.html</strong> in a text editor, find <code>YOUR_FORM_ID</code>, and replace it with your Formspree ID. Re-upload the updated file to Netlify by dragging it into your site dashboard.</p>
+</div>
+
+<h2>Step 4 — Set Up Your Google Business Profile</h2>
+<div class="step">
+  <div class="step-num">Action</div>
+  <p>Go to <a href="https://business.google.com">business.google.com</a> and create a free profile for Wagon Windows. This is what shows up when customers search "window cleaning Salmon Arm" on Google Maps.</p>
+</div>
+<div class="step">
+  <div class="step-num">Then</div>
+  <p>Once you have your Google Business profile URL, send it over and the "5.0 on Google" badge in your trust bar will be linked directly to your reviews.</p>
+</div>
+<div class="note">⚠️ Ask every happy customer to leave a Google review. Even 5–10 reviews puts you ahead of most local competitors.</div>
+
+<h2>Step 5 — Your Calendly Booking is Already Live</h2>
+<div class="done">✅ Your Calendly booking widget is embedded directly on the site. Customers can book appointments without calling. Make sure your Calendly availability is up to date at <a href="https://calendly.com/davidhanna-wagonwindow">calendly.com/davidhanna-wagonwindow</a></div>
+
+<hr />
+
+<p style="font-size:0.85rem; color:#6b7280;">Questions about any of these steps? Reach out and you'll get support.</p>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<nav class="breadcrumb"><a href="/">Home</a> › Seasonal Window Cleaning</nav>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <h1>{{ h1 }}</h1>
+  </div>
+</section>
+<article class="page-content">
+  <div class="guide-body">{{ page.body_html | safe if page.body_html else "<p>Content coming soon.</p>" }}</div>
+  {% if faqs %}
+  <section class="content-section faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      {% for faq in faqs %}
+      <div class="faq-item"><h3>{{ faq.q }}</h3><p>{{ faq.a }}</p></div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+  <section class="page-cta">
+    <h2>Book Your Seasonal Window Clean</h2>
+    <p>Serving the Shuswap region. Book online or call us for seasonal scheduling.</p>
+    <div class="cta-buttons">
+      <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
+         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'seasonal_cta'});">Book Online</a>
+      <a href="tel:{{ config.phone_raw }}" class="btn-outline"
+         onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'seasonal_cta'});">{{ config.phone }}</a>
+    </div>
+  </section>
+</article>
+{% endblock %}

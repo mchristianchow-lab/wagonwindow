@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a> › {{ service.name }}
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-badge">Shuswap Region, BC · All Communities</div>
+    <h1>{{ h1 }}</h1>
+    <div class="quick-answer" itemscope itemtype="https://schema.org/WebPageElement" itemprop="speakable">
+      <p>Wagon Windows provides {{ service.name | lower }} across the Shuswap region — Salmon Arm, Sorrento, Blind Bay, Tappen, Sicamous, Chase, Enderby, and Armstrong.
+      {{ service.service_description }} Locally owned, streak-free guaranteed, bookable online.</p>
+    </div>
+    <div class="hero-btns">
+      <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
+         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'service_hub_{{ service.slug }}'});">
+        Book Free Quote
+      </a>
+      <a href="tel:{{ config.phone_raw }}" class="btn-outline"
+         onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'service_hub_{{ service.slug }}'});">
+        {{ config.phone }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<article class="page-content">
+
+  <section class="content-section">
+    <h2>{{ service.name }} — What's Included</h2>
+    <ul class="service-bullets">
+      {% for bullet in service.what_we_do_bullets %}
+      <li>{{ bullet }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="content-section">
+    <h2>{{ service.name }} by Location — Choose Your Area</h2>
+    <div class="location-grid">
+      {% for loc in locations %}
+      <a href="/{{ service.slug }}/{{ loc.slug }}/" class="location-card">
+        <strong>{{ loc.name }}</strong>
+        <span>{{ service.name }}</span>
+        {% if loc.drive_time_from_primary_min == 0 %}
+        <em>Our home base</em>
+        {% else %}
+        <em>~{{ loc.drive_time_from_primary_min }} min from Salmon Arm</em>
+        {% endif %}
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>Pricing for {{ service.name }}</h2>
+    {% if service.base_price_small %}
+    <table class="pricing-table">
+      <thead><tr><th>Home Size</th><th>Windows</th><th>Exterior Only</th><th>Interior + Exterior</th></tr></thead>
+      <tbody>
+        <tr><td>Small</td><td>Up to 15</td><td>From ${{ service.base_price_small }}</td><td>From ${{ service.base_price_interior_small | default(service.base_price_small + 50) }}</td></tr>
+        <tr><td>Medium</td><td>16–25</td><td>From ${{ service.base_price_medium }}</td><td>From ${{ service.base_price_interior_large | default(service.base_price_medium + 70) }}</td></tr>
+        <tr><td>Large</td><td>26–35</td><td>From ${{ service.base_price_large }}</td><td>From ${{ service.base_price_large + 80 }}</td></tr>
+      </tbody>
+    </table>
+    {% elif service.price_per_screen_low %}
+    <p><strong>Screen cleaning:</strong> ${{ service.price_per_screen_low }}–${{ service.price_per_screen_high }} per screen. Minimum job ${{ config.min_job }}.</p>
+    {% elif service.base_price %}
+    <p><strong>Starting from:</strong> ${{ service.base_price }}. Minimum job ${{ config.min_job }}.</p>
+    {% elif service.base_price_commercial %}
+    <p><strong>Commercial storefronts:</strong> From ${{ service.base_price_commercial }} per visit. Recurring contracts available.</p>
+    {% else %}
+    <p>Pricing for {{ service.name }} is quoted on-site based on the specific conditions of your property. Contact us for a free assessment.</p>
+    {% endif %}
+  </section>
+
+  {% if faqs %}
+  <section class="content-section faq-section">
+    <h2>Frequently Asked Questions — {{ service.name }}</h2>
+    <div class="faq-list">
+      {% for faq in faqs[:8] %}
+      <div class="faq-item">
+        <h3>{{ faq.q }}</h3>
+        <p>{{ faq.a }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="page-cta">
+    <h2>Book {{ service.name }} in the Shuswap</h2>
+    <p>Serving all of the Shuswap region — book online or call us for a free quote.</p>
+    <div class="cta-buttons">
+      <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
+         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'service_cta_{{ service.slug }}'});">Book Online</a>
+      <a href="tel:{{ config.phone_raw }}" class="btn-outline"
+         onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'service_cta_{{ service.slug }}'});">Call {{ config.phone }}</a>
+    </div>
+  </section>
+
+</article>
+{% endblock %}

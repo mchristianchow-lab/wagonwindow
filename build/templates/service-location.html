@@ -1,0 +1,292 @@
+{% extends "base.html" %}
+
+{% block head_extra %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "{{ service.name }} in {{ location.name }}",
+  "provider": {"@type": "LocalBusiness", "name": "Wagon Windows"},
+  "areaServed": "{{ location.name }}, BC",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "CAD",
+    "price": "{{ service.base_price_small | default(service.base_price_commercial) | default(service.price_per_screen_low) | default('varies') }}",
+    "description": "{{ service.service_description }}"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for faq in faqs[:8] %}
+    {
+      "@type": "Question",
+      "name": {{ faq.q | tojson }},
+      "acceptedAnswer": {"@type": "Answer", "text": {{ faq.a | tojson }}}
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a> › <a href="/services/{{ service.slug }}/">{{ service.name }}</a> › {{ location.name }}
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-badge">{{ location.name }}, BC · {{ location.region }}</div>
+    <h1>{{ h1 }}</h1>
+
+    <!-- Quick Answer (speakable schema — for voice + AI agents) -->
+    <div class="quick-answer" itemscope itemtype="https://schema.org/WebPageElement" itemprop="speakable">
+      <p>Wagon Windows provides professional {{ service.short_name | lower }} in {{ location.name }}, BC.
+      {% if location.lake_proximity %}
+        We serve lakefront and lake-view properties throughout the {{ location.name }} area, with exterior cleans from ${{ service.base_price_small | default(service.base_price_commercial | default(service.price_per_screen_low)) }} and full interior + exterior service available.
+      {% else %}
+        We serve residential and commercial properties throughout {{ location.name }} and the surrounding {{ location.region }} region, with exterior cleans from ${{ service.base_price_small | default(service.base_price_commercial | default(service.price_per_screen_low)) }}.
+      {% endif %}
+      Locally owned in Salmon Arm, streak-free guaranteed, and bookable online in minutes.</p>
+    </div>
+
+    <div class="hero-btns">
+      <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
+         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'{{ page_slug }}'});">
+        Book Online — Free Quote
+      </a>
+      <a href="tel:{{ config.phone_raw }}" class="btn-outline"
+         onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'{{ page_slug }}'});">
+        Call {{ config.phone }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<article class="page-content">
+
+  <!-- KEY FACTS BOX -->
+  <aside class="key-facts">
+    <h3>Key Facts — {{ service.short_name }} in {{ location.name }}</h3>
+    <ul>
+      <li><strong>Starting price:</strong>
+        {% if service.base_price_small %}${{ service.base_price_small }} for homes up to 15 windows (exterior)
+        {% elif service.base_price_commercial %}${{ service.base_price_commercial }} for commercial storefronts
+        {% elif service.price_per_screen_low %}${{ service.price_per_screen_low }}–${{ service.price_per_screen_high }} per screen
+        {% elif service.base_price %}${{ service.base_price }}
+        {% else %}Quoted on-site
+        {% endif %}
+      </li>
+      <li><strong>Service area:</strong> {{ location.name }} and surrounding communities</li>
+      <li><strong>Drive time from base:</strong>
+        {% if location.drive_time_from_primary_min == 0 %}Salmon Arm is our home base — fastest response times
+        {% else %}~{{ location.drive_time_from_primary_min }} minutes from Salmon Arm
+        {% endif %}
+      </li>
+      <li><strong>Booking:</strong> Online (Calendly), phone {{ config.phone }}, text, or WhatsApp</li>
+      <li><strong>Products:</strong> Eco-friendly, biodegradable, safe for gardens and {{ location.region }} waterways</li>
+      {% if location.lake_proximity and location.lake_note %}
+      <li><strong>Lakefront note:</strong> {{ location.lake_note }}</li>
+      {% endif %}
+      <li><strong>Climate:</strong> {{ location.climate_note | truncate(120) }}</li>
+    </ul>
+  </aside>
+
+  <!-- INTRO -->
+  <section class="content-section">
+    <p class="intro-para">
+      {{ service.name }} in {{ location.name }} means dealing with conditions that are unique to the {{ location.region }} — {{ location.climate_note | lower }}
+      {% if location.lake_proximity %} Add to that the mineral-rich lake spray from nearby water, and windows in {{ location.name }} face a consistent maintenance challenge that rewards a professional approach.{% endif %}
+      Wagon Windows is based in Salmon Arm and serves {{ location.name }} regularly — we know the local properties, the local climate, and what it takes to get lasting results.
+    </p>
+    <p>
+      With transparent pricing starting from ${{ service.base_price_small | default(service.base_price_commercial | default(99)) }},
+      online booking through Calendly, and a streak-free guarantee on every job, we make {{ service.short_name | lower }} in {{ location.name }} straightforward.
+      No surprise quotes, no unreturned calls. Just clean windows.
+    </p>
+  </section>
+
+  <!-- H2: What is this service and why does it matter here -->
+  <section class="content-section">
+    <h2>What is {{ service.name }} and Why Does It Matter in {{ location.name }}?</h2>
+    <div class="short-answer" itemprop="speakable" itemscope itemtype="https://schema.org/WebPageElement">
+      <p>{{ service.name }} in {{ location.name }} involves removing the specific buildup that accumulates on glass in this area —
+      {% if location.lake_proximity %}mineral deposits from lake spray, {% endif %}pollen from surrounding forests, and the seasonal grime unique to the {{ location.region }}'s four-season climate.
+      For {{ location.name }} homeowners, clean windows aren't just cosmetic — they protect the glass surface from long-term etching and staining that becomes harder to remove over time.</p>
+    </div>
+    <p>{{ location.geography }} This geography shapes how windows age here. {{ location.climate_note }}</p>
+    {% if location.lake_proximity and location.lake_note %}
+    <p>{{ location.lake_note }} The calcium and silica left behind after lake water evaporates bonds to glass over time — standard cleaning won't remove it without the right treatment. Early intervention is always cheaper than remediation.</p>
+    {% endif %}
+    <p>Professional {{ service.short_name | lower }} addresses these challenges systematically. Where DIY cleaning smears mineral deposits or misses the frame and sill buildup, a proper clean removes every layer — leaving glass that's genuinely clear rather than just less dirty.</p>
+    <p>For {{ location.name }}'s {{ location.home_style_note | lower }}, the investment in professional cleaning pays off both in appearance and in the long-term health of the glass itself.</p>
+  </section>
+
+  <!-- H2: What we do -->
+  <section class="content-section">
+    <h2>What's Included in Our {{ service.name }} in {{ location.name }}</h2>
+    <div class="short-answer" itemprop="speakable" itemscope itemtype="https://schema.org/WebPageElement">
+      <p>Our {{ service.short_name | lower }} in {{ location.name }} is a complete clean from frame to sill — not just a wipe of the glass. Every job includes our standard process adapted to the specific conditions of your property, with a streak-free guarantee on every pane.</p>
+    </div>
+    <ul class="service-bullets">
+      {% for bullet in service.what_we_do_bullets %}
+      <li>{{ bullet }}</li>
+      {% endfor %}
+    </ul>
+    {% if location.lake_proximity %}
+    <p>For lakefront and lake-view properties in {{ location.name }}, we pay particular attention to panes facing the water — these accumulate mineral deposits faster than interior-facing windows and require more careful treatment to achieve a streak-free result.</p>
+    {% endif %}
+    <p>We work around your schedule and access requirements. For properties with multiple stories or restricted access points, we discuss the approach before starting and will tell you upfront if a ladder or extension pole is needed.</p>
+  </section>
+
+  <!-- H2: Pricing -->
+  <section class="content-section">
+    <h2>{{ service.name }} Pricing in {{ location.name }}</h2>
+    <div class="short-answer" itemprop="speakable" itemscope itemtype="https://schema.org/WebPageElement">
+      <p>
+        {% if service.base_price_small %}
+        Window cleaning in {{ location.name }} starts from ${{ service.base_price_small }} for exterior-only on a small home (up to 15 windows) and from ${{ service.base_price_interior_small | default(service.base_price_small + 50) }} for full interior + exterior.
+        {% elif service.base_price_commercial %}
+        Commercial window cleaning in {{ location.name }} starts from ${{ service.base_price_commercial }} per visit for storefronts, with recurring contract pricing available.
+        {% elif service.price_per_screen_low %}
+        Screen cleaning in {{ location.name }} is ${{ service.price_per_screen_low }}–${{ service.price_per_screen_high }} per screen with a ${{ config.min_job }} minimum.
+        {% elif service.base_price %}
+        {{ service.short_name }} in {{ location.name }} starts from ${{ service.base_price }}.
+        {% else %}
+        {{ service.short_name }} pricing in {{ location.name }} is quoted on-site based on the specific conditions of your property.
+        {% endif %}
+        We publish our prices upfront — no mystery quotes.
+      </p>
+    </div>
+
+    {% if service.base_price_small %}
+    <table class="pricing-table">
+      <thead>
+        <tr><th>Home Size</th><th>Windows</th><th>Exterior Only</th><th>Interior + Exterior</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Small</td><td>Up to 15</td><td>From ${{ service.base_price_small }}</td><td>From ${{ service.base_price_interior_small | default(service.base_price_small + 50) }}</td></tr>
+        <tr><td>Medium</td><td>16–25</td><td>From ${{ service.base_price_medium }}</td><td>From ${{ service.base_price_interior_large | default(service.base_price_medium + 70) }}</td></tr>
+        <tr><td>Large</td><td>26–35</td><td>From ${{ service.base_price_large }}</td><td>From ${{ (service.base_price_large + 80) }}</td></tr>
+      </tbody>
+    </table>
+    {% endif %}
+
+    <p><strong>Add-ons:</strong> Screen cleaning $3–$4 per screen · Track cleaning from $50 · Hard water stain removal quoted on-site · Minimum job ${{ config.min_job }}</p>
+    <p>{{ location.home_style_note }} Most {{ location.name }} properties fall in the medium or large range — expect a full clean to run $199–$349 for a typical home in the area.</p>
+  </section>
+
+  <!-- H2: When to book -->
+  <section class="content-section">
+    <h2>When to Book {{ service.name }} in {{ location.name }}</h2>
+    <div class="short-answer" itemprop="speakable" itemscope itemtype="https://schema.org/WebPageElement">
+      <p>Most {{ location.name }} properties benefit from {{ service.short_name | lower }} 2–3 times per year: spring after pollen peaks (April–May), midsummer for dust and UV haze (July), and fall before freeze (September–October).
+      {% if location.lake_proximity %} Lakefront properties may need an additional clean in late spring or early summer due to higher mineral spray exposure from the water.{% endif %}</p>
+    </div>
+    <p>{{ location.climate_note }}</p>
+    {% if location.drive_time_from_primary_min > 0 %}
+    <p><strong>Booking lead time for {{ location.name }}:</strong> Because {{ location.name }} is approximately {{ location.drive_time_from_primary_min }} minutes from our Salmon Arm base, we schedule {{ location.name }} jobs in batches when possible. We recommend booking at least 1–2 weeks in advance, especially during spring and fall peak periods.</p>
+    {% else %}
+    <p>As our home base, Salmon Arm has the most flexible scheduling — same-day or next-day availability is often possible outside of our busiest periods (April–May and September–October).</p>
+    {% endif %}
+    <p>To lock in your preferred date, book online via Calendly or call us at {{ config.phone }}. We'll send a confirmation within a few hours.</p>
+  </section>
+
+  <!-- H2: Why choose us -->
+  <section class="content-section">
+    <h2>Why Choose Wagon Windows for {{ service.name }} in {{ location.name }}?</h2>
+    <div class="short-answer" itemprop="speakable" itemscope itemtype="https://schema.org/WebPageElement">
+      <p>Wagon Windows is a locally owned {{ location.region }} business based in Salmon Arm. We serve {{ location.name }} regularly and understand the specific cleaning challenges of properties in this area.
+      Our published pricing, streak-free guarantee, and online booking set us apart from most window cleaners in the region who still require a phone call just to get a quote.</p>
+    </div>
+    <ul class="why-list">
+      <li><strong>Locally owned and operated</strong> — based in Salmon Arm, serving {{ location.name }} regularly since we launched</li>
+      <li><strong>Published pricing</strong> — rates posted upfront at wagonwindows.com, no mystery quotes</li>
+      <li><strong>Streak-free guarantee</strong> — if you're not happy, we return at no charge</li>
+      <li><strong>Online booking</strong> — Calendly scheduling in under 2 minutes, no phone tag required</li>
+      <li><strong>Eco-friendly products</strong> — biodegradable solutions safe for the {{ location.region }}'s waterways and gardens</li>
+      <li><strong>Fully insured</strong> — liability coverage on every job</li>
+      {% if location.lake_proximity %}
+      <li><strong>Lakefront experience</strong> — we understand mineral deposit buildup on properties near {{ location.name }}'s waterfront and treat it appropriately</li>
+      {% else %}
+      <li><strong>{{ location.region }} knowledge</strong> — we understand the seasonal dust and pollen patterns specific to {{ location.name }}'s climate</li>
+      {% endif %}
+    </ul>
+  </section>
+
+  <!-- H2: Service area -->
+  <section class="content-section">
+    <h2>Serving {{ location.name }} and Surrounding Areas</h2>
+    <div class="short-answer" itemprop="speakable" itemscope itemtype="https://schema.org/WebPageElement">
+      <p>{{ location.service_radius_note }} We serve {{ location.name }}{% if location.neighborhoods %}, including {{ location.neighborhoods | join(', ') }}{% endif %}, as well as nearby communities throughout the {{ location.region }} region. If you're unsure whether we cover your exact area, contact us — we're happy to travel for the right job.</p>
+    </div>
+    <p>From our Salmon Arm base, we cover the full Shuswap region. {{ location.name }} is a regular stop on our schedule{% if location.drive_time_from_primary_min > 0 %} — approximately {{ location.drive_time_from_primary_min }} minutes from our base{% endif %}. We often schedule multiple jobs in {{ location.name }} and the surrounding area on the same day, which allows us to keep travel costs low and pricing competitive.</p>
+    <div class="area-links">
+      <p><strong>Other areas we serve from {{ location.name }}:</strong></p>
+      <ul>
+        {% for loc in all_locations %}
+        {% if loc.slug != location.slug %}
+        <li><a href="/{{ service.slug }}/{{ loc.slug }}/">{{ service.short_name }} in {{ loc.name }}</a></li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <!-- INLINE CTA -->
+  <div class="inline-cta">
+    <p>Ready to book {{ service.short_name | lower }} in {{ location.name }}?</p>
+    <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
+       onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'inline_{{ page_slug }}'});">
+      Book Your Free Quote
+    </a>
+    <a href="tel:{{ config.phone_raw }}" class="btn-outline"
+       onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'inline_{{ page_slug }}'});">
+      Call {{ config.phone }}
+    </a>
+  </div>
+
+  <!-- FAQ -->
+  <section class="content-section faq-section">
+    <h2>Frequently Asked Questions — {{ service.short_name }} in {{ location.name }}</h2>
+    {% if faqs %}
+    <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+      {% for faq in faqs %}
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">{{ faq.q }}</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">{{ faq.a }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="page-cta">
+    <h2>Ready to Book {{ service.name }} in {{ location.name }}?</h2>
+    <p>Contact Wagon Windows today for a free quote. We serve {{ location.name }} and the {{ location.region }} region — locally owned, reliable, and streak-free guaranteed.</p>
+    <div class="cta-buttons">
+      <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
+         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'closing_{{ page_slug }}'});">
+        Book Online
+      </a>
+      <a href="tel:{{ config.phone_raw }}" class="btn-outline"
+         onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'closing_{{ page_slug }}'});">
+        Call {{ config.phone }}
+      </a>
+    </div>
+  </section>
+
+</article>
+
+{% endblock %}
