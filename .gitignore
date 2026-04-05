@@ -22,6 +22,10 @@ global.md
 setup-guide.html
 wagon-windows-setup-guide.pdf
 door-hanger.html
-"final black and white.jpeg"
-"final logo fin.jpeg"
-"phonto 5.JPG"
+*.jpeg
+*.jpg
+*.JPG
+*.PNG
+*.pdf
+*.html
+!build/
