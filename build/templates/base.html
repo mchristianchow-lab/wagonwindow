@@ -14,18 +14,18 @@
   <meta property="og:type" content="website" />
 
   <!-- Preload logo (LCP element) -->
-  <link rel="preload" as="image" href="/assets/images/logo.jpg" type="image/jpeg">
+  <link rel="preload" as="image" href="/assets/images/logo.webp" type="image/webp">
 
   <!-- Inline critical CSS (nav + hero) -->
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--red:#e81010;--black:#111111;--dark:#000000;--light:#f5f5f5;--white:#ffffff}
     body{font-family:'Inter',sans-serif;color:var(--black);background:var(--white)}
-    nav{background:#111111;border-bottom:5px solid var(--red);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:88px;position:sticky;top:0;z-index:100;overflow:visible}
+    nav{background:#fff;border-bottom:5px solid var(--red);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:88px;position:sticky;top:0;z-index:100;overflow:visible}
     .nav-logo{display:flex;align-items:center;text-decoration:none}
-    .nav-logo-img{height:76px;width:auto;overflow:visible;transform:none;filter:none;border-radius:50%}
+    .nav-logo-img{height:180px;width:auto;overflow:visible;transform:translateY(-1.5mm);filter:none}
     .nav-links{display:flex;list-style:none;gap:2rem;align-items:center}
-    .nav-links a{text-decoration:none;color:#fff;font-weight:500;font-size:0.95rem}
+    .nav-links a{text-decoration:none;color:var(--black);font-weight:500;font-size:0.95rem}
     .nav-cta{background:var(--red)!important;color:#fff!important;padding:0.5rem 1.2rem;border-radius:4px}
     .hero{background:linear-gradient(160deg,#000 0%,#111 60%,#220000 100%);color:#fff;padding:5rem 2rem 4rem;text-align:center}
     .hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.1;margin-bottom:1rem}
@@ -33,9 +33,9 @@
     .hero p{font-size:1.1rem;max-width:600px;margin:0 auto 2rem;opacity:0.9}
     .btn-primary{background:var(--red);color:#fff;padding:0.85rem 2rem;border-radius:4px;text-decoration:none;font-weight:600;display:inline-block}
     .btn-outline{border:2px solid rgba(255,255,255,0.6);color:#fff;padding:0.85rem 2rem;border-radius:4px;text-decoration:none;font-weight:600;display:inline-block}
-    @media(max-width:768px){.nav-links{display:none}.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer}.hamburger span{width:25px;height:2px;background:#fff;display:block}}
+    @media(max-width:768px){.nav-links{display:none}.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer}.hamburger span{width:25px;height:2px;background:var(--black);display:block}}
     .hamburger{display:none}
-    .nav-links.open{display:flex;flex-direction:column;position:absolute;top:88px;left:0;right:0;background:#111111;padding:1rem 2rem;border-bottom:2px solid var(--red);z-index:99}
+    .nav-links.open{display:flex;flex-direction:column;position:absolute;top:88px;left:0;right:0;background:#fff;padding:1rem 2rem;border-bottom:2px solid var(--red);z-index:99}
   </style>
 
   <!-- Load full stylesheet async -->
@@ -86,8 +86,11 @@
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">
-    <img src="/assets/images/logo.jpg" alt="Wagon Windows" class="nav-logo-img"
-         width="760" height="760" loading="eager" fetchpriority="high">
+    <picture>
+      <source srcset="/assets/images/logo.webp" type="image/webp">
+      <img src="/assets/images/logo.png" alt="Wagon Windows" class="nav-logo-img"
+           width="1023" height="1023" loading="eager" fetchpriority="high">
+    </picture>
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="/#services">Services</a></li>
