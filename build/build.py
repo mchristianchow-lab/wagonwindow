@@ -120,7 +120,7 @@ def build_homepage():
         'services': services,
         'locations': locations,
         'page_title': 'Wagon Windows | Professional Window Cleaning — Salmon Arm & Shuswap',
-        'meta_desc': 'Professional window cleaning for homes and businesses across the Shuswap. Residential, commercial, and seasonal services. Transparent pricing from $149. Locally owned in Salmon Arm, BC.',
+        'meta_desc': 'Professional window cleaning for homes and businesses across the Shuswap. Residential, commercial, and seasonal services. Transparent pricing from $169. Locally owned in Salmon Arm, BC.',
         'canonical': config['site_url'] + '/',
         'schema_type': 'homepage'
     }
