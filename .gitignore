@@ -29,3 +29,8 @@ door-hanger.html
 *.pdf
 *.html
 !build/
+!build/assets/
+!build/assets/images/
+!build/assets/images/*.jpg
+!build/assets/images/*.png
+!build/assets/images/*.webp
