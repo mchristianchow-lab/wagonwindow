@@ -14,7 +14,7 @@
   <meta property="og:type" content="website" />
 
   <!-- Preload logo (LCP element) -->
-  <link rel="preload" as="image" href="/assets/images/logo.webp" type="image/webp">
+  <link rel="preload" as="image" href="/assets/images/logo.svg" type="image/svg+xml">
 
   <!-- Inline critical CSS (nav + hero) -->
   <style>
@@ -116,11 +116,8 @@
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">
-    <picture>
-      <source srcset="/assets/images/logo.webp" type="image/webp">
-      <img src="/assets/images/logo.png" alt="Wagon Windows" class="nav-logo-img"
-           width="1023" height="1023" loading="eager" fetchpriority="high">
-    </picture>
+    <img src="/assets/images/logo.svg" alt="Wagon Windows" class="nav-logo-img"
+         width="1024" height="1024" loading="eager" fetchpriority="high">
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="/#services">Services</a></li>
