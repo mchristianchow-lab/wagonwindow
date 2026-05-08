@@ -135,6 +135,40 @@
         "q": "Why should I have my window tracks professionally cleaned?",
         "a": "Dirty window tracks accumulate grime, insect debris, and buildup that prevents windows from sliding smoothly and can damage seals over time. Professional cleaning removes compacted debris that vacuuming alone can't address."
       }
+    ],
+    "gutter-cleaning": [
+      {
+        "q": "How often should gutters be cleaned in the Shuswap?",
+        "a": "Twice per year for most Shuswap homes: once in late spring after cottonwood seed and pollen season (June), and once in late fall after leaf-drop (October–November). Properties with overhanging trees or near-roofline vegetation may need 3 cleanings per year."
+      },
+      {
+        "q": "What's the difference between gutter cleaning and eavestrough cleaning?",
+        "a": "Nothing — they're the same service. Gutters and eavestroughs are the same thing. 'Gutter' is the American term, 'eavestrough' is more common in BC and Canada."
+      },
+      {
+        "q": "Can you clean gutters on a two-storey home?",
+        "a": "Yes — we clean two-storey homes regularly. Two-storey homes are quoted at $229+ depending on roofline complexity and total linear footage. Safe ladder positioning is assessed on every section."
+      },
+      {
+        "q": "Do you repair gutters as well as clean them?",
+        "a": "We don't do gutter repairs — we clean and inspect. If we find damaged joints, sagging sections, or holes, we'll flag them and recommend a gutter repair specialist."
+      },
+      {
+        "q": "Will you clean up the debris afterward?",
+        "a": "Yes — all debris is collected and removed. We don't blow it onto your lawn or leave it in a pile. The material is bagged or removed in our vehicle."
+      },
+      {
+        "q": "What if my downspout is underground?",
+        "a": "We flush the downspout from the top. If it's blocked underground (a separate issue from the gutter itself), we'll let you know — underground drainage blockages are outside our scope but we'll describe where the blockage appears to be so you can call a plumber."
+      },
+      {
+        "q": "How long does gutter cleaning take?",
+        "a": "A standard single-storey home takes 45–90 minutes. Two-storey or larger homes typically 2–3 hours. Add-on to a window clean for the best value — we're already there with the ladders."
+      },
+      {
+        "q": "Is it worth cleaning gutters every year?",
+        "a": "In the Shuswap — yes. Cottonwood seeds, pine needles, and deciduous leaf debris accumulate quickly. Blocked gutters can cause fascia rot, soffit damage, and foundation water intrusion that costs thousands to fix. A $149–$229 annual clean is a straightforward investment."
+      }
     ]
   },
   "by_location": {
@@ -148,6 +182,10 @@
         "id": "l-sa-2",
         "q": "Do you serve all neighborhoods in Salmon Arm including Canoe and Raven?",
         "a": "Yes — we serve all of Salmon Arm including Canoe, Raven, Hillcrest, Silver Creek, Salmon Valley, and surrounding areas. Salmon Arm is our home base so we have the fastest response times and most flexible scheduling here."
+      },
+      {
+        "q": "When is the best time to book gutter cleaning in Salmon Arm?",
+        "a": "Twice yearly: early June after cottonwood seed season, and mid-October after deciduous leaf-drop before freeze. Salmon Arm's mix of birch, maple, and cottonwood trees means gutters accumulate heavily in both spring and fall. Fall slots book fast — schedule in September to secure October availability."
       }
     ],
     "blind-bay": [
@@ -160,6 +198,10 @@
         "id": "l-bb-2",
         "q": "Do Blind Bay lakefront homes need special window cleaning treatment?",
         "a": "Yes — Blind Bay's proximity to Shuswap Lake means many properties develop mineral and calcium deposits from lake spray on exterior glass. We assess each property on arrival and apply appropriate treatment for mineral buildup, which differs from a standard window clean."
+      },
+      {
+        "q": "Does the Shuswap Lake humidity in Blind Bay cause faster moss growth in gutters?",
+        "a": "Yes — Blind Bay's high ambient humidity and sheltered bay position create ideal conditions for moss and algae growth on rooflines, which then deposits directly into gutters. Moss-blocked gutters are a consistent finding on Blind Bay properties. Annual cleaning removes the moss layer and prevents the premature fascia damage caused by persistent overflow."
       }
     ],
     "sorrento": [
@@ -172,6 +214,10 @@
         "id": "l-so-2",
         "q": "Can you clean our Sorrento vacation property before we arrive for the season?",
         "a": "Yes — pre-arrival seasonal cleans are one of our most popular services for Sorrento property owners. Book in advance (we recommend February or March for spring arrivals) to secure your preferred date."
+      },
+      {
+        "q": "Do seasonal Sorrento properties need gutter cleaning before owners arrive?",
+        "a": "Yes — gutters on closed seasonal properties collect debris throughout winter without anyone noticing. Pine needles and cottonwood debris from Notch Hill forests pack into gutters during the closed season. We offer pre-arrival gutter cleaning bundled with window cleaning for Sorrento seasonal properties — one booking, property ready when you arrive."
       }
     ],
     "sicamous": [
@@ -184,6 +230,10 @@
         "id": "l-si-2",
         "q": "Do you clean commercial windows for Sicamous businesses during tourist season?",
         "a": "Yes — we work with Sicamous businesses including storefronts, restaurants, and accommodation operators. Summer pre-season cleans (May) are high demand — book your commercial clean by April to guarantee availability."
+      },
+      {
+        "q": "Do Sicamous vacation rental properties need gutter cleaning before tourist season?",
+        "a": "Yes — pre-season gutter cleaning in April or May is worth doing on Sicamous vacation rentals. Pine debris from the surrounding forests and winter storm material pack into gutters over the off-season. Blocked gutters that overflow during summer storms create fascia staining visible to guests and can damage the structure of rental-income properties."
       }
     ],
     "chase": [
@@ -191,6 +241,10 @@
         "id": "l-ch-1",
         "q": "Does Wagon Windows travel to Chase for window cleaning?",
         "a": "Yes — Chase is within our service area, about 55 minutes from Salmon Arm. We travel to Chase regularly and can combine multiple jobs in the area. Contact us to arrange scheduling."
+      },
+      {
+        "q": "How does Chase's cottonwood season affect gutter cleaning timing?",
+        "a": "Cottonwood shedding in Chase (late May to early June) is one of the heaviest single-event debris loads in the Shuswap. Cottonwood seeds and seed casings pack into gutter channels in days during peak shedding. A June gutter clean captures the full cottonwood deposit before it compacts and blocks downspouts. Fall cleaning remains important for deciduous leaf debris before freeze."
       }
     ],
     "enderby": [
@@ -198,6 +252,10 @@
         "id": "l-en-1",
         "q": "Do you serve Enderby and the surrounding area?",
         "a": "Yes — Enderby is about 35 minutes south of Salmon Arm and within our regular service area. We serve both residential homes and commercial businesses in Enderby, Grindrod, and the surrounding area."
+      },
+      {
+        "q": "Do Enderby riverside and agricultural properties have different gutter cleaning needs?",
+        "a": "Yes. Enderby properties near the Shuswap River deal with riverside tree debris (poplar, willow, cottonwood) depositing into gutters year-round, with peak accumulation in spring and fall. Agricultural properties with overhanging trees also accumulate field dust on roofs that washes into gutters during rain. Two cleanings per year is the recommended baseline for Enderby properties with significant tree coverage."
       }
     ],
     "armstrong": [
@@ -205,6 +263,10 @@
         "id": "l-ar-1",
         "q": "Does Wagon Windows serve Armstrong?",
         "a": "Yes — Armstrong is about 45 minutes from our Salmon Arm base and within our regular service area. We serve residential homes and commercial businesses throughout Armstrong and the Spallumcheen Valley."
+      },
+      {
+        "q": "Should Armstrong homeowners book gutter cleaning before or after the IPE in September?",
+        "a": "Book for October — after the Interior Provincial Exhibition (September) and after Armstrong's deciduous trees have dropped. Fall leaf-drop in Armstrong and Spallumcheen is heavy due to the valley's mature tree canopy. An October gutter clean captures the full fall deposit before freeze and prevents winter ice damming from blocked downspouts. Spring cleaning in June handles cottonwood and orchard pollen debris."
       }
     ],
     "tappen": [
@@ -212,6 +274,1272 @@
         "id": "l-ta-1",
         "q": "Do you serve Tappen for window cleaning?",
         "a": "Yes — Tappen is in our regular service area, about 25 minutes from Salmon Arm. We serve both lakefront properties and inland acreages throughout the Tappen area."
+      },
+      {
+        "q": "Do Tappen properties near agricultural fields need more frequent gutter cleaning?",
+        "a": "Yes — Tappen acreage properties with overhanging trees or near hay and grain fields accumulate more debris in gutters than urban properties. Summer growing season kicks dust and organic material onto roofs, which then washes into gutters. Annual cleaning is the minimum for most Tappen properties; twice yearly for those with significant tree coverage."
+      }
+    ]
+  },
+  "by_service_location": {
+    "residential-window-cleaning/salmon-arm": [
+      {
+        "q": "Do you clean lakefront homes in Salmon Arm's Canoe Beach area?",
+        "a": "Yes — Canoe Beach is one of our most frequent stops. Homes near Shuswap Lake accumulate calcium and silica deposits from lake spray that require a pre-rinse treatment before a standard squeegee clean. Most Canoe Beach homes have large window banks facing the water — we bring extension equipment for upper-story glass and plan for 2–3 hours depending on the window count. Book spring cleans early as demand peaks in April and May."
+      },
+      {
+        "q": "How much does residential window cleaning cost for a typical Salmon Arm home?",
+        "a": "Exterior-only cleaning for a standard Salmon Arm home starts at $149 for smaller properties and typically runs $200–$350 for mid-size homes with 15–25 windows. Full interior and exterior service starts at $199 and averages $280–$450 for most homes. Hillside properties in Raven or Hillcrest with upper-story windows may cost slightly more due to extended equipment needs. We quote on-site at no charge."
+      },
+      {
+        "q": "Can you clean the upper-story windows on my Salmon Arm hillside home without scaffolding?",
+        "a": "Yes — we use water-fed pole systems and professional extension ladders rated for residential heights. Most Hillcrest and Silver Creek hillside homes are fully accessible with our equipment. Scaffolding is rarely needed for residential properties. If your home has unusual architecture or extremely steep roof pitch, we'll flag that during the on-site quote rather than discovering it on cleaning day."
+      },
+      {
+        "q": "What's the best season to book residential window cleaning in Salmon Arm?",
+        "a": "Late April through May is ideal — after the heavy cottonwood and pine pollen drops but before summer dust builds up. Salmon Arm's surrounding forests mean pollen accumulation on glass is heavy from March through mid-April. A second clean in late August or September catches the summer haze before fall rains arrive. Lakefront homes on Shuswap Lake benefit from a third mid-summer clean due to ongoing mineral spray."
+      }
+    ],
+    "residential-window-cleaning/sorrento": [
+      {
+        "q": "My Sorrento property sits empty most of the year — can you clean it before I arrive for the summer?",
+        "a": "Pre-arrival seasonal cleans are one of our most-booked services for Sorrento properties. We schedule the clean for 1–2 days before your confirmed arrival date and can coordinate access through a property manager or lockbox. Windows left closed over winter accumulate condensation residue and cottonwood seed buildup from spring. Book by March at the latest for May–June arrival dates — pre-arrival slots fill quickly."
+      },
+      {
+        "q": "How does Sorrento's position on Shuswap Lake affect my windows compared to inland properties?",
+        "a": "Significantly. Sorrento's direct lakefront exposure means windborne mineral spray is a constant issue — calcium and magnesium deposits build up on exterior glass even on windows not facing the water. Inland properties in the same climate typically need cleaning twice per year; Sorrento lakefront homes generally need 3 cleans annually to stay ahead of mineral buildup. We apply a mineral pre-treatment rinse before squeegeeing to avoid redistributing deposits."
+      },
+      {
+        "q": "Do Sorrento vacation properties have different pricing than year-round homes?",
+        "a": "Pricing is based on window count and access, not whether the property is seasonal. However, vacation homes that are cleaned only once per year typically have more accumulated grime — cottonwood seed, spider webs, mineral staining — and may take longer than a well-maintained year-round home of similar size. The first clean often takes 20–30% longer. Subsequent cleans on a regular schedule return to standard timing and pricing."
+      },
+      {
+        "q": "Can I book residential window cleaning for my Notch Hill area property near Sorrento?",
+        "a": "Yes — we serve the Notch Hill area as part of our Sorrento route. Properties along Notch Hill face slightly different conditions than the waterfront — more exposure to the escarpment's windswept dust and less direct lake spray. Access to these elevated properties can be challenging; we confirm suitability during the quote. We combine Notch Hill and Sorrento waterfront visits on the same service day to keep pricing competitive."
+      }
+    ],
+    "residential-window-cleaning/tappen": [
+      {
+        "q": "How does harvest season dust in Tappen affect my home's windows?",
+        "a": "July and August hay and grain harvests in the Tappen Valley push significant airborne dust onto exterior glass. Windows that looked clean in June can develop a visible dust film by mid-July. We see this consistently on acreage properties within a kilometre of active fields. We recommend a mid-July or early August clean for Tappen farm properties — before the dust fully bonds to the glass in the summer heat. A fall clean in September rounds out the year."
+      },
+      {
+        "q": "Do you serve larger acreage properties in Tappen with 30 or more windows?",
+        "a": "Large acreages are some of our favourite Tappen jobs. Properties with 30+ windows benefit most from professional service — DIY cleaning at that scale is a half-day project with inconsistent results. We bring a full equipment setup and typically quote full-day rates for larger properties, which are more cost-effective than trying to clean in pieces. We'll give you a window count-based quote after a quick walkthrough."
+      },
+      {
+        "q": "My Tappen home is close to Shuswap Lake — do you treat the mineral deposits on my exterior windows?",
+        "a": "Yes. Tappen lakefront and near-lake properties have the same calcium and silica deposit issues as Salmon Arm waterfront homes. We apply a pre-rinse mineral treatment before the main clean to lift deposits rather than smear them. Without this step, squeegeeing over mineral buildup leaves streaks. We carry the treatment on all Tappen visits since it's needed on a large proportion of properties here."
+      },
+      {
+        "q": "How do you access the upper-story windows on rural Tappen properties where ladders can't be planted on sloped ground?",
+        "a": "We use water-fed pole systems for most upper-story work on uneven ground — these require no ladder placement and can reach up to three stories from ground level. For windows that aren't accessible by pole, we carry adjustable standoff ladder levelers designed for soft or sloped terrain. We identify access issues during the initial walkthrough rather than discovering them on cleaning day, so pricing is accurate from the start."
+      }
+    ],
+    "residential-window-cleaning/blind-bay": [
+      {
+        "q": "What causes the white film on my Blind Bay home's north-facing windows?",
+        "a": "The white film on north-facing Blind Bay windows is a combination of algae growth and mineral deposits — both driven by the high humidity off Shuswap Lake. North-facing glass stays damp longer, giving algae a foothold and concentrating mineral residue as moisture evaporates slowly. Standard cleaning products won't fully resolve this; we use an algae treatment followed by a mineral pre-rinse before squeegeeing. Most Blind Bay north-facing windows need this two-step approach."
+      },
+      {
+        "q": "Do you clean floor-to-ceiling lake-view windows in Blind Bay homes?",
+        "a": "Yes — Blind Bay's large-pane lake-view windows are some of the most rewarding we clean. These panoramic windows are a defining feature of properties in this area, and keeping them spotless matters for both enjoyment and resale value. We use professional-grade squeegees sized for large panes to minimize streaking, and we're careful with seals and frames on custom-built window systems. We treat these with the care they deserve."
+      },
+      {
+        "q": "How often should I schedule residential window cleaning for my Blind Bay lakefront property?",
+        "a": "Three times per year is our standard recommendation for Blind Bay lakefront homes: May (post-spring pollen), August (midsummer mineral spray peak), and October (before freeze). The high humidity and constant lake exposure at Blind Bay means mineral and algae buildup outpaces what two annual cleans can manage. Homes with heavy tree coverage nearby may also need an additional spring clean to address pine pollen on the glass before it bakes on in summer heat."
+      },
+      {
+        "q": "Can you quote residential window cleaning for a multi-story Blind Bay property I'm preparing to list for sale?",
+        "a": "Absolutely. Pre-sale window cleaning is one of the highest-return improvements a Blind Bay homeowner can make — clean glass dramatically improves how lake views photograph and present at open houses. We typically turn these around within 3–5 business days of contact in non-peak season. For properties in the $1M+ range, we treat every window as a feature worth protecting and quote multi-story access into the price upfront, no surprises."
+      }
+    ],
+    "residential-window-cleaning/sicamous": [
+      {
+        "q": "My Sicamous vacation rental needs a clean between every guest — is that something Wagon Windows can schedule?",
+        "a": "We do offer recurring residential window cleaning for Sicamous vacation rental operators, though our scheduling depends on route timing. For between-guest cleans, we'd set up a recurring appointment tied to your turnover dates — typically exterior-only, 60–90 minutes, priced per visit. This works best with 48+ hours notice before each arrival. Summer is tight for scheduling in Sicamous — establish the recurring arrangement before June to guarantee availability."
+      },
+      {
+        "q": "How does living between Shuswap and Mara Lakes affect window maintenance for Sicamous homeowners?",
+        "a": "Being flanked by two lakes doubles the mineral spray exposure compared to a single-lake community. Homes that face either lake — or even sit between them — collect mineral deposits from both directions depending on wind. We treat virtually all Sicamous exterior windows with a mineral pre-rinse as standard practice rather than assessing case-by-case. Factor in the higher tourism dust from the marina district and most Sicamous homes genuinely benefit from 3 cleans per year."
+      },
+      {
+        "q": "Do you clean residential windows in Swansea Point near Sicamous?",
+        "a": "Yes — Swansea Point is on our Sicamous route. Properties there tend to be larger lakefront homes with significant mineral buildup from Mara Lake. We visit the Swansea Point area on scheduled Sicamous service days. Because the drive from Salmon Arm is approximately 45 minutes, we combine multiple jobs in the area for efficient scheduling — contact us for availability and we'll coordinate your booking with nearby visits."
+      },
+      {
+        "q": "What time of year should Sicamous homeowners book residential window cleaning?",
+        "a": "May is the most important booking window for Sicamous homeowners — before summer tourism peaks and before lake spray from both Shuswap and Mara Lakes intensifies with warmer water. We see a sharp spike in Sicamous booking requests in June when it's already too late for ideal pre-season timing. A second clean in September catches the summer's mineral accumulation before freeze. Book your May appointment in March or April to guarantee your preferred date."
+      }
+    ],
+    "residential-window-cleaning/chase": [
+      {
+        "q": "How does Chase's drier summer climate affect how often I need residential window cleaning?",
+        "a": "Chase's position at the western edge of the Shuswap creates hotter, drier summers with less humidity than Salmon Arm — but that means dust bonds to glass faster and more stubbornly. A film of road and agricultural dust can set on exterior glass within 4–6 weeks during July and August. We recommend a late June clean before the dry peak, and a September clean after summer. Chase's lower pollen load compared to forested areas means spring cleaning is less urgent than dust-season timing."
+      },
+      {
+        "q": "Do you clean Little Shuswap Lake waterfront homes in Chase?",
+        "a": "Yes — Little Shuswap Lake waterfront properties in Chase are in our service area. These homes share the same mineral spray challenges as properties on the main Shuswap Lake — calcium and silica deposits from lake water require a pre-treatment rinse before standard cleaning. Little Shuswap waterfront is growing in popularity as Salmon Arm lakefront prices rise, and we're seeing more first-time waterfront homeowners in Chase who aren't aware of the extra mineral maintenance their windows require."
+      },
+      {
+        "q": "Since Chase is 55 minutes from Salmon Arm, how does Wagon Windows handle travel costs for residential jobs?",
+        "a": "We build Chase travel into our overall scheduling and don't charge a separate travel fee — our pricing covers the full visit. To keep costs efficient for both sides, we schedule Chase jobs in clusters on dedicated service days so multiple homeowners in the area benefit from the same trip. A mid-size Chase home with 15–20 windows runs $180–$320 for exterior cleaning, comparable to our Salmon Arm pricing. Contact us to get on the Chase service day list."
+      },
+      {
+        "q": "Are Cottonwood pollen deposits a problem for Chase homeowners' exterior windows?",
+        "a": "Yes — late May cottonwood pollen in Chase is significant. The fluffy seed heads lodge in window frames, tracks, and corners before the sticky pollen residue bonds to exterior glass in the heat. A post-pollen clean in early June handles most of the damage. The good news is Chase's drier conditions mean pollen doesn't bond as aggressively as it does on the wetter west side of the Shuswap — a standard clean is usually sufficient without specialist pre-treatment."
+      }
+    ],
+    "residential-window-cleaning/enderby": [
+      {
+        "q": "How does Enderby's agricultural dust affect the windows on rural residential properties?",
+        "a": "Enderby's Shuswap River valley is surrounded by active farmland — field tillage, fertilizer spreading, and harvest operations push fine dust airborne from May through September. Properties within a kilometre of agricultural fields accumulate exterior glass grime significantly faster than urban homes. We recommend a mid-season clean in July or August for Enderby acreage properties in addition to the standard spring and fall schedule. Dust-baked glass also takes longer to clean — expect slightly higher pricing on the first clean of the season."
+      },
+      {
+        "q": "Do riverside properties along the Shuswap River in Enderby need different window cleaning treatment?",
+        "a": "Yes — riverside properties deal with elevated moisture and algae that non-riparian Enderby homes don't face. The Shuswap River's humidity keeps glass damp longer in the mornings, accelerating algae and mildew growth on exterior surfaces. We treat riverside Enderby homes with an algae rinse before the main clean — the same approach we use on lakefront properties in Salmon Arm and Blind Bay. It's not a hard water mineral problem here; it's a moisture and biological growth issue."
+      },
+      {
+        "q": "Can you clean the windows on my Grindrod-area home as part of an Enderby service visit?",
+        "a": "Yes — Grindrod is on our Enderby route and we service homes there on Enderby visit days. Grindrod's agricultural character is similar to Enderby, with comparable dust and pollen challenges. The drive from Salmon Arm to the Grindrod-Enderby corridor is about 35 minutes, and we combine multiple properties in the area on the same day. Contact us with your Grindrod address and we'll slot you into the nearest scheduled visit."
+      },
+      {
+        "q": "What residential window cleaning package makes the most sense for an Enderby home that's surrounded by fields?",
+        "a": "For field-adjacent Enderby properties, we recommend a three-clean annual schedule rather than two: late May (post-spring seeding dust), late July or early August (mid-harvest), and September (post-harvest before freeze). The extra mid-season clean prevents dust from baking onto glass during the hottest stretch of summer, which makes the September clean significantly easier and cheaper. We offer a discounted multi-clean rate when all three are booked at the start of the season."
+      }
+    ],
+    "residential-window-cleaning/armstrong": [
+      {
+        "q": "Does Armstrong's agricultural dust from the Spallumcheen Valley affect how often I should clean my windows?",
+        "a": "Yes — Armstrong's dairy farming and crop agriculture in the Spallumcheen Valley means exterior glass accumulates grime faster than urban centres. Fine soil dust from field work and silage operations in summer is particularly aggressive on glass. Most Armstrong homeowners adjacent to farmland benefit from 3 cleans per year rather than two. The IPE fairgrounds in September also generates heavy dust in the surrounding neighbourhood — a post-fair clean in late September is worth considering for homes near the grounds."
+      },
+      {
+        "q": "I'm in a newer Armstrong subdivision — do new-build homes need different window cleaning?",
+        "a": "New-build Armstrong homes often have construction residue — mortar splash, paint overspray, or sticker adhesive on glass — that standard cleaning won't address. If your home is less than 2 years old and hasn't been professionally cleaned since construction, flag this when booking. We carry a glass-safe solvent for adhesive and construction residue removal, quoted per affected window. Post-construction cleaning takes longer but sets up a clean baseline for ongoing maintenance."
+      },
+      {
+        "q": "How does the Okanagan Valley pollen that blows north into Armstrong affect exterior windows in spring?",
+        "a": "Armstrong's position at the junction of Hwys 97A and 97B puts it directly in the path of southerly winds carrying Okanagan pollen north in late April and early May. The semi-arid pollen (from orchards and vineyards to the south) is finer and less sticky than Shuswap forest pollen but covers glass in a yellow-green film. A post-pollen clean in mid-May is ideal — waiting until June lets the pollen bake on during the first hot weeks, making it harder to remove."
+      },
+      {
+        "q": "What does exterior residential window cleaning typically cost for an Armstrong home?",
+        "a": "Exterior-only cleaning for a standard Armstrong home runs $160–$300 depending on window count and story height. Armstrong has a mix of single-story bungalows (faster, lower cost) and two-story suburban builds (more equipment and time). Full interior and exterior service averages $250–$420 for mid-size homes. We're about 45 minutes from Salmon Arm, and our pricing reflects full-service value without a travel surcharge — the quote you get is the price you pay."
+      }
+    ],
+    "exterior-window-cleaning/salmon-arm": [
+      {
+        "q": "What method does Wagon Windows use for exterior window cleaning on Salmon Arm homes?",
+        "a": "We use a squeegee-and-detail method for most Salmon Arm residential exteriors — professional T-bar applicator, commercial squeegee, and microfibre detailing on edges and corners. For upper-story windows, we use water-fed purified water pole systems that leave no residue as the pure water dries. Lakefront properties get a mineral pre-rinse first. Every window gets a sill and frame wipe-down included — not an add-on."
+      },
+      {
+        "q": "Can I get exterior-only window cleaning in Salmon Arm if I'm comfortable cleaning the inside myself?",
+        "a": "Exterior-only is one of our most-booked services in Salmon Arm — many homeowners are comfortable with interior cleaning but don't have the equipment or confidence for upper-story exterior access. Our exterior-only service covers all accessible exterior glass, frames, and sills. Pricing starts at $149 for smaller Salmon Arm homes. If you decide you'd like interior cleaning added on the same visit, just let us know when booking."
+      },
+      {
+        "q": "How does exterior window cleaning handle the pine sap and pollen that accumulates on Salmon Arm homes near forested areas?",
+        "a": "Salmon Arm's hillside neighborhoods in Raven and Silver Creek are surrounded by pine and fir — sticky sap deposits and pollen residue require a longer soak and agitation before squeegeeing. We don't rush the pre-rinse on these properties. Sap that's been on the glass through a full summer can require a glass-safe solvent treatment. We flag this during the quote so you're not surprised by additional time. Post-sap cleaning is why spring bookings often run longer than fall visits."
+      },
+      {
+        "q": "Do you do post-construction exterior window cleaning for newly built homes in Salmon Arm's growing residential areas?",
+        "a": "Yes — Salmon Arm's growing residential base means we regularly handle post-construction cleans for new builds in areas like Broadview and Salmon Valley. Construction window cleaning involves removing sticker adhesive, silicone smears, mortar splash, and paint overspray — entirely different from a maintenance clean. We quote these separately on a per-pane basis after assessing the glass. It's important to do this before the first season's freeze, when residue bonds more permanently to the glass surface."
+      }
+    ],
+    "exterior-window-cleaning/sorrento": [
+      {
+        "q": "How does Wagon Windows handle exterior cleaning for Sorrento properties with difficult waterfront access?",
+        "a": "Sorrento's waterfront properties often have landscaping, decks, and retaining walls between the exterior windows and any standing area — standard ladders aren't always viable. We use water-fed pole systems to reach upper-story exterior glass without needing ladder contact with the building, which protects both your siding and our safety. We assess access during the quote visit and bring the right combination of tools so we're not problem-solving on cleaning day."
+      },
+      {
+        "q": "What exterior window cleaning frequency does Wagon Windows recommend for Sorrento's lakefront properties?",
+        "a": "Three times per year for true Shuswap Lake waterfront in Sorrento: May (pre-season, before owner arrival), August (mid-summer mineral peak), and October (before freeze). The May clean is the most critical — windows closed all winter over a Sorrento seasonal property accumulate condensation scale, cottonwood seed residue, and oxidation that makes the first clean of the year the most labour-intensive. Consistent scheduling prevents each clean from becoming a remediation job."
+      },
+      {
+        "q": "Does Wagon Windows offer exterior window cleaning for Sorrento properties while the owner is away?",
+        "a": "Yes — exterior-only cleans don't require anyone to be home as long as we have unobstructed access to the exterior of the property. Many Sorrento seasonal owners set up annual or bi-annual exterior cleans while they're absent and send payment by e-transfer after we confirm completion with photos. We're comfortable working with property managers or neighbour-held keys for gate access. This is a popular arrangement for absentee Sorrento property owners."
+      },
+      {
+        "q": "Is mineral staining on exterior glass at my Sorrento lakefront home repairable with standard exterior cleaning?",
+        "a": "Light-to-moderate mineral staining — the white haze common on Shuswap Lake waterfront glass — is addressed in our standard exterior clean using a mineral pre-treatment rinse before squeegeeing. Heavy staining, where minerals have etched into the glass surface over multiple seasons without treatment, may require a separate hard water stain removal service with specialist polishing compound. We assess on-site and quote the appropriate service — we won't charge stain removal pricing for something our standard process handles."
+      }
+    ],
+    "exterior-window-cleaning/tappen": [
+      {
+        "q": "Can exterior window cleaning in Tappen address the yellow pollen film that covers everything in spring?",
+        "a": "Yes — spring pollen in Tappen is significant, especially on properties near the lakeside tree lines. The pollen film looks dramatic but is usually manageable with a thorough pre-rinse before squeegeeing. The key timing window is mid-May to early June — after the main pollen drop has finished but before early summer heat bakes the residue onto the glass. Waiting until late June makes the clean harder and slightly more expensive. We can sometimes add a detergent pre-spray for heavy pollen accumulation."
+      },
+      {
+        "q": "How do you clean the exterior windows on Tappen hobby farm properties where large areas of glass face the fields?",
+        "a": "Field-facing exterior glass on Tappen acreages is our highest-accumulation work — dust, chaff, and spray drift from nearby operations coat the glass densely by midsummer. We plan extra time for farm-facing windows and often use a pre-soak wash before the main squeegee pass. Single-story farm buildings are straightforward; multi-story farmhouses with field-facing upper windows require pole systems or ladder standoffs. We build the access plan into the quote rather than charging extra on the day."
+      },
+      {
+        "q": "Do you clean the exterior windows on Tappen lakefront acreages as a standalone service or only with interior?",
+        "a": "Exterior-only is our most common booking for Tappen lakefront acreages — the exterior glass faces the most punishment from lake spray, field dust, and pollen, so many owners prioritize the exterior and handle interior themselves. Standalone exterior service for a typical Tappen acreage home runs $175–$320 depending on window count and upper-story access. Interior can be added to the same visit at a reduced combined rate — just tell us at booking."
+      },
+      {
+        "q": "How does the spray from agricultural irrigation systems in Tappen affect exterior glass?",
+        "a": "Irrigation spray is a significant mineral staining source on Tappen properties where sprinkler systems are set up near the house. Unlike lake spray, irrigation water often has a higher mineral concentration from well water sources — it deposits calcium and iron staining that can appear orange or rust-coloured on glass. If your irrigation runs near windows, the glass should be assessed for mineral staining before standard exterior cleaning, as regular squeegeeing without pre-treatment can grind the deposits in rather than removing them."
+      }
+    ],
+    "exterior-window-cleaning/blind-bay": [
+      {
+        "q": "How do you clean the exterior windows on multi-story Blind Bay lake-view homes without damaging premium glass or frames?",
+        "a": "Blind Bay's premium properties often have custom window systems — large-pane low-E glass, aluminum cladding, or specialty frame materials that require care. We use tools and cleaning solutions appropriate for the glass type — never abrasive scrubbers on coated glass, no acidic treatments on aluminum frames without checking compatibility. For multi-story access, we use water-fed poles before ladder placement to confirm glass condition. We treat these homes with the same care we'd want for our own property."
+      },
+      {
+        "q": "What does exterior window cleaning cost for a premium lakefront home in Blind Bay?",
+        "a": "Exterior-only cleaning for a Blind Bay lakefront home typically runs $250–$500 depending on window count, story height, and the presence of mineral staining. Homes in the $1M+ range with 30+ windows and multi-story lake-view glass are at the higher end. This includes mineral pre-treatment rinse, sill and frame wipe-down, and extension equipment for upper windows. We quote on-site and the price doesn't change on the day — no surcharges for access challenges we didn't flag upfront."
+      },
+      {
+        "q": "Can Wagon Windows clean the exterior windows on Blind Bay homes accessible only by steep driveway or limited parking?",
+        "a": "Yes — steep driveways and limited parking are common in Blind Bay and we plan for them. Our vehicle and equipment setup is compact enough to work from tight parking areas, and we use water-fed pole systems that reduce how often we need to reposition. If your driveway is unusually steep or narrow, let us know when booking and we'll confirm equipment access. We've never had to turn down a Blind Bay property due to access, though we've had to get creative occasionally."
+      },
+      {
+        "q": "How often do Copper Island Road area properties in Blind Bay need exterior window cleaning?",
+        "a": "Properties along Copper Island Road sit close to the water and face some of the most consistent mineral spray and humidity in the Blind Bay area. We recommend 3 exterior cleans per year for this area: May, August, and October. The August clean is particularly important — summer lake activity and wind push spray onto glass continuously through July, and leaving mineral deposits through the hottest weeks accelerates bonding to the glass. Skipping the mid-summer clean typically results in a harder and more expensive October clean."
+      }
+    ],
+    "exterior-window-cleaning/sicamous": [
+      {
+        "q": "Does Wagon Windows clean exterior windows on Sicamous properties adjacent to the marina district?",
+        "a": "Yes — marina-adjacent properties in Sicamous deal with diesel exhaust residue and water spray on top of the standard lake mineral deposits. This combination creates a greasy-mineral film on exterior glass that requires a degreaser pre-treatment before the mineral rinse and main squeegee pass. We carry the appropriate products for marina-adjacent properties and build the extra step into the quote. Standard exterior pricing starts at $175 for Sicamous residential — marina-adjacent properties with contamination may run slightly higher."
+      },
+      {
+        "q": "My Sicamous home faces Mara Lake — does exterior glass on Mara Lake face different conditions than Shuswap Lake properties?",
+        "a": "Mara Lake's mineral content is similar to Shuswap Lake, so the calcium and silica deposit challenge is essentially the same. What's different is the wind direction — Mara Lake properties often catch a different prevailing wind than Shuswap-facing homes, meaning the spray pattern on the glass can be more concentrated on specific window faces. We assess which elevation and orientation gets the worst accumulation on the initial visit and allocate extra time accordingly. Mara-facing glass usually needs the same 3-clean annual schedule as Shuswap waterfront."
+      },
+      {
+        "q": "Can you set up a recurring exterior window cleaning schedule for my Sicamous home before tourist season?",
+        "a": "Yes — a recurring annual exterior schedule works well for Sicamous homeowners. We set up a May pre-season appointment and a September post-summer appointment as the minimum, with an optional August mid-season visit for properties with heavy lake exposure. Once you're in our system, we reach out in late winter to confirm your dates for the coming year. Summer availability in Sicamous fills fast, so recurring customers get priority scheduling over new single-visit bookings during peak months."
+      },
+      {
+        "q": "How does the higher summer tourism traffic in Sicamous affect exterior window cleaning timing and availability?",
+        "a": "Summer demand in Sicamous from June through August is the highest of any location in our service area. The combination of vacation rental operators, residential homeowners, and commercial businesses all booking pre-season means May availability fills by April. For exterior cleaning specifically, we recommend contacting us by March for a May appointment in Sicamous. If you miss the pre-season window, we have limited July and August availability but scheduling flexibility is reduced. September is reliably available and still effective before freeze."
+      }
+    ],
+    "exterior-window-cleaning/chase": [
+      {
+        "q": "How does Chase's dry summer heat affect exterior glass between cleaning visits?",
+        "a": "Chase's drier microclimate means dust particles bond to warm glass faster than in humid lake communities. A film that takes three weeks to build in Salmon Arm can accumulate in two weeks on a Chase home during August. The upside is that dry-bonded dust, while visually significant, is often easier to remove than mineral-stained lake glass — a good pre-rinse followed by squeegeeing handles most Chase summer dust effectively. The key is not letting it bake on through multiple heat cycles before cleaning."
+      },
+      {
+        "q": "Do you clean exterior windows on Little Shuswap Lake waterfront homes in Chase?",
+        "a": "Yes — Little Shuswap Lake waterfront in Chase is growing, and we're seeing more requests from homeowners who've recently purchased these properties and discovered the mineral spray challenge. Little Shuswap waterfront glass needs the same pre-treatment approach as Shuswap Lake properties in Salmon Arm and Blind Bay — mineral deposits from lake spray require a pre-rinse before squeegeeing to avoid redistribution. We bring the treatment on every Chase visit since mineral-affected properties make up a large share of our Chase waterfront work."
+      },
+      {
+        "q": "Since Wagon Windows travels 55 minutes to reach Chase, how do you structure exterior cleaning visits to make the trip worthwhile?",
+        "a": "We schedule Chase exterior cleaning visits on dedicated Chase service days and route multiple properties in the area on the same trip. This means you get the same pricing as closer locations — no travel premium — and we optimize our time efficiently. We typically have 4–6 Chase properties on a service day. If your neighbour or street also needs cleaning, mention it when booking and we'll try to coordinate. Getting multiple Chase properties on the same day is what makes the route sustainable for everyone."
+      },
+      {
+        "q": "What exterior window cleaning challenges are specific to Chase townsite homes versus rural acreage properties?",
+        "a": "Chase townsite homes tend to be older builds with wood-frame windows — we take care with the pressure and method around older frames and sills that can be more susceptible to moisture. Road dust from Chase Creek and the Highway 1 corridor coats streetside windows significantly more than back-yard glass. Rural acreage properties around Chase face agricultural dust from surrounding range land, which is coarser and accumulates heavier — these typically need more pre-rinse time. We adapt the method to the property type."
+      }
+    ],
+    "exterior-window-cleaning/enderby": [
+      {
+        "q": "How does Wagon Windows handle exterior window cleaning on Enderby properties surrounded by active farmland?",
+        "a": "Enderby farmland-adjacent properties need extra pre-soak time during exterior cleaning — agricultural dust from tilling and harvest is finer than urban grime and penetrates into frame edges more deeply. We use a prolonged pre-rinse dwell before agitation on these properties. Spray drift from nearby crop operations can also leave chemical residue on glass — if you've noticed an oily or sticky film that doesn't rinse easily, let us know and we'll bring a compatible degreaser for the pre-treatment step."
+      },
+      {
+        "q": "Can exterior window cleaning address the algae growth on my Enderby riverside property?",
+        "a": "Yes — algae on Shuswap River-adjacent glass is a known challenge in Enderby. The consistent morning dampness from river humidity keeps exterior glass wet long enough for algae to establish, particularly on north and east-facing windows. We treat algae growth with a diluted algaecide rinse before the main clean — just squeegeeing over established algae won't remove it cleanly. For Enderby riverside properties that skip regular cleaning, the first visit often involves more remediation work than a routine maintenance clean."
+      },
+      {
+        "q": "What's the best exterior window cleaning schedule for an Enderby home near the Cliffs Park trail area?",
+        "a": "Homes near Enderby Cliffs Regional Park deal with more tree pollen and dust than the agricultural flat below — the canyon microclimate channels debris onto uphill-facing glass. Late May post-pollen, mid-August post-dust-season, and early October before freeze is the schedule we recommend for this area. The park trail generates foot traffic dust in summer that's specific to homes on the perimeter. Three cleans per year keeps exterior glass manageable without any single clean becoming a remediation job."
+      },
+      {
+        "q": "Does Wagon Windows clean exterior windows for homes in the Mara area south of Enderby?",
+        "a": "Yes — Mara is on our Enderby service route. Properties in the Mara area south of Enderby tend to be larger rural builds with significant agricultural surroundings. We visit the Mara-Enderby corridor on the same service day and don't charge a separate fee for the Mara leg. The area's agricultural dust conditions are similar to Enderby proper — same pre-treatment approach applies. Contact us with your Mara address and we'll add you to the next Enderby service day."
+      }
+    ],
+    "exterior-window-cleaning/armstrong": [
+      {
+        "q": "How does Armstrong's position in the Spallumcheen Valley affect exterior window cleaning frequency?",
+        "a": "The Spallumcheen Valley's warm, dry summers and active agriculture make Armstrong one of the dustiest service areas we cover. Valley winds channel agricultural particulate — soil, dairy operation dust, silage — along the corridor and onto exterior glass. Armstrong homes near farm operations accumulate significant exterior grime by mid-July. We recommend exterior cleaning in late May, late July or August, and again in October. Homes within 500 metres of active fields should consider the three-visit schedule as standard rather than optional."
+      },
+      {
+        "q": "Can you clean the exterior windows on an Armstrong home in the days leading up to or after the IPE fair?",
+        "a": "IPE timing in September means increased demand and dust around the fairgrounds and surrounding streets. Homeowners near the Interior Provincial Exhibition grounds often book an exterior clean in the two weeks after the fair — foot traffic, vehicle exhaust, and vendor dust coat nearby windows during event week. We try to hold a few post-IPE appointment slots each year but they fill quickly. Contact us in August to get on the September post-fair list if you're in the Fairgrounds Road area."
+      },
+      {
+        "q": "What makes exterior window cleaning on newer Armstrong developments different from established residential areas?",
+        "a": "New Armstrong subdivisions often have construction-phase glass contamination — mortar splash, caulking residue, or adhesive from protective film that wasn't fully removed. These require different treatment than standard accumulated grime. Beyond the initial post-construction clean, new builds in open developments also face more exposure to site dust from ongoing nearby construction — soil disturbance from adjacent building activity makes exterior glass dirty faster than a comparable home in an established neighbourhood. We assess and quote accordingly."
+      },
+      {
+        "q": "How does the Okanagan wind corridor affect exterior window cleaning needs for Armstrong homes on the south side of town?",
+        "a": "South-facing Armstrong properties catch more of the northward-moving Okanagan wind corridor — this brings fine orchard and vineyard dust from the south that settles on glass differently from local agricultural dust. It's a finer particulate that creates a hazy film rather than the coarser grit from local farm operations. South-facing exterior windows on Armstrong homes typically accumulate this film faster than north or west-facing glass. We prioritize south and southwest exposures during exterior cleaning visits and spend more time on those elevations."
+      }
+    ],
+    "commercial-window-cleaning/salmon-arm": [
+      {
+        "q": "What types of Salmon Arm businesses does Wagon Windows regularly service?",
+        "a": "We work with a range of Salmon Arm commercial clients — downtown storefronts along Hudson Avenue, restaurants, professional offices, and retail shops. Salmon Arm's mixed commercial core means we understand different business needs: a café needs streak-free glass before morning service; a real estate office needs a consistent weekly standard. We tailor scheduling and frequency to match your operation."
+      },
+      {
+        "q": "Can Salmon Arm restaurants book commercial window cleaning around service hours?",
+        "a": "Yes — we accommodate restaurant scheduling in Salmon Arm. Most restaurant clients prefer early morning cleans (6–8 AM) before the lunch rush, or evening cleans after close. We work around your kitchen and floor schedule. Contact us and we'll build a recurring slot that doesn't interfere with your service."
+      },
+      {
+        "q": "How does the Roots & Blues Festival season affect commercial window cleaning availability in Salmon Arm?",
+        "a": "July and August are our busiest commercial months in Salmon Arm — the festival and summer tourism drive significant demand from storefronts and hospitality businesses. If you need pre-season cleaning done before the summer rush, book by May. Recurring contract clients get priority scheduling year-round regardless of seasonal demand spikes."
+      },
+      {
+        "q": "Do Salmon Arm office buildings qualify for a recurring commercial cleaning contract?",
+        "a": "Yes — professional offices in Salmon Arm are among our most consistent commercial clients. Monthly or bi-monthly contracts are common for multi-tenant buildings and standalone offices. We provide invoices, consistent technician assignments, and flexible scheduling. A clean exterior signals professionalism to clients and tenants — it's a small overhead cost with visible daily impact."
+      }
+    ],
+    "commercial-window-cleaning/sorrento": [
+      {
+        "q": "Does the Sorrento Centre use professional window cleaning services?",
+        "a": "Facilities like the Sorrento Centre that host year-round retreats and conferences benefit from consistent commercial window cleaning. We serve institutional and conference-style venues in Sorrento and can arrange quarterly or seasonal cleaning schedules that align with event calendars. Clean windows support the professional presentation these venues require for guests and retreat participants."
+      },
+      {
+        "q": "Are there commercial businesses in Sorrento that Wagon Windows services?",
+        "a": "Yes — while Sorrento is primarily residential, we serve small commercial operators including accommodation businesses, bed and breakfasts, and lakefront rental properties operating commercially. If you run a business out of a Sorrento property, we can treat it as a commercial account with appropriate invoicing and scheduling."
+      },
+      {
+        "q": "How do Sorrento's lakefront commercial properties benefit from recurring window cleaning?",
+        "a": "Sorrento's direct lakefront position means commercial-facing windows accumulate mineral deposits and lake spray film faster than inland businesses. For accommodation operators and vacation rental managers presenting to high-value guests, windows are part of the first impression. A monthly or bi-monthly clean keeps glass in guest-ready condition without requiring emergency bookings."
+      },
+      {
+        "q": "Can Wagon Windows handle commercial window cleaning for Sorrento vacation rental properties managed as a portfolio?",
+        "a": "Yes — we work with vacation rental managers and property management companies in the Sorrento area. If you manage multiple properties, we can batch them into a single service day to reduce travel overhead and give you consistent per-property pricing. Portfolio clients receive priority booking and consolidated invoicing."
+      }
+    ],
+    "commercial-window-cleaning/tappen": [
+      {
+        "q": "Are there commercial properties in Tappen that Wagon Windows services?",
+        "a": "Yes — Tappen's rural and agricultural character means many commercial clients are acreage-based operations, hobby farm businesses, and small local enterprises. We also service commercial properties along the highway corridor. If you operate a business in Tappen — whether a farm store, rental property, or service operation — we can quote a commercial rate and set up regular scheduling."
+      },
+      {
+        "q": "How does harvest season dust affect commercial windows in Tappen?",
+        "a": "July and August bring the most significant dust accumulation in Tappen as hay and grain harvesting kicks in across the valley. Commercial properties near agricultural fields can see window grime build up noticeably in a matter of weeks. Scheduling a mid-summer commercial clean in late July catches peak buildup before it sets into the glass and frame."
+      },
+      {
+        "q": "Can Tappen commercial clients get invoiced for window cleaning services?",
+        "a": "Yes — all commercial clients receive proper invoices with GST documentation regardless of location. Tappen commercial accounts are handled identically to our Salmon Arm commercial clients: invoiced per job, with recurring contract options if needed. We track your service history and reach out proactively before your next scheduled clean."
+      },
+      {
+        "q": "Do you service large multi-building commercial properties in Tappen?",
+        "a": "Yes — Tappen's acreage-scale properties sometimes include multiple structures: main house, workshop, and outbuildings used commercially. We can quote multi-building commercial packages by the visit, giving you one price for the whole property. Full-day contracts for large sites are available — contact us to discuss scope."
+      }
+    ],
+    "commercial-window-cleaning/blind-bay": [
+      {
+        "q": "Do Blind Bay accommodation operators use Wagon Windows for commercial cleaning?",
+        "a": "Yes — bed and breakfasts, vacation rentals, and short-term accommodation operators in Blind Bay are among our commercial clients. With Shuswap Lake as the selling point for guests, having spotless lake-view windows is part of the product. We offer pre-season commercial cleans in May and can maintain a monthly schedule throughout summer."
+      },
+      {
+        "q": "How does Blind Bay's lake humidity affect commercial glass compared to inland locations?",
+        "a": "Blind Bay's sheltered lake position creates persistent morning fog and elevated humidity that leaves mineral film on exterior glass faster than inland commercial properties. North-facing windows in particular develop algae streaking between cleans. Commercial operators in Blind Bay typically need monthly cleaning during summer to maintain presentation standards their guests expect."
+      },
+      {
+        "q": "Can Wagon Windows service commercial properties on Copper Island Road in Blind Bay?",
+        "a": "Yes — Copper Island Road and the surrounding Blind Bay Village area are within our regular service radius. For commercial properties in this area, we recommend scheduling on days we're already in the Blind Bay corridor to keep travel costs efficient. Contact us and we'll confirm your specific address and build a schedule."
+      },
+      {
+        "q": "What is the commercial window cleaning process for Blind Bay's large lake-view builds?",
+        "a": "Blind Bay's premium multi-story properties — many with floor-to-ceiling picture windows — require extension equipment for upper-story commercial cleans. We assess access and equipment needs before quoting. Commercial jobs are priced by window count and access complexity, not hourly. You'll receive a fixed quote before we start so there are no surprises."
+      }
+    ],
+    "commercial-window-cleaning/sicamous": [
+      {
+        "q": "Do you clean commercial windows for Sicamous marinas and marina-adjacent businesses?",
+        "a": "Yes — Sicamous marina businesses are a core part of our commercial work in the area. Marina offices, houseboat rental operations, and waterfront retail all deal with diesel residue, lake spray, and high foot traffic leaving glass dirty fast in peak season. We use cleaning agents suited to marine environments and can schedule around busy launch days."
+      },
+      {
+        "q": "How early should Sicamous hotels and restaurants book commercial window cleaning before tourist season?",
+        "a": "We recommend booking by mid-April for a May commercial clean in Sicamous. The summer population triples in Sicamous once houseboat season opens — local businesses that want pristine storefronts during peak tourist weeks need to be scheduled before the rush. Recurring summer contracts fill earliest, so contact us in March to lock in your spot."
+      },
+      {
+        "q": "Can Wagon Windows handle a commercial window cleaning contract for multiple Sicamous tourism businesses?",
+        "a": "Yes — if you operate or manage multiple commercial properties in Sicamous (hotels, restaurants, retail), we can consolidate them into a single recurring contract. Sicamous trips are typically full-day visits from our Salmon Arm base, so batching multiple properties on one day is efficient for both parties. Portfolio pricing applies to 3+ properties."
+      },
+      {
+        "q": "What commercial sectors in Sicamous need window cleaning most frequently?",
+        "a": "Restaurants and accommodation operators need the most frequent commercial cleans in Sicamous — typically monthly during June–August. Marina businesses come second due to diesel and water contamination. Retail storefronts along the main drag typically book bi-monthly. We can assess your specific business type and recommend a frequency that keeps your glass clean without over-servicing."
+      }
+    ],
+    "commercial-window-cleaning/chase": [
+      {
+        "q": "What commercial businesses in Chase does Wagon Windows service?",
+        "a": "Chase's small commercial core includes retail storefronts, professional services, and local food businesses. We service the downtown Chase area and can accommodate small-town commercial operators who need professional invoicing, flexible scheduling, and reliable recurring service. Chase jobs are typically combined with other nearby work to keep travel efficient."
+      },
+      {
+        "q": "How does Chase's dry summer climate affect commercial window cleaning frequency?",
+        "a": "Chase sits at the drier western edge of the Shuswap, and commercial windows accumulate dust and road grime noticeably faster in July and August than in wetter lake communities. Storefronts on the main street see significant dust haze by mid-July. A bi-monthly commercial clean through summer keeps your presentation sharp during the dustiest weeks."
+      },
+      {
+        "q": "Do Chase businesses need to book commercial window cleaning further in advance due to travel distance?",
+        "a": "Chase is about 55 minutes from our Salmon Arm base, so we typically batch Chase commercial jobs into dedicated Chase service days. We recommend booking 1–2 weeks ahead to confirm we can route efficiently. Recurring contract clients in Chase are prioritized first when we're scheduling Chase runs — one-off bookings fill remaining slots."
+      },
+      {
+        "q": "Can Chase commercial clients get a quote for a full-year recurring window cleaning contract?",
+        "a": "Yes — annual contracts for Chase commercial clients lock in consistent pricing and guaranteed scheduling slots. Typical commercial arrangements in Chase run monthly (June–September) and bi-monthly (October–May) to account for seasonal demand. We'll discuss your business type and location and recommend the right frequency before quoting."
+      }
+    ],
+    "commercial-window-cleaning/enderby": [
+      {
+        "q": "How does growing Enderby Cliffs tourism affect commercial window cleaning demand for Enderby businesses?",
+        "a": "As Enderby Cliffs has become one of the Shuswap's premier hiking destinations, Enderby's downtown businesses see more tourist foot traffic in summer. Cafés, shops, and accommodations near the river and main street benefit from professional commercial window cleaning before the hiking season peaks in June and July. First impressions matter when new visitors are discovering the area."
+      },
+      {
+        "q": "Do Enderby agricultural businesses and farm supply operations use commercial window cleaning services?",
+        "a": "Yes — farm supply stores, agricultural retailers, and equipment dealers in the Enderby area deal with some of the highest dust accumulation of any commercial clients we serve. Grain dust, field dust, and Okanagan wind corridor debris build up quickly on storefront glass. We recommend a monthly commercial clean during growing season (May–September) for agricultural-adjacent businesses."
+      },
+      {
+        "q": "Can Wagon Windows provide commercial window cleaning for Enderby riverside businesses?",
+        "a": "Yes — Enderby's Shuswap River waterfront has growing commercial activity including dining, tourism, and recreation businesses. Riverside properties deal with moisture and organic matter from the river in addition to agricultural dust — a combination that creates rapid window buildup. We account for both contamination types when treating riverside commercial glass."
+      },
+      {
+        "q": "Do you provide commercial invoices for Enderby businesses claiming window cleaning as a business expense?",
+        "a": "Yes — all commercial Enderby clients receive properly formatted invoices with GST documentation for business expense claims. We can set up recurring invoicing on your preferred schedule (per-visit or monthly consolidated). Enderby businesses on contract also get service records, which some clients use for property maintenance documentation."
+      }
+    ],
+    "commercial-window-cleaning/armstrong": [
+      {
+        "q": "Do Armstrong retail businesses use Wagon Windows for pre-IPE window cleaning?",
+        "a": "Yes — the Interior Provincial Exhibition (IPE) each September brings significant traffic to Armstrong, and local retailers, restaurants, and service businesses use it as a trigger to book commercial cleans. We schedule IPE-prep commercial cleaning runs in Armstrong in late August. If you want your storefront spotless before the fair crowd arrives, contact us by early August."
+      },
+      {
+        "q": "How does Armstrong's dairy and agricultural industry affect commercial property windows?",
+        "a": "Armstrong's working agricultural environment means commercial properties accumulate more airborne debris than urban counterparts — grain dust, silage dust, and agricultural haze are constant in growing season. Storefronts in farm-adjacent commercial areas can see noticeable buildup within weeks during summer. Monthly commercial cleans during May–September are typical for Armstrong business clients."
+      },
+      {
+        "q": "Does Wagon Windows serve small-town retail storefronts in downtown Armstrong?",
+        "a": "Yes — downtown Armstrong's independent retailers and service businesses are a natural fit for recurring commercial window cleaning. Clean storefront glass signals that a business is active and professional — important in a tight-knit community where first impressions matter. We offer monthly and bi-monthly contracts suited to smaller retail operations."
+      },
+      {
+        "q": "Can Armstrong commercial clients combine window cleaning with screen and track service in one visit?",
+        "a": "Yes — bundling commercial window cleaning with screen and track cleaning in a single visit is efficient and reduces per-service costs. For Armstrong businesses, combining services once or twice a year (typically spring and fall) is popular. We'll quote the full bundle upfront so you know the total before we arrive."
+      }
+    ],
+    "screen-cleaning/salmon-arm": [
+      {
+        "q": "When is the worst time of year for cottonwood buildup on window screens in Salmon Arm?",
+        "a": "Late May through mid-June is peak cottonwood season in Salmon Arm — the fluffy white seeds from poplar and cottonwood trees mat onto screens rapidly, blocking airflow and reducing visibility. Once cottonwood seeds are wet and dry again they bond to the mesh. We recommend scheduling screen cleaning in late June after shedding ends to remove the full season's accumulation in one pass."
+      },
+      {
+        "q": "Do Salmon Arm lakefront homes need more frequent screen cleaning than inland properties?",
+        "a": "Yes — homes on or near Shuswap Lake collect organic debris from the water — algae spores, lake insects, and windborne material — in addition to the standard pollen and dust. Lakefront screens often need cleaning twice yearly: once in spring after cottonwood season and once in fall before winterizing. We inspect each screen for corrosion and frame damage during cleaning."
+      },
+      {
+        "q": "Can you clean screens on Salmon Arm homes with upper-story windows?",
+        "a": "Yes — we bring extension equipment for upper-story screen access. Many Salmon Arm hillside homes have second and third-floor windows with screens that are difficult to reach safely without proper laddering. We remove, clean, inspect, and reinstall screens on all accessible stories. No screen should be left dirty just because it's high up."
+      },
+      {
+        "q": "What does professional screen cleaning involve for Salmon Arm homes compared to DIY?",
+        "a": "DIY screen cleaning usually means a hose rinse — which loosens surface dust but leaves embedded pollen, organic material, and frame grime behind. We use a soft-brush wash, rinse, and dry sequence that cleans the mesh fabric and frame fully. For Salmon Arm properties near forested areas, where pollen and cottonwood embed deeply in mesh, professional cleaning removes what a hose can't."
+      }
+    ],
+    "screen-cleaning/sorrento": [
+      {
+        "q": "How does cottonwood season affect window screens at Sorrento properties?",
+        "a": "Sorrento's forest edge location means cottonwood and poplar seed release in late May–June mats heavily onto window screens. For seasonal owners who arrive in June or July, screens are often already clogged before the season starts. We offer pre-arrival screen cleaning packages — book in winter and we'll have your Sorrento property's screens cleared before you arrive."
+      },
+      {
+        "q": "Do vacation properties in Sorrento need screen cleaning before being opened for the season?",
+        "a": "Yes — screens on Sorrento seasonal properties sit closed all winter and early spring, collecting debris from Sorrento's lakeside environment without being cleaned. By the time owners arrive in May or June, screens can be visibly dirty and may smell musty from damp organic buildup. A pre-arrival screen clean ensures your property is fresh from day one."
+      },
+      {
+        "q": "Can Wagon Windows clean screens at Sorrento properties that owners aren't currently visiting?",
+        "a": "Yes — we can clean screens at unoccupied Sorrento properties with pre-authorized access instructions. Many seasonal owners set this up when they book their spring clean: we arrive, clean windows and screens, and send photos confirming the work is done. No need to be there in person. Coordinate access details when booking."
+      },
+      {
+        "q": "What screen condition issues should Sorrento lakefront property owners watch for?",
+        "a": "The main concerns on Sorrento lakefront screens are frame corrosion from lake moisture, mesh tears from winter debris contact, and mildew on the mesh fabric from damp storage periods. During our screen cleaning visits we inspect every screen and flag damage. Corroded or torn screens reduce your home's pest barrier — better to catch it during cleaning than discover it mid-summer."
+      }
+    ],
+    "screen-cleaning/tappen": [
+      {
+        "q": "How does agricultural dust from Tappen's surrounding farmland affect window screens?",
+        "a": "Tappen's hay and grain farming surroundings mean harvest season (July–August) pushes significant dust through window screens. Fine agricultural dust packs into mesh tightly and can't be removed by rinsing alone. We use a brush-wash technique that clears compacted field dust from screen fabric. Properties near active fields benefit from a post-harvest screen clean in September."
+      },
+      {
+        "q": "Do Tappen acreage properties with many windows need screen cleaning more than once a year?",
+        "a": "Many Tappen acreages have 30+ screens across large window banks. Given the agricultural dust exposure and spring pollen from surrounding forest edges, twice-yearly cleaning (spring and post-harvest) keeps screens functional and clear. We can include screen cleaning as part of a larger window clean package — it's more efficient to do both on the same visit."
+      },
+      {
+        "q": "Can Wagon Windows handle screen removal and reinstallation on large Tappen lakefront properties?",
+        "a": "Yes — large screen counts are routine for us on Tappen's acreage-scale homes. We remove each screen, clean it properly, and reinstall it correctly so it seals and operates as designed. Screens that are left in place and rinsed don't get fully clean — removal and full wash is the right approach, especially for property owners presenting lakefront homes for sale."
+      },
+      {
+        "q": "What months are best for screen cleaning at Tappen properties?",
+        "a": "Late June is the ideal window for spring screen cleaning in Tappen — after cottonwood season ends but before peak summer heat. A second clean in September or October, after harvest dust season and before screens are removed for winter, is recommended for properties near active farmland. Booking both visits at once often qualifies for a package discount."
+      }
+    ],
+    "screen-cleaning/blind-bay": [
+      {
+        "q": "Does high lake humidity in Blind Bay cause screen corrosion?",
+        "a": "Yes — Blind Bay's persistent morning fog and elevated lake humidity accelerate frame corrosion on aluminum and steel screen frames. Over multiple seasons, uncleaned screens develop oxidation buildup at the frame corners and along the bottom rail. Our screen cleaning process removes surface oxidation and debris, and we flag frames that are approaching structural failure — giving you time to replace screens before they fail."
+      },
+      {
+        "q": "How often should Blind Bay lakefront homes have their screens professionally cleaned?",
+        "a": "Twice yearly is our recommendation for Blind Bay lakefront properties — spring (June, after cottonwood) and fall (September, before weatherproofing). The combination of lake humidity, morning fog, and organic debris from Shuswap Lake means Blind Bay screens accumulate grime and develop mildew faster than properties 10 km inland. Annual cleaning is the minimum; twice yearly is better."
+      },
+      {
+        "q": "Do Blind Bay screens develop mildew or mould from the lake environment?",
+        "a": "Yes — mildew on screen mesh is a common finding on Blind Bay properties, particularly on north-facing and lower-story screens that get less direct sun. Damp organic material from lake-adjacent air feeds mildew growth in the mesh. Our cleaning process addresses this directly — we use appropriate cleaning solutions and ensure screens are fully dry before reinstallation to slow re-growth."
+      },
+      {
+        "q": "Will Wagon Windows inspect my Blind Bay screens for damage during the cleaning visit?",
+        "a": "Yes — screen inspection is part of our service on every visit. For Blind Bay properties where lake humidity accelerates frame and mesh wear, we note any screens with torn mesh, corroded frames, bent corners, or failing seals and provide a summary at job completion. You're not obligated to repair anything on the spot — it's simply information to help you plan ahead."
+      }
+    ],
+    "screen-cleaning/sicamous": [
+      {
+        "q": "Does the dual-lake environment in Sicamous cause faster screen corrosion than other Shuswap locations?",
+        "a": "Yes — Sicamous sits between Shuswap and Mara Lakes, creating elevated humidity from two water bodies year-round. Screen frames on Sicamous properties — especially those oriented toward either lake — show corrosion and oxidation faster than properties in drier inland communities like Chase or Armstrong. We recommend annual screen cleaning as a minimum, with inspection for frame damage each visit."
+      },
+      {
+        "q": "Do Sicamous vacation rental properties need screen cleaning between guest seasons?",
+        "a": "Yes — vacation rental properties in Sicamous should have screens cleaned at minimum before each peak season (May). High guest turnover and the lake environment mean screens accumulate debris and odour faster than owner-occupied homes. Clean screens are part of the property presentation your guests expect, and damaged screens flagged early save costly last-minute repairs in peak season."
+      },
+      {
+        "q": "Can Wagon Windows clean screens on Sicamous houseboat rental offices and marina buildings?",
+        "a": "Yes — we service commercial screen cleaning for marina-adjacent buildings in Sicamous. Marina buildings deal with lake spray, diesel particulate, and windborne moisture — a combination that fouls screens quickly. Commercial screen cleaning for these properties is quoted separately from residential and accounts for the heavier contamination environment."
+      },
+      {
+        "q": "When should Sicamous property owners book screen cleaning to prepare for tourist season?",
+        "a": "Book by mid-April for a May screen clean in Sicamous. Once tourist season opens in late May, our Sicamous scheduling fills quickly. Property owners who want screens cleaned, inspected, and reinstalled before guests arrive need to be on the calendar before the rush. Pre-season screen cleaning also catches any winter storm damage early enough to order replacements."
+      }
+    ],
+    "screen-cleaning/chase": [
+      {
+        "q": "How does Chase's cottonwood season compare to Salmon Arm for screen buildup?",
+        "a": "Chase experiences significant cottonwood shedding in late May, similar to Salmon Arm but slightly earlier due to its drier microclimate. Cottonwood seeds from the trees along Chase Creek and the Little Shuswap Lake shoreline pack into window screens quickly. A screen clean in late June — after shedding ends — is the most efficient timing to catch the full season's deposit in one visit."
+      },
+      {
+        "q": "Does the dusty summer climate in Chase cause unique screen cleaning challenges?",
+        "a": "Chase's position at the drier western edge of the Shuswap means summer dust accumulation on screens is noticeably higher than in the moister lake communities to the east. Fine road dust and dry-season particulate embed in screen mesh through July and August. Chase screens often need a firm brush-wash rather than a simple rinse to fully clear summer dust buildup."
+      },
+      {
+        "q": "Do Chase homes along Little Shuswap Lake have different screen cleaning needs than inland properties?",
+        "a": "Yes — lakefront Chase properties share the mineral spray and organic debris conditions of other Shuswap lake communities, but with Chase's additional summer dust layer on top. Little Shuswap Lake waterfront screens are the most heavily contaminated in the Chase area. These properties benefit from twice-yearly screen cleaning: spring (June) and late summer (August–September)."
+      },
+      {
+        "q": "Can Wagon Windows combine screen cleaning with a window clean during Chase service days?",
+        "a": "Yes — and we recommend it. Chase is about 55 minutes from Salmon Arm, so combining screen cleaning with a full window clean on the same visit is the most efficient use of the service day for Chase clients. It also reduces your overall cost compared to booking separate visits. When scheduling, just let us know you want screens included and we'll quote it together."
+      }
+    ],
+    "screen-cleaning/enderby": [
+      {
+        "q": "How does agricultural dust in the Enderby area affect window screen lifespan?",
+        "a": "Enderby's Shuswap River valley is surrounded by active agricultural land, and growing season (May–September) brings continuous airborne dust that embeds in screen mesh. This accelerates mesh wear over time — fine abrasive particles degrade screen fabric faster than urban environments. Regular cleaning removes the abrasive layer before it causes premature mesh failure, extending the lifespan of your screens."
+      },
+      {
+        "q": "Do Enderby acreage properties near grain or hay fields need more frequent screen cleaning?",
+        "a": "Yes — properties within a few kilometres of active grain or hay operations accumulate the most screen debris in the Enderby area. During harvest (July–August), airborne chaff and dust can visibly clog screens within weeks. We recommend a post-harvest screen clean in September for these properties, in addition to the standard spring clean, to reset before winter."
+      },
+      {
+        "q": "Does the Shuswap River create moisture-related screen issues for Enderby riverside properties?",
+        "a": "Yes — Enderby riverside properties deal with higher ambient moisture than properties further from the river, particularly in spring and fall. This creates conditions for mildew to develop on screen mesh, especially on north or east-facing screens. Our cleaning process removes organic buildup and mildew residue from screen fabric and frames, and we note any screens showing persistent moisture damage."
+      },
+      {
+        "q": "What is the best time of year to book screen cleaning for an Enderby property?",
+        "a": "Late May to early June is the ideal spring window for Enderby screen cleaning — after the main pollen flush but before peak agricultural dust season. A second clean in late September or October, after harvest season winds down, is recommended for properties near farming operations. We serve Enderby approximately 35 minutes from Salmon Arm and can combine screen cleaning with window service."
+      }
+    ],
+    "screen-cleaning/armstrong": [
+      {
+        "q": "How does Armstrong's Okanagan Valley pollen affect window screens differently than in Salmon Arm?",
+        "a": "Armstrong sits at the northern end of the Okanagan Valley, and late spring brings pollen from both Okanagan orchard country to the south and the Shuswap forests to the north — a dual-source pollen load that's heavier than most Shuswap communities. Screen mesh in Armstrong homes can become noticeably clogged by mid-May. A June screen clean is the most efficient timing to capture the full spring accumulation."
+      },
+      {
+        "q": "Does Armstrong's dairy and agricultural environment create unique screen contamination?",
+        "a": "Yes — properties near Armstrong's dairy operations and agricultural fields accumulate fine organic particulate that standard rinsing doesn't fully remove from screen mesh. Dairy-adjacent dust has a different composition than road dust or pollen and can create an odour in mesh if left to accumulate over multiple seasons. Professional cleaning removes this material thoroughly and leaves screens clean and odour-free."
+      },
+      {
+        "q": "Do newer Armstrong homes in growing subdivisions need screen cleaning, or mainly older properties?",
+        "a": "Both — new builds in Armstrong's expanding residential areas have brand-new screens, but Armstrong's agricultural dust load means even new screens accumulate significant grime within the first season. Older properties may have screens that haven't been professionally cleaned in years and benefit most from a thorough initial cleaning. We quote based on current screen condition regardless of home age."
+      },
+      {
+        "q": "Can Armstrong homeowners schedule screen cleaning before the IPE fair weekend in September?",
+        "a": "Yes — we accommodate IPE-season scheduling in Armstrong. If you want your home looking its best during the September fair weekend when visitors are in the area, book a late August or early September clean. Commercial clients doing IPE prep take most of our August Armstrong availability, so residential clients wanting pre-IPE cleaning should book by late July."
+      }
+    ],
+    "track-cleaning/salmon-arm": [
+      {
+        "q": "Why do Salmon Arm homes develop such significant window track buildup?",
+        "a": "Salmon Arm's combination of pollen season (spring), Okanagan wind corridor dust (summer), and leaf debris (fall) means tracks accumulate layered organic and mineral grime year-round. Each season deposits a different type of material — pollen paste in spring, fine dust in summer, decomposing leaf matter in fall. After two or three seasons without cleaning, tracks develop compacted debris that stiffens window operation and can damage rollers."
+      },
+      {
+        "q": "Do Salmon Arm lakefront properties have worse track mould problems than inland homes?",
+        "a": "Yes — homes near Shuswap Lake deal with higher moisture levels that promote mould and mildew growth in window tracks. North-facing tracks on lakefront properties are particularly susceptible. Mould in tracks is more than cosmetic — it indicates moisture is penetrating the window frame area and should be addressed before it spreads to surrounding materials. We clear mould from tracks and note any signs of deeper moisture intrusion."
+      },
+      {
+        "q": "How often should Salmon Arm homeowners have their window tracks professionally cleaned?",
+        "a": "Once a year is sufficient for most Salmon Arm inland properties. Lakefront homes and those in forested areas like Silver Creek or Salmon Valley benefit from twice-yearly track cleaning to prevent mould and debris compaction. We typically recommend combining track cleaning with a window clean — doing both in one visit is more efficient and gives a thorough result inside and out."
+      },
+      {
+        "q": "What tools does Wagon Windows use to clean window tracks in Salmon Arm homes?",
+        "a": "We use a combination of hand tools, detailing brushes, and appropriate cleaning solutions to loosen and extract compacted debris from track channels. Vacuum-only cleaning leaves wet grime and mould residue behind. Our process extracts debris, treats any mould present, and wipes tracks dry — leaving channels clean enough to restore smooth window operation in most cases."
+      }
+    ],
+    "track-cleaning/sorrento": [
+      {
+        "q": "Do Sorrento seasonal properties develop mould in window tracks during the closed season?",
+        "a": "Yes — this is one of the most common track issues we find at Sorrento properties that are closed for winter. Moisture gets into track channels during fall and winter, and without airflow or heat, mould establishes itself in the closed season. When owners return in spring or summer, tracks are often visibly mouldy and windows operate stiffly. Pre-arrival track cleaning is included in our seasonal open-up packages."
+      },
+      {
+        "q": "Can window track buildup in Sorrento damage sliding windows over time?",
+        "a": "Yes — compacted debris in tracks puts lateral stress on window rollers and frame edges as windows are forced open and closed through grime. Over time this wears rollers unevenly and can crack plastic frame components. At Sorrento's $800K–$2M lakefront property values, protecting your windows from preventable wear is a straightforward investment. Annual track cleaning is far cheaper than window replacement."
+      },
+      {
+        "q": "What type of debris typically accumulates in Sorrento window tracks?",
+        "a": "Sorrento tracks collect a mix of lake-origin material (fine mineral sediment, organic matter from shoreline wind), cottonwood seeds and stems in late spring, and insect debris year-round. In closed seasonal properties, dead insects and larvae can accumulate significantly in tracks over winter. Our cleaning process extracts all layers of debris rather than just the surface material."
+      },
+      {
+        "q": "Is track cleaning included in a standard Sorrento window cleaning visit or is it an add-on?",
+        "a": "Track cleaning is an add-on, not included in the standard window clean. It starts at $50 and is priced based on window count and track condition. For Sorrento seasonal properties being opened after winter, we strongly recommend adding track cleaning to the first visit of the year — it's the most cost-effective time to do it since we're already on-site."
+      }
+    ],
+    "track-cleaning/tappen": [
+      {
+        "q": "How does agricultural dust from Tappen's farming surroundings affect window track condition?",
+        "a": "Agricultural dust in Tappen is finer than road dust and packs more densely into track channels during harvest season. By September, some Tappen tracks contain a compressed layer of mixed pollen, field dust, and organic material that's difficult to remove without proper tools. We recommend a post-harvest track clean for Tappen acreage properties — it's one of the best times to clear the year's accumulation before winter."
+      },
+      {
+        "q": "Do older Tappen farmhouses have window track problems more than newer builds?",
+        "a": "Generally yes — older Tappen homes often have windows that haven't had track attention in years, with compacted debris that has hardened into a crust in the track channels. This causes difficult or stuck window operation. In these cases, we do an initial deep-clean pass to restore the tracks, then recommend annual maintenance to prevent re-compaction. The first clean takes longer — subsequent ones are straightforward."
+      },
+      {
+        "q": "Do Tappen lake-adjacent properties develop mould in tracks similar to other Shuswap lake communities?",
+        "a": "Yes — properties within a few hundred metres of Shuswap Lake in Tappen share the humidity and organic moisture conditions that drive mould in window tracks. Morning lake fog deposits fine moisture in track channels, and if debris is already present, mould establishes quickly. We treat mould in tracks as part of the cleaning process and note any signs of moisture intrusion beyond the track channel."
+      },
+      {
+        "q": "Can track cleaning be bundled with window and screen cleaning for Tappen properties in a single visit?",
+        "a": "Yes — bundling all three services (windows, screens, tracks) in a single visit is the most efficient approach for Tappen's larger acreage properties. We quote the full bundle before arrival so you know the total. One full-service day handles a 30-window Tappen property completely, with no need to schedule separate return visits for add-ons."
+      }
+    ],
+    "track-cleaning/blind-bay": [
+      {
+        "q": "How does Blind Bay's lake humidity drive mould growth in window tracks?",
+        "a": "Blind Bay's sheltered bay position means high ambient humidity year-round, and window tracks — particularly on north or east-facing windows — stay damp long after rain or morning fog. This persistent moisture is exactly the condition mould needs to establish in track channels. We regularly find significant mould growth in Blind Bay tracks even on homes that appear otherwise well-maintained."
+      },
+      {
+        "q": "Is mould in Blind Bay window tracks a health concern?",
+        "a": "Mould in window tracks is primarily a structural concern — if left untreated, it can migrate into adjacent frame materials and cause premature seal failure. However, disturbing mould during window operation does release spores into indoor air, which matters for households with respiratory sensitivities. Professional track cleaning removes mould thoroughly rather than just disturbing it, and we treat the channel to slow re-growth."
+      },
+      {
+        "q": "How frequently do Blind Bay homeowners need track cleaning compared to inland Shuswap properties?",
+        "a": "Twice yearly is our recommendation for Blind Bay lake-adjacent properties — spring and fall. Inland Shuswap properties typically manage well with once-yearly track cleaning, but Blind Bay's humidity, lake spray, and shorter drying windows between precipitation events mean tracks accumulate and mould faster. The twice-yearly cycle prevents severe compaction and mould colonization."
+      },
+      {
+        "q": "Do large picture windows on Blind Bay properties have track cleaning challenges?",
+        "a": "Yes — the wide sliding tracks on large picture windows and multi-panel sliding doors in Blind Bay's premium builds collect more debris volume than standard residential windows. The track channel is wider and longer, and debris accumulates in corners and roller wells that are hard to reach. We bring appropriate tools for large-format track cleaning and don't skip the corners where mould typically establishes first."
+      }
+    ],
+    "track-cleaning/sicamous": [
+      {
+        "q": "How often do Sicamous tourism businesses need commercial track cleaning for high-traffic sliding doors?",
+        "a": "High-traffic commercial sliding doors in Sicamous restaurants, hotels, and marina offices should have tracks cleaned monthly during peak season (June–August) and quarterly in the off-season. Tourist-season foot traffic deposits sand, lake sediment, and grit into door tracks rapidly. Stiff or grinding sliding doors are a friction point in guest experience — clean tracks keep operations smooth."
+      },
+      {
+        "q": "Does lake spray from Shuswap and Mara Lakes accelerate debris buildup in Sicamous window tracks?",
+        "a": "Yes — Sicamous properties between two lakes receive windborne moisture from both water bodies, which carries fine mineral particles into window track channels. This mineral sediment combines with organic debris and hardens into a crust over a season. Properties facing either lake directly see the fastest track contamination. Annual cleaning is the minimum; twice-yearly is better for waterfront-facing windows."
+      },
+      {
+        "q": "Can Wagon Windows clean tracks on vacation rental properties in Sicamous between guest seasons?",
+        "a": "Yes — we can schedule vacation rental track cleaning during turnover periods in Sicamous. Spring (May pre-season) and fall (October post-season) are the most logical times. Stiff or dirty windows are the kind of detail that shows up in negative reviews — clean, smooth-operating windows are part of the property maintenance standard guests expect in a competitive rental market."
+      },
+      {
+        "q": "Do houseboat rental operators in Sicamous need track cleaning for their land-based office or staging buildings?",
+        "a": "Yes — marina-adjacent buildings in Sicamous deal with a unique contamination mix: lake spray, diesel exhaust particulate, and high foot traffic from guests loading and unloading gear. Window tracks in these buildings accumulate a heavier, denser debris layer than residential properties. We quote commercial track cleaning for marina buildings separately from residential rates — contact us to discuss your specific property."
+      }
+    ],
+    "track-cleaning/chase": [
+      {
+        "q": "Does Chase's dry summer climate cause different track cleaning challenges than lake communities?",
+        "a": "Yes — Chase's drier microclimate means track debris is primarily compacted dust rather than mould-affected organic material common in Blind Bay or Sicamous. Fine road dust and cottonwood debris from Chase Creek pack into track channels during summer and harden as the season progresses without rain to loosen it. The compaction can be severe by September — professional extraction is more effective than DIY vacuuming."
+      },
+      {
+        "q": "Do Chase homeowners with older windows need track cleaning more urgently?",
+        "a": "Older windows in Chase homes — many of which haven't had professional track attention — often have rollers that are already under strain from years of debris accumulation. Forcing stiff windows through compacted grime wears rollers faster and can crack aged plastic components. A thorough initial track clean on older windows restores smooth operation and can extend window life significantly before replacement is needed."
+      },
+      {
+        "q": "Is cottonwood debris a significant track problem in Chase homes?",
+        "a": "Yes — cottonwood seeds and stems from trees along Chase Creek and Little Shuswap Lake shoreline pack into track channels in late May through June. Once cottonwood stems dry in the track, they compress into a fibrous mat that resists rinsing. Our cleaning process extracts cottonwood debris thoroughly — a late June or early July track clean is well-timed to clear the full season's cottonwood deposit."
+      },
+      {
+        "q": "Can Chase clients add track cleaning to an existing window clean booking?",
+        "a": "Yes — track cleaning can be added to any window clean booking. For Chase clients, combining services on a single visit is especially practical given the 55-minute drive from Salmon Arm. Let us know at booking or when we arrive that you want tracks included and we'll quote it on-site. Adding tracks typically adds 30–60 minutes to the visit depending on window count."
+      }
+    ],
+    "track-cleaning/enderby": [
+      {
+        "q": "How does growing-season dust in Enderby affect window track cleaning frequency?",
+        "a": "Enderby's agricultural valley environment means May through September is continuous dust season — pollen in spring, field dust and harvest chaff in summer, and seed debris in fall. Tracks accumulate layered material through the growing season and can be significantly compacted by October. We recommend a fall track clean after harvest winds down as the most impactful single clean of the year for Enderby properties."
+      },
+      {
+        "q": "Do Enderby riverside properties develop track mould from Shuswap River moisture?",
+        "a": "Yes — properties along the Shuswap River in Enderby deal with elevated ground moisture and river-origin humidity, particularly in spring and fall when river levels are high. This moisture creates track mould conditions on riverside-facing windows. The combination of agricultural dust (compaction) and river moisture (mould) makes Enderby riverside tracks among the most demanding we clean in the region."
+      },
+      {
+        "q": "Can window track problems in Enderby cause drafts or reduced window seal performance?",
+        "a": "Yes — when debris compaction pushes windows slightly out of alignment in their tracks, frame seals compress unevenly and gaps can form at corners. In Enderby's agricultural environment where dust and pollen are constant, even a small gap creates a pathway for outdoor air into the home. Regular track cleaning keeps windows seated correctly in their frames and seals functioning as designed."
+      },
+      {
+        "q": "What is the most cost-effective track cleaning schedule for an Enderby acreage property?",
+        "a": "Once yearly in October, after harvest season, is the most cost-effective single clean for most Enderby acreage properties. It captures the full year's accumulation before winter. Properties closer to the Shuswap River or with older windows benefit from a second spring clean in May to address any mould that developed over winter. Combining track cleaning with a full window clean on the same visit reduces overall cost."
+      }
+    ],
+    "track-cleaning/armstrong": [
+      {
+        "q": "How does Armstrong's agricultural dust load compare to other Shuswap communities for window track accumulation?",
+        "a": "Armstrong and Enderby have the highest agricultural dust loads in our service area. The Spallumcheen Valley's dairy and grain farming creates dense airborne particulate that embeds in window tracks through the growing season. Armstrong tracks on properties near active farmland can accumulate a full season's compaction by August — earlier than most Shuswap locations. A mid-season track clean in Armstrong is warranted for farm-adjacent properties."
+      },
+      {
+        "q": "Do Armstrong commercial properties need track cleaning for customer-facing sliding doors before the IPE?",
+        "a": "Yes — commercial sliding doors in Armstrong businesses accumulate grime through summer and benefit from a pre-IPE track clean in late August. The Interior Provincial Exhibition brings significant visitor traffic to Armstrong each September — businesses with smooth, clean-operating doors and windows make a better impression. We serve Armstrong commercial track cleaning alongside window service for pre-IPE packages."
+      },
+      {
+        "q": "Do new Armstrong residential builds need track cleaning or is that only for older homes?",
+        "a": "New builds in Armstrong's growing residential subdivisions accumulate track debris within the first full season due to the valley's agricultural dust environment. Construction dust from nearby sites adds to the load in developing neighbourhoods. Even new windows benefit from a first-year track clean to remove construction particulate and prevent early compaction that can cause premature roller wear."
+      },
+      {
+        "q": "Can window track cleaning in Armstrong homes restore windows that have become difficult to open?",
+        "a": "In most cases, yes. Stiff or resistant windows in Armstrong homes are usually caused by compacted dust and debris in the track channel rather than mechanical failure. Once tracks are professionally cleaned and cleared, windows typically operate smoothly again without any hardware adjustments. If windows remain stiff after cleaning, we'll note it — that signals a roller or hardware issue rather than a track issue."
+      }
+    ],
+    "hard-water-stain-removal/salmon-arm": [
+      {
+        "q": "Are hard water stains on Salmon Arm lakefront windows treatable without replacing the glass?",
+        "a": "In the vast majority of cases, yes. Shuswap Lake mineral deposits — primarily calcium and silica — bond to glass over time but respond well to our specialist acid-based treatment before etching becomes permanent. We assess on arrival: light to moderate buildup is cleared in a single visit, severe etching may require glass polishing. Replacement is rarely necessary when stains are caught early."
+      },
+      {
+        "q": "How do Shuswap Lake minerals get onto my Salmon Arm windows in the first place?",
+        "a": "When lake water — carried by wind, wave action, or boat wake — lands on glass and evaporates, it leaves behind dissolved calcium, magnesium, and silica. Over repeated cycles, these minerals accumulate into the white, cloudy deposits you see. Salmon Arm's prevailing southwest winds push lake moisture directly into waterfront and near-lake properties year-round."
+      },
+      {
+        "q": "Will hard water stain treatment damage my Salmon Arm home's window seals or frames?",
+        "a": "No — our mineral removal products are specifically formulated to dissolve calcium and silica deposits without attacking UPVC frames, rubber seals, or aluminum surrounds. We apply treatment with precision to the glass surface only and rinse thoroughly. Frame and seal integrity are inspected before and after every treatment."
+      },
+      {
+        "q": "How soon after hard water stain removal should I re-book to prevent Salmon Arm lake spray from rebuilding?",
+        "a": "For lakefront properties on Shuswap Lake, we recommend scheduling a standard window clean every 8–12 weeks during spring through fall to prevent mineral reaccumulation. After a stain removal treatment, applying a hydrophobic glass sealant (available as an add-on) significantly slows deposit formation between cleans."
+      }
+    ],
+    "hard-water-stain-removal/sorrento": [
+      {
+        "q": "My Sorrento waterfront property has been unoccupied all winter — will the hard water stains be worse?",
+        "a": "Almost certainly. Unoccupied properties in Sorrento accumulate an entire season of Shuswap Lake mineral spray without any intervention. Winter freeze-thaw cycles also drive mineral deposits deeper into the glass surface. We recommend booking a hard water stain removal treatment as part of your pre-arrival opening clean — it restores clarity before you arrive."
+      },
+      {
+        "q": "Can Wagon Windows treat the white haze on my Sorrento lake-view windows before I put the property on the market?",
+        "a": "Yes — pre-sale mineral stain removal is one of our most requested services for Sorrento properties. Waterfront homes in the $800K–$2M range are significantly impacted by hazy, stained windows during showings. We can typically schedule within the week and deliver clear, presentation-ready glass that reflects the property's value."
+      },
+      {
+        "q": "Are the hard water stains on my Sorrento windows from the lake or from my irrigation system?",
+        "a": "For most Sorrento properties sitting directly on Shuswap Lake, the primary source is lake spray — windborne mineral-rich water that evaporates on the glass. Sprinkler contact is a secondary cause on properties where irrigation overspray reaches windows. We can identify the source pattern during our on-site assessment, which helps us advise on prevention."
+      },
+      {
+        "q": "How long does hard water stain removal take for a Sorrento cottage with 20+ windows?",
+        "a": "A full mineral removal treatment on a property with 20–30 windows typically takes 3–4 hours. We work window by window: apply treatment, agitate, rinse, inspect, and detail. We combine stain removal with a full exterior clean in the same visit so your Sorrento property is completely fresh when we leave."
+      }
+    ],
+    "hard-water-stain-removal/tappen": [
+      {
+        "q": "Do Tappen properties near Shuswap Lake get the same hard water staining as Salmon Arm lakefront homes?",
+        "a": "Yes — Tappen's lakefront and near-lake acreages experience identical mineral buildup from Shuswap Lake spray. The calcium and silica concentration in Shuswap Lake is consistent across the south shore, so staining severity is comparable to Salmon Arm waterfront properties. Interior lake-facing properties accumulate deposits faster due to wind-driven spray patterns."
+      },
+      {
+        "q": "Does agricultural irrigation in Tappen cause a different type of hard water staining on windows?",
+        "a": "Yes — well water and surface irrigation used on Tappen's agricultural properties often carries higher mineral loads than municipal water, particularly in calcium and iron. Irrigation-sourced staining tends to appear lower on glass panes and has a faint orange-brown tint from iron content. We treat both lake-sourced and irrigation-sourced mineral deposits, and the approach varies by mineral type."
+      },
+      {
+        "q": "Can hard water stain removal be combined with a regular window clean at my Tappen acreage?",
+        "a": "Absolutely — and it's the most efficient approach. For Tappen acreages with both mineral buildup and general grime, we complete the stain removal treatment first, then follow with a full exterior (and optional interior) clean in the same visit. One trip, fully clean results. Most Tappen properties are done in a single day."
+      },
+      {
+        "q": "My Tappen windows have never been treated for mineral buildup — how bad could the damage be?",
+        "a": "Without treatment, calcium and silica deposits gradually etch into the glass surface over multiple seasons. In Tappen, where lake spray and agricultural irrigation both contribute, untreated windows can develop permanent hazing within 2–3 years. If etching is light to moderate, specialist treatment restores clarity. Severe cases may require polishing or, in rare instances, glass replacement — all the more reason to act early."
+      }
+    ],
+    "hard-water-stain-removal/blind-bay": [
+      {
+        "q": "Blind Bay's morning lake fog seems to leave residue on my windows — is that hard water staining?",
+        "a": "Yes. Blind Bay's sheltered bay position creates high early-morning humidity and frequent fog that deposits a fine mineral mist on exterior glass. As it evaporates, it leaves calcium and silica residue — the same mineral composition as direct lake spray, just applied more gradually. Over weeks, this builds into visible white cloudiness that a standard clean won't remove."
+      },
+      {
+        "q": "My Blind Bay floor-to-ceiling lake-view windows are heavily stained — can Wagon Windows treat windows that large?",
+        "a": "Yes — large format windows are a specialty we handle regularly in Blind Bay. We use commercial-grade extension equipment and treat each panel in sections for even coverage. Floor-to-ceiling and picture windows often have the heaviest lake-mineral staining due to their surface area. We quote by the panel for accuracy on larger glass surfaces."
+      },
+      {
+        "q": "Is there a protective coating Wagon Windows can apply after removing hard water stains at my Blind Bay property?",
+        "a": "Yes — after mineral removal, we offer a hydrophobic glass sealant as an add-on. The coating causes water to bead and run off rather than evaporate on the surface, dramatically slowing future mineral deposit formation. For Blind Bay waterfront properties with constant lake moisture exposure, this coating can extend the time between treatments by 40–60%."
+      },
+      {
+        "q": "Do north-facing windows at my Blind Bay home stain more from hard water than south-facing ones?",
+        "a": "They often stain differently rather than more. Blind Bay's north-facing glass stays shaded and damp longer, promoting algae growth alongside mineral buildup — a combined contamination that requires both biological treatment and acid-based mineral removal. South-facing windows get more direct evaporation and tend to show purer calcium and silica deposits. We adapt our treatment to each window's exposure."
+      }
+    ],
+    "hard-water-stain-removal/sicamous": [
+      {
+        "q": "My Sicamous property sits between Shuswap and Mara Lakes — is the hard water staining worse than single-lake communities?",
+        "a": "It can be, yes. Sicamous properties are exposed to wind and moisture from two lake sources, which means mineral-laden spray can come from multiple directions depending on conditions. Dual-lake exposure combined with Sicamous's high summer boat traffic — which creates wave and spray action — accelerates mineral buildup compared to single-lake communities. We plan treatments accordingly for Sicamous properties."
+      },
+      {
+        "q": "Can Wagon Windows treat hard water stains on Sicamous vacation rental windows before the summer season opens?",
+        "a": "Yes — pre-season stain removal for vacation rentals is high demand in Sicamous. We recommend booking your treatment in April or early May before peak-season scheduling fills. A thorough mineral removal treatment before guests arrive means sparkling views from day one of the season and eliminates negative reviews about dirty windows."
+      },
+      {
+        "q": "Are the hard water stains on my Sicamous marina-adjacent windows caused by lake water or diesel and boat fuel?",
+        "a": "Both can contribute. Lake mineral spray deposits calcium and silica on the glass, while diesel particulates and fuel residue from marina traffic add an oily film layer. These require different treatments — we address the mineral buildup with our acid-based treatment and the petroleum film with a degreasing step. Marina-adjacent properties in Sicamous often need this combined approach for full clarity."
+      },
+      {
+        "q": "How often do Sicamous commercial businesses need hard water stain removal treatments?",
+        "a": "For Sicamous storefronts and commercial buildings near the water, we recommend a stain removal treatment once per year — typically at the start of tourist season in May. Standard window cleaning every 4–6 weeks through summer maintains the result. Left untreated, mineral deposits on commercial glass create a neglected impression during peak tourist traffic."
+      }
+    ],
+    "hard-water-stain-removal/chase": [
+      {
+        "q": "Does Little Shuswap Lake cause the same hard water staining in Chase as the main lake does elsewhere?",
+        "a": "Yes — Little Shuswap Lake carries similar mineral content to Shuswap Lake, so Chase waterfront properties experience comparable calcium and silica deposits from lake spray. Chase's drier microclimate accelerates the evaporation cycle, which can actually concentrate mineral deposits more quickly on exterior glass during summer months when lake spray meets hot, dry air."
+      },
+      {
+        "q": "Chase has a dry summer — are hard water stains worse because of evaporation?",
+        "a": "Yes, drier conditions intensify staining. In Chase's arid summer heat, any water that reaches the glass — from lake spray, sprinklers, or morning dew — evaporates rapidly, leaving minerals behind in concentrated form. This accelerated evaporation cycle means deposits build up faster than in more humid lake communities. We typically find heavier staining per unit area on Chase exterior glass compared to Salmon Arm."
+      },
+      {
+        "q": "My Chase home doesn't have lake views — can I still have hard water staining issues?",
+        "a": "Absolutely. Irrigation systems and well water are significant hard water staining sources for non-lakefront Chase properties. Sprinkler overspray reaching windows is especially common on Chase residential lots with lawn irrigation. Well water in the Chase area tends to carry elevated calcium and magnesium, which deposits on glass after each sprinkler cycle. We treat irrigation-sourced mineral buildup regularly in Chase."
+      },
+      {
+        "q": "Can Wagon Windows assess whether my Chase windows need stain removal or just a standard clean?",
+        "a": "Yes — assessment is part of every job. When we arrive, we inspect each window for mineral deposit severity. Light haze that hasn't bonded to the glass surface often lifts with our enhanced cleaning process at no additional cost. Deeper calcium or silica deposits require our specialist stain removal treatment, which we quote transparently before starting. You only pay for what's actually needed."
+      }
+    ],
+    "hard-water-stain-removal/enderby": [
+      {
+        "q": "What's causing the hard water stains on my Enderby windows — the Shuswap River or my well water irrigation?",
+        "a": "In Enderby, both are common sources — and they produce slightly different staining profiles. Shuswap River spray on riverside properties deposits fine mineral film from river water. Agricultural well water used for irrigation typically carries higher calcium and iron concentrations and leaves thicker, sometimes orange-tinted deposits. We identify the source pattern during our on-site assessment and target treatment accordingly."
+      },
+      {
+        "q": "Are hard water stains from Enderby's agricultural irrigation systems difficult to remove?",
+        "a": "They can be more stubborn than lake-spray deposits because agricultural well water in the Enderby area often has high calcium and iron content. Iron-containing deposits require a different treatment chemistry than pure calcium buildup. We use a combination approach — iron-specific treatment followed by acid-based mineral removal — to address the full mineral profile left by Enderby's irrigation-sourced hard water."
+      },
+      {
+        "q": "My Enderby acreage has sprinkler heads that hit the windows — should I fix that before booking stain removal?",
+        "a": "Ideally, yes — redirect any sprinkler heads away from glass before we treat, so new deposits don't form immediately after. If you can't adjust them before our visit, we'll still complete the stain removal, but we'll note which windows are likely to re-stain quickly and recommend a follow-up schedule. Eliminating the sprinkler contact is the single best long-term prevention for irrigation-sourced staining in Enderby."
+      },
+      {
+        "q": "Does the Shuswap River humidity in Enderby cause a different type of window contamination than hard water staining?",
+        "a": "Yes — riverside properties in Enderby often develop a combination of mineral deposits and biological growth (algae, mildew) because high humidity from the Shuswap River keeps glass surfaces damp longer. Algae can appear as a green-black haze distinct from the white mineral cloudiness of hard water. We treat both in combination for Enderby riverside properties, using biocide followed by mineral removal."
+      }
+    ],
+    "hard-water-stain-removal/armstrong": [
+      {
+        "q": "Armstrong has no lake — why do my windows have hard water staining?",
+        "a": "In Armstrong, hard water staining comes almost entirely from two sources: agricultural irrigation systems and well water. The Spallumcheen Valley's well water is naturally high in calcium and magnesium from the surrounding geology. When sprinkler systems overspray onto windows — which is very common on Armstrong residential and agricultural properties — mineral-rich droplets evaporate and leave white deposits. No lake required."
+      },
+      {
+        "q": "Do sprinkler systems on Armstrong's acreages cause more hard water staining than in town?",
+        "a": "Generally yes. Agricultural acreages outside Armstrong use high-volume irrigation fed by well water with elevated mineral content, and sprinkler heads often don't have precise coverage control. A single irrigation system running daily through summer can build significant calcium deposits on nearby windows within weeks. We see some of the heaviest sprinkler-sourced staining on Armstrong-area acreage properties."
+      },
+      {
+        "q": "Can hard water stain removal help my Armstrong business look better on the main street before the IPE fair?",
+        "a": "Absolutely — pre-IPE window cleaning is high demand in Armstrong every September. If your storefront has mineral buildup from summer irrigation or city water contact, stain removal treatment as part of a full commercial clean will restore clarity before the fair brings thousands of visitors through town. We recommend booking in August to secure a pre-IPE slot."
+      },
+      {
+        "q": "Does the mineral content of Armstrong's water supply cause hard water staining differently than well water on acreages?",
+        "a": "Somewhat. Armstrong's municipal water has been treated and typically carries lower mineral loads than untreated acreage well water. Staining from city water contact (landscaping irrigation, hose splashing) tends to be lighter and responds to standard cleaning more readily. Well water-sourced deposits on Armstrong acreages are heavier and usually require our specialist mineral treatment. We assess and quote accordingly."
+      }
+    ],
+    "seasonal-window-cleaning/salmon-arm": [
+      {
+        "q": "What does Salmon Arm's spring pollen season do to windows and when should I book a clean?",
+        "a": "Salmon Arm's surrounding forests generate heavy conifer and cottonwood pollen from late April through mid-May. Pollen coats exterior glass in a yellow-green film that becomes sticky and attracts airborne dust. Book your spring clean for late May — after peak pollen has settled — to avoid re-contamination within days of cleaning. We're heavily booked in late May, so schedule in March or April."
+      },
+      {
+        "q": "Does Wagon Windows offer a Salmon Arm seasonal package that covers all three recommended cleaning windows?",
+        "a": "Yes — our seasonal package for Salmon Arm covers three pre-scheduled cleans: late May (post-pollen), July (midsummer dust and UV haze), and late September (pre-freeze fall clean). Package holders get priority scheduling and locked-in pricing for all three visits. Lakefront homes can add a fourth clean in August for lake spray buildup. Ask about packages when booking."
+      },
+      {
+        "q": "Why do Salmon Arm windows need a midsummer clean in July — doesn't rain keep them clean?",
+        "a": "Rain actually makes it worse in Shuswap summers. Light summer rain picks up pollen and dust in the air, deposits it on glass as it runs down, and evaporates — leaving a dirty film. Combined with Okanagan wind corridor dust and UV haze from wildfire smoke common in July–August, Salmon Arm windows typically look their worst by mid-July without a midsummer clean."
+      },
+      {
+        "q": "When is the last practical date to book a fall window cleaning in Salmon Arm before winter?",
+        "a": "We recommend completing your fall clean before mid-October. Salmon Arm temperatures regularly drop below freezing overnight by late October, which prevents our water-fed cleaning process from operating safely. September and early October give the optimal window — leaves haven't fully fallen yet, temperatures are stable, and your windows will be clean going into the grey November months."
+      }
+    ],
+    "seasonal-window-cleaning/sorrento": [
+      {
+        "q": "We're seasonal Sorrento residents — how do we schedule window cleaning when we're not local?",
+        "a": "Many of our Sorrento clients book remotely. Contact us by phone or email in February or March for summer arrivals, and we'll schedule a pre-arrival exterior clean before your opening date. No one needs to be present for exterior-only service. For interior access, a neighbour or property manager can let us in. We confirm all cleans with a text and photo completion report."
+      },
+      {
+        "q": "Should Sorrento vacation properties be cleaned before closing for the winter or only before opening in spring?",
+        "a": "Both, ideally. A fall closing clean (September–October) removes pollen, lake spray mineral buildup, and summer grime before the property sits unoccupied through winter — preventing deposits from bonding more deeply to the glass over months of freezing and thawing. A spring opening clean then freshens the property before arrival. The pre-close clean is the step most seasonal property owners skip but benefit most from."
+      },
+      {
+        "q": "How does heavy lake spray from Shuswap Lake affect seasonal window cleaning frequency for Sorrento waterfront properties?",
+        "a": "Sorrento's direct lakefront exposure means exterior glass accumulates mineral-rich lake spray year-round, not just during heavy use seasons. For actively occupied waterfront properties, we recommend four cleans annually: spring, early summer, midsummer, and fall. Seasonal-only properties benefit from a minimum of two: pre-arrival opening and post-departure closing. Skipping the opening clean means arriving to white, hazy windows."
+      },
+      {
+        "q": "Sorrento gets cottonwood seed in late spring — does that affect window cleaning timing?",
+        "a": "Yes — cottonwood seed drop in Sorrento typically runs from late May to mid-June and leaves a white fibrous residue on glass that is particularly clingy. We advise booking your spring clean either before cottonwood peaks (early May) or after it clears (late June). A clean in between those windows can be re-contaminated within days. We'll advise on current conditions when you call."
+      }
+    ],
+    "seasonal-window-cleaning/tappen": [
+      {
+        "q": "Tappen has a mix of farm dust and lake spray — how does that affect seasonal window cleaning scheduling?",
+        "a": "The dual contamination sources in Tappen mean windows can get dirty quickly from two directions. Farm dust from hay and grain harvest (July–August) combines with lake spray to create a gritty mineral-organic film. We recommend a spring clean in late May, a midsummer clean in late July after first hay cut, and a fall clean in September. Lakefront Tappen properties add a fourth clean to manage lake mineral buildup."
+      },
+      {
+        "q": "Is there a best season to have Tappen acreage windows cleaned given harvest dust in summer?",
+        "a": "We recommend scheduling around harvest rather than through it. Late June is ideal for your early summer clean — before hay cutting peaks in July. Your midsummer clean fits best in early August after first cut settles. Avoid booking during active harvest weeks when farm dust is at its heaviest — you'd be fighting the contamination in real time and the results won't last."
+      },
+      {
+        "q": "Do Tappen lakefront properties need more seasonal cleans than inland acreages in the same area?",
+        "a": "Yes — lakefront properties in Tappen should plan for 3–4 cleans per year versus 2–3 for inland acreages. The additional clean accounts for continuous Shuswap Lake mineral spray that accumulates independently of seasonal dust cycles. Inland Tappen acreages follow the standard agricultural-pollen-dust cycle: spring, midsummer, and fall."
+      },
+      {
+        "q": "How far in advance should Tappen property owners book seasonal window cleaning with Wagon Windows?",
+        "a": "For spring cleans (May–June), we recommend booking in March. For summer cleans, April or May. Tappen jobs are batched with nearby Salmon Arm and Sorrento service days, so availability is more limited than in Salmon Arm itself. Booking 6–8 weeks ahead ensures you get your preferred timing rather than taking whatever slot remains."
+      }
+    ],
+    "seasonal-window-cleaning/blind-bay": [
+      {
+        "q": "Blind Bay's sheltered bay creates morning humidity — how does that affect how often we should clean seasonally?",
+        "a": "Blind Bay's high morning humidity from the sheltered lake position means glass stays damp longer each morning, accelerating both mineral deposit formation and biological growth. This shortens the effective life of each clean. We recommend 3–4 seasonal cleans for most Blind Bay waterfront properties rather than the standard 2–3, with particular attention to north-facing glass where moisture lingers longest."
+      },
+      {
+        "q": "When should Blind Bay homeowners book their spring seasonal window clean?",
+        "a": "Late May is the sweet spot for Blind Bay — after the main pollen pulse from surrounding forests has cleared but before peak summer lake activity ramps up spray and boat wake. Booking in March or April is advisable: Blind Bay is one of our busiest service areas and May slots fill early. If you miss May, early June is a reasonable fallback before the summer rush."
+      },
+      {
+        "q": "Do Blind Bay's large lake-view picture windows need more frequent seasonal cleaning than standard-sized windows?",
+        "a": "They tend to show contamination more visibly rather than accumulating it faster. A large floor-to-ceiling window with a hazy film is far more noticeable than a small pane — the same level of mineral buildup looks dramatically worse on expansive glass. Blind Bay homeowners with feature windows often clean 3–4 times per year simply because the visual impact of dirty glass at that scale is unacceptable to them."
+      },
+      {
+        "q": "Is there value in a pre-sale seasonal window clean for Blind Bay lakefront properties?",
+        "a": "Significant value — Blind Bay properties regularly trade at $700K–$3M, and first-impression clarity on lake-view windows is a tangible factor in buyer perception. A full seasonal clean with mineral treatment immediately before listing is one of the highest-ROI investments a Blind Bay seller can make. We regularly work with Shuswap-area realtors on pre-sale presentation. Ask us about priority scheduling for listings."
+      }
+    ],
+    "seasonal-window-cleaning/sicamous": [
+      {
+        "q": "Sicamous summer tourism triples the population — when is the critical window to get commercial windows cleaned seasonally?",
+        "a": "May is the must-book month for Sicamous commercial properties. Tourism builds sharply through June and peaks in July–August, so your storefronts, restaurants, and accommodation exteriors need to be clean before guests arrive — not during the rush. We recommend booking your pre-season commercial clean no later than early April to guarantee a May slot. Waiting until June means scheduling into peak demand."
+      },
+      {
+        "q": "Do Sicamous vacation rental owners need a seasonal cleaning schedule different from permanent residents?",
+        "a": "Yes — vacation rental owners in Sicamous should align cleaning with guest turnover seasons rather than calendar seasons. A pre-season clean in May, a midsummer refresh in July, and a post-season close in September covers the typical Sicamous rental cycle. Properties with back-to-back summer bookings benefit most from the July clean to avoid guest complaints about lake-spray buildup on exterior glass mid-season."
+      },
+      {
+        "q": "Between Shuswap Lake and Mara Lake, which direction's windows get dirtier faster in Sicamous seasonally?",
+        "a": "It depends on prevailing winds. Sicamous experiences wind shifts through the summer, so windows facing either lake can accumulate spray at different points in the season. Properties caught between the two lakes often have no clean side — both exposures accumulate lake mineral spray at different times. Checking all exterior windows at each seasonal visit, regardless of facing direction, is the right approach."
+      },
+      {
+        "q": "Is a fall seasonal window cleaning worthwhile in Sicamous once tourist season ends?",
+        "a": "Yes — a September or early October fall clean removes the accumulated lake spray, boat exhaust particulates, and summer grime before the property sits through winter. For vacation rentals, it also means arriving in spring to a clean starting point rather than six months of mineral buildup to address pre-season. Commercial businesses benefit from maintaining a presentable exterior through the shoulder season."
+      }
+    ],
+    "seasonal-window-cleaning/chase": [
+      {
+        "q": "Chase's drier climate means more dust — when is the worst season for window contamination?",
+        "a": "July and August are peak contamination months in Chase. The drier microclimate at the western edge of the Shuswap means less humidity to wash dust off glass, and summer winds carry agricultural and rangeland dust that settles heavily on exterior windows. A midsummer clean in mid-July catches windows at their worst — before another 6 weeks of prime dust accumulation. Spring clean in late May handles pollen and cottonwood."
+      },
+      {
+        "q": "Does Chase have a shorter spring pollen season than Salmon Arm, affecting seasonal cleaning timing?",
+        "a": "Slightly — Chase's spring comes a bit later than Salmon Arm's due to its position at the valley's western end and later snowmelt from surrounding hills. Cottonwood pollen in Chase typically peaks a week or two later than in Salmon Arm. Late May to early June is the target window for your spring clean in Chase — after pollen clears but before summer dust season takes over."
+      },
+      {
+        "q": "How many seasonal window cleans does a Chase home typically need per year?",
+        "a": "Two cleans per year is the practical minimum for most Chase homes: late May or early June (post-pollen) and mid-July (peak dust). Homes near Little Shuswap Lake waterfront benefit from a third clean in September to address mineral buildup before the property closes or winter sets in. Chase's drier climate means contamination is dust-driven rather than moisture-driven, which slightly simplifies the seasonal schedule."
+      },
+      {
+        "q": "We just moved to Chase — should we start with a seasonal package or book individually?",
+        "a": "Start with a single clean so we can assess your property's actual contamination patterns — Chase homes vary significantly depending on proximity to the lake, lot exposure, and whether there's irrigation overspray. After the first visit, we'll recommend whether a 2-visit or 3-visit seasonal package makes sense for your specific property. Most new Chase clients end up on a seasonal package after seeing the results."
+      }
+    ],
+    "seasonal-window-cleaning/enderby": [
+      {
+        "q": "Enderby's agricultural dust season runs May through September — how do we schedule seasonal cleans around it?",
+        "a": "We recommend cleaning at the start and end of agricultural dust season rather than through the middle. A late May clean catches the transition out of pollen before farm dust peaks in July. A September clean clears the accumulated summer dust before fall rains turn it into streaky film. If budget allows, a mid-July clean catches peak contamination. Three cleans per year is the optimal cadence for Enderby agricultural properties."
+      },
+      {
+        "q": "Does Enderby's Shuswap River proximity add a seasonal cleaning need beyond what other agricultural communities require?",
+        "a": "Yes — the Shuswap River creates a humidity corridor through Enderby that keeps glass damp longer than in drier agricultural communities like Armstrong. This moisture retention promotes algae and mildew growth alongside the standard agricultural dust buildup. Riverside Enderby properties should include a spring biocide treatment as part of their seasonal clean to address biological growth that won't clear with standard window cleaning alone."
+      },
+      {
+        "q": "Can Wagon Windows schedule Enderby seasonal cleans around active farming periods to avoid dust disruption?",
+        "a": "Yes — we know the agricultural calendar in the Shuswap Valley and can time your Enderby cleans strategically. We avoid scheduling during peak seeding (May), first hay cut (late June–early July), and grain harvest (August) when dust is heaviest. Booking around those windows gives your clean the best chance of lasting. We schedule Enderby visits alongside other South Shuswap jobs to maximize our time in the area."
+      },
+      {
+        "q": "Is the fall seasonal window clean more important in Enderby than in other Shuswap communities?",
+        "a": "Yes, for a specific reason: Enderby's fall harvest season (August–September) is the dustiest period of the year, and it runs directly into the window-cleaning season's natural closing. A post-harvest September clean removes the accumulated summer dust and harvest debris before winter — otherwise, five months of rainfall turns that grime into a bonded layer that's harder to remove in spring. Don't skip the fall clean in Enderby."
+      }
+    ],
+    "seasonal-window-cleaning/armstrong": [
+      {
+        "q": "With the IPE fair in September, when should Armstrong businesses book their pre-event seasonal window clean?",
+        "a": "Book in August — ideally the first two weeks. The Interior Provincial Exhibition brings tens of thousands of visitors through Armstrong each September, and downtown businesses with clean storefronts make a dramatically better impression. We see a spike in commercial booking requests in late August every year. Calling in July guarantees you a slot in the week before the fair rather than scrambling for the last available date."
+      },
+      {
+        "q": "Armstrong's summer gets heavy agricultural dust — how does that shape a seasonal window cleaning schedule?",
+        "a": "Armstrong's semi-arid Spallumcheen Valley position means summer dust accumulation is the dominant contamination driver, not pollen or moisture. We recommend a late May clean (post-Okanagan pollen) and a late July or early August clean (mid-dust-season). A third clean in September is ideal for businesses before the IPE. Residential properties can often manage with two cleans per year unless they're adjacent to working farmland."
+      },
+      {
+        "q": "Does Armstrong's lack of lake proximity mean seasonal window cleaning is less frequent than in lake communities?",
+        "a": "Not necessarily less frequent — just differently driven. Lake communities clean frequently because of mineral spray buildup. Armstrong properties clean because of agricultural dust, which can accumulate just as fast in summer. The practical outcome — 2–3 cleans per year — is similar for most properties. What changes is the timing: Armstrong schedules align with the agricultural calendar, not the lake spray and humidity cycle."
+      },
+      {
+        "q": "Are there seasonal differences in what Armstrong windows need: different products or techniques in summer versus spring?",
+        "a": "Yes — spring cleans in Armstrong focus on removing heavy pollen film (particularly from Okanagan Valley wind-carried cottonwood and conifer pollen) using a detergent-forward process. Summer and fall cleans address fine agricultural dust that clings differently to glass and can scratch if scrubbed dry. We adjust our technique by season: pre-soak approach for dusty summer glass, standard squeegee method for pollen-season cleans. Same crew, different process."
+      }
+    ],
+    "gutter-cleaning/salmon-arm": [
+      {
+        "q": "Our Salmon Arm home is surrounded by cottonwood trees — how does that affect how often we need gutter cleaning?",
+        "a": "Cottonwood fluff and leaf debris are among the worst culprits for blocked gutters in Salmon Arm. Most homes near the lake or in neighbourhoods with mature cottonwoods should budget for two cleanings per year — once in late spring after the fluff drops, and again in late October after leaf fall. Skipping the spring clean lets cottonwood seeds mat down inside the gutter and start trapping water against the fascia."
+      },
+      {
+        "q": "Can Wagon Windows clean gutters on commercial buildings in downtown Salmon Arm?",
+        "a": "Yes — we service commercial properties in downtown Salmon Arm including retail blocks, office buildings, and mixed-use properties. Commercial gutter cleaning is priced by linear footage and roofline access. Downtown Salmon Arm properties often have flat or low-pitched rooflines that collect debris quickly. We can schedule early-morning visits to avoid disrupting foot traffic and provide documentation for strata or property management records."
+      },
+      {
+        "q": "We have a steep hillside home in Salmon Arm with a two-level roofline — is that something Wagon Windows can handle safely?",
+        "a": "Hillside properties in Salmon Arm are a regular part of our workload. We use ladder stabilizers, standoffs, and proper fall-protection protocols on steep pitches. Before quoting, we assess the roofline pitch, ground clearance on the downhill side, and gutter accessibility. Most multi-level hillside homes in Salmon Arm take 60–90 minutes to complete safely. We'll tell you upfront if any section requires a different access method."
+      },
+      {
+        "q": "Can you bundle gutter cleaning and window cleaning on the same visit for our Salmon Arm home?",
+        "a": "Absolutely — bundling is the most efficient and cost-effective option. We typically clean gutters first, then move to windows, so any splash-back from gutter flushing doesn't undo the window work. Combined visits for a typical Salmon Arm single-storey home run 2–3 hours. Bundled bookings also let us coordinate a single travel block, which keeps overall pricing lower than two separate visits."
+      }
+    ],
+    "gutter-cleaning/sorrento": [
+      {
+        "q": "Our Sorrento cabin is only used May through September — should we schedule gutter cleaning when we open or when we close for the season?",
+        "a": "For seasonal Sorrento properties, we recommend cleaning at close rather than open. Pine and deciduous debris accumulates through fall and winter and can cause ice damming or fascia rot if it sits all winter in a wet gutter. Book a late-September or early-October clean before you lock up. If the property had a heavy cottonwood or pollen spring, a quick spring flush when you open is also worth adding to your checklist."
+      },
+      {
+        "q": "The Notch Hill pines around our Sorrento property drop a lot of needles — do pine needles cause specific gutter problems?",
+        "a": "Pine needles are one of the trickier debris types because they pack tightly and shed water less readily than leaves. In Sorrento, homes on the Notch Hill side often see needles mat into a felt-like layer that completely blocks water flow while appearing clean from the ground. We clear the full gutter run, flush the downspouts, and check for needle buildup at the downspout elbows, which is where most blockages form on pine-heavy properties."
+      },
+      {
+        "q": "Sorrento is about 35 minutes from Salmon Arm — does the drive time affect your service fee?",
+        "a": "Our pricing includes travel to Sorrento — there's no separate fuel surcharge for service calls within the Shuswap corridor. Where drive time matters is in scheduling: we batch Sorrento properties together on dedicated travel days to keep pricing competitive and arrival windows predictable. If you have neighbours who also need service, a coordinated booking can sometimes get everyone a tighter time slot."
+      },
+      {
+        "q": "Can you flush and inspect downspouts on our Sorrento vacation home to make sure they didn't get blocked over winter?",
+        "a": "Yes — downspout inspection and flushing is part of every standard gutter clean we do. After a Sorrento winter, underground downspout extensions can collect sediment or debris washed in from debris-laden spring runoff. We flush each downspout from the top and confirm free flow at the exit point. If a downspout is underground and flow is restricted, we flag it so you can decide whether to call a drain specialist before the summer season starts."
+      }
+    ],
+    "gutter-cleaning/tappen": [
+      {
+        "q": "We have an acreage in Tappen with willow and poplar trees close to the house — when is the best time of year to schedule gutter cleaning?",
+        "a": "On Tappen acreages with willow and poplar, the heaviest debris drop comes in late October to early November. Willow leaves are small and slippery and pack into downspout bends fast. Poplar catkins in spring can also cause early-season blockages. We recommend a late-October clean as the minimum, with an optional spring check in May if you saw standing water or slow drainage the previous fall. Acreage properties often have longer gutter runs that make timing more critical."
+      },
+      {
+        "q": "Harvest season in Tappen leaves a lot of dust and chaff on everything — does field dust actually affect gutters?",
+        "a": "It does, more than most people expect. Agricultural dust and chaff in the Tappen area mixes with dew and rain to form a silty paste inside gutters that accelerates debris binding and blocks drainage holes at downspout entries. If your property is within a few hundred metres of grain or hay fields, a post-harvest gutter flush in September or October makes a real difference before the leaf season adds another layer on top."
+      },
+      {
+        "q": "Our Tappen farmhouse has older aluminum gutters with several sagging sections — can you clean them without making the sag worse?",
+        "a": "Yes — we're careful around sagging or aged gutters. Heavy debris buildup actually worsens sag over time, so cleaning removes the load that's pulling them down. We don't apply pressure to compromised sections. If we notice a sag that's causing pooling or a hanger that's pulled loose, we flag it in our report so you can decide whether to call a gutter repair contractor. We clean what's there safely without pretending structural issues don't exist."
+      },
+      {
+        "q": "Can Wagon Windows service our Tappen property at the same time they're in the area for other jobs?",
+        "a": "Yes — we plan Tappen runs alongside other jobs in the 20–30 minute corridor from Salmon Arm. If you're flexible on the exact date, booking with some lead time lets us slot your property into an existing Tappen travel day, which keeps scheduling efficient. We'll confirm a morning or afternoon window and send a reminder the day before. Tappen is a regular stop on our Shuswap route."
+      }
+    ],
+    "gutter-cleaning/blind-bay": [
+      {
+        "q": "Our Blind Bay home has heavy moss on the roof — does that affect how gutter cleaning is done?",
+        "a": "Moss on Blind Bay roofs is very common given the humidity and dense tree canopy. Moss fragments, spores, and the granule loss it causes all wash directly into gutters and accelerate blockage. We remove debris including moss clumps from the gutter run and flush everything through. We don't treat or scrape the roof surface unless that's a separately scoped service. If the moss load is severe, we'll note it — heavy moss can void some roofing warranties and is worth addressing with a roof treatment before the next rainy season."
+      },
+      {
+        "q": "How does the high humidity around Blind Bay affect how quickly gutters get clogged compared to drier parts of the Shuswap?",
+        "a": "Blind Bay's microclimate is noticeably wetter than Salmon Arm or Chase, and that moisture accelerates debris decomposition inside gutters. Organic matter breaks down faster, forming a dense sludge at the bottom of the gutter that standard leaf-blowing alone won't clear. We hand-scoop compacted material on heavy-moisture properties before flushing, rather than relying only on water pressure. Blind Bay homes generally benefit from at least two cleans per year — spring and fall — because debris builds faster in the damp conditions."
+      },
+      {
+        "q": "We have a premium lakefront home in Blind Bay with a complicated roofline — how do you quote multi-section gutters?",
+        "a": "We quote by linear footage of gutter run, with adjustments for roofline complexity, storey height, and access constraints. Blind Bay lakefront homes often have extended rear decks or walk-out basements that create significant height differences between the front and back of the house. We do an on-site or photo-based assessment before quoting any property with a non-standard layout. The quote covers the full run including all downspouts — no hidden per-downspout charges."
+      },
+      {
+        "q": "The dense forest around our Blind Bay property means debris falls almost year-round — is there a maintenance plan or frequency that makes sense?",
+        "a": "For Blind Bay properties with dense overhead canopy, three cleans per year is often the right answer: early spring to clear winter debris before heavy rain season, late summer before the main leaf fall, and late October after deciduous trees have dropped. Some clients opt for two visits and accept a mid-season flush as a quick add-on. We can help you find the right cadence based on your specific tree mix and how quickly your gutters historically block. There's no contract required — just book as needed."
+      }
+    ],
+    "gutter-cleaning/sicamous": [
+      {
+        "q": "We operate a vacation rental in Sicamous — how do we schedule gutter cleaning around guest bookings?",
+        "a": "Vacation rental properties in Sicamous are one of our most common scheduling types. We work with property managers and remote owners to find gaps between guest stays — typically mid-week in shoulder seasons like May or October. If you give us access to your booking calendar or a management contact, we can coordinate arrival directly. Most Sicamous rentals need a fall clean before the property closes and a spring flush before the peak season opens in late May."
+      },
+      {
+        "q": "Sicamous is between two lakes — does the extra moisture and humidity near the water affect how fast gutters fill up?",
+        "a": "Yes. Properties close to Mara Lake or Shuswap Lake in Sicamous deal with higher ambient humidity than inland locations, which means organic debris in gutters decomposes and compacts faster. Combined with willow and cottonwood trees common near the water, Sicamous gutters often develop dense sludge layers that need hand-clearing rather than just flushing. Lakeside-exposure gutters on the north or east face tend to stay wetter longer and are most prone to this pattern."
+      },
+      {
+        "q": "Can Wagon Windows service the gutters on commercial marina buildings or rental offices in Sicamous?",
+        "a": "Yes — we service commercial properties including marina offices, boat storage buildings, and tourism retail in Sicamous. Commercial buildings near the water often have large flat or low-slope roof sections with internal drains or scuppers rather than traditional gutters. We scope commercial jobs on a case-by-case basis and provide a written quote covering all drainage points. Early spring scheduling before the marina season opens is the most popular window for Sicamous commercial clients."
+      },
+      {
+        "q": "Our Sicamous houseboat has an onshore cabin with gutters — does Wagon Windows service waterfront and houseboat-adjacent properties?",
+        "a": "We service the onshore structures — the cabin, boathouse, or gangway shelter — that have conventional gutters or drainage systems. We don't work from watercraft or floating platforms. For a shoreside cabin adjacent to a houseboat mooring, standard gutter cleaning applies: we access from land, clean the full gutter run, and flush downspouts. If the structure is close to the water and has steep bank access, we assess the ground conditions before confirming the booking."
+      }
+    ],
+    "gutter-cleaning/chase": [
+      {
+        "q": "Chase has a drier climate than Salmon Arm — do gutters in drier areas actually need cleaning as often?",
+        "a": "Drier climates like Chase see less frequent heavy rain, which means debris accumulates in gutters without being flushed out naturally between storms. Wind-blown cottonwood debris from Chase Creek builds up in dry layers that can pack solid when the rains do come. In drier areas, once-a-year cleaning in late fall is often sufficient for most properties, but homes near the creek with high cottonwood exposure should still consider a late-spring check. The drier air also means gutters are more likely to crack or separate at joints if left under debris load."
+      },
+      {
+        "q": "Many homes in Chase are older with aging eavestroughs — can Wagon Windows clean gutters on older homes where the gutters may not be in perfect shape?",
+        "a": "Yes — we regularly service older properties in Chase with aged aluminum or galvanized gutters. We're careful not to apply pressure to compromised sections and adjust our technique when gutters show signs of wear. If we find a joint that's separated, a section pulling away from the fascia, or visible cracks, we document and report it. Cleaning removes the debris load that often masks or worsens these issues. We clean what's safely accessible and give you an honest picture of what may need attention."
+      },
+      {
+        "q": "Chase is about 55 minutes from Salmon Arm — how do you handle scheduling for properties that far out?",
+        "a": "Chase is our furthest regular travel destination in the Shuswap corridor. We schedule Chase jobs in dedicated half-day or full-day travel blocks to make the drive worthwhile for both sides. That means some flexibility is needed on specific dates — we'll offer a morning or afternoon window on a planned Chase travel day rather than a two-hour arrival slot. If you have a neighbour who also needs service, coordinating together can help lock in a tighter time. Lead time of 1–2 weeks is recommended for Chase bookings."
+      },
+      {
+        "q": "The cottonwoods along Chase Creek drop a lot of debris — which parts of the gutter system are most likely to block first?",
+        "a": "On Chase Creek properties, the downspout entry points are almost always the first to block. Cottonwood fluff compresses into a plug at the top of the downspout elbow where the gutter meets the vertical drop. Water backs up behind it and overflows the gutter before any visible debris is apparent from ground level. We specifically probe and flush every downspout entry on cottonwood-heavy properties rather than assuming a clear gutter means a clear system. Catching that plug early prevents fascia and soffit water damage."
+      }
+    ],
+    "gutter-cleaning/enderby": [
+      {
+        "q": "Our property backs onto the Shuswap River near Enderby — does riparian debris from the river affect our gutters?",
+        "a": "River-adjacent properties in Enderby deal with wind-carried willow and cottonwood debris from the Shuswap River corridor year-round. Willow seeds in late spring and leaf fall in October are the two peak debris events. Homes with a clear sightline to the river often get airborne debris pushed across their rooflines by valley winds. We see heavier gutter loads on riverside Enderby properties than on comparable homes a few blocks inland. Twice-yearly cleaning — spring and fall — is the standard recommendation for riverfront lots."
+      },
+      {
+        "q": "Enderby has a lot of agricultural land nearby — can field pollen and chaff actually block gutters?",
+        "a": "Yes. The Enderby Valley has significant grain and hay farming, and during bloom and harvest season, airborne chaff and pollen accumulate on roof surfaces and wash into gutters. Mixed with rainwater, this creates a pasty layer at the bottom of the gutter run that acts as a base for leaf and debris buildup. Properties on the south and west edges of Enderby, closest to field operations, tend to see the most agricultural debris accumulation. A late-September clean before fall leaf drop removes both the agricultural and organic layers in one pass."
+      },
+      {
+        "q": "Can Wagon Windows combine a gutter clean with exterior window washing on a single visit to our Enderby home?",
+        "a": "Absolutely — Enderby is one of our regular combined-service stops. We sequence gutter cleaning before window work so any debris or rinse water from the gutters doesn't land on freshly cleaned glass. A typical Enderby bungalow with full gutters and exterior windows runs 2.5 to 3.5 hours combined. Bundling saves you a scheduling gap and typically costs less than two separate visit fees. We bring all equipment for both services on combined bookings."
+      },
+      {
+        "q": "How do poplar trees specifically affect gutter cleaning timelines in the Enderby area?",
+        "a": "Poplar catkins are one of the most problematic spring debris sources in the Enderby and Shuswap River valley. They drop in dense clusters in May and June, and their cottony texture means they clump together quickly, blocking downspout screens and gutter channels within days of a heavy drop. Enderby properties surrounded by mature poplars should schedule a dedicated May or early June clean rather than waiting for the standard fall visit. Left to dry and compact, catkin buildup becomes significantly harder to clear by the time it's discovered."
+      }
+    ],
+    "gutter-cleaning/armstrong": [
+      {
+        "q": "The Armstrong area has a lot of mature elms and maples near older homes — when should gutter cleaning be scheduled to catch leaf fall?",
+        "a": "Armstrong's older residential neighbourhoods have significant mature elm and maple cover, both of which shed late — typically mid to late October. Scheduling gutter cleaning in the last two weeks of October or first week of November catches the bulk of the leaf fall in a single visit. Elms in particular shed small leaves that compact into dense layers and block downspout screens quickly. If your property also has early-shedding trees like birch or ash, an early October clean followed by a late October pass gives the best protection before winter."
+      },
+      {
+        "q": "Armstrong hosts the Interior Provincial Exhibition every September — can I schedule gutter cleaning during the IPE fair week, or is it better to book around it?",
+        "a": "The IPE fair week brings significantly more traffic through Armstrong, which can affect arrival logistics in the downtown and fairgrounds-adjacent areas. For properties near the exhibition grounds, we recommend booking either the week before or the week after the IPE to avoid road congestion and parking constraints that can affect our equipment setup. Properties further from the fairgrounds are not materially affected. If the IPE week is the only time that works for you, just let us know your address and we'll assess access in advance."
+      },
+      {
+        "q": "We have a dairy farm near Armstrong with large barn and outbuilding gutters — does Wagon Windows handle agricultural building gutters?",
+        "a": "Yes — we service gutters on farm outbuildings, barns, and agricultural structures in the Armstrong and Spallumcheen area. Agricultural buildings often have long continuous gutter runs with minimal downspout frequency, which means debris loads are heavier and flushing takes longer. Hay, straw, and feed dust combine with leaf debris to form dense compacted plugs. We quote agricultural structures by linear footage with an adjustment for debris density. Access by ground-level ladder is standard; we assess roof pitch and eave height on farm buildings before confirming."
+      },
+      {
+        "q": "Is there a minimum job size for gutter cleaning in Armstrong, given the drive from Salmon Arm?",
+        "a": "Our standard minimum job fee of $99 applies to Armstrong as it does across our service area — there's no travel premium layered on top. Because Armstrong is about 45 minutes from Salmon Arm, we schedule Armstrong jobs in batches on dedicated travel days. For very small properties that come in under our minimum, the $99 minimum applies. Most Armstrong homes with standard gutter runs come in above the minimum comfortably. If you're unsure, send us a rough description of your property and we can give you a ballpark before you book."
+      }
+    ],
+    "gutter-cleaning/eagle-bay": [
+      {
+        "q": "Our Eagle Bay vacation property sits in heavy forest right on the south shore of Shuswap Lake — how does the forest canopy affect gutter cleaning frequency?",
+        "a": "South-shore Eagle Bay properties under heavy forest canopy are among the highest-debris environments we service in the Shuswap. Dense fir, pine, and cedar overhead means needles, cones, and bark debris fall year-round rather than seasonally. Combined with the lake humidity, debris compacts quickly. We recommend a minimum of two cleans per year — late spring and late fall — for Eagle Bay forest properties. Properties with overhanging branches dropping directly onto the roofline may genuinely need a third mid-summer visit to stay ahead of blockages."
+      },
+      {
+        "q": "Eagle Bay is about 25 minutes from Salmon Arm — can I schedule a same-day gutter and window clean when you're already in the area?",
+        "a": "Eagle Bay is a regular stop on our South Shore travel route, and same-day gutter and window cleaning combinations are our most common booking type there. We plan South Shore days that include Eagle Bay, Sorrento, and Blind Bay in sequence to keep travel efficient. If you book in advance and request a combined service, we'll schedule it on the next available South Shore day. Most Eagle Bay properties take 2–3 hours for a combined gutter and exterior window visit."
+      },
+      {
+        "q": "Our Eagle Bay cottage is a seasonal property — what's the best timing to schedule gutter cleaning around our opening and closing routine?",
+        "a": "For Eagle Bay seasonal properties, we recommend a fall clean as the priority — ideally late September to mid-October before you close up and before the main rainfall season. This ensures gutters are clear going into winter, reducing ice damming and fascia moisture risk while the property sits unoccupied. A spring opening clean in May is optional but worthwhile if you have heavy tree cover or if the property is closed longer than six months. We can coordinate with your key holder if you won't be present."
+      },
+      {
+        "q": "Some homes in Eagle Bay have steep, heavily treed lots with difficult access — how does Wagon Windows handle properties with access challenges?",
+        "a": "Steep lots and dense vegetation are common in Eagle Bay, and we factor access into every quote. We assess ladder placement options, ground clearance below the eave, and whether any sections require extended ladders or repositioning multiple times. Properties where standard ladder access is blocked by landscaping or grade changes take longer and are priced accordingly. We won't attempt unsafe setups — if a section genuinely can't be reached safely from ground level, we tell you rather than skip it silently. Safety and honest scoping go together."
+      }
+    ],
+    "gutter-cleaning/celista": [
+      {
+        "q": "Celista is on the north shore of Shuswap Lake and quite rural — does Wagon Windows regularly service that area, and how far in advance should I book?",
+        "a": "Celista is at the outer edge of our regular service area at about 50 minutes from Salmon Arm. We do service Celista, but we schedule it on dedicated North Shore travel days rather than as individual trip bookings. We recommend booking 2–3 weeks in advance for Celista to align with a planned North Shore run. If you can coordinate with a neighbour or nearby property to batch visits, it helps us plan the travel day more efficiently and can tighten the scheduling window for both of you."
+      },
+      {
+        "q": "Our Celista property has a mix of deciduous and conifer trees right overhead — do mixed debris types require a different cleaning approach?",
+        "a": "Mixed canopy properties — fir and pine combined with birch or aspen — are common in Celista, and the debris mix does affect how we approach the clean. Conifer needles compact differently than broad leaves; together they can create alternating dense layers that standard flushing doesn't break up. We hand-clear compacted sections first on mixed-canopy properties before flushing, which adds time but ensures we're not just pushing a plug further down the downspout. The quote accounts for debris density as well as linear footage."
+      },
+      {
+        "q": "We own a vacation property in Celista that we rent out part of the year — can you coordinate access with our property manager instead of us directly?",
+        "a": "Yes — working with property managers is routine for us on remote and vacation rental properties. We just need a confirmed contact, access instructions, and confirmation of where to leave the invoice. For Celista rentals, we typically schedule around guest gaps in shoulder season. We send an arrival notice the day before and a completion summary by text or email when the job is done so you have confirmation from wherever you are."
+      },
+      {
+        "q": "What specific gutter problems should Celista homeowners watch for given the north shore climate and tree canopy?",
+        "a": "North shore Shuswap properties like Celista tend to have north-facing roof sections that stay shaded and damp longer than south-facing slopes. This promotes moss and algae growth inside gutters that accelerates blockage even when debris loads are moderate. Watch for water dripping behind the gutter rather than through the downspout — that's a sign of debris or moss buildup causing overflow at the back edge. Also check for sagging gutter sections in early spring; debris weight combined with freeze-thaw over winter can pull fasteners loose on older gutter systems."
+      }
+    ],
+    "gutter-cleaning/scotch-creek": [
+      {
+        "q": "Scotch Creek has a heavy vacation rental market — is Wagon Windows set up to handle multiple rental properties in the same area on the same visit?",
+        "a": "Yes — multi-property scheduling in Scotch Creek is something we handle regularly. Property management companies and owners with multiple vacation rentals in the area can book all their properties on a single North Shore travel day. We quote each property individually and invoice separately or together depending on your preference. Scotch Creek rental properties typically need a fall clean before closing and sometimes a spring flush after the winter thaw. Coordinating multiple properties in one run keeps scheduling predictable and reduces your per-property overhead."
+      },
+      {
+        "q": "Our Scotch Creek rental property sits under a heavy canopy of Douglas fir — how often do the gutters actually need cleaning?",
+        "a": "Douglas fir properties in Scotch Creek are among the highest-frequency cleaning situations we encounter. Fir sheds needles, bark fragments, and seed clusters year-round, and the humid north shore microclimate means debris compacts faster than in drier inland locations. For actively rented vacation properties under heavy fir canopy, two cleans per year is a minimum — and some owners who've had overflow damage before opt for a third mid-season visit. Left unmanaged, compacted fir debris causes downspout backups that can go unnoticed for weeks on a vacation property."
+      },
+      {
+        "q": "Scotch Creek is 55 minutes from Salmon Arm — is there an additional charge for the travel distance?",
+        "a": "No separate travel surcharge is added for Scotch Creek. Like all locations in our Shuswap service area, travel is factored into our standard pricing. Because of the distance, we schedule Scotch Creek on dedicated North Shore travel days rather than individual trip bookings. The practical implication is that your booking date options are tied to our planned North Shore runs — typically a few per season. Booking with some lead time gives you the best chance of landing on your preferred window."
+      },
+      {
+        "q": "If we're not present at our Scotch Creek vacation property, how do we know the gutter cleaning was actually completed?",
+        "a": "For remote-owner properties, we provide a completion summary via text or email immediately after the job is done. The summary covers what was cleaned, debris type and approximate volume, and any observations about gutter condition or downspout flow. If we find a blockage that wasn't cleared or a structural issue that needs attention, we document and photograph it. We can also flag any concerns about the property we noticed while on-site — like a separated fascia section or signs of water intrusion. We treat remote properties the same way we'd want ours treated."
+      }
+    ],
+    "gutter-cleaning/grindrod": [
+      {
+        "q": "Grindrod sits right on the Shuswap River — do riverside trees near the village cause specific debris problems for gutters?",
+        "a": "Grindrod's position on the Shuswap River means properties near the village deal with a heavy mix of willow, cottonwood, and black alder debris. Cottonwood fluff in May and June is the most problematic — it accumulates on the roof surface and washes into gutters in the first rainfalls, forming dense plugs at downspout entries. Willow leaf drop in October adds a second major debris event. For Grindrod properties close to the river, two cleans per year — May to June and October — aligns with those two peak debris windows."
+      },
+      {
+        "q": "Grindrod is a small agricultural village — can Wagon Windows service farm property outbuildings and implement sheds as well as the main house?",
+        "a": "Yes — we service outbuildings, equipment sheds, and farm structures in Grindrod as well as main residences. Agricultural outbuildings often have long single-slope roof sections with minimal downspouts, meaning debris accumulates over a large area and concentrates at one or two exit points. Hay dust and chaff from nearby fields add to the organic load. We quote outbuildings separately from the main house and can do them on the same visit. Access by ground-level ladder is standard; we assess eave height and surface conditions before confirming scope."
+      },
+      {
+        "q": "How does Wagon Windows schedule for Grindrod, and can I get on the same day as my neighbour?",
+        "a": "Grindrod falls into our mid-Shuswap corridor route alongside Enderby and Mara, about 40 minutes from Salmon Arm. We schedule Grindrod jobs on corridor travel days that include the surrounding area. If you and a neighbour want to book the same day, that's exactly the kind of batching that makes our scheduling work best — mention it when you book and we'll do our best to slot you together. Lead time of 1–2 weeks is typically enough to land on a planned corridor day."
+      },
+      {
+        "q": "Our Grindrod property has a low-pitched metal roof with gutters that are hard to see from the ground — how do you assess gutter condition without us going up?",
+        "a": "For low-pitched metal roofs in Grindrod where gutters aren't visible from ground level, we do a brief ladder-up inspection as part of the quoting process for new clients. This lets us assess debris depth, moss or algae presence, and downspout condition before we give you a price. Once we've serviced the property once, we have a baseline and can note changes on subsequent visits. Metal roofs are actually easier on gutters in some ways — less shingle granule buildup — but the debris load from nearby trees still applies regardless of roofing material."
+      }
+    ],
+    "gutter-cleaning/spallumcheen": [
+      {
+        "q": "Spallumcheen is a rural dairy and grain farming municipality — does farming activity leave agricultural residue in gutters on rural residential properties?",
+        "a": "Yes — this is one of the most consistent patterns we see on rural Spallumcheen properties. Airborne grain dust, chaff, and silage particulate from nearby operations settles on roof surfaces throughout the growing and harvest season, from June through October. This material combines with dew and rain to form a mineral-rich paste inside gutters that accelerates decomposition of organic debris and can stain fascia boards. A post-harvest clean in late September or October is the single most effective maintenance timing for Spallumcheen rural residential properties."
+      },
+      {
+        "q": "Many rural homes in Spallumcheen have older homes with wide overhangs and deep eavestroughs — does that affect how gutter cleaning is quoted?",
+        "a": "Wide eavestroughs on older Spallumcheen farmhouses can actually hold significantly more debris volume than standard residential gutters, which means cleaning takes longer and we factor that into the quote. Deep eavestroughs also tend to accumulate a base layer of decomposed organic matter that needs hand-scooping rather than just flushing. We quote by linear footage with a note for eavestrough depth on properties with wide agricultural-style overhangs. First-visit cleaning on older homes that haven't been maintained regularly often runs longer than subsequent annual visits."
+      },
+      {
+        "q": "Can Wagon Windows coordinate a visit to our Spallumcheen property at the same time they're servicing properties in nearby Armstrong?",
+        "a": "Spallumcheen and Armstrong are geographically adjacent, and we route them together on the same travel days. If you're in the rural Spallumcheen municipality close to Armstrong, your booking is likely to fall on an Armstrong-Spallumcheen travel day. Booking your Spallumcheen property alongside an Armstrong neighbour or through the same property management contact makes scheduling seamless. Rural properties in Spallumcheen that are further from Armstrong on the highway corridors take slightly more lead time to route efficiently — we'll let you know when we book."
+      },
+      {
+        "q": "Our Spallumcheen acreage has several windbreaks of spruce and poplar planted close to the house — how do planted windbreaks affect gutter debris patterns?",
+        "a": "Planted windbreaks are one of the most overlooked debris sources on rural properties. Dense spruce windbreaks drop needles continuously and also catch and hold wind-blown debris from surrounding fields, concentrating it near the house. Poplar windbreaks add catkin and leaf debris directly above the eave line in spring and fall. Properties with windbreaks on the prevailing wind side often see asymmetric gutter loading — the windward gutters fill much faster than the leeward side. We clean the full run and note which sections are consistently heavier so you can anticipate future timing."
+      }
+    ],
+    "gutter-cleaning/swansea-point": [
+      {
+        "q": "Swansea Point is on Mara Lake right near the Sicamous narrows — does waterfront exposure affect gutter conditions differently than inland properties?",
+        "a": "Mara Lake waterfront properties at Swansea Point deal with elevated humidity and wind-driven debris from the lake shore. Wind off the water carries willow and cottonwood material from the narrows area and deposits it on west and south-facing roof sections. Gutters on the lake-facing elevation tend to fill faster and stay wetter longer, which promotes moss and algae growth even in summer. We check and clear the lake-facing gutter run as a priority and assess all sections for moisture-accelerated debris compaction, which is more common at Swansea Point than at drier inland locations."
+      },
+      {
+        "q": "Our Swansea Point recreational home is only used in summer — is there a gutter cleaning schedule that makes sense for a property occupied only July through August?",
+        "a": "For Swansea Point properties with a tight summer occupancy window, the best single-visit timing is late May or early June — after spring debris has dropped and before you start using the property. This clears winter accumulation and ensures gutters are flowing freely before summer storms. If budget allows a second visit, a late September close-out clean prepares the property for the unoccupied fall and winter season. For a property closed more than eight months of the year, that fall clean significantly reduces the risk of water intrusion and fascia damage while you're away."
+      },
+      {
+        "q": "Swansea Point is close to Sicamous — does Wagon Windows batch it with Sicamous jobs on the same travel day?",
+        "a": "Yes — Swansea Point is on our Sicamous corridor route. When we're scheduling Sicamous area jobs, Swansea Point properties are included in the same travel day. This is the most efficient way to book: if you request a Sicamous-area travel day and you're flexible on the exact date, we can usually fit you within the same half-day block. Properties that are very close together and book at the same time sometimes share a tighter arrival window. The drive from Sicamous to Swansea Point is short enough that batching works well."
+      },
+      {
+        "q": "Our Swansea Point cabin has wood siding and exposed timber beams — does gutter overflow from blocked gutters pose a specific risk to wood-sided homes?",
+        "a": "Yes — gutter overflow is one of the most common causes of wood siding damage and rot on older recreational properties. When blocked gutters overflow, water runs behind the fascia and along the siding rather than through the downspout, saturating the top courses of wood siding repeatedly over a season. On timber-framed or wood-sided Swansea Point cabins, even one or two overflow events per season can begin softening fascia boards and wicking moisture into framing. Regular gutter cleaning is one of the lowest-cost ways to protect wood construction from water damage that compounds quietly over years."
       }
     ]
   }

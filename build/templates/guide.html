@@ -1,32 +1,103 @@
 {% extends "base.html" %}
+
+{% block head_extra %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "{{ config.site_url }}/"},
+    {"@type": "ListItem", "position": 2, "name": "Guides", "item": "{{ config.site_url }}/guides/"},
+    {"@type": "ListItem", "position": 3, "name": {{ guide.h1 | tojson }}, "item": "{{ canonical }}"}
+  ]
+}
+</script>
+{% if faqs %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for faq in faqs %}
+    {
+      "@type": "Question",
+      "name": {{ faq.q | tojson }},
+      "acceptedAnswer": {"@type": "Answer", "text": {{ faq.a | tojson }}}
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %}
+{% endblock %}
+
 {% block content %}
-<nav class="breadcrumb"><a href="/">Home</a> › <a href="/guides/">Guides</a> › {{ guide.title | default(h1) }}</nav>
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a> › <a href="/guides/">Guides</a> › {{ guide.h1 | truncate(50) }}
+</nav>
+
 <section class="page-hero">
   <div class="page-hero-inner">
+    <div class="hero-badge">Shuswap Region, BC · Complete Guide</div>
     <h1>{{ h1 }}</h1>
+    <div class="quick-answer">
+      <p>{{ guide.intro }}</p>
+    </div>
+    <div class="hero-btns">
+      <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
+         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'guide_{{ guide.slug }}'});">
+        Book Free Quote
+      </a>
+      <a href="tel:{{ config.phone_raw }}" class="btn-outline"
+         onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'guide_{{ guide.slug }}'});">
+        {{ config.phone }}
+      </a>
+    </div>
   </div>
 </section>
+
 <article class="page-content">
-  <div class="guide-body">{{ guide.body_html | safe if guide.body_html else "<p>Content coming soon.</p>" }}</div>
+
+  {% for section in guide.sections %}
+  <section class="content-section">
+    <h2>{{ section.h2 }}</h2>
+    <p>{{ section.body }}</p>
+    {% if section.bullets %}
+    <ul class="service-bullets">
+      {% for b in section.bullets %}<li>{{ b }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+    {% if section.body2 %}
+    <p>{{ section.body2 }}</p>
+    {% endif %}
+  </section>
+  {% endfor %}
+
   {% if faqs %}
   <section class="content-section faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-list">
       {% for faq in faqs %}
-      <div class="faq-item"><h3>{{ faq.q }}</h3><p>{{ faq.a }}</p></div>
+      <div class="faq-item">
+        <h3>{{ faq.q }}</h3>
+        <p>{{ faq.a }}</p>
+      </div>
       {% endfor %}
     </div>
   </section>
   {% endif %}
+
   <section class="page-cta">
     <h2>Get a Free Window Cleaning Quote</h2>
     <p>Serving the Shuswap region from Salmon Arm. Book online or call us.</p>
     <div class="cta-buttons">
       <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'guide_cta'});">Book Online</a>
+         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'guide_cta_{{ guide.slug }}'});">Book Online</a>
       <a href="tel:{{ config.phone_raw }}" class="btn-outline"
-         onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'guide_cta'});">{{ config.phone }}</a>
+         onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'guide_cta_{{ guide.slug }}'});">Call {{ config.phone }}</a>
     </div>
   </section>
+
 </article>
 {% endblock %}

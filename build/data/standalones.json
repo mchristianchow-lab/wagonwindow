@@ -1,0 +1,132 @@
+[
+  {
+    "slug": "pricing",
+    "url_path": "pricing",
+    "template_key": "pricing",
+    "meta_title": "Window Cleaning Prices Shuswap | Wagon Windows",
+    "meta_desc": "Transparent window cleaning prices for the Shuswap region. Residential from $169, commercial quotes, gutter cleaning from $149. No surprises — all prices listed upfront.",
+    "h1": "Window Cleaning Prices — Shuswap Region",
+    "intro": "Wagon Windows publishes all prices upfront so you can budget without playing phone tag. Prices below cover the most common jobs across Salmon Arm, Blind Bay, Sicamous, and surrounding communities. Every job includes a streak-free guarantee.",
+    "pricing_tables": [
+      {
+        "service": "Residential Exterior Window Cleaning",
+        "tiers": [
+          {"label": "Small home (up to 10 windows)", "price": "From $169"},
+          {"label": "Medium home (11–20 windows)", "price": "From $229"},
+          {"label": "Large home (21+ windows)", "price": "From $299"},
+          {"label": "Interior + exterior add-on", "price": "+$60 typical"}
+        ]
+      },
+      {
+        "service": "Screen & Track Cleaning",
+        "tiers": [
+          {"label": "Screen cleaning (per screen)", "price": "$6–$10"},
+          {"label": "Track cleaning (per window)", "price": "$4–$8"},
+          {"label": "Full screen + track package", "price": "From $89"}
+        ]
+      },
+      {
+        "service": "Hard Water Stain Removal",
+        "tiers": [
+          {"label": "Light mineral deposits", "price": "From $149"},
+          {"label": "Moderate calcium buildup", "price": "From $229"},
+          {"label": "Severe etching / multi-session", "price": "Quoted on site"}
+        ]
+      },
+      {
+        "service": "Commercial Window Cleaning",
+        "tiers": [
+          {"label": "Storefronts & small offices", "price": "From $119"},
+          {"label": "Multi-storey commercial", "price": "Quoted on site"},
+          {"label": "Monthly contract (4+ visits/year)", "price": "Discounted rate"}
+        ]
+      },
+      {
+        "service": "Gutter Cleaning",
+        "tiers": [
+          {"label": "Single storey (up to 150 ft)", "price": "From $149"},
+          {"label": "Two storey (up to 150 ft)", "price": "From $229"},
+          {"label": "Extra length (per 50 ft add-on)", "price": "+$49"}
+        ]
+      },
+      {
+        "service": "Seasonal Packages",
+        "tiers": [
+          {"label": "Spring package (ext. windows + tracks)", "price": "From $189"},
+          {"label": "Fall package (ext. windows + gutters)", "price": "From $299"},
+          {"label": "Annual (spring + fall combined)", "price": "From $449"}
+        ]
+      }
+    ],
+    "sections": [
+      {
+        "h2": "Why We Publish Our Prices Upfront",
+        "body": "Most window cleaning companies make you call for a quote — then hit you with a number you didn't budget for. We think that's backwards. Our pricing is built on a simple model: home size and window count. We've cleaned hundreds of homes across the Shuswap, so we know what a typical small, medium, and large job costs. Publishing those numbers saves you time and saves us the back-and-forth. If your property has unusual access requirements, a very high roofline, or features we haven't seen before, we'll tell you that when we arrive — not surprise you at the end."
+      },
+      {
+        "h2": "What Affects the Final Price",
+        "body": "Window count and storey height are the two biggest factors. A one-storey rancher with 12 windows costs less than a two-storey home with 20. Add-ons like interior cleaning, screen washing, track scrubbing, or hard water treatment each add time and materials. Access is the other variable — if a window requires extension ladders or is behind landscaping that makes it slow to reach, that's reflected in the quote. We never charge for the quote itself. If the on-site price differs meaningfully from our published range, we tell you before we start."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Do you charge for a quote?",
+        "a": "No. Quotes are always free. For most homes we can give you a firm price based on square footage and a photo or quick description. For commercial properties or unusual layouts, we prefer a quick site visit."
+      },
+      {
+        "q": "Is there a minimum job fee?",
+        "a": "Yes — our minimum is $119. This covers travel to your property and the first hour of work. Most residential jobs comfortably exceed this."
+      },
+      {
+        "q": "Do you offer discounts for repeat bookings?",
+        "a": "Yes. Clients who book two or more visits per year (spring and fall is the most popular) receive priority scheduling and a 10% discount on their second visit. Commercial clients on annual contracts receive further reductions."
+      },
+      {
+        "q": "Are these prices for the Salmon Arm area only?",
+        "a": "The prices above apply across our full service area — Salmon Arm, Blind Bay, Sorrento, Sicamous, Chase, Enderby, Armstrong, Eagle Bay, Celista, Scotch Creek, Grindrod, Spallumcheen, Swansea Point, and surrounding communities. Travel surcharges apply only for properties more than 60 minutes from Salmon Arm."
+      }
+    ]
+  },
+  {
+    "slug": "service-area",
+    "url_path": "service-area",
+    "template_key": "service-area",
+    "meta_title": "Window Cleaning Service Area | Shuswap BC | Wagon Windows",
+    "meta_desc": "Wagon Windows serves the full Shuswap region from our Salmon Arm base — 14 communities, 60-minute radius. Residential and commercial window cleaning with free quotes.",
+    "h1": "Our Window Cleaning Service Area — Shuswap Region, BC",
+    "intro": "We operate out of Salmon Arm and cover the full Shuswap — from Swansea Point in the north to Spallumcheen in the south. If you're within about 60 minutes of Salmon Arm, we can come to you. Most communities in our area are served at our standard rates with no travel surcharge.",
+    "locations_context": "We cover 14 communities across the North and South Shuswap, Salmon River Valley, and surrounding areas. Click any community to see services and pricing specific to that location.",
+    "sections": [
+      {
+        "h2": "How Far We Travel",
+        "body": "Our base is Salmon Arm. On a typical work day we'll cover a route that might include Blind Bay, Sorrento, and Eagle Bay — or head north through Scotch Creek to Celista. The furthest corners of our area are about 55–60 minutes away. For properties within that radius, standard rates apply. Properties beyond 60 minutes may carry a travel fee — we'll tell you upfront if that applies to your address."
+      },
+      {
+        "h2": "Rural and Lakefront Properties",
+        "body": "Many of our customers are on Shuswap Lake, Mara Lake, or tucked into rural properties off secondary roads. We've cleaned lakefront vacation homes, agricultural properties in the Spallumcheen Valley, and hillside chalets above Blind Bay. Gravel roads, long driveways, and steep lots don't intimidate us — we carry the right equipment. The main thing that affects scheduling is road conditions in early spring and late fall, when some back roads are soft."
+      },
+      {
+        "h2": "Seasonal Service Windows",
+        "body": "The Shuswap has a real four-season climate. Our busiest windows are May–June (post-pollen) and September–October (pre-winter prep). In peak season we book 2–3 weeks out, so scheduling early — especially for spring gutters or fall window packages — is recommended. We work year-round, including winter when conditions allow. Hard water stain removal and interior-only cleaning are good shoulder-season options when outdoor work isn't ideal."
+      },
+      {
+        "h2": "Commercial Clients Across the Region",
+        "body": "We serve commercial properties in Salmon Arm, Sicamous, Enderby, and Armstrong. Storefronts, hotels, restaurants, strata buildings, and professional offices are all in our scope. Commercial clients in smaller communities like Blind Bay and Chase are served as part of our residential route days — meaning we're already in the area and can fit commercial stops efficiently."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Do you serve properties on Shuswap Lake?",
+        "a": "Yes — lakefront properties across the North and South arms of Shuswap Lake are a core part of our service area. This includes communities like Blind Bay, Sorrento, Eagle Bay, Celista, Scotch Creek, and Swansea Point. Many of our lakefront clients book twice yearly — spring before the season starts and fall before closing up."
+      },
+      {
+        "q": "Is there a travel fee for communities outside Salmon Arm?",
+        "a": "No travel fee for any community within our listed service area. The 14 communities on this page are all served at standard rates. A surcharge may apply for one-off jobs well beyond our regular route — we'll confirm before booking."
+      },
+      {
+        "q": "Do you take on jobs in communities not listed here?",
+        "a": "Sometimes. If you're in the broader North Okanagan or Columbia Shuswap area, reach out and we'll let you know if we can fit you into a route. We occasionally extend beyond our core area for larger jobs or repeat commercial clients."
+      }
+    ]
+  }
+]

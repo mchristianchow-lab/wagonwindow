@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block head_extra %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "{{ config.site_url }}/"},
+    {"@type": "ListItem", "position": 2, "name": {{ page.h1 | tojson }}, "item": "{{ canonical }}"}
+  ]
+}
+</script>
+{% if page.faqs %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for faq in page.faqs %}
+    {
+      "@type": "Question",
+      "name": {{ faq.q | tojson }},
+      "acceptedAnswer": {"@type": "Answer", "text": {{ faq.a | tojson }}}
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a> › {{ page.h1 }}
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-badge">Shuswap Region, BC · Wagon Windows</div>
+    <h1>{{ h1 }}</h1>
+    <div class="quick-answer">
+      <p>{{ page.intro }}</p>
+    </div>
+    <div class="hero-btns">
+      <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
+         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'standalone_{{ page.slug }}'});">
+        Book Free Quote
+      </a>
+      <a href="tel:{{ config.phone_raw }}" class="btn-outline"
+         onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'standalone_{{ page.slug }}'});">
+        {{ config.phone }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<article class="page-content">
+
+{% if page.template_key == 'pricing' %}
+
+  {% for table in page.pricing_tables %}
+  <section class="content-section">
+    <h2>{{ table.service }}</h2>
+    <table class="pricing-table">
+      <thead><tr><th>Service</th><th>Price</th></tr></thead>
+      <tbody>
+        {% for tier in table.tiers %}
+        <tr><td>{{ tier.label }}</td><td>{{ tier.price }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+  {% endfor %}
+
+  <section class="content-section">
+    <h2>What's Included in Every Job</h2>
+    <ul class="service-bullets">
+      <li>Streak-free squeegee finish on every pane</li>
+      <li>Sill and frame wipe-down included at no extra charge</li>
+      <li>Eco-friendly, biodegradable cleaning products</li>
+      <li>Pre-existing damage documented before we start</li>
+      <li>Streak-free guarantee — if you're not happy in 24 hours, we return free</li>
+      <li>Online booking via Calendly — no phone tag</li>
+    </ul>
+  </section>
+
+  <section class="content-section">
+    <h2>Why We Publish Our Prices Upfront</h2>
+    {% for section in page.sections %}
+    <p>{{ section.body }}</p>
+    {% endfor %}
+  </section>
+
+{% elif page.template_key == 'service-area' %}
+
+  <section class="content-section">
+    <h2>Communities We Serve</h2>
+    <p>{{ page.locations_context }}</p>
+    <div class="location-grid">
+      {% for loc in locations %}
+      <a href="/locations/{{ loc.slug }}/" class="location-card">
+        <strong>{{ loc.name }}</strong>
+        <span>Window Cleaning</span>
+        {% if loc.drive_time_from_primary_min == 0 %}
+        <em>Our home base</em>
+        {% else %}
+        <em>~{{ loc.drive_time_from_primary_min }} min from Salmon Arm</em>
+        {% endif %}
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  {% for section in page.sections %}
+  <section class="content-section">
+    <h2>{{ section.h2 }}</h2>
+    <p>{{ section.body }}</p>
+  </section>
+  {% endfor %}
+
+{% else %}
+
+  {% for section in page.sections %}
+  <section class="content-section">
+    {% if section.h2 %}<h2>{{ section.h2 }}</h2>{% endif %}
+    <p>{{ section.body }}</p>
+    {% if section.bullets %}
+    <ul class="service-bullets">
+      {% for b in section.bullets %}<li>{{ b }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+  </section>
+  {% endfor %}
+
+{% endif %}
+
+  {% if page.faqs %}
+  <section class="content-section faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      {% for faq in page.faqs %}
+      <div class="faq-item">
+        <h3>{{ faq.q }}</h3>
+        <p>{{ faq.a }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="page-cta">
+    <h2>Get a Free Window Cleaning Quote</h2>
+    <p>Serving the full Shuswap region from our Salmon Arm base. Book online or call us.</p>
+    <div class="cta-buttons">
+      <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
+         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'standalone_cta_{{ page.slug }}'});">Book Online</a>
+      <a href="tel:{{ config.phone_raw }}" class="btn-outline"
+         onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'standalone_cta_{{ page.slug }}'});">Call {{ config.phone }}</a>
+    </div>
+  </section>
+
+</article>
+{% endblock %}

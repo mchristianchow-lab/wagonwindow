@@ -72,13 +72,14 @@ def check_uniqueness(page_slug, label, text):
         content_hashes[key] = page_slug
 
 # ── FAQ Assembly ────────────────────────────────────────────────────────────
-def get_faqs(service_slug, location_slug, limit=10):
-    """Return assembled FAQ list: location FAQs first, then service, then global."""
-    loc_faqs = faqs_db.get('by_location', {}).get(location_slug, [])
-    svc_faqs = faqs_db.get('by_service', {}).get(service_slug, [])
+def get_faqs(service_slug, location_slug, limit=14):
+    """Combo FAQs first (unique per service×location), then service, location, global."""
+    combo_key = f"{service_slug}/{location_slug}"
+    combo_faqs = faqs_db.get('by_service_location', {}).get(combo_key, [])
+    svc_faqs   = faqs_db.get('by_service', {}).get(service_slug, [])
+    loc_faqs   = faqs_db.get('by_location', {}).get(location_slug, [])
     global_faqs = faqs_db.get('global', [])
-    combined = loc_faqs + svc_faqs + global_faqs
-    # Deduplicate by question text
+    combined = combo_faqs + svc_faqs + loc_faqs + global_faqs
     seen = set()
     unique = []
     for faq in combined:
@@ -216,13 +217,14 @@ def build_guides():
     count = 0
     for guide in guides:
         canonical = f"{config['site_url']}/guides/{guide['slug']}/"
+        guide_faqs = guide.get('faqs') or faqs_db.get('global', [])[:6]
         ctx = {
             'guide': guide,
             'page_title': guide['meta_title'],
             'meta_desc': guide['meta_desc'],
             'h1': guide['h1'],
             'canonical': canonical,
-            'faqs': faqs_db.get('global', [])[:6]
+            'faqs': guide_faqs
         }
         out = dist_path('guides', guide['slug'])
         render('guide.html', out, ctx)
@@ -238,13 +240,14 @@ def build_seasonal():
     count = 0
     for page in seasonal:
         canonical = f"{config['site_url']}/seasonal/{page['slug']}/"
+        page_faqs = page.get('faqs') or faqs_db.get('global', [])[:6]
         ctx = {
             'page': page,
             'page_title': page['meta_title'],
             'meta_desc': page['meta_desc'],
             'h1': page['h1'],
             'canonical': canonical,
-            'faqs': faqs_db.get('global', [])[:6]
+            'faqs': page_faqs
         }
         out = dist_path('seasonal', page['slug'])
         render('seasonal.html', out, ctx)
@@ -285,6 +288,81 @@ def generate_robots():
         f.write(content)
     print("  robots.txt ✓")
 
+# ── Build: Blog Posts ───────────────────────────────────────────────────────
+def build_blog():
+    try:
+        blog_data = load('blog.json')
+    except FileNotFoundError:
+        print("  Blog: 0 posts (blog.json not found)")
+        return
+    if not blog_data:
+        print("  Blog: 0 posts")
+        return
+    count = 0
+    for post in blog_data:
+        canonical = f"{config['site_url']}/blog/{post['slug']}/"
+        ctx = {
+            'post': post,
+            'page_title': post['meta_title'],
+            'meta_desc': post['meta_desc'],
+            'h1': post['h1'],
+            'canonical': canonical,
+        }
+        out = dist_path('blog', post['slug'])
+        render('blog-post.html', out, ctx)
+        register(canonical, priority='0.6', changefreq='yearly')
+        count += 1
+    print(f"  Blog posts: {count} ✓")
+
+def build_blog_index():
+    try:
+        blog_data = load('blog.json')
+    except FileNotFoundError:
+        return
+    if not blog_data:
+        return
+    canonical = f"{config['site_url']}/blog/"
+    ctx = {
+        'posts': sorted(blog_data, key=lambda x: x['published_date'], reverse=True),
+        'page_title': 'Window Cleaning Tips & Guides | Wagon Windows Blog',
+        'meta_desc': 'Window cleaning tips, guides, and advice for Shuswap homeowners and businesses. Hard water stains, seasonal cleaning, gutter care, and more — from Wagon Windows.',
+        'h1': 'Window Cleaning Tips & Guides',
+        'canonical': canonical,
+    }
+    out = os.path.join(DIST_DIR, 'blog', 'index.html')
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    render('blog-index.html', out, ctx)
+    register(canonical, priority='0.7', changefreq='weekly')
+    print("  Blog index ✓")
+
+# ── Build: Standalone Pages ─────────────────────────────────────────────────
+def build_standalones():
+    try:
+        standalones = load('standalones.json')
+    except FileNotFoundError:
+        print("  Standalones: 0 (standalones.json not found)")
+        return
+    if not standalones:
+        print("  Standalones: 0")
+        return
+    count = 0
+    for page in standalones:
+        canonical = f"{config['site_url']}/{page['url_path']}/"
+        ctx = {
+            'page': page,
+            'page_title': page['meta_title'],
+            'meta_desc': page['meta_desc'],
+            'h1': page['h1'],
+            'canonical': canonical,
+            'locations': locations,
+        }
+        out = os.path.join(DIST_DIR, page['url_path'], 'index.html')
+        os.makedirs(os.path.dirname(out), exist_ok=True)
+        render('standalone.html', out, ctx)
+        register(canonical, priority='0.8', changefreq='monthly')
+        count += 1
+    print(f"  Standalone pages: {count} ✓")
+
 # ── Main ────────────────────────────────────────────────────────────────────
 if __name__ == '__main__':
     mode = "CHECK ONLY" if CHECK_ONLY else "FULL BUILD"
@@ -300,6 +378,9 @@ if __name__ == '__main__':
     build_service_hubs()
     build_guides()
     build_seasonal()
+    build_blog()
+    build_blog_index()
+    build_standalones()
 
     if not CHECK_ONLY:
         generate_sitemap()

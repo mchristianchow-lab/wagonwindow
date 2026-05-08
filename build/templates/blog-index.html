@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block head_extra %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "{{ config.site_url }}/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "{{ canonical }}"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Wagon Windows Blog",
+  "description": "Window cleaning tips, guides, and advice for Shuswap homeowners and businesses.",
+  "url": "{{ canonical }}",
+  "publisher": {"@type": "Organization", "name": "Wagon Windows", "url": "{{ config.site_url }}"}
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a> › Blog
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-badge">Shuswap Region, BC · Window Cleaning Tips</div>
+    <h1>{{ h1 }}</h1>
+    <div class="quick-answer">
+      <p>Practical window cleaning guides from Wagon Windows — costs, timing, hard water stains, seasonal care, and more. Written for Shuswap homeowners and businesses by people who clean windows here every week.</p>
+    </div>
+    <div class="hero-btns">
+      <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
+         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'blog_index'});">
+        Book Free Quote
+      </a>
+      <a href="tel:{{ config.phone_raw }}" class="btn-outline"
+         onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'blog_index'});">
+        {{ config.phone }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<article class="page-content">
+  <section class="content-section">
+    <div class="blog-grid">
+      {% for post in posts %}
+      <article class="blog-card">
+        <div class="blog-card-meta">
+          <span class="blog-category">{{ post.category | replace('-', ' ') | title }}</span>
+          <span class="blog-date">{{ post.published_date }}</span>
+        </div>
+        <h2 class="blog-card-title"><a href="/blog/{{ post.slug }}/">{{ post.h1 }}</a></h2>
+        <p class="blog-card-intro">{{ post.intro[:140] }}{% if post.intro|length > 140 %}…{% endif %}</p>
+        <a href="/blog/{{ post.slug }}/" class="blog-read-more">Read more →</a>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="page-cta">
+    <h2>Ready to Book Window Cleaning in the Shuswap?</h2>
+    <p>Serving Salmon Arm, Blind Bay, Sicamous, Armstrong, and all surrounding communities. Locally owned, streak-free guaranteed.</p>
+    <div class="cta-buttons">
+      <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
+         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'blog_index_cta'});">Book Online</a>
+      <a href="tel:{{ config.phone_raw }}" class="btn-outline"
+         onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'blog_index_cta'});">Call {{ config.phone }}</a>
+    </div>
+  </section>
+</article>
+
+{% endblock %}
