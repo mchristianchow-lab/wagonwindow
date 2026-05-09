@@ -564,6 +564,16 @@ section { padding: 90px 5%; text-align: center; }
 .quote-split-primary .split-list li { color: var(--navy); }
 .quote-split-secondary .split-list li { color: rgba(255,255,255,0.85); }
 
+.quote-split-secondary .btn-outline {
+  background: rgba(255,255,255,0.1);
+  border: 2px solid rgba(255,255,255,0.65);
+  color: #fff;
+}
+.quote-split-secondary .btn-outline:hover {
+  background: rgba(255,255,255,0.2);
+  border-color: #fff;
+}
+
 .quote-split-divider {
   display: flex;
   align-items: center;
