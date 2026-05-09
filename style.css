@@ -1051,20 +1051,57 @@ footer p + p { margin-top: 0.6rem; }
 
 /* ---- MOBILE ---- */
 @media (max-width: 768px) {
-  .nav-links { display: none; flex-direction: column; position: absolute; top: 88px; left: 0; right: 0; background: var(--white); padding: 1.5rem 5%; gap: 1.2rem; border-top: 3px solid var(--sky); }
+  /* NAV */
+  nav { height: 64px; }
+  .nav-logo-img { height: 90px; }
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--white); padding: 1.5rem 5%; gap: 1.2rem; border-top: 3px solid var(--sky); }
   .nav-links.open { display: flex; }
   .hamburger { display: flex; }
-  .hero { text-align: center; }
+
+  /* HERO */
+  .hero { padding: 60px 5% 55px; text-align: center; }
+  .hero-btns { flex-direction: column; align-items: stretch; }
+  .btn-primary, .btn-outline { text-align: center; }
+
+  /* TRUST BAR */
+  .trust-bar { gap: 0.6rem; padding: 0.8rem 5%; }
+  .trust-item { font-size: 0.78rem; padding: 0.35rem 0.75rem; }
+
+  /* SECTIONS */
+  section { padding: 55px 5%; }
+
+  /* SERVICES */
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .service-card { padding: 1.1rem 1rem; }
+
+  /* WHY */
+  .why-grid { grid-template-columns: 1fr; }
+
+  /* PRICING */
+  .pricing-grid { grid-template-columns: 1fr; }
+
+  /* CONTACT */
   .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
+  .contact-details-bar { gap: 1.2rem; }
+  .tab-btns { flex-wrap: wrap; }
+  .tab-btn { flex: 1; min-width: 130px; text-align: center; padding: 0.65rem 1rem; }
+  form input, form select, form textarea { font-size: 16px; }
+
+  /* AREA */
   .area-layout { grid-template-columns: 1fr; }
   .area-map { height: 260px; }
-  .services-grid { grid-template-columns: repeat(2, 1fr); }
-  .why-grid { grid-template-columns: 1fr; }
+  .area-box { padding: 1.5rem; }
+
+  /* MOBILE BOOKING BAR — replaces float buttons on mobile */
   .mobile-book-bar { display: flex; }
   body { padding-bottom: 72px; }
-  .float-contact { bottom: 5.5rem; }
+  .float-contact { display: none; }
+
+  /* PAGE HERO */
   .page-hero { padding: 50px 5% 45px; }
   .page-trust-strip { gap: 0.9rem; font-size: 0.74rem; }
+
+  /* PAGE CONTENT */
   .content-section { padding: 40px 0; }
   .service-bullets { grid-template-columns: 1fr; }
   .problems-list { grid-template-columns: 1fr; }
@@ -1072,5 +1109,6 @@ footer p + p { margin-top: 0.6rem; }
   .pricing-table { font-size: 0.78rem; }
   .pricing-table th, .pricing-table td { padding: 0.75rem 0.8rem; }
   .page-cta { border-radius: 0; margin-top: 0; padding: 50px 5%; }
+  .cta-buttons { flex-direction: column; align-items: stretch; }
   .faq-item { padding: 1.1rem 1.2rem; }
 }
