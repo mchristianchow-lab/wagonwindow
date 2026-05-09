@@ -60,6 +60,11 @@
       <p>Wagon Windows provides {{ service.name | lower }} across the Shuswap region — Salmon Arm, Sorrento, Blind Bay, Tappen, Sicamous, Chase, Enderby, and Armstrong.
       {{ service.service_description }} Locally owned, streak-free guaranteed, bookable online.</p>
     </div>
+    <div class="page-trust-strip">
+      <span>✓ Streak-Free Guarantee</span>
+      <span>✓ Free Quote</span>
+      <span>✓ We Come Back If You're Not Happy</span>
+    </div>
     <div class="hero-btns">
       <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
          onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'service_hub_{{ service.slug }}'});">
@@ -135,6 +140,14 @@
       {% endfor %}
     </div>
   </section>
+
+  <div class="mid-cta">
+    <p>Get a free, no-obligation quote for {{ service.name | lower }} in the Shuswap.</p>
+    <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
+       onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'mid_cta_{{ service.slug }}'});">Book Online — It's Free</a>
+    <a href="tel:{{ config.phone_raw }}" class="mid-cta-phone"
+       onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'mid_cta_{{ service.slug }}'});">or call {{ config.phone }}</a>
+  </div>
 
   <section class="content-section">
     <h2>Pricing for {{ service.name }}</h2>

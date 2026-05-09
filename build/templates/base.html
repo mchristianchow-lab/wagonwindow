@@ -146,6 +146,14 @@
   </a>
 </div>
 
+<!-- MOBILE BOOKING BAR -->
+<div class="mobile-book-bar">
+  <a href="{{ config.calendly_url }}" class="mobile-book-primary" target="_blank" rel="noopener"
+     onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'mobile_bar'});">Book Free Quote</a>
+  <a href="tel:{{ config.phone_raw }}" class="mobile-book-call"
+     onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'mobile_bar'});">Call Now</a>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <p><strong>Wagon Windows</strong> — Professional Window Cleaning in Salmon Arm &amp; the Shuswap</p>
