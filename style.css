@@ -39,7 +39,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 73px;
+  height: 88px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
   border-bottom: 5px solid var(--sky);
 
@@ -658,7 +658,7 @@ footer p + p { margin-top: 0.6rem; }
 
 /* ---- MOBILE ---- */
 @media (max-width: 768px) {
-  .nav-links { display: none; flex-direction: column; position: absolute; top: 73px; left: 0; right: 0; background: var(--white); padding: 1.5rem 5%; gap: 1.2rem; border-top: 3px solid var(--sky); }
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 88px; left: 0; right: 0; background: var(--white); padding: 1.5rem 5%; gap: 1.2rem; border-top: 3px solid var(--sky); }
   .nav-links.open { display: flex; }
   .hamburger { display: flex; }
   .hero { text-align: center; }
