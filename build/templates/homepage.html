@@ -139,7 +139,7 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-label">Get in Touch</div>
-  <h2 class="section-title">Get a Free Quote</h2>
+  <h2 class="section-title">Get a Quote</h2>
   <div class="contact-details-bar">
     <div class="contact-detail">
       <a href="tel:{{ config.phone_raw }}"
@@ -150,35 +150,31 @@
     </div>
     <div class="contact-detail">{{ config.address }}</div>
   </div>
-  <div class="contact-tabs">
-    <div class="tab-btns">
-      <button class="tab-btn active" onclick="switchTab('book', this)">Book Online</button>
-      <button class="tab-btn" onclick="switchTab('message', this)">Send a Message</button>
+  <div class="quote-split">
+    <div class="quote-split-card quote-split-primary">
+      <span class="split-icon">⚡</span>
+      <h3>Instant Estimate</h3>
+      <p>Answer 4 quick questions and get a real price in under 2 minutes. No phone call, no waiting.</p>
+      <ul class="split-list">
+        <li>Works for most homes up to 35 windows</li>
+        <li>Exterior-only or full interior + exterior</li>
+        <li>Add-ons calculated automatically</li>
+      </ul>
+      <a href="/quote/" class="btn-primary"
+         onclick="gtag('event','quote_click',{'event_category':'contact','event_label':'contact_split_instant'});">Get My Instant Estimate →</a>
     </div>
-    <div class="tab-panel" id="tab-book">
-      <p style="background:#f0f7f0;border-left:4px solid #2d8a4e;padding:0.75rem 1rem;margin-bottom:1rem;border-radius:4px;font-size:0.9rem;color:#2d5a2d;"><strong>Now taking bookings.</strong> Pick a time that works and we'll confirm within the hour.</p>
-      <p style="background:#f0f7f0;border-left:4px solid #2d8a4e;padding:0.75rem 1rem;margin-bottom:1rem;border-radius:4px;font-size:0.9rem;color:#2d5a2d;">
-        By booking through this form, you consent to Wagon Windows contacting you via phone, text, or email regarding your appointment and future services. We do not share your information with third parties.
-      </p>
-      <div class="calendly-inline-widget" data-url="{{ config.calendly_url }}" style="min-width:320px;height:660px;"></div>
-      <script defer src="https://assets.calendly.com/assets/external/widget.js"></script>
-    </div>
-    <div class="tab-panel hidden" id="tab-message">
-      <form action="https://formspree.io/f/{{ config.formspree_id }}" method="POST"
-            onsubmit="gtag('event','form_submit',{'event_category':'contact','event_label':'quote_form'});">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="email" placeholder="Email Address" required />
-        <input type="tel" name="phone" placeholder="Phone Number" />
-        <select name="service">
-          <option value="" disabled selected>What service are you looking for?</option>
-          {% for svc in services %}
-          <option>{{ svc.name }}</option>
-          {% endfor %}
-          <option>Not Sure — Please Advise</option>
-        </select>
-        <textarea name="message" placeholder="Tell us about your property (size, number of windows, any access notes...)"></textarea>
-        <button type="submit">Send My Quote Request →</button>
-      </form>
+    <div class="quote-split-divider">or</div>
+    <div class="quote-split-card quote-split-secondary">
+      <span class="split-icon">🏡</span>
+      <h3>Book a Consultation</h3>
+      <p>For larger or more complex properties — a free 30-minute on-site visit to give you a precise number.</p>
+      <ul class="split-list">
+        <li>Homes with 36+ windows</li>
+        <li>Multi-storey or tricky access</li>
+        <li>Commercial properties</li>
+      </ul>
+      <a href="{{ config.calendly_url }}" class="btn-outline" target="_blank" rel="noopener"
+         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'contact_split_consult'});">Book a Free Consultation →</a>
     </div>
   </div>
 </section>
