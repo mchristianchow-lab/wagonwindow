@@ -62,7 +62,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
   width:56px;height:56px;border-radius:50%;border:2px solid var(--border);
   background:var(--surface2);color:var(--text);font-size:1.6rem;font-weight:300;
   cursor:pointer;display:flex;align-items:center;justify-content:center;
-  -webkit-tap-highlight-color:transparent;user-select:none;flex-shrink:0
+  -webkit-tap-highlight-color:transparent;user-select:none;flex-shrink:0;
+  touch-action:manipulation
 }
 .counter-btn.wide{border-radius:10px;width:auto;padding:0 1rem;font-size:1rem;font-weight:600;margin:0 .5rem}
 .counter-btn:active{background:var(--surface);border-color:var(--red)}
@@ -108,7 +109,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
   width:32px;height:32px;border-radius:6px;border:1.5px solid var(--border);
   background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:600;
   cursor:pointer;display:flex;align-items:center;justify-content:center;
-  -webkit-tap-highlight-color:transparent;flex-shrink:0
+  -webkit-tap-highlight-color:transparent;flex-shrink:0;touch-action:manipulation
 }
 .adj-val{min-width:28px;text-align:center;font-weight:700;font-size:.95rem}
 /* ── Quote screen ── */
