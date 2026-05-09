@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WW Field">
+  <title>Wagon Windows · Field Tool</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#e81010;
+  --bg:#0d0d0d;
+  --surface:#1a1a1a;
+  --surface2:#242424;
+  --border:#333;
+  --text:#f0f0f0;
+  --muted:#888;
+  --green:#22c55e;
+  --yellow:#f59e0b;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;overflow:hidden}
+#app{height:100%;display:flex;flex-direction:column;max-width:500px;margin:0 auto}
+/* ── Top bar ── */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.75rem 1rem;background:var(--surface);
+  border-bottom:2px solid var(--red);flex-shrink:0;min-height:52px
+}
+.topbar-title{font-weight:700;font-size:1rem;color:var(--text)}
+.topbar-back{background:none;border:none;color:var(--muted);font-size:.95rem;cursor:pointer;padding:.25rem .5rem;-webkit-tap-highlight-color:transparent}
+.topbar-action{background:none;border:none;color:var(--red);font-weight:600;font-size:.9rem;cursor:pointer;padding:.25rem .5rem;-webkit-tap-highlight-color:transparent}
+/* ── Screen routing ── */
+.screen{display:none;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.screen.active{display:flex;flex-direction:column}
+/* ── Home screen ── */
+.home-header{padding:2rem 1.5rem 1rem;text-align:center}
+.home-logo{font-size:1.6rem;font-weight:800;letter-spacing:-.02em}
+.home-logo span{color:var(--red)}
+.home-sub{color:var(--muted);font-size:.85rem;margin-top:.25rem}
+.home-btns{padding:1rem 1.5rem;display:flex;flex-direction:column;gap:.75rem;flex:1}
+.home-btn{
+  display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;
+  background:var(--surface);border:1.5px solid var(--border);border-radius:12px;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;text-align:left;width:100%
+}
+.home-btn.primary{background:var(--red);border-color:var(--red)}
+.home-btn-icon{font-size:1.5rem;line-height:1;flex-shrink:0}
+.home-btn-label{font-weight:700;font-size:1rem;color:var(--text);display:block}
+.home-btn-sub{font-size:.8rem;color:rgba(255,255,255,.55);display:block;margin-top:.1rem}
+.home-btn.primary .home-btn-sub{color:rgba(255,255,255,.7)}
+/* ── Generic section/card ── */
+.section{padding:1rem 1rem 0}
+.card{background:var(--surface);border-radius:12px;padding:1.25rem;margin-bottom:1rem;border:1px solid var(--border)}
+.card-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.5rem}
+.card-title{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.25rem}
+.card-sub{font-size:.85rem;color:var(--muted);line-height:1.5}
+/* ── Counter ── */
+.counter-wrap{display:flex;align-items:center;justify-content:center;gap:0;margin:1.5rem 0 .75rem}
+.counter-btn{
+  width:56px;height:56px;border-radius:50%;border:2px solid var(--border);
+  background:var(--surface2);color:var(--text);font-size:1.6rem;font-weight:300;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  -webkit-tap-highlight-color:transparent;user-select:none;flex-shrink:0
+}
+.counter-btn.wide{border-radius:10px;width:auto;padding:0 1rem;font-size:1rem;font-weight:600;margin:0 .5rem}
+.counter-btn:active{background:var(--surface);border-color:var(--red)}
+.counter-val{
+  font-size:4rem;font-weight:800;color:var(--text);
+  min-width:100px;text-align:center;line-height:1;
+  cursor:pointer;user-select:none
+}
+.counter-label{text-align:center;font-size:.9rem;color:var(--muted);margin-bottom:1rem}
+.size-badge{
+  display:inline-block;padding:.2rem .7rem;border-radius:20px;
+  font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+  background:var(--surface2);color:var(--yellow);border:1px solid var(--yellow)
+}
+/* ── Service cards ── */
+.service-grid{display:flex;flex-direction:column;gap:.75rem;padding:1rem}
+.service-card{
+  background:var(--surface);border:2px solid var(--border);border-radius:14px;
+  padding:1.25rem 1.5rem;cursor:pointer;-webkit-tap-highlight-color:transparent;
+  display:flex;align-items:center;justify-content:space-between;transition:border-color .15s
+}
+.service-card.selected{border-color:var(--red)}
+.service-card-left{}
+.service-card-name{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
+.service-card-desc{font-size:.82rem;color:var(--muted)}
+.service-card-price{text-align:right;flex-shrink:0;margin-left:1rem}
+.service-price-from{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.service-price-val{font-size:1.6rem;font-weight:800;color:var(--red);line-height:1}
+/* ── Add-ons ── */
+.addon-row{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:1rem;margin-bottom:.5rem;gap:.75rem
+}
+.addon-row.inactive{opacity:.4;pointer-events:none}
+.addon-left{display:flex;align-items:center;gap:.85rem;flex:1;min-width:0}
+.addon-check{width:22px;height:22px;accent-color:var(--red);cursor:pointer;flex-shrink:0}
+.addon-text{}
+.addon-name{font-weight:600;font-size:.95rem;line-height:1.2}
+.addon-meta{font-size:.78rem;color:var(--muted);margin-top:.1rem}
+.addon-ctr{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.adj-btn{
+  width:32px;height:32px;border-radius:6px;border:1.5px solid var(--border);
+  background:var(--surface2);color:var(--text);font-size:1.1rem;font-weight:600;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  -webkit-tap-highlight-color:transparent;flex-shrink:0
+}
+.adj-val{min-width:28px;text-align:center;font-weight:700;font-size:.95rem}
+/* ── Quote screen ── */
+.quote-hero{text-align:center;padding:1.5rem 1rem 1rem}
+.quote-from-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.25rem}
+.quote-amount{font-size:3.5rem;font-weight:800;color:var(--red);line-height:1}
+.quote-range{font-size:.9rem;color:var(--muted);margin-top:.4rem}
+.quote-subtotal{font-size:.85rem;color:var(--muted);margin-top:.2rem}
+.discount-row{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--surface2);border-radius:10px;padding:.85rem 1rem;
+  margin:.75rem 1rem;gap:1rem
+}
+.discount-label{font-weight:600;font-size:.9rem}
+.discount-input{
+  width:70px;background:var(--surface);border:1.5px solid var(--border);
+  border-radius:6px;color:var(--text);font-size:1.05rem;font-weight:700;
+  text-align:center;padding:.4rem;font-family:inherit
+}
+.discount-input:focus{outline:none;border-color:var(--red)}
+.breakdown-card{background:var(--surface);border-radius:10px;margin:.5rem 1rem;border:1px solid var(--border)}
+.breakdown-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.6rem 1rem;border-bottom:1px solid var(--border);font-size:.88rem;gap:.5rem
+}
+.breakdown-row:last-child{border-bottom:none;font-weight:700;font-size:.95rem}
+.breakdown-label{color:var(--muted)}
+.breakdown-val{color:var(--text);font-weight:500;flex-shrink:0}
+.breakdown-row.total .breakdown-label{color:var(--text)}
+/* ── Action buttons ── */
+.action-strip{padding:1rem;display:flex;flex-direction:column;gap:.6rem}
+.btn{
+  display:block;width:100%;padding:1rem 1.5rem;border-radius:10px;border:none;
+  font-family:inherit;font-size:1rem;font-weight:700;cursor:pointer;
+  text-align:center;-webkit-tap-highlight-color:transparent;transition:opacity .15s
+}
+.btn:active{opacity:.8}
+.btn-red{background:var(--red);color:#fff}
+.btn-green{background:var(--green);color:#fff}
+.btn-outline{background:var(--surface);border:1.5px solid var(--border);color:var(--text)}
+.btn-ghost{background:none;border:none;color:var(--muted);font-size:.9rem;cursor:pointer;padding:.75rem;font-family:inherit}
+/* ── Customer mode overlay ── */
+#customer-overlay{
+  display:none;position:fixed;inset:0;background:#fff;z-index:999;
+  flex-direction:column;align-items:center;justify-content:center;padding:2rem
+}
+#customer-overlay.visible{display:flex}
+.co-brand{font-size:.9rem;font-weight:700;color:#555;letter-spacing:.05em;text-transform:uppercase;margin-bottom:1.5rem}
+.co-from{font-size:.85rem;color:#888;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem}
+.co-price{font-size:5rem;font-weight:900;color:#e81010;line-height:1;margin-bottom:.5rem}
+.co-includes{font-size:.9rem;color:#555;text-align:center;max-width:280px;line-height:1.6;margin-bottom:1.5rem}
+.co-breakdown{width:100%;max-width:320px;border:1px solid #eee;border-radius:10px;overflow:hidden;margin-bottom:1.5rem}
+.co-row{display:flex;justify-content:space-between;padding:.6rem 1rem;border-bottom:1px solid #eee;font-size:.88rem;gap.5rem}
+.co-row:last-child{border-bottom:none;font-weight:700}
+.co-row-label{color:#666}
+.co-trust{display:flex;flex-direction:column;gap:.3rem;text-align:center;font-size:.8rem;color:#888;margin-bottom:1.5rem}
+.co-back{background:none;border:1.5px solid #ddd;border-radius:8px;padding:.75rem 1.5rem;font-size:.9rem;font-weight:600;color:#444;cursor:pointer;font-family:inherit}
+/* ── Form ── */
+.form-section{padding:.5rem 1rem;display:flex;flex-direction:column;gap:.75rem;flex:1}
+.field-group{display:flex;flex-direction:column;gap:.3rem}
+.field-label{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.field-input{
+  background:var(--surface);border:1.5px solid var(--border);border-radius:8px;
+  color:var(--text);font-size:1rem;padding:.75rem 1rem;font-family:inherit;
+  -webkit-appearance:none
+}
+.field-input:focus{outline:none;border-color:var(--red)}
+/* ── Leads list ── */
+.lead-item{
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:1rem;margin-bottom:.75rem
+}
+.lead-name{font-weight:700;font-size:1rem;margin-bottom:.2rem}
+.lead-meta{font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:.75rem}
+.lead-quote{font-size:.85rem;font-weight:600;color:var(--red);margin-bottom:.75rem}
+.lead-actions{display:flex;gap:.5rem}
+.lead-btn{
+  flex:1;padding:.55rem .5rem;border-radius:7px;border:1.5px solid var(--border);
+  background:var(--surface2);color:var(--text);font-size:.8rem;font-weight:600;
+  cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent;text-align:center
+}
+.lead-btn.calendly{border-color:var(--red);color:var(--red)}
+.lead-btn.delete{border-color:#555;color:var(--muted)}
+.empty-state{text-align:center;padding:3rem 1.5rem;color:var(--muted)}
+.empty-state-icon{font-size:3rem;margin-bottom:1rem}
+/* ── Price reference ── */
+.ref-table{width:100%;border-collapse:collapse;margin-bottom:1.25rem}
+.ref-table th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:.4rem .75rem;border-bottom:1px solid var(--border)}
+.ref-table td{padding:.6rem .75rem;font-size:.88rem;border-bottom:1px solid var(--border)}
+.ref-table td:last-child{text-align:right;font-weight:600;color:var(--red)}
+/* ── Nav bottom ── */
+.bottom-nav{
+  flex-shrink:0;display:flex;gap:.5rem;padding:.75rem 1rem;
+  background:var(--surface);border-top:1px solid var(--border)
+}
+/* ── Misc ── */
+.tag{display:inline-block;padding:.15rem .55rem;border-radius:4px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.tag-green{background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.3)}
+.tag-yellow{background:rgba(245,158,11,.12);color:var(--yellow);border:1px solid rgba(245,158,11,.25)}
+.section-spacer{height:1rem}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║         HOME SCREEN          ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<div id="scr-home" class="screen active">
+  <div class="topbar">
+    <div class="topbar-title">Wagon Windows</div>
+    <div style="font-size:.75rem;color:var(--muted)" id="home-lead-count"></div>
+  </div>
+  <div class="home-header">
+    <div class="home-logo">Wagon <span>Windows</span></div>
+    <div class="home-sub">Field Sales Tool · Salmon Arm, BC</div>
+  </div>
+  <div class="home-btns">
+    <button class="home-btn primary" onclick="startQuote()">
+      <span class="home-btn-icon">💲</span>
+      <div>
+        <span class="home-btn-label">New Quote</span>
+        <span class="home-btn-sub">Count panes → get a price</span>
+      </div>
+    </button>
+    <button class="home-btn" onclick="goScreen('scr-leads')">
+      <span class="home-btn-icon">📋</span>
+      <div>
+        <span class="home-btn-label">Saved Leads</span>
+        <span class="home-btn-sub" id="home-leads-sub">0 leads saved</span>
+      </div>
+    </button>
+    <button class="home-btn" onclick="goScreen('scr-ref')">
+      <span class="home-btn-icon">📊</span>
+      <div>
+        <span class="home-btn-label">Price Reference</span>
+        <span class="home-btn-sub">Cheat sheet — all rates</span>
+      </div>
+    </button>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║        PANE COUNT            ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<div id="scr-count" class="screen">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goScreen('scr-home')">← Home</button>
+    <div class="topbar-title">Count Panes</div>
+    <div style="width:60px"></div>
+  </div>
+  <div class="section">
+    <div class="card">
+      <div class="card-label">Each pane = one piece of glass</div>
+      <div class="card-sub">Standard window = 2 panes · Patio slider = 2 panes · Skylight = 1 pane</div>
+    </div>
+  </div>
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem">
+    <div class="counter-wrap">
+      <button class="counter-btn wide" onclick="adjustPanes(-5)">−5</button>
+      <button class="counter-btn" onclick="adjustPanes(-1)" style="margin:0 .5rem">−</button>
+      <div class="counter-val" id="pane-display" onclick="editPanesManual()">20</div>
+      <button class="counter-btn" onclick="adjustPanes(1)" style="margin:0 .5rem">+</button>
+      <button class="counter-btn wide" onclick="adjustPanes(5)">+5</button>
+    </div>
+    <div class="counter-label">
+      <span id="pane-size-label">panes</span> &nbsp;·&nbsp;
+      <span class="size-badge" id="pane-size-badge">Medium</span>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <button class="btn btn-red" onclick="goScreen('scr-service')">Next: Choose Service →</button>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║       SERVICE SELECT         ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<div id="scr-service" class="screen">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goScreen('scr-count')">← Count</button>
+    <div class="topbar-title">Service</div>
+    <div style="width:60px"></div>
+  </div>
+  <div class="section" style="margin-top:.5rem">
+    <div class="card-sub" style="padding:.5rem .25rem;color:var(--muted);font-size:.85rem">
+      Live prices for <strong id="svc-pane-count" style="color:var(--text)">20</strong> panes
+    </div>
+  </div>
+  <div class="service-grid">
+    <div class="service-card" id="svc-ext" onclick="selectService('exterior')">
+      <div class="service-card-left">
+        <div class="service-card-name">Exterior Only</div>
+        <div class="service-card-desc">Outside surfaces, streak-free</div>
+      </div>
+      <div class="service-card-price">
+        <div class="service-price-from">from</div>
+        <div class="service-price-val" id="price-ext">$—</div>
+      </div>
+    </div>
+    <div class="service-card" id="svc-both" onclick="selectService('both')">
+      <div class="service-card-left">
+        <div class="service-card-name">Interior + Exterior</div>
+        <div class="service-card-desc">Full clean, both sides</div>
+      </div>
+      <div class="service-card-price">
+        <div class="service-price-from">from</div>
+        <div class="service-price-val" id="price-both">$—</div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="card" style="background:rgba(245,158,11,.07);border-color:rgba(245,158,11,.25)">
+      <div style="font-size:.82rem;color:var(--yellow);line-height:1.5">
+        <strong>Tip:</strong> Push int+ext when possible — it's the higher ticket and customers usually say yes when you explain both sides get done same day.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║          ADD-ONS             ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<div id="scr-addons" class="screen">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goScreen('scr-service')">← Service</button>
+    <div class="topbar-title">Add-ons</div>
+    <button class="topbar-action" onclick="goScreen('scr-quote')">Quote →</button>
+  </div>
+  <div class="section" style="padding-top:.75rem">
+
+    <div class="addon-row" id="ao-largewindow">
+      <div class="addon-left">
+        <input type="checkbox" class="addon-check" id="chk-largewindow" onchange="toggleAddon('largewindow',this)">
+        <div class="addon-text">
+          <div class="addon-name">Large / Oversized Windows</div>
+          <div class="addon-meta">$5 extra per pane · picture windows, floor-to-ceiling, bay windows</div>
+        </div>
+      </div>
+      <div class="addon-ctr" id="ctr-largewindow" style="display:none">
+        <button class="adj-btn" onclick="adjustAddon('largewindow',-1)">−</button>
+        <div class="adj-val" id="val-largewindow">0</div>
+        <button class="adj-btn" onclick="adjustAddon('largewindow',1)">+</button>
+      </div>
+    </div>
+
+    <div class="addon-row" id="ao-screens">
+      <div class="addon-left">
+        <input type="checkbox" class="addon-check" id="chk-screens" onchange="toggleAddon('screens',this)">
+        <div class="addon-text">
+          <div class="addon-name">Screen Cleaning</div>
+          <div class="addon-meta">$4 per screen</div>
+        </div>
+      </div>
+      <div class="addon-ctr" id="ctr-screens" style="display:none">
+        <button class="adj-btn" onclick="adjustAddon('screens',-1)">−</button>
+        <div class="adj-val" id="val-screens">0</div>
+        <button class="adj-btn" onclick="adjustAddon('screens',1)">+</button>
+      </div>
+    </div>
+
+    <div class="addon-row" id="ao-tracks">
+      <div class="addon-left">
+        <input type="checkbox" class="addon-check" id="chk-tracks" onchange="toggleAddon('tracks',this)">
+        <div class="addon-text">
+          <div class="addon-name">Track Cleaning</div>
+          <div class="addon-meta">$4 per track</div>
+        </div>
+      </div>
+      <div class="addon-ctr" id="ctr-tracks" style="display:none">
+        <button class="adj-btn" onclick="adjustAddon('tracks',-1)">−</button>
+        <div class="adj-val" id="val-tracks">0</div>
+        <button class="adj-btn" onclick="adjustAddon('tracks',1)">+</button>
+      </div>
+    </div>
+
+    <div class="addon-row" id="ao-gutters">
+      <div class="addon-left">
+        <input type="checkbox" class="addon-check" id="chk-gutters" onchange="toggleAddon('gutters',this)">
+        <div class="addon-text">
+          <div class="addon-name">Gutter Cleaning</div>
+          <div class="addon-meta" id="gutter-meta">Flat rate — flush debris, clear downspouts</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="addon-row" id="ao-hardwater">
+      <div class="addon-left">
+        <input type="checkbox" class="addon-check" id="chk-hardwater" onchange="toggleAddon('hardwater',this)">
+        <div class="addon-text">
+          <div class="addon-name">Hard Water Stain Removal</div>
+          <div class="addon-meta">$20 per affected pane · needs assessment on arrival</div>
+        </div>
+      </div>
+      <div class="addon-ctr" id="ctr-hardwater" style="display:none">
+        <button class="adj-btn" onclick="adjustAddon('hardwater',-1)">−</button>
+        <div class="adj-val" id="val-hardwater">0</div>
+        <button class="adj-btn" onclick="adjustAddon('hardwater',1)">+</button>
+      </div>
+    </div>
+
+    <div class="section-spacer"></div>
+  </div>
+  <div class="bottom-nav">
+    <button class="btn btn-red" onclick="goScreen('scr-quote')">See Quote →</button>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║         QUOTE SCREEN         ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<div id="scr-quote" class="screen">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goScreen('scr-addons')">← Add-ons</button>
+    <div class="topbar-title">Quote</div>
+    <button class="topbar-action" onclick="startQuote()">Reset</button>
+  </div>
+  <div class="quote-hero">
+    <div class="quote-from-label" id="q-from-label">Estimated starting from</div>
+    <div class="quote-amount" id="q-total">$—</div>
+    <div class="quote-range" id="q-range"></div>
+    <div class="quote-subtotal" id="q-subtotal"></div>
+  </div>
+  <div class="discount-row">
+    <span class="discount-label">Field Discount</span>
+    <div style="display:flex;align-items:center;gap:.5rem">
+      <input type="number" class="discount-input" id="discount-pct" value="0" min="0" max="40" oninput="renderQuote()">
+      <span style="color:var(--muted);font-size:.9rem">%</span>
+    </div>
+  </div>
+  <div class="breakdown-card" id="breakdown"></div>
+  <div class="action-strip">
+    <button class="btn btn-outline" onclick="showCustomer()">Show Customer →</button>
+    <button class="btn btn-green" onclick="goScreen('scr-lead')">✓ They Said YES — Record Sale</button>
+    <button class="btn-ghost" onclick="openCalendly()">Open Calendly (book now)</button>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║      CUSTOMER MODE OVERLAY   ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<div id="customer-overlay">
+  <div class="co-brand">Wagon Windows · Salmon Arm, BC</div>
+  <div class="co-from">Your Estimate</div>
+  <div class="co-price" id="co-price">$—</div>
+  <div class="co-includes" id="co-includes"></div>
+  <div class="co-breakdown" id="co-breakdown"></div>
+  <div class="co-trust">
+    <span>✓ Streak-Free Guarantee</span>
+    <span>✓ We Come Back If You're Not Happy</span>
+    <span>✓ Locally Owned · Salmon Arm</span>
+  </div>
+  <button class="co-back" onclick="hideCustomer()">← Back to Quote</button>
+</div>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║       LEAD CAPTURE           ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<div id="scr-lead" class="screen">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goScreen('scr-quote')">← Quote</button>
+    <div class="topbar-title">Record Sale</div>
+    <div style="width:60px"></div>
+  </div>
+  <div class="form-section">
+    <div class="field-group">
+      <label class="field-label">Customer Name *</label>
+      <input class="field-input" id="lead-name" type="text" placeholder="Jane Smith" autocomplete="name">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Phone *</label>
+      <input class="field-input" id="lead-phone" type="tel" placeholder="(250) 555-0123" autocomplete="tel">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Address</label>
+      <input class="field-input" id="lead-address" type="text" placeholder="123 Main St, Salmon Arm">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Preferred Date</label>
+      <input class="field-input" id="lead-date" type="date">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Notes</label>
+      <input class="field-input" id="lead-notes" type="text" placeholder="Gate code, dog, special instructions…">
+    </div>
+    <div style="height:1rem"></div>
+  </div>
+  <div class="bottom-nav" style="flex-direction:column;gap:.5rem">
+    <button class="btn btn-green" onclick="saveLead(true)">Save + Open Calendly</button>
+    <button class="btn btn-outline" onclick="saveLead(false)">Save Lead (book later)</button>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║         LEADS LIST           ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<div id="scr-leads" class="screen">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goScreen('scr-home')">← Home</button>
+    <div class="topbar-title">Saved Leads</div>
+    <button class="topbar-action" onclick="shareAllLeads()">Share All</button>
+  </div>
+  <div class="section" style="flex:1">
+    <div id="leads-list"></div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║       PRICE REFERENCE        ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<div id="scr-ref" class="screen">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goScreen('scr-home')">← Home</button>
+    <div class="topbar-title">Price Reference</div>
+    <div style="width:60px"></div>
+  </div>
+  <div class="section" style="padding-top:.75rem">
+    <div class="card-label" style="padding-left:.25rem;margin-bottom:.75rem">Window Cleaning</div>
+    <table class="ref-table">
+      <thead><tr><th>Size</th><th>Panes</th><th>Ext Only</th><th>Int + Ext</th></tr></thead>
+      <tbody>
+        <tr><td>Small</td><td>≤ 30</td><td>$149+</td><td>$199+</td></tr>
+        <tr><td>Medium</td><td>31–50</td><td>$199+</td><td>$269+</td></tr>
+        <tr><td>Large</td><td>51–70</td><td>$269+</td><td>$349+</td></tr>
+        <tr><td>X-Large</td><td>71–99</td><td>$339+</td><td>$429+</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card-label" style="padding-left:.25rem;margin-bottom:.75rem">Gutter Cleaning (flat rate)</div>
+    <table class="ref-table">
+      <thead><tr><th>Home Size</th><th>Pane Count</th><th>Price</th></tr></thead>
+      <tbody>
+        <tr><td>Small</td><td>≤ 30 panes</td><td>$149</td></tr>
+        <tr><td>Medium</td><td>31–50 panes</td><td>$189</td></tr>
+        <tr><td>Large</td><td>51+ panes</td><td>$229</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card-label" style="padding-left:.25rem;margin-bottom:.75rem">Add-ons (per unit)</div>
+    <table class="ref-table">
+      <thead><tr><th>Service</th><th>Price</th></tr></thead>
+      <tbody>
+        <tr><td>Screen Cleaning</td><td>$4 / screen</td></tr>
+        <tr><td>Track Cleaning</td><td>$4 / track</td></tr>
+        <tr><td>Hard Water Removal</td><td>$20 / pane</td></tr>
+        <tr><td>Large / Oversized Window</td><td>$5 / pane extra</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card-label" style="padding-left:.25rem;margin-bottom:.75rem">Taxes & Policy</div>
+    <table class="ref-table">
+      <tbody>
+        <tr><td>GST (Canada)</td><td>5%</td></tr>
+        <tr><td>Minimum Job</td><td>$75</td></tr>
+        <tr><td>Payment</td><td>Cash, E-Transfer</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-spacer"></div>
+  </div>
+</div>
+
+</div><!-- /#app -->
+
+<script>
+// ── Pricing constants ──────────────────────────────────────────────────
+const ADDONS = { screens: 4, tracks: 4, hardwater: 20, largewindow: 5 };
+const GST = 0.05;
+const MIN_JOB = 75;
+const CALENDLY = 'https://calendly.com/davidhanna-wagonwindow/new-meeting';
+
+// State
+const state = {
+  panes: 20,
+  serviceType: null,
+  addons: { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false }
+};
+
+// ── Pricing engine (mirrors customer quote tool exactly) ───────────────
+function calcBase(panes, type) {
+  let ext = 149, intExt = 199;
+  let rem = Math.max(0, panes - 30);
+  const t1 = Math.min(rem, 20); rem -= t1; ext += t1 * 2.50; intExt += t1 * 3.50;
+  const t2 = Math.min(rem, 20); rem -= t2; ext += t2 * 3.50; intExt += t2 * 4.00;
+  const t3 = Math.min(rem, 29);            ext += t3 * 4.00; intExt += t3 * 4.50;
+  return type === 'exterior' ? Math.round(ext) : Math.round(intExt);
+}
+
+function gutterPrice(panes) {
+  if (panes <= 30) return 149;
+  if (panes <= 50) return 189;
+  return 229;
+}
+
+function sizeBadge(panes) {
+  if (panes <= 30) return 'Small';
+  if (panes <= 50) return 'Medium';
+  if (panes <= 70) return 'Large';
+  return 'X-Large';
+}
+
+function buildQuote() {
+  if (!state.serviceType) return null;
+  const base = Math.max(MIN_JOB, calcBase(state.panes, state.serviceType));
+  const largeWin = state.addons.largewindow * ADDONS.largewindow;
+  const screens  = state.addons.screens  * ADDONS.screens;
+  const tracks   = state.addons.tracks   * ADDONS.tracks;
+  const hardwater= state.addons.hardwater* ADDONS.hardwater;
+  const gutters  = state.addons.gutters  ? gutterPrice(state.panes) : 0;
+  const discPct  = Math.min(40, Math.max(0, parseFloat(document.getElementById('discount-pct')?.value || 0)));
+  const subtotal = base + largeWin + screens + tracks + hardwater + gutters;
+  const discount = Math.round(subtotal * (discPct / 100));
+  const afterDiscount = subtotal - discount;
+  const gst = Math.round(afterDiscount * GST);
+  const total = afterDiscount + gst;
+  const high = Math.round(total * 1.15);
+  return { base, largeWin, screens, tracks, hardwater, gutters, subtotal, discPct, discount, afterDiscount, gst, total, high };
+}
+
+function fmt(n) { return '$' + n.toLocaleString('en-CA'); }
+
+// ── Screen routing ─────────────────────────────────────────────────────
+function goScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (id === 'scr-leads') renderLeads();
+  if (id === 'scr-home') updateHomeCount();
+  if (id === 'scr-quote') renderQuote();
+  if (id === 'scr-service') updateServicePrices();
+  if (id === 'scr-addons') updateGutterMeta();
+  window.scrollTo(0, 0);
+}
+
+// ── Quote flow ─────────────────────────────────────────────────────────
+function startQuote() {
+  state.serviceType = null;
+  state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false };
+  // Reset addon checkboxes
+  ['largewindow','screens','tracks','hardwater','gutters'].forEach(k => {
+    const el = document.getElementById('chk-' + k);
+    if (el) el.checked = false;
+    const ctr = document.getElementById('ctr-' + k);
+    if (ctr) ctr.style.display = 'none';
+    const val = document.getElementById('val-' + k);
+    if (val) val.textContent = '0';
+  });
+  const discEl = document.getElementById('discount-pct');
+  if (discEl) discEl.value = 0;
+  // Reset service card selections
+  document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+  goScreen('scr-count');
+}
+
+// ── Pane counter ───────────────────────────────────────────────────────
+function adjustPanes(delta) {
+  state.panes = Math.max(1, state.panes + delta);
+  updatePaneDisplay();
+}
+
+function updatePaneDisplay() {
+  document.getElementById('pane-display').textContent = state.panes;
+  document.getElementById('pane-size-label').textContent = state.panes === 1 ? 'pane' : 'panes';
+  document.getElementById('pane-size-badge').textContent = sizeBadge(state.panes);
+}
+
+function editPanesManual() {
+  const val = prompt('Enter pane count:', state.panes);
+  if (val === null) return;
+  const n = parseInt(val);
+  if (!isNaN(n) && n > 0) {
+    state.panes = n;
+    updatePaneDisplay();
+  }
+}
+
+// ── Service selection ──────────────────────────────────────────────────
+function selectService(type) {
+  state.serviceType = type;
+  document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('svc-' + (type === 'exterior' ? 'ext' : 'both')).classList.add('selected');
+  // Auto-fill screens/tracks for int+ext
+  if (type === 'both') {
+    const est = Math.round(state.panes / 2);
+    setAddonVal('screens', est, true);
+    setAddonVal('tracks', est, true);
+  } else {
+    setAddonVal('screens', 0, false);
+    setAddonVal('tracks', 0, false);
+  }
+  setTimeout(() => goScreen('scr-addons'), 120);
+}
+
+function updateServicePrices() {
+  document.getElementById('svc-pane-count').textContent = state.panes;
+  document.getElementById('price-ext').textContent = fmt(Math.max(MIN_JOB, calcBase(state.panes, 'exterior')));
+  document.getElementById('price-both').textContent = fmt(Math.max(MIN_JOB, calcBase(state.panes, 'both')));
+}
+
+// ── Add-on helpers ─────────────────────────────────────────────────────
+function toggleAddon(key, cb) {
+  if (key === 'gutters') {
+    state.addons.gutters = cb.checked;
+    return;
+  }
+  if (!cb.checked) {
+    state.addons[key] = 0;
+    const ctr = document.getElementById('ctr-' + key);
+    if (ctr) ctr.style.display = 'none';
+    document.getElementById('val-' + key).textContent = '0';
+  } else {
+    const ctr = document.getElementById('ctr-' + key);
+    if (ctr) ctr.style.display = 'flex';
+    if (state.addons[key] === 0) {
+      state.addons[key] = 1;
+      document.getElementById('val-' + key).textContent = '1';
+    }
+  }
+}
+
+function adjustAddon(key, delta) {
+  state.addons[key] = Math.max(0, state.addons[key] + delta);
+  document.getElementById('val-' + key).textContent = state.addons[key];
+  if (state.addons[key] === 0) {
+    document.getElementById('chk-' + key).checked = false;
+    const ctr = document.getElementById('ctr-' + key);
+    if (ctr) ctr.style.display = 'none';
+  }
+}
+
+function setAddonVal(key, count, checked) {
+  state.addons[key] = count;
+  const chk = document.getElementById('chk-' + key);
+  const ctr = document.getElementById('ctr-' + key);
+  const val = document.getElementById('val-' + key);
+  if (!chk) return;
+  chk.checked = checked;
+  if (ctr) ctr.style.display = checked && count > 0 ? 'flex' : 'none';
+  if (val) val.textContent = count;
+}
+
+function updateGutterMeta() {
+  const el = document.getElementById('gutter-meta');
+  if (el) el.textContent = fmt(gutterPrice(state.panes)) + ' flat · flush debris, clear downspouts';
+}
+
+// ── Quote render ───────────────────────────────────────────────────────
+function renderQuote() {
+  const q = buildQuote();
+  if (!q) return;
+  document.getElementById('q-total').textContent = fmt(q.total);
+  document.getElementById('q-range').textContent = 'to ' + fmt(q.high) + ' (high estimate)';
+  document.getElementById('q-subtotal').textContent = q.discPct > 0 ? q.discPct + '% field discount applied' : '';
+
+  const svcLabel = state.serviceType === 'exterior' ? 'Exterior Only' : 'Interior + Exterior';
+  let rows = '';
+  rows += brow(svcLabel + ' (' + state.panes + ' panes)', fmt(q.base));
+  if (q.largeWin) rows += brow('Large windows ×' + state.addons.largewindow, fmt(q.largeWin));
+  if (q.screens)  rows += brow('Screens ×' + state.addons.screens, fmt(q.screens));
+  if (q.tracks)   rows += brow('Tracks ×' + state.addons.tracks, fmt(q.tracks));
+  if (q.gutters)  rows += brow('Gutter cleaning', fmt(q.gutters));
+  if (q.hardwater)rows += brow('Hard water ×' + state.addons.hardwater, fmt(q.hardwater));
+  if (q.discount) rows += brow('Discount (' + q.discPct + '%)', '−' + fmt(q.discount));
+  rows += brow('GST (5%)', fmt(q.gst));
+  rows += brow('Total', fmt(q.total), true);
+  document.getElementById('breakdown').innerHTML = rows;
+}
+
+function brow(label, val, bold) {
+  return '<div class="breakdown-row' + (bold ? ' total' : '') + '">'
+    + '<span class="breakdown-label">' + label + '</span>'
+    + '<span class="breakdown-val">' + val + '</span>'
+    + '</div>';
+}
+
+// ── Customer mode ──────────────────────────────────────────────────────
+function showCustomer() {
+  const q = buildQuote();
+  if (!q) return;
+  document.getElementById('co-price').textContent = fmt(q.total);
+
+  const parts = [];
+  const svcLabel = state.serviceType === 'exterior' ? 'Exterior window cleaning' : 'Interior + exterior window cleaning';
+  parts.push(svcLabel);
+  if (q.screens)  parts.push('screen cleaning');
+  if (q.tracks)   parts.push('track cleaning');
+  if (q.gutters)  parts.push('gutter cleaning');
+  if (q.hardwater)parts.push('hard water treatment');
+  if (q.largeWin) parts.push('oversized window surcharge');
+  document.getElementById('co-includes').textContent = parts.join(', ') + '.';
+
+  let coRows = '';
+  if (q.largeWin) coRows += coRow('Oversized windows', fmt(q.largeWin));
+  if (q.screens)  coRows += coRow('Screen cleaning', fmt(q.screens));
+  if (q.tracks)   coRows += coRow('Track cleaning', fmt(q.tracks));
+  if (q.gutters)  coRows += coRow('Gutter cleaning', fmt(q.gutters));
+  if (q.hardwater)coRows += coRow('Hard water removal', fmt(q.hardwater));
+  if (q.discount) coRows += coRow('Discount', '−' + fmt(q.discount));
+  coRows += coRow('GST', fmt(q.gst));
+  coRows += coRow('Total', fmt(q.total), true);
+  document.getElementById('co-breakdown').innerHTML = coRows;
+
+  document.getElementById('customer-overlay').classList.add('visible');
+}
+
+function hideCustomer() {
+  document.getElementById('customer-overlay').classList.remove('visible');
+}
+
+function coRow(label, val, bold) {
+  return '<div class="co-row' + (bold ? ' co-bold' : '') + '">'
+    + '<span class="co-row-label">' + label + '</span>'
+    + '<span style="' + (bold ? 'font-weight:700' : '') + '">' + val + '</span>'
+    + '</div>';
+}
+
+// ── Calendly ───────────────────────────────────────────────────────────
+function openCalendly() {
+  window.open(CALENDLY, '_blank');
+}
+
+// ── Lead storage ───────────────────────────────────────────────────────
+function getLeads() {
+  try { return JSON.parse(localStorage.getItem('ww_leads') || '[]'); } catch { return []; }
+}
+
+function saveLeads(leads) {
+  localStorage.setItem('ww_leads', JSON.stringify(leads));
+}
+
+function saveLead(openCal) {
+  const name = document.getElementById('lead-name').value.trim();
+  const phone = document.getElementById('lead-phone').value.trim();
+  if (!name || !phone) {
+    alert('Name and phone are required.');
+    return;
+  }
+
+  const q = buildQuote();
+  const svcLabel = state.serviceType === 'exterior' ? 'Exterior Only' : 'Int + Ext';
+  const parts = [svcLabel, state.panes + ' panes'];
+  if (state.addons.screens)   parts.push('screens ×' + state.addons.screens);
+  if (state.addons.tracks)    parts.push('tracks ×' + state.addons.tracks);
+  if (state.addons.gutters)   parts.push('gutters');
+  if (state.addons.hardwater) parts.push('hard water ×' + state.addons.hardwater);
+  if (state.addons.largewindow) parts.push('large ×' + state.addons.largewindow);
+
+  const lead = {
+    id: Date.now(),
+    name,
+    phone,
+    address: document.getElementById('lead-address').value.trim(),
+    date_pref: document.getElementById('lead-date').value,
+    notes: document.getElementById('lead-notes').value.trim(),
+    quote: q ? q.total : null,
+    quote_str: q ? fmt(q.total) + ' incl. GST' : null,
+    summary: parts.join(', '),
+    created_at: new Date().toISOString()
+  };
+
+  const leads = getLeads();
+  leads.unshift(lead);
+  saveLeads(leads);
+
+  // Clear form
+  ['lead-name','lead-phone','lead-address','lead-date','lead-notes'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+
+  if (openCal) openCalendly();
+  goScreen('scr-leads');
+}
+
+function deleteLead(id) {
+  if (!confirm('Delete this lead?')) return;
+  const leads = getLeads().filter(l => l.id !== id);
+  saveLeads(leads);
+  renderLeads();
+  updateHomeCount();
+}
+
+function shareLead(id) {
+  const lead = getLeads().find(l => l.id === id);
+  if (!lead) return;
+  const text = [
+    '📋 Wagon Windows Lead',
+    'Name: ' + lead.name,
+    'Phone: ' + lead.phone,
+    lead.address ? 'Address: ' + lead.address : null,
+    lead.date_pref ? 'Preferred: ' + lead.date_pref : null,
+    'Quote: ' + (lead.quote_str || 'n/a'),
+    'Services: ' + lead.summary,
+    lead.notes ? 'Notes: ' + lead.notes : null,
+    'Captured: ' + new Date(lead.created_at).toLocaleDateString('en-CA')
+  ].filter(Boolean).join('\n');
+
+  if (navigator.share) {
+    navigator.share({ title: 'Lead: ' + lead.name, text }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(text).then(() => alert('Lead copied to clipboard.')).catch(() => alert(text));
+  }
+}
+
+function shareAllLeads() {
+  const leads = getLeads();
+  if (!leads.length) { alert('No leads saved.'); return; }
+  const text = leads.map(l =>
+    [l.name, l.phone, l.address, l.quote_str, l.summary, l.date_pref].filter(Boolean).join(' · ')
+  ).join('\n');
+  const full = 'Wagon Windows Leads (' + new Date().toLocaleDateString('en-CA') + '):\n\n' + text;
+  if (navigator.share) {
+    navigator.share({ title: 'WW Leads', text: full }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(full).then(() => alert('All leads copied.')).catch(() => alert(full));
+  }
+}
+
+function renderLeads() {
+  const leads = getLeads();
+  const el = document.getElementById('leads-list');
+  if (!leads.length) {
+    el.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📋</div><div>No leads yet.</div><div style="margin-top:.5rem;font-size:.8rem">Save your first sale to see it here.</div></div>';
+    return;
+  }
+  el.innerHTML = leads.map(l => {
+    const date = new Date(l.created_at).toLocaleDateString('en-CA', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit', hour12:true });
+    return '<div class="lead-item">'
+      + '<div class="lead-name">' + esc(l.name) + '</div>'
+      + '<div class="lead-meta">'
+      + '📞 ' + esc(l.phone) + (l.address ? '<br>📍 ' + esc(l.address) : '')
+      + (l.date_pref ? '<br>📅 Preferred: ' + l.date_pref : '')
+      + (l.notes ? '<br>💬 ' + esc(l.notes) : '')
+      + '<br>🕐 ' + date
+      + '</div>'
+      + (l.quote_str ? '<div class="lead-quote">' + l.quote_str + ' · ' + esc(l.summary) + '</div>' : '')
+      + '<div class="lead-actions">'
+      + '<button class="lead-btn" onclick="shareLead(' + l.id + ')">Share</button>'
+      + '<button class="lead-btn calendly" onclick="openCalendly()">Calendly</button>'
+      + '<button class="lead-btn delete" onclick="deleteLead(' + l.id + ')">Delete</button>'
+      + '</div></div>';
+  }).join('');
+}
+
+function updateHomeCount() {
+  const n = getLeads().length;
+  const sub = document.getElementById('home-leads-sub');
+  const cnt = document.getElementById('home-lead-count');
+  if (sub) sub.textContent = n + ' lead' + (n === 1 ? '' : 's') + ' saved';
+  if (cnt) cnt.textContent = n ? n + ' leads' : '';
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── Init ───────────────────────────────────────────────────────────────
+updateHomeCount();
+updatePaneDisplay();
+</script>
+</body>
+</html>

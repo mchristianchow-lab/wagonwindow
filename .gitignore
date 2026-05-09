@@ -33,3 +33,4 @@ door-hanger.html
 *.pdf
 *.html
 !build/
+!field-tool.html
