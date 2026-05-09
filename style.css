@@ -626,23 +626,6 @@ form button {
 
 form button:hover { background: #aa0000; transform: translateY(-1px); }
 
-/* ---- SERVICE AREA MAP ---- */
-.area-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  align-items: start;
-  max-width: 960px;
-}
-
-.area-map {
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--border);
-  height: 340px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
-}
-
 /* ---- FLOATING CONTACT ---- */
 .float-contact {
   position: fixed;
@@ -672,7 +655,6 @@ form button:hover { background: #aa0000; transform: translateY(-1px); }
 .float-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
 
 .float-sms { background: var(--sky); color: var(--white); }
-.float-wa { background: #25d366; color: var(--white); }
 
 /* ---- FOOTER ---- */
 footer {

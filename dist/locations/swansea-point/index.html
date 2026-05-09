@@ -190,7 +190,7 @@
     <li><a href="/#services">Services</a></li>
     <li><a href="/#pricing">Pricing</a></li>
     <li><a href="/#area">Service Area</a></li>
-    <li><a href="/quote/" class="nav-cta">Get a Quote</a></li>
+    <li><a href="/quote/" class="nav-cta">Instant Estimate</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleNav()">
     <span></span><span></span><span></span>
@@ -215,7 +215,7 @@
     <div class="hero-btns">
       <a href="/quote/" class="btn-primary"
          onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'location_hub_swansea-point'});">
-        Book Free Quote
+        Get an Instant Estimate
       </a>
       <a href="tel:+14038375092" class="btn-outline"
          onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'location_hub_swansea-point'});">
@@ -304,10 +304,6 @@
   <section class="content-section">
     <h2>Window Cleaning Needs in Swansea Point</h2>
     <p>Swansea Point&#39;s housing stock is dominated by high-value recreational properties — lakefront cottages, year-round recreational homes, and premium cabins with expansive glass oriented toward Mara Lake. Large picture windows and floor-to-ceiling glazing are characteristic of the newer builds, and even older cottages tend to have been upgraded with larger window configurations to maximize lake views.</p>
-    <p>Swansea Point&#39;s lakefront position on Mara Lake creates a distinctive microclimate defined by higher relative humidity, onshore winds carrying mineral-laden lake spray, and rapid temperature cycling between warm lake-effect summers and cold winters. Lake mineral spray deposits on glass surfaces are a continuous seasonal issue from spring through fall — Mara Lake water carries dissolved minerals that leave calcium and silica residue on glass each time spray evaporates, etching surfaces progressively if not addressed regularly. The combination of lake humidity and winter freeze-thaw cycles also accelerates weatherstripping degradation and frame seal wear.</p>
-    
-    <p>Swansea Point sits directly on Mara Lake, and properties here experience mineral-laden lake spray year-round during wind events. Mara Lake water chemistry produces calcium and silica deposits on glass similar in character to Shuswap Lake properties — repeated spray-and-evaporation cycles progressively etch window surfaces if not cleaned on a seasonal schedule. Lakefront-facing glass requires particular attention, as mineral film reduces transparency and obscures the lake views that make these properties valuable.</p>
-    
     <ul>
       <li>Swansea Point properties are among the highest-value residential assets in the Shuswap region, with lakefront recreational homes regularly transacting above $1M — regular window maintenance protects both the glass investment and the lake view that drives property value.</li>
       <li>Pre-season demand in Swansea Point concentrates heavily in May, as recreational property owners prepare homes for the summer season after winter vacancy — this creates a short window of concentrated booking demand that fills quickly.</li>
@@ -320,7 +316,7 @@
     <p>Wagon Windows is based in Salmon Arm — Swansea Point is part of our regular schedule, not an occasional trip. We understand the Shuswap climate, the local property types, and the specific contamination patterns that affect windows here. Every job includes a signed service agreement, photo documentation of pre-existing conditions, and a streak-free guarantee.</p>
     <ul class="why-list">
       <li><strong>Published pricing</strong> — rates online before you call</li>
-      <li><strong>Online booking</strong> — Calendly scheduling in under 2 minutes</li>
+      <li><strong>Instant estimate</strong> — get your price online in 2 minutes</li>
       <li><strong>Streak-free guarantee</strong> — not happy in 24 hours, we return free</li>
       <li><strong>Eco-friendly products</strong> — biodegradable, safe for Shuswap waterways</li>
       <li><strong>Signed service agreement</strong> — pre-existing damage documented on every job</li>
@@ -413,7 +409,7 @@
     <p>Book online or call us — we serve Swansea Point regularly and can often schedule within a week.</p>
     <div class="cta-buttons">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'location_cta_swansea-point'});">Book Online</a>
+         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'location_cta_swansea-point'});">Get an Instant Estimate</a>
       <a href="tel:+14038375092" class="btn-outline"
          onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'location_cta_swansea-point'});">Call (403) 837-5092</a>
     </div>
@@ -434,7 +430,7 @@
 <!-- MOBILE BOOKING BAR -->
 <div class="mobile-book-bar">
   <a href="/quote/" class="mobile-book-primary"
-     onclick="gtag('event','quote_click',{'event_category':'contact','event_label':'mobile_bar'});">Book Free Quote</a>
+     onclick="gtag('event','quote_click',{'event_category':'contact','event_label':'mobile_bar'});">Instant Estimate</a>
   <a href="sms:+14038375092" class="mobile-book-call"
      onclick="gtag('event','sms_click',{'event_category':'contact','event_label':'mobile_bar'});">Text Us</a>
 </div>
@@ -455,12 +451,6 @@
 <script>
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
-  }
-  function switchTab(tab, btn) {
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + tab).classList.remove('hidden');
-    btn.classList.add('active');
   }
   // Calendly conversion tracking
   window.addEventListener('message', function(e) {

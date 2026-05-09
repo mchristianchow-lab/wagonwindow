@@ -208,7 +208,7 @@
     <li><a href="/#services">Services</a></li>
     <li><a href="/#pricing">Pricing</a></li>
     <li><a href="/#area">Service Area</a></li>
-    <li><a href="/quote/" class="nav-cta">Get a Quote</a></li>
+    <li><a href="/quote/" class="nav-cta">Instant Estimate</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleNav()">
     <span></span><span></span><span></span>
@@ -233,7 +233,7 @@
     <div class="hero-btns">
       <a href="/quote/" class="btn-primary"
          onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'location_hub_blind-bay'});">
-        Book Free Quote
+        Get an Instant Estimate
       </a>
       <a href="tel:+14038375092" class="btn-outline"
          onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'location_hub_blind-bay'});">
@@ -322,10 +322,6 @@
   <section class="content-section">
     <h2>Window Cleaning Needs in Blind Bay</h2>
     <p>Premium lakefront and lake-view properties — many in the $700K–$3M range with large picture windows and multi-story builds requiring extension equipment.</p>
-    <p>Blind Bay&#39;s sheltered lake position means morning fog and high humidity — algae and mineral buildup on glass is particularly common on north-facing windows.</p>
-    
-    <p>Virtually all Blind Bay properties have lake views — waterfront glass maintenance is a constant need.</p>
-    
     <ul>
       <li>Blind Bay is one of the Shuswap&#39;s most desirable residential areas — homeowners have high standards for property presentation.</li>
       <li>Many Blind Bay homes have floor-to-ceiling lake-view windows that are a primary visual feature — keeping them spotless is a priority for owners.</li>
@@ -338,7 +334,7 @@
     <p>Wagon Windows is based in Salmon Arm — Blind Bay is part of our regular schedule, not an occasional trip. We understand the Shuswap climate, the local property types, and the specific contamination patterns that affect windows here. Every job includes a signed service agreement, photo documentation of pre-existing conditions, and a streak-free guarantee.</p>
     <ul class="why-list">
       <li><strong>Published pricing</strong> — rates online before you call</li>
-      <li><strong>Online booking</strong> — Calendly scheduling in under 2 minutes</li>
+      <li><strong>Instant estimate</strong> — get your price online in 2 minutes</li>
       <li><strong>Streak-free guarantee</strong> — not happy in 24 hours, we return free</li>
       <li><strong>Eco-friendly products</strong> — biodegradable, safe for Shuswap waterways</li>
       <li><strong>Signed service agreement</strong> — pre-existing damage documented on every job</li>
@@ -441,7 +437,7 @@
     <p>Book online or call us — we serve Blind Bay regularly and can often schedule within a week.</p>
     <div class="cta-buttons">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'location_cta_blind-bay'});">Book Online</a>
+         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'location_cta_blind-bay'});">Get an Instant Estimate</a>
       <a href="tel:+14038375092" class="btn-outline"
          onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'location_cta_blind-bay'});">Call (403) 837-5092</a>
     </div>
@@ -462,7 +458,7 @@
 <!-- MOBILE BOOKING BAR -->
 <div class="mobile-book-bar">
   <a href="/quote/" class="mobile-book-primary"
-     onclick="gtag('event','quote_click',{'event_category':'contact','event_label':'mobile_bar'});">Book Free Quote</a>
+     onclick="gtag('event','quote_click',{'event_category':'contact','event_label':'mobile_bar'});">Instant Estimate</a>
   <a href="sms:+14038375092" class="mobile-book-call"
      onclick="gtag('event','sms_click',{'event_category':'contact','event_label':'mobile_bar'});">Text Us</a>
 </div>
@@ -483,12 +479,6 @@
 <script>
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
-  }
-  function switchTab(tab, btn) {
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + tab).classList.remove('hidden');
-    btn.classList.add('active');
   }
   // Calendly conversion tracking
   window.addEventListener('message', function(e) {

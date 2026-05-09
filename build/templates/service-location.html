@@ -106,7 +106,7 @@
       {% else %}
         We serve residential and commercial properties throughout {{ location.name }} and the surrounding {{ location.region }} region, with exterior cleans from ${{ service.base_price_small | default(service.base_price_commercial | default(service.price_per_screen_low)) }}.
       {% endif %}
-      Locally owned in Salmon Arm, streak-free guaranteed, and bookable online in minutes.</p>
+      Locally owned in Salmon Arm, streak-free guaranteed, and bookable with an instant online estimate.</p>
     </div>
 
     <div class="hero-btns">
@@ -132,7 +132,7 @@
       <li><strong>Starting price:</strong>
         {% if service.base_price_small %}${{ service.base_price_small }} for homes up to 15 windows (exterior)
         {% elif service.base_price_commercial %}${{ service.base_price_commercial }} for commercial storefronts
-        {% elif service.price_per_screen_low %}${{ service.price_per_screen_low }}–${{ service.price_per_screen_high }} per screen
+        {% elif service.price_per_screen_low %}${{ service.price_per_screen_low }} per screen
         {% elif service.base_price %}${{ service.base_price }}
         {% else %}Quoted on-site
         {% endif %}
@@ -143,7 +143,7 @@
         {% else %}~{{ location.drive_time_from_primary_min }} minutes from Salmon Arm
         {% endif %}
       </li>
-      <li><strong>Booking:</strong> Online (Calendly), phone {{ config.phone }}, text, or WhatsApp</li>
+      <li><strong>Booking:</strong> Online estimate tool, phone {{ config.phone }}, or text</li>
       <li><strong>Products:</strong> Eco-friendly, biodegradable, safe for gardens and {{ location.region }} waterways</li>
       {% if location.lake_proximity and location.lake_note %}
       <li><strong>Lakefront note:</strong> {{ location.lake_note }}</li>
@@ -165,7 +165,7 @@
     {% endif %}
     <p>
       With transparent pricing starting from ${{ service.base_price_small | default(service.base_price_commercial | default(service.base_price | default(99))) }},
-      online booking through Calendly, and a streak-free guarantee on every job, we make {{ service.short_name | lower }} in {{ location.name }} straightforward.
+      our self-serve instant estimate, and a streak-free guarantee on every job, we make {{ service.short_name | lower }} in {{ location.name }} straightforward.
       No surprise quotes, no unreturned calls. Just clean windows.
     </p>
   </section>
@@ -238,13 +238,13 @@
       </thead>
       <tbody>
         <tr><td>Small</td><td>Up to 15</td><td>From ${{ service.base_price_small }}</td><td>From ${{ service.base_price_interior_small | default(service.base_price_small + 50) }}</td></tr>
-        <tr><td>Medium</td><td>16–25</td><td>From ${{ service.base_price_medium }}</td><td>From ${{ service.base_price_interior_large | default(service.base_price_medium + 70) }}</td></tr>
-        <tr><td>Large</td><td>26–35</td><td>From ${{ service.base_price_large }}</td><td>From ${{ (service.base_price_large + 80) }}</td></tr>
+        <tr><td>Medium</td><td>16–25</td><td>From ${{ service.base_price_medium }}</td><td>From ${{ service.base_price_interior_medium | default(service.base_price_medium + 70) }}</td></tr>
+        <tr><td>Large</td><td>26–35</td><td>From ${{ service.base_price_large }}</td><td>From ${{ service.base_price_interior_large | default(service.base_price_large + 80) }}</td></tr>
       </tbody>
     </table>
     {% endif %}
 
-    <p><strong>Add-ons:</strong> Screen cleaning $3–$4 per screen · Track cleaning from $50 · Hard water stain removal quoted on-site · Minimum job ${{ config.min_job }}</p>
+    <p><strong>Add-ons:</strong> Screens $4 each · Tracks from $65 · Hard water stain removal quoted on-site · Minimum job ${{ config.min_job }}</p>
     <p>{{ location.home_style_note }} Most {{ location.name }} properties fall in the medium or large range — expect a full clean to run $199–$349 for a typical home in the area.</p>
   </section>
 
@@ -297,7 +297,7 @@
     {% else %}
     <p>As our home base, Salmon Arm has the most flexible scheduling — same-day or next-day availability is often possible outside of our busiest periods (April–May and September–October).</p>
     {% endif %}
-    <p>To lock in your preferred date, book online via Calendly or call us at {{ config.phone }}. We'll send a confirmation within a few hours.</p>
+    <p>To lock in your preferred date, get an instant estimate online or call us at {{ config.phone }}. We'll confirm within a few hours.</p>
   </section>
 
   <!-- H2: Why choose us -->
@@ -311,7 +311,7 @@
       <li><strong>Locally owned and operated</strong> — based in Salmon Arm, serving {{ location.name }} regularly since we launched</li>
       <li><strong>Published pricing</strong> — rates posted upfront at wagonwindows.com, no mystery quotes</li>
       <li><strong>Streak-free guarantee</strong> — if you're not happy, we return at no charge</li>
-      <li><strong>Online booking</strong> — Calendly scheduling in under 2 minutes, no phone tag required</li>
+      <li><strong>Instant estimate</strong> — get your price online in 2 minutes, no phone tag</li>
       <li><strong>Eco-friendly products</strong> — biodegradable solutions safe for the {{ location.region }}'s waterways and gardens</li>
       <li><strong>Fully insured</strong> — liability coverage on every job</li>
       {% if location.lake_proximity %}
@@ -330,7 +330,7 @@
     </div>
     <p>From our Salmon Arm base, we cover the full Shuswap region. {{ location.name }} is a regular stop on our schedule{% if location.drive_time_from_primary_min > 0 %} — approximately {{ location.drive_time_from_primary_min }} minutes from our base{% endif %}. We often schedule multiple jobs in {{ location.name }} and the surrounding area on the same day, which allows us to keep travel costs low and pricing competitive.</p>
     <div class="area-links">
-      <p><strong>Other areas we serve from {{ location.name }}:</strong></p>
+      <p><strong>More Services in {{ location.name }}:</strong></p>
       <ul>
         {% for loc in all_locations %}
         {% if loc.slug != location.slug %}

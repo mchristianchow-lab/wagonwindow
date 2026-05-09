@@ -190,7 +190,7 @@
     <li><a href="/#services">Services</a></li>
     <li><a href="/#pricing">Pricing</a></li>
     <li><a href="/#area">Service Area</a></li>
-    <li><a href="/quote/" class="nav-cta">Get a Quote</a></li>
+    <li><a href="/quote/" class="nav-cta">Instant Estimate</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleNav()">
     <span></span><span></span><span></span>
@@ -215,7 +215,7 @@
     <div class="hero-btns">
       <a href="/quote/" class="btn-primary"
          onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'location_hub_celista'});">
-        Book Free Quote
+        Get an Instant Estimate
       </a>
       <a href="tel:+14038375092" class="btn-outline"
          onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'location_hub_celista'});">
@@ -304,10 +304,6 @@
   <section class="content-section">
     <h2>Window Cleaning Needs in Celista</h2>
     <p>A mix of established vacation cabins, rural residential homes, and newer lake-view builds on the bench above the water. Many properties are secondary residences with large lake-facing window banks oriented to capture the south-facing lake view.</p>
-    <p>Celista&#39;s north-shore bench position moderates direct lake spray compared to exposed south-shore communities, but forested surroundings generate significant pollen and organic debris loads from late spring through summer. The drive-time and rural character mean properties in Celista are often underserved by professional cleaning services, allowing multi-season accumulation to develop on glass and screens before a first visit.</p>
-    
-    <p>Celista properties above the lake receive lake-effect humidity and periodic windborne mineral spray rather than the direct continuous spray of south-shore waterfront locations. Lake-view properties facing south and southwest accumulate mineral deposits more slowly than Eagle Bay or Sorrento but still benefit from specialist treatment every one to two seasons.</p>
-    
     <ul>
       <li>Celista is largely underserved by professional home service businesses due to its north-shore location — many property owners have never had a professional window cleaning and present multi-season accumulation on first visit.</li>
       <li>Seasonal demand in Celista is heavily concentrated between April and September, with many properties vacant through winter and requiring a thorough pre-season clean before owners return.</li>
@@ -320,7 +316,7 @@
     <p>Wagon Windows is based in Salmon Arm — Celista is part of our regular schedule, not an occasional trip. We understand the Shuswap climate, the local property types, and the specific contamination patterns that affect windows here. Every job includes a signed service agreement, photo documentation of pre-existing conditions, and a streak-free guarantee.</p>
     <ul class="why-list">
       <li><strong>Published pricing</strong> — rates online before you call</li>
-      <li><strong>Online booking</strong> — Calendly scheduling in under 2 minutes</li>
+      <li><strong>Instant estimate</strong> — get your price online in 2 minutes</li>
       <li><strong>Streak-free guarantee</strong> — not happy in 24 hours, we return free</li>
       <li><strong>Eco-friendly products</strong> — biodegradable, safe for Shuswap waterways</li>
       <li><strong>Signed service agreement</strong> — pre-existing damage documented on every job</li>
@@ -413,7 +409,7 @@
     <p>Book online or call us — we serve Celista regularly and can often schedule within a week.</p>
     <div class="cta-buttons">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'location_cta_celista'});">Book Online</a>
+         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'location_cta_celista'});">Get an Instant Estimate</a>
       <a href="tel:+14038375092" class="btn-outline"
          onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'location_cta_celista'});">Call (403) 837-5092</a>
     </div>
@@ -434,7 +430,7 @@
 <!-- MOBILE BOOKING BAR -->
 <div class="mobile-book-bar">
   <a href="/quote/" class="mobile-book-primary"
-     onclick="gtag('event','quote_click',{'event_category':'contact','event_label':'mobile_bar'});">Book Free Quote</a>
+     onclick="gtag('event','quote_click',{'event_category':'contact','event_label':'mobile_bar'});">Instant Estimate</a>
   <a href="sms:+14038375092" class="mobile-book-call"
      onclick="gtag('event','sms_click',{'event_category':'contact','event_label':'mobile_bar'});">Text Us</a>
 </div>
@@ -455,12 +451,6 @@
 <script>
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
-  }
-  function switchTab(tab, btn) {
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + tab).classList.remove('hidden');
-    btn.classList.add('active');
   }
   // Calendly conversion tracking
   window.addEventListener('message', function(e) {

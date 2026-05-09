@@ -27,6 +27,7 @@
     "base_price_medium": 229,
     "base_price_large": 299,
     "base_price_interior_small": 229,
+    "base_price_interior_medium": 309,
     "base_price_interior_large": 389,
     "schema_service_type": "WindowCleaningService",
     "icon": "🏡",
@@ -250,7 +251,7 @@
     "name": "Window Screen Cleaning",
     "short_name": "Screen Cleaning",
     "h1_template": "Window Screen Cleaning in {location}",
-    "meta_title_template": "Window Screen Cleaning {location} | Wagon Windows | $4–$5 Per Screen",
+    "meta_title_template": "Window Screen Cleaning {location} | Wagon Windows | $4 Per Screen",
     "meta_desc_template": "Window screen cleaning in {location}, BC. $4–$5 per screen. Remove dust, pollen, and debris. Add-on to any window clean or standalone. Wagon Windows.",
     "primary_keyword_template": "window screen cleaning {location}",
     "secondary_keywords": [
@@ -268,7 +269,7 @@
       "Damaged screens noted and reported"
     ],
     "price_per_screen_low": 4,
-    "price_per_screen_high": 5,
+    "price_per_screen_high": 4,
     "schema_service_type": "WindowCleaningService",
     "icon": "🕸️",
     "faq_count_minimum": 6,

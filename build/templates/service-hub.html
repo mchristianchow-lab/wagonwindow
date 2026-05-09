@@ -156,12 +156,12 @@
       <thead><tr><th>Home Size</th><th>Windows</th><th>Exterior Only</th><th>Interior + Exterior</th></tr></thead>
       <tbody>
         <tr><td>Small</td><td>Up to 15</td><td>From ${{ service.base_price_small }}</td><td>From ${{ service.base_price_interior_small | default(service.base_price_small + 50) }}</td></tr>
-        <tr><td>Medium</td><td>16–25</td><td>From ${{ service.base_price_medium }}</td><td>From ${{ service.base_price_interior_large | default(service.base_price_medium + 70) }}</td></tr>
-        <tr><td>Large</td><td>26–35</td><td>From ${{ service.base_price_large }}</td><td>From ${{ service.base_price_large + 80 }}</td></tr>
+        <tr><td>Medium</td><td>16–25</td><td>From ${{ service.base_price_medium }}</td><td>From ${{ service.base_price_interior_medium | default(service.base_price_medium + 70) }}</td></tr>
+        <tr><td>Large</td><td>26–35</td><td>From ${{ service.base_price_large }}</td><td>From ${{ service.base_price_interior_large | default(service.base_price_large + 80) }}</td></tr>
       </tbody>
     </table>
     {% elif service.price_per_screen_low %}
-    <p><strong>Screen cleaning:</strong> ${{ service.price_per_screen_low }}–${{ service.price_per_screen_high }} per screen. Minimum job ${{ config.min_job }}.</p>
+    <p><strong>Screen cleaning:</strong> ${{ service.price_per_screen_low }} per screen. Minimum job ${{ config.min_job }}.</p>
     {% elif service.base_price %}
     <p><strong>Starting from:</strong> ${{ service.base_price }}. Minimum job ${{ config.min_job }}.</p>
     {% elif service.base_price_commercial %}

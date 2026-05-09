@@ -166,12 +166,6 @@
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
   }
-  function switchTab(tab, btn) {
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + tab).classList.remove('hidden');
-    btn.classList.add('active');
-  }
   // Calendly conversion tracking
   window.addEventListener('message', function(e) {
     if (e.origin !== 'https://calendly.com') return;

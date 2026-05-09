@@ -190,7 +190,7 @@
     <li><a href="/#services">Services</a></li>
     <li><a href="/#pricing">Pricing</a></li>
     <li><a href="/#area">Service Area</a></li>
-    <li><a href="/quote/" class="nav-cta">Get a Quote</a></li>
+    <li><a href="/quote/" class="nav-cta">Instant Estimate</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleNav()">
     <span></span><span></span><span></span>
@@ -215,7 +215,7 @@
     <div class="hero-btns">
       <a href="/quote/" class="btn-primary"
          onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'location_hub_eagle-bay'});">
-        Book Free Quote
+        Get an Instant Estimate
       </a>
       <a href="tel:+14038375092" class="btn-outline"
          onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'location_hub_eagle-bay'});">
@@ -304,10 +304,6 @@
   <section class="content-section">
     <h2>Window Cleaning Needs in Eagle Bay</h2>
     <p>Predominantly vacation and retirement homes ranging from older lakefront cottages to newer premium builds with large lake-facing window banks. Many properties are secondary residences requiring pre-arrival and post-season cleans rather than year-round scheduled service.</p>
-    <p>Eagle Bay&#39;s position on Shuswap Lake&#39;s south shore concentrates prevailing southwest winds directly across waterfront properties, accelerating mineral spray deposition on exterior glass. Spring cottonwood release from the surrounding hillside forest arrives in late May and June, coating glass and screens with a sticky film that bonds quickly in warm lakeside air. Summer heat combined with lake humidity creates a daily thermal cycle that drives mineral-laden moisture onto glass surfaces and evaporates it, leaving progressive calcium and silica scale with each cycle.</p>
-    
-    <p>Eagle Bay&#39;s directly exposed south-shore position means Shuswap Lake spray driven by southwest winds reaches most lakefront properties with high frequency. Calcium and silica mineral deposits accumulate faster here than in sheltered bays, with waterfront glass commonly showing visible scale within four to six weeks of a professional clean during peak boating season.</p>
-    
     <ul>
       <li>Eagle Bay is a predominantly seasonal community — the majority of properties are vacation or retirement homes whose owners coordinate cleans remotely and book weeks in advance of their arrival dates.</li>
       <li>Lakefront property values in Eagle Bay regularly exceed $1M, placing homeowners in a segment that expects professional presentation and invests in property maintenance accordingly.</li>
@@ -320,7 +316,7 @@
     <p>Wagon Windows is based in Salmon Arm — Eagle Bay is part of our regular schedule, not an occasional trip. We understand the Shuswap climate, the local property types, and the specific contamination patterns that affect windows here. Every job includes a signed service agreement, photo documentation of pre-existing conditions, and a streak-free guarantee.</p>
     <ul class="why-list">
       <li><strong>Published pricing</strong> — rates online before you call</li>
-      <li><strong>Online booking</strong> — Calendly scheduling in under 2 minutes</li>
+      <li><strong>Instant estimate</strong> — get your price online in 2 minutes</li>
       <li><strong>Streak-free guarantee</strong> — not happy in 24 hours, we return free</li>
       <li><strong>Eco-friendly products</strong> — biodegradable, safe for Shuswap waterways</li>
       <li><strong>Signed service agreement</strong> — pre-existing damage documented on every job</li>
@@ -413,7 +409,7 @@
     <p>Book online or call us — we serve Eagle Bay regularly and can often schedule within a week.</p>
     <div class="cta-buttons">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'location_cta_eagle-bay'});">Book Online</a>
+         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'location_cta_eagle-bay'});">Get an Instant Estimate</a>
       <a href="tel:+14038375092" class="btn-outline"
          onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'location_cta_eagle-bay'});">Call (403) 837-5092</a>
     </div>
@@ -434,7 +430,7 @@
 <!-- MOBILE BOOKING BAR -->
 <div class="mobile-book-bar">
   <a href="/quote/" class="mobile-book-primary"
-     onclick="gtag('event','quote_click',{'event_category':'contact','event_label':'mobile_bar'});">Book Free Quote</a>
+     onclick="gtag('event','quote_click',{'event_category':'contact','event_label':'mobile_bar'});">Instant Estimate</a>
   <a href="sms:+14038375092" class="mobile-book-call"
      onclick="gtag('event','sms_click',{'event_category':'contact','event_label':'mobile_bar'});">Text Us</a>
 </div>
@@ -455,12 +451,6 @@
 <script>
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
-  }
-  function switchTab(tab, btn) {
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + tab).classList.remove('hidden');
-    btn.classList.add('active');
   }
   // Calendly conversion tracking
   window.addEventListener('message', function(e) {
