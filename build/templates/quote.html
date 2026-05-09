@@ -183,55 +183,60 @@
           </button>
         </div>
 
-        <h2>Any add-ons?</h2>
-        <p class="sub">All optional. Select a service type above to unlock.</p>
-        <div class="addon-list">
+        <!-- Smart estimate notice — shown after service type picked -->
+        <div id="addon-notice" style="display:none;margin-bottom:1.25rem"></div>
 
-          <div class="addon-item disabled" id="addon-screens">
-            <div class="addon-left">
-              <input type="checkbox" class="addon-check" id="chk-screens" onchange="toggleAddon('screens',this)">
-              <div>
-                <div class="addon-label">Screen Cleaning</div>
-                <div class="addon-price">$5 per screen</div>
+        <div id="addon-section" style="display:none">
+          <h2>Add-ons</h2>
+          <p class="sub" id="addon-sub"></p>
+          <div class="addon-list">
+
+            <div class="addon-item" id="addon-screens">
+              <div class="addon-left">
+                <input type="checkbox" class="addon-check" id="chk-screens" onchange="toggleAddon('screens',this)">
+                <div>
+                  <div class="addon-label">Screen Cleaning</div>
+                  <div class="addon-price">$5 per screen</div>
+                </div>
+              </div>
+              <div class="addon-counter" id="ctr-screens">
+                <button onclick="adjustAddon('screens',-1)">−</button>
+                <span id="val-screens">0</span>
+                <button onclick="adjustAddon('screens',1)">+</button>
               </div>
             </div>
-            <div class="addon-counter" id="ctr-screens">
-              <button onclick="adjustAddon('screens',-1)">−</button>
-              <span id="val-screens">1</span>
-              <button onclick="adjustAddon('screens',1)">+</button>
-            </div>
-          </div>
 
-          <div class="addon-item disabled" id="addon-tracks">
-            <div class="addon-left">
-              <input type="checkbox" class="addon-check" id="chk-tracks" onchange="toggleAddon('tracks',this)">
-              <div>
-                <div class="addon-label">Track Cleaning</div>
-                <div class="addon-price">$4 per track</div>
+            <div class="addon-item" id="addon-tracks">
+              <div class="addon-left">
+                <input type="checkbox" class="addon-check" id="chk-tracks" onchange="toggleAddon('tracks',this)">
+                <div>
+                  <div class="addon-label">Track Cleaning</div>
+                  <div class="addon-price">$4 per track</div>
+                </div>
+              </div>
+              <div class="addon-counter" id="ctr-tracks">
+                <button onclick="adjustAddon('tracks',-1)">−</button>
+                <span id="val-tracks">0</span>
+                <button onclick="adjustAddon('tracks',1)">+</button>
               </div>
             </div>
-            <div class="addon-counter" id="ctr-tracks">
-              <button onclick="adjustAddon('tracks',-1)">−</button>
-              <span id="val-tracks">1</span>
-              <button onclick="adjustAddon('tracks',1)">+</button>
-            </div>
-          </div>
 
-          <div class="addon-item disabled" id="addon-hardwater">
-            <div class="addon-left">
-              <input type="checkbox" class="addon-check" id="chk-hardwater" onchange="toggleAddon('hardwater',this)">
-              <div>
-                <div class="addon-label">Hard Water Stain Removal</div>
-                <div class="addon-price">$20 per affected pane</div>
+            <div class="addon-item" id="addon-hardwater">
+              <div class="addon-left">
+                <input type="checkbox" class="addon-check" id="chk-hardwater" onchange="toggleAddon('hardwater',this)">
+                <div>
+                  <div class="addon-label">Hard Water Stain Removal</div>
+                  <div class="addon-price">$20 per affected pane</div>
+                </div>
+              </div>
+              <div class="addon-counter" id="ctr-hardwater">
+                <button onclick="adjustAddon('hardwater',-1)">−</button>
+                <span id="val-hardwater">0</span>
+                <button onclick="adjustAddon('hardwater',1)">+</button>
               </div>
             </div>
-            <div class="addon-counter" id="ctr-hardwater">
-              <button onclick="adjustAddon('hardwater',-1)">−</button>
-              <span id="val-hardwater">1</span>
-              <button onclick="adjustAddon('hardwater',1)">+</button>
-            </div>
-          </div>
 
+          </div>
         </div>
       </div>
       <div class="step-nav">
@@ -382,11 +387,61 @@ function selectOption(key, value, btn) {
   state[key] = value;
   btn.closest('.option-grid').querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
+
   if (key === 'propertyType') document.getElementById('next-1').disabled = false;
+
   if (key === 'serviceType') {
     document.getElementById('next-3').disabled = false;
-    document.querySelectorAll('.addon-item').forEach(el => el.classList.remove('disabled'));
+    const notice  = document.getElementById('addon-notice');
+    const section = document.getElementById('addon-section');
+    const sub     = document.getElementById('addon-sub');
+    section.style.display = 'block';
+
+    const screens = Math.round(state.panes / 2);
+    const tracks  = state.panes;
+
+    if (value === 'both') {
+      // Pre-fill screens + tracks, leave hard water for customer to decide
+      setAddon('screens', screens, true);
+      setAddon('tracks',  tracks,  true);
+      setAddon('hardwater', 0, false);
+
+      notice.style.display = 'block';
+      notice.innerHTML = `<div class="disclaimer-box" style="background:#f0fff4;border-color:#4caf50;color:#1b5e20">
+        ✅ <strong>We've done the maths.</strong> Based on ${state.panes} panes we've estimated
+        <strong>${screens} screens</strong> and <strong>${tracks} tracks</strong> — adjust below if your home is different.
+      </div>`;
+
+      document.getElementById('addon-screens').style.display = 'flex';
+      document.getElementById('addon-tracks').style.display  = 'flex';
+      sub.textContent = 'Pre-filled based on your pane count — adjust if needed. Hard water stain removal is optional.';
+
+    } else {
+      // Exterior only — screens and tracks don't apply
+      setAddon('screens',   0, false);
+      setAddon('tracks',    0, false);
+      setAddon('hardwater', 0, false);
+
+      notice.style.display = 'block';
+      notice.innerHTML = `<div class="disclaimer-box">
+        Exterior clean only — screens and tracks are not included. They require opening windows from the inside.
+      </div>`;
+
+      document.getElementById('addon-screens').style.display = 'none';
+      document.getElementById('addon-tracks').style.display  = 'none';
+      sub.textContent = 'Do any panes have mineral deposits or spots that won\'t wash off?';
+    }
   }
+}
+
+function setAddon(key, count, checked) {
+  state.addons[key] = count;
+  const cb  = document.getElementById('chk-' + key);
+  const ctr = document.getElementById('ctr-' + key);
+  const val = document.getElementById('val-'  + key);
+  cb.checked = checked && count > 0;
+  val.textContent = count;
+  ctr.style.display = (checked && count > 0) ? 'flex' : 'none';
 }
 
 function adjustPanes(delta) {
