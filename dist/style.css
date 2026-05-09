@@ -53,14 +53,10 @@ nav {
 }
 
 .nav-logo-img {
-  height: 180px;
+  height: 66px;
   width: auto;
-  object-fit: contain;
-  border-radius: 0;
-  border: none;
   display: block;
-  transform: translateY(-1.5mm);
-  filter: none;
+  transform: translateY(5mm);
 }
 
 .nav-logo-text {
