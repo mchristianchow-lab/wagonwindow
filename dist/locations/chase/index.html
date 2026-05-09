@@ -36,6 +36,10 @@
     @media(max-width:768px){.nav-links{display:none}.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer}.hamburger span{width:25px;height:2px;background:var(--black);display:block}}
     .hamburger{display:none}
     .nav-links.open{display:flex;flex-direction:column;position:absolute;top:88px;left:0;right:0;background:#fff;padding:1rem 2rem;border-bottom:2px solid var(--red);z-index:99}
+    .nav-links.open li a{color:var(--black)!important}
+    .nav-links.open li{border-bottom:1px solid #eee;padding:.6rem 0}
+    .nav-links.open li:last-child{border-bottom:none}
+    .nav-links.open .nav-cta{display:block;text-align:center;margin-top:.5rem}
   </style>
 
   <!-- Load full stylesheet async -->
@@ -200,8 +204,12 @@
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="/#services">Services</a></li>
+    <li><a href="/residential-window-cleaning/">Window Cleaning</a></li>
+    <li><a href="/gutter-cleaning/">Gutter Cleaning</a></li>
     <li><a href="/#pricing">Pricing</a></li>
     <li><a href="/#area">Service Area</a></li>
+    <li><a href="sms:+14038375092"
+         onclick="gtag('event','sms_click',{'event_category':'contact','event_label':'nav'});">Text Us</a></li>
     <li><a href="/quote/" class="nav-cta">Instant Estimate</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleNav()">
