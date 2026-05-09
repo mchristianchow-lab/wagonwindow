@@ -53,10 +53,10 @@ nav {
 }
 
 .nav-logo-img {
-  height: 165px;
+  height: 184px;
   width: auto;
   display: block;
-  transform: translateY(5mm);
+  transform: translateY(2mm);
 }
 
 .nav-logo-text {
