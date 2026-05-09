@@ -59,13 +59,6 @@ nav {
   transform: translateY(2mm);
 }
 
-.nav-logo-text {
-  font-size: 1.6rem;
-  font-family: 'Alfa Slab One', serif;
-  font-weight: 400;
-  color: var(--navy);
-  letter-spacing: 0.5px;
-}
 
 .nav-links {
   display: flex;
@@ -213,11 +206,6 @@ nav {
 
 .trust-icon { color: var(--sky); flex-shrink: 0; }
 
-.trust-reviews .stars {
-  color: #f5a623;
-  font-size: 1rem;
-  letter-spacing: 1px;
-}
 
 /* ---- SECTIONS ---- */
 section { padding: 90px 5%; text-align: center; }
