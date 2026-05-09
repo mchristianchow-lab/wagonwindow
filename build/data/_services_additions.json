@@ -1,0 +1,333 @@
+{
+  "residential-window-cleaning": {
+    "process_steps": [
+      {
+        "step": 1,
+        "name": "Walkthrough & Window Inventory",
+        "description": "Before touching anything, David walks the property with the homeowner to identify every window, flag any pre-existing damage, and confirm which areas are in-scope. This prevents disputes and ensures nothing is missed — especially on properties with skylights, hard-to-reach dormers, or custom glass panels common in Shuswap lakefront homes."
+      },
+      {
+        "step": 2,
+        "name": "Screen Removal & Labelling",
+        "description": "Every screen is carefully removed and labelled by location — left-side bedroom, kitchen upper, etc. Labelling takes an extra minute per screen but eliminates the guesswork of reinstallation and prevents screens being forced into wrong frames, which damages splines. Screens are set aside in a safe, flat area during the clean."
+      },
+      {
+        "step": 3,
+        "name": "Dry Debris Removal",
+        "description": "Before any water or solution is applied, loose debris — cottonwood fluff, dried insects, leaf fragments — is brushed away from frames, sills, and glass surfaces. Skipping this step turns debris into abrasive particles under the squeegee, which can scratch glass and leave streaks that require a second pass."
+      },
+      {
+        "step": 4,
+        "name": "Pre-Rinse",
+        "description": "A light pre-rinse with clean water loosens mineral deposits, agricultural dust, and surface-level grime before the cleaning solution is applied. This is especially important on south-facing windows that accumulate UV-baked-on dust and pollen during Shuswap summers. Pre-rinsing reduces the work the solution has to do and extends its effectiveness."
+      },
+      {
+        "step": 5,
+        "name": "Cleaning Solution Application",
+        "description": "A professional, eco-safe window cleaning solution is applied to the full pane using a wet applicator or sleeve mop. The solution lifts oils, mineral residue, and biological material that water alone cannot break down. Solution dwell time is calibrated to the level of buildup — heavier deposits get a longer soak before agitation."
+      },
+      {
+        "step": 6,
+        "name": "Exterior Squeegee & Detail",
+        "description": "Each exterior pane is worked with a professional squeegee using overlapping, controlled strokes that pull solution and dissolved grime cleanly off the glass. Edges are hand-detailed with a lint-free cloth to catch any remaining moisture. Frames and sills are wiped down as part of this step — not as an afterthought."
+      },
+      {
+        "step": 7,
+        "name": "Interior Window Cleaning",
+        "description": "Interior windows are cleaned with care for the home's furnishings — drop cloths or towels are placed on sills to catch drips, and solution is applied with a dampened applicator rather than a free-flowing mop to prevent overspray on walls or floors. Each pane is squeegeed and hand-detailed on the edges, with particular attention to upper corners where solution tends to pool."
+      },
+      {
+        "step": 8,
+        "name": "Screen Reinstallation & Final Inspection",
+        "description": "Cleaned and dried screens are reinstalled by location using the labelling system from Step 2. David does a final walk around the property to inspect each window from the outside for any missed streaks or smears, correcting them on the spot. The homeowner is invited to do their own inspection before the job is signed off."
+      }
+    ],
+    "differentiator": "Wagon Windows treats residential cleans as a complete service — screens labelled and reinstalled correctly, tracks wiped, and every window inspected before leaving — not a rushed rinse-and-go. David Hanna owns and runs the company himself, meaning the person on your property is accountable by name.",
+    "common_problems": [
+      "Cottonwood pollen season coats every exterior window in a thick film that basic garden hose rinses cannot clear",
+      "Lake spray from Shuswap Lake deposits mineral-rich water on lakefront home windows that dries into white haze",
+      "Agricultural dust from nearby orchards and farms in the Salmon Arm corridor settles on glass and bakes on in summer heat",
+      "Wildfire smoke season leaves a greasy, oily film on glass that standard cleaning products struggle to break down",
+      "Interior condensation from high-humidity Shuswap summers causes mould and mineral buildup along window sills and lower frames"
+    ],
+    "result_description": "After a full residential clean, every window on the home is streak-free and clear — you notice the difference immediately when light comes through without the haze or smearing that built up over months. Screens sit flush in their frames, tracks are wiped clean, and the overall impression of the home from both inside and out is noticeably sharper. Most customers describe it as the house looking 'new again.'",
+    "booking_urgency": "Spring is the highest-demand window of the year in the Shuswap — cottonwood season lands in May and June and every homeowner wants a clean immediately after it passes. Book your spring residential clean early to secure a slot before the June rush fills the calendar.",
+    "page_intro_template": "This page is for homeowners in {location} looking for a professional residential window cleaning service that covers every detail — exterior, interior, screens, and tracks. Wagon Windows serves {location} and the surrounding Shuswap with owner-operated cleans that are thorough, accountable, and streak-free. Book online to lock in your date."
+  },
+
+  "exterior-window-cleaning": {
+    "process_steps": [
+      {
+        "step": 1,
+        "name": "Access Assessment",
+        "description": "Before starting, the full exterior of the property is walked to identify every accessible window, flag any obstacles — overgrown shrubs, deck furniture, low-clearance eaves — and determine which windows require extension equipment versus standard reach. This assessment ensures the job is completed safely and that no window is skipped due to an access issue discovered mid-clean."
+      },
+      {
+        "step": 2,
+        "name": "Dry Debris Clear",
+        "description": "Loose debris on frames, sills, and screen inserts is brushed away before any liquid is applied. In Shuswap's cottonwood and wildfire smoke seasons, this dry-first step is essential — wet debris turns to paste under a squeegee and contaminates the solution, requiring full reapplication. Frames and ledges are cleared top to bottom so debris doesn't fall onto already-cleaned glass below."
+      },
+      {
+        "step": 3,
+        "name": "Pre-Rinse with Clean Water",
+        "description": "A clean water rinse is applied to all exterior surfaces to loosen surface grime, pollen, and dust before the cleaning solution makes contact. This step reduces the concentration of contaminants in the solution and prevents clogging of the applicator, which would leave streaks. On heavily soiled windows — common after Salmon Arm's dry, dusty summers — this rinse may be repeated twice."
+      },
+      {
+        "step": 4,
+        "name": "Cleaning Solution Application",
+        "description": "Professional window cleaning solution is loaded into a wet applicator and worked across each pane in firm, overlapping strokes to ensure full coverage. The solution emulsifies mineral deposits, insect residue, and environmental oils that bond to glass over time. On windows with visible water-scale buildup from sprinkler or lake spray contact, extra dwell time is allowed before proceeding."
+      },
+      {
+        "step": 5,
+        "name": "Squeegee Finish",
+        "description": "Each pane is squeegeed using professional brass-channel tools with fresh rubber blades — worn blades leave lines and are replaced per job, not per season. Overlapping pull strokes remove solution and dissolved grime in a single controlled pass. The tool is wiped clean between each stroke to prevent transferring grime back onto the glass."
+      },
+      {
+        "step": 6,
+        "name": "Sill & Frame Wipe-Down",
+        "description": "After the glass is clean, sills and frames are wiped with a damp cloth to remove any solution drips or loosened grime. This step is what separates a professional exterior clean from a DIY result — neglecting frames leaves dirty residue that runs onto the glass at the next rain and undoes the clean. All sills are left dry and streak-free."
+      },
+      {
+        "step": 7,
+        "name": "Final Exterior Inspection",
+        "description": "A final walk around the property at close range identifies any missed spots, drip marks, or smears before equipment is packed away. Corrections are made immediately. On lakefront or south-facing properties where glare can obscure streaks during the clean itself, this inspection step is done from multiple angles to catch anything that wasn't visible head-on."
+      }
+    ],
+    "differentiator": "Exterior-only cleans with Wagon Windows use the same professional tools and sequencing as a full clean — not a shortcut version — so the result is identical glass quality without the interior access required. It's the fastest way to transform a home's curb appeal in the Shuswap in a single visit.",
+    "common_problems": [
+      "Cottonwood fluff embeds in exterior frames and sills every May and June, blocking the clean and contaminating solutions if not removed first",
+      "South-facing exterior windows bake on dust and UV haze from Salmon Arm's long sun exposure, creating a dull film that standard wiping won't clear",
+      "Irrigation sprinkler overspray deposits hard minerals on windows adjacent to lawns and garden beds, building up into white calcium rings",
+      "Wildfire smoke from Interior BC fire seasons coats glass with an oily residue that smears if not treated with the right emulsifying solution",
+      "Winter road salt spray on windows near driveways and streets leaves persistent white residue that worsens with each rain cycle"
+    ],
+    "result_description": "Once the exterior clean is done, every outward-facing pane is clear, streak-free, and reflective — the difference is visible from the street immediately. Frames and sills look clean rather than grimy, which changes the overall impression of the property more than most people expect. Natural light enters rooms noticeably brighter because there is no haze layer filtering it.",
+    "booking_urgency": "Exterior demand in the Shuswap peaks twice a year — immediately after cottonwood season in June, and again in September before fall rains set in. Slots fill fast both windows; booking ahead is the only way to guarantee your preferred date rather than taking whatever is left.",
+    "page_intro_template": "If you're searching for exterior window cleaning in {location}, this page covers exactly what Wagon Windows does, how it's priced, and why local homeowners in {location} book us season after season. We handle every exterior pane — including hard-to-reach windows — with professional tools and a streak-free guarantee. Book your clean online."
+  },
+
+  "commercial-window-cleaning": {
+    "process_steps": [
+      {
+        "step": 1,
+        "name": "Site Assessment & Scheduling Agreement",
+        "description": "Before the first clean, the site is assessed for window count, access points, height requirements, and any security or safety considerations. For commercial properties, scheduling is critical — the clean needs to happen during low-traffic hours to avoid disrupting customers or staff. The assessment results in a written scope and agreed service schedule, not an open-ended arrangement."
+      },
+      {
+        "step": 2,
+        "name": "Low-Traffic Window Scheduling",
+        "description": "Commercial cleans are scheduled for early morning, evening, or mid-week off-peak slots depending on the business type. A restaurant front cleaned during the lunch rush is an interruption; cleaned at 7am, it's invisible maintenance. The service schedule is confirmed with the business manager and held consistently so staff don't need to coordinate each visit."
+      },
+      {
+        "step": 3,
+        "name": "Debris & Frame Pre-Clean",
+        "description": "Frames, sills, and door surrounds are pre-cleaned of debris, insect residue, and grime before solution is applied to the glass. On storefronts, this includes the door frame channel and any transom ledges where debris accumulates unnoticed. Pre-cleaning the frame is essential on commercial glass — solution applied over a dirty frame picks up contaminants that then streak across the freshly cleaned pane."
+      },
+      {
+        "step": 4,
+        "name": "Professional Solution Application",
+        "description": "Commercial-grade window cleaning solution is applied with a wide-format applicator suited to large storefront panes. The solution is worked in firm, even strokes to ensure complete coverage without dry patches. Concentration is adjusted based on soiling level — a downtown Salmon Arm storefront near a busy street accumulates vehicle exhaust residue faster than a rural office building and may require a stronger mix."
+      },
+      {
+        "step": 5,
+        "name": "Squeegee & Edge Detail",
+        "description": "Each pane is worked with a squeegee sized for the glass — large pulls on wide storefront windows, smaller tools for divided-light sections. Every edge and corner is hand-detailed with a lint-free cloth immediately after the squeegee pass. Detail work on commercial glass matters more than residential because customers and passersby view the glass at close range and at eye level."
+      },
+      {
+        "step": 6,
+        "name": "Door Glass & Entry Cleaning",
+        "description": "Entry doors and glass door panels are cleaned last, after foot traffic during setup is no longer a factor. Door glass accumulates fingerprints, nose smudges, and push-bar grease that require specific attention — a squeegee alone does not fully remove body oils from glass. Each door pane is wiped, squeegeed, and re-inspected before moving on."
+      },
+      {
+        "step": 7,
+        "name": "Manager Walkthrough & Sign-Off",
+        "description": "At the end of each visit, the result is reviewed with the business owner or manager on-site — or photographed and sent if they're not present. This creates accountability and catches any spots that need immediate correction. For recurring contract clients, a brief note on any developing issues — frame deterioration, seal failure, staining — is included so the business can act before problems escalate."
+      }
+    ],
+    "differentiator": "Wagon Windows offers commercial clients in the Shuswap something chains and franchises can't — a named, local operator who shows up consistently, knows your property, and communicates directly. No dispatched crews, no turnover, no having to re-explain the job every visit.",
+    "common_problems": [
+      "Downtown Salmon Arm storefronts accumulate vehicle exhaust film that makes glass appear cloudy from inside and dirty from outside within weeks of a clean",
+      "Agricultural dust from the surrounding Salmon Arm farming corridor coats commercial windows heavily in dry summer months, requiring more frequent service than urban businesses expect",
+      "Cottonwood season creates a visible pollen film on storefront glass that customers notice and that cannot be casually wiped — it requires proper washing to remove cleanly",
+      "Lake tourism season brings higher foot traffic that leaves fingerprints, smudges, and sunscreen residue on entry glass at a rate that monthly service can't keep up with",
+      "Wildfire smoke periods deposit oily residue on exterior commercial glass that standard cleaning products streak rather than remove, requiring professional-grade emulsifiers"
+    ],
+    "result_description": "After a commercial clean, storefront glass is clear and reflective — product displays are visible from the street, interior lighting isn't filtered through grime, and the overall professional impression of the business is measurably better. Regular clients consistently report that clean windows are one of the most commented-on maintenance details by their own customers, even when those customers can't articulate exactly what changed.",
+    "booking_urgency": "Commercial slots fill quickly around Salmon Arm's peak tourism months — July and August — when businesses want their storefronts at their best. Locking in a recurring contract before the summer season secures your preferred time slot and eliminates the need to rebook each cycle.",
+    "page_intro_template": "This page is for business owners in {location} looking for a reliable, recurring commercial window cleaning service. Wagon Windows handles storefronts, offices, and commercial buildings across {location} and the Shuswap — owner-operated, consistently scheduled, and built around your business hours. Get a commercial quote or set up a recurring contract today."
+  },
+
+  "screen-cleaning": {
+    "process_steps": [
+      {
+        "step": 1,
+        "name": "Screen Removal & Labelling",
+        "description": "Every screen is removed from its frame and immediately labelled by window location before being moved anywhere. This prevents reinstallation errors — screens are not interchangeable even when they appear identical, and forcing a screen into the wrong frame bends the spline channel or distorts the mesh. Labelling takes under a minute per screen and eliminates an entirely avoidable problem."
+      },
+      {
+        "step": 2,
+        "name": "Damage Inspection",
+        "description": "Each screen is inspected for tears, bent frames, missing spline, or corroded mesh before washing begins. In Shuswap's high-UV environment, plastic spline and fibreglass mesh degrade faster than in coastal climates — existing damage is documented and reported to the homeowner before the clean, not discovered during reinstallation when it's too late to address cleanly."
+      },
+      {
+        "step": 3,
+        "name": "Brush Wash",
+        "description": "Screens are laid flat and scrubbed on both sides with a soft-bristle brush and diluted cleaning solution. The brush agitation dislodges cottonwood fibres, pollen grains, and insect debris that are embedded in the mesh — a simple rinse without brushing does not adequately clear these materials because they become physically trapped in the mesh openings rather than sitting on the surface."
+      },
+      {
+        "step": 4,
+        "name": "Rinse",
+        "description": "After brushing, screens are rinsed thoroughly with clean water at low pressure to flush loosened debris out of the mesh without distorting the frame. High-pressure rinsing can bow or warp aluminium screen frames — particularly older frames that have been through multiple seasons of thermal expansion and contraction in the Shuswap's wide temperature range."
+      },
+      {
+        "step": 5,
+        "name": "Air Dry & Reinstallation",
+        "description": "Screens are stood upright to air dry completely before reinstallation — installing a damp screen traps moisture between the mesh and the window frame, which accelerates mould growth and leaves water marks on the glass that just got cleaned. Once dry, each screen is reinstalled using its label to match it to the correct frame, seated firmly in the channel, and checked for proper fit before moving on."
+      }
+    ],
+    "differentiator": "Screens in the Shuswap face specific abuse — cottonwood fibres, agricultural pollen, and high-UV mesh degradation that makes professional cleaning and inspection more than cosmetic. Wagon Windows documents damage before it becomes a replacement conversation, which saves homeowners money and avoids surprises.",
+    "common_problems": [
+      "Cottonwood pollen season in May and June physically embeds fibres into window mesh, reducing airflow and visibility through screens in ways that simple rinsing does not clear",
+      "Shuswap's high summer UV exposure accelerates degradation of fibreglass mesh and plastic spline, causing screens to fail or sag after fewer seasons than homeowners expect",
+      "Agricultural dust from Salmon Arm's orchard and farm country accumulates on screen mesh and bonds to the fibres, creating a grey film that blocks light coming into the home",
+      "Wildfire smoke seasons leave oily particulate residue on screen mesh that sticks even after rain and cannot be removed with a garden hose alone",
+      "Insect debris from Shuswap's active mosquito and moth seasons clogs screen mesh and leaves organic staining that deteriorates mesh material over time"
+    ],
+    "result_description": "Clean screens let noticeably more light and airflow through — most homeowners don't realize how much the buildup had been blocking until it's gone. The mesh is clear and even, frames are clean, and everything fits properly in its correct window. Damaged screens are documented so repairs or replacements can be planned, rather than discovered when the screen fails.",
+    "booking_urgency": "The best time to clean screens is immediately after cottonwood season ends in late June — the fibres are embedded and won't clear themselves, and summer is when open windows matter most. Adding a screen clean to your post-pollen window cleaning appointment is the most efficient way to book both.",
+    "page_intro_template": "This page covers professional window screen cleaning in {location} — removal, brush washing, inspection, and reinstallation done properly. Wagon Windows serves {location} and surrounding Shuswap communities with screen cleaning as a standalone service or bundled with a full window clean. Book online or add screens to your next appointment."
+  },
+
+  "track-cleaning": {
+    "process_steps": [
+      {
+        "step": 1,
+        "name": "Track Vacuuming",
+        "description": "Loose debris — dead insects, grit, dried organic matter — is vacuumed from all track channels before any moisture is introduced. Vacuuming first prevents loose debris from turning into muddy paste when wet, which is harder to extract from corners and weep holes than dry material. This step also reveals the true extent of the buildup so the appropriate cleaning approach can be selected."
+      },
+      {
+        "step": 2,
+        "name": "Brush Scrub",
+        "description": "A narrow detailing brush is worked into all track channels, corners, and the raised dividers between channel sections to break up compacted grime that the vacuum could not dislodge. In Shuswap homes, window tracks accumulate a particularly dense buildup from cottonwood fibres, agricultural dust, and moisture cycling — this material compacts into a near-solid layer that requires mechanical agitation to release."
+      },
+      {
+        "step": 3,
+        "name": "Damp Wipe & Extract",
+        "description": "After brushing, the loosened material is removed with a dampened cloth or detailing tool worked through each channel section. The goal is to leave the track visually clean and dry — not just pushed to the ends. Multiple passes are done on heavily built-up tracks until the cloth comes away clean, confirming that the channel is actually clear rather than just redistributed."
+      },
+      {
+        "step": 4,
+        "name": "Weep Hole Clearing",
+        "description": "Weep holes — the small drainage openings at the base of window frames — are inspected and cleared of debris. Blocked weep holes trap water in the track channel, which accelerates frame corrosion and contributes to the moisture problems that cause mould on interior sills. A small pick or brush is used to ensure each weep hole is open and draining correctly."
+      },
+      {
+        "step": 5,
+        "name": "Roller Lubrication & Inspection",
+        "description": "Sliding window rollers are inspected for wear, misalignment, or debris jamming, and lubricated with a dry lubricant appropriate for window hardware. A clean, lubricated roller restores smooth operation and reduces the friction that causes homeowners to force windows open — which is the primary cause of roller and frame damage over time. Any rollers showing significant wear are noted for the homeowner."
+      }
+    ],
+    "differentiator": "Window track cleaning is a job most homeowners avoid because it looks difficult — Wagon Windows does it properly, including weep hole clearing and roller inspection, so the job actually extends the life of the window hardware rather than just making it look better temporarily.",
+    "common_problems": [
+      "Cottonwood fibres pack into window track channels every spring in Salmon Arm and compact over the season into a dense mat that resists rinsing",
+      "Agricultural dust from nearby orchards mixes with moisture in tracks and hardens into a gritty paste that prevents smooth window operation",
+      "Blocked weep holes from debris accumulation cause water to pool in window frames during Shuswap's spring snowmelt and fall rain seasons, leading to frame rot and interior mould",
+      "Dead insects from Shuswap's active bug seasons accumulate in tracks and deteriorate into organic material that stains frame plastic and retains moisture",
+      "Mineral deposits from irrigation overspray and condensation cycling crystallize in tracks and bind rollers, making windows difficult or impossible to open smoothly"
+    ],
+    "result_description": "After a proper track clean, windows slide smoothly with one hand and without the grinding or sticking that homeowners have been working around for months or years. The tracks are visually clean — no debris, no grime lining, no visible buildup — and weep holes are draining correctly. Rollers that were catching or skipping move freely again.",
+    "booking_urgency": "Track cleaning is most valuable done once after cottonwood season — when the spring and early summer fibre and pollen accumulation has had time to compact — and again before winter when blocked weep holes become a frost-damage risk. Adding track cleaning to a seasonal window clean is the most efficient way to handle both.",
+    "page_intro_template": "This page is for homeowners in {location} with window tracks that are difficult to open, visibly grimy, or showing signs of moisture problems. Wagon Windows provides professional track cleaning in {location} that goes beyond surface wiping — vacuum, brush scrub, weep hole clearing, and roller inspection done in one visit. Book as a standalone service or add it to a window clean."
+  },
+
+  "hard-water-stain-removal": {
+    "process_steps": [
+      {
+        "step": 1,
+        "name": "Severity Assessment",
+        "description": "Each affected window is assessed to determine the depth and age of the mineral deposit before any treatment is applied. Light surface scale responds differently than deeply etched calcium buildup, and applying the wrong approach to the wrong severity wastes time and can damage glass coatings. On Shuswap lakefront properties where lake spray has been building for years, severity varies window-to-window depending on exposure angle and distance from the water."
+      },
+      {
+        "step": 2,
+        "name": "Test Patch",
+        "description": "Before treating the full window, a small inconspicuous test patch is treated and evaluated. This confirms that the glass surface will respond correctly to the selected remover — particularly important on tempered, coated, or older glass where aggressive treatment can cause permanent hazing. The test patch result determines the final product choice and dwell time for the full treatment."
+      },
+      {
+        "step": 3,
+        "name": "Acid-Free Mineral Remover Application",
+        "description": "A professional-grade acid-free mineral deposit remover is applied to the affected glass and worked in with a non-scratch pad using circular agitation. Acid-free formulas are used specifically to protect glass coatings and seals that acidic alternatives can degrade — a particularly important consideration on modern double and triple-pane windows where seal integrity directly affects thermal performance. Application is methodical, section-by-section, to ensure full contact time."
+      },
+      {
+        "step": 4,
+        "name": "Agitation & Dwell",
+        "description": "After application, the remover is agitated with a non-scratch scrubbing pad and allowed to dwell for the appropriate time based on deposit severity. The agitation physically breaks the mineral crystal structure away from the glass surface while the chemical component dissolves the calcium and silica compounds. Heavy buildup from years of lake spray or irrigation contact may require multiple application and agitation cycles on the same pane."
+      },
+      {
+        "step": 5,
+        "name": "Rinse & Re-Assess",
+        "description": "The treated area is rinsed thoroughly and the glass is re-assessed while still wet — most remaining deposits are visible at this stage that are harder to see when the glass dries with a clean surface film. If staining remains, the treatment cycle is repeated rather than accepted as a partial result. The customer is informed if any staining is etched below the glass surface and cannot be removed without polishing or replacement."
+      },
+      {
+        "step": 6,
+        "name": "Optional Protective Treatment",
+        "description": "Once the glass is clear, a water-repellent protective coating can be applied that causes water to bead and run off rather than dwell on the surface. In Shuswap lakefront environments where mineral-rich water contact is ongoing, this treatment measurably extends the period before deposits re-establish — it does not prevent buildup entirely, but can double or triple the time between treatments."
+      }
+    ],
+    "differentiator": "Wagon Windows approaches hard water stain removal as a specialist treatment, not an extension of a standard clean — proper severity assessment, test patching, and the correct acid-free chemistry for Shuswap's calcium-heavy mineral profile. Most window cleaners skip these steps and deliver partial results.",
+    "common_problems": [
+      "Lake spray from Shuswap Lake deposits high-mineral water on lakefront property windows with every wave and windstorm, building calcium deposits that accumulate faster than annual cleaning can manage",
+      "Irrigation systems using local well water with high mineral content spray windows adjacent to lawn and garden zones, leaving crystalline white rings that standard cleaning does not remove",
+      "Salmon Arm's hard municipal water supply leaves mineral film on windows when water contacts glass from rainfall running off rooflines or eavestroughs with standing mineral deposits",
+      "Evaporative cooler units on homes and commercial buildings discharge mineral-laden water that contacts nearby windows and builds deposits faster than any other source",
+      "Years of seasonal condensation on single-pane windows in older Shuswap homes creates interior mineral etching at the sill line from repeated wetting and drying cycles"
+    ],
+    "result_description": "After hard water stain removal, windows that appeared permanently hazy or stained are clear again — the white film and calcium rings are gone, and the glass transmits light the way it did when it was new. On windows where deposits were caught before etching occurred, the result is typically a full restoration. The difference from outside the home is striking: the windows look polished rather than neglected.",
+    "booking_urgency": "Hard water deposits worsen with every contact cycle — the longer they sit, the deeper they etch into the glass surface. Windows treated early are fully restorable; windows left too long may require polishing or replacement. If you can see white haze or calcium rings on your glass, booking a treatment this season is meaningfully better than waiting.",
+    "page_intro_template": "This page covers hard water stain removal from windows in {location} — a specialist treatment for the mineral deposits and calcium buildup common on Shuswap lakefront and rural properties. Wagon Windows serves {location} with on-site assessment and acid-free treatment that restores glass that standard cleaning cannot fix. Book a quote or contact us to describe your situation."
+  },
+
+  "seasonal-window-cleaning": {
+    "process_steps": [
+      {
+        "step": 1,
+        "name": "Pre-Season Assessment",
+        "description": "At the start of each package, the property is assessed to establish baseline condition — any pre-existing damage, areas of concern, and windows that need special attention in the coming season are documented. This baseline makes each subsequent visit more efficient because the technician knows the property, knows which windows face south and accumulate UV haze fastest, and knows which tracks have drainage issues that worsen in specific seasons."
+      },
+      {
+        "step": 2,
+        "name": "Spring Clean — Post-Pollen & Post-Winter",
+        "description": "The spring clean is scheduled for late May or early June, after cottonwood season peaks but before summer drying bakes residue onto glass. This clean addresses the winter grime that accumulated under snow and condensation, the cottonwood fibre that embedded in frames and sills, and the first flush of agricultural dust from spring planting in the Shuswap corridor. Spring is the heaviest clean of the cycle and sets the baseline for summer."
+      },
+      {
+        "step": 3,
+        "name": "Midsummer Clean — Dust, Insects & UV Haze",
+        "description": "The midsummer clean targets the specific conditions of a Shuswap July and August — agricultural dust from dry field conditions, insect season residue, and the UV haze that builds on south- and west-facing glass from prolonged high-angle sun exposure. This clean is lighter and faster than spring because it's maintaining a recently established baseline, not recovering from months of neglect."
+      },
+      {
+        "step": 4,
+        "name": "Fall Clean — Debris Clearing & Pre-Freeze Prep",
+        "description": "The fall clean happens in September or October, before the first hard frost, and addresses leaf debris, early rain-season mud spray, and any mineral deposits from summer irrigation contact. Weep holes and tracks are cleared as part of the fall clean because blocked drainage is a frost-damage risk — water pooling in window channels freezes, expands, and can crack seals or warp frames. The fall clean leaves the windows ready for winter."
+      },
+      {
+        "step": 5,
+        "name": "Recurring Booking Setup",
+        "description": "Package holders are scheduled in advance for all three cleans at the start of the season — no repeat booking required. Priority scheduling means package customers are placed before single-booking customers in peak-demand windows, which in the Shuswap means they're guaranteed a May/June spring slot rather than waiting until late July when solo bookings have filled the calendar."
+      },
+      {
+        "step": 6,
+        "name": "Annual Summary & Condition Report",
+        "description": "At the end of the fall clean, a brief summary of the season is provided — any windows showing developing issues, frames with deteriorating seals, or tracks that are beginning to drain slowly. This gives the homeowner information to act on during winter rather than discovering problems in spring. It also seeds the following year's pre-season assessment with accurate current-condition data."
+      }
+    ],
+    "differentiator": "Seasonal packages from Wagon Windows are timed to the actual Shuswap climate cycle — not arbitrary quarterly intervals — so each clean addresses what's actually on the glass at that moment. Package holders also get priority scheduling, which in the Shuswap's short peak seasons is a genuine operational advantage.",
+    "common_problems": [
+      "Cottonwood season in May and June coats every exterior window on the property in a visible film that is not present in winter or fall, making a spring-specific clean essential rather than optional",
+      "Shuswap's dry, hot July and August conditions generate agricultural dust from surrounding orchards and hayfields that accumulates faster in summer than any other season",
+      "Lake spray from summer wind and boat wake on Shuswap Lake properties requires at least a midsummer clean to prevent mineral deposits from setting between spring and fall",
+      "Fall leaf debris from the heavily treed Shuswap landscape sticks to wet glass during September rains and leaves organic staining if not cleared before winter",
+      "Winter freeze-thaw cycles in Salmon Arm trap moisture in dirty window tracks and around poorly sealed frames, causing mould and frame damage that a pre-winter fall clean prevents"
+    ],
+    "result_description": "Customers on seasonal packages describe their windows as being clean consistently throughout the year — not just for a week after a once-a-year clean. The midsummer and fall visits are visibly less intensive than spring because the glass never reaches the level of neglect that a one-per-year schedule allows. By the end of the season, the property looks maintained rather than periodically cleaned.",
+    "booking_urgency": "Seasonal packages sell out fastest at the start of the year when homeowners plan ahead — spring slots are the constraint, and once those fill, the full package isn't available. If you want guaranteed spring, midsummer, and fall cleans on your schedule rather than ours, book the package before the calendar fills.",
+    "page_intro_template": "This page is for homeowners in {location} who want their windows clean throughout the year without rebooking each time. Wagon Windows offers seasonal cleaning packages timed to the Shuswap's actual conditions — spring pollen, summer dust, and fall debris — serving {location} with pre-scheduled visits and priority slots for package holders. Book your annual package today."
+  }
+}

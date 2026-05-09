@@ -92,7 +92,7 @@
 
 {% block content %}
 <div class="quote-hero">
-  <h1>Get Your <span>Instant Quote</span></h1>
+  <h1>Get Your <span>Instant Estimate</span></h1>
   <p>4 quick steps to a same-day estimate. All prices are subject to final confirmation on arrival — we'll never start work without your approval.</p>
 </div>
 
@@ -190,6 +190,21 @@
           <h2>Add-ons</h2>
           <p class="sub" id="addon-sub"></p>
           <div class="addon-list">
+
+            <div class="addon-item" id="addon-largewindow">
+              <div class="addon-left">
+                <input type="checkbox" class="addon-check" id="chk-largewindow" onchange="toggleAddon('largewindow',this)">
+                <div>
+                  <div class="addon-label">Large / Oversized Windows</div>
+                  <div class="addon-price">$5 extra per large pane · picture windows, floor-to-ceiling, bay windows</div>
+                </div>
+              </div>
+              <div class="addon-counter" id="ctr-largewindow">
+                <button onclick="adjustAddon('largewindow',-1)">−</button>
+                <span id="val-largewindow">0</span>
+                <button onclick="adjustAddon('largewindow',1)">+</button>
+              </div>
+            </div>
 
             <div class="addon-item" id="addon-screens">
               <div class="addon-left">
@@ -358,15 +373,17 @@
 
 <script>
 const PRICING = {
-  addons: { screens: 4, tracks: 3, hardwater: 20 },
-  large: 71
+  addons: { screens: 4, tracks: 3, hardwater: 20, largewindow: 5 },
+  large: 71,
+  discount: 0.10,
+  gst: 0.05
 };
 
 const state = {
   propertyType: null,
   panes: 20,
   serviceType: null,
-  addons: { screens: 0, tracks: 0, hardwater: 0 }
+  addons: { screens: 0, tracks: 0, hardwater: 0, largewindow: 0 }
 };
 
 function calcBase(panes, type) {
@@ -476,34 +493,43 @@ function adjustAddon(key, delta) {
 }
 
 function buildQuote() {
-  const base = calcBase(state.panes, state.serviceType);
-  const addonTotal =
+  const base           = calcBase(state.panes, state.serviceType);
+  const largeWinTotal  = state.addons.largewindow * PRICING.addons.largewindow;
+  const addonTotal     =
     state.addons.screens   * PRICING.addons.screens +
     state.addons.tracks    * PRICING.addons.tracks +
     state.addons.hardwater * PRICING.addons.hardwater;
-  const total = base + addonTotal;
-  const high  = Math.round(total * 1.20);
-  return { base, addonTotal, total, high };
+  const subtotal       = base + largeWinTotal + addonTotal;
+  const discount       = Math.round(subtotal * PRICING.discount);
+  const afterDiscount  = subtotal - discount;
+  const gst            = Math.round(afterDiscount * PRICING.gst);
+  const total          = afterDiscount + gst;
+  const high           = Math.round(Math.round(base * 1.20 + largeWinTotal + addonTotal) * (1 - PRICING.discount) * (1 + PRICING.gst));
+  return { base, largeWinTotal, addonTotal, subtotal, discount, afterDiscount, gst, total, high };
 }
 
 function renderQuote() {
-  const { base, addonTotal, total, high } = buildQuote();
-  const labels = { house:'House', townhouse:'Townhouse', condo:'Condo/Apt', commercial:'Commercial' };
+  const { base, largeWinTotal, addonTotal, subtotal, discount, afterDiscount, gst, total, high } = buildQuote();
+  const labels   = { house:'House', townhouse:'Townhouse', condo:'Condo/Apt', commercial:'Commercial' };
   const svcLabel = state.serviceType === 'exterior' ? 'Exterior only' : 'Interior + Exterior';
 
   document.getElementById('quote-low').textContent = '$' + total;
-  document.getElementById('quote-range').textContent = 'up to $' + high + ' depending on condition on the day';
+  document.getElementById('quote-range').textContent = 'estimated range $' + total + '–$' + high + ' depending on window condition';
 
   let rows = `<div class="breakdown-row"><span>${labels[state.propertyType]} — ${state.panes} panes (${svcLabel})</span><span>$${base}</span></div>`;
-  if (state.addons.screens > 0)   rows += `<div class="breakdown-row"><span>Screen cleaning × ${state.addons.screens}</span><span>$${state.addons.screens * PRICING.addons.screens}</span></div>`;
-  if (state.addons.tracks > 0)    rows += `<div class="breakdown-row"><span>Track cleaning × ${state.addons.tracks}</span><span>$${state.addons.tracks * PRICING.addons.tracks}</span></div>`;
-  if (state.addons.hardwater > 0) rows += `<div class="breakdown-row"><span>Hard water removal × ${state.addons.hardwater} panes</span><span>$${state.addons.hardwater * PRICING.addons.hardwater}</span></div>`;
-  rows += `<div class="breakdown-row total"><span>Estimated Total</span><span>$${total} – $${high}</span></div>`;
+  if (state.addons.largewindow > 0) rows += `<div class="breakdown-row"><span>Large window surcharge × ${state.addons.largewindow} panes</span><span>$${largeWinTotal}</span></div>`;
+  if (state.addons.screens > 0)     rows += `<div class="breakdown-row"><span>Screen cleaning × ${state.addons.screens}</span><span>$${state.addons.screens * PRICING.addons.screens}</span></div>`;
+  if (state.addons.tracks > 0)      rows += `<div class="breakdown-row"><span>Track cleaning × ${state.addons.tracks}</span><span>$${state.addons.tracks * PRICING.addons.tracks}</span></div>`;
+  if (state.addons.hardwater > 0)   rows += `<div class="breakdown-row"><span>Hard water removal × ${state.addons.hardwater} panes</span><span>$${state.addons.hardwater * PRICING.addons.hardwater}</span></div>`;
+  rows += `<div class="breakdown-row" style="border-top:1px solid var(--border);margin-top:.4rem;padding-top:.5rem"><span>Subtotal</span><span>$${subtotal}</span></div>`;
+  rows += `<div class="breakdown-row" style="color:#1b5e20;font-weight:600"><span>✅ Online booking discount (10%)</span><span>−$${discount}</span></div>`;
+  rows += `<div class="breakdown-row"><span>GST (5%)</span><span>$${gst}</span></div>`;
+  rows += `<div class="breakdown-row total"><span>Total (estimated)</span><span>$${total}</span></div>`;
   document.getElementById('breakdown').innerHTML = rows;
 
-  document.getElementById('email-subject').value = `New Quote Request — ${labels[state.propertyType]}, ${state.panes} panes, ~$${total}`;
+  document.getElementById('email-subject').value = `New Estimate Request — ${labels[state.propertyType]}, ${state.panes} panes, ~$${total} after discount & tax`;
   document.getElementById('email-summary').value =
-    `Property: ${labels[state.propertyType]} | Panes: ${state.panes} | Service: ${svcLabel} | Screens: ${state.addons.screens} | Tracks: ${state.addons.tracks} | Hard water: ${state.addons.hardwater} panes | Estimate: $${total}–$${high}`;
+    `Property: ${labels[state.propertyType]} | Panes: ${state.panes} | Large panes: ${state.addons.largewindow} | Service: ${svcLabel} | Screens: ${state.addons.screens} | Tracks: ${state.addons.tracks} | Hard water: ${state.addons.hardwater} | Subtotal: $${subtotal} | Discount (10%): -$${discount} | GST: $${gst} | Total: $${total}`;
 }
 
 function goTo(n) {
