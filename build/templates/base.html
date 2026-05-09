@@ -143,8 +143,8 @@
 
 <!-- MOBILE BOOKING BAR -->
 <div class="mobile-book-bar">
-  <a href="{{ config.calendly_url }}" class="mobile-book-primary" target="_blank" rel="noopener"
-     onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'mobile_bar'});">Book Free Quote</a>
+  <a href="/quote/" class="mobile-book-primary"
+     onclick="gtag('event','quote_click',{'event_category':'contact','event_label':'mobile_bar'});">Book Free Quote</a>
   <a href="sms:{{ config.phone_raw }}" class="mobile-book-call"
      onclick="gtag('event','sms_click',{'event_category':'contact','event_label':'mobile_bar'});">Text Us</a>
 </div>

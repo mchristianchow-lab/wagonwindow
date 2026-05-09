@@ -45,7 +45,7 @@
       <p>{{ guide.intro }}</p>
     </div>
     <div class="hero-btns">
-      <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
+      <a href="/quote/" class="btn-primary"
          onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'guide_{{ guide.slug }}'});">
         Book Free Quote
       </a>
@@ -92,7 +92,7 @@
     <h2>Get a Free Window Cleaning Quote</h2>
     <p>Serving the Shuswap region from Salmon Arm. Book online or call us.</p>
     <div class="cta-buttons">
-      <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
+      <a href="/quote/" class="btn-primary"
          onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'guide_cta_{{ guide.slug }}'});">Book Online</a>
       <a href="tel:{{ config.phone_raw }}" class="btn-outline"
          onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'guide_cta_{{ guide.slug }}'});">Call {{ config.phone }}</a>

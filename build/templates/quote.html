@@ -155,7 +155,7 @@
         </div>
         <div id="large-notice" style="display:none">
           <div class="disclaimer-box red">
-            <strong>Large property.</strong> For 100+ panes we do a free on-site consultation to give you a precise quote — no surprises. Hit Next to book it.
+            <strong>Large property.</strong> For homes with 36+ windows (72+ panes) we do a free 30-minute on-site consultation to give you a precise quote — no surprises. Hit Next to book it.
           </div>
         </div>
       </div>
@@ -327,7 +327,7 @@
       <div class="step-card centered-card">
         <div class="big-icon">🏡</div>
         <h2>Sounds Like a Bigger Job</h2>
-        <p>For properties with 100+ panes we come out for a free 30-minute on-site consultation so we can give you an accurate number — no guesswork, no surprises.</p>
+        <p>For homes with 36+ windows we come out for a free 30-minute on-site consultation so we can give you an accurate number — no guesswork, no surprises.</p>
         <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
            style="display:inline-block"
            onclick="gtag('event','calendly_click',{'event_category':'quote','event_label':'large_home'});">
@@ -359,7 +359,7 @@
 <script>
 const PRICING = {
   addons: { screens: 4, tracks: 3, hardwater: 20 },
-  large: 100
+  large: 71
 };
 
 const state = {
@@ -557,5 +557,16 @@ document.getElementById('pane-display').addEventListener('click', function () {
     document.getElementById('next-2').textContent = v >= PRICING.large ? 'Book Consultation →' : 'Next →';
   }
 });
+
+// Pre-fill pane count from URL param (e.g. /quote/?panes=50 from pricing cards)
+(function () {
+  const p = parseInt(new URLSearchParams(window.location.search).get('panes'));
+  if (!isNaN(p) && p > 0) {
+    state.panes = p;
+    document.getElementById('pane-display').textContent = p;
+    document.getElementById('large-notice').style.display = p >= PRICING.large ? 'block' : 'none';
+    document.getElementById('next-2').textContent = p >= PRICING.large ? 'Book Consultation →' : 'Next →';
+  }
+})();
 </script>
 {% endblock %}

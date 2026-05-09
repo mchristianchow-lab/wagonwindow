@@ -67,7 +67,7 @@
       Transparent pricing, online booking, locally owned in Salmon Arm.</p>
     </div>
     <div class="hero-btns">
-      <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
+      <a href="/quote/" class="btn-primary"
          onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'location_hub_{{ location.slug }}'});">
         Book Free Quote
       </a>
@@ -173,7 +173,7 @@
     <h2>Get a Free Window Cleaning Quote in {{ location.name }}</h2>
     <p>Book online or call us — we serve {{ location.name }} regularly and can often schedule within a week.</p>
     <div class="cta-buttons">
-      <a href="{{ config.calendly_url }}" class="btn-primary" target="_blank" rel="noopener"
+      <a href="/quote/" class="btn-primary"
          onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'location_cta_{{ location.slug }}'});">Book Online</a>
       <a href="tel:{{ config.phone_raw }}" class="btn-outline"
          onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'location_cta_{{ location.slug }}'});">Call {{ config.phone }}</a>
