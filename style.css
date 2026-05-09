@@ -57,7 +57,7 @@ nav {
   width: auto;
   display: block;
   transform: translateY(2mm);
-  filter: brightness(0) sepia(1) saturate(500%) hue-rotate(15deg);
+  filter: brightness(0) invert(1) sepia(1) saturate(400%) hue-rotate(340deg);
 }
 
 
@@ -1054,7 +1054,7 @@ footer p + p { margin-top: 0.6rem; }
 @media (max-width: 768px) {
   /* NAV */
   nav { height: 64px; justify-content: center; }
-  .nav-logo-img { height: 160px; }
+  .nav-logo-img { height: 120px; }
   .hamburger { display: flex; position: absolute; right: 5%; top: 50%; transform: translateY(-50%); }
   .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--white); padding: 1.5rem 5%; gap: 1.2rem; border-top: 3px solid var(--sky); }
   .nav-links.open { display: flex; }
