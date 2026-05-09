@@ -335,6 +335,19 @@ def build_blog_index():
     register(canonical, priority='0.7', changefreq='weekly')
     print("  Blog index ✓")
 
+# ── Build: Quote Page ───────────────────────────────────────────────────────
+def build_quote_page():
+    canonical = f"{config['site_url']}/quote/"
+    ctx = {
+        'page_title': 'Get an Instant Quote | Wagon Windows — Salmon Arm',
+        'meta_desc': 'Get an instant window cleaning quote in 4 steps. Choose your service, count your panes, and see a same-day estimate. Subject to confirmation on arrival.',
+        'canonical': canonical,
+    }
+    out = dist_path('quote')
+    render('quote.html', out, ctx)
+    register(canonical, priority='0.9', changefreq='monthly')
+    print("  Quote page ✓")
+
 # ── Build: Standalone Pages ─────────────────────────────────────────────────
 def build_standalones():
     try:
@@ -373,6 +386,7 @@ if __name__ == '__main__':
         copy_assets()
 
     build_homepage()
+    build_quote_page()
     build_service_location_pages()
     build_location_hubs()
     build_service_hubs()
