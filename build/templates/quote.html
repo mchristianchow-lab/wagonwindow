@@ -358,7 +358,7 @@
 
 <script>
 const PRICING = {
-  addons: { screens: 5, tracks: 4, hardwater: 20 },
+  addons: { screens: 4, tracks: 3, hardwater: 20 },
   large: 100
 };
 
@@ -398,7 +398,7 @@ function selectOption(key, value, btn) {
     section.style.display = 'block';
 
     const screens = Math.round(state.panes / 2);
-    const tracks  = state.panes;
+    const tracks  = screens;
 
     if (value === 'both') {
       // Pre-fill screens + tracks, leave hard water for customer to decide
@@ -408,7 +408,7 @@ function selectOption(key, value, btn) {
 
       notice.style.display = 'block';
       notice.innerHTML = `<div class="disclaimer-box" style="background:#f0fff4;border-color:#4caf50;color:#1b5e20">
-        ✅ <strong>We've done the maths.</strong> Based on ${state.panes} panes we've estimated
+        ✅ <strong>We've done the math.</strong> Based on ${state.panes} panes we've estimated
         <strong>${screens} screens</strong> and <strong>${tracks} tracks</strong> — adjust below if your home is different.
       </div>`;
 
