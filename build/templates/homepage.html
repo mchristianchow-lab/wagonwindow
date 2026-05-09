@@ -44,11 +44,10 @@
   <p class="section-sub">From single-story homes to commercial storefronts, we handle it all — professionally and on schedule.</p>
   <div class="services-grid">
     {% for svc in services %}
-    <div class="service-card">
-      <div class="service-icon-wrap">{{ svc.icon }}</div>
+    <a href="/services/{{ svc.slug }}/" class="service-card">
       <h3>{{ svc.name }}</h3>
-      <a href="/services/{{ svc.slug }}/">Learn more →</a>
-    </div>
+      <span class="service-card-link">View service →</span>
+    </a>
     {% endfor %}
   </div>
 </section>
