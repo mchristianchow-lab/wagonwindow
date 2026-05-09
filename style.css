@@ -57,7 +57,7 @@ nav {
   width: auto;
   display: block;
   transform: translateY(2mm);
-  filter: brightness(0) invert(1) sepia(1) saturate(800%) hue-rotate(325deg) brightness(0.85);
+  filter: brightness(0) invert(40%) sepia(100%) saturate(1000%) hue-rotate(321deg);
 }
 
 
