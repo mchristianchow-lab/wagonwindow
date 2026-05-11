@@ -185,6 +185,54 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
 
 /* ── Misc ── */
 .spacer{height:1rem}
+/* ── Status toast ── */
+.toast{
+  position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);
+  background:#111;color:#fff;border-radius:8px;padding:.65rem 1.25rem;
+  font-size:.85rem;font-weight:600;z-index:9999;pointer-events:none;
+  opacity:0;transition:opacity .3s;white-space:nowrap
+}
+.toast.show{opacity:1}
+/* ── Print invoice ── */
+@media print {
+  html,body{overflow:visible!important;height:auto!important;background:#fff}
+  #app,#toast-msg{display:none!important}
+  .print-invoice{display:block!important}
+}
+.print-invoice{
+  display:none;font-family:'Inter',Arial,sans-serif;color:#111;
+  padding:32px 40px;max-width:720px;margin:0 auto
+}
+.pi-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.pi-brand{font-size:18pt;font-weight:800;letter-spacing:-.01em}
+.pi-brand span{color:#e81010}
+.pi-contact{font-size:8.5pt;color:#666;margin-top:3px;line-height:1.7}
+.pi-meta{text-align:right;font-size:9pt;color:#444;line-height:1.8}
+.pi-meta .pi-label{font-size:16pt;font-weight:800;letter-spacing:-.02em;color:#111}
+.pi-bar{height:4px;background:#e81010;border-radius:2px;margin:12px 0 18px}
+.pi-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.pi-box{background:#fafafa;border:1px solid #eee;border-radius:6px;padding:10px 14px}
+.pi-box-title{font-size:7.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#e81010;margin-bottom:8px}
+.pi-box-row{margin-bottom:5px}
+.pi-box-row label{font-size:7pt;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#aaa;display:block}
+.pi-box-row span{font-size:9.5pt;color:#333}
+.pi-table{width:100%;border-collapse:collapse;margin-bottom:0}
+.pi-table thead tr{background:#111;color:#fff}
+.pi-table thead th{padding:7px 10px;font-size:8pt;text-align:left;text-transform:uppercase;letter-spacing:.04em}
+.pi-table thead th.r{text-align:right}
+.pi-table tbody td{padding:8px 10px;font-size:9pt;border-bottom:1px solid #eee}
+.pi-table tbody td.r{text-align:right}
+.pi-totals{border:1px solid #eee;border-top:none;border-radius:0 0 6px 6px;overflow:hidden}
+.pi-tot-row{display:flex;justify-content:space-between;padding:6px 10px;font-size:9.5pt;border-bottom:1px solid #eee}
+.pi-tot-row.total{background:#111;color:#fff;font-weight:700;font-size:11pt}
+.pi-footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.pi-pay-box{background:#f0fff4;border:1px solid #bbf7d0;border-radius:6px;padding:10px 14px;font-size:9pt;color:#166534;line-height:1.7}
+.pi-pay-box strong{color:#14532d}
+.pi-sig-box{background:#fafafa;border:1px solid #eee;border-radius:6px;padding:10px 14px}
+.pi-sig-line{border-bottom:1.5px solid #ccc;margin:16px 0 4px}
+.pi-sig-label{font-size:7.5pt;color:#aaa;font-weight:700;text-transform:uppercase;letter-spacing:.07em}
+.pi-thankyou{text-align:center;margin-top:18px;padding-top:12px;border-top:1px solid #eee;font-size:9pt;color:#888}
+.pi-thankyou strong{color:#111;display:block;font-size:10pt;margin-bottom:3px}
 </style>
 </head>
 <body>
@@ -243,22 +291,22 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
       <div class="card-title">Services &amp; Quote</div>
       <div class="card-sub">Select all services being performed today.</div>
       <div class="service-grid" id="service-grid">
-        <div class="svc-item" onclick="toggleSvc(this,'exterior')">
+        <div class="svc-item" data-svc="exterior" onclick="toggleSvc(this,'exterior')">
           <div class="svc-box">✓</div> Exterior Windows
         </div>
-        <div class="svc-item" onclick="toggleSvc(this,'interior')">
+        <div class="svc-item" data-svc="interior" onclick="toggleSvc(this,'interior')">
           <div class="svc-box">✓</div> Interior Windows
         </div>
-        <div class="svc-item" onclick="toggleSvc(this,'screens')">
+        <div class="svc-item" data-svc="screens" onclick="toggleSvc(this,'screens')">
           <div class="svc-box">✓</div> Screen Cleaning
         </div>
-        <div class="svc-item" onclick="toggleSvc(this,'tracks')">
+        <div class="svc-item" data-svc="tracks" onclick="toggleSvc(this,'tracks')">
           <div class="svc-box">✓</div> Track Cleaning
         </div>
-        <div class="svc-item" onclick="toggleSvc(this,'gutters')">
+        <div class="svc-item" data-svc="gutters" onclick="toggleSvc(this,'gutters')">
           <div class="svc-box">✓</div> Gutter Cleaning
         </div>
-        <div class="svc-item" onclick="toggleSvc(this,'hardwater')">
+        <div class="svc-item" data-svc="hardwater" onclick="toggleSvc(this,'hardwater')">
           <div class="svc-box">✓</div> Hard Water Removal
         </div>
       </div>
@@ -461,15 +509,25 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
   <div class="done-sub" id="done-sub">Signed and initialled.</div>
   <div class="done-card" id="done-card"></div>
   <div style="display:flex;flex-direction:column;gap:.6rem;width:100%;max-width:420px">
-    <button class="btn-primary" onclick="shareSummary()">Share Summary</button>
-    <button class="btn-outline" onclick="emailCustomer()">Email to Customer</button>
+    <button class="btn-primary" onclick="saveInvoicePDF()">Save Invoice PDF</button>
+    <button class="btn-outline" onclick="emailCustomer()">Email Invoice to Customer</button>
+    <button class="btn-outline" onclick="shareSummary()">Share Summary</button>
     <button class="btn-ghost" onclick="newAgreement()">Start New Agreement</button>
   </div>
 </div>
 
+<!-- ── Print invoice (hidden, print-only) ── -->
+<div class="print-invoice" id="print-invoice"></div>
+<div class="toast" id="toast-msg"></div>
+
 </div><!-- /#app -->
 
 <script>
+// ── Config ─────────────────────────────────────────────────────────────
+const WEB3FORMS_KEY   = 'cd06c1c4-9648-4bea-b875-03a7cdd6ef61';
+const DAVID_EMAIL     = 'davidhanna@wagonwindow.com';
+const SHEETS_WEBHOOK  = ''; // Paste Google Apps Script web app URL here
+
 // ── State ──────────────────────────────────────────────────────────────
 const state = {
   name: '', phone: '', email: '', address: '',
@@ -661,11 +719,141 @@ function checkSignReady() {
 document.getElementById('f-printname').addEventListener('input', checkSignReady);
 
 // ── Complete ───────────────────────────────────────────────────────────
-function complete() {
+async function complete() {
+  const btn = document.getElementById('next-sign');
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+
   state.printName = document.getElementById('f-printname').value.trim();
   saveRecord();
   buildDoneScreen();
+  buildPrintInvoice();
+
+  // Fire submissions in parallel — don't block the UI
+  submitToWeb3Forms().catch(() => {});
+  postToSheets().catch(() => {});
+
   goTo('scr-done');
+}
+
+// ── Web3Forms auto-email to David ──────────────────────────────────────
+async function submitToWeb3Forms() {
+  const services = state.services.map(k => SVC_LABELS[k]).join(', ') || '—';
+  const fd = new FormData();
+  fd.append('access_key',     WEB3FORMS_KEY);
+  fd.append('subject',        'Signed Agreement — ' + state.name + ' — ' + state.dateStr);
+  fd.append('from_name',      'Wagon Windows Waiver');
+  fd.append('replyto',        state.email || DAVID_EMAIL);
+  fd.append('Customer Name',  state.name);
+  fd.append('Phone',          state.phone);
+  fd.append('Email',          state.email || 'Not provided');
+  fd.append('Address',        state.address);
+  fd.append('Services',       services);
+  fd.append('Quoted Price',   '$' + state.price);
+  fd.append('Window Count',   state.windows || '—');
+  fd.append('Notes',          state.notes || '—');
+  fd.append('Initialled By',  state.initials + ' (all 11 clauses)');
+  fd.append('Signed By',      state.printName);
+  fd.append('Date',           state.dateStr);
+  fd.append('redirect',       'false');
+  const res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
+  const json = await res.json();
+  if (json.success) showToast('Agreement emailed to David ✓');
+}
+
+// ── Google Sheets webhook ──────────────────────────────────────────────
+async function postToSheets() {
+  if (!SHEETS_WEBHOOK) return;
+  const services = state.services.map(k => SVC_LABELS[k]).join(', ') || '—';
+  await fetch(SHEETS_WEBHOOK, {
+    method:  'POST',
+    mode:    'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify({
+      date: state.dateStr, customer: state.name, phone: state.phone,
+      email: state.email, address: state.address, services,
+      price: state.price, windows: state.windows, notes: state.notes,
+      initials: state.initials, signed_by: state.printName,
+      timestamp: new Date().toISOString()
+    })
+  });
+}
+
+// ── Print / Save PDF invoice ───────────────────────────────────────────
+function buildPrintInvoice() {
+  const services   = state.services.map(k => SVC_LABELS[k]);
+  const price      = parseFloat(state.price) || 0;
+  const gst        = Math.round(price * 0.05);
+  const total      = price + gst;
+  const invoiceNum = 'WW-' + Date.now().toString().slice(-6);
+  const rows       = services.map(s =>
+    `<tr><td>${s}</td><td class="r">1</td><td class="r">—</td><td class="r">—</td></tr>`
+  ).join('');
+
+  document.getElementById('print-invoice').innerHTML = `
+    <div class="pi-header">
+      <div>
+        <div class="pi-brand">Wagon <span>Windows</span></div>
+        <div class="pi-contact">Salmon Arm &amp; Shuswap, BC<br>(403) 837-5092 · davidhanna@wagonwindow.com · wagonwindow.com</div>
+      </div>
+      <div class="pi-meta">
+        <div class="pi-label">INVOICE</div>
+        Invoice #: ${invoiceNum}<br>
+        Date: ${state.dateStr}<br>
+        Due: On Completion
+      </div>
+    </div>
+    <div class="pi-bar"></div>
+    <div class="pi-grid">
+      <div class="pi-box">
+        <div class="pi-box-title">Bill To</div>
+        <div class="pi-box-row"><label>Name</label><span>${esc(state.name)}</span></div>
+        <div class="pi-box-row"><label>Phone</label><span>${esc(state.phone)}</span></div>
+        ${state.email ? `<div class="pi-box-row"><label>Email</label><span>${esc(state.email)}</span></div>` : ''}
+        <div class="pi-box-row"><label>Address</label><span>${esc(state.address)}</span></div>
+      </div>
+      <div class="pi-box">
+        <div class="pi-box-title">Service Details</div>
+        <div class="pi-box-row"><label>Service Date</label><span>${state.dateStr}</span></div>
+        <div class="pi-box-row"><label>Technician</label><span>David Hanna</span></div>
+        ${state.windows ? `<div class="pi-box-row"><label>Window Count</label><span>${esc(state.windows)}</span></div>` : ''}
+        ${state.notes ? `<div class="pi-box-row"><label>Notes</label><span>${esc(state.notes)}</span></div>` : ''}
+      </div>
+    </div>
+    <table class="pi-table">
+      <thead><tr><th>Service</th><th class="r">Qty</th><th class="r">Rate</th><th class="r">Amount</th></tr></thead>
+      <tbody>
+        ${rows}
+        <tr><td>Window Cleaning Package</td><td class="r">1</td><td class="r">$${price.toFixed(2)}</td><td class="r">$${price.toFixed(2)}</td></tr>
+      </tbody>
+    </table>
+    <div class="pi-totals">
+      <div class="pi-tot-row"><span>Subtotal</span><span>$${price.toFixed(2)}</span></div>
+      <div class="pi-tot-row"><span>GST (5%)</span><span>$${gst.toFixed(2)}</span></div>
+      <div class="pi-tot-row total"><span>TOTAL DUE</span><span>$${total.toFixed(2)}</span></div>
+    </div>
+    <div class="pi-footer-grid">
+      <div class="pi-pay-box">
+        <strong>Payment Methods</strong>
+        E-Transfer: davidhanna@wagonwindow.com<br>
+        Cash accepted on completion.<br>
+        Payment due on day of service.
+      </div>
+      <div class="pi-sig-box">
+        <div class="pi-sig-label">Customer Signature</div>
+        <div class="pi-sig-line"></div>
+        <div style="font-size:8.5pt;color:#555;margin-top:4px">Signed digitally — ${esc(state.printName)} — ${state.dateStr}</div>
+      </div>
+    </div>
+    <div class="pi-thankyou">
+      <strong>Thank you for choosing Wagon Windows.</strong>
+      We appreciate your business and look forward to keeping your windows spotless.
+    </div>`;
+}
+
+function saveInvoicePDF() {
+  buildPrintInvoice();
+  window.print();
 }
 
 const SVC_LABELS = {
@@ -797,8 +985,36 @@ function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
+// ── URL param pre-fill (from field tool "Start Waiver" button) ─────────
+function readUrlParams() {
+  const p = new URLSearchParams(window.location.search);
+  const set = (id, key) => { const v = p.get(key); if (v) document.getElementById(id).value = v; };
+  set('f-name',    'name');
+  set('f-phone',   'phone');
+  set('f-email',   'email');
+  set('f-address', 'address');
+  set('f-price',   'price');
+  set('f-windows', 'windows');
+  set('f-notes',   'notes');
+  // Pre-select services
+  (p.get('services') || '').split(',').filter(Boolean).forEach(key => {
+    const el = document.querySelector('[data-svc="' + key + '"]');
+    if (el && !el.classList.contains('checked')) { el.classList.add('checked'); state.services.push(key); }
+  });
+  if (p.get('name') || p.get('price')) { watchStep1(); watchStep2(); }
+}
+
+// ── Toast ──────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const el = document.getElementById('toast-msg');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+
 // ── Init ───────────────────────────────────────────────────────────────
 document.getElementById('f-date').value = new Date().toLocaleDateString('en-CA', { year:'numeric', month:'long', day:'numeric' });
+readUrlParams();
 </script>
 </body>
 </html>

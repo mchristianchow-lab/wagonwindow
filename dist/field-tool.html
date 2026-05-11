@@ -1250,6 +1250,7 @@ function renderLeads() {
       + '<div class="lead-actions">'
       + '<button class="lead-btn" onclick="shareLead(' + l.id + ')">Share</button>'
       + '<button class="lead-btn calendly" onclick="openCalendly()">Book</button>'
+      + '<button class="lead-btn" style="border-color:var(--red);color:var(--red)" onclick="openWaiver(' + l.id + ')">Waiver</button>'
       + '</div>'
       + '<div class="lead-actions" style="margin-top:.4rem">'
       + '<button class="lead-btn" onclick="sendReminderMsg(' + l.id + ')">Reminder</button>'
@@ -1286,6 +1287,39 @@ function updateRevenue() {
 
 function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── Open waiver pre-filled from lead ──────────────────────────────────
+function openWaiver(id) {
+  const lead = getLeads().find(l => l.id === id);
+  if (!lead) return;
+  const svcMap = {
+    'Exterior Only': 'exterior',
+    'Int + Ext':     'exterior,interior',
+    'exterior':      'exterior',
+    'both':          'exterior,interior'
+  };
+  // Parse services from lead summary
+  const svcs = [];
+  if (lead.summary) {
+    if (lead.summary.toLowerCase().includes('exterior') || lead.serviceType === 'exterior') svcs.push('exterior');
+    if (lead.summary.toLowerCase().includes('int + ext') || lead.serviceType === 'both') { svcs.push('exterior'); svcs.push('interior'); }
+    if (lead.summary.toLowerCase().includes('screens')) svcs.push('screens');
+    if (lead.summary.toLowerCase().includes('tracks'))  svcs.push('tracks');
+    if (lead.summary.toLowerCase().includes('gutters')) svcs.push('gutters');
+    if (lead.summary.toLowerCase().includes('hard water')) svcs.push('hardwater');
+  }
+  const params = new URLSearchParams({
+    name:    lead.name    || '',
+    phone:   lead.phone   || '',
+    email:   '',
+    address: lead.address || '',
+    price:   lead.quote   || '',
+    windows: Math.round((lead.panes || 0) / 2) || '',
+    notes:   lead.notes   || '',
+    services: [...new Set(svcs)].join(',')
+  });
+  window.open('https://wagonwindow.com/waiver-ipad.html?' + params.toString(), '_blank');
 }
 
 // ── Outdoor mode ──────────────────────────────────────────────────────
