@@ -670,6 +670,10 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
       <input class="field-input" id="lead-phone" type="tel" placeholder="(250) 555-0123" autocomplete="tel">
     </div>
     <div class="field-group">
+      <label class="field-label">Email</label>
+      <input class="field-input" id="lead-email" type="email" placeholder="customer@email.com" autocapitalize="none" autocomplete="email">
+    </div>
+    <div class="field-group">
       <label class="field-label">Address</label>
       <input class="field-input" id="lead-address" type="text" placeholder="123 Main St, Salmon Arm">
     </div>
@@ -1170,6 +1174,7 @@ function saveLead(openCal) {
     id: Date.now(),
     name,
     phone,
+    email: document.getElementById('lead-email').value.trim(),
     address: document.getElementById('lead-address').value.trim(),
     date_pref: document.getElementById('lead-date').value,
     notes: document.getElementById('lead-notes').value.trim(),
@@ -1184,7 +1189,7 @@ function saveLead(openCal) {
   saveLeads(leads);
 
   // Clear form
-  ['lead-name','lead-phone','lead-address','lead-date','lead-notes'].forEach(id => {
+  ['lead-name','lead-phone','lead-email','lead-address','lead-date','lead-notes'].forEach(id => {
     document.getElementById(id).value = '';
   });
 
@@ -1254,6 +1259,7 @@ function renderLeads() {
       + '<br>🕐 ' + date
       + '</div>'
       + (l.quote_str ? '<div class="lead-quote">' + l.quote_str + ' · ' + esc(l.summary) + '</div>' : '')
+      + (l.email ? '<button class="lead-btn" style="width:100%;margin-bottom:.5rem;border-color:var(--green);color:var(--green);font-size:.85rem" onclick="emailQuote(' + l.id + ')">✉ Email Quote to ' + esc(l.name.split(' ')[0]) + '</button>' : '')
       + '<div class="lead-actions">'
       + '<button class="lead-btn" onclick="shareLead(' + l.id + ')">Share</button>'
       + '<button class="lead-btn calendly" onclick="openCalendly()">Book</button>'
@@ -1387,6 +1393,49 @@ function sendReminderMsg(id) {
   } else {
     navigator.clipboard.writeText(text).then(() => alert('Reminder copied to clipboard.')).catch(() => alert(text));
   }
+}
+
+// ── Email quote to customer ────────────────────────────────────────────
+function emailQuote(id) {
+  const lead = getLeads().find(l => l.id === id);
+  if (!lead) return;
+  if (!lead.email) { alert('No email saved for this lead.'); return; }
+
+  const subject = encodeURIComponent(
+    'Wagon Windows — Your Estimate' + (lead.address ? ' for ' + lead.address : '')
+  );
+
+  const lines = [
+    'Hi ' + lead.name + ',',
+    '',
+    'Thanks for your time' + (lead.address ? ' at ' + lead.address : '') + '. Here’s a summary of your window cleaning estimate.',
+    '',
+    'ESTIMATE',
+    (lead.quote_str || '—'),
+    '',
+    'SERVICES INCLUDED',
+    lead.summary,
+    ''
+  ];
+
+  if (lead.notes) { lines.push('NOTES'); lines.push(lead.notes); lines.push(''); }
+
+  lines.push(
+    'This is an on-site estimate. Final price confirmed before work begins.',
+    '',
+    'We guarantee streak-free results — if you’re not satisfied, we come back.',
+    '',
+    'Ready to book? Reply to this email or book online:',
+    'wagonwindow.com/quote/',
+    '',
+    'Wagon Windows',
+    'Salmon Arm & Shuswap Region, BC',
+    'wagonwindow.com'
+  );
+
+  window.location.href = 'mailto:' + lead.email
+    + '?subject=' + subject
+    + '&body=' + encodeURIComponent(lines.join('\n'));
 }
 
 // ── Init ───────────────────────────────────────────────────────────────
