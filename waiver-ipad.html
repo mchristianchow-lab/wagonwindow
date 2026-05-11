@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WW Waiver">
+  <title>Wagon Windows · Service Agreement</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#e81010;
+  --navy:#111111;
+  --light:#f5f5f5;
+  --white:#ffffff;
+  --gray:#6b7280;
+  --border:#e0e0e0;
+  --green:#22c55e;
+  --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(--font);overflow:hidden}
+#app{height:100%;display:flex;flex-direction:column;max-width:680px;margin:0 auto}
+
+/* ── Topbar (matches site nav) ── */
+.topbar{
+  flex-shrink:0;background:#000;border-bottom:4px solid var(--red);
+  padding:0 1.25rem;display:flex;align-items:center;justify-content:space-between;
+  min-height:56px;gap:.75rem
+}
+.topbar-logo{font-weight:800;font-size:1rem;color:#fff;letter-spacing:-.01em}
+.topbar-logo span{color:var(--red)}
+.topbar-back{background:none;border:none;color:rgba(255,255,255,.65);font-size:.9rem;
+  font-weight:500;cursor:pointer;padding:.25rem .5rem;font-family:var(--font);
+  -webkit-tap-highlight-color:transparent}
+.topbar-back:active{color:#fff}
+.topbar-step{font-size:.78rem;color:rgba(255,255,255,.5);white-space:nowrap}
+
+/* ── Progress bar ── */
+.progress-bar{flex-shrink:0;display:flex;height:3px;background:#e0e0e0}
+.progress-fill{height:100%;background:var(--red);transition:width .35s ease}
+
+/* ── Screen ── */
+.screen{display:none;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;flex-direction:column}
+.screen.active{display:flex}
+
+/* ── Section / Card ── */
+.page-body{padding:1.25rem;display:flex;flex-direction:column;gap:1rem;flex:1}
+.card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1.25rem;overflow:hidden}
+.card-title{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:.2rem}
+.card-sub{font-size:.83rem;color:var(--gray);line-height:1.5;margin-bottom:1rem}
+.section-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--red);margin-bottom:.65rem}
+
+/* ── Form fields ── */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.form-grid.full{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:.3rem}
+.field.span2{grid-column:1/-1}
+.field label{font-size:.75rem;font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:.05em}
+.field input,.field select{
+  border:1.5px solid var(--border);border-radius:7px;padding:.75rem .9rem;
+  font-family:var(--font);font-size:1rem;color:var(--navy);background:var(--white);
+  -webkit-appearance:none;transition:border-color .15s
+}
+.field input:focus,.field select:focus{outline:none;border-color:var(--red)}
+.field input::placeholder{color:#bbb}
+
+/* ── Service checkboxes ── */
+.service-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.svc-item{
+  display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;
+  border:1.5px solid var(--border);border-radius:8px;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;transition:border-color .15s,background .15s;
+  font-size:.9rem;font-weight:500;color:var(--navy);background:var(--white)
+}
+.svc-item.checked{border-color:var(--red);background:#fff5f5}
+.svc-box{
+  width:20px;height:20px;border-radius:4px;border:1.5px solid var(--border);
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;color:#fff;transition:background .15s,border-color .15s
+}
+.svc-item.checked .svc-box{background:var(--red);border-color:var(--red)}
+
+/* ── Hand-off screen ── */
+#scr-handoff{background:#000;justify-content:center;align-items:center;text-align:center;padding:2.5rem 2rem}
+.handoff-icon{font-size:5rem;margin-bottom:1.5rem}
+.handoff-title{font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:.6rem}
+.handoff-sub{font-size:1rem;color:rgba(255,255,255,.6);line-height:1.6;max-width:340px;margin:0 auto 2rem}
+.handoff-btn{
+  background:var(--red);color:#fff;border:none;border-radius:8px;
+  padding:1.1rem 2.5rem;font-size:1.05rem;font-weight:700;font-family:var(--font);
+  cursor:pointer;-webkit-tap-highlight-color:transparent;width:100%;max-width:340px
+}
+.handoff-btn:active{opacity:.85}
+
+/* ── Terms clauses ── */
+.initials-set-bar{
+  display:flex;align-items:center;gap:.75rem;background:#fff;
+  border:1.5px solid var(--border);border-radius:8px;padding:.75rem 1rem;margin-bottom:.25rem
+}
+.initials-set-bar label{font-size:.8rem;font-weight:700;color:var(--gray);white-space:nowrap;text-transform:uppercase;letter-spacing:.06em}
+.initials-input{
+  border:1.5px solid var(--border);border-radius:6px;padding:.5rem .75rem;
+  font-family:var(--font);font-size:1rem;font-weight:700;color:var(--navy);
+  width:90px;text-transform:uppercase;-webkit-appearance:none
+}
+.initials-input:focus{outline:none;border-color:var(--red)}
+.progress-count{margin-left:auto;font-size:.78rem;font-weight:600;color:var(--gray);white-space:nowrap}
+
+.clause{
+  border:1.5px solid var(--border);border-radius:10px;overflow:hidden;
+  background:var(--white);transition:border-color .2s
+}
+.clause.initialled{border-color:var(--green)}
+.clause-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 1rem;gap:.75rem;cursor:pointer;-webkit-tap-highlight-color:transparent
+}
+.clause-name{font-size:.9rem;font-weight:700;color:var(--navy);flex:1;line-height:1.3}
+.initial-btn{
+  flex-shrink:0;padding:.4rem .85rem;border-radius:6px;border:1.5px solid var(--red);
+  background:none;color:var(--red);font-size:.78rem;font-weight:700;font-family:var(--font);
+  cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent;
+  transition:background .15s,color .15s
+}
+.clause.initialled .initial-btn{background:var(--green);border-color:var(--green);color:#fff}
+.clause-body{
+  font-size:.83rem;color:var(--gray);line-height:1.6;padding:0 1rem .9rem;
+  border-top:1px solid var(--border);padding-top:.75rem;display:none
+}
+.clause.open .clause-body{display:block}
+
+/* ── Signature ── */
+.sig-wrap{
+  border:2px solid var(--border);border-radius:10px;overflow:hidden;
+  background:#fafafa;position:relative
+}
+.sig-instruction{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-size:.9rem;color:#ccc;pointer-events:none;white-space:nowrap;
+  transition:opacity .2s
+}
+#sig-canvas{display:block;width:100%;touch-action:none;cursor:crosshair}
+.sig-clear{
+  position:absolute;top:.5rem;right:.5rem;background:#fff;border:1px solid var(--border);
+  border-radius:5px;padding:.3rem .7rem;font-size:.75rem;font-weight:600;color:var(--gray);
+  cursor:pointer;font-family:var(--font);-webkit-tap-highlight-color:transparent
+}
+
+/* ── Done screen ── */
+#scr-done{background:var(--white);justify-content:center;align-items:center;text-align:center;padding:2rem}
+.done-icon{font-size:4.5rem;margin-bottom:1.25rem}
+.done-title{font-size:1.5rem;font-weight:800;color:var(--navy);margin-bottom:.4rem}
+.done-sub{font-size:.9rem;color:var(--gray);line-height:1.6;margin-bottom:1.75rem}
+.done-card{
+  background:var(--light);border:1px solid var(--border);border-radius:10px;
+  padding:1.1rem 1.25rem;text-align:left;width:100%;max-width:420px;margin-bottom:1.5rem
+}
+.done-row{display:flex;justify-content:space-between;font-size:.85rem;padding:.3rem 0;gap:1rem}
+.done-row-label{color:var(--gray)}
+.done-row-val{font-weight:600;color:var(--navy);text-align:right}
+
+/* ── Buttons ── */
+.btn-primary{
+  display:block;width:100%;padding:.95rem 1.5rem;background:var(--red);color:#fff;
+  border:none;border-radius:8px;font-family:var(--font);font-size:1rem;font-weight:700;
+  cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent;
+  transition:opacity .15s
+}
+.btn-primary:active{opacity:.85}
+.btn-primary:disabled{background:#ccc;cursor:not-allowed}
+.btn-outline{
+  display:block;width:100%;padding:.85rem 1.5rem;background:var(--white);color:var(--navy);
+  border:1.5px solid var(--border);border-radius:8px;font-family:var(--font);font-size:.95rem;
+  font-weight:600;cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent
+}
+.btn-outline:active{background:var(--light)}
+.btn-ghost{
+  display:block;width:100%;padding:.75rem;background:none;border:none;color:var(--gray);
+  font-family:var(--font);font-size:.88rem;cursor:pointer;-webkit-tap-highlight-color:transparent
+}
+.btn-stack{display:flex;flex-direction:column;gap:.6rem;padding:1.25rem;flex-shrink:0}
+
+/* ── Misc ── */
+.spacer{height:1rem}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- ── TOP BAR ── -->
+<div class="topbar" id="main-topbar">
+  <button class="topbar-back" id="topbar-back-btn" onclick="goBack()" style="visibility:hidden">← Back</button>
+  <div class="topbar-logo">Wagon <span>Windows</span></div>
+  <div class="topbar-step" id="topbar-step">Step 1 of 4</div>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:25%"></div></div>
+
+<!-- ════════════════════════════
+     SCREEN 1 — CUSTOMER DETAILS
+════════════════════════════ -->
+<div id="scr-details" class="screen active">
+  <div class="page-body">
+    <div class="card">
+      <div class="section-label">Step 1 of 4 · You fill this in</div>
+      <div class="card-title">Customer Details</div>
+      <div class="card-sub">Fill in the customer's information before handing the iPad over.</div>
+      <div class="form-grid">
+        <div class="field span2">
+          <label>Full Name *</label>
+          <input id="f-name" type="text" placeholder="Jane Smith" autocomplete="off">
+        </div>
+        <div class="field">
+          <label>Phone *</label>
+          <input id="f-phone" type="tel" placeholder="(250) 555-0123" autocomplete="off">
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input id="f-email" type="email" placeholder="jane@email.com" autocomplete="off">
+        </div>
+        <div class="field span2">
+          <label>Service Address *</label>
+          <input id="f-address" type="text" placeholder="123 Main St, Salmon Arm, BC" autocomplete="off">
+        </div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="btn-stack">
+    <button class="btn-primary" id="next-1" onclick="goTo('scr-services')" disabled>Next: Services →</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     SCREEN 2 — SERVICES & QUOTE
+════════════════════════════ -->
+<div id="scr-services" class="screen">
+  <div class="page-body">
+    <div class="card">
+      <div class="section-label">Step 2 of 4 · You fill this in</div>
+      <div class="card-title">Services &amp; Quote</div>
+      <div class="card-sub">Select all services being performed today.</div>
+      <div class="service-grid" id="service-grid">
+        <div class="svc-item" onclick="toggleSvc(this,'exterior')">
+          <div class="svc-box">✓</div> Exterior Windows
+        </div>
+        <div class="svc-item" onclick="toggleSvc(this,'interior')">
+          <div class="svc-box">✓</div> Interior Windows
+        </div>
+        <div class="svc-item" onclick="toggleSvc(this,'screens')">
+          <div class="svc-box">✓</div> Screen Cleaning
+        </div>
+        <div class="svc-item" onclick="toggleSvc(this,'tracks')">
+          <div class="svc-box">✓</div> Track Cleaning
+        </div>
+        <div class="svc-item" onclick="toggleSvc(this,'gutters')">
+          <div class="svc-box">✓</div> Gutter Cleaning
+        </div>
+        <div class="svc-item" onclick="toggleSvc(this,'hardwater')">
+          <div class="svc-box">✓</div> Hard Water Removal
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Quote Details</div>
+      <div class="form-grid">
+        <div class="field">
+          <label>Quoted Price ($) *</label>
+          <input id="f-price" type="number" placeholder="250" autocomplete="off">
+        </div>
+        <div class="field">
+          <label>Window Count</label>
+          <input id="f-windows" type="number" placeholder="24" autocomplete="off">
+        </div>
+        <div class="field span2">
+          <label>Special Instructions</label>
+          <input id="f-notes" type="text" placeholder="Gate code, dog, second storey access…" autocomplete="off">
+        </div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="btn-stack">
+    <button class="btn-primary" id="next-2" onclick="goToHandoff()" disabled>Next: Hand to Customer →</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     SCREEN 3 — HAND-OFF
+════════════════════════════ -->
+<div id="scr-handoff" class="screen">
+  <div class="handoff-icon">🤝</div>
+  <div class="handoff-title">Hand the iPad to your customer</div>
+  <div class="handoff-sub">They'll read through the service agreement, initial each clause, and sign at the end. Takes about 2 minutes.</div>
+  <button class="handoff-btn" onclick="goTo('scr-terms')">I'm Ready to Sign →</button>
+</div>
+
+<!-- ════════════════════════════
+     SCREEN 4 — TERMS & INITIALS
+════════════════════════════ -->
+<div id="scr-terms" class="screen">
+  <div class="page-body">
+    <div class="card" style="padding-bottom:.75rem">
+      <div class="section-label">Step 3 of 4 · Customer</div>
+      <div class="card-title">Service Agreement</div>
+      <div class="card-sub" style="margin-bottom:.85rem">Enter your initials once, then tap <strong>Initial</strong> next to each clause to confirm you've read it.</div>
+      <div class="initials-set-bar">
+        <label>Your Initials</label>
+        <input class="initials-input" id="initials-input" type="text" maxlength="4" placeholder="AB" oninput="onInitialsChange(this.value)">
+        <div class="progress-count" id="init-count">0 of 11</div>
+      </div>
+    </div>
+
+    <!-- Clauses -->
+    <div id="clauses-list">
+
+      <div class="clause" data-clause="1">
+        <div class="clause-header" onclick="expandClause(this)">
+          <div class="clause-name">Pre-Existing Damage</div>
+          <button class="initial-btn" onclick="stampInitial(event,this)">Initial</button>
+        </div>
+        <div class="clause-body">Wagon Window Washers is not liable for pre-existing damage to glass, frames, seals, screens, or tracks — including chips, cracks, failed seals, fogging between panes, or paint overspray. We document and flag anything we notice before we start.</div>
+      </div>
+
+      <div class="clause" data-clause="2">
+        <div class="clause-header" onclick="expandClause(this)">
+          <div class="clause-name">Tempered &amp; Heat-Treated Glass</div>
+          <button class="initial-btn" onclick="stampInitial(event,this)">Initial</button>
+        </div>
+        <div class="clause-body">Some tempered or heat-treated glass contains microscopic manufacturing particles embedded in the surface. These can become dislodged during professional cleaning, causing fine scratches — this is an industry-wide condition unrelated to technique. Wagon Window Washers accepts no liability for scratches on tempered or heat-treated glass.</div>
+      </div>
+
+      <div class="clause" data-clause="3">
+        <div class="clause-header" onclick="expandClause(this)">
+          <div class="clause-name">Hard Water Stains</div>
+          <button class="initial-btn" onclick="stampInitial(event,this)">Initial</button>
+        </div>
+        <div class="clause-body">Hard water staining is caused by mineral deposits — not by window cleaning. Standard cleaning will not remove them. Stain removal is a separate chemical treatment quoted independently, and results vary by severity. We are not liable for stains remaining after a standard clean.</div>
+      </div>
+
+      <div class="clause" data-clause="4">
+        <div class="clause-header" onclick="expandClause(this)">
+          <div class="clause-name">Screens &amp; Tracks</div>
+          <button class="initial-btn" onclick="stampInitial(event,this)">Initial</button>
+        </div>
+        <div class="clause-body">Screens are handled with care, but we are not liable for screens that are already damaged, loose, or weakened prior to removal. Track cleaning is a best-effort service; heavy buildup may not fully clear without track replacement, which is outside our scope.</div>
+      </div>
+
+      <div class="clause" data-clause="5">
+        <div class="clause-header" onclick="expandClause(this)">
+          <div class="clause-name">Property Access &amp; Ladders</div>
+          <button class="initial-btn" onclick="stampInitial(event,this)">Initial</button>
+        </div>
+        <div class="clause-body">We require clear, safe access to all windows. If a window is not safely reachable we will skip it and advise you. We are not liable for minor incidental contact with gardens or outdoor furniture during normal ladder use.</div>
+      </div>
+
+      <div class="clause" data-clause="6">
+        <div class="clause-header" onclick="expandClause(this)">
+          <div class="clause-name">Interior Access</div>
+          <button class="initial-btn" onclick="stampInitial(event,this)">Initial</button>
+        </div>
+        <div class="clause-body">For interior cleaning, please clear valuables, electronics, and fragile items from windows before we arrive. We are not liable for items left in the work area. Agreeing to interior service grants Wagon Window Washers access to your home solely for the work described above.</div>
+      </div>
+
+      <div class="clause" data-clause="7">
+        <div class="clause-header" onclick="expandClause(this)">
+          <div class="clause-name">Gutter Cleaning</div>
+          <button class="initial-btn" onclick="stampInitial(event,this)">Initial</button>
+        </div>
+        <div class="clause-body">Gutter cleaning includes clearing debris and flushing downspouts. We are not liable for pre-existing gutter damage, separated joints, or blocked underground drainage. If downspouts are blocked or gutters are damaged, we will advise before proceeding.</div>
+      </div>
+
+      <div class="clause" data-clause="8">
+        <div class="clause-header" onclick="expandClause(this)">
+          <div class="clause-name">Satisfaction &amp; Re-Clean Policy</div>
+          <button class="initial-btn" onclick="stampInitial(event,this)">Initial</button>
+        </div>
+        <div class="clause-body">If you're not satisfied, contact us within 24 hours and we'll return to address it at no charge. After 24 hours, or where the issue is caused by weather, re-contamination, or conditions outside our control, we are unable to offer a re-clean under this policy.</div>
+      </div>
+
+      <div class="clause" data-clause="9">
+        <div class="clause-header" onclick="expandClause(this)">
+          <div class="clause-name">Payment</div>
+          <button class="initial-btn" onclick="stampInitial(event,this)">Initial</button>
+        </div>
+        <div class="clause-body">Payment is due on the day of service, collected at the time of waiver signing before work begins. We accept cash or e-transfer (davidhanna@wagonwindow.com). The quoted price is the final price — any scope changes are agreed before we proceed.</div>
+      </div>
+
+      <div class="clause" data-clause="10">
+        <div class="clause-header" onclick="expandClause(this)">
+          <div class="clause-name">Cancellations</div>
+          <button class="initial-btn" onclick="stampInitial(event,this)">Initial</button>
+        </div>
+        <div class="clause-body">Please provide 24 hours' notice to cancel or reschedule. Late cancellations may incur a fee of up to $50 to cover travel costs. If weather makes the job unsafe, we reschedule at no cost to either party.</div>
+      </div>
+
+      <div class="clause" data-clause="11">
+        <div class="clause-header" onclick="expandClause(this)">
+          <div class="clause-name">Liability Limit</div>
+          <button class="initial-btn" onclick="stampInitial(event,this)">Initial</button>
+        </div>
+        <div class="clause-body">To the fullest extent permitted under BC law, Wagon Window Washers' total liability for any claim is limited to the amount paid for the service. You agree to hold Wagon Window Washers, its owner, and technicians harmless from third-party claims arising from pre-existing property conditions or circumstances outside our direct control.</div>
+      </div>
+
+    </div><!-- /clauses-list -->
+    <div class="spacer"></div>
+  </div>
+  <div class="btn-stack">
+    <button class="btn-primary" id="next-terms" onclick="goTo('scr-sign')" disabled>Continue to Signature →</button>
+    <div style="font-size:.78rem;color:var(--gray);text-align:center">All 11 clauses must be initialled to continue</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     SCREEN 5 — SIGNATURE
+════════════════════════════ -->
+<div id="scr-sign" class="screen">
+  <div class="page-body">
+    <div class="card">
+      <div class="section-label">Step 4 of 4 · Customer</div>
+      <div class="card-title">Sign the Agreement</div>
+      <div class="card-sub">By signing below you confirm you have read and agreed to all 11 clauses above.</div>
+
+      <div class="sig-wrap" style="margin-bottom:1rem">
+        <canvas id="sig-canvas" height="180"></canvas>
+        <div class="sig-instruction" id="sig-hint">Sign here with your finger</div>
+        <button class="sig-clear" onclick="clearSig()">Clear</button>
+      </div>
+
+      <div class="form-grid">
+        <div class="field span2">
+          <label>Print Full Name *</label>
+          <input id="f-printname" type="text" placeholder="Jane Smith" autocomplete="off">
+        </div>
+        <div class="field span2">
+          <label>Date</label>
+          <input id="f-date" type="text" readonly style="background:#f5f5f5;color:var(--gray)">
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#f0fff4;border:1px solid #bbf7d0;border-radius:8px;padding:1rem 1.1rem;font-size:.83rem;color:#166534;line-height:1.6">
+      ✅ <strong>I confirm</strong> I am the property owner or authorized representative, that I have read and initialled all 11 clauses, and that I agree to this Service Agreement with Wagon Window Washers.
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="btn-stack">
+    <button class="btn-primary" id="next-sign" onclick="complete()" disabled>Complete Agreement ✓</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     SCREEN 6 — DONE
+════════════════════════════ -->
+<div id="scr-done" class="screen">
+  <div class="done-icon">✅</div>
+  <div class="done-title">Agreement Complete</div>
+  <div class="done-sub" id="done-sub">Signed and initialled.</div>
+  <div class="done-card" id="done-card"></div>
+  <div style="display:flex;flex-direction:column;gap:.6rem;width:100%;max-width:420px">
+    <button class="btn-primary" onclick="shareSummary()">Share Summary</button>
+    <button class="btn-outline" onclick="emailCustomer()">Email to Customer</button>
+    <button class="btn-ghost" onclick="newAgreement()">Start New Agreement</button>
+  </div>
+</div>
+
+</div><!-- /#app -->
+
+<script>
+// ── State ──────────────────────────────────────────────────────────────
+const state = {
+  name: '', phone: '', email: '', address: '',
+  services: [], price: '', windows: '', notes: '',
+  initials: '', initialled: 0,
+  printName: '', dateStr: ''
+};
+
+// ── Screen routing ─────────────────────────────────────────────────────
+const STEPS = { 'scr-details': 1, 'scr-services': 2, 'scr-handoff': null, 'scr-terms': 3, 'scr-sign': 4, 'scr-done': null };
+const BACK  = { 'scr-services': 'scr-details', 'scr-handoff': 'scr-services', 'scr-terms': 'scr-handoff', 'scr-sign': 'scr-terms', 'scr-done': null };
+let currentScreen = 'scr-details';
+
+function goTo(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  currentScreen = id;
+
+  const step = STEPS[id];
+  const topbar = document.getElementById('main-topbar');
+  const progress = document.getElementById('progress-fill');
+  const backBtn = document.getElementById('topbar-back-btn');
+  const stepLabel = document.getElementById('topbar-step');
+
+  // Handoff and done: hide topbar elements
+  if (id === 'scr-handoff') {
+    topbar.style.display = 'none';
+    document.querySelector('.progress-bar').style.display = 'none';
+    return;
+  }
+  if (id === 'scr-done') {
+    topbar.style.display = 'none';
+    document.querySelector('.progress-bar').style.display = 'none';
+    return;
+  }
+
+  topbar.style.display = 'flex';
+  document.querySelector('.progress-bar').style.display = 'flex';
+  backBtn.style.visibility = BACK[id] ? 'visible' : 'hidden';
+  stepLabel.textContent = step ? 'Step ' + step + ' of 4' : '';
+  progress.style.width = (step ? step * 25 : 100) + '%';
+  window.scrollTo(0, 0);
+
+  if (id === 'scr-sign') {
+    document.getElementById('f-date').value = new Date().toLocaleDateString('en-CA', { year:'numeric', month:'long', day:'numeric' });
+    state.dateStr = document.getElementById('f-date').value;
+    initCanvas();
+  }
+}
+
+function goBack() {
+  const prev = BACK[currentScreen];
+  if (prev) goTo(prev);
+}
+
+// ── Step 1 validation ──────────────────────────────────────────────────
+function watchStep1() {
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const address = document.getElementById('f-address').value.trim();
+  document.getElementById('next-1').disabled = !(name && phone && address);
+}
+['f-name','f-phone','f-email','f-address'].forEach(id => {
+  document.getElementById(id).addEventListener('input', watchStep1);
+});
+
+// ── Step 2 services ────────────────────────────────────────────────────
+function toggleSvc(el, key) {
+  el.classList.toggle('checked');
+  const i = state.services.indexOf(key);
+  if (i > -1) state.services.splice(i, 1);
+  else state.services.push(key);
+  watchStep2();
+}
+
+function watchStep2() {
+  const price = document.getElementById('f-price').value.trim();
+  document.getElementById('next-2').disabled = !(price && state.services.length);
+}
+document.getElementById('f-price').addEventListener('input', watchStep2);
+document.getElementById('f-windows').addEventListener('input', watchStep2);
+
+function goToHandoff() {
+  state.name    = document.getElementById('f-name').value.trim();
+  state.phone   = document.getElementById('f-phone').value.trim();
+  state.email   = document.getElementById('f-email').value.trim();
+  state.address = document.getElementById('f-address').value.trim();
+  state.price   = document.getElementById('f-price').value.trim();
+  state.windows = document.getElementById('f-windows').value.trim();
+  state.notes   = document.getElementById('f-notes').value.trim();
+  goTo('scr-handoff');
+}
+
+// ── Step 3 — initials ──────────────────────────────────────────────────
+function onInitialsChange(val) {
+  state.initials = val.toUpperCase();
+  document.getElementById('initials-input').value = state.initials;
+}
+
+function expandClause(headerEl) {
+  const clause = headerEl.closest('.clause');
+  clause.classList.toggle('open');
+}
+
+function stampInitial(e, btn) {
+  e.stopPropagation();
+  if (!state.initials) {
+    document.getElementById('initials-input').focus();
+    document.getElementById('initials-input').style.borderColor = 'var(--red)';
+    return;
+  }
+  const clause = btn.closest('.clause');
+  if (clause.classList.contains('initialled')) return;
+  clause.classList.add('initialled');
+  btn.textContent = '✓ ' + state.initials;
+  state.initialled++;
+  document.getElementById('init-count').textContent = state.initialled + ' of 11';
+  if (state.initialled === 11) {
+    document.getElementById('next-terms').disabled = false;
+  }
+}
+
+// ── Step 4 — canvas signature ──────────────────────────────────────────
+let sigCtx, sigCanvas, drawing = false, lastX = 0, lastY = 0, signatureDrawn = false;
+
+function initCanvas() {
+  sigCanvas = document.getElementById('sig-canvas');
+  const dpr = window.devicePixelRatio || 1;
+  const w = sigCanvas.parentElement.clientWidth;
+  sigCanvas.width  = w * dpr;
+  sigCanvas.height = 180 * dpr;
+  sigCanvas.style.width  = w + 'px';
+  sigCanvas.style.height = '180px';
+  sigCtx = sigCanvas.getContext('2d');
+  sigCtx.scale(dpr, dpr);
+  sigCtx.strokeStyle = '#111';
+  sigCtx.lineWidth = 2.5;
+  sigCtx.lineCap = 'round';
+  sigCtx.lineJoin = 'round';
+  signatureDrawn = false;
+
+  sigCanvas.addEventListener('touchstart',  onSigStart, { passive: false });
+  sigCanvas.addEventListener('touchmove',   onSigMove,  { passive: false });
+  sigCanvas.addEventListener('touchend',    onSigEnd,   { passive: false });
+  sigCanvas.addEventListener('mousedown',   onSigStart);
+  sigCanvas.addEventListener('mousemove',   onSigMove);
+  sigCanvas.addEventListener('mouseup',     onSigEnd);
+}
+
+function getPos(e) {
+  const rect = sigCanvas.getBoundingClientRect();
+  const src  = e.touches ? e.touches[0] : e;
+  return { x: src.clientX - rect.left, y: src.clientY - rect.top };
+}
+
+function onSigStart(e) {
+  e.preventDefault();
+  drawing = true;
+  const p = getPos(e);
+  lastX = p.x; lastY = p.y;
+  document.getElementById('sig-hint').style.opacity = '0';
+}
+function onSigMove(e) {
+  e.preventDefault();
+  if (!drawing) return;
+  const p = getPos(e);
+  sigCtx.beginPath();
+  sigCtx.moveTo(lastX, lastY);
+  sigCtx.lineTo(p.x, p.y);
+  sigCtx.stroke();
+  lastX = p.x; lastY = p.y;
+  signatureDrawn = true;
+  checkSignReady();
+}
+function onSigEnd(e) { e.preventDefault(); drawing = false; }
+
+function clearSig() {
+  if (!sigCtx) return;
+  sigCtx.clearRect(0, 0, sigCanvas.width, sigCanvas.height);
+  signatureDrawn = false;
+  document.getElementById('sig-hint').style.opacity = '1';
+  checkSignReady();
+}
+
+function checkSignReady() {
+  const name = document.getElementById('f-printname').value.trim();
+  document.getElementById('next-sign').disabled = !(signatureDrawn && name);
+}
+document.getElementById('f-printname').addEventListener('input', checkSignReady);
+
+// ── Complete ───────────────────────────────────────────────────────────
+function complete() {
+  state.printName = document.getElementById('f-printname').value.trim();
+  saveRecord();
+  buildDoneScreen();
+  goTo('scr-done');
+}
+
+const SVC_LABELS = {
+  exterior:'Exterior Windows', interior:'Interior Windows',
+  screens:'Screen Cleaning', tracks:'Track Cleaning',
+  gutters:'Gutter Cleaning', hardwater:'Hard Water Removal'
+};
+
+function buildDoneScreen() {
+  const services = state.services.map(k => SVC_LABELS[k]).join(', ');
+  document.getElementById('done-sub').textContent = 'Signed by ' + state.printName + ' on ' + state.dateStr + '.';
+  document.getElementById('done-card').innerHTML = [
+    doneRow('Customer', state.name),
+    doneRow('Phone', state.phone),
+    state.email ? doneRow('Email', state.email) : '',
+    doneRow('Address', state.address),
+    doneRow('Services', services || '—'),
+    doneRow('Quoted', '$' + state.price),
+    state.windows ? doneRow('Windows', state.windows) : '',
+    doneRow('Initialled by', state.initials + ' (all 11 clauses)'),
+    doneRow('Signed', state.printName),
+    doneRow('Date', state.dateStr)
+  ].filter(Boolean).join('');
+}
+
+function doneRow(label, val) {
+  return '<div class="done-row"><span class="done-row-label">' + label + '</span><span class="done-row-val">' + esc(val) + '</span></div>';
+}
+
+function buildSummaryText() {
+  const services = state.services.map(k => SVC_LABELS[k]).join(', ') || '—';
+  const lines = [
+    'WAGON WINDOWS — SERVICE AGREEMENT',
+    'Completed: ' + state.dateStr,
+    '',
+    'Customer: ' + state.name,
+    'Phone: ' + state.phone,
+    state.email ? 'Email: ' + state.email : null,
+    'Address: ' + state.address,
+    '',
+    'Services: ' + services,
+    'Quoted Price: $' + state.price,
+    state.windows ? 'Window Count: ~' + state.windows : null,
+    state.notes ? 'Notes: ' + state.notes : null,
+    '',
+    'All 11 clauses initialled by: ' + state.initials,
+    'Signed by: ' + state.printName,
+    'Date: ' + state.dateStr,
+    '',
+    '—',
+    'Wagon Windows · Salmon Arm, BC · (403) 837-5092 · davidhanna@wagonwindow.com · wagonwindow.com',
+    'Completed digitally via Wagon Windows iPad Waiver. Governed by the laws of British Columbia, Canada.'
+  ].filter(l => l !== null).join('\n');
+  return lines;
+}
+
+function shareSummary() {
+  const text = buildSummaryText();
+  if (navigator.share) {
+    navigator.share({ title: 'Service Agreement — ' + state.name, text }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(text).then(() => alert('Agreement summary copied to clipboard.')).catch(() => alert(text));
+  }
+}
+
+function emailCustomer() {
+  if (!state.email) { alert('No customer email was entered. Use Share Summary instead.'); return; }
+  const subject = 'Your Wagon Windows Service Agreement — ' + state.dateStr;
+  const body = buildSummaryText();
+  window.location.href = 'mailto:' + state.email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+}
+
+// ── localStorage ───────────────────────────────────────────────────────
+function saveRecord() {
+  const records = getRecords();
+  records.unshift({
+    id: Date.now(),
+    name: state.name,
+    phone: state.phone,
+    email: state.email,
+    address: state.address,
+    services: state.services,
+    price: state.price,
+    windows: state.windows,
+    notes: state.notes,
+    initials: state.initials,
+    printName: state.printName,
+    date: state.dateStr,
+    created_at: new Date().toISOString()
+  });
+  localStorage.setItem('ww_waivers', JSON.stringify(records));
+}
+
+function getRecords() {
+  try { return JSON.parse(localStorage.getItem('ww_waivers') || '[]'); } catch { return []; }
+}
+
+// ── New agreement ──────────────────────────────────────────────────────
+function newAgreement() {
+  // Reset state
+  Object.assign(state, { name:'', phone:'', email:'', address:'', services:[], price:'', windows:'', notes:'', initials:'', initialled:0, printName:'', dateStr:'' });
+  // Reset form fields
+  ['f-name','f-phone','f-email','f-address','f-price','f-windows','f-notes','f-printname'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  // Reset service items
+  document.querySelectorAll('.svc-item.checked').forEach(el => el.classList.remove('checked'));
+  // Reset clauses
+  document.querySelectorAll('.clause').forEach(el => {
+    el.classList.remove('initialled','open');
+    const btn = el.querySelector('.initial-btn');
+    if (btn) btn.textContent = 'Initial';
+  });
+  document.getElementById('initials-input').value = '';
+  document.getElementById('init-count').textContent = '0 of 11';
+  document.getElementById('next-terms').disabled = true;
+  document.getElementById('next-1').disabled = true;
+  document.getElementById('next-2').disabled = true;
+  document.getElementById('next-sign').disabled = true;
+  // Show topbar + progress again
+  document.getElementById('main-topbar').style.display = 'flex';
+  document.querySelector('.progress-bar').style.display = 'flex';
+  signatureDrawn = false;
+  goTo('scr-details');
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── Init ───────────────────────────────────────────────────────────────
+document.getElementById('f-date').value = new Date().toLocaleDateString('en-CA', { year:'numeric', month:'long', day:'numeric' });
+</script>
+</body>
+</html>

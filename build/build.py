@@ -385,7 +385,7 @@ if __name__ == '__main__':
         os.makedirs(DIST_DIR, exist_ok=True)
         copy_assets()
         # Copy standalone tools directly into dist/
-        for fname in ['field-tool.html']:
+        for fname in ['field-tool.html', 'waiver-ipad.html']:
             src = os.path.join(ROOT_DIR, fname)
             if os.path.exists(src):
                 shutil.copy(src, os.path.join(DIST_DIR, fname))
