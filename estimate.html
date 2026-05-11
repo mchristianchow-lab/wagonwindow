@@ -72,13 +72,13 @@
     .pkg.featured .pkg-inc::before { color: var(--red); }
     .pkg.supreme  .pkg-inc::before { color: var(--gold); }
 
-    .pkg-price-row { display: flex; align-items: baseline; justify-content: space-between; border-top: 1px solid var(--border); padding-top: .85rem; margin-bottom: .9rem; }
-    .pkg-from { font-size: .68rem; text-transform: uppercase; letter-spacing: .07em; color: #999; }
-    .pkg-price { font-size: 2rem; font-weight: 800; line-height: 1; }
-    .pkg       .pkg-price { color: var(--navy); }
-    .pkg.featured .pkg-price { color: var(--red); }
-    .pkg.supreme  .pkg-price { color: var(--gold); }
-    .pkg-gst { font-size: .7rem; color: #aaa; margin-top: .1rem; }
+    .pkg-breakdown { border-top: 1px solid var(--border); padding-top: .8rem; margin-bottom: .9rem; display: flex; flex-direction: column; gap: .35rem; }
+    .bd-row { display: flex; justify-content: space-between; gap: 1rem; font-size: .82rem; color: #555; }
+    .bd-row span:last-child { white-space: nowrap; font-weight: 600; }
+    .bd-row.bd-gst  { color: #999; font-size: .78rem; border-top: 1px dashed #e0e0e0; padding-top: .35rem; margin-top: .1rem; }
+    .bd-row.bd-total-row { font-size: 1.05rem; font-weight: 800; color: var(--navy); border-top: 2px solid #222; padding-top: .45rem; margin-top: .1rem; }
+    .pkg.featured .bd-row.bd-total-row { color: var(--red); }
+    .pkg.supreme  .bd-row.bd-total-row { color: var(--gold); }
 
     .pkg-btn { display: block; width: 100%; padding: .95rem; border-radius: 8px; border: none; font-family: var(--font); font-size: .95rem; font-weight: 700; cursor: pointer; text-align: center; text-decoration: none; -webkit-tap-highlight-color: transparent; }
     .pkg-btn.std  { background: var(--navy); color: #fff; }
@@ -188,16 +188,20 @@
   const reg   = parseInt(p.get('reg'))   || 0;
   const lrg   = parseInt(p.get('lrg'))   || 0;
   const frn   = parseInt(p.get('frn'))   || 0;
-  const std   = parseInt(p.get('std'))   || 0;
-  const prem  = parseInt(p.get('prem'))  || 0;
-  const sup   = parseInt(p.get('sup'))   || 0;
+  const bext  = parseInt(p.get('bext'))  || 0;
+  const bboth = parseInt(p.get('bboth')) || 0;
   const est   = parseInt(p.get('est'))   || Math.round(panes / 2);
   const name  = p.get('name') || '';
   const addr  = p.get('addr') || '';
 
+  const ADDON_LARGE  = 5;
+  const ADDON_SCREEN = 4;
+  const ADDON_TRACK  = 4;
+  const GST          = 0.05;
+
   function fmt(n) { return '$' + Number(n).toLocaleString('en-CA'); }
 
-  if (!panes || !std) {
+  if (!panes || !bext) {
     document.getElementById('no-data').style.display = 'block';
     return;
   }
@@ -209,18 +213,43 @@
     ? 'Hi ' + name.split(' ')[0] + ' — Here\'s Your Estimate'
     : 'Your Window Cleaning Estimate';
   if (addr) document.getElementById('hero-addr').textContent = '📍 ' + addr;
-  // Build breakdown chips
+
   const chips = [];
-  if (reg) chips.push('<span class="bd-chip">'        + reg + ' standard</span>');
+  if (reg) chips.push('<span class="bd-chip">'         + reg + ' standard</span>');
   if (lrg) chips.push('<span class="bd-chip bd-large">' + lrg + ' large</span>');
   if (frn) chips.push('<span class="bd-chip bd-french">' + frn + ' French</span>');
   const hasBreakdown = chips.length > 0;
-
   document.getElementById('hero-found').innerHTML = hasBreakdown
     ? chips.join('') + '<span class="bd-total">= ' + panes + ' panes total</span>'
     : '<strong>' + panes + ' panes</strong> counted on-site';
 
+  function calcBreakdown(base, includeScreens, includeTracks) {
+    const largeSurcharge  = lrg * ADDON_LARGE;
+    const frenchSurcharge = frn * ADDON_LARGE;
+    const screenTotal     = includeScreens ? est * ADDON_SCREEN : 0;
+    const trackTotal      = includeTracks  ? est * ADDON_TRACK  : 0;
+    const sub = base + largeSurcharge + frenchSurcharge + screenTotal + trackTotal;
+    const gst = Math.round(sub * GST);
+    return { base, largeSurcharge, frenchSurcharge, screenTotal, trackTotal, sub, gst, total: sub + gst };
+  }
+
+  function buildRows(bd, baseLabel) {
+    let r = '';
+    r += '<div class="bd-row"><span>' + baseLabel + '</span><span>' + fmt(bd.base) + '</span></div>';
+    if (lrg > 0) r += '<div class="bd-row"><span>Large windows (' + lrg + ' × $5)</span><span>' + fmt(bd.largeSurcharge) + '</span></div>';
+    if (frn > 0) r += '<div class="bd-row"><span>French / complicated (' + frn + ' × $5)</span><span>' + fmt(bd.frenchSurcharge) + '</span></div>';
+    if (bd.screenTotal) r += '<div class="bd-row"><span>Screen cleaning (~' + est + ' screens × $4)</span><span>' + fmt(bd.screenTotal) + '</span></div>';
+    if (bd.trackTotal)  r += '<div class="bd-row"><span>Track cleaning (~' + est + ' tracks × $4)</span><span>' + fmt(bd.trackTotal) + '</span></div>';
+    r += '<div class="bd-row bd-gst"><span>GST (5%)</span><span>' + fmt(bd.gst) + '</span></div>';
+    r += '<div class="bd-row bd-total-row"><span>Total</span><span>' + fmt(bd.total) + '</span></div>';
+    return r;
+  }
+
   const bookBase = 'https://wagonwindow.com/quote/?panes=' + panes;
+
+  const stdBd  = calcBreakdown(bext,  false, false);
+  const premBd = calcBreakdown(bboth, false, false);
+  const supBd  = calcBreakdown(bboth, true,  true);
 
   document.getElementById('pkg-grid').innerHTML = [
 
@@ -233,9 +262,7 @@
       + '<div class="pkg-inc">Exterior window cleaning</div>'
       + '<div class="pkg-inc">Streak-free guarantee</div>'
       + '</div>'
-      + '<div class="pkg-price-row">'
-      + '<div><div class="pkg-from">Your price</div><div class="pkg-price">' + fmt(std) + '</div><div class="pkg-gst">incl. GST</div></div>'
-      + '</div>'
+      + '<div class="pkg-breakdown">' + buildRows(stdBd, 'Exterior cleaning, ' + panes + ' panes') + '</div>'
       + '<a href="' + bookBase + '" class="pkg-btn std">Book Standard →</a>'
     + '</div>',
 
@@ -249,9 +276,7 @@
       + '<div class="pkg-inc">Interior + exterior window cleaning</div>'
       + '<div class="pkg-inc">Streak-free guarantee</div>'
       + '</div>'
-      + '<div class="pkg-price-row">'
-      + '<div><div class="pkg-from">Your price</div><div class="pkg-price">' + fmt(prem) + '</div><div class="pkg-gst">incl. GST</div></div>'
-      + '</div>'
+      + '<div class="pkg-breakdown">' + buildRows(premBd, 'Interior + exterior cleaning, ' + panes + ' panes') + '</div>'
       + '<a href="' + bookBase + '" class="pkg-btn prem">Book Premium →</a>'
     + '</div>',
 
@@ -266,9 +291,7 @@
       + '<div class="pkg-inc">Track cleaning (est. ' + est + ' tracks)</div>'
       + '<div class="pkg-inc">Streak-free guarantee</div>'
       + '</div>'
-      + '<div class="pkg-price-row">'
-      + '<div><div class="pkg-from">Your price</div><div class="pkg-price">' + fmt(sup) + '</div><div class="pkg-gst">incl. GST</div></div>'
-      + '</div>'
+      + '<div class="pkg-breakdown">' + buildRows(supBd, 'Interior + exterior cleaning, ' + panes + ' panes') + '</div>'
       + '<a href="' + bookBase + '" class="pkg-btn sup">Book Supreme →</a>'
     + '</div>',
 

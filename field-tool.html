@@ -1473,6 +1473,9 @@ function sendTierQuote() {
   const stdPrice = fmt(stdRaw);
   const premPrice= fmt(premRaw);
   const supPrice = fmt(supRaw);
+  // Raw base prices (before surcharges + GST) so estimate page can show line-item breakdown
+  const bext  = Math.max(MIN_JOB, calcBase(state.panes, 'exterior'));
+  const bboth = Math.max(MIN_JOB, calcBase(state.panes, 'both'));
 
   const parts = [];
   if (state.breakdown.regular) parts.push(state.breakdown.regular + ' standard');
@@ -1482,13 +1485,12 @@ function sendTierQuote() {
 
   const estimateUrl = 'https://wagonwindow.com/estimate/'
     + '?panes=' + state.panes
-    + '&reg='  + state.breakdown.regular
-    + '&lrg='  + state.breakdown.large
-    + '&frn='  + state.breakdown.french
-    + '&std='  + stdRaw
-    + '&prem=' + premRaw
-    + '&sup='  + supRaw
-    + '&est='  + est
+    + '&reg='   + state.breakdown.regular
+    + '&lrg='   + state.breakdown.large
+    + '&frn='   + state.breakdown.french
+    + '&bext='  + bext
+    + '&bboth=' + bboth
+    + '&est='   + est
     + (name    ? '&name=' + encodeURIComponent(name)    : '')
     + (address ? '&addr=' + encodeURIComponent(address) : '');
 
