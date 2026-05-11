@@ -33,12 +33,12 @@
     .hero-eyebrow { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.4); margin-bottom: .6rem; }
     .hero-h1 { font-size: clamp(1.6rem, 5vw, 2.4rem); font-weight: 800; line-height: 1.1; margin-bottom: .5rem; }
     .hero-addr { font-size: .9rem; color: rgba(255,255,255,.55); margin-bottom: 1.25rem; }
-    .hero-found { display: inline-flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: .4rem; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); padding: .55rem 1.1rem; border-radius: 30px; font-size: .85rem; color: rgba(255,255,255,.7); }
-    .hero-found strong { color: #fff; }
-    .bd-sep { color: rgba(255,255,255,.3); margin: 0 .15rem; }
-    .bd-chip { background: rgba(255,255,255,.12); color: rgba(255,255,255,.85); padding: .2rem .6rem; border-radius: 20px; font-size: .78rem; font-weight: 600; }
-    .bd-chip-large  { background: rgba(245,158,11,.2);  color: #f5c543; }
-    .bd-chip-french { background: rgba(232,16,16,.2);   color: #ff7070; }
+    .hero-found { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: .4rem; padding: .6rem 0 0; font-size: .85rem; }
+    .bd-chip { padding: .3rem .75rem; border-radius: 20px; font-size: .82rem; font-weight: 700; }
+    .bd-chip        { background: rgba(255,255,255,.12); color: rgba(255,255,255,.9); }
+    .bd-large       { background: rgba(245,158,11,.25); color: #f5c543; }
+    .bd-french      { background: rgba(232,16,16,.25);  color: #ff8080; }
+    .bd-total       { color: rgba(255,255,255,.4); font-size: .78rem; font-weight: 500; }
 
     /* PACKAGES SECTION */
     .packages { padding: 2.5rem 1.25rem; max-width: 560px; margin: 0 auto; }
@@ -139,7 +139,7 @@
   <div class="packages">
     <div class="sec-label">Your Options</div>
     <h2 class="sec-title">Choose Your Package</h2>
-    <p class="sec-sub">All three prices are based on your property. Tap a package to confirm and book your cleaning.</p>
+    <p class="sec-sub">Prices already account for every window type on your property — standard, large, and French. Just pick a level of service and book.</p>
     <div class="pkg-grid" id="pkg-grid"><!-- built by JS --></div>
   </div>
 
@@ -210,15 +210,15 @@
     : 'Your Window Cleaning Estimate';
   if (addr) document.getElementById('hero-addr').textContent = '📍 ' + addr;
   // Build breakdown chips
-  const hasBreakdown = reg || lrg || frn;
   const chips = [];
-  if (reg) chips.push('<span class="bd-chip">' + reg + ' standard</span>');
-  if (lrg) chips.push('<span class="bd-chip bd-chip-large">' + lrg + ' large</span>');
-  if (frn) chips.push('<span class="bd-chip bd-chip-french">' + frn + ' French</span>');
+  if (reg) chips.push('<span class="bd-chip">'        + reg + ' standard</span>');
+  if (lrg) chips.push('<span class="bd-chip bd-large">' + lrg + ' large</span>');
+  if (frn) chips.push('<span class="bd-chip bd-french">' + frn + ' French</span>');
+  const hasBreakdown = chips.length > 0;
 
   document.getElementById('hero-found').innerHTML = hasBreakdown
-    ? '<strong>' + panes + ' panes total</strong><span class="bd-sep">—</span>' + chips.join('')
-    : 'We counted <strong>&nbsp;' + panes + ' window panes&nbsp;</strong> on-site';
+    ? chips.join('') + '<span class="bd-total">= ' + panes + ' panes total</span>'
+    : '<strong>' + panes + ' panes</strong> counted on-site';
 
   const bookBase = 'https://wagonwindow.com/quote/?panes=' + panes;
 
