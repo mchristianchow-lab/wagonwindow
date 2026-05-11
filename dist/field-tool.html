@@ -309,25 +309,58 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
     <div class="topbar-title">Count Panes</div>
     <div style="width:60px"></div>
   </div>
-  <div class="section">
-    <div class="card">
-      <div class="card-label">Each pane = one piece of glass</div>
-      <div class="card-sub">Standard window = 2 panes · Patio slider = 2 panes · Skylight = 1 pane</div>
+
+  <!-- Main counter -->
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.25rem 1rem .5rem">
+    <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.4rem">Standard Panes</div>
+    <div class="counter-wrap" style="margin:.5rem 0 .4rem">
+      <button class="counter-btn wide" onclick="adjustBreakdown('regular',-5)">−5</button>
+      <button class="counter-btn" onclick="adjustBreakdown('regular',-1)" style="margin:0 .4rem">−</button>
+      <div class="counter-val" id="pane-display" onclick="editPanesManual()" style="font-size:3.5rem;min-width:80px">0</div>
+      <button class="counter-btn" onclick="adjustBreakdown('regular',1)" style="margin:0 .4rem">+</button>
+      <button class="counter-btn wide" onclick="adjustBreakdown('regular',5)">+5</button>
+    </div>
+    <div style="font-size:.78rem;color:var(--muted)">Standard window = 2 · Patio slider = 2 · Skylight = 1</div>
+  </div>
+
+  <!-- Sub-counters row -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;padding:.5rem 1rem">
+
+    <!-- Large windows -->
+    <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:.85rem .75rem;text-align:center">
+      <div style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--yellow);margin-bottom:.3rem">Large Windows</div>
+      <div style="font-size:.72rem;color:var(--muted);margin-bottom:.6rem">Picture, bay, floor-to-ceiling · +$5/pane</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:.5rem">
+        <button class="adj-btn" onclick="adjustBreakdown('large',-1)" style="touch-action:manipulation">−</button>
+        <div style="font-size:1.6rem;font-weight:800;min-width:36px;text-align:center;color:var(--yellow)" id="large-display">0</div>
+        <button class="adj-btn" onclick="adjustBreakdown('large',1)" style="touch-action:manipulation">+</button>
+      </div>
+    </div>
+
+    <!-- French / complicated -->
+    <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:.85rem .75rem;text-align:center">
+      <div style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--red);margin-bottom:.3rem">French / Complicated</div>
+      <div style="font-size:.72rem;color:var(--muted);margin-bottom:.6rem">Divided lites, grilles, multi-pane · +$5/pane</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:.5rem">
+        <button class="adj-btn" onclick="adjustBreakdown('french',-1)" style="touch-action:manipulation">−</button>
+        <div style="font-size:1.6rem;font-weight:800;min-width:36px;text-align:center;color:var(--red)" id="french-display">0</div>
+        <button class="adj-btn" onclick="adjustBreakdown('french',1)" style="touch-action:manipulation">+</button>
+      </div>
     </div>
   </div>
-  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem">
-    <div class="counter-wrap">
-      <button class="counter-btn wide" onclick="adjustPanes(-5)">−5</button>
-      <button class="counter-btn" onclick="adjustPanes(-1)" style="margin:0 .5rem">−</button>
-      <div class="counter-val" id="pane-display" onclick="editPanesManual()">20</div>
-      <button class="counter-btn" onclick="adjustPanes(1)" style="margin:0 .5rem">+</button>
-      <button class="counter-btn wide" onclick="adjustPanes(5)">+5</button>
+
+  <!-- Total row -->
+  <div style="margin:.5rem 1rem;background:var(--surface2);border-radius:10px;padding:.85rem 1.25rem;display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)">Total Panes</div>
+      <div style="font-size:.8rem;color:var(--muted);margin-top:.1rem" id="count-breakdown-label">0 standard</div>
     </div>
-    <div class="counter-label">
-      <span id="pane-size-label">panes</span> &nbsp;·&nbsp;
-      <span class="size-badge" id="pane-size-badge">Medium</span>
+    <div style="text-align:right">
+      <div style="font-size:2.2rem;font-weight:800;color:var(--text);line-height:1" id="total-pane-display">0</div>
+      <div style="font-size:.72rem;margin-top:.1rem"><span class="size-badge" id="pane-size-badge">—</span></div>
     </div>
   </div>
+
   <div class="bottom-nav">
     <button class="btn btn-red" onclick="goPackages()">Next: Choose Package →</button>
   </div>
@@ -697,7 +730,8 @@ const CALENDLY = 'https://calendly.com/davidhanna-wagonwindow/new-meeting';
 
 // State
 const state = {
-  panes: 20,
+  panes: 0,
+  breakdown: { regular: 0, large: 0, french: 0 },
   serviceType: null,
   addons: { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false }
 };
@@ -760,6 +794,8 @@ function goScreen(id) {
 // ── Quote flow ─────────────────────────────────────────────────────────
 function startQuote() {
   state.serviceType = null;
+  state.breakdown = { regular: 0, large: 0, french: 0 };
+  state.panes = 0;
   state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false };
   // Reset addon checkboxes
   ['largewindow','screens','tracks','hardwater','gutters'].forEach(k => {
@@ -779,26 +815,42 @@ function startQuote() {
 }
 
 // ── Pane counter ───────────────────────────────────────────────────────
-function adjustPanes(delta) {
-  state.panes = Math.max(1, state.panes + delta);
-  updatePaneDisplay();
+function adjustBreakdown(type, delta) {
+  state.breakdown[type] = Math.max(0, state.breakdown[type] + delta);
+  syncPaneState();
 }
 
-function updatePaneDisplay() {
-  document.getElementById('pane-display').textContent = state.panes;
-  document.getElementById('pane-size-label').textContent = state.panes === 1 ? 'pane' : 'panes';
-  document.getElementById('pane-size-badge').textContent = sizeBadge(state.panes);
+function syncPaneState() {
+  const { regular, large, french } = state.breakdown;
+  state.panes = regular + large + french;
+  // Large + French auto-fill the large window surcharge
+  state.addons.largewindow = large + french;
+
+  document.getElementById('pane-display').textContent = regular;
+  document.getElementById('large-display').textContent = large;
+  document.getElementById('french-display').textContent = french;
+  document.getElementById('total-pane-display').textContent = state.panes || '—';
+  document.getElementById('pane-size-badge').textContent = state.panes ? sizeBadge(state.panes) : '—';
+
+  // Breakdown label
+  const parts = [];
+  if (regular) parts.push(regular + ' standard');
+  if (large)   parts.push(large + ' large');
+  if (french)  parts.push(french + ' French');
+  document.getElementById('count-breakdown-label').textContent = parts.join(' · ') || 'Tap + to start counting';
 }
 
 function editPanesManual() {
-  const val = prompt('Enter pane count:', state.panes);
+  const val = prompt('Enter standard pane count:', state.breakdown.regular);
   if (val === null) return;
   const n = parseInt(val);
-  if (!isNaN(n) && n > 0) {
-    state.panes = n;
-    updatePaneDisplay();
+  if (!isNaN(n) && n >= 0) {
+    state.breakdown.regular = n;
+    syncPaneState();
   }
 }
+
+function updatePaneDisplay() { syncPaneState(); }
 
 // ── Packages ───────────────────────────────────────────────────────────
 function goPackages() {
@@ -846,7 +898,9 @@ function selectPackage(tier) {
     state.addons = { screens: est, tracks: est, hardwater: 0, largewindow: 0, gutters: false };
   }
 
-  // Sync addon UI for if user goes to custom add-ons after
+  // Large + French from count screen carry into the addon
+  state.addons.largewindow = state.breakdown.large + state.breakdown.french;
+  // Sync addon UI
   ['largewindow','screens','tracks','hardwater'].forEach(k => {
     setAddonVal(k, state.addons[k], state.addons[k] > 0);
   });
