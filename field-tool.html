@@ -361,13 +361,14 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
     <div class="pkg-card pkg-premium" onclick="selectPackage('premium')">
       <div class="pkg-badge">Premium</div>
       <div class="pkg-name">Premium</div>
-      <div class="pkg-desc">Full clean inside and out — screens and tracks included.</div>
+      <div class="pkg-desc">Full clean inside and out — both sides of every window.</div>
       <div class="pkg-includes">
         <div class="pkg-include-row">✓ <span>Interior + exterior window cleaning</span></div>
-        <div class="pkg-include-row">✓ <span>Screen cleaning (est. <span id="pkg-screens-count">—</span>)</span></div>
-        <div class="pkg-include-row">✓ <span>Track cleaning (est. <span id="pkg-tracks-count">—</span>)</span></div>
         <div class="pkg-include-row">✓ <span>Streak-free guarantee</span></div>
       </div>
+      <!-- hidden spans kept so JS doesn't break -->
+      <span id="pkg-screens-count" style="display:none">—</span>
+      <span id="pkg-tracks-count" style="display:none">—</span>
       <div class="pkg-price-row">
         <div class="pkg-price-label">Total incl. GST</div>
         <div class="pkg-price" id="pkg-price-premium">$—</div>
@@ -378,12 +379,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
       <div class="pkg-best-value">Best Value</div>
       <div class="pkg-badge">Supreme</div>
       <div class="pkg-name">Supreme</div>
-      <div class="pkg-desc">Everything in Premium plus gutter cleaning — the complete property service.</div>
+      <div class="pkg-desc">The full window service — inside, outside, screens, and tracks all done in one visit.</div>
       <div class="pkg-includes">
         <div class="pkg-include-row">✓ <span>Interior + exterior window cleaning</span></div>
         <div class="pkg-include-row">✓ <span>Screen cleaning (est. <span id="pkg-screens-count2">—</span>)</span></div>
         <div class="pkg-include-row">✓ <span>Track cleaning (est. <span id="pkg-tracks-count2">—</span>)</span></div>
-        <div class="pkg-include-row">✓ <span>Gutter cleaning (<span id="pkg-gutter-price">—</span> flat)</span></div>
         <div class="pkg-include-row">✓ <span>Streak-free guarantee</span></div>
       </div>
       <div class="pkg-price-row">
@@ -820,15 +820,14 @@ function updatePackagePrices() {
   const est = Math.round(state.panes / 2);
   // Standard: exterior only
   document.getElementById('pkg-price-standard').textContent = fmt(pkgCalc('exterior', 0, 0, false));
-  // Premium: int+ext + screens + tracks
-  document.getElementById('pkg-price-premium').textContent = fmt(pkgCalc('both', est, est, false));
+  // Premium: int+ext windows only
+  document.getElementById('pkg-price-premium').textContent = fmt(pkgCalc('both', 0, 0, false));
   document.getElementById('pkg-screens-count').textContent = est;
   document.getElementById('pkg-tracks-count').textContent = est;
-  // Supreme: int+ext + screens + tracks + gutters
-  document.getElementById('pkg-price-supreme').textContent = fmt(pkgCalc('both', est, est, true));
+  // Supreme: int+ext + screens + tracks
+  document.getElementById('pkg-price-supreme').textContent = fmt(pkgCalc('both', est, est, false));
   document.getElementById('pkg-screens-count2').textContent = est;
   document.getElementById('pkg-tracks-count2').textContent = est;
-  document.getElementById('pkg-gutter-price').textContent = fmt(gutterPrice(state.panes));
 }
 
 function selectPackage(tier) {
@@ -841,10 +840,10 @@ function selectPackage(tier) {
     state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false };
   } else if (tier === 'premium') {
     state.serviceType = 'both';
-    state.addons = { screens: est, tracks: est, hardwater: 0, largewindow: 0, gutters: false };
+    state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false };
   } else if (tier === 'supreme') {
     state.serviceType = 'both';
-    state.addons = { screens: est, tracks: est, hardwater: 0, largewindow: 0, gutters: true };
+    state.addons = { screens: est, tracks: est, hardwater: 0, largewindow: 0, gutters: false };
   }
 
   // Sync addon UI for if user goes to custom add-ons after
