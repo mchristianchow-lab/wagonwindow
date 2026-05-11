@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Your Wagon Windows Estimate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red: #e81010;
+      --dark: #000000;
+      --navy: #111111;
+      --light: #f5f5f5;
+      --white: #ffffff;
+      --gray: #6b7280;
+      --border: #e0e0e0;
+      --gold: #9a7200;
+      --font: 'Inter', -apple-system, sans-serif;
+    }
+    body { font-family: var(--font); background: var(--white); color: var(--navy); -webkit-font-smoothing: antialiased; }
+
+    /* TOPBAR */
+    .topbar { background: var(--dark); border-bottom: 4px solid var(--red); padding: 0 1.5rem; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+    .tb-logo { font-size: 1rem; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: .03em; }
+    .tb-logo span { color: var(--red); }
+    .tb-loc { font-size: .75rem; color: rgba(255,255,255,.4); }
+
+    /* HERO */
+    .hero { background: linear-gradient(160deg, #000 0%, #111 60%, #1a0000 100%); color: #fff; padding: 3rem 1.5rem 2.5rem; text-align: center; }
+    .hero-eyebrow { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.4); margin-bottom: .6rem; }
+    .hero-h1 { font-size: clamp(1.6rem, 5vw, 2.4rem); font-weight: 800; line-height: 1.1; margin-bottom: .5rem; }
+    .hero-addr { font-size: .9rem; color: rgba(255,255,255,.55); margin-bottom: 1.25rem; }
+    .hero-found { display: inline-flex; align-items: center; gap: .5rem; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); padding: .45rem 1rem; border-radius: 30px; font-size: .85rem; color: rgba(255,255,255,.7); }
+    .hero-found strong { color: #fff; }
+
+    /* PACKAGES SECTION */
+    .packages { padding: 2.5rem 1.25rem; max-width: 560px; margin: 0 auto; }
+    .sec-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--gray); text-align: center; margin-bottom: .4rem; }
+    .sec-title { font-size: 1.5rem; font-weight: 800; text-align: center; margin-bottom: .4rem; }
+    .sec-sub { color: var(--gray); text-align: center; font-size: .88rem; margin-bottom: 2rem; line-height: 1.55; }
+
+    .pkg-grid { display: flex; flex-direction: column; gap: 1rem; }
+
+    .pkg { background: var(--white); border: 2px solid var(--border); border-radius: 16px; padding: 1.4rem; position: relative; overflow: hidden; }
+    .pkg.featured { border-color: var(--red); }
+    .pkg.supreme { border-color: var(--gold); background: linear-gradient(to bottom right, #fff, #fffdf5); }
+
+    .pkg-badge { display: inline-block; font-size: .62rem; font-weight: 800; text-transform: uppercase; letter-spacing: .09em; padding: .2rem .6rem; border-radius: 20px; margin-bottom: .6rem; }
+    .pkg .std-badge { background: rgba(0,0,0,.05); color: #666; border: 1px solid #ccc; }
+    .pkg.featured .pkg-badge { background: rgba(232,16,16,.1); color: var(--red); border: 1px solid rgba(232,16,16,.3); }
+    .pkg.supreme  .pkg-badge { background: rgba(154,114,0,.1); color: var(--gold); border: 1px solid rgba(154,114,0,.35); }
+
+    .pkg-ribbon { position: absolute; top: 14px; right: 14px; background: var(--red); color: #fff; font-size: .6rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; padding: .2rem .6rem; border-radius: 20px; }
+
+    .pkg-name { font-size: 1.2rem; font-weight: 800; margin-bottom: .3rem; }
+    .pkg.featured .pkg-name { color: var(--red); }
+    .pkg.supreme  .pkg-name { color: var(--gold); }
+
+    .pkg-desc { font-size: .86rem; color: var(--gray); margin-bottom: .9rem; line-height: 1.5; }
+
+    .pkg-includes { display: flex; flex-direction: column; gap: .3rem; margin-bottom: 1rem; }
+    .pkg-inc { display: flex; align-items: flex-start; gap: .45rem; font-size: .83rem; color: #444; }
+    .pkg-inc::before { content: '✓'; font-weight: 700; flex-shrink: 0; margin-top: .05rem; }
+    .pkg .pkg-inc::before       { color: #666; }
+    .pkg.featured .pkg-inc::before { color: var(--red); }
+    .pkg.supreme  .pkg-inc::before { color: var(--gold); }
+
+    .pkg-price-row { display: flex; align-items: baseline; justify-content: space-between; border-top: 1px solid var(--border); padding-top: .85rem; margin-bottom: .9rem; }
+    .pkg-from { font-size: .68rem; text-transform: uppercase; letter-spacing: .07em; color: #999; }
+    .pkg-price { font-size: 2rem; font-weight: 800; line-height: 1; }
+    .pkg       .pkg-price { color: var(--navy); }
+    .pkg.featured .pkg-price { color: var(--red); }
+    .pkg.supreme  .pkg-price { color: var(--gold); }
+    .pkg-gst { font-size: .7rem; color: #aaa; margin-top: .1rem; }
+
+    .pkg-btn { display: block; width: 100%; padding: .95rem; border-radius: 8px; border: none; font-family: var(--font); font-size: .95rem; font-weight: 700; cursor: pointer; text-align: center; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+    .pkg-btn.std  { background: var(--navy); color: #fff; }
+    .pkg-btn.prem { background: var(--red);  color: #fff; }
+    .pkg-btn.sup  { background: var(--gold); color: #fff; }
+
+    /* NOTES */
+    .notes { max-width: 560px; margin: 0 auto 2.5rem; padding: 0 1.25rem; }
+    .notes-inner { background: var(--light); border-radius: 12px; padding: 1.1rem 1.25rem; }
+    .note { font-size: .8rem; color: var(--gray); padding: .3rem 0; border-bottom: 1px solid #e8e8e8; display: flex; gap: .5rem; line-height: 1.5; }
+    .note:last-child { border-bottom: none; }
+    .note::before { content: '·'; color: #bbb; flex-shrink: 0; }
+
+    /* CTA STRIP */
+    .cta-strip { background: var(--dark); padding: 2.5rem 1.5rem; text-align: center; }
+    .cta-strip h2 { color: #fff; font-size: 1.25rem; font-weight: 800; margin-bottom: .4rem; }
+    .cta-strip p  { color: rgba(255,255,255,.5); font-size: .86rem; margin-bottom: 1.5rem; }
+    .trust-row { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
+    .trust-item { display: flex; align-items: center; gap: .35rem; font-size: .78rem; color: rgba(255,255,255,.45); }
+
+    /* FOOTER */
+    .footer { background: #0a0a0a; padding: 1.5rem; text-align: center; }
+    .footer p { font-size: .8rem; color: rgba(255,255,255,.3); line-height: 1.7; }
+    .footer a { color: rgba(255,255,255,.45); text-decoration: none; }
+
+    /* NO DATA */
+    #no-data { text-align: center; padding: 5rem 2rem; }
+    #no-data h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: .5rem; }
+    #no-data p  { color: var(--gray); margin-bottom: 1.5rem; }
+    .btn-red { background: var(--red); color: #fff; padding: .85rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-block; }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="tb-logo">Wagon <span>Windows</span></div>
+  <div class="tb-loc">Salmon Arm, BC</div>
+</div>
+
+<!-- NO DATA STATE -->
+<div id="no-data" style="display:none">
+  <h2>No Estimate Found</h2>
+  <p>This link may be missing quote details. Contact David for a new estimate.</p>
+  <a href="https://wagonwindow.com/quote/" class="btn-red">Get a New Estimate →</a>
+</div>
+
+<!-- ESTIMATE APP -->
+<div id="est-app" style="display:none">
+
+  <div class="hero">
+    <div class="hero-eyebrow">Your On-Site Estimate · Wagon Windows</div>
+    <h1 class="hero-h1" id="hero-h1">Your Window Cleaning Estimate</h1>
+    <div class="hero-addr" id="hero-addr"></div>
+    <div class="hero-found" id="hero-found"></div>
+  </div>
+
+  <div class="packages">
+    <div class="sec-label">Your Options</div>
+    <h2 class="sec-title">Choose Your Package</h2>
+    <p class="sec-sub">All three prices are based on your property. Tap a package to confirm and book your cleaning.</p>
+    <div class="pkg-grid" id="pkg-grid"><!-- built by JS --></div>
+  </div>
+
+  <div class="notes">
+    <div class="notes-inner">
+      <div class="note">All prices include 5% GST — no surprises</div>
+      <div class="note">Streak-free guarantee — we come back if you're not satisfied</div>
+      <div class="note">Minimum job $75 · Cash or e-transfer on the day</div>
+      <div class="note">Questions? Reply to David's email or text anytime</div>
+    </div>
+  </div>
+
+  <div class="cta-strip">
+    <h2>Ready to Lock It In?</h2>
+    <p>Pick a package above — booking takes under 2 minutes.</p>
+    <div class="trust-row">
+      <div class="trust-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        Streak-Free Guarantee
+      </div>
+      <div class="trust-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Fully Insured
+      </div>
+      <div class="trust-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        Locally Owned
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>
+      <strong style="color:rgba(255,255,255,.6)">Wagon Windows</strong><br>
+      Salmon Arm &amp; Shuswap Region, BC<br>
+      <a href="https://wagonwindow.com">wagonwindow.com</a>
+    </p>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  const p     = new URLSearchParams(location.search);
+  const panes = parseInt(p.get('panes')) || 0;
+  const std   = parseInt(p.get('std'))   || 0;
+  const prem  = parseInt(p.get('prem'))  || 0;
+  const sup   = parseInt(p.get('sup'))   || 0;
+  const est   = parseInt(p.get('est'))   || Math.round(panes / 2);
+  const name  = p.get('name') || '';
+  const addr  = p.get('addr') || '';
+
+  function fmt(n) { return '$' + Number(n).toLocaleString('en-CA'); }
+
+  if (!panes || !std) {
+    document.getElementById('no-data').style.display = 'block';
+    return;
+  }
+
+  document.getElementById('est-app').style.display = 'block';
+
+  // Hero
+  document.getElementById('hero-h1').textContent = name
+    ? 'Hi ' + name.split(' ')[0] + ' — Here\'s Your Estimate'
+    : 'Your Window Cleaning Estimate';
+  if (addr) document.getElementById('hero-addr').textContent = '📍 ' + addr;
+  document.getElementById('hero-found').innerHTML =
+    'We counted <strong>&nbsp;' + panes + ' window panes&nbsp;</strong> on-site';
+
+  const bookBase = 'https://wagonwindow.com/quote/?panes=' + panes;
+
+  document.getElementById('pkg-grid').innerHTML = [
+
+    // STANDARD
+    '<div class="pkg">'
+      + '<span class="pkg-badge std-badge">Standard</span>'
+      + '<div class="pkg-name">Standard</div>'
+      + '<div class="pkg-desc">Outside of every window — a professional streak-free clean.</div>'
+      + '<div class="pkg-includes">'
+      + '<div class="pkg-inc">Exterior window cleaning</div>'
+      + '<div class="pkg-inc">Streak-free guarantee</div>'
+      + '</div>'
+      + '<div class="pkg-price-row">'
+      + '<div><div class="pkg-from">Your price</div><div class="pkg-price">' + fmt(std) + '</div><div class="pkg-gst">incl. GST</div></div>'
+      + '</div>'
+      + '<a href="' + bookBase + '" class="pkg-btn std">Book Standard →</a>'
+    + '</div>',
+
+    // PREMIUM
+    '<div class="pkg featured">'
+      + '<div class="pkg-ribbon">Most Popular</div>'
+      + '<span class="pkg-badge">Premium</span>'
+      + '<div class="pkg-name">Premium</div>'
+      + '<div class="pkg-desc">Both sides of every window — a full clean, inside and out.</div>'
+      + '<div class="pkg-includes">'
+      + '<div class="pkg-inc">Interior + exterior window cleaning</div>'
+      + '<div class="pkg-inc">Streak-free guarantee</div>'
+      + '</div>'
+      + '<div class="pkg-price-row">'
+      + '<div><div class="pkg-from">Your price</div><div class="pkg-price">' + fmt(prem) + '</div><div class="pkg-gst">incl. GST</div></div>'
+      + '</div>'
+      + '<a href="' + bookBase + '" class="pkg-btn prem">Book Premium →</a>'
+    + '</div>',
+
+    // SUPREME
+    '<div class="pkg supreme">'
+      + '<span class="pkg-badge">Supreme</span>'
+      + '<div class="pkg-name">Supreme</div>'
+      + '<div class="pkg-desc">The complete window service — everything done in a single visit.</div>'
+      + '<div class="pkg-includes">'
+      + '<div class="pkg-inc">Interior + exterior window cleaning</div>'
+      + '<div class="pkg-inc">Screen cleaning (est. ' + est + ' screens)</div>'
+      + '<div class="pkg-inc">Track cleaning (est. ' + est + ' tracks)</div>'
+      + '<div class="pkg-inc">Streak-free guarantee</div>'
+      + '</div>'
+      + '<div class="pkg-price-row">'
+      + '<div><div class="pkg-from">Your price</div><div class="pkg-price">' + fmt(sup) + '</div><div class="pkg-gst">incl. GST</div></div>'
+      + '</div>'
+      + '<a href="' + bookBase + '" class="pkg-btn sup">Book Supreme →</a>'
+    + '</div>',
+
+  ].join('');
+})();
+</script>
+</body>
+</html>

@@ -267,6 +267,12 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
 .revenue-lbl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--green)}
 .revenue-amt{font-size:1.15rem;font-weight:800;color:var(--green);line-height:1}
 .revenue-jobs{font-size:.75rem;color:var(--muted);text-align:right}
+/* ── Email tier quote modal ── */
+#eq-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:998;align-items:flex-end;justify-content:center}
+#eq-modal.visible{display:flex}
+.eq-sheet{background:var(--surface);border-radius:20px 20px 0 0;width:100%;max-width:500px;padding:1.5rem 1.25rem 2.5rem;border-top:3px solid var(--green)}
+.eq-title{font-size:1.1rem;font-weight:800;margin-bottom:.2rem}
+.eq-sub{font-size:.8rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.55}
 /* ── Job complete checklist ── */
 .chk-item{display:flex;align-items:center;gap:.85rem;background:var(--surface);border:1.5px solid var(--border);
   border-radius:10px;padding:1rem;margin-bottom:.5rem;cursor:pointer;
@@ -468,6 +474,9 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
       ⚙ Custom Quote (manual)
     </button>
 
+  </div>
+  <div class="bottom-nav">
+    <button class="btn btn-outline" style="border-color:var(--green);color:var(--green);width:100%" onclick="openEmailTierQuote()">✉ Email Tier Quote to Customer</button>
   </div>
 </div>
 
@@ -802,6 +811,34 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <button class="btn btn-green" onclick="sendReviewRequest()" style="margin-bottom:.4rem">⭐ Send Google Review Link</button>
     <div style="font-size:.76rem;color:var(--muted);text-align:center;padding:.15rem">Shares a direct link — tap and hand them the phone, or send via SMS</div>
     <div class="section-spacer"></div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║    EMAIL TIER QUOTE MODAL    ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<div id="eq-modal">
+  <div class="eq-sheet">
+    <div class="eq-title">Email Tier Quote</div>
+    <div class="eq-sub">Customer receives all packages with pricing and a direct link to review and book.</div>
+    <div class="form-section" style="padding:0;gap:.65rem">
+      <div class="field-group">
+        <label class="field-label">Customer Name</label>
+        <input class="field-input" id="eq-name" type="text" placeholder="John Smith" autocomplete="off">
+      </div>
+      <div class="field-group">
+        <label class="field-label">Email *</label>
+        <input class="field-input" id="eq-email" type="email" placeholder="customer@email.com" autocapitalize="none">
+      </div>
+      <div class="field-group">
+        <label class="field-label">Property Address</label>
+        <input class="field-input" id="eq-address" type="text" placeholder="123 Main St, Salmon Arm" autocomplete="off">
+      </div>
+    </div>
+    <div style="display:flex;gap:.6rem;margin-top:1.25rem">
+      <button class="btn btn-outline" style="flex:1" onclick="closeEmailTierQuote()">Cancel</button>
+      <button class="btn btn-green" style="flex:2" onclick="sendTierQuote()">Send Email →</button>
+    </div>
   </div>
 </div>
 
@@ -1393,6 +1430,93 @@ function sendReminderMsg(id) {
   } else {
     navigator.clipboard.writeText(text).then(() => alert('Reminder copied to clipboard.')).catch(() => alert(text));
   }
+}
+
+// ── Email tier quote (all packages) ───────────────────────────────────
+function openEmailTierQuote() {
+  document.getElementById('eq-name').value    = '';
+  document.getElementById('eq-email').value   = '';
+  document.getElementById('eq-address').value = '';
+  document.getElementById('eq-modal').classList.add('visible');
+  setTimeout(() => document.getElementById('eq-name').focus(), 150);
+}
+
+function closeEmailTierQuote() {
+  document.getElementById('eq-modal').classList.remove('visible');
+}
+
+function sendTierQuote() {
+  const name    = document.getElementById('eq-name').value.trim();
+  const email   = document.getElementById('eq-email').value.trim();
+  const address = document.getElementById('eq-address').value.trim();
+  if (!email) { alert('Customer email is required.'); return; }
+
+  const est      = Math.round(state.panes / 2);
+  const stdRaw   = pkgCalc('exterior', 0,   0,   false);
+  const premRaw  = pkgCalc('both',     0,   0,   false);
+  const supRaw   = pkgCalc('both',     est, est, false);
+  const stdPrice = fmt(stdRaw);
+  const premPrice= fmt(premRaw);
+  const supPrice = fmt(supRaw);
+
+  const parts = [];
+  if (state.breakdown.regular) parts.push(state.breakdown.regular + ' standard');
+  if (state.breakdown.large)   parts.push(state.breakdown.large   + ' large');
+  if (state.breakdown.french)  parts.push(state.breakdown.french  + ' French');
+  const bdStr = parts.join(', ') || state.panes + ' panes';
+
+  const estimateUrl = 'https://wagonwindow.com/estimate/'
+    + '?panes=' + state.panes
+    + '&std='  + stdRaw
+    + '&prem=' + premRaw
+    + '&sup='  + supRaw
+    + '&est='  + est
+    + (name    ? '&name=' + encodeURIComponent(name)    : '')
+    + (address ? '&addr=' + encodeURIComponent(address) : '');
+
+  const subject = 'Wagon Windows — Your Window Cleaning Estimate'
+    + (address ? ' for ' + address : '');
+
+  const body = [
+    'Hi ' + (name || 'there') + ',',
+    '',
+    'Thanks for having us out' + (address ? ' to ' + address : '') + '. Here\'s a full breakdown of your window cleaning options.',
+    '',
+    'WHAT WE FOUND',
+    state.panes + ' panes (' + bdStr + ')',
+    '',
+    '─────────────────────────',
+    'STANDARD — Exterior Only',
+    'Outside of every window, streak-free.',
+    'Price: ' + stdPrice,
+    '',
+    'PREMIUM — Interior + Exterior',
+    'Full clean, both sides of every window.',
+    'Price: ' + premPrice,
+    '',
+    'SUPREME — Complete Service',
+    'Interior + exterior + screens (˜' + est + ') + tracks (˜' + est + ').',
+    'Everything done in one visit.',
+    'Price: ' + supPrice,
+    '─────────────────────────',
+    '',
+    'All prices include 5% GST.',
+    '',
+    'Review your full estimate and confirm your booking here:',
+    estimateUrl,
+    '',
+    'Questions? Reply to this email — we respond fast.',
+    '',
+    'David',
+    'Wagon Windows · Salmon Arm, BC',
+    'wagonwindow.com',
+  ].join('\n');
+
+  window.location.href = 'mailto:' + email
+    + '?subject=' + encodeURIComponent(subject)
+    + '&body='    + encodeURIComponent(body);
+
+  closeEmailTierQuote();
 }
 
 // ── Email quote to customer ────────────────────────────────────────────
