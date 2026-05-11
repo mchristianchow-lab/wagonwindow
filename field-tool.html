@@ -1467,6 +1467,9 @@ function sendTierQuote() {
 
   const estimateUrl = 'https://wagonwindow.com/estimate/'
     + '?panes=' + state.panes
+    + '&reg='  + state.breakdown.regular
+    + '&lrg='  + state.breakdown.large
+    + '&frn='  + state.breakdown.french
     + '&std='  + stdRaw
     + '&prem=' + premRaw
     + '&sup='  + supRaw
