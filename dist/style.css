@@ -626,6 +626,42 @@ form button {
 
 form button:hover { background: #aa0000; transform: translateY(-1px); }
 
+/* ---- SEASONAL BANNER ---- */
+.seasonal-banner {
+  background: linear-gradient(90deg, #c00 0%, #e81010 100%);
+  padding: .85rem 5%;
+}
+.seasonal-banner-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.seasonal-icon { font-size: 1.3rem; flex-shrink: 0; }
+.seasonal-text { font-size: .88rem; color: rgba(255,255,255,.95); line-height: 1.5; flex: 1; min-width: 200px; }
+.seasonal-cta {
+  background: #fff;
+  color: #c00;
+  border-radius: 6px;
+  padding: .45rem 1rem;
+  font-weight: 700;
+  font-size: .85rem;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity .15s;
+}
+.seasonal-cta:hover { opacity: .88; }
+
+/* ---- SERVICE AREA MAP ---- */
+.area-map-embed { margin: 1.25rem 0 1rem; border-radius: 10px; overflow: hidden; }
+.area-map-embed iframe { display: block; width: 100%; height: 320px; border: none; }
+.area-map-credit { font-size: .7rem; color: var(--gray); margin-top: .35rem; text-align: right; }
+.area-map-credit a { color: inherit; }
+
 /* ---- FLOATING CONTACT ---- */
 .float-contact {
   position: fixed;
@@ -655,6 +691,7 @@ form button:hover { background: #aa0000; transform: translateY(-1px); }
 .float-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
 
 .float-sms { background: var(--sky); color: var(--white); }
+.float-call { background: #1e1e1e; color: var(--white); }
 
 /* ---- FOOTER ---- */
 footer {
