@@ -245,11 +245,18 @@
     return r;
   }
 
-  const bookBase = 'https://wagonwindow.com/quote/?panes=' + panes;
-
   const stdBd  = calcBreakdown(bext,  false, false);
   const premBd = calcBreakdown(bboth, false, false);
   const supBd  = calcBreakdown(bboth, true,  true);
+
+  function bookUrl(pkg, total) {
+    return 'https://wagonwindow.com/book/'
+      + '?pkg='   + pkg
+      + '&total=' + total
+      + '&panes=' + panes
+      + (name ? '&name=' + encodeURIComponent(name)   : '')
+      + (addr ? '&addr=' + encodeURIComponent(addr)   : '');
+  }
 
   document.getElementById('pkg-grid').innerHTML = [
 
@@ -263,7 +270,7 @@
       + '<div class="pkg-inc">Streak-free guarantee</div>'
       + '</div>'
       + '<div class="pkg-breakdown">' + buildRows(stdBd, 'Exterior cleaning, ' + panes + ' panes') + '</div>'
-      + '<a href="' + bookBase + '" class="pkg-btn std">Book Standard →</a>'
+      + '<a href="' + bookUrl('standard', stdBd.total) + '" class="pkg-btn std">Book Standard →</a>'
     + '</div>',
 
     // PREMIUM
@@ -277,7 +284,7 @@
       + '<div class="pkg-inc">Streak-free guarantee</div>'
       + '</div>'
       + '<div class="pkg-breakdown">' + buildRows(premBd, 'Interior + exterior cleaning, ' + panes + ' panes') + '</div>'
-      + '<a href="' + bookBase + '" class="pkg-btn prem">Book Premium →</a>'
+      + '<a href="' + bookUrl('premium', premBd.total) + '" class="pkg-btn prem">Book Premium →</a>'
     + '</div>',
 
     // SUPREME
@@ -292,7 +299,7 @@
       + '<div class="pkg-inc">Streak-free guarantee</div>'
       + '</div>'
       + '<div class="pkg-breakdown">' + buildRows(supBd, 'Interior + exterior cleaning, ' + panes + ' panes') + '</div>'
-      + '<a href="' + bookBase + '" class="pkg-btn sup">Book Supreme →</a>'
+      + '<a href="' + bookUrl('supreme', supBd.total) + '" class="pkg-btn sup">Book Supreme →</a>'
     + '</div>',
 
   ].join('');
