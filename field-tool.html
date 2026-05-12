@@ -307,6 +307,13 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <div class="revenue-jobs" id="revenue-jobs">0 jobs</div>
   </div>
   <div class="home-btns">
+    <button class="home-btn" id="resume-btn" style="display:none;border-color:var(--green);border-width:2px" onclick="resumeSession()">
+      <span class="home-btn-icon">↩</span>
+      <div>
+        <span class="home-btn-label" style="color:var(--green)">Resume Last Quote</span>
+        <span class="home-btn-sub" id="resume-summary" style="color:rgba(34,197,94,.65)">—</span>
+      </div>
+    </button>
     <button class="home-btn primary" onclick="startQuote()">
       <span class="home-btn-icon">💲</span>
       <div>
@@ -909,15 +916,17 @@ function goScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   if (id === 'scr-leads') renderLeads();
-  if (id === 'scr-home') updateHomeCount();
+  if (id === 'scr-home') { updateHomeCount(); updateResumeBtn(); }
   if (id === 'scr-quote') renderQuote();
   if (id === 'scr-service') updateServicePrices();
   if (id === 'scr-addons') updateGutterMeta();
   window.scrollTo(0, 0);
+  saveSession(id);
 }
 
 // ── Quote flow ─────────────────────────────────────────────────────────
 function startQuote() {
+  clearSession();
   state.serviceType = null;
   state.breakdown = { regular: 0, large: 0, french: 0 };
   state.panes = 0;
@@ -1582,9 +1591,88 @@ function emailQuote(id) {
     + '&body=' + encodeURIComponent(lines.join('\n'));
 }
 
+// ── Session persistence (resume last quote) ────────────────────────────
+function saveSession(screenId) {
+  if (screenId === 'scr-home' || screenId === 'scr-leads' || screenId === 'scr-ref' || screenId === 'scr-complete') return;
+  const session = {
+    breakdown: { ...state.breakdown },
+    serviceType: state.serviceType,
+    addons: { ...state.addons },
+    selectedPackage: state.selectedPackage || null,
+    discount: parseFloat(document.getElementById('discount-pct')?.value || 0),
+    screen: screenId,
+    ts: Date.now()
+  };
+  localStorage.setItem('ww_session', JSON.stringify(session));
+}
+
+function clearSession() {
+  localStorage.removeItem('ww_session');
+  updateResumeBtn();
+}
+
+function updateResumeBtn() {
+  const raw = localStorage.getItem('ww_session');
+  const btn = document.getElementById('resume-btn');
+  const sub = document.getElementById('resume-summary');
+  if (!btn) return;
+  if (!raw) { btn.style.display = 'none'; return; }
+  try {
+    const s = JSON.parse(raw);
+    const total = (s.breakdown.regular || 0) + (s.breakdown.large || 0) + (s.breakdown.french || 0);
+    if (!total) { btn.style.display = 'none'; return; }
+    let summary = total + ' panes';
+    if (s.selectedPackage) summary += ' · ' + s.selectedPackage.charAt(0).toUpperCase() + s.selectedPackage.slice(1);
+    else if (s.serviceType) summary += ' · ' + (s.serviceType === 'exterior' ? 'Exterior Only' : 'Int + Ext');
+    else summary += ' · Tap to continue';
+    sub.textContent = summary;
+    btn.style.display = 'flex';
+  } catch { btn.style.display = 'none'; }
+}
+
+function resumeSession() {
+  const raw = localStorage.getItem('ww_session');
+  if (!raw) return;
+  try {
+    const s = JSON.parse(raw);
+    state.breakdown = { regular: s.breakdown.regular || 0, large: s.breakdown.large || 0, french: s.breakdown.french || 0 };
+    state.serviceType = s.serviceType || null;
+    state.addons = { screens: s.addons.screens || 0, tracks: s.addons.tracks || 0, hardwater: s.addons.hardwater || 0, largewindow: s.addons.largewindow || 0, gutters: !!s.addons.gutters };
+    state.selectedPackage = s.selectedPackage || null;
+    const discEl = document.getElementById('discount-pct');
+    if (discEl) discEl.value = s.discount || 0;
+    // Restore addon UI
+    ['largewindow','screens','tracks','hardwater'].forEach(k => {
+      const chk = document.getElementById('chk-' + k);
+      const ctr = document.getElementById('ctr-' + k);
+      const val = document.getElementById('val-' + k);
+      if (chk) chk.checked = state.addons[k] > 0;
+      if (val) val.textContent = state.addons[k] || 0;
+      if (ctr) ctr.style.display = state.addons[k] > 0 ? 'flex' : 'none';
+    });
+    const chkGutters = document.getElementById('chk-gutters');
+    if (chkGutters) chkGutters.checked = state.addons.gutters;
+    // Restore service card selection
+    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+    if (state.serviceType) {
+      const svcEl = document.getElementById('svc-' + (state.serviceType === 'exterior' ? 'ext' : 'both'));
+      if (svcEl) svcEl.classList.add('selected');
+    }
+    syncPaneState();
+    const target = s.screen || 'scr-count';
+    document.querySelectorAll('.screen').forEach(sc => sc.classList.remove('active'));
+    document.getElementById(target).classList.add('active');
+    if (target === 'scr-packages') updatePackagePrices();
+    if (target === 'scr-service')  updateServicePrices();
+    if (target === 'scr-quote')    renderQuote();
+    window.scrollTo(0, 0);
+  } catch { clearSession(); goScreen('scr-count'); }
+}
+
 // ── Init ───────────────────────────────────────────────────────────────
 updateHomeCount();
 updatePaneDisplay();
+updateResumeBtn();
 </script>
 </body>
 </html>
