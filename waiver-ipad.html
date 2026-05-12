@@ -193,6 +193,45 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
   opacity:0;transition:opacity .3s;white-space:nowrap
 }
 .toast.show{opacity:1}
+/* ── Payment toggle ── */
+.pay-toggle{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.5rem}
+.pay-btn{
+  padding:.9rem;border:1.5px solid var(--border);border-radius:8px;
+  background:var(--white);font-family:var(--font);font-size:.95rem;font-weight:600;
+  color:var(--navy);cursor:pointer;-webkit-tap-highlight-color:transparent;
+  transition:border-color .15s,background .15s
+}
+.pay-btn.selected{border-color:var(--green);background:#f0fff4;color:#166534}
+
+/* ── Completion checklist ── */
+.done-checklist{display:flex;flex-direction:column;gap:.5rem;margin-top:.25rem}
+.chk-item{
+  display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;
+  border:1.5px solid var(--border);border-radius:8px;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;transition:border-color .15s,background .15s;
+  font-size:.9rem;font-weight:500;color:var(--navy);background:var(--white)
+}
+.chk-item.done{border-color:var(--green);background:#f0fff4;color:#166534}
+.chk-box{
+  width:22px;height:22px;border-radius:5px;border:1.5px solid var(--border);
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;color:#fff;transition:background .15s,border-color .15s
+}
+.chk-item.done .chk-box{background:var(--green);border-color:var(--green)}
+
+/* ── Approve screen ── */
+#scr-approve{background:#f0fff4}
+.approve-header{background:#166534;color:#fff;padding:1.75rem 1.5rem 1.5rem;text-align:center;flex-shrink:0}
+.approve-header h2{font-size:1.3rem;font-weight:800;margin-bottom:.25rem}
+.approve-header p{font-size:.85rem;opacity:.75;line-height:1.5}
+.approve-list{display:flex;flex-direction:column;gap:.4rem;padding:1.25rem 1.25rem .75rem}
+.approve-row{display:flex;align-items:center;gap:.75rem;background:#fff;border:1px solid #bbf7d0;border-radius:8px;padding:.8rem 1rem;font-size:.9rem;font-weight:600;color:#166534}
+.approve-check{font-size:1.1rem;flex-shrink:0}
+.approve-total{background:#fff;border:1.5px solid #bbf7d0;border-radius:10px;margin:0 1.25rem;padding:1rem 1.1rem}
+.approve-total-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#4ade80;margin-bottom:.3rem}
+.approve-total-price{font-size:2rem;font-weight:800;color:#166534;line-height:1}
+.approve-total-sub{font-size:.78rem;color:#4ade80;margin-top:.2rem}
+
 /* ── Print invoice ── */
 @media print {
   html,body{overflow:visible!important;height:auto!important;background:#fff}
@@ -501,18 +540,66 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
 </div>
 
 <!-- ════════════════════════════
-     SCREEN 6 — DONE
+     SCREEN 6 — COMPLETION CHECKLIST (Dave)
+════════════════════════════ -->
+<div id="scr-complete" class="screen">
+  <div class="page-body">
+    <div class="card">
+      <div class="section-label">Take the iPad back · You</div>
+      <div class="card-title">Confirm What Was Completed</div>
+      <div class="card-sub">All booked services are pre-checked. Uncheck anything that wasn't done today.</div>
+      <div class="done-checklist" id="completion-list"></div>
+    </div>
+    <div class="card">
+      <div class="section-label">Payment</div>
+      <div class="card-title">How did they pay?</div>
+      <div class="pay-toggle">
+        <button class="pay-btn" id="pay-cash"      onclick="selectPayment('cash')">💵 Cash</button>
+        <button class="pay-btn" id="pay-etransfer" onclick="selectPayment('etransfer')">📱 E-Transfer</button>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div>
+  <div class="btn-stack">
+    <button class="btn-primary" id="next-complete" onclick="goToApprove()" disabled>Hand to Customer →</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     SCREEN 7 — CUSTOMER APPROVAL
+════════════════════════════ -->
+<div id="scr-approve" class="screen">
+  <div class="approve-header">
+    <div style="font-size:2.5rem;margin-bottom:.5rem">✅</div>
+    <h2>All Done, <span id="approve-name">there</span>!</h2>
+    <p>Here's everything we completed today. Tap the button below and we'll send you a copy.</p>
+  </div>
+  <div class="approve-list" id="approve-list"></div>
+  <div class="approve-total">
+    <div class="approve-total-label">Total Paid</div>
+    <div class="approve-total-price" id="approve-price"></div>
+    <div class="approve-total-sub"   id="approve-payment"></div>
+  </div>
+  <div style="flex:1"></div>
+  <div class="btn-stack">
+    <button class="btn-primary" id="send-btn" onclick="sendAndComplete()" style="background:#166534;font-size:1.05rem">
+      Looks Good — Send My Copy ✓
+    </button>
+    <button class="btn-ghost" onclick="goTo('scr-complete')">← Go Back</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     SCREEN 8 — DONE
 ════════════════════════════ -->
 <div id="scr-done" class="screen">
-  <div class="done-icon">✅</div>
-  <div class="done-title">Agreement Complete</div>
-  <div class="done-sub" id="done-sub">Signed and initialled.</div>
+  <div class="done-icon">🎉</div>
+  <div class="done-title">All Done!</div>
+  <div class="done-sub" id="done-sub">Job complete.</div>
   <div class="done-card" id="done-card"></div>
   <div style="display:flex;flex-direction:column;gap:.6rem;width:100%;max-width:420px">
     <button class="btn-primary" onclick="saveInvoicePDF()">Save Invoice PDF</button>
-    <button class="btn-outline" onclick="emailCustomer()">Email Invoice to Customer</button>
-    <button class="btn-outline" onclick="shareSummary()">Share Summary</button>
-    <button class="btn-ghost" onclick="newAgreement()">Start New Agreement</button>
+    <button class="btn-ghost"   onclick="newAgreement()">Start New Job</button>
   </div>
 </div>
 
@@ -527,18 +614,20 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
 const WEB3FORMS_KEY   = 'cd06c1c4-9648-4bea-b875-03a7cdd6ef61';
 const DAVID_EMAIL     = 'davidhanna@wagonwindow.com';
 const SHEETS_WEBHOOK  = ''; // Paste Google Apps Script web app URL here
+const REVIEW_URL      = ''; // Add Google review URL when Business profile is approved
 
 // ── State ──────────────────────────────────────────────────────────────
 const state = {
   name: '', phone: '', email: '', address: '',
   services: [], price: '', windows: '', notes: '',
   initials: '', initialled: 0,
-  printName: '', dateStr: ''
+  printName: '', dateStr: '',
+  completedServices: [], paymentMethod: ''
 };
 
 // ── Screen routing ─────────────────────────────────────────────────────
-const STEPS = { 'scr-details': 1, 'scr-services': 2, 'scr-handoff': null, 'scr-terms': 3, 'scr-sign': 4, 'scr-done': null };
-const BACK  = { 'scr-services': 'scr-details', 'scr-handoff': 'scr-services', 'scr-terms': 'scr-handoff', 'scr-sign': 'scr-terms', 'scr-done': null };
+const STEPS = { 'scr-details': 1, 'scr-services': 2, 'scr-handoff': null, 'scr-terms': 3, 'scr-sign': 4, 'scr-complete': null, 'scr-approve': null, 'scr-done': null };
+const BACK  = { 'scr-services': 'scr-details', 'scr-handoff': 'scr-services', 'scr-terms': 'scr-handoff', 'scr-sign': 'scr-terms', 'scr-complete': null, 'scr-approve': 'scr-complete', 'scr-done': null };
 let currentScreen = 'scr-details';
 
 function goTo(id) {
@@ -718,7 +807,7 @@ function checkSignReady() {
 }
 document.getElementById('f-printname').addEventListener('input', checkSignReady);
 
-// ── Complete ───────────────────────────────────────────────────────────
+// ── Complete (after signature) ─────────────────────────────────────────
 async function complete() {
   const btn = document.getElementById('next-sign');
   btn.disabled = true;
@@ -726,14 +815,131 @@ async function complete() {
 
   state.printName = document.getElementById('f-printname').value.trim();
   saveRecord();
-  buildDoneScreen();
   buildPrintInvoice();
 
-  // Fire submissions in parallel — don't block the UI
+  // Notify David that agreement was signed
   submitToWeb3Forms().catch(() => {});
   postToSheets().catch(() => {});
 
+  buildCompletionScreen();
+  goTo('scr-complete');
+}
+
+// ── Completion checklist ───────────────────────────────────────────────
+function buildCompletionScreen() {
+  state.completedServices = [...state.services];
+  state.paymentMethod = '';
+  document.getElementById('pay-cash').classList.remove('selected');
+  document.getElementById('pay-etransfer').classList.remove('selected');
+  document.getElementById('next-complete').disabled = true;
+  document.getElementById('completion-list').innerHTML = state.services.map(k =>
+    '<div class="chk-item done" data-svc="' + k + '" onclick="toggleCompleted(this,\'' + k + '\')">'
+    + '<div class="chk-box">✓</div>' + SVC_LABELS[k] + '</div>'
+  ).join('');
+}
+
+function toggleCompleted(el, key) {
+  el.classList.toggle('done');
+  const i = state.completedServices.indexOf(key);
+  if (i > -1) state.completedServices.splice(i, 1);
+  else state.completedServices.push(key);
+}
+
+function selectPayment(method) {
+  state.paymentMethod = method;
+  document.getElementById('pay-cash').classList.toggle('selected', method === 'cash');
+  document.getElementById('pay-etransfer').classList.toggle('selected', method === 'etransfer');
+  document.getElementById('next-complete').disabled = false;
+}
+
+function goToApprove() {
+  const price = parseFloat(state.price) || 0;
+  const gst   = Math.round(price * 0.05);
+  const total = price + gst;
+  document.getElementById('approve-name').textContent = state.name.split(' ')[0] || 'there';
+  document.getElementById('approve-list').innerHTML = state.completedServices.map(k =>
+    '<div class="approve-row"><span class="approve-check">✓</span>' + SVC_LABELS[k] + '</div>'
+  ).join('');
+  document.getElementById('approve-price').textContent   = '$' + total.toFixed(2);
+  document.getElementById('approve-payment').textContent =
+    'Paid by ' + (state.paymentMethod === 'cash' ? 'cash' : 'e-transfer') + ' · Includes GST';
+  const sendBtn = document.getElementById('send-btn');
+  sendBtn.disabled = false;
+  sendBtn.textContent = state.email
+    ? 'Looks Good — Send My Copy ✓'
+    : 'Looks Good — Confirm Job ✓';
+  goTo('scr-approve');
+}
+
+async function sendAndComplete() {
+  const btn = document.getElementById('send-btn');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  await submitCompletionToWeb3Forms().catch(() => {});
+  if (state.email) sendCustomerEmail();
+
+  buildDoneScreen();
   goTo('scr-done');
+}
+
+async function submitCompletionToWeb3Forms() {
+  const price    = parseFloat(state.price) || 0;
+  const gst      = Math.round(price * 0.05);
+  const total    = price + gst;
+  const services = state.completedServices.map(k => SVC_LABELS[k]).join(', ') || '—';
+  const fd = new FormData();
+  fd.append('access_key',         WEB3FORMS_KEY);
+  fd.append('subject',            'Job Complete — ' + state.name + ' — ' + state.dateStr);
+  fd.append('from_name',          'Wagon Windows Waiver');
+  fd.append('Customer',           state.name);
+  fd.append('Phone',              state.phone);
+  fd.append('Email',              state.email || 'Not provided');
+  fd.append('Address',            state.address);
+  fd.append('Services Completed', services);
+  fd.append('Total',              '$' + total.toFixed(2));
+  fd.append('Payment',            state.paymentMethod === 'cash' ? 'Cash' : 'E-Transfer');
+  fd.append('Windows',            state.windows || '—');
+  fd.append('Notes',              state.notes   || '—');
+  fd.append('Signed By',          state.printName);
+  fd.append('Date',               state.dateStr);
+  fd.append('redirect',           'false');
+  const res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
+  const json = await res.json();
+  if (json.success) showToast('David notified ✓');
+}
+
+function sendCustomerEmail() {
+  const price    = parseFloat(state.price) || 0;
+  const gst      = Math.round(price * 0.05);
+  const total    = price + gst;
+  const services = state.completedServices.map(k => '✓ ' + SVC_LABELS[k]).join('\n');
+  const payLabel = state.paymentMethod === 'cash' ? 'Cash' : 'E-Transfer';
+  const firstName = state.name.split(' ')[0];
+  const reviewLine = REVIEW_URL
+    ? '\n⭐ Enjoying your clean windows? We\'d love a Google review:\n' + REVIEW_URL + '\n'
+    : '';
+  const subject = 'Your Wagon Windows job is complete — ' + state.dateStr;
+  const body = [
+    'Hi ' + firstName + ',',
+    '',
+    'Thanks for choosing Wagon Windows! Here\'s a summary of today\'s job:',
+    '',
+    services,
+    '',
+    'Total: $' + total.toFixed(2) + ' (incl. GST)',
+    'Paid by: ' + payLabel,
+    reviewLine,
+    '— Streak-Free Guarantee —',
+    'If anything isn\'t right, reply to this email or text David at (403) 837-5092 within 24 hours and we\'ll come back at no charge.',
+    '',
+    'Thanks again — enjoy the view!',
+    '',
+    '— David Hanna',
+    'Wagon Windows · Salmon Arm & Shuswap, BC',
+    '(403) 837-5092 · wagonwindow.com'
+  ].filter(l => l !== null).join('\n');
+  window.location.href = 'mailto:' + state.email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 }
 
 // ── Web3Forms auto-email to David ──────────────────────────────────────
@@ -863,19 +1069,21 @@ const SVC_LABELS = {
 };
 
 function buildDoneScreen() {
-  const services = state.services.map(k => SVC_LABELS[k]).join(', ');
-  document.getElementById('done-sub').textContent = 'Signed by ' + state.printName + ' on ' + state.dateStr + '.';
+  const price    = parseFloat(state.price) || 0;
+  const gst      = Math.round(price * 0.05);
+  const total    = price + gst;
+  const services = state.completedServices.map(k => SVC_LABELS[k]).join(', ') || state.services.map(k => SVC_LABELS[k]).join(', ');
+  const payLabel = state.paymentMethod === 'cash' ? 'Cash' : state.paymentMethod === 'etransfer' ? 'E-Transfer' : '—';
+  document.getElementById('done-sub').textContent = state.email
+    ? 'Summary sent to ' + state.email
+    : 'Job recorded — ' + state.name;
   document.getElementById('done-card').innerHTML = [
-    doneRow('Customer', state.name),
-    doneRow('Phone', state.phone),
-    state.email ? doneRow('Email', state.email) : '',
-    doneRow('Address', state.address),
-    doneRow('Services', services || '—'),
-    doneRow('Quoted', '$' + state.price),
-    state.windows ? doneRow('Windows', state.windows) : '',
-    doneRow('Initialled by', state.initials + ' (all 11 clauses)'),
-    doneRow('Signed', state.printName),
-    doneRow('Date', state.dateStr)
+    doneRow('Customer',  state.name),
+    doneRow('Services',  services || '—'),
+    doneRow('Total',     '$' + total.toFixed(2)),
+    doneRow('Payment',   payLabel),
+    doneRow('Signed',    state.printName),
+    doneRow('Date',      state.dateStr)
   ].filter(Boolean).join('');
 }
 
@@ -954,7 +1162,7 @@ function getRecords() {
 // ── New agreement ──────────────────────────────────────────────────────
 function newAgreement() {
   // Reset state
-  Object.assign(state, { name:'', phone:'', email:'', address:'', services:[], price:'', windows:'', notes:'', initials:'', initialled:0, printName:'', dateStr:'' });
+  Object.assign(state, { name:'', phone:'', email:'', address:'', services:[], price:'', windows:'', notes:'', initials:'', initialled:0, printName:'', dateStr:'', completedServices:[], paymentMethod:'' });
   // Reset form fields
   ['f-name','f-phone','f-email','f-address','f-price','f-windows','f-notes','f-printname'].forEach(id => {
     const el = document.getElementById(id);
