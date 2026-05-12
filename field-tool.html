@@ -1377,7 +1377,7 @@ function openWaiver(id) {
   const params = new URLSearchParams({
     name:    lead.name    || '',
     phone:   lead.phone   || '',
-    email:   '',
+    email:   lead.email   || '',
     address: lead.address || '',
     price:   lead.quote   || '',
     windows: Math.round((lead.panes || 0) / 2) || '',

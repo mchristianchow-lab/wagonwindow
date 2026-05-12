@@ -144,7 +144,10 @@
     <div class="step" id="step-2">
       <div class="step-card">
         <h2>How many panes?</h2>
-        <p class="sub">Count each individual piece of glass as one pane. A standard window = 2 panes. A sliding patio door = 2 panes. Skylights count too.</p>
+        <p class="sub">Count each individual piece of glass — not each window frame.</p>
+        <div style="background:#fff5f5;border:2px solid var(--sky);border-radius:8px;padding:.85rem 1rem;margin-bottom:1.25rem;font-size:.87rem;line-height:1.6;color:#6b0000">
+          <strong style="color:var(--sky)">⚠ Count panes, not windows.</strong> Each piece of glass = 1 pane. A standard double-hung window has <strong>2 panes</strong>. A sliding patio door = <strong>2 panes</strong>. A picture window = <strong>1 pane</strong>. Skylights count too.
+        </div>
         <div class="pane-input-wrap">
           <div class="pane-counter">
             <button class="pane-btn" onclick="adjustPanes(-5)">−</button>
@@ -306,14 +309,15 @@
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="f-phone">Phone *</label>
-              <input id="f-phone" type="tel" name="phone" required placeholder="(250) 555-0123">
+              <label for="f-phone">Phone</label>
+              <input id="f-phone" type="tel" name="phone" placeholder="(250) 555-0123">
             </div>
             <div class="form-group">
-              <label for="f-email">Email *</label>
-              <input id="f-email" type="email" name="email" required placeholder="you@email.com">
+              <label for="f-email">Email</label>
+              <input id="f-email" type="email" name="email" placeholder="you@email.com">
             </div>
           </div>
+          <p id="contact-error" style="display:none;color:var(--sky);font-size:.82rem;margin:-0.5rem 0 .75rem;font-weight:600">Please enter at least a phone number or email so we can reach you.</p>
           <div class="form-group" style="margin-bottom:1rem">
             <label for="f-address">Service Address *</label>
             <input id="f-address" type="text" name="address" required placeholder="123 Main St, Salmon Arm, BC">
@@ -560,6 +564,11 @@ function showStep(id) {
 
 async function submitBooking(e) {
   e.preventDefault();
+  const phone = document.getElementById('f-phone').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const err   = document.getElementById('contact-error');
+  if (!phone && !email) { err.style.display = 'block'; document.getElementById('f-phone').focus(); return; }
+  err.style.display = 'none';
   const btn = document.getElementById('submit-btn');
   btn.textContent = 'Sending…';
   btn.disabled = true;
