@@ -8,10 +8,21 @@
   <link rel="canonical" href="{{ canonical }}" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="{{ page_title }}" />
+  <meta property="og:title"       content="{{ page_title }}" />
   <meta property="og:description" content="{{ meta_desc }}" />
-  <meta property="og:url" content="{{ canonical }}" />
-  <meta property="og:type" content="website" />
+  <meta property="og:url"         content="{{ canonical }}" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:image"       content="{{ config.site_url }}/assets/og-image.png" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name"   content="{{ config.site_name }}" />
+  <meta property="og:locale"      content="en_CA" />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="{{ page_title }}" />
+  <meta name="twitter:description" content="{{ meta_desc }}" />
+  <meta name="twitter:image"       content="{{ config.site_url }}/assets/og-image.png" />
 
   <!-- Preload logo (LCP element) -->
   <link rel="preload" as="image" href="/assets/images/logo.svg" type="image/svg+xml">
@@ -101,6 +112,21 @@
     "paymentAccepted": "Cash, E-Transfer",
     "slogan": "Crystal Clear Windows. Every Time.",
     "serviceType": ["Window Cleaning","Gutter Cleaning","Screen Cleaning","Hard Water Stain Removal"]
+  }
+  </script>
+
+  <!-- Schema: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "{{ config.site_name }}",
+    "url": "{{ config.site_url }}",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "{{ config.site_url }}/quote/",
+      "query-input": "required name=search_term_string"
+    }
   }
   </script>
 

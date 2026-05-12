@@ -30,6 +30,7 @@ door-hanger.html
 *.jpg
 *.JPG
 *.PNG
+!build/assets/og-image.png
 *.pdf
 *.html
 !build/

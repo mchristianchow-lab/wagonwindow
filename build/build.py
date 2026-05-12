@@ -45,6 +45,20 @@ seasonal  = load('seasonal.json')
 env = Environment(loader=FileSystemLoader(TMPL_DIR), autoescape=True)
 env.globals['config'] = config
 env.globals['now']    = datetime.now().strftime('%Y-%m-%d')
+env.globals['faqs']   = faqs_db
+
+_month = datetime.now().month
+if   _month in (1, 2, 3):
+    _season_banner = {'icon': '❄️', 'strong': 'Beat the spring rush — book now.', 'text': 'Early-season slots fill quickly. Lock in your date before spring demand peaks.'}
+elif _month in (4, 5, 6):
+    _season_banner = {'icon': '🌸', 'strong': 'Spring bookings are filling up fast.', 'text': 'May and June dates are going quick — secure your window clean before the calendar fills.'}
+elif _month in (7, 8):
+    _season_banner = {'icon': '☀️', 'strong': 'Summer availability is limited.', 'text': 'Peak season is here — book your mid-summer clean while dates are still open.'}
+elif _month in (9, 10):
+    _season_banner = {'icon': '🍂', 'strong': 'Fall is the best time for a pre-winter clean.', 'text': 'Clear out summer buildup before the rain and frost sets in. Book your fall clean now.'}
+else:
+    _season_banner = {'icon': '🌨️', 'strong': 'End-of-year bookings going fast.', 'text': 'Lock in your date before the holidays — limited spots remain before year-end.'}
+env.globals['season_banner'] = _season_banner
 
 # ── Page Registry (for sitemap) ─────────────────────────────────────────────
 page_registry = []

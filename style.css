@@ -1113,6 +1113,46 @@ footer p + p { margin-top: 0.6rem; }
   position: relative;
 }
 
+/* ---- HOW IT WORKS ---- */
+#how-it-works { padding: 80px 5%; text-align: center; background: #f9f9f9; }
+.hiw-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto 0;
+}
+.hiw-step { padding: 1.5rem 1rem; }
+.hiw-num {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--sky); color: #fff;
+  font-size: 1.3rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1rem;
+}
+.hiw-step h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; color: var(--navy); }
+.hiw-step p  { font-size: .9rem; color: var(--gray); line-height: 1.6; }
+
+/* ---- TESTIMONIALS ---- */
+#reviews { padding: 80px 5%; background: var(--white); text-align: center; }
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.review-card {
+  background: var(--light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+}
+.review-stars { color: #f59e0b; font-size: 1rem; letter-spacing: .05em; margin-bottom: .75rem; }
+.review-text  { font-size: .9rem; color: #333; line-height: 1.65; margin-bottom: 1rem; font-style: italic; }
+.review-author { font-size: .78rem; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: .06em; }
+
 /* ---- TABLET (iPad landscape + smaller desktop) ---- */
 @media (min-width: 901px) and (max-width: 1180px) {
   nav { padding: 0 3%; }
@@ -1154,6 +1194,12 @@ footer p + p { margin-top: 0.6rem; }
 
   /* WHY */
   .why-grid { grid-template-columns: 1fr; }
+
+  /* HOW IT WORKS */
+  .hiw-grid { grid-template-columns: 1fr; }
+
+  /* REVIEWS */
+  .reviews-grid { grid-template-columns: 1fr; }
 
   /* PRICING */
   .pricing-grid { grid-template-columns: 1fr; }
