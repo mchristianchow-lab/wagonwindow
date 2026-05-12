@@ -31,6 +31,9 @@ door-hanger.html
 *.JPG
 *.PNG
 !build/assets/og-image.png
+!build/assets/favicon-32x32.png
+!build/assets/favicon-16x16.png
+!build/assets/apple-touch-icon.png
 *.pdf
 *.html
 !build/
