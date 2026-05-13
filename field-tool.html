@@ -920,6 +920,7 @@ function goScreen(id) {
   if (id === 'scr-quote') renderQuote();
   if (id === 'scr-service') updateServicePrices();
   if (id === 'scr-addons') updateGutterMeta();
+  if (id === 'scr-packages') updatePackagePrices();
   window.scrollTo(0, 0);
   saveSession(id);
 }
@@ -988,6 +989,10 @@ function updatePaneDisplay() { syncPaneState(); }
 
 // ── Packages ───────────────────────────────────────────────────────────
 function goPackages() {
+  if (state.panes === 0) {
+    alert('Count at least 1 pane before viewing packages.');
+    return;
+  }
   updatePackagePrices();
   goScreen('scr-packages');
 }
