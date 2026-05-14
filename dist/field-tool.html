@@ -307,6 +307,13 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <div class="revenue-jobs" id="revenue-jobs">0 jobs</div>
   </div>
   <div class="home-btns">
+    <button class="home-btn" id="resume-btn" style="display:none;border-color:var(--green);border-width:2px" onclick="resumeSession()">
+      <span class="home-btn-icon">↩</span>
+      <div>
+        <span class="home-btn-label" style="color:var(--green)">Resume Last Quote</span>
+        <span class="home-btn-sub" id="resume-summary" style="color:rgba(34,197,94,.65)">—</span>
+      </div>
+    </button>
     <button class="home-btn primary" onclick="startQuote()">
       <span class="home-btn-icon">💲</span>
       <div>
@@ -543,7 +550,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         <input type="checkbox" class="addon-check" id="chk-largewindow" onchange="toggleAddon('largewindow',this)">
         <div class="addon-text">
           <div class="addon-name">Large / Oversized Windows</div>
-          <div class="addon-meta">$5 extra per pane · picture windows, floor-to-ceiling, bay windows</div>
+          <div class="addon-meta">$8 extra per pane · picture windows, floor-to-ceiling, bay windows</div>
         </div>
       </div>
       <div class="addon-ctr" id="ctr-largewindow" style="display:none">
@@ -606,6 +613,17 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         <div class="adj-val" id="val-hardwater">0</div>
         <button class="adj-btn" onclick="adjustAddon('hardwater',1)">+</button>
       </div>
+    </div>
+
+    <!-- Travel Fee -->
+    <div style="margin-top:1rem">
+      <div class="card-label" style="padding-left:.25rem;margin-bottom:.5rem">Travel Fee</div>
+      <div style="display:flex;gap:.5rem">
+        <button class="btn btn-outline" id="travel-btn-0"   style="flex:1;padding:.65rem .5rem;font-size:.85rem;border-radius:8px;border-color:var(--green);color:var(--green)" onclick="setTravel(0)">None</button>
+        <button class="btn btn-outline" id="travel-btn-35"  style="flex:1;padding:.65rem .5rem;font-size:.85rem;border-radius:8px" onclick="setTravel(35)">$35</button>
+        <button class="btn btn-outline" id="travel-btn-55"  style="flex:1;padding:.65rem .5rem;font-size:.85rem;border-radius:8px" onclick="setTravel(55)">$55</button>
+      </div>
+      <div style="font-size:.72rem;color:var(--muted);margin-top:.4rem;padding-left:.1rem">$35 — Sorrento/Sicamous/Enderby · $55 — Armstrong/Chase</div>
     </div>
 
     <div class="section-spacer"></div>
@@ -732,10 +750,10 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <table class="ref-table">
       <thead><tr><th>Size</th><th>Panes</th><th>Ext Only</th><th>Int + Ext</th></tr></thead>
       <tbody>
-        <tr><td>Small</td><td>≤ 30</td><td>$149+</td><td>$199+</td></tr>
-        <tr><td>Medium</td><td>31–50</td><td>$199+</td><td>$269+</td></tr>
-        <tr><td>Large</td><td>51–70</td><td>$269+</td><td>$349+</td></tr>
-        <tr><td>X-Large</td><td>71–99</td><td>$339+</td><td>$429+</td></tr>
+        <tr><td>Small</td><td>≤ 30</td><td>$169+</td><td>$219+</td></tr>
+        <tr><td>Medium</td><td>31–50</td><td>$219+</td><td>$289+</td></tr>
+        <tr><td>Large</td><td>51–70</td><td>$289+</td><td>$369+</td></tr>
+        <tr><td>X-Large</td><td>71–99</td><td>$405+</td><td>$500+</td></tr>
       </tbody>
     </table>
 
@@ -756,7 +774,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         <tr><td>Screen Cleaning</td><td>$4 / screen</td></tr>
         <tr><td>Track Cleaning</td><td>$4 / track</td></tr>
         <tr><td>Hard Water Removal</td><td>$20 / pane</td></tr>
-        <tr><td>Large / Oversized Window</td><td>$5 / pane extra</td></tr>
+        <tr><td>Large / Oversized Window</td><td>$8 / pane extra</td></tr>
       </tbody>
     </table>
 
@@ -764,7 +782,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <table class="ref-table">
       <tbody>
         <tr><td>GST (Canada)</td><td>5%</td></tr>
-        <tr><td>Minimum Job</td><td>$75</td></tr>
+        <tr><td>Minimum Job</td><td>$119</td></tr>
         <tr><td>Payment</td><td>Cash, E-Transfer</td></tr>
       </tbody>
     </table>
@@ -848,9 +866,9 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
 
 <script>
 // ── Pricing constants ──────────────────────────────────────────────────
-const ADDONS = { screens: 4, tracks: 4, hardwater: 20, largewindow: 5 };
+const ADDONS = { screens: 4, tracks: 4, hardwater: 20, largewindow: 8 };
 const GST = 0.05;
-const MIN_JOB = 75;
+const MIN_JOB = 119;
 const CALENDLY = 'https://calendly.com/davidhanna-wagonwindow/new-meeting';
 
 // State
@@ -858,12 +876,12 @@ const state = {
   panes: 0,
   breakdown: { regular: 0, large: 0, french: 0 },
   serviceType: null,
-  addons: { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false }
+  addons: { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false, travel: 0 }
 };
 
 // ── Pricing engine (mirrors customer quote tool exactly) ───────────────
 function calcBase(panes, type) {
-  let ext = 149, intExt = 199;
+  let ext = 169, intExt = 219;
   let rem = Math.max(0, panes - 30);
   const t1 = Math.min(rem, 20); rem -= t1; ext += t1 * 2.50; intExt += t1 * 3.50;
   const t2 = Math.min(rem, 20); rem -= t2; ext += t2 * 3.50; intExt += t2 * 4.00;
@@ -892,14 +910,15 @@ function buildQuote() {
   const tracks   = state.addons.tracks   * ADDONS.tracks;
   const hardwater= state.addons.hardwater* ADDONS.hardwater;
   const gutters  = state.addons.gutters  ? gutterPrice(state.panes) : 0;
+  const travel   = state.addons.travel   || 0;
   const discPct  = Math.min(40, Math.max(0, parseFloat(document.getElementById('discount-pct')?.value || 0)));
-  const subtotal = base + largeWin + screens + tracks + hardwater + gutters;
+  const subtotal = base + largeWin + screens + tracks + hardwater + gutters + travel;
   const discount = Math.round(subtotal * (discPct / 100));
   const afterDiscount = subtotal - discount;
   const gst = Math.round(afterDiscount * GST);
   const total = afterDiscount + gst;
   const high = Math.round(total * 1.15);
-  return { base, largeWin, screens, tracks, hardwater, gutters, subtotal, discPct, discount, afterDiscount, gst, total, high };
+  return { base, largeWin, screens, tracks, hardwater, gutters, travel, subtotal, discPct, discount, afterDiscount, gst, total, high };
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-CA'); }
@@ -909,20 +928,24 @@ function goScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   if (id === 'scr-leads') renderLeads();
-  if (id === 'scr-home') updateHomeCount();
+  if (id === 'scr-home') { updateHomeCount(); updateResumeBtn(); }
   if (id === 'scr-quote') renderQuote();
   if (id === 'scr-service') updateServicePrices();
   if (id === 'scr-addons') updateGutterMeta();
+  if (id === 'scr-packages') updatePackagePrices();
   window.scrollTo(0, 0);
+  saveSession(id);
 }
 
 // ── Quote flow ─────────────────────────────────────────────────────────
 function startQuote() {
+  clearSession();
   state.serviceType = null;
   state.breakdown = { regular: 0, large: 0, french: 0 };
   state.panes = 0;
-  state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false };
+  state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false, travel: 0 };
   // Reset addon checkboxes
+  setTravel(0);
   ['largewindow','screens','tracks','hardwater','gutters'].forEach(k => {
     const el = document.getElementById('chk-' + k);
     if (el) el.checked = false;
@@ -979,6 +1002,10 @@ function updatePaneDisplay() { syncPaneState(); }
 
 // ── Packages ───────────────────────────────────────────────────────────
 function goPackages() {
+  if (state.panes === 0) {
+    alert('Count at least 1 pane before viewing packages.');
+    return;
+  }
   updatePackagePrices();
   goScreen('scr-packages');
 }
@@ -1027,13 +1054,13 @@ function selectPackage(tier) {
 
   if (tier === 'standard') {
     state.serviceType = 'exterior';
-    state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false };
+    state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false, travel: 0 };
   } else if (tier === 'premium') {
     state.serviceType = 'both';
-    state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false };
+    state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false, travel: 0 };
   } else if (tier === 'supreme') {
     state.serviceType = 'both';
-    state.addons = { screens: est, tracks: est, hardwater: 0, largewindow: 0, gutters: false };
+    state.addons = { screens: est, tracks: est, hardwater: 0, largewindow: 0, gutters: false, travel: 0 };
   }
 
   // Large + French from count screen carry into the addon
@@ -1103,6 +1130,17 @@ function adjustAddon(key, delta) {
   }
 }
 
+function setTravel(fee) {
+  state.addons.travel = fee;
+  [0, 35, 55].forEach(f => {
+    const btn = document.getElementById('travel-btn-' + f);
+    if (!btn) return;
+    btn.style.borderColor = f === fee ? 'var(--red)' : 'var(--border)';
+    btn.style.color       = f === fee ? 'var(--red)'  : 'var(--text)';
+  });
+  if (document.getElementById('scr-quote').classList.contains('active')) renderQuote();
+}
+
 function setAddonVal(key, count, checked) {
   state.addons[key] = count;
   const chk = document.getElementById('chk-' + key);
@@ -1137,6 +1175,7 @@ function renderQuote() {
   if (q.tracks)   rows += brow('Tracks ×' + state.addons.tracks, fmt(q.tracks));
   if (q.gutters)  rows += brow('Gutter cleaning', fmt(q.gutters));
   if (q.hardwater)rows += brow('Hard water ×' + state.addons.hardwater, fmt(q.hardwater));
+  if (q.travel)   rows += brow('Travel fee', fmt(q.travel));
   if (q.discount) rows += brow('Discount (' + q.discPct + '%)', '−' + fmt(q.discount));
   rows += brow('GST (5%)', fmt(q.gst));
   rows += brow('Total', fmt(q.total), true);
@@ -1164,6 +1203,7 @@ function showCustomer() {
   if (q.gutters)  parts.push('gutter cleaning');
   if (q.hardwater)parts.push('hard water treatment');
   if (q.largeWin) parts.push('oversized window surcharge');
+  if (q.travel)   parts.push('travel fee');
   document.getElementById('co-includes').textContent = parts.join(', ') + '.';
 
   let coRows = '';
@@ -1172,6 +1212,7 @@ function showCustomer() {
   if (q.tracks)   coRows += coRow('Track cleaning', fmt(q.tracks));
   if (q.gutters)  coRows += coRow('Gutter cleaning', fmt(q.gutters));
   if (q.hardwater)coRows += coRow('Hard water removal', fmt(q.hardwater));
+  if (q.travel)   coRows += coRow('Travel fee', fmt(q.travel));
   if (q.discount) coRows += coRow('Discount', '−' + fmt(q.discount));
   coRows += coRow('GST', fmt(q.gst));
   coRows += coRow('Total', fmt(q.total), true);
@@ -1377,7 +1418,7 @@ function openWaiver(id) {
   const params = new URLSearchParams({
     name:    lead.name    || '',
     phone:   lead.phone   || '',
-    email:   '',
+    email:   lead.email   || '',
     address: lead.address || '',
     price:   lead.quote   || '',
     windows: Math.round((lead.panes || 0) / 2) || '',
@@ -1473,6 +1514,9 @@ function sendTierQuote() {
   const stdPrice = fmt(stdRaw);
   const premPrice= fmt(premRaw);
   const supPrice = fmt(supRaw);
+  // Raw base prices (before surcharges + GST) so estimate page can show line-item breakdown
+  const bext  = Math.max(MIN_JOB, calcBase(state.panes, 'exterior'));
+  const bboth = Math.max(MIN_JOB, calcBase(state.panes, 'both'));
 
   const parts = [];
   if (state.breakdown.regular) parts.push(state.breakdown.regular + ' standard');
@@ -1482,13 +1526,12 @@ function sendTierQuote() {
 
   const estimateUrl = 'https://wagonwindow.com/estimate/'
     + '?panes=' + state.panes
-    + '&reg='  + state.breakdown.regular
-    + '&lrg='  + state.breakdown.large
-    + '&frn='  + state.breakdown.french
-    + '&std='  + stdRaw
-    + '&prem=' + premRaw
-    + '&sup='  + supRaw
-    + '&est='  + est
+    + '&reg='   + state.breakdown.regular
+    + '&lrg='   + state.breakdown.large
+    + '&frn='   + state.breakdown.french
+    + '&bext='  + bext
+    + '&bboth=' + bboth
+    + '&est='   + est
     + (name    ? '&name=' + encodeURIComponent(name)    : '')
     + (address ? '&addr=' + encodeURIComponent(address) : '');
 
@@ -1580,9 +1623,88 @@ function emailQuote(id) {
     + '&body=' + encodeURIComponent(lines.join('\n'));
 }
 
+// ── Session persistence (resume last quote) ────────────────────────────
+function saveSession(screenId) {
+  if (screenId === 'scr-home' || screenId === 'scr-leads' || screenId === 'scr-ref' || screenId === 'scr-complete') return;
+  const session = {
+    breakdown: { ...state.breakdown },
+    serviceType: state.serviceType,
+    addons: { ...state.addons },
+    selectedPackage: state.selectedPackage || null,
+    discount: parseFloat(document.getElementById('discount-pct')?.value || 0),
+    screen: screenId,
+    ts: Date.now()
+  };
+  localStorage.setItem('ww_session', JSON.stringify(session));
+}
+
+function clearSession() {
+  localStorage.removeItem('ww_session');
+  updateResumeBtn();
+}
+
+function updateResumeBtn() {
+  const raw = localStorage.getItem('ww_session');
+  const btn = document.getElementById('resume-btn');
+  const sub = document.getElementById('resume-summary');
+  if (!btn) return;
+  if (!raw) { btn.style.display = 'none'; return; }
+  try {
+    const s = JSON.parse(raw);
+    const total = (s.breakdown.regular || 0) + (s.breakdown.large || 0) + (s.breakdown.french || 0);
+    if (!total) { btn.style.display = 'none'; return; }
+    let summary = total + ' panes';
+    if (s.selectedPackage) summary += ' · ' + s.selectedPackage.charAt(0).toUpperCase() + s.selectedPackage.slice(1);
+    else if (s.serviceType) summary += ' · ' + (s.serviceType === 'exterior' ? 'Exterior Only' : 'Int + Ext');
+    else summary += ' · Tap to continue';
+    sub.textContent = summary;
+    btn.style.display = 'flex';
+  } catch { btn.style.display = 'none'; }
+}
+
+function resumeSession() {
+  const raw = localStorage.getItem('ww_session');
+  if (!raw) return;
+  try {
+    const s = JSON.parse(raw);
+    state.breakdown = { regular: s.breakdown.regular || 0, large: s.breakdown.large || 0, french: s.breakdown.french || 0 };
+    state.serviceType = s.serviceType || null;
+    state.addons = { screens: s.addons.screens || 0, tracks: s.addons.tracks || 0, hardwater: s.addons.hardwater || 0, largewindow: s.addons.largewindow || 0, gutters: !!s.addons.gutters, travel: s.addons.travel || 0 };
+    state.selectedPackage = s.selectedPackage || null;
+    const discEl = document.getElementById('discount-pct');
+    if (discEl) discEl.value = s.discount || 0;
+    // Restore addon UI
+    ['largewindow','screens','tracks','hardwater'].forEach(k => {
+      const chk = document.getElementById('chk-' + k);
+      const ctr = document.getElementById('ctr-' + k);
+      const val = document.getElementById('val-' + k);
+      if (chk) chk.checked = state.addons[k] > 0;
+      if (val) val.textContent = state.addons[k] || 0;
+      if (ctr) ctr.style.display = state.addons[k] > 0 ? 'flex' : 'none';
+    });
+    const chkGutters = document.getElementById('chk-gutters');
+    if (chkGutters) chkGutters.checked = state.addons.gutters;
+    // Restore service card selection
+    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+    if (state.serviceType) {
+      const svcEl = document.getElementById('svc-' + (state.serviceType === 'exterior' ? 'ext' : 'both'));
+      if (svcEl) svcEl.classList.add('selected');
+    }
+    syncPaneState();
+    const target = s.screen || 'scr-count';
+    document.querySelectorAll('.screen').forEach(sc => sc.classList.remove('active'));
+    document.getElementById(target).classList.add('active');
+    if (target === 'scr-packages') updatePackagePrices();
+    if (target === 'scr-service')  updateServicePrices();
+    if (target === 'scr-quote')    renderQuote();
+    window.scrollTo(0, 0);
+  } catch { clearSession(); goScreen('scr-count'); }
+}
+
 // ── Init ───────────────────────────────────────────────────────────────
 updateHomeCount();
 updatePaneDisplay();
+updateResumeBtn();
 </script>
 </body>
 </html>

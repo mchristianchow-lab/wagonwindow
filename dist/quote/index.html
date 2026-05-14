@@ -8,10 +8,26 @@
   <link rel="canonical" href="https://wagonwindow.com/quote/" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Get an Instant Quote | Wagon Windows — Salmon Arm" />
+  <meta property="og:title"       content="Get an Instant Quote | Wagon Windows — Salmon Arm" />
   <meta property="og:description" content="Get an instant window cleaning quote in 4 steps. Choose your service, count your panes, and see a same-day estimate. Subject to confirmation on arrival." />
-  <meta property="og:url" content="https://wagonwindow.com/quote/" />
-  <meta property="og:type" content="website" />
+  <meta property="og:url"         content="https://wagonwindow.com/quote/" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:image"       content="https://wagonwindow.com/assets/og-image.png" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name"   content="Wagon Windows" />
+  <meta property="og:locale"      content="en_CA" />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Get an Instant Quote | Wagon Windows — Salmon Arm" />
+  <meta name="twitter:description" content="Get an instant window cleaning quote in 4 steps. Choose your service, count your panes, and see a same-day estimate. Subject to confirmation on arrival." />
+  <meta name="twitter:image"       content="https://wagonwindow.com/assets/og-image.png" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
   <!-- Preload logo (LCP element) -->
   <link rel="preload" as="image" href="/assets/images/logo.svg" type="image/svg+xml">
@@ -104,6 +120,21 @@
   }
   </script>
 
+  <!-- Schema: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Wagon Windows",
+    "url": "https://wagonwindow.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://wagonwindow.com/quote/",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
   
 <style>
 .quote-hero{background:linear-gradient(160deg,#000 0%,#111 60%,#220000 100%);color:#fff;padding:4rem 5% 3rem;text-align:center}
@@ -141,6 +172,19 @@
 .pane-btn:hover{border-color:var(--sky);color:var(--sky)}
 .pane-value{font-size:3rem;font-weight:800;color:var(--navy);min-width:90px;text-align:center;cursor:pointer;user-select:none}
 .pane-hint{font-size:.82rem;color:var(--gray);margin-top:.75rem}
+
+.pane-breakdown{margin:1.25rem 0}
+.pane-row{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;background:var(--light);border-radius:8px;margin-bottom:.5rem;gap:1rem}
+.pane-row-info{flex:1}
+.pane-row-label{font-weight:600;font-size:.9rem;color:var(--navy)}
+.pane-row-sub{font-size:.78rem;color:var(--gray);margin-top:.1rem}
+.pane-surcharge{font-size:.78rem;color:var(--sky);font-weight:700;margin-top:.1rem}
+.pane-counter-sm{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.pane-btn-sm{width:36px;height:36px;border-radius:50%;border:2px solid var(--border);background:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:600;transition:all .15s;line-height:1;touch-action:manipulation}
+.pane-btn-sm:hover{border-color:var(--sky);color:var(--sky)}
+.pane-val-sm{font-size:1.5rem;font-weight:800;color:var(--navy);min-width:36px;text-align:center}
+.pane-total-row{text-align:center;padding:.6rem 0 .25rem;font-size:.88rem;color:var(--gray)}
+.pane-total-row strong{color:var(--navy);font-size:1.05rem}
 
 .addon-list{display:flex;flex-direction:column;gap:.75rem}
 .addon-item{display:flex;align-items:center;justify-content:space-between;background:var(--light);border-radius:8px;padding:.9rem 1rem;gap:1rem;transition:opacity .2s}
@@ -280,14 +324,47 @@
     <div class="step" id="step-2">
       <div class="step-card">
         <h2>How many panes?</h2>
-        <p class="sub">Count each individual piece of glass as one pane. A standard window = 2 panes. A sliding patio door = 2 panes. Skylights count too.</p>
-        <div class="pane-input-wrap">
-          <div class="pane-counter">
-            <button class="pane-btn" onclick="adjustPanes(-5)">−</button>
-            <div class="pane-value" id="pane-display" title="Tap to enter exact number">20</div>
-            <button class="pane-btn" onclick="adjustPanes(5)">+</button>
+        <p class="sub">Count each individual piece of glass — not each window frame.</p>
+        <div style="background:#fff5f5;border:2px solid var(--sky);border-radius:8px;padding:.85rem 1rem;margin-bottom:1.25rem;font-size:.87rem;line-height:1.6;color:#6b0000">
+          <strong style="color:var(--sky)">⚠ Count panes, not windows.</strong> Each piece of glass = 1 pane. A standard double-hung window has <strong>2 panes</strong>. A sliding patio door = <strong>2 panes</strong>. A picture window = <strong>1 pane</strong>. Skylights count too.
+        </div>
+        <div class="pane-breakdown">
+          <div class="pane-row">
+            <div class="pane-row-info">
+              <div class="pane-row-label">Standard Panes</div>
+              <div class="pane-row-sub">Regular glass — double-hung windows, sliders, patio doors</div>
+            </div>
+            <div class="pane-counter-sm">
+              <button class="pane-btn-sm" onclick="adjustBreakdown('regular',-1)">−</button>
+              <div class="pane-val-sm" id="bd-regular">20</div>
+              <button class="pane-btn-sm" onclick="adjustBreakdown('regular',1)">+</button>
+            </div>
           </div>
-          <div class="pane-hint">Adjust in steps of 5 &nbsp;·&nbsp; Tap the number to enter exact amount</div>
+          <div class="pane-row">
+            <div class="pane-row-info">
+              <div class="pane-row-label">Large Windows</div>
+              <div class="pane-row-sub">Picture windows, floor-to-ceiling, bay windows</div>
+              <div class="pane-surcharge">+$8 per pane</div>
+            </div>
+            <div class="pane-counter-sm">
+              <button class="pane-btn-sm" onclick="adjustBreakdown('large',-1)">−</button>
+              <div class="pane-val-sm" id="bd-large">0</div>
+              <button class="pane-btn-sm" onclick="adjustBreakdown('large',1)">+</button>
+            </div>
+          </div>
+          <div class="pane-row">
+            <div class="pane-row-info">
+              <div class="pane-row-label">French / Complicated</div>
+              <div class="pane-row-sub">Multi-pane french windows, grille patterns, skylights</div>
+              <div class="pane-surcharge">+$8 per pane</div>
+            </div>
+            <div class="pane-counter-sm">
+              <button class="pane-btn-sm" onclick="adjustBreakdown('french',-1)">−</button>
+              <div class="pane-val-sm" id="bd-french">0</div>
+              <button class="pane-btn-sm" onclick="adjustBreakdown('french',1)">+</button>
+            </div>
+          </div>
+          <div class="pane-total-row">Total panes: <strong id="pane-total-display">20</strong></div>
         </div>
         <div id="large-notice" style="display:none">
           <div class="disclaimer-box red">
@@ -326,21 +403,6 @@
           <h2>Add-ons</h2>
           <p class="sub" id="addon-sub"></p>
           <div class="addon-list">
-
-            <div class="addon-item" id="addon-largewindow">
-              <div class="addon-left">
-                <input type="checkbox" class="addon-check" id="chk-largewindow" onchange="toggleAddon('largewindow',this)">
-                <div>
-                  <div class="addon-label">Large / Oversized Windows</div>
-                  <div class="addon-price">$5 extra per large pane · picture windows, floor-to-ceiling, bay windows</div>
-                </div>
-              </div>
-              <div class="addon-counter" id="ctr-largewindow">
-                <button onclick="adjustAddon('largewindow',-1)">−</button>
-                <span id="val-largewindow">0</span>
-                <button onclick="adjustAddon('largewindow',1)">+</button>
-              </div>
-            </div>
 
             <div class="addon-item" id="addon-screens">
               <div class="addon-left">
@@ -442,17 +504,20 @@
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="f-phone">Phone *</label>
-              <input id="f-phone" type="tel" name="phone" required placeholder="(250) 555-0123">
+              <label for="f-phone">Phone</label>
+              <input id="f-phone" type="tel" name="phone" placeholder="(250) 555-0123">
             </div>
             <div class="form-group">
-              <label for="f-email">Email *</label>
-              <input id="f-email" type="email" name="email" required placeholder="you@email.com">
+              <label for="f-email">Email</label>
+              <input id="f-email" type="email" name="email" placeholder="you@email.com">
             </div>
           </div>
+          <p id="contact-error" style="display:none;color:var(--sky);font-size:.82rem;margin:-0.5rem 0 .75rem;font-weight:600">Please enter at least a phone number or email so we can reach you.</p>
           <div class="form-group" style="margin-bottom:1rem">
             <label for="f-address">Service Address *</label>
-            <input id="f-address" type="text" name="address" required placeholder="123 Main St, Salmon Arm, BC">
+            <input id="f-address" type="text" name="address" required placeholder="123 Main St, Salmon Arm, BC"
+                   oninput="checkTravelFee(this.value)">
+          <p id="travel-fee-note" style="display:none;background:#fff8e6;border:1.5px solid #e8a020;border-radius:6px;padding:.6rem .9rem;font-size:.82rem;color:#7a4500;margin:.25rem 0 0;line-height:1.55"></p>
           </div>
           <div class="form-row">
             <div class="form-group">
@@ -514,7 +579,7 @@
 
 <script>
 const PRICING = {
-  addons: { screens: 4, tracks: 3, hardwater: 20, largewindow: 5 },
+  addons: { screens: 4, tracks: 4, hardwater: 20, largewindow: 8 },
   large: 71,
   discount: 0.10,
   gst: 0.05
@@ -522,10 +587,14 @@ const PRICING = {
 
 const state = {
   propertyType: null,
-  panes: 20,
+  breakdown: { regular: 20, large: 0, french: 0 },
   serviceType: null,
-  addons: { screens: 0, tracks: 0, hardwater: 0, largewindow: 0 }
+  addons: { screens: 0, tracks: 0, hardwater: 0 }
 };
+
+function totalPanes() {
+  return state.breakdown.regular + state.breakdown.large + state.breakdown.french;
+}
 
 function calcBase(panes, type) {
   // Tiered per-pane rates that match homepage pricing
@@ -533,7 +602,7 @@ function calcBase(panes, type) {
   // 31-50: +$2.50/$3.50 per pane
   // 51-70: +$3.50/$4.00 per pane
   // 71-99: +$4.00/$4.50 per pane
-  let ext = 149, intExt = 199;
+  let ext = 169, intExt = 219;
   let rem = Math.max(0, panes - 30);
   const t1 = Math.min(rem, 20); rem -= t1; ext += t1 * 2.50; intExt += t1 * 3.50;
   const t2 = Math.min(rem, 20); rem -= t2; ext += t2 * 3.50; intExt += t2 * 4.00;
@@ -555,7 +624,7 @@ function selectOption(key, value, btn) {
     const sub     = document.getElementById('addon-sub');
     section.style.display = 'block';
 
-    const screens = Math.round(state.panes / 2);
+    const screens = Math.round(totalPanes() / 2);
     const tracks  = screens;
 
     if (value === 'both') {
@@ -566,7 +635,7 @@ function selectOption(key, value, btn) {
 
       notice.style.display = 'block';
       notice.innerHTML = `<div class="disclaimer-box" style="background:#f0fff4;border-color:#4caf50;color:#1b5e20">
-        ✅ <strong>We've done the math.</strong> Based on ${state.panes} panes we've estimated
+        ✅ <strong>We've done the math.</strong> Based on ${totalPanes()} panes we've estimated
         <strong>${screens} screens</strong> and <strong>${tracks} tracks</strong> — adjust below if your home is different.
       </div>`;
 
@@ -602,15 +671,17 @@ function setAddon(key, count, checked) {
   ctr.style.display = (checked && count > 0) ? 'flex' : 'none';
 }
 
-function adjustPanes(delta) {
-  state.panes = Math.max(1, state.panes + delta);
-  document.getElementById('pane-display').textContent = state.panes;
-  document.getElementById('large-notice').style.display = state.panes >= PRICING.large ? 'block' : 'none';
-  document.getElementById('next-2').textContent = state.panes >= PRICING.large ? 'Book Consultation →' : 'Next →';
+function adjustBreakdown(type, delta) {
+  state.breakdown[type] = Math.max(0, state.breakdown[type] + delta);
+  document.getElementById('bd-' + type).textContent = state.breakdown[type];
+  const total = totalPanes();
+  document.getElementById('pane-total-display').textContent = total;
+  document.getElementById('large-notice').style.display = total >= PRICING.large ? 'block' : 'none';
+  document.getElementById('next-2').textContent = total >= PRICING.large ? 'Book Consultation →' : 'Next →';
 }
 
 function handlePaneNext() {
-  state.panes >= PRICING.large ? showStep('large') : goTo(3);
+  totalPanes() >= PRICING.large ? showStep('large') : goTo(3);
 }
 
 function toggleAddon(key, cb) {
@@ -634,8 +705,9 @@ function adjustAddon(key, delta) {
 }
 
 function buildQuote() {
-  const base           = calcBase(state.panes, state.serviceType);
-  const largeWinTotal  = state.addons.largewindow * PRICING.addons.largewindow;
+  const panes          = totalPanes();
+  const base           = calcBase(panes, state.serviceType);
+  const largeWinTotal  = (state.breakdown.large + state.breakdown.french) * PRICING.addons.largewindow;
   const addonTotal     =
     state.addons.screens   * PRICING.addons.screens +
     state.addons.tracks    * PRICING.addons.tracks +
@@ -653,24 +725,28 @@ function renderQuote() {
   const { base, largeWinTotal, addonTotal, subtotal, discount, afterDiscount, gst, total, high } = buildQuote();
   const labels   = { house:'House', townhouse:'Townhouse', condo:'Condo/Apt', commercial:'Commercial' };
   const svcLabel = state.serviceType === 'exterior' ? 'Exterior only' : 'Interior + Exterior';
+  const panes    = totalPanes();
 
   document.getElementById('quote-low').textContent = '$' + total;
   document.getElementById('quote-range').textContent = 'estimated range $' + total + '–$' + high + ' depending on window condition';
 
-  let rows = `<div class="breakdown-row"><span>${labels[state.propertyType]} — ${state.panes} panes (${svcLabel})</span><span>$${base}</span></div>`;
-  if (state.addons.largewindow > 0) rows += `<div class="breakdown-row"><span>Large window surcharge × ${state.addons.largewindow} panes</span><span>$${largeWinTotal}</span></div>`;
-  if (state.addons.screens > 0)     rows += `<div class="breakdown-row"><span>Screen cleaning × ${state.addons.screens}</span><span>$${state.addons.screens * PRICING.addons.screens}</span></div>`;
-  if (state.addons.tracks > 0)      rows += `<div class="breakdown-row"><span>Track cleaning × ${state.addons.tracks}</span><span>$${state.addons.tracks * PRICING.addons.tracks}</span></div>`;
-  if (state.addons.hardwater > 0)   rows += `<div class="breakdown-row"><span>Hard water removal × ${state.addons.hardwater} panes</span><span>$${state.addons.hardwater * PRICING.addons.hardwater}</span></div>`;
+  let rows = `<div class="breakdown-row"><span>${labels[state.propertyType]} — ${panes} panes (${svcLabel})</span><span>$${base}</span></div>`;
+  if (state.breakdown.large > 0)  rows += `<div class="breakdown-row"><span>Large window surcharge × ${state.breakdown.large} panes</span><span>$${state.breakdown.large * PRICING.addons.largewindow}</span></div>`;
+  if (state.breakdown.french > 0) rows += `<div class="breakdown-row"><span>French/complicated surcharge × ${state.breakdown.french} panes</span><span>$${state.breakdown.french * PRICING.addons.largewindow}</span></div>`;
+  if (state.addons.screens > 0)   rows += `<div class="breakdown-row"><span>Screen cleaning × ${state.addons.screens}</span><span>$${state.addons.screens * PRICING.addons.screens}</span></div>`;
+  if (state.addons.tracks > 0)    rows += `<div class="breakdown-row"><span>Track cleaning × ${state.addons.tracks}</span><span>$${state.addons.tracks * PRICING.addons.tracks}</span></div>`;
+  if (state.addons.hardwater > 0) rows += `<div class="breakdown-row"><span>Hard water removal × ${state.addons.hardwater} panes</span><span>$${state.addons.hardwater * PRICING.addons.hardwater}</span></div>`;
   rows += `<div class="breakdown-row" style="border-top:1px solid var(--border);margin-top:.4rem;padding-top:.5rem"><span>Subtotal</span><span>$${subtotal}</span></div>`;
   rows += `<div class="breakdown-row" style="color:#1b5e20;font-weight:600"><span>✅ Online booking discount (10%)</span><span>−$${discount}</span></div>`;
   rows += `<div class="breakdown-row"><span>GST (5%)</span><span>$${gst}</span></div>`;
   rows += `<div class="breakdown-row total"><span>Total (estimated)</span><span>$${total}</span></div>`;
   document.getElementById('breakdown').innerHTML = rows;
 
-  document.getElementById('email-subject').value = `New Estimate Request — ${labels[state.propertyType]}, ${state.panes} panes, ~$${total} after discount & tax`;
+  const travelFee = parseInt(document.getElementById('travel-fee-note')?.dataset?.fee || '0') || 0;
+  const travelNote = travelFee > 0 ? ` + $${travelFee} TRAVEL FEE` : '';
+  document.getElementById('email-subject').value = `New Estimate Request — ${labels[state.propertyType]}, ${panes} panes, ~$${total} after discount & tax${travelNote}`;
   document.getElementById('email-summary').value =
-    `Property: ${labels[state.propertyType]} | Panes: ${state.panes} | Large panes: ${state.addons.largewindow} | Service: ${svcLabel} | Screens: ${state.addons.screens} | Tracks: ${state.addons.tracks} | Hard water: ${state.addons.hardwater} | Subtotal: $${subtotal} | Discount (10%): -$${discount} | GST: $${gst} | Total: $${total}`;
+    `Property: ${labels[state.propertyType]} | Panes: ${panes} (${state.breakdown.regular} standard, ${state.breakdown.large} large, ${state.breakdown.french} french) | Service: ${svcLabel} | Screens: ${state.addons.screens} | Tracks: ${state.addons.tracks} | Hard water: ${state.addons.hardwater} | Large/French surcharge: $${largeWinTotal} | Subtotal: $${subtotal} | Discount (10%): -$${discount} | GST: $${gst} | Quote total: $${total}${travelFee > 0 ? ` | ⚠ TRAVEL FEE: +$${travelFee} (confirm with customer)` : ''}`;
 }
 
 function goTo(n) {
@@ -694,8 +770,33 @@ function showStep(id) {
   if (top) window.scrollTo({ top: top.offsetTop - 90, behavior: 'smooth' });
 }
 
+const TRAVEL_ZONES = [
+  { fee: 55, label: 'Armstrong / Chase area (~50–60 km from Salmon Arm)', keywords: ['armstrong','chase','falkland'] },
+  { fee: 35, label: 'Sorrento / Sicamous / Enderby area (~30–50 km from Salmon Arm)', keywords: ['sorrento','blind bay','tappen','celista','scotch creek','eagle bay','swansea point','sicamous','enderby','grindrod','spallumcheen'] }
+];
+
+function checkTravelFee(address) {
+  const lower = address.toLowerCase();
+  const note  = document.getElementById('travel-fee-note');
+  for (const zone of TRAVEL_ZONES) {
+    if (zone.keywords.some(k => lower.includes(k))) {
+      note.innerHTML = `<strong>Travel fee: +$${zone.fee}</strong> — ${zone.label}. This will be confirmed when David contacts you.`;
+      note.style.display = 'block';
+      note.dataset.fee = zone.fee;
+      return;
+    }
+  }
+  note.style.display = 'none';
+  note.dataset.fee = '0';
+}
+
 async function submitBooking(e) {
   e.preventDefault();
+  const phone = document.getElementById('f-phone').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const err   = document.getElementById('contact-error');
+  if (!phone && !email) { err.style.display = 'block'; document.getElementById('f-phone').focus(); return; }
+  err.style.display = 'none';
   const btn = document.getElementById('submit-btn');
   btn.textContent = 'Sending…';
   btn.disabled = true;
@@ -715,22 +816,13 @@ async function submitBooking(e) {
   }
 }
 
-document.getElementById('pane-display').addEventListener('click', function () {
-  const v = parseInt(prompt('Enter exact pane count:', state.panes));
-  if (!isNaN(v) && v > 0) {
-    state.panes = v;
-    document.getElementById('pane-display').textContent = v;
-    document.getElementById('large-notice').style.display = v >= PRICING.large ? 'block' : 'none';
-    document.getElementById('next-2').textContent = v >= PRICING.large ? 'Book Consultation →' : 'Next →';
-  }
-});
-
-// Pre-fill pane count from URL param (e.g. /quote/?panes=50 from pricing cards)
+// Pre-fill standard pane count from URL param (e.g. /quote/?panes=50 from pricing cards)
 (function () {
   const p = parseInt(new URLSearchParams(window.location.search).get('panes'));
   if (!isNaN(p) && p > 0) {
-    state.panes = p;
-    document.getElementById('pane-display').textContent = p;
+    state.breakdown.regular = p;
+    document.getElementById('bd-regular').textContent = p;
+    document.getElementById('pane-total-display').textContent = p;
     document.getElementById('large-notice').style.display = p >= PRICING.large ? 'block' : 'none';
     document.getElementById('next-2').textContent = p >= PRICING.large ? 'Book Consultation →' : 'Next →';
   }
