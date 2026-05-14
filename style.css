@@ -441,6 +441,7 @@ section { padding: 90px 5%; text-align: center; }
 .pricing-note {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.6rem;
   font-size: 0.85rem;
   color: var(--gray);
