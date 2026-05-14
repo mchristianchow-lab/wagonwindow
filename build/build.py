@@ -350,6 +350,18 @@ def build_blog_index():
     print("  Blog index ✓")
 
 # ── Build: Quote Page ───────────────────────────────────────────────────────
+def build_review_page():
+    canonical = f"{config['site_url']}/review/"
+    ctx = {
+        'page_title': 'Leave a Review | Wagon Windows — Salmon Arm',
+        'meta_desc': 'Happy with your window cleaning? Leave Wagon Windows a Google review — it takes less than a minute and helps your neighbours find us.',
+        'canonical': canonical,
+        'noindex': True,
+    }
+    out = dist_path('review')
+    render('review.html', out, ctx)
+    print("  Review page ✓")
+
 def build_quote_page():
     canonical = f"{config['site_url']}/quote/"
     ctx = {
@@ -406,6 +418,7 @@ if __name__ == '__main__':
 
     build_homepage()
     build_quote_page()
+    build_review_page()
     build_service_location_pages()
     build_location_hubs()
     build_service_hubs()

@@ -6,6 +6,7 @@
   <title>{{ page_title }}</title>
   <meta name="description" content="{{ meta_desc }}" />
   <link rel="canonical" href="{{ canonical }}" />
+  {% if noindex %}<meta name="robots" content="noindex,nofollow" />{% endif %}
 
   <!-- Open Graph -->
   <meta property="og:title"       content="{{ page_title }}" />
