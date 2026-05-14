@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wagon Windows — Door-to-Door Script</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:11pt;line-height:1.6;color:#1a1a2e;background:#fff;padding:0}
+  .page{max-width:820px;margin:0 auto;padding:40px 48px}
+
+  /* Header */
+  .header{border-bottom:3px solid #e81010;padding-bottom:20px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:flex-end}
+  .header-left h1{font-size:22pt;font-weight:700;letter-spacing:-0.5px;color:#1a1a2e}
+  .header-left p{font-size:10pt;color:#666;margin-top:4px}
+  .header-badge{background:#e81010;color:#fff;font-size:9pt;font-weight:700;padding:6px 14px;border-radius:4px;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap}
+
+  /* Framework banner */
+  .framework-banner{background:#fff8f8;border-left:4px solid #e81010;border-radius:0 6px 6px 0;padding:12px 18px;margin-bottom:28px;font-size:9.5pt;color:#444}
+  .framework-banner strong{color:#1a1a2e}
+  .tags{margin-top:6px;display:flex;gap:8px;flex-wrap:wrap}
+  .tag{background:#e81010;color:#fff;font-size:8pt;font-weight:600;padding:2px 9px;border-radius:20px;letter-spacing:.3px}
+  .tag.dark{background:#1a1a2e}
+  .tag.gold{background:#b8860b}
+
+  /* Step */
+  .step{margin-bottom:22px;border:1px solid #e5e5e5;border-radius:8px;overflow:hidden;page-break-inside:avoid}
+  .step-header{display:flex;align-items:center;gap:14px;padding:12px 18px;background:#1a1a2e;color:#fff}
+  .step-num{font-size:9pt;font-weight:700;background:rgba(255,255,255,.15);border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-title{font-size:11pt;font-weight:600;flex:1}
+  .step-goal{font-size:8.5pt;color:rgba(255,255,255,.6);font-style:italic;text-align:right;line-height:1.3;max-width:220px}
+  .step-body{padding:16px 18px;background:#fafafa}
+
+  /* Script */
+  .script-block{background:#fff;border:1px solid #dde3f0;border-left:4px solid #e81010;border-radius:0 6px 6px 0;padding:14px 16px;margin-bottom:12px;font-size:10.5pt;line-height:1.75;color:#222}
+  .script-alt{background:#fff;border:1px solid #dde3f0;border-left:4px solid #888;border-radius:0 6px 6px 0;padding:14px 16px;margin-bottom:12px;font-size:10pt;line-height:1.7;color:#444}
+  .script-label{font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#e81010;margin-bottom:8px}
+  .script-label.alt{color:#888}
+
+  /* Tool callout */
+  .tool-callout{background:#0d0d0d;border-radius:8px;padding:14px 18px;margin:12px 0;color:#f0f0f0;font-size:9.5pt;line-height:1.6;display:flex;gap:12px;align-items:flex-start}
+  .tool-icon{font-size:1.5rem;flex-shrink:0;margin-top:2px}
+  .tool-callout strong{color:#e81010}
+  .tool-callout .tool-step{color:#aaa;font-size:8.5pt;margin-top:6px;line-height:1.6}
+
+  /* Why note */
+  .why-note{background:#f6fff6;border:1px solid #c3e6cb;border-radius:6px;padding:10px 14px;font-size:9pt;color:#285734;margin-top:10px}
+  .why-note strong{color:#1a4d25}
+
+  /* Package table */
+  .pkg-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:10pt}
+  .pkg-table th{background:#1a1a2e;color:#fff;padding:8px 14px;text-align:left;font-weight:600;font-size:9pt;letter-spacing:.3px}
+  .pkg-table td{padding:11px 14px;border-bottom:1px solid #e5e5e5;vertical-align:top;line-height:1.5}
+  .pkg-table tr:last-child td{border-bottom:none}
+  .row-standard{background:#fafafa}
+  .row-premium{background:#fff8f8}
+  .row-supreme{background:#fffdf0}
+  .pkg-name{font-weight:700;font-size:10.5pt}
+  .pkg-badge{display:inline-block;font-size:7.5pt;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:.3px;margin-left:6px;vertical-align:middle}
+  .badge-popular{background:#e81010;color:#fff}
+  .badge-anchor{background:#b8860b;color:#fff}
+  .pkg-price{font-weight:700;color:#e81010;white-space:nowrap}
+  .pkg-includes{font-size:9.5pt;color:#555;margin-top:3px}
+
+  /* Choice grid */
+  .choice-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0}
+  .choice-card{background:#fff;border:1.5px solid #e5e5e5;border-radius:6px;padding:12px 14px;font-size:9.5pt}
+  .choice-card.highlight{border-color:#e81010}
+  .choice-label{font-weight:700;font-size:10pt;color:#1a1a2e;margin-bottom:5px;display:flex;align-items:center;gap:6px}
+
+  /* Fallback box */
+  .fallback-box{background:#f9f9fb;border:1px solid #e0e0e0;border-radius:6px;padding:12px 16px;margin:12px 0;font-size:9.5pt}
+  .fallback-label{font-weight:700;font-size:9pt;text-transform:uppercase;letter-spacing:.5px;color:#888;margin-bottom:8px}
+  .fallback-row{display:flex;gap:10px;margin-bottom:6px;line-height:1.5}
+  .fallback-row:last-child{margin-bottom:0}
+  .fb-trigger{font-weight:600;color:#1a1a2e;min-width:130px;flex-shrink:0}
+  .fb-reply{color:#555}
+
+  /* Record sale */
+  .record-box{background:#f0fff4;border:1px solid #c3e6cb;border-radius:6px;padding:12px 16px;margin:10px 0;font-size:9.5pt;color:#285734}
+
+  /* Summary */
+  .summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+  .summary-card{background:#f9f9fb;border:1px solid #e0e0e0;border-radius:6px;padding:12px 14px;font-size:9.5pt}
+  .summary-card .card-title{font-weight:700;font-size:8.5pt;text-transform:uppercase;letter-spacing:.5px;color:#e81010;margin-bottom:5px}
+
+  /* Footer */
+  .footer{border-top:1px solid #e5e5e5;margin-top:32px;padding-top:14px;font-size:8.5pt;color:#999;display:flex;justify-content:space-between}
+
+  @media print{
+    body{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+    .page{padding:28px 36px}
+    .step{page-break-inside:avoid}
+    @page{margin:.5in;size:letter}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-left">
+      <h1>Door-to-Door Sales Script</h1>
+      <p>Wagon Windows · Salmon Arm &amp; the Shuswap · Field Edition</p>
+    </div>
+    <div class="header-badge">Standard → Premium → Supreme</div>
+  </div>
+
+  <div class="framework-banner">
+    <strong>Framework:</strong> Top-Down Anchoring with a live quote tool as your prop. Count panes with the customer, pull out the iPad, show them the three packages with real prices — no guessing, no credibility gap.
+    <div class="tags">
+      <span class="tag">Price Anchoring</span>
+      <span class="tag">Social Proof</span>
+      <span class="tag dark">Live Quote Tool</span>
+      <span class="tag gold">Assumptive Close</span>
+    </div>
+  </div>
+
+  <!-- ── STEP 1 ── -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">1</div>
+      <div class="step-title">The Opener — Low-Pressure Local Context</div>
+      <div class="step-goal">Lower their guard. You're the local crew already on the block — not a cold caller.</div>
+    </div>
+    <div class="step-body">
+      <div class="script-label">If you just finished a nearby job:</div>
+      <div class="script-block">
+        "Hey, sorry to bother you — my name's [Name] with Wagon Windows. We just finished up at [neighbour's address / the corner house] and I noticed your windows are showing a bit of that seasonal buildup. We're already staged in the area so I wanted to see if it made sense to get you a quick quote while we're right here."
+      </div>
+      <div class="script-label alt">If you're canvassing cold:</div>
+      <div class="script-alt">
+        "Hey, sorry to catch you — my name's [Name] with Wagon Windows. We're locally based out of Salmon Arm and we're doing a run through the neighbourhood today giving free quotes. Takes about two minutes. Do you mind if I ask when you last had your windows done professionally?"
+      </div>
+      <div class="why-note">
+        <strong>Why:</strong> "Sorry to bother you" disarms immediately. Mentioning a neighbour's address activates social proof before you've said anything about price. Ending with a question gets them talking instead of you pitching.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 2 ── -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">2</div>
+      <div class="step-title">The Walk-Around — Count the Panes Together</div>
+      <div class="step-goal">Physical movement builds commitment. Get them moving with you — they're already saying yes.</div>
+    </div>
+    <div class="step-body">
+      <div class="script-block">
+        "Rather than throwing a number at you blind, I want to do it properly — takes 60 seconds. We just walk the outside, count the panes, and I can give you a live price right there on my phone. Does the left or right side of the house give better access to the back?"
+      </div>
+      <div class="tool-callout">
+        <div class="tool-icon">📱</div>
+        <div>
+          <strong>Open the Wagon Windows Field Tool</strong> on your phone or iPad as you walk.<br>
+          <div class="tool-step">
+            → Tap <strong>New Quote</strong> (or <strong>Resume Last Quote</strong> if you were mid-count)<br>
+            → Count as you walk — three types:<br>
+            &nbsp;&nbsp;&nbsp;<strong>Standard</strong> — normal double-hung, sliding, casement<br>
+            &nbsp;&nbsp;&nbsp;<strong>Large (+$8/pane)</strong> — floor-to-ceiling, picture windows, oversized fixed panes<br>
+            &nbsp;&nbsp;&nbsp;<strong>French / Complicated (+$8/pane)</strong> — divided lights, arched, leaded, multi-grid<br>
+            → By the time you're back at the front door, the total's in — ready to show packages
+          </div>
+        </div>
+      </div>
+      <div class="why-note">
+        <strong>Why:</strong> "Left or right side" forces a micro-yes — they're choosing how to engage, not whether to. Counting panes together gives them ownership of the number. When you show the price, it's their data feeding it.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 3 ── -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">3</div>
+      <div class="step-title">The Quote — Show the Packages Live</div>
+      <div class="step-goal">Anchor on Supreme. Make Premium the obvious smart choice. Standard is the fallback, not the goal.</div>
+    </div>
+    <div class="step-body">
+      <div class="script-block">
+        "Alright — based on the [X] panes we counted, here's what the three packages look like for your place."
+      </div>
+
+      <div class="tool-callout">
+        <div class="tool-icon">📱</div>
+        <div>
+          <strong>Hand them the iPad / flip the phone toward them.</strong> Tap through the three packages so they see the live prices.<br>
+          <div class="tool-step">
+            → Supreme card shows at the top — they see the gold price first (anchor)<br>
+            → Premium is in the middle — red, "most common"<br>
+            → Standard is at the bottom — the safe fallback<br>
+            → Let them look for 5–10 seconds before you speak
+          </div>
+        </div>
+      </div>
+
+      <table class="pkg-table">
+        <thead>
+          <tr>
+            <th>Package</th>
+            <th>What's Included</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-supreme">
+            <td><div class="pkg-name">Supreme <span class="pkg-badge badge-anchor">ANCHOR</span></div></td>
+            <td class="pkg-includes">Interior + exterior windows · Screen cleaning · Track cleaning · Gutter cleaning</td>
+            <td class="pkg-price">Tool shows live</td>
+          </tr>
+          <tr class="row-premium">
+            <td><div class="pkg-name">Premium <span class="pkg-badge badge-popular">MOST COMMON</span></div></td>
+            <td class="pkg-includes">Interior + exterior windows · Screen cleaning · Track cleaning</td>
+            <td class="pkg-price">Tool shows live</td>
+          </tr>
+          <tr class="row-standard">
+            <td><div class="pkg-name">Standard</div></td>
+            <td class="pkg-includes">Exterior windows only</td>
+            <td class="pkg-price">Tool shows live</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="script-block">
+        "Most people we've done in this neighbourhood go with the Premium — you get both sides cleaned and the screens done while we're already set up. It's the one that makes the most sense if you're doing it once or twice a year.
+        <br><br>
+        The Supreme is the full package — we'd knock out the gutters at the same time, which is usually a separate trip. Some people love bundling it. The Standard is there if you just want the exterior done quick and clean."
+      </div>
+
+      <div class="why-note">
+        <strong>Why:</strong> Supreme anchors the ceiling — every price after it feels reasonable. Framing Premium as "most common in the neighbourhood" is social proof without being pushy. Standard stays available as a dignified fallback so no one leaves with nothing.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TRAVEL FEE ── -->
+  <div class="step">
+    <div class="step-header" style="background:#b8860b">
+      <div class="step-num">⚠</div>
+      <div class="step-title">Travel Fee — Outside Salmon Arm Core</div>
+      <div class="step-goal">Flag it early. People respect honesty more than surprises.</div>
+    </div>
+    <div class="step-body">
+      <div class="fallback-box">
+        <div class="fallback-label">If the job is in a travel zone</div>
+        <div class="fallback-row"><span class="fb-trigger">Nearby (Canoe, Tappen, Blind Bay, Sorrento, Silver Creek, etc.)</span><span class="fb-reply">+$35 travel fee — mention it when you name the price: <em>"...that comes to [X], plus a $35 travel fee since we're coming out your way."</em></span></div>
+        <div class="fallback-row"><span class="fb-trigger">Further out (Chase, Falkland, Sicamous, etc.)</span><span class="fb-reply">+$55 travel fee — same approach: name it alongside the package price, not as an afterthought.</span></div>
+      </div>
+      <div class="why-note">
+        <strong>Why:</strong> Mentioning it in the same breath as the quote price frames it as a normal cost of the job, not a penalty. Burying it until booking creates objections and cancellations.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 4 ── -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">4</div>
+      <div class="step-title">The Close — Ask for a Preference, Not Permission</div>
+      <div class="step-goal">Move from "Should I?" to "Which one?" — both answers are a yes.</div>
+    </div>
+    <div class="step-body">
+      <div class="script-block">
+        "We're back in this area [day/week]. If I can get you slotted in now, I can lock in these prices.
+        <br><br>
+        Are you thinking the Premium — just the windows inside and out — or would it make sense to throw the gutters in and do the whole thing while we're there?"
+      </div>
+      <div class="why-note">
+        <strong>Why:</strong> The time anchor ("back in this area") creates soft urgency — real and credible. The closing question only offers Premium vs. Supreme. Standard isn't mentioned here — if they bring it up, that's fine, but you don't volunteer it. Both options move forward.
+      </div>
+
+      <div class="fallback-box" style="margin-top:14px">
+        <div class="fallback-label">If they hesitate</div>
+        <div class="fallback-row"><span class="fb-trigger">"Too much right now"</span><span class="fb-reply">"No worries — want to start with just the exterior? Standard is [price] and it still makes a big difference. Minimum job is $119, so it's only worth it if there are enough panes to get there."</span></div>
+        <div class="fallback-row"><span class="fb-trigger">"Need to think"</span><span class="fb-reply">"Of course — what's the main thing you're weighing up? Sometimes I can answer it right here."</span></div>
+        <div class="fallback-row"><span class="fb-trigger">"Talk to spouse"</span><span class="fb-reply">"Absolutely — can I text you the quote so you've got it handy to show them?"</span></div>
+        <div class="fallback-row"><span class="fb-trigger">"Not today"</span><span class="fb-reply">"That's fine. Can I grab your number and reach out when we're next in the area?"</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 5 ── -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">5</div>
+      <div class="step-title">Record the Sale — Lock It In on the Field Tool</div>
+      <div class="step-goal">Don't let a verbal yes turn into a no-show. Get the details in before you leave the door.</div>
+    </div>
+    <div class="step-body">
+      <div class="tool-callout">
+        <div class="tool-icon">✅</div>
+        <div>
+          <strong>Tap "They Said YES — Record Sale"</strong> on the quote screen.<br>
+          <div class="tool-step">
+            → Enter their name, phone, address, preferred date, and any notes (gate code, dog, etc.)<br>
+            → Tap <strong>Save + Open Calendly</strong> to book them on the spot<br>
+            → Or <strong>Save Lead</strong> if you'll confirm date by text later
+          </div>
+        </div>
+      </div>
+      <div class="record-box">
+        <strong>At minimum, get a phone number before you leave.</strong> A name + number with no date is still a hot lead. A verbal yes with nothing written down is worth nothing — people forget, plans change, and you lose the sale.
+      </div>
+      <div class="script-block">
+        "Perfect. Let me grab your name and number so I can send you a confirmation text — and I'll put you down for [day]. You don't pay anything until the job's done and you're happy with it."
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CHEAT SHEET ── -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num" style="background:rgba(255,255,255,.2)">✓</div>
+      <div class="step-title">Why This Works — Field Cheat Sheet</div>
+      <div class="step-goal">The psychology behind the pitch.</div>
+    </div>
+    <div class="step-body">
+      <div class="summary-grid">
+        <div class="summary-card">
+          <div class="card-title">The Neighbour Hook</div>
+          Social proof before you say a word about price. You're the crew already on the street — not a cold caller.
+        </div>
+        <div class="summary-card">
+          <div class="card-title">The Walk-Around</div>
+          Count as you go — Standard, Large, French. Categorizing together gives them ownership of the number. When they see the price, it feels fair because their windows fed it.
+        </div>
+        <div class="summary-card">
+          <div class="card-title">Price Anchoring</div>
+          Supreme sets the ceiling. Premium feels reasonable. Standard feels cheap by comparison — even though it's still your real minimum ticket.
+        </div>
+        <div class="summary-card">
+          <div class="card-title">Live Tool as Prop</div>
+          Showing a live price on a phone signals transparency and professionalism. No scribbled numbers — a tool that calculates it in real time is a trust signal.
+        </div>
+        <div class="summary-card">
+          <div class="card-title">Choice Close</div>
+          "Premium or Supreme?" eliminates the yes/no decision. Both options move forward. Standard isn't on the table until they bring it up.
+        </div>
+        <div class="summary-card">
+          <div class="card-title">Record Before You Leave</div>
+          A phone number is the floor. A booked date is the goal. Every step you complete at the door is one less reason they have to cancel later.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Wagon Windows · Door-to-Door Script · Field Edition</span>
+    <span>wagonwindow.com</span>
+  </div>
+
+</div>
+</body>
+</html>
