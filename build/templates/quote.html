@@ -177,7 +177,7 @@
             <div class="pane-row-info">
               <div class="pane-row-label">Large Windows</div>
               <div class="pane-row-sub">Picture windows, floor-to-ceiling, bay windows</div>
-              <div class="pane-surcharge">+$5 per pane</div>
+              <div class="pane-surcharge">+$8 per pane</div>
             </div>
             <div class="pane-counter-sm">
               <button class="pane-btn-sm" onclick="adjustBreakdown('large',-1)">−</button>
@@ -189,7 +189,7 @@
             <div class="pane-row-info">
               <div class="pane-row-label">French / Complicated</div>
               <div class="pane-row-sub">Multi-pane french windows, grille patterns, skylights</div>
-              <div class="pane-surcharge">+$5 per pane</div>
+              <div class="pane-surcharge">+$8 per pane</div>
             </div>
             <div class="pane-counter-sm">
               <button class="pane-btn-sm" onclick="adjustBreakdown('french',-1)">−</button>
@@ -348,7 +348,9 @@
           <p id="contact-error" style="display:none;color:var(--sky);font-size:.82rem;margin:-0.5rem 0 .75rem;font-weight:600">Please enter at least a phone number or email so we can reach you.</p>
           <div class="form-group" style="margin-bottom:1rem">
             <label for="f-address">Service Address *</label>
-            <input id="f-address" type="text" name="address" required placeholder="123 Main St, Salmon Arm, BC">
+            <input id="f-address" type="text" name="address" required placeholder="123 Main St, Salmon Arm, BC"
+                   oninput="checkTravelFee(this.value)">
+          <p id="travel-fee-note" style="display:none;background:#fff8e6;border:1.5px solid #e8a020;border-radius:6px;padding:.6rem .9rem;font-size:.82rem;color:#7a4500;margin:.25rem 0 0;line-height:1.55"></p>
           </div>
           <div class="form-row">
             <div class="form-group">
@@ -410,7 +412,7 @@
 
 <script>
 const PRICING = {
-  addons: { screens: 4, tracks: 4, hardwater: 20, largewindow: 5 },
+  addons: { screens: 4, tracks: 4, hardwater: 20, largewindow: 8 },
   large: 71,
   discount: 0.10,
   gst: 0.05
@@ -433,7 +435,7 @@ function calcBase(panes, type) {
   // 31-50: +$2.50/$3.50 per pane
   // 51-70: +$3.50/$4.00 per pane
   // 71-99: +$4.00/$4.50 per pane
-  let ext = 149, intExt = 199;
+  let ext = 169, intExt = 219;
   let rem = Math.max(0, panes - 30);
   const t1 = Math.min(rem, 20); rem -= t1; ext += t1 * 2.50; intExt += t1 * 3.50;
   const t2 = Math.min(rem, 20); rem -= t2; ext += t2 * 3.50; intExt += t2 * 4.00;
@@ -573,9 +575,11 @@ function renderQuote() {
   rows += `<div class="breakdown-row total"><span>Total (estimated)</span><span>$${total}</span></div>`;
   document.getElementById('breakdown').innerHTML = rows;
 
-  document.getElementById('email-subject').value = `New Estimate Request — ${labels[state.propertyType]}, ${panes} panes, ~$${total} after discount & tax`;
+  const travelFee = parseInt(document.getElementById('travel-fee-note')?.dataset?.fee || '0') || 0;
+  const travelNote = travelFee > 0 ? ` + $${travelFee} TRAVEL FEE` : '';
+  document.getElementById('email-subject').value = `New Estimate Request — ${labels[state.propertyType]}, ${panes} panes, ~$${total} after discount & tax${travelNote}`;
   document.getElementById('email-summary').value =
-    `Property: ${labels[state.propertyType]} | Panes: ${panes} (${state.breakdown.regular} standard, ${state.breakdown.large} large, ${state.breakdown.french} french) | Service: ${svcLabel} | Screens: ${state.addons.screens} | Tracks: ${state.addons.tracks} | Hard water: ${state.addons.hardwater} | Large/French surcharge: $${largeWinTotal} | Subtotal: $${subtotal} | Discount (10%): -$${discount} | GST: $${gst} | Total: $${total}`;
+    `Property: ${labels[state.propertyType]} | Panes: ${panes} (${state.breakdown.regular} standard, ${state.breakdown.large} large, ${state.breakdown.french} french) | Service: ${svcLabel} | Screens: ${state.addons.screens} | Tracks: ${state.addons.tracks} | Hard water: ${state.addons.hardwater} | Large/French surcharge: $${largeWinTotal} | Subtotal: $${subtotal} | Discount (10%): -$${discount} | GST: $${gst} | Quote total: $${total}${travelFee > 0 ? ` | ⚠ TRAVEL FEE: +$${travelFee} (confirm with customer)` : ''}`;
 }
 
 function goTo(n) {
@@ -597,6 +601,26 @@ function showStep(id) {
   });
   const top = document.querySelector('.quote-section');
   if (top) window.scrollTo({ top: top.offsetTop - 90, behavior: 'smooth' });
+}
+
+const TRAVEL_ZONES = [
+  { fee: 55, label: 'Armstrong / Chase area (~50–60 km from Salmon Arm)', keywords: ['armstrong','chase','falkland'] },
+  { fee: 35, label: 'Sorrento / Sicamous / Enderby area (~30–50 km from Salmon Arm)', keywords: ['sorrento','blind bay','tappen','celista','scotch creek','eagle bay','swansea point','sicamous','enderby','grindrod','spallumcheen'] }
+];
+
+function checkTravelFee(address) {
+  const lower = address.toLowerCase();
+  const note  = document.getElementById('travel-fee-note');
+  for (const zone of TRAVEL_ZONES) {
+    if (zone.keywords.some(k => lower.includes(k))) {
+      note.innerHTML = `<strong>Travel fee: +$${zone.fee}</strong> — ${zone.label}. This will be confirmed when David contacts you.`;
+      note.style.display = 'block';
+      note.dataset.fee = zone.fee;
+      return;
+    }
+  }
+  note.style.display = 'none';
+  note.dataset.fee = '0';
 }
 
 async function submitBooking(e) {
