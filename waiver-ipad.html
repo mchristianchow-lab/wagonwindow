@@ -1029,13 +1029,53 @@ function buildWaiverHTML(forPDF = false) {
 }
 
 
+function buildWaiverEmailText() {
+  const services = state.services.map(k => SVC_LABELS[k]).join(', ') || '—';
+  const price = parseFloat(state.price) || 0;
+  const gst   = Math.round(price * 0.05);
+  const total = price + gst;
+  const ini   = state.initials || '—';
+  const clauseNames = [
+    'Pre-Existing Damage','Tempered & Heat-Treated Glass','Hard Water Stains',
+    'Screens & Tracks','Property Access & Ladders','Interior Access',
+    'Gutter Cleaning','Satisfaction & Re-Clean Policy','Payment',
+    'Cancellations','Liability Limit'
+  ];
+  return [
+    'WAGON WINDOW WASHERS — SIGNED SERVICE AGREEMENT',
+    '='.repeat(50),
+    '',
+    'Customer:  ' + (state.name    || '—'),
+    'Phone:     ' + (state.phone   || '—'),
+    'Address:   ' + (state.address || '—'),
+    'Email:     ' + (state.email   || 'Not provided'),
+    'Date:      ' + (state.dateStr || '—'),
+    'Services:  ' + services,
+    'Quoted:    $' + price.toFixed(2) + ' + GST $' + gst + ' = $' + total.toFixed(2),
+    'Windows:   ' + (state.windows || '—'),
+    (state.notes ? 'Notes:     ' + state.notes : ''),
+    '',
+    'CLAUSES INITIALLED (' + ini + '):',
+    ...clauseNames.map((n, i) => '  ' + (i+1) + '. ' + n + ' — initialled ' + ini),
+    '',
+    'SIGNATURE:',
+    '  Print Name: ' + (state.printName || '—'),
+    '  Date:       ' + (state.dateStr   || '—'),
+    '  Initials:   ' + ini,
+    '  Signature image saved on device — tap "View & Save Signed Waiver" on the iPad to access full document.',
+    '',
+    '-'.repeat(50),
+    'Wagon Window Washers · (403) 837-5092 · davidhanna@wagonwindow.com'
+  ].filter(l => l !== '').join('\n');
+}
+
 async function submitToWeb3Forms() {
   const fd = new FormData();
   fd.append('access_key',  WEB3FORMS_KEY);
   fd.append('subject',     'Signed Agreement — ' + state.name + ' — ' + state.dateStr);
   fd.append('from_name',   'Wagon Windows Waiver');
   fd.append('replyto',     state.email || DAVID_EMAIL);
-  fd.append('message',     buildWaiverHTML(false));
+  fd.append('message',     buildWaiverEmailText());
   fd.append('redirect',    'false');
   const res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
   const json = await res.json();
