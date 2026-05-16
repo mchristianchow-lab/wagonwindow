@@ -599,6 +599,7 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
   <div class="done-card" id="done-card"></div>
   <div style="display:flex;flex-direction:column;gap:.6rem;width:100%;max-width:420px">
     <button class="btn-primary" onclick="saveInvoicePDF()">Save Invoice PDF</button>
+    <button class="btn-primary" style="background:#1a1a2e" onclick="saveSignaturePNG()">Save Signature Image</button>
     <button class="btn-ghost"   onclick="newAgreement()">Start New Job</button>
   </div>
 </div>
@@ -622,6 +623,7 @@ const state = {
   services: [], price: '', windows: '', notes: '',
   initials: '', initialled: 0,
   printName: '', dateStr: '',
+  sigDataUrl: '',
   completedServices: [], paymentMethod: ''
 };
 
@@ -814,6 +816,7 @@ async function complete() {
   btn.textContent = 'Saving…';
 
   state.printName = document.getElementById('f-printname').value.trim();
+  state.sigDataUrl = sigCanvas ? sigCanvas.toDataURL('image/png') : '';
   saveRecord();
   buildPrintInvoice();
 
@@ -961,6 +964,10 @@ async function submitToWeb3Forms() {
   fd.append('Initialled By',  state.initials + ' (all 11 clauses)');
   fd.append('Signed By',      state.printName);
   fd.append('Date',           state.dateStr);
+  if (state.sigDataUrl) fd.append('Signature Image (base64)', state.sigDataUrl);
+  fd.append('message', state.sigDataUrl
+    ? '<p><strong>Signature:</strong></p><img src="' + state.sigDataUrl + '" style="max-width:320px;border:1px solid #ccc;border-radius:4px;" alt="Customer signature">'
+    : '<p>No signature image captured.</p>');
   fd.append('redirect',       'false');
   const res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
   const json = await res.json();
@@ -1067,6 +1074,14 @@ const SVC_LABELS = {
   screens:'Screen Cleaning', tracks:'Track Cleaning',
   gutters:'Gutter Cleaning', hardwater:'Hard Water Removal'
 };
+
+function saveSignaturePNG() {
+  if (!state.sigDataUrl) { alert('No signature captured.'); return; }
+  const a = document.createElement('a');
+  a.href = state.sigDataUrl;
+  a.download = 'signature-' + state.name.replace(/\s+/g,'-') + '-' + state.dateStr + '.png';
+  a.click();
+}
 
 function buildDoneScreen() {
   const price    = parseFloat(state.price) || 0;
