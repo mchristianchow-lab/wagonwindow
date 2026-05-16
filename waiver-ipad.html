@@ -599,7 +599,7 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
   <div class="done-card" id="done-card"></div>
   <div style="display:flex;flex-direction:column;gap:.6rem;width:100%;max-width:420px">
     <button class="btn-primary" onclick="saveInvoicePDF()">Save Invoice PDF</button>
-    <button class="btn-primary" style="background:#1a1a2e" onclick="saveSignaturePNG()">Save Signature Image</button>
+    <button class="btn-primary" style="background:#1a1a2e" onclick="openSignedWaiver()">View &amp; Save Signed Waiver</button>
     <button class="btn-ghost"   onclick="newAgreement()">Start New Job</button>
   </div>
 </div>
@@ -946,7 +946,7 @@ function sendCustomerEmail() {
 }
 
 // ── Web3Forms auto-email to David ──────────────────────────────────────
-function buildWaiverEmailHTML() {
+function buildWaiverHTML(forPDF = false) {
   const services = state.services.map(k => SVC_LABELS[k]).join(', ') || '—';
   const price = parseFloat(state.price) || 0;
   const gst   = Math.round(price * 0.05);
@@ -979,7 +979,9 @@ function buildWaiverEmailHTML() {
   ).join('');
 
   const sigBlock = state.sigDataUrl
-    ? '<div style="background:#f0fff4;border:1px solid #bbf7d0;border-radius:6px;padding:10px 12px;font-size:11px;color:#166534">✅ Signature captured — see attached image (signature.png)</div>'
+    ? (forPDF
+        ? '<img src="' + state.sigDataUrl + '" style="max-width:280px;border:1px solid #ccc;border-radius:4px;display:block" alt="Customer signature">'
+        : '<div style="background:#f0fff4;border:1px solid #bbf7d0;border-radius:6px;padding:10px 12px;font-size:11px;color:#166534">✅ Signature captured on device — open signed waiver on the iPad to view it</div>')
     : '<div style="height:60px;border:1px solid #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:12px">No signature captured</div>';
 
   return '<!DOCTYPE html><html><body style="font-family:Arial,sans-serif;max-width:700px;margin:0 auto;padding:24px;color:#1a1a2e">' +
@@ -1022,17 +1024,10 @@ function buildWaiverEmailHTML() {
       '<div style="margin-top:12px;background:#f0fff4;border:1px solid #bbf7d0;border-radius:6px;padding:10px 12px;font-size:11px;color:#166534">✅ Customer confirms they are the property owner or authorized representative, have read and initialled all 11 clauses, and agree to this Service Agreement with Wagon Window Washers.</div>' +
     '</div>' +
     '<div style="font-size:10px;color:#aaa;border-top:1px solid #e5e5e5;padding-top:10px">Wagon Window Washers · Salmon Arm, BC · davidhanna@wagonwindow.com · (403) 837-5092 · wagonwindow.com</div>' +
+    (forPDF ? '<script>setTimeout(function(){window.print();},400);<\/script>' : '') +
     '</body></html>';
 }
 
-function dataURLtoBlob(dataurl) {
-  const [header, data] = dataurl.split(',');
-  const mime = header.match(/:(.*?);/)[1];
-  const bin  = atob(data);
-  const arr  = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
-  return new Blob([arr], { type: mime });
-}
 
 async function submitToWeb3Forms() {
   const fd = new FormData();
@@ -1040,15 +1035,19 @@ async function submitToWeb3Forms() {
   fd.append('subject',     'Signed Agreement — ' + state.name + ' — ' + state.dateStr);
   fd.append('from_name',   'Wagon Windows Waiver');
   fd.append('replyto',     state.email || DAVID_EMAIL);
-  fd.append('message',     buildWaiverEmailHTML());
+  fd.append('message',     buildWaiverHTML(false));
   fd.append('redirect',    'false');
-  if (state.sigDataUrl) {
-    const filename = 'signature-' + (state.name || 'customer').replace(/\s+/g, '-') + '-' + state.dateStr + '.png';
-    fd.append('attachment', dataURLtoBlob(state.sigDataUrl), filename);
-  }
   const res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
   const json = await res.json();
   if (json.success) showToast('Agreement emailed to David ✓');
+}
+
+function openSignedWaiver() {
+  const html = buildWaiverHTML(true);
+  const blob = new Blob([html], { type: 'text/html' });
+  const url  = URL.createObjectURL(blob);
+  const win  = window.open(url, '_blank');
+  if (!win) { showToast('Allow popups to view the waiver'); }
 }
 
 // ── Google Sheets webhook ──────────────────────────────────────────────
