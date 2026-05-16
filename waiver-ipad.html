@@ -600,6 +600,7 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
   <div style="display:flex;flex-direction:column;gap:.6rem;width:100%;max-width:420px">
     <button class="btn-primary" onclick="saveInvoicePDF()">Save Invoice PDF</button>
     <button class="btn-primary" style="background:#1a1a2e" onclick="openSignedWaiver()">View &amp; Save Signed Waiver</button>
+    <button class="btn-primary" style="background:#166534" id="share-btn" onclick="shareWaiverWithCustomer()">Share Signed Waiver with Customer</button>
     <button class="btn-ghost"   onclick="newAgreement()">Start New Job</button>
   </div>
 </div>
@@ -1088,6 +1089,28 @@ function openSignedWaiver() {
   const url  = URL.createObjectURL(blob);
   const win  = window.open(url, '_blank');
   if (!win) { showToast('Allow popups to view the waiver'); }
+}
+
+async function shareWaiverWithCustomer() {
+  const name     = state.name || 'Customer';
+  const filename = 'signed-waiver-' + name.replace(/\s+/g, '-') + '-' + state.dateStr + '.html';
+  const html     = buildWaiverHTML(true);
+  const file     = new File([html], filename, { type: 'text/html' });
+
+  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    try {
+      await navigator.share({
+        files: [file],
+        title: 'Signed Service Agreement — ' + name,
+      });
+    } catch (e) {
+      if (e.name !== 'AbortError') showToast('Share failed — try View & Save instead');
+    }
+  } else {
+    // Fallback: open in new tab so David can share manually
+    openSignedWaiver();
+    showToast('Share not supported — use browser share button');
+  }
 }
 
 // ── Google Sheets webhook ──────────────────────────────────────────────
