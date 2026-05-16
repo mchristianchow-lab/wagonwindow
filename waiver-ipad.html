@@ -979,7 +979,7 @@ function buildWaiverEmailHTML() {
   ).join('');
 
   const sigBlock = state.sigDataUrl
-    ? '<img src="' + state.sigDataUrl + '" style="max-width:280px;border:1px solid #ccc;border-radius:4px;display:block" alt="Customer signature">'
+    ? '<div style="background:#f0fff4;border:1px solid #bbf7d0;border-radius:6px;padding:10px 12px;font-size:11px;color:#166534">✅ Signature captured — see attached image (signature.png)</div>'
     : '<div style="height:60px;border:1px solid #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:12px">No signature captured</div>';
 
   return '<!DOCTYPE html><html><body style="font-family:Arial,sans-serif;max-width:700px;margin:0 auto;padding:24px;color:#1a1a2e">' +
@@ -1025,6 +1025,15 @@ function buildWaiverEmailHTML() {
     '</body></html>';
 }
 
+function dataURLtoBlob(dataurl) {
+  const [header, data] = dataurl.split(',');
+  const mime = header.match(/:(.*?);/)[1];
+  const bin  = atob(data);
+  const arr  = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+  return new Blob([arr], { type: mime });
+}
+
 async function submitToWeb3Forms() {
   const fd = new FormData();
   fd.append('access_key',  WEB3FORMS_KEY);
@@ -1033,6 +1042,10 @@ async function submitToWeb3Forms() {
   fd.append('replyto',     state.email || DAVID_EMAIL);
   fd.append('message',     buildWaiverEmailHTML());
   fd.append('redirect',    'false');
+  if (state.sigDataUrl) {
+    const filename = 'signature-' + (state.name || 'customer').replace(/\s+/g, '-') + '-' + state.dateStr + '.png';
+    fd.append('attachment', dataURLtoBlob(state.sigDataUrl), filename);
+  }
   const res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
   const json = await res.json();
   if (json.success) showToast('Agreement emailed to David ✓');
