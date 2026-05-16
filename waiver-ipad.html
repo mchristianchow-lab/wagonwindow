@@ -599,8 +599,8 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
   <div class="done-card" id="done-card"></div>
   <div style="display:flex;flex-direction:column;gap:.6rem;width:100%;max-width:420px">
     <button class="btn-primary" onclick="saveInvoicePDF()">Save Invoice PDF</button>
-    <button class="btn-primary" style="background:#1a1a2e" onclick="openSignedWaiver()">View &amp; Save Signed Waiver</button>
-    <button class="btn-primary" style="background:#166534" id="share-btn" onclick="shareWaiverWithCustomer()">Share Signed Waiver with Customer</button>
+    <button class="btn-primary" style="background:#1a1a2e" onclick="shareSignedWaiver(false)">Save Signed Waiver</button>
+    <button class="btn-primary" style="background:#166534" onclick="shareSignedWaiver(true)">Send Waiver to Customer</button>
     <button class="btn-ghost"   onclick="newAgreement()">Start New Job</button>
   </div>
 </div>
@@ -1083,33 +1083,26 @@ async function submitToWeb3Forms() {
   if (json.success) showToast('Agreement emailed to David ✓');
 }
 
-function openSignedWaiver() {
-  const html = buildWaiverHTML(true);
-  const blob = new Blob([html], { type: 'text/html' });
-  const url  = URL.createObjectURL(blob);
-  const win  = window.open(url, '_blank');
-  if (!win) { showToast('Allow popups to view the waiver'); }
-}
-
-async function shareWaiverWithCustomer() {
+async function shareSignedWaiver(forCustomer) {
   const name     = state.name || 'Customer';
   const filename = 'signed-waiver-' + name.replace(/\s+/g, '-') + '-' + state.dateStr + '.html';
   const html     = buildWaiverHTML(true);
   const file     = new File([html], filename, { type: 'text/html' });
+  const title    = forCustomer
+    ? 'Signed Service Agreement — ' + name
+    : 'Waiver — ' + name + ' — ' + state.dateStr;
 
   if (navigator.canShare && navigator.canShare({ files: [file] })) {
     try {
-      await navigator.share({
-        files: [file],
-        title: 'Signed Service Agreement — ' + name,
-      });
+      await navigator.share({ files: [file], title });
     } catch (e) {
-      if (e.name !== 'AbortError') showToast('Share failed — try View & Save instead');
+      if (e.name !== 'AbortError') showToast('Sharing cancelled');
     }
   } else {
-    // Fallback: open in new tab so David can share manually
-    openSignedWaiver();
-    showToast('Share not supported — use browser share button');
+    // Fallback: open in new tab
+    const url = URL.createObjectURL(new Blob([html], { type: 'text/html' }));
+    const win = window.open(url, '_blank');
+    if (!win) showToast('Allow popups to view the waiver');
   }
 }
 
