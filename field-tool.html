@@ -1637,7 +1637,7 @@ function sendReviewRequest() {
 function sendReviewLink(id) {
   const lead = getLeads().find(l => l.id === id);
   if (!lead) return;
-  const text = "Hi " + lead.name + "! It’s David from Wagon Windows — hope you’re loving the clean windows! If you have a moment, a Google review makes a huge difference for us: " + REVIEW_URL + " Thanks so much!";
+  const text = "Hi " + lead.name + "! It's David from Wagon Windows — hope you're loving the clean windows! If you have a moment, a Google review makes a huge difference for us: " + REVIEW_URL + " Thanks so much!";
   if (navigator.share) {
     navigator.share({ title: 'Review Request — ' + lead.name, text }).catch(() => {});
   } else {
@@ -1758,17 +1758,17 @@ function sendTierQuote() {
 function emailQuote(id) {
   const lead = getLeads().find(l => l.id === id);
   if (!lead) return;
-  if (!lead.email) { alert(‘No email saved for this lead.’); return; }
+  if (!lead.email) { alert('No email saved for this lead.'); return; }
 
   const subject = encodeURIComponent(
-    ‘Wagon Windows — Your Estimate’ + (lead.address ? ‘ for ‘ + lead.address : ‘’)
+    'Wagon Windows — Your Estimate' + (lead.address ? ' for ' + lead.address : '')
   );
 
   const lines = [
-    ‘Hi ‘ + lead.name.split(‘ ‘)[0] + ‘,’,
-    ‘’,
-    ‘Thanks for your time today’ + (lead.address ? ‘ at ‘ + lead.address : ‘’) + ‘. Here\’s a full breakdown of your estimate.’,
-    ‘’,
+    'Hi ' + lead.name.split(' ')[0] + ',',
+    '',
+    'Thanks for your time today' + (lead.address ? ' at ' + lead.address : '') + '. Here\'s a full breakdown of your estimate.',
+    '',
   ];
 
   // Build itemized breakdown from params if available
@@ -1777,7 +1777,7 @@ function emailQuote(id) {
     const bd      = p.breakdown || { regular: 0, large: 0, french: 0 };
     const addons  = p.addons   || {};
     const totalPanes = (bd.regular || 0) + (bd.large || 0) + (bd.french || 0);
-    const svcLabel = p.serviceType === ‘exterior’ ? ‘Exterior Window Cleaning’ : ‘Interior + Exterior Window Cleaning’;
+    const svcLabel = p.serviceType === 'exterior' ? 'Exterior Window Cleaning' : 'Interior + Exterior Window Cleaning';
     const base     = Math.max(MIN_JOB, calcBase(totalPanes, p.serviceType));
     const largeWin = (addons.largewindow || 0) * ADDONS.largewindow;
     const screens  = (addons.screens     || 0) * ADDONS.screens;
@@ -1792,64 +1792,64 @@ function emailQuote(id) {
     const gst      = Math.round(afterDiscount * 0.05);
     const total    = afterDiscount + gst;
 
-    const col = (label, val) => label.padEnd(36, ‘ ‘) + val;
-    const div = ‘─’.repeat(44);
+    const col = (label, val) => label.padEnd(36, ' ') + val;
+    const div = '─'.repeat(44);
 
-    lines.push(‘ESTIMATE BREAKDOWN’);
+    lines.push('ESTIMATE BREAKDOWN');
     lines.push(div);
 
     // Pane breakdown
     const paneDetail = [];
-    if (bd.regular) paneDetail.push(bd.regular + ‘ standard’);
-    if (bd.large)   paneDetail.push(bd.large   + ‘ large (+$8/pane)’);
-    if (bd.french)  paneDetail.push(bd.french  + ‘ French (+$8/pane)’);
-    lines.push(col(svcLabel + ‘ (‘ + totalPanes + ‘ panes)’, ‘$’ + base.toFixed(2)));
-    if (paneDetail.length > 1) lines.push(‘  ‘ + paneDetail.join(‘ · ‘));
+    if (bd.regular) paneDetail.push(bd.regular + ' standard');
+    if (bd.large)   paneDetail.push(bd.large   + ' large (+$8/pane)');
+    if (bd.french)  paneDetail.push(bd.french  + ' French (+$8/pane)');
+    lines.push(col(svcLabel + ' (' + totalPanes + ' panes)', '$' + base.toFixed(2)));
+    if (paneDetail.length > 1) lines.push('  ' + paneDetail.join(' · '));
 
-    if (largeWin)  lines.push(col(‘Large/French window surcharge ×’ + addons.largewindow, ‘+$’ + largeWin.toFixed(2)));
-    if (screens)   lines.push(col(‘Screen cleaning ×’ + addons.screens + ‘ screens’, ‘+$’ + screens.toFixed(2)));
-    if (tracks)    lines.push(col(‘Track cleaning ×’ + addons.tracks + ‘ tracks’, ‘+$’ + tracks.toFixed(2)));
-    if (hardwater) lines.push(col(‘Hard water stain removal ×’ + addons.hardwater, ‘+$’ + hardwater.toFixed(2)));
-    if (gutters)   lines.push(col(‘Gutter cleaning’, ‘+$’ + gutters.toFixed(2)));
-    if (travel)    lines.push(col(‘Travel fee’, ‘+$’ + travel.toFixed(2)));
+    if (largeWin)  lines.push(col('Large/French window surcharge ×' + addons.largewindow, '+$' + largeWin.toFixed(2)));
+    if (screens)   lines.push(col('Screen cleaning ×' + addons.screens + ' screens', '+$' + screens.toFixed(2)));
+    if (tracks)    lines.push(col('Track cleaning ×' + addons.tracks + ' tracks', '+$' + tracks.toFixed(2)));
+    if (hardwater) lines.push(col('Hard water stain removal ×' + addons.hardwater, '+$' + hardwater.toFixed(2)));
+    if (gutters)   lines.push(col('Gutter cleaning', '+$' + gutters.toFixed(2)));
+    if (travel)    lines.push(col('Travel fee', '+$' + travel.toFixed(2)));
 
     lines.push(div);
-    lines.push(col(‘Subtotal’, ‘$’ + subtotal.toFixed(2)));
+    lines.push(col('Subtotal', '$' + subtotal.toFixed(2)));
     if (discount > 0) {
-      lines.push(col(‘Field discount (‘ + discPct + ‘%)’, ‘-$’ + discount.toFixed(2)));
-      lines.push(col(‘After discount’, ‘$’ + afterDiscount.toFixed(2)));
+      lines.push(col('Field discount (' + discPct + '%)', '-$' + discount.toFixed(2)));
+      lines.push(col('After discount', '$' + afterDiscount.toFixed(2)));
     }
-    lines.push(col(‘GST (5%)’, ‘$’ + gst.toFixed(2)));
+    lines.push(col('GST (5%)', '$' + gst.toFixed(2)));
     lines.push(div);
-    lines.push(col(‘TOTAL’, ‘$’ + total.toFixed(2)));
-    lines.push(‘’);
+    lines.push(col('TOTAL', '$' + total.toFixed(2)));
+    lines.push('');
   } else {
     // Fallback for old leads without params
-    lines.push(‘ESTIMATE’);
-    lines.push(lead.quote_str || ‘—‘);
-    lines.push(‘’);
-    lines.push(‘SERVICES’);
-    lines.push(lead.summary || ‘—‘);
-    lines.push(‘’);
+    lines.push('ESTIMATE');
+    lines.push(lead.quote_str || '—');
+    lines.push('');
+    lines.push('SERVICES');
+    lines.push(lead.summary || '—');
+    lines.push('');
   }
 
-  if (lead.notes) { lines.push(‘NOTES’); lines.push(lead.notes); lines.push(‘’); }
+  if (lead.notes) { lines.push('NOTES'); lines.push(lead.notes); lines.push(''); }
 
   lines.push(
-    ‘This is an on-site estimate. Final price confirmed before work begins.’,
-    ‘’,
-    ‘We guarantee streak-free results — if you\’re not satisfied, we come back.’,
-    ‘’,
-    ‘Ready to book? Reply to this email or text David at (403) 837-5092.’,
-    ‘’,
-    ‘— David’,
-    ‘Wagon Windows · Salmon Arm & Shuswap, BC’,
-    ‘(403) 837-5092 · wagonwindow.com’
+    'This is an on-site estimate. Final price confirmed before work begins.',
+    '',
+    'We guarantee streak-free results — if you\'re not satisfied, we come back.',
+    '',
+    'Ready to book? Reply to this email or text David at (403) 837-5092.',
+    '',
+    '— David',
+    'Wagon Windows · Salmon Arm & Shuswap, BC',
+    '(403) 837-5092 · wagonwindow.com'
   );
 
-  window.location.href = ‘mailto:’ + lead.email
-    + ‘?subject=’ + subject
-    + ‘&body=’ + encodeURIComponent(lines.join(‘\n’));
+  window.location.href = 'mailto:' + lead.email
+    + '?subject=' + subject
+    + '&body=' + encodeURIComponent(lines.join('\n'));
 }
 
 // ── Session persistence (resume last quote) ────────────────────────────
