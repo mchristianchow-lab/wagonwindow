@@ -1420,7 +1420,8 @@ function loadLeadQuote(id) {
   }
 
   syncPaneState();
-  goScreen('scr-addons');
+  goScreen('scr-quote');
+  syncPaneState(); // re-run after screen switch so count display is live if they navigate back
 }
 
 function shareLead(id) {
