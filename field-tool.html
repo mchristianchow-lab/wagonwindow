@@ -193,6 +193,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 }
 .lead-btn.calendly{border-color:var(--red);color:var(--red)}
 .lead-btn.delete{border-color:#555;color:var(--muted)}
+/* ── Edit lead overlay ── */
+#edit-lead-overlay{display:none;position:fixed;inset:0;background:var(--bg);z-index:200;flex-direction:column;overflow-y:auto}
+#edit-lead-overlay.visible{display:flex}
+.edit-topbar{position:sticky;top:0;background:var(--surface);border-bottom:2px solid var(--red);padding:.85rem 1rem;display:flex;align-items:center;justify-content:space-between;z-index:10}
+.edit-save-btn{background:var(--red);color:#fff;border:none;border-radius:7px;font-size:.85rem;font-weight:700;padding:.5rem 1.1rem;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent}
 .empty-state{text-align:center;padding:3rem 1.5rem;color:var(--muted)}
 .empty-state-icon{font-size:3rem;margin-bottom:1rem}
 /* ── Price reference ── */
@@ -864,6 +869,42 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
 
 </div><!-- /#app -->
 
+<!-- ── Edit Lead Overlay ── -->
+<div id="edit-lead-overlay">
+  <div class="edit-topbar">
+    <button class="topbar-back" onclick="closeEditLead()">✕ Cancel</button>
+    <div class="topbar-title">Edit Customer</div>
+    <button class="edit-save-btn" onclick="saveLeadEdit()">Save</button>
+  </div>
+  <div class="form-section" style="padding-top:1rem">
+    <input type="hidden" id="edit-lead-id">
+    <div class="field-group">
+      <label class="field-label">Customer Name *</label>
+      <input class="field-input" id="edit-lead-name" type="text" placeholder="Jane Smith" autocomplete="off">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Phone *</label>
+      <input class="field-input" id="edit-lead-phone" type="tel" placeholder="(250) 555-0123">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Email</label>
+      <input class="field-input" id="edit-lead-email" type="email" placeholder="customer@email.com" autocapitalize="none">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Address</label>
+      <input class="field-input" id="edit-lead-address" type="text" placeholder="123 Main St, Salmon Arm">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Preferred Date</label>
+      <input class="field-input" id="edit-lead-date" type="date">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Notes</label>
+      <input class="field-input" id="edit-lead-notes" type="text" placeholder="Gate code, dog, special instructions…">
+    </div>
+  </div>
+</div>
+
 <script>
 // ── Pricing constants ──────────────────────────────────────────────────
 const ADDONS = { screens: 4, tracks: 4, hardwater: 20, largewindow: 8 };
@@ -1298,6 +1339,45 @@ function deleteLead(id) {
   updateHomeCount();
 }
 
+function editLead(id) {
+  const lead = getLeads().find(l => l.id === id);
+  if (!lead) return;
+  document.getElementById('edit-lead-id').value    = id;
+  document.getElementById('edit-lead-name').value  = lead.name    || '';
+  document.getElementById('edit-lead-phone').value = lead.phone   || '';
+  document.getElementById('edit-lead-email').value = lead.email   || '';
+  document.getElementById('edit-lead-address').value = lead.address || '';
+  document.getElementById('edit-lead-date').value  = lead.date_pref || '';
+  document.getElementById('edit-lead-notes').value = lead.notes   || '';
+  document.getElementById('edit-lead-overlay').classList.add('visible');
+}
+
+function closeEditLead() {
+  document.getElementById('edit-lead-overlay').classList.remove('visible');
+}
+
+function saveLeadEdit() {
+  const id   = parseInt(document.getElementById('edit-lead-id').value);
+  const name = document.getElementById('edit-lead-name').value.trim();
+  const phone = document.getElementById('edit-lead-phone').value.trim();
+  if (!name || !phone) { alert('Name and phone are required.'); return; }
+  const leads = getLeads().map(l => {
+    if (l.id !== id) return l;
+    return {
+      ...l,
+      name,
+      phone,
+      email:     document.getElementById('edit-lead-email').value.trim(),
+      address:   document.getElementById('edit-lead-address').value.trim(),
+      date_pref: document.getElementById('edit-lead-date').value,
+      notes:     document.getElementById('edit-lead-notes').value.trim(),
+    };
+  });
+  saveLeads(leads);
+  closeEditLead();
+  renderLeads();
+}
+
 function shareLead(id) {
   const lead = getLeads().find(l => l.id === id);
   if (!lead) return;
@@ -1361,6 +1441,7 @@ function renderLeads() {
       + '<div class="lead-actions" style="margin-top:.4rem">'
       + '<button class="lead-btn" onclick="sendReminderMsg(' + l.id + ')">Reminder</button>'
       + '<button class="lead-btn" onclick="sendReviewLink(' + l.id + ')">Review</button>'
+      + '<button class="lead-btn" style="border-color:var(--blue);color:var(--blue)" onclick="editLead(' + l.id + ')">Edit</button>'
       + '<button class="lead-btn delete" onclick="deleteLead(' + l.id + ')">Delete</button>'
       + '</div></div>';
   }).join('');
