@@ -740,7 +740,14 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
   <div class="topbar">
     <button class="topbar-back" onclick="goScreen('scr-home')">← Home</button>
     <div class="topbar-title">Saved Leads</div>
-    <button class="topbar-action" onclick="shareAllLeads()">Share All</button>
+    <div style="display:flex;gap:.15rem">
+      <button class="topbar-action" onclick="shareAllLeads()">Share</button>
+      <button class="topbar-action" onclick="exportLeads()" style="color:var(--green)">Backup</button>
+    </div>
+  </div>
+  <div id="restore-bar" style="display:none;padding:.5rem 1rem;background:rgba(34,197,94,.08);border-bottom:1px solid rgba(34,197,94,.2);font-size:.78rem;color:var(--green);align-items:center;justify-content:space-between">
+    <span>Restore leads from a backup file?</span>
+    <button onclick="importLeads()" style="background:var(--green);color:#fff;border:none;border-radius:6px;padding:.3rem .75rem;font-size:.75rem;font-weight:700;cursor:pointer;font-family:inherit">Restore</button>
   </div>
   <div class="section" style="flex:1">
     <div id="leads-list"></div>
@@ -1506,6 +1513,51 @@ function shareAllLeads() {
   } else {
     navigator.clipboard.writeText(full).then(() => alert('All leads copied.')).catch(() => alert(full));
   }
+}
+
+function exportLeads() {
+  const leads = getLeads();
+  if (!leads.length) { alert('No leads to backup.'); return; }
+  const json = JSON.stringify(leads, null, 2);
+  const date = new Date().toLocaleDateString('en-CA');
+  const filename = 'wagon-windows-leads-' + date + '.json';
+  if (navigator.share) {
+    const file = new File([json], filename, { type: 'application/json' });
+    navigator.share({ files: [file], title: 'WW Leads Backup ' + date }).catch(() => {
+      navigator.clipboard.writeText(json).then(() => alert('Leads copied to clipboard as backup.')).catch(() => {});
+    });
+  } else {
+    const a = document.createElement('a');
+    a.href = 'data:application/json;charset=utf-8,' + encodeURIComponent(json);
+    a.download = filename;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  }
+}
+
+function importLeads() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json,application/json,text/plain';
+  input.onchange = function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      try {
+        const imported = JSON.parse(ev.target.result);
+        if (!Array.isArray(imported)) throw new Error();
+        const existing = getLeads();
+        const existingIds = new Set(existing.map(l => l.id));
+        const merged = [...imported.filter(l => !existingIds.has(l.id)), ...existing];
+        saveLeads(merged);
+        renderLeads();
+        updateHomeCount();
+        alert('Restored ' + imported.length + ' leads.');
+      } catch { alert('Could not read backup file.'); }
+    };
+    reader.readAsText(file);
+  };
+  document.body.appendChild(input); input.click(); document.body.removeChild(input);
 }
 
 function renderLeads() {
