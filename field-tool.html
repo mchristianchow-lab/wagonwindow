@@ -1399,15 +1399,17 @@ function loadLeadQuote(id) {
     const trackMatch  = s.match(/tracks ×(\d+)/);
     const hwMatch     = s.match(/hard water ×(\d+)/);
     const largeMatch  = s.match(/large ×(\d+)/);
-    const panes = panesMatch ? parseInt(panesMatch[1]) : 0;
+    const totalPanes  = panesMatch ? parseInt(panesMatch[1]) : 0;
+    const largeCount  = largeMatch ? parseInt(largeMatch[1]) : 0;
+    const regularCount = Math.max(0, totalPanes - largeCount);
     p = {
-      breakdown:       { regular: panes, large: 0, french: 0 },
-      serviceType:     s.startsWith('Exterior Only') ? 'exterior' : (panes > 0 ? 'both' : null),
+      breakdown:       { regular: regularCount, large: largeCount, french: 0 },
+      serviceType:     s.startsWith('Exterior Only') ? 'exterior' : (totalPanes > 0 ? 'both' : null),
       addons:          {
         screens:     screenMatch ? parseInt(screenMatch[1]) : 0,
         tracks:      trackMatch  ? parseInt(trackMatch[1])  : 0,
         hardwater:   hwMatch     ? parseInt(hwMatch[1])     : 0,
-        largewindow: largeMatch  ? parseInt(largeMatch[1])  : 0,
+        largewindow: largeCount,
         gutters:     s.includes('gutters'),
         travel:      0
       },
