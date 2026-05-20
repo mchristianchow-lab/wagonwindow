@@ -1389,12 +1389,36 @@ function saveLeadEdit() {
 function loadLeadQuote(id) {
   const lead = getLeads().find(l => l.id === id);
   if (!lead) return;
-  const p = lead.params;
-  if (!p) { goScreen('scr-count'); return; }
 
-  state.breakdown    = { regular: p.breakdown.regular || 0, large: p.breakdown.large || 0, french: p.breakdown.french || 0 };
-  state.serviceType  = p.serviceType || null;
-  state.addons       = { screens: p.addons.screens || 0, tracks: p.addons.tracks || 0, hardwater: p.addons.hardwater || 0, largewindow: p.addons.largewindow || 0, gutters: !!p.addons.gutters, travel: p.addons.travel || 0 };
+  // Build params — use stored params if available, otherwise parse summary
+  let p = lead.params;
+  if (!p) {
+    const s = lead.summary || '';
+    const panesMatch  = s.match(/(\d+) panes/);
+    const screenMatch = s.match(/screens ×(\d+)/);
+    const trackMatch  = s.match(/tracks ×(\d+)/);
+    const hwMatch     = s.match(/hard water ×(\d+)/);
+    const largeMatch  = s.match(/large ×(\d+)/);
+    const panes = panesMatch ? parseInt(panesMatch[1]) : 0;
+    p = {
+      breakdown:       { regular: panes, large: 0, french: 0 },
+      serviceType:     s.startsWith('Exterior Only') ? 'exterior' : (panes > 0 ? 'both' : null),
+      addons:          {
+        screens:     screenMatch ? parseInt(screenMatch[1]) : 0,
+        tracks:      trackMatch  ? parseInt(trackMatch[1])  : 0,
+        hardwater:   hwMatch     ? parseInt(hwMatch[1])     : 0,
+        largewindow: largeMatch  ? parseInt(largeMatch[1])  : 0,
+        gutters:     s.includes('gutters'),
+        travel:      0
+      },
+      selectedPackage: null,
+      discount:        0
+    };
+  }
+
+  state.breakdown       = { regular: p.breakdown.regular || 0, large: p.breakdown.large || 0, french: p.breakdown.french || 0 };
+  state.serviceType     = p.serviceType || null;
+  state.addons          = { screens: p.addons.screens || 0, tracks: p.addons.tracks || 0, hardwater: p.addons.hardwater || 0, largewindow: p.addons.largewindow || 0, gutters: !!p.addons.gutters, travel: p.addons.travel || 0 };
   state.selectedPackage = p.selectedPackage || null;
 
   const discEl = document.getElementById('discount-pct');
@@ -1421,7 +1445,7 @@ function loadLeadQuote(id) {
 
   syncPaneState();
   goScreen('scr-quote');
-  syncPaneState(); // re-run after screen switch so count display is live if they navigate back
+  syncPaneState();
 }
 
 function shareLead(id) {
