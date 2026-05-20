@@ -1748,9 +1748,9 @@ function sendTierQuote() {
     'wagonwindow.com',
   ].join('\n');
 
-  window.location.href = 'mailto:' + email
-    + '?subject=' + encodeURIComponent(subject)
-    + '&body='    + encodeURIComponent(body);
+  const _a1 = document.createElement('a');
+  _a1.href = 'mailto:' + email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  document.body.appendChild(_a1); _a1.click(); document.body.removeChild(_a1);
 
   closeEmailTierQuote();
 }
@@ -1848,9 +1848,9 @@ function emailQuote(id) {
     '(403) 837-5092 · wagonwindow.com'
   );
 
-  window.location.href = 'mailto:' + lead.email
-    + '?subject=' + subject
-    + '&body=' + encodeURIComponent(lines.join('\n'));
+  const _a = document.createElement('a');
+  _a.href = 'mailto:' + lead.email + '?subject=' + subject + '&body=' + encodeURIComponent(lines.join('\n'));
+  document.body.appendChild(_a); _a.click(); document.body.removeChild(_a);
 }
 
 // ── Session persistence (resume last quote) ────────────────────────────
