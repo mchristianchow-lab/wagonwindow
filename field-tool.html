@@ -600,8 +600,13 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         <input type="checkbox" class="addon-check" id="chk-gutters" onchange="toggleAddon('gutters',this)">
         <div class="addon-text">
           <div class="addon-name">Gutter Cleaning</div>
-          <div class="addon-meta" id="gutter-meta">Flat rate — flush debris, clear downspouts</div>
+          <div class="addon-meta" id="gutter-meta">$189 flat · flush debris, clear downspouts</div>
         </div>
+      </div>
+      <div class="addon-ctr" id="ctr-gutters" style="display:none">
+        <button class="adj-btn" onclick="adjustGutter(-25)">−</button>
+        <div class="adj-val" id="val-gutters" style="min-width:48px;font-size:.85rem">$189</div>
+        <button class="adj-btn" onclick="adjustGutter(25)">+</button>
       </div>
     </div>
 
@@ -917,7 +922,7 @@ const state = {
   panes: 0,
   breakdown: { regular: 0, large: 0, french: 0 },
   serviceType: null,
-  addons: { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false, travel: 0 }
+  addons: { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: 0, travel: 0 }
 };
 
 // ── Pricing engine (mirrors customer quote tool exactly) ───────────────
@@ -930,11 +935,7 @@ function calcBase(panes, type) {
   return type === 'exterior' ? Math.round(ext) : Math.round(intExt);
 }
 
-function gutterPrice(panes) {
-  if (panes <= 30) return 149;
-  if (panes <= 50) return 189;
-  return 229;
-}
+function gutterPrice() { return 189; }
 
 function sizeBadge(panes) {
   if (panes <= 30) return 'Small';
@@ -950,7 +951,7 @@ function buildQuote() {
   const screens  = state.addons.screens  * ADDONS.screens;
   const tracks   = state.addons.tracks   * ADDONS.tracks;
   const hardwater= state.addons.hardwater* ADDONS.hardwater;
-  const gutters  = state.addons.gutters  ? gutterPrice(state.panes) : 0;
+  const gutters  = state.addons.gutters  || 0;
   const travel   = state.addons.travel   || 0;
   const discPct  = Math.min(40, Math.max(0, parseFloat(document.getElementById('discount-pct')?.value || 0)));
   const subtotal = base + largeWin + screens + tracks + hardwater + gutters + travel;
@@ -1056,7 +1057,7 @@ function pkgCalc(type, screens, tracks, gutters) {
   const largeWin = state.addons.largewindow * ADDONS.largewindow;
   const s        = screens * ADDONS.screens;
   const t        = tracks  * ADDONS.tracks;
-  const g        = gutters ? gutterPrice(state.panes) : 0;
+  const g        = gutters ? gutterPrice() : 0;
   const sub      = base + largeWin + s + t + g;
   return sub + Math.round(sub * GST);
 }
@@ -1111,7 +1112,11 @@ function selectPackage(tier) {
     setAddonVal(k, state.addons[k], state.addons[k] > 0);
   });
   const gutterChk = document.getElementById('chk-gutters');
-  if (gutterChk) gutterChk.checked = state.addons.gutters;
+  if (gutterChk) gutterChk.checked = state.addons.gutters > 0;
+  const gutterCtr = document.getElementById('ctr-gutters');
+  if (gutterCtr) gutterCtr.style.display = state.addons.gutters > 0 ? 'flex' : 'none';
+  const gutterVal = document.getElementById('val-gutters');
+  if (gutterVal) gutterVal.textContent = state.addons.gutters > 0 ? '$' + state.addons.gutters : '$189';
 
   state.selectedPackage = tier;
   goScreen('scr-quote');
@@ -1143,7 +1148,11 @@ function updateServicePrices() {
 // ── Add-on helpers ─────────────────────────────────────────────────────
 function toggleAddon(key, cb) {
   if (key === 'gutters') {
-    state.addons.gutters = cb.checked;
+    state.addons.gutters = cb.checked ? 189 : 0;
+    const ctr = document.getElementById('ctr-gutters');
+    if (ctr) ctr.style.display = cb.checked ? 'flex' : 'none';
+    document.getElementById('val-gutters').textContent = cb.checked ? '$189' : '$189';
+    if (document.getElementById('scr-quote').classList.contains('active')) renderQuote();
     return;
   }
   if (!cb.checked) {
@@ -1159,6 +1168,14 @@ function toggleAddon(key, cb) {
       document.getElementById('val-' + key).textContent = '1';
     }
   }
+}
+
+function adjustGutter(delta) {
+  const current = state.addons.gutters || 189;
+  const next = Math.max(189, current + delta);
+  state.addons.gutters = next;
+  document.getElementById('val-gutters').textContent = '$' + next;
+  if (document.getElementById('scr-quote').classList.contains('active')) renderQuote();
 }
 
 function adjustAddon(key, delta) {
@@ -1195,7 +1212,7 @@ function setAddonVal(key, count, checked) {
 
 function updateGutterMeta() {
   const el = document.getElementById('gutter-meta');
-  if (el) el.textContent = fmt(gutterPrice(state.panes)) + ' flat · flush debris, clear downspouts';
+  if (el) el.textContent = '$189 flat · +$25 for larger jobs · flush debris, clear downspouts';
 }
 
 // ── Quote render ───────────────────────────────────────────────────────
@@ -1300,7 +1317,7 @@ function saveLead(openCal) {
   const parts = [svcLabel, state.panes + ' panes'];
   if (state.addons.screens)   parts.push('screens ×' + state.addons.screens);
   if (state.addons.tracks)    parts.push('tracks ×' + state.addons.tracks);
-  if (state.addons.gutters)   parts.push('gutters');
+  if (state.addons.gutters > 0) parts.push('gutters');
   if (state.addons.hardwater) parts.push('hard water ×' + state.addons.hardwater);
   if (state.addons.largewindow) parts.push('large ×' + state.addons.largewindow);
 
@@ -1410,7 +1427,7 @@ function loadLeadQuote(id) {
         tracks:      trackMatch  ? parseInt(trackMatch[1])  : 0,
         hardwater:   hwMatch     ? parseInt(hwMatch[1])     : 0,
         largewindow: largeCount,
-        gutters:     s.includes('gutters'),
+        gutters:     s.includes('gutters') ? 189 : 0,
         travel:      0
       },
       selectedPackage: null,
@@ -1420,7 +1437,7 @@ function loadLeadQuote(id) {
 
   state.breakdown       = { regular: p.breakdown.regular || 0, large: p.breakdown.large || 0, french: p.breakdown.french || 0 };
   state.serviceType     = p.serviceType || null;
-  state.addons          = { screens: p.addons.screens || 0, tracks: p.addons.tracks || 0, hardwater: p.addons.hardwater || 0, largewindow: p.addons.largewindow || 0, gutters: !!p.addons.gutters, travel: p.addons.travel || 0 };
+  state.addons          = { screens: p.addons.screens || 0, tracks: p.addons.tracks || 0, hardwater: p.addons.hardwater || 0, largewindow: p.addons.largewindow || 0, gutters: p.addons.gutters || 0, travel: p.addons.travel || 0 };
   state.selectedPackage = p.selectedPackage || null;
 
   const discEl = document.getElementById('discount-pct');
@@ -1436,7 +1453,11 @@ function loadLeadQuote(id) {
     if (ctr) ctr.style.display = state.addons[k] > 0 ? 'flex' : 'none';
   });
   const chkGutters = document.getElementById('chk-gutters');
-  if (chkGutters) chkGutters.checked = state.addons.gutters;
+  if (chkGutters) chkGutters.checked = state.addons.gutters > 0;
+  const ctrGutters = document.getElementById('ctr-gutters');
+  if (ctrGutters) ctrGutters.style.display = state.addons.gutters > 0 ? 'flex' : 'none';
+  const valGutters = document.getElementById('val-gutters');
+  if (valGutters) valGutters.textContent = state.addons.gutters > 0 ? '$' + state.addons.gutters : '$189';
 
   // Restore service card selection
   document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
