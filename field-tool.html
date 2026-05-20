@@ -19,6 +19,7 @@
   --muted:#888;
   --green:#22c55e;
   --yellow:#f59e0b;
+  --blue:#3b82f6;
 }
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;overflow:hidden}
 #app{height:100%;display:flex;flex-direction:column;max-width:500px;margin:0 auto}
@@ -985,7 +986,7 @@ function startQuote() {
   state.serviceType = null;
   state.breakdown = { regular: 0, large: 0, french: 0 };
   state.panes = 0;
-  state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false, travel: 0 };
+  state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: 0, travel: 0 };
   // Reset addon checkboxes
   setTravel(0);
   ['largewindow','screens','tracks','hardwater','gutters'].forEach(k => {
@@ -1096,13 +1097,13 @@ function selectPackage(tier) {
 
   if (tier === 'standard') {
     state.serviceType = 'exterior';
-    state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false, travel: 0 };
+    state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: 0, travel: 0 };
   } else if (tier === 'premium') {
     state.serviceType = 'both';
-    state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false, travel: 0 };
+    state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: 0, travel: 0 };
   } else if (tier === 'supreme') {
     state.serviceType = 'both';
-    state.addons = { screens: est, tracks: est, hardwater: 0, largewindow: 0, gutters: false, travel: 0 };
+    state.addons = { screens: est, tracks: est, hardwater: 0, largewindow: 0, gutters: 0, travel: 0 };
   }
 
   // Large + French from count screen carry into the addon
@@ -1595,7 +1596,7 @@ function openWaiver(id) {
     email:   lead.email   || '',
     address: lead.address || '',
     price:   lead.quote   || '',
-    windows: Math.round((lead.panes || 0) / 2) || '',
+    windows: lead.params ? (lead.params.breakdown.regular||0) + (lead.params.breakdown.large||0) + (lead.params.breakdown.french||0) : '',
     notes:   lead.notes   || '',
     services: [...new Set(svcs)].join(',')
   });
@@ -1623,7 +1624,7 @@ function resetChecklist() {
 }
 
 // ── Review & reminder ──────────────────────────────────────────────────
-const REVIEW_URL = 'https://www.google.com/maps/search/Wagon+Windows+Salmon+Arm+BC';
+const REVIEW_URL = 'https://g.page/r/CTjjX99dBkfQEBM/review';
 
 function sendReviewRequest() {
   const text = "Hi! David here from Wagon Windows — really appreciate having you as a customer. If you have 30 seconds, a Google review means the world to a small local business: " + REVIEW_URL;
@@ -1898,7 +1899,7 @@ function resumeSession() {
     const s = JSON.parse(raw);
     state.breakdown = { regular: s.breakdown.regular || 0, large: s.breakdown.large || 0, french: s.breakdown.french || 0 };
     state.serviceType = s.serviceType || null;
-    state.addons = { screens: s.addons.screens || 0, tracks: s.addons.tracks || 0, hardwater: s.addons.hardwater || 0, largewindow: s.addons.largewindow || 0, gutters: !!s.addons.gutters, travel: s.addons.travel || 0 };
+    state.addons = { screens: s.addons.screens || 0, tracks: s.addons.tracks || 0, hardwater: s.addons.hardwater || 0, largewindow: s.addons.largewindow || 0, gutters: s.addons.gutters || 0, travel: s.addons.travel || 0 };
     state.selectedPackage = s.selectedPackage || null;
     const discEl = document.getElementById('discount-pct');
     if (discEl) discEl.value = s.discount || 0;
