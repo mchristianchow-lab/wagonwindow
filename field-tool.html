@@ -1304,6 +1304,7 @@ function saveLead(openCal) {
   if (state.addons.hardwater) parts.push('hard water ×' + state.addons.hardwater);
   if (state.addons.largewindow) parts.push('large ×' + state.addons.largewindow);
 
+  const discEl = document.getElementById('discount-pct');
   const lead = {
     id: Date.now(),
     name,
@@ -1315,7 +1316,14 @@ function saveLead(openCal) {
     quote: q ? q.total : null,
     quote_str: q ? fmt(q.total) + ' incl. GST' : null,
     summary: parts.join(', '),
-    created_at: new Date().toISOString()
+    created_at: new Date().toISOString(),
+    params: {
+      breakdown: { ...state.breakdown },
+      serviceType: state.serviceType,
+      addons: { ...state.addons },
+      selectedPackage: state.selectedPackage || null,
+      discount: parseFloat(discEl?.value || 0)
+    }
   };
 
   const leads = getLeads();
@@ -1378,6 +1386,43 @@ function saveLeadEdit() {
   renderLeads();
 }
 
+function loadLeadQuote(id) {
+  const lead = getLeads().find(l => l.id === id);
+  if (!lead) return;
+  const p = lead.params;
+  if (!p) { goScreen('scr-count'); return; }
+
+  state.breakdown    = { regular: p.breakdown.regular || 0, large: p.breakdown.large || 0, french: p.breakdown.french || 0 };
+  state.serviceType  = p.serviceType || null;
+  state.addons       = { screens: p.addons.screens || 0, tracks: p.addons.tracks || 0, hardwater: p.addons.hardwater || 0, largewindow: p.addons.largewindow || 0, gutters: !!p.addons.gutters, travel: p.addons.travel || 0 };
+  state.selectedPackage = p.selectedPackage || null;
+
+  const discEl = document.getElementById('discount-pct');
+  if (discEl) discEl.value = p.discount || 0;
+
+  // Restore addon UI
+  ['largewindow','screens','tracks','hardwater'].forEach(k => {
+    const chk = document.getElementById('chk-' + k);
+    const ctr = document.getElementById('ctr-' + k);
+    const val = document.getElementById('val-' + k);
+    if (chk) chk.checked = state.addons[k] > 0;
+    if (val) val.textContent = state.addons[k] || 0;
+    if (ctr) ctr.style.display = state.addons[k] > 0 ? 'flex' : 'none';
+  });
+  const chkGutters = document.getElementById('chk-gutters');
+  if (chkGutters) chkGutters.checked = state.addons.gutters;
+
+  // Restore service card selection
+  document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+  if (state.serviceType) {
+    const svcEl = document.getElementById('svc-' + (state.serviceType === 'exterior' ? 'ext' : 'both'));
+    if (svcEl) svcEl.classList.add('selected');
+  }
+
+  syncPaneState();
+  goScreen('scr-addons');
+}
+
 function shareLead(id) {
   const lead = getLeads().find(l => l.id === id);
   if (!lead) return;
@@ -1424,7 +1469,7 @@ function renderLeads() {
   el.innerHTML = leads.map(l => {
     const date = new Date(l.created_at).toLocaleDateString('en-CA', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit', hour12:true });
     return '<div class="lead-item">'
-      + '<div class="lead-name">' + esc(l.name) + '</div>'
+      + '<div class="lead-name" style="cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px" onclick="loadLeadQuote(' + l.id + ')">' + esc(l.name) + ' ↗</div>'
       + '<div class="lead-meta">'
       + '📞 ' + esc(l.phone) + (l.address ? '<br>📍 ' + esc(l.address) : '')
       + (l.date_pref ? '<br>📅 Preferred: ' + l.date_pref : '')
