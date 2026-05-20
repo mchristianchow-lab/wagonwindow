@@ -420,7 +420,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
   </div>
 
   <div class="bottom-nav">
-    <button class="btn btn-red" onclick="goPackages()">Next: Choose Package →</button>
+    <button class="btn btn-red" onclick="goPackages()">Next: Add-ons →</button>
   </div>
 </div>
 
@@ -487,6 +487,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
       ⚙ Custom Quote (manual)
     </button>
 
+    <div id="pkg-addons-note" style="display:none;text-align:center;font-size:.75rem;color:var(--green);padding:.1rem .5rem .5rem;line-height:1.55;border:1px solid rgba(34,197,94,.25);border-radius:8px;background:rgba(34,197,94,.06);margin-bottom:.25rem"></div>
     <div id="pkg-surcharge-note" style="display:none;text-align:center;font-size:.75rem;color:var(--yellow);padding:.25rem .5rem .75rem;line-height:1.45"></div>
 
   </div>
@@ -545,9 +546,9 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
 <!-- ╚══════════════════════════════╝ -->
 <div id="scr-addons" class="screen">
   <div class="topbar">
-    <button class="topbar-back" onclick="goScreen('scr-service')">← Service</button>
+    <button class="topbar-back" id="addons-back-btn" onclick="goScreen('scr-service')">← Service</button>
     <div class="topbar-title">Add-ons</div>
-    <button class="topbar-action" onclick="goScreen('scr-quote')">Quote →</button>
+    <button class="topbar-action" id="addons-fwd-btn" onclick="goScreen('scr-quote')">Quote →</button>
   </div>
   <div class="section" style="padding-top:.75rem">
 
@@ -640,7 +641,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <div class="section-spacer"></div>
   </div>
   <div class="bottom-nav">
-    <button class="btn btn-red" onclick="goScreen('scr-quote')">See Quote →</button>
+    <button class="btn btn-red" id="addons-cta-btn" onclick="goScreen('scr-quote')">See Quote →</button>
   </div>
 </div>
 
@@ -930,7 +931,8 @@ const state = {
   panes: 0,
   breakdown: { regular: 0, large: 0, french: 0 },
   serviceType: null,
-  addons: { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: 0, travel: 0 }
+  addons: { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: 0, travel: 0 },
+  addonsContext: 'packages'
 };
 
 // ── Pricing engine (mirrors customer quote tool exactly) ───────────────
@@ -980,8 +982,8 @@ function goScreen(id) {
   if (id === 'scr-leads') renderLeads();
   if (id === 'scr-home') { updateHomeCount(); updateResumeBtn(); }
   if (id === 'scr-quote') renderQuote();
-  if (id === 'scr-service') updateServicePrices();
-  if (id === 'scr-addons') updateGutterMeta();
+  if (id === 'scr-service') { updateServicePrices(); state.addonsContext = 'custom'; }
+  if (id === 'scr-addons') { updateGutterMeta(); updateAddonsContext(); }
   if (id === 'scr-packages') updatePackagePrices();
   window.scrollTo(0, 0);
   saveSession(id);
@@ -1056,8 +1058,35 @@ function goPackages() {
     alert('Count at least 1 pane before viewing packages.');
     return;
   }
-  updatePackagePrices();
-  goScreen('scr-packages');
+  state.addonsContext = 'packages';
+  goScreen('scr-addons');
+}
+
+function updateAddonsContext() {
+  const backBtn = document.getElementById('addons-back-btn');
+  const fwdBtn  = document.getElementById('addons-fwd-btn');
+  const ctaBtn  = document.getElementById('addons-cta-btn');
+  if (state.addonsContext === 'packages') {
+    if (backBtn) { backBtn.textContent = '← Count'; backBtn.onclick = function(){ goScreen('scr-count'); }; }
+    if (fwdBtn)  { fwdBtn.textContent  = 'Packages →'; fwdBtn.onclick = function(){ updatePackagePrices(); goScreen('scr-packages'); }; }
+    if (ctaBtn)  { ctaBtn.textContent  = 'See Packages →'; ctaBtn.onclick = function(){ updatePackagePrices(); goScreen('scr-packages'); }; }
+  } else {
+    if (backBtn) { backBtn.textContent = '← Service'; backBtn.onclick = function(){ goScreen('scr-service'); }; }
+    if (fwdBtn)  { fwdBtn.textContent  = 'Quote →'; fwdBtn.onclick = function(){ goScreen('scr-quote'); }; }
+    if (ctaBtn)  { ctaBtn.textContent  = 'See Quote →'; ctaBtn.onclick = function(){ goScreen('scr-quote'); }; }
+  }
+}
+
+function pkgCalcFull(type, screens, tracks) {
+  const base     = Math.max(MIN_JOB, calcBase(state.panes, type));
+  const largeWin = state.addons.largewindow * ADDONS.largewindow;
+  const s        = screens * ADDONS.screens;
+  const t        = tracks  * ADDONS.tracks;
+  const g        = state.addons.gutters  || 0;
+  const hw       = state.addons.hardwater * ADDONS.hardwater;
+  const travel   = state.addons.travel   || 0;
+  const sub      = base + largeWin + s + t + g + hw + travel;
+  return sub + Math.round(sub * GST);
 }
 
 function pkgCalc(type, screens, tracks, gutters) {
@@ -1072,50 +1101,72 @@ function pkgCalc(type, screens, tracks, gutters) {
 
 function updatePackagePrices() {
   const est = Math.round(state.panes / 2);
-  document.getElementById('pkg-price-standard').textContent = fmt(pkgCalc('exterior', 0,   0,   false));
-  document.getElementById('pkg-price-premium').textContent  = fmt(pkgCalc('both',     0,   0,   false));
-  document.getElementById('pkg-price-supreme').textContent  = fmt(pkgCalc('both',     est, est, false));
-  document.getElementById('pkg-screens-count').textContent  = est;
-  document.getElementById('pkg-tracks-count').textContent   = est;
-  document.getElementById('pkg-screens-count2').textContent = est;
-  document.getElementById('pkg-tracks-count2').textContent  = est;
+  const userScreens = state.addons.screens || 0;
+  const userTracks  = state.addons.tracks  || 0;
+  const supScreens  = Math.max(userScreens, est);
+  const supTracks   = Math.max(userTracks,  est);
+
+  document.getElementById('pkg-price-standard').textContent = fmt(pkgCalcFull('exterior', userScreens, userTracks));
+  document.getElementById('pkg-price-premium').textContent  = fmt(pkgCalcFull('both',     userScreens, userTracks));
+  document.getElementById('pkg-price-supreme').textContent  = fmt(pkgCalcFull('both',     supScreens,  supTracks));
+  document.getElementById('pkg-screens-count').textContent  = supScreens;
+  document.getElementById('pkg-tracks-count').textContent   = supTracks;
+  document.getElementById('pkg-screens-count2').textContent = supScreens;
+  document.getElementById('pkg-tracks-count2').textContent  = supTracks;
+
+  // Add-ons note
+  const addonsNote = document.getElementById('pkg-addons-note');
+  if (addonsNote) {
+    const addonParts = [];
+    if (userScreens)               addonParts.push('screens ×' + userScreens);
+    if (userTracks)                addonParts.push('tracks ×' + userTracks);
+    if (state.addons.gutters > 0)  addonParts.push('gutters $' + state.addons.gutters);
+    if (state.addons.hardwater)    addonParts.push('hard water ×' + state.addons.hardwater);
+    if (state.addons.travel)       addonParts.push('travel $' + state.addons.travel);
+    if (addonParts.length) {
+      addonsNote.textContent = '✓ Prices include your add-ons: ' + addonParts.join(', ');
+      addonsNote.style.display = 'block';
+    } else {
+      addonsNote.style.display = 'none';
+    }
+  }
 
   // Surcharge note
   const lw = state.addons.largewindow;
-  const note = document.getElementById('pkg-surcharge-note');
-  if (note) {
+  const surchargeNote = document.getElementById('pkg-surcharge-note');
+  if (surchargeNote) {
     if (lw > 0) {
       const surcharge = lw * ADDONS.largewindow;
       const parts = [];
       if (state.breakdown.large)  parts.push(state.breakdown.large  + ' large');
       if (state.breakdown.french) parts.push(state.breakdown.french + ' French');
-      note.textContent = '⚡ ' + parts.join(' + ') + ' window surcharge (+' + fmt(surcharge) + ') included in all prices above';
-      note.style.display = 'block';
+      surchargeNote.textContent = '⚡ ' + parts.join(' + ') + ' window surcharge (+' + fmt(surcharge) + ') included';
+      surchargeNote.style.display = 'block';
     } else {
-      note.style.display = 'none';
+      surchargeNote.style.display = 'none';
     }
   }
 }
 
 function selectPackage(tier) {
   const est = Math.round(state.panes / 2);
-  const discEl = document.getElementById('discount-pct');
-  if (discEl) discEl.value = 0;
 
+  // Set service type — keep all add-ons the user already selected
   if (tier === 'standard') {
     state.serviceType = 'exterior';
-    state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: 0, travel: 0 };
   } else if (tier === 'premium') {
     state.serviceType = 'both';
-    state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: 0, travel: 0 };
   } else if (tier === 'supreme') {
     state.serviceType = 'both';
-    state.addons = { screens: est, tracks: est, hardwater: 0, largewindow: 0, gutters: 0, travel: 0 };
+    // Supreme auto-fills screens + tracks to at least the estimated count
+    state.addons.screens = Math.max(state.addons.screens || 0, est);
+    state.addons.tracks  = Math.max(state.addons.tracks  || 0, est);
   }
 
-  // Large + French from count screen carry into the addon
+  // Large + French always carry over from count screen
   state.addons.largewindow = state.breakdown.large + state.breakdown.french;
-  // Sync addon UI
+
+  // Sync addon UI to current state
   ['largewindow','screens','tracks','hardwater'].forEach(k => {
     setAddonVal(k, state.addons[k], state.addons[k] > 0);
   });
@@ -1734,13 +1785,14 @@ function sendTierQuote() {
   const address = document.getElementById('eq-address').value.trim();
   if (!email) { alert('Customer email is required.'); return; }
 
-  const est      = Math.round(state.panes / 2);
-  const stdRaw   = pkgCalc('exterior', 0,   0,   false);
-  const premRaw  = pkgCalc('both',     0,   0,   false);
-  const supRaw   = pkgCalc('both',     est, est, false);
-  const stdPrice = fmt(stdRaw);
-  const premPrice= fmt(premRaw);
-  const supPrice = fmt(supRaw);
+  const est         = Math.round(state.panes / 2);
+  const userScreens = state.addons.screens || 0;
+  const userTracks  = state.addons.tracks  || 0;
+  const supScreens  = Math.max(userScreens, est);
+  const supTracks   = Math.max(userTracks,  est);
+  const stdPrice    = fmt(pkgCalcFull('exterior', userScreens, userTracks));
+  const premPrice   = fmt(pkgCalcFull('both',     userScreens, userTracks));
+  const supPrice    = fmt(pkgCalcFull('both',     supScreens,  supTracks));
   // Raw base prices (before surcharges + GST) so estimate page can show line-item breakdown
   const bext  = Math.max(MIN_JOB, calcBase(state.panes, 'exterior'));
   const bboth = Math.max(MIN_JOB, calcBase(state.panes, 'both'));
