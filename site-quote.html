@@ -407,8 +407,8 @@ const TIERS = [
   { label:'Custom Quote', range:'36+ windows',      min:36, max:Infinity,  ext:null,intExt:null }
 ];
 const SCREEN_PRICE = 4;
-const TRACK_PRICE  = 65;
-const MIN_JOB      = 119;
+const TRACK_PRICE_EACH = 4;
+const MIN_JOB          = 169;
 
 let sv = {
   customer: { name:'', address:'', phone:'', email:'', jobType:'residential' },
@@ -531,7 +531,7 @@ function calc() {
   const isCustom = tier.ext === null;
   const base = isCustom ? 0 : (sv.interior ? tier.intExt : tier.ext);
   const screenAdd = sv.screens * SCREEN_PRICE;
-  const trackAdd  = sv.tracks  ? TRACK_PRICE  : 0;
+  const trackAdd  = sv.tracks  ? sv.windows * TRACK_PRICE_EACH : 0;
   let sub = base + screenAdd + trackAdd;
   if (!isCustom && sub > 0) sub = Math.max(sub, MIN_JOB);
   const total = sv.customPrice || sub;
@@ -552,7 +552,7 @@ function buildReview() {
   html += `<div class="rev-row"><span>${c.name}</span><span style="font-size:0.82rem;color:var(--gray)">${c.address}</span></div>`;
   html += `<div class="rev-row"><span>Windows</span><span>${sv.windows} panes${sv.interior?' (in+out)':' (exterior)'}</span></div>`;
   if (sv.screens) html += `<div class="rev-row"><span>Screens</span><span>${sv.screens} × $${SCREEN_PRICE} = $${sv.screens*SCREEN_PRICE}</span></div>`;
-  if (sv.tracks)  html += `<div class="rev-row"><span>Track Cleaning</span><span>$${TRACK_PRICE}</span></div>`;
+  if (sv.tracks)  html += `<div class="rev-row"><span>Track Cleaning (${sv.windows} × $${TRACK_PRICE_EACH})</span><span>$${sv.windows * TRACK_PRICE_EACH}</span></div>`;
   if (sv.hardWater) html += `<div class="rev-row"><span>Hard Water Removal</span><span class="flag-pill">Quote separately</span></div>`;
   if (sv.gutters)   html += `<div class="rev-row"><span>Gutter Cleaning</span><span class="flag-pill">Quote separately</span></div>`;
   if (sv.stories >= 3) html += `<div class="rev-row"><span>3+ Storey Access</span><span class="flag-pill">Note in quote</span></div>`;
@@ -608,7 +608,7 @@ function buildPresent() {
   if (hasAddons) {
     html += '<div class="pres-addons">';
     if (sv.screens)   html += `<div class="pa-row"><span>Screens (${sv.screens})</span><span>$${sv.screens*SCREEN_PRICE}</span></div>`;
-    if (sv.tracks)    html += `<div class="pa-row"><span>Track Cleaning</span><span>$${TRACK_PRICE}</span></div>`;
+    if (sv.tracks)    html += `<div class="pa-row"><span>Track Cleaning (${sv.windows} × $${TRACK_PRICE_EACH})</span><span>$${sv.windows * TRACK_PRICE_EACH}</span></div>`;
     if (sv.hardWater) html += `<div class="pa-row"><span>Hard Water Removal</span><span>Quoted separately</span></div>`;
     if (sv.gutters)   html += `<div class="pa-row"><span>Gutter Cleaning</span><span>Quoted separately</span></div>`;
     html += '</div>';
@@ -669,7 +669,7 @@ Thanks for having us out to ${c.address} today. Here's a summary of what we foun
 
 WHAT WE FOUND
 • ${sv.windows} windows (${sv.stories}-storey property)
-• Service: ${sv.interior ? 'Interior + Exterior clean' : 'Exterior clean'}${sv.screens ? '\n• '+sv.screens+' screens ($'+(sv.screens*SCREEN_PRICE)+')' : ''}${sv.tracks ? '\n• Track cleaning ($'+TRACK_PRICE+')' : ''}${flags.length ? '\n'+flags.join('\n') : ''}
+• Service: ${sv.interior ? 'Interior + Exterior clean' : 'Exterior clean'}${sv.screens ? '\n• '+sv.screens+' screens ($'+(sv.screens*SCREEN_PRICE)+')' : ''}${sv.tracks ? '\n• Track cleaning ($'+(sv.windows * TRACK_PRICE_EACH)+')' : ''}${flags.length ? '\n'+flags.join('\n') : ''}
 
 ESTIMATE
 ${q.isCustom

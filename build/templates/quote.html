@@ -414,7 +414,7 @@
 const PRICING = {
   addons: { screens: 4, tracks: 4, hardwater: 20, largewindow: 8 },
   large: 71,
-  discount: 0.10,
+  discount: 0.05,
   gst: 0.05
 };
 
@@ -430,16 +430,12 @@ function totalPanes() {
 }
 
 function calcBase(panes, type) {
-  // Tiered per-pane rates that match homepage pricing
-  // ≤30 panes: $149 ext / $199 int+ext
-  // 31-50: +$2.50/$3.50 per pane
-  // 51-70: +$3.50/$4.00 per pane
-  // 71-99: +$4.00/$4.50 per pane
   let ext = 169, intExt = 219;
   let rem = Math.max(0, panes - 30);
   const t1 = Math.min(rem, 20); rem -= t1; ext += t1 * 2.50; intExt += t1 * 3.50;
   const t2 = Math.min(rem, 20); rem -= t2; ext += t2 * 3.50; intExt += t2 * 4.00;
-  const t3 = Math.min(rem, 29);            ext += t3 * 4.00; intExt += t3 * 4.50;
+  const t3 = Math.min(rem, 29); rem -= t3; ext += t3 * 4.00; intExt += t3 * 4.50;
+  ext += rem * 4.00; intExt += rem * 7.00;
   return type === 'exterior' ? Math.round(ext) : Math.round(intExt);
 }
 
@@ -570,7 +566,7 @@ function renderQuote() {
   if (state.addons.tracks > 0)    rows += `<div class="breakdown-row"><span>Track cleaning × ${state.addons.tracks}</span><span>$${state.addons.tracks * PRICING.addons.tracks}</span></div>`;
   if (state.addons.hardwater > 0) rows += `<div class="breakdown-row"><span>Hard water removal × ${state.addons.hardwater} panes</span><span>$${state.addons.hardwater * PRICING.addons.hardwater}</span></div>`;
   rows += `<div class="breakdown-row" style="border-top:1px solid var(--border);margin-top:.4rem;padding-top:.5rem"><span>Subtotal</span><span>$${subtotal}</span></div>`;
-  rows += `<div class="breakdown-row" style="color:#1b5e20;font-weight:600"><span>✅ Online booking discount (10%)</span><span>−$${discount}</span></div>`;
+  rows += `<div class="breakdown-row" style="color:#1b5e20;font-weight:600"><span>✅ Online booking discount (5%)</span><span>−$${discount}</span></div>`;
   rows += `<div class="breakdown-row"><span>GST (5%)</span><span>$${gst}</span></div>`;
   rows += `<div class="breakdown-row total"><span>Total (estimated)</span><span>$${total}</span></div>`;
   document.getElementById('breakdown').innerHTML = rows;
@@ -579,7 +575,7 @@ function renderQuote() {
   const travelNote = travelFee > 0 ? ` + $${travelFee} TRAVEL FEE` : '';
   document.getElementById('email-subject').value = `New Estimate Request — ${labels[state.propertyType]}, ${panes} panes, ~$${total} after discount & tax${travelNote}`;
   document.getElementById('email-summary').value =
-    `Property: ${labels[state.propertyType]} | Panes: ${panes} (${state.breakdown.regular} standard, ${state.breakdown.large} large, ${state.breakdown.french} french) | Service: ${svcLabel} | Screens: ${state.addons.screens} | Tracks: ${state.addons.tracks} | Hard water: ${state.addons.hardwater} | Large/French surcharge: $${largeWinTotal} | Subtotal: $${subtotal} | Discount (10%): -$${discount} | GST: $${gst} | Quote total: $${total}${travelFee > 0 ? ` | ⚠ TRAVEL FEE: +$${travelFee} (confirm with customer)` : ''}`;
+    `Property: ${labels[state.propertyType]} | Panes: ${panes} (${state.breakdown.regular} standard, ${state.breakdown.large} large, ${state.breakdown.french} french) | Service: ${svcLabel} | Screens: ${state.addons.screens} | Tracks: ${state.addons.tracks} | Hard water: ${state.addons.hardwater} | Large/French surcharge: $${largeWinTotal} | Subtotal: $${subtotal} | Discount (5%): -$${discount} | GST: $${gst} | Quote total: $${total}${travelFee > 0 ? ` | ⚠ TRAVEL FEE: +$${travelFee} (confirm with customer)` : ''}`;
 }
 
 function goTo(n) {

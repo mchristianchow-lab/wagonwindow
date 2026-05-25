@@ -801,7 +801,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <table class="ref-table">
       <tbody>
         <tr><td>GST (Canada)</td><td>5%</td></tr>
-        <tr><td>Minimum Job</td><td>$119</td></tr>
+        <tr><td>Minimum Job</td><td>$169</td></tr>
         <tr><td>Payment</td><td>Cash, E-Transfer</td></tr>
       </tbody>
     </table>
@@ -923,7 +923,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
 // ── Pricing constants ──────────────────────────────────────────────────
 const ADDONS = { screens: 4, tracks: 4, hardwater: 20, largewindow: 8 };
 const GST = 0.05;
-const MIN_JOB = 119;
+const MIN_JOB = 169;
 const BOOKING_URL = 'https://calendar.app.google/KcgTkongKSkHw8xZ8';
 
 // State
@@ -941,7 +941,8 @@ function calcBase(panes, type) {
   let rem = Math.max(0, panes - 30);
   const t1 = Math.min(rem, 20); rem -= t1; ext += t1 * 2.50; intExt += t1 * 3.50;
   const t2 = Math.min(rem, 20); rem -= t2; ext += t2 * 3.50; intExt += t2 * 4.00;
-  const t3 = Math.min(rem, 29);            ext += t3 * 4.00; intExt += t3 * 4.50;
+  const t3 = Math.min(rem, 29); rem -= t3; ext += t3 * 4.00; intExt += t3 * 4.50;
+  ext += rem * 4.00; intExt += rem * 7.00;
   return type === 'exterior' ? Math.round(ext) : Math.round(intExt);
 }
 
