@@ -238,13 +238,6 @@
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
   }
-  // Calendly conversion tracking
-  window.addEventListener('message', function(e) {
-    if (e.origin !== 'https://calendly.com') return;
-    if (e.data && e.data.event === 'calendly.event_scheduled') {
-      gtag('event', 'calendly_booked', {'event_category': 'contact', 'event_label': 'booking_confirmed'});
-    }
-  });
 </script>
 
 </body>

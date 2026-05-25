@@ -19,6 +19,7 @@
   --muted:#888;
   --green:#22c55e;
   --yellow:#f59e0b;
+  --blue:#3b82f6;
 }
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;overflow:hidden}
 #app{height:100%;display:flex;flex-direction:column;max-width:500px;margin:0 auto}
@@ -191,8 +192,13 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
   background:var(--surface2);color:var(--text);font-size:.8rem;font-weight:600;
   cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent;text-align:center
 }
-.lead-btn.calendly{border-color:var(--red);color:var(--red)}
+.lead-btn.booking{border-color:var(--red);color:var(--red)}
 .lead-btn.delete{border-color:#555;color:var(--muted)}
+/* ── Edit lead overlay ── */
+#edit-lead-overlay{display:none;position:fixed;inset:0;background:var(--bg);z-index:200;flex-direction:column;overflow-y:auto}
+#edit-lead-overlay.visible{display:flex}
+.edit-topbar{position:sticky;top:0;background:var(--surface);border-bottom:2px solid var(--red);padding:.85rem 1rem;display:flex;align-items:center;justify-content:space-between;z-index:10}
+.edit-save-btn{background:var(--red);color:#fff;border:none;border-radius:7px;font-size:.85rem;font-weight:700;padding:.5rem 1.1rem;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent}
 .empty-state{text-align:center;padding:3rem 1.5rem;color:var(--muted)}
 .empty-state-icon{font-size:3rem;margin-bottom:1rem}
 /* ── Price reference ── */
@@ -414,7 +420,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
   </div>
 
   <div class="bottom-nav">
-    <button class="btn btn-red" onclick="goPackages()">Next: Choose Package →</button>
+    <button class="btn btn-red" onclick="goPackages()">Next: Add-ons →</button>
   </div>
 </div>
 
@@ -481,6 +487,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
       ⚙ Custom Quote (manual)
     </button>
 
+    <div id="pkg-addons-note" style="display:none;text-align:center;font-size:.75rem;color:var(--green);padding:.1rem .5rem .5rem;line-height:1.55;border:1px solid rgba(34,197,94,.25);border-radius:8px;background:rgba(34,197,94,.06);margin-bottom:.25rem"></div>
     <div id="pkg-surcharge-note" style="display:none;text-align:center;font-size:.75rem;color:var(--yellow);padding:.25rem .5rem .75rem;line-height:1.45"></div>
 
   </div>
@@ -539,9 +546,9 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
 <!-- ╚══════════════════════════════╝ -->
 <div id="scr-addons" class="screen">
   <div class="topbar">
-    <button class="topbar-back" onclick="goScreen('scr-service')">← Service</button>
+    <button class="topbar-back" id="addons-back-btn" onclick="goScreen('scr-service')">← Service</button>
     <div class="topbar-title">Add-ons</div>
-    <button class="topbar-action" onclick="goScreen('scr-quote')">Quote →</button>
+    <button class="topbar-action" id="addons-fwd-btn" onclick="goScreen('scr-quote')">Quote →</button>
   </div>
   <div class="section" style="padding-top:.75rem">
 
@@ -595,8 +602,13 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         <input type="checkbox" class="addon-check" id="chk-gutters" onchange="toggleAddon('gutters',this)">
         <div class="addon-text">
           <div class="addon-name">Gutter Cleaning</div>
-          <div class="addon-meta" id="gutter-meta">Flat rate — flush debris, clear downspouts</div>
+          <div class="addon-meta" id="gutter-meta">$189 flat · flush debris, clear downspouts</div>
         </div>
+      </div>
+      <div class="addon-ctr" id="ctr-gutters" style="display:none">
+        <button class="adj-btn" onclick="adjustGutter(-25)">−</button>
+        <div class="adj-val" id="val-gutters" style="min-width:48px;font-size:.85rem">$189</div>
+        <button class="adj-btn" onclick="adjustGutter(25)">+</button>
       </div>
     </div>
 
@@ -629,7 +641,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <div class="section-spacer"></div>
   </div>
   <div class="bottom-nav">
-    <button class="btn btn-red" onclick="goScreen('scr-quote')">See Quote →</button>
+    <button class="btn btn-red" id="addons-cta-btn" onclick="goScreen('scr-quote')">See Quote →</button>
   </div>
 </div>
 
@@ -659,7 +671,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
   <div class="action-strip">
     <button class="btn btn-outline" onclick="showCustomer()">Show Customer →</button>
     <button class="btn btn-green" onclick="goScreen('scr-lead')">✓ They Said YES — Record Sale</button>
-    <button class="btn-ghost" onclick="openCalendly()">Open Calendly (book now)</button>
+    <button class="btn-ghost" onclick="openBooking()">Open Google Calendar (book now)</button>
   </div>
 </div>
 
@@ -696,7 +708,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     </div>
     <div class="field-group">
       <label class="field-label">Phone *</label>
-      <input class="field-input" id="lead-phone" type="tel" placeholder="(250) 555-0123" autocomplete="tel">
+      <input class="field-input" id="lead-phone" type="tel" placeholder="(250) 555-0123" autocomplete="tel" oninput="formatPhone(this)">
     </div>
     <div class="field-group">
       <label class="field-label">Email</label>
@@ -717,7 +729,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <div style="height:1rem"></div>
   </div>
   <div class="bottom-nav" style="flex-direction:column;gap:.5rem">
-    <button class="btn btn-green" onclick="saveLead(true)">Save + Open Calendly</button>
+    <button class="btn btn-green" onclick="saveLead(true)">Save + Book on Google Calendar</button>
     <button class="btn btn-outline" onclick="saveLead(false)">Save Lead (book later)</button>
   </div>
 </div>
@@ -729,7 +741,14 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
   <div class="topbar">
     <button class="topbar-back" onclick="goScreen('scr-home')">← Home</button>
     <div class="topbar-title">Saved Leads</div>
-    <button class="topbar-action" onclick="shareAllLeads()">Share All</button>
+    <div style="display:flex;gap:.15rem">
+      <button class="topbar-action" onclick="shareAllLeads()">Share</button>
+      <button class="topbar-action" onclick="exportLeads()" style="color:var(--green)">Backup</button>
+    </div>
+  </div>
+  <div id="restore-bar" style="display:none;padding:.5rem 1rem;background:rgba(34,197,94,.08);border-bottom:1px solid rgba(34,197,94,.2);font-size:.78rem;color:var(--green);align-items:center;justify-content:space-between">
+    <span>Restore leads from a backup file?</span>
+    <button onclick="importLeads()" style="background:var(--green);color:#fff;border:none;border-radius:6px;padding:.3rem .75rem;font-size:.75rem;font-weight:700;cursor:pointer;font-family:inherit">Restore</button>
   </div>
   <div class="section" style="flex:1">
     <div id="leads-list"></div>
@@ -864,19 +883,56 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
 
 </div><!-- /#app -->
 
+<!-- ── Edit Lead Overlay ── -->
+<div id="edit-lead-overlay">
+  <div class="edit-topbar">
+    <button class="topbar-back" onclick="closeEditLead()">✕ Cancel</button>
+    <div class="topbar-title">Edit Customer</div>
+    <button class="edit-save-btn" onclick="saveLeadEdit()">Save</button>
+  </div>
+  <div class="form-section" style="padding-top:1rem">
+    <input type="hidden" id="edit-lead-id">
+    <div class="field-group">
+      <label class="field-label">Customer Name *</label>
+      <input class="field-input" id="edit-lead-name" type="text" placeholder="Jane Smith" autocomplete="off">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Phone *</label>
+      <input class="field-input" id="edit-lead-phone" type="tel" placeholder="(250) 555-0123" oninput="formatPhone(this)">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Email</label>
+      <input class="field-input" id="edit-lead-email" type="email" placeholder="customer@email.com" autocapitalize="none">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Address</label>
+      <input class="field-input" id="edit-lead-address" type="text" placeholder="123 Main St, Salmon Arm">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Preferred Date</label>
+      <input class="field-input" id="edit-lead-date" type="date">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Notes</label>
+      <input class="field-input" id="edit-lead-notes" type="text" placeholder="Gate code, dog, special instructions…">
+    </div>
+  </div>
+</div>
+
 <script>
 // ── Pricing constants ──────────────────────────────────────────────────
 const ADDONS = { screens: 4, tracks: 4, hardwater: 20, largewindow: 8 };
 const GST = 0.05;
 const MIN_JOB = 119;
-const CALENDLY = 'https://calendly.com/davidhanna-wagonwindow/new-meeting';
+const BOOKING_URL = 'https://calendar.app.google/KcgTkongKSkHw8xZ8';
 
 // State
 const state = {
   panes: 0,
   breakdown: { regular: 0, large: 0, french: 0 },
   serviceType: null,
-  addons: { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false, travel: 0 }
+  addons: { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: 0, travel: 0 },
+  addonsContext: 'packages'
 };
 
 // ── Pricing engine (mirrors customer quote tool exactly) ───────────────
@@ -889,11 +945,7 @@ function calcBase(panes, type) {
   return type === 'exterior' ? Math.round(ext) : Math.round(intExt);
 }
 
-function gutterPrice(panes) {
-  if (panes <= 30) return 149;
-  if (panes <= 50) return 189;
-  return 229;
-}
+function gutterPrice() { return 189; }
 
 function sizeBadge(panes) {
   if (panes <= 30) return 'Small';
@@ -909,7 +961,7 @@ function buildQuote() {
   const screens  = state.addons.screens  * ADDONS.screens;
   const tracks   = state.addons.tracks   * ADDONS.tracks;
   const hardwater= state.addons.hardwater* ADDONS.hardwater;
-  const gutters  = state.addons.gutters  ? gutterPrice(state.panes) : 0;
+  const gutters  = state.addons.gutters  || 0;
   const travel   = state.addons.travel   || 0;
   const discPct  = Math.min(40, Math.max(0, parseFloat(document.getElementById('discount-pct')?.value || 0)));
   const subtotal = base + largeWin + screens + tracks + hardwater + gutters + travel;
@@ -930,8 +982,8 @@ function goScreen(id) {
   if (id === 'scr-leads') renderLeads();
   if (id === 'scr-home') { updateHomeCount(); updateResumeBtn(); }
   if (id === 'scr-quote') renderQuote();
-  if (id === 'scr-service') updateServicePrices();
-  if (id === 'scr-addons') updateGutterMeta();
+  if (id === 'scr-service') { updateServicePrices(); state.addonsContext = 'custom'; }
+  if (id === 'scr-addons') { updateGutterMeta(); updateAddonsContext(); }
   if (id === 'scr-packages') updatePackagePrices();
   window.scrollTo(0, 0);
   saveSession(id);
@@ -943,7 +995,7 @@ function startQuote() {
   state.serviceType = null;
   state.breakdown = { regular: 0, large: 0, french: 0 };
   state.panes = 0;
-  state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false, travel: 0 };
+  state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: 0, travel: 0 };
   // Reset addon checkboxes
   setTravel(0);
   ['largewindow','screens','tracks','hardwater','gutters'].forEach(k => {
@@ -1006,8 +1058,35 @@ function goPackages() {
     alert('Count at least 1 pane before viewing packages.');
     return;
   }
-  updatePackagePrices();
-  goScreen('scr-packages');
+  state.addonsContext = 'packages';
+  goScreen('scr-addons');
+}
+
+function updateAddonsContext() {
+  const backBtn = document.getElementById('addons-back-btn');
+  const fwdBtn  = document.getElementById('addons-fwd-btn');
+  const ctaBtn  = document.getElementById('addons-cta-btn');
+  if (state.addonsContext === 'packages') {
+    if (backBtn) { backBtn.textContent = '← Count'; backBtn.onclick = function(){ goScreen('scr-count'); }; }
+    if (fwdBtn)  { fwdBtn.textContent  = 'Packages →'; fwdBtn.onclick = function(){ updatePackagePrices(); goScreen('scr-packages'); }; }
+    if (ctaBtn)  { ctaBtn.textContent  = 'See Packages →'; ctaBtn.onclick = function(){ updatePackagePrices(); goScreen('scr-packages'); }; }
+  } else {
+    if (backBtn) { backBtn.textContent = '← Service'; backBtn.onclick = function(){ goScreen('scr-service'); }; }
+    if (fwdBtn)  { fwdBtn.textContent  = 'Quote →'; fwdBtn.onclick = function(){ goScreen('scr-quote'); }; }
+    if (ctaBtn)  { ctaBtn.textContent  = 'See Quote →'; ctaBtn.onclick = function(){ goScreen('scr-quote'); }; }
+  }
+}
+
+function pkgCalcFull(type, screens, tracks) {
+  const base     = Math.max(MIN_JOB, calcBase(state.panes, type));
+  const largeWin = state.addons.largewindow * ADDONS.largewindow;
+  const s        = screens * ADDONS.screens;
+  const t        = tracks  * ADDONS.tracks;
+  const g        = state.addons.gutters  || 0;
+  const hw       = state.addons.hardwater * ADDONS.hardwater;
+  const travel   = state.addons.travel   || 0;
+  const sub      = base + largeWin + s + t + g + hw + travel;
+  return sub + Math.round(sub * GST);
 }
 
 function pkgCalc(type, screens, tracks, gutters) {
@@ -1015,62 +1094,88 @@ function pkgCalc(type, screens, tracks, gutters) {
   const largeWin = state.addons.largewindow * ADDONS.largewindow;
   const s        = screens * ADDONS.screens;
   const t        = tracks  * ADDONS.tracks;
-  const g        = gutters ? gutterPrice(state.panes) : 0;
+  const g        = gutters ? gutterPrice() : 0;
   const sub      = base + largeWin + s + t + g;
   return sub + Math.round(sub * GST);
 }
 
 function updatePackagePrices() {
   const est = Math.round(state.panes / 2);
-  document.getElementById('pkg-price-standard').textContent = fmt(pkgCalc('exterior', 0,   0,   false));
-  document.getElementById('pkg-price-premium').textContent  = fmt(pkgCalc('both',     0,   0,   false));
-  document.getElementById('pkg-price-supreme').textContent  = fmt(pkgCalc('both',     est, est, false));
-  document.getElementById('pkg-screens-count').textContent  = est;
-  document.getElementById('pkg-tracks-count').textContent   = est;
-  document.getElementById('pkg-screens-count2').textContent = est;
-  document.getElementById('pkg-tracks-count2').textContent  = est;
+  const userScreens = state.addons.screens || 0;
+  const userTracks  = state.addons.tracks  || 0;
+  const supScreens  = Math.max(userScreens, est);
+  const supTracks   = Math.max(userTracks,  est);
+
+  document.getElementById('pkg-price-standard').textContent = fmt(pkgCalcFull('exterior', userScreens, userTracks));
+  document.getElementById('pkg-price-premium').textContent  = fmt(pkgCalcFull('both',     userScreens, userTracks));
+  document.getElementById('pkg-price-supreme').textContent  = fmt(pkgCalcFull('both',     supScreens,  supTracks));
+  document.getElementById('pkg-screens-count').textContent  = supScreens;
+  document.getElementById('pkg-tracks-count').textContent   = supTracks;
+  document.getElementById('pkg-screens-count2').textContent = supScreens;
+  document.getElementById('pkg-tracks-count2').textContent  = supTracks;
+
+  // Add-ons note
+  const addonsNote = document.getElementById('pkg-addons-note');
+  if (addonsNote) {
+    const addonParts = [];
+    if (userScreens)               addonParts.push('screens ×' + userScreens);
+    if (userTracks)                addonParts.push('tracks ×' + userTracks);
+    if (state.addons.gutters > 0)  addonParts.push('gutters $' + state.addons.gutters);
+    if (state.addons.hardwater)    addonParts.push('hard water ×' + state.addons.hardwater);
+    if (state.addons.travel)       addonParts.push('travel $' + state.addons.travel);
+    if (addonParts.length) {
+      addonsNote.textContent = '✓ Prices include your add-ons: ' + addonParts.join(', ');
+      addonsNote.style.display = 'block';
+    } else {
+      addonsNote.style.display = 'none';
+    }
+  }
 
   // Surcharge note
   const lw = state.addons.largewindow;
-  const note = document.getElementById('pkg-surcharge-note');
-  if (note) {
+  const surchargeNote = document.getElementById('pkg-surcharge-note');
+  if (surchargeNote) {
     if (lw > 0) {
       const surcharge = lw * ADDONS.largewindow;
       const parts = [];
       if (state.breakdown.large)  parts.push(state.breakdown.large  + ' large');
       if (state.breakdown.french) parts.push(state.breakdown.french + ' French');
-      note.textContent = '⚡ ' + parts.join(' + ') + ' window surcharge (+' + fmt(surcharge) + ') included in all prices above';
-      note.style.display = 'block';
+      surchargeNote.textContent = '⚡ ' + parts.join(' + ') + ' window surcharge (+' + fmt(surcharge) + ') included';
+      surchargeNote.style.display = 'block';
     } else {
-      note.style.display = 'none';
+      surchargeNote.style.display = 'none';
     }
   }
 }
 
 function selectPackage(tier) {
   const est = Math.round(state.panes / 2);
-  const discEl = document.getElementById('discount-pct');
-  if (discEl) discEl.value = 0;
 
+  // Set service type — keep all add-ons the user already selected
   if (tier === 'standard') {
     state.serviceType = 'exterior';
-    state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false, travel: 0 };
   } else if (tier === 'premium') {
     state.serviceType = 'both';
-    state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: false, travel: 0 };
   } else if (tier === 'supreme') {
     state.serviceType = 'both';
-    state.addons = { screens: est, tracks: est, hardwater: 0, largewindow: 0, gutters: false, travel: 0 };
+    // Supreme auto-fills screens + tracks to at least the estimated count
+    state.addons.screens = Math.max(state.addons.screens || 0, est);
+    state.addons.tracks  = Math.max(state.addons.tracks  || 0, est);
   }
 
-  // Large + French from count screen carry into the addon
+  // Large + French always carry over from count screen
   state.addons.largewindow = state.breakdown.large + state.breakdown.french;
-  // Sync addon UI
+
+  // Sync addon UI to current state
   ['largewindow','screens','tracks','hardwater'].forEach(k => {
     setAddonVal(k, state.addons[k], state.addons[k] > 0);
   });
   const gutterChk = document.getElementById('chk-gutters');
-  if (gutterChk) gutterChk.checked = state.addons.gutters;
+  if (gutterChk) gutterChk.checked = state.addons.gutters > 0;
+  const gutterCtr = document.getElementById('ctr-gutters');
+  if (gutterCtr) gutterCtr.style.display = state.addons.gutters > 0 ? 'flex' : 'none';
+  const gutterVal = document.getElementById('val-gutters');
+  if (gutterVal) gutterVal.textContent = state.addons.gutters > 0 ? '$' + state.addons.gutters : '$189';
 
   state.selectedPackage = tier;
   goScreen('scr-quote');
@@ -1102,7 +1207,11 @@ function updateServicePrices() {
 // ── Add-on helpers ─────────────────────────────────────────────────────
 function toggleAddon(key, cb) {
   if (key === 'gutters') {
-    state.addons.gutters = cb.checked;
+    state.addons.gutters = cb.checked ? 189 : 0;
+    const ctr = document.getElementById('ctr-gutters');
+    if (ctr) ctr.style.display = cb.checked ? 'flex' : 'none';
+    document.getElementById('val-gutters').textContent = cb.checked ? '$189' : '$189';
+    if (document.getElementById('scr-quote').classList.contains('active')) renderQuote();
     return;
   }
   if (!cb.checked) {
@@ -1118,6 +1227,14 @@ function toggleAddon(key, cb) {
       document.getElementById('val-' + key).textContent = '1';
     }
   }
+}
+
+function adjustGutter(delta) {
+  const current = state.addons.gutters || 189;
+  const next = Math.max(189, current + delta);
+  state.addons.gutters = next;
+  document.getElementById('val-gutters').textContent = '$' + next;
+  if (document.getElementById('scr-quote').classList.contains('active')) renderQuote();
 }
 
 function adjustAddon(key, delta) {
@@ -1154,7 +1271,7 @@ function setAddonVal(key, count, checked) {
 
 function updateGutterMeta() {
   const el = document.getElementById('gutter-meta');
-  if (el) el.textContent = fmt(gutterPrice(state.panes)) + ' flat · flush debris, clear downspouts';
+  if (el) el.textContent = '$189 flat · +$25 for larger jobs · flush debris, clear downspouts';
 }
 
 // ── Quote render ───────────────────────────────────────────────────────
@@ -1232,9 +1349,9 @@ function coRow(label, val, bold) {
     + '</div>';
 }
 
-// ── Calendly ───────────────────────────────────────────────────────────
-function openCalendly() {
-  window.open(CALENDLY, '_blank');
+// ── Google Calendar booking ────────────────────────────────────────────
+function openBooking() {
+  window.open(BOOKING_URL, '_blank');
 }
 
 // ── Lead storage ───────────────────────────────────────────────────────
@@ -1259,10 +1376,11 @@ function saveLead(openCal) {
   const parts = [svcLabel, state.panes + ' panes'];
   if (state.addons.screens)   parts.push('screens ×' + state.addons.screens);
   if (state.addons.tracks)    parts.push('tracks ×' + state.addons.tracks);
-  if (state.addons.gutters)   parts.push('gutters');
+  if (state.addons.gutters > 0) parts.push('gutters');
   if (state.addons.hardwater) parts.push('hard water ×' + state.addons.hardwater);
   if (state.addons.largewindow) parts.push('large ×' + state.addons.largewindow);
 
+  const discEl = document.getElementById('discount-pct');
   const lead = {
     id: Date.now(),
     name,
@@ -1274,7 +1392,14 @@ function saveLead(openCal) {
     quote: q ? q.total : null,
     quote_str: q ? fmt(q.total) + ' incl. GST' : null,
     summary: parts.join(', '),
-    created_at: new Date().toISOString()
+    created_at: new Date().toISOString(),
+    params: {
+      breakdown: { ...state.breakdown },
+      serviceType: state.serviceType,
+      addons: { ...state.addons },
+      selectedPackage: state.selectedPackage || null,
+      discount: parseFloat(discEl?.value || 0)
+    }
   };
 
   const leads = getLeads();
@@ -1286,7 +1411,7 @@ function saveLead(openCal) {
     document.getElementById(id).value = '';
   });
 
-  if (openCal) openCalendly();
+  if (openCal) openBooking();
   goScreen('scr-leads');
 }
 
@@ -1296,6 +1421,113 @@ function deleteLead(id) {
   saveLeads(leads);
   renderLeads();
   updateHomeCount();
+}
+
+function editLead(id) {
+  const lead = getLeads().find(l => l.id === id);
+  if (!lead) return;
+  document.getElementById('edit-lead-id').value    = id;
+  document.getElementById('edit-lead-name').value  = lead.name    || '';
+  document.getElementById('edit-lead-phone').value = lead.phone   || '';
+  document.getElementById('edit-lead-email').value = lead.email   || '';
+  document.getElementById('edit-lead-address').value = lead.address || '';
+  document.getElementById('edit-lead-date').value  = lead.date_pref || '';
+  document.getElementById('edit-lead-notes').value = lead.notes   || '';
+  document.getElementById('edit-lead-overlay').classList.add('visible');
+}
+
+function closeEditLead() {
+  document.getElementById('edit-lead-overlay').classList.remove('visible');
+}
+
+function saveLeadEdit() {
+  const id   = parseInt(document.getElementById('edit-lead-id').value);
+  const name = document.getElementById('edit-lead-name').value.trim();
+  const phone = document.getElementById('edit-lead-phone').value.trim();
+  if (!name || !phone) { alert('Name and phone are required.'); return; }
+  const leads = getLeads().map(l => {
+    if (l.id !== id) return l;
+    return {
+      ...l,
+      name,
+      phone,
+      email:     document.getElementById('edit-lead-email').value.trim(),
+      address:   document.getElementById('edit-lead-address').value.trim(),
+      date_pref: document.getElementById('edit-lead-date').value,
+      notes:     document.getElementById('edit-lead-notes').value.trim(),
+    };
+  });
+  saveLeads(leads);
+  closeEditLead();
+  renderLeads();
+}
+
+function loadLeadQuote(id) {
+  const lead = getLeads().find(l => l.id === id);
+  if (!lead) return;
+
+  // Build params — use stored params if available, otherwise parse summary
+  let p = lead.params;
+  if (!p) {
+    const s = lead.summary || '';
+    const panesMatch  = s.match(/(\d+) panes/);
+    const screenMatch = s.match(/screens ×(\d+)/);
+    const trackMatch  = s.match(/tracks ×(\d+)/);
+    const hwMatch     = s.match(/hard water ×(\d+)/);
+    const largeMatch  = s.match(/large ×(\d+)/);
+    const totalPanes  = panesMatch ? parseInt(panesMatch[1]) : 0;
+    const largeCount  = largeMatch ? parseInt(largeMatch[1]) : 0;
+    const regularCount = Math.max(0, totalPanes - largeCount);
+    p = {
+      breakdown:       { regular: regularCount, large: largeCount, french: 0 },
+      serviceType:     s.startsWith('Exterior Only') ? 'exterior' : (totalPanes > 0 ? 'both' : null),
+      addons:          {
+        screens:     screenMatch ? parseInt(screenMatch[1]) : 0,
+        tracks:      trackMatch  ? parseInt(trackMatch[1])  : 0,
+        hardwater:   hwMatch     ? parseInt(hwMatch[1])     : 0,
+        largewindow: largeCount,
+        gutters:     s.includes('gutters') ? 189 : 0,
+        travel:      0
+      },
+      selectedPackage: null,
+      discount:        0
+    };
+  }
+
+  state.breakdown       = { regular: p.breakdown.regular || 0, large: p.breakdown.large || 0, french: p.breakdown.french || 0 };
+  state.serviceType     = p.serviceType || null;
+  state.addons          = { screens: p.addons.screens || 0, tracks: p.addons.tracks || 0, hardwater: p.addons.hardwater || 0, largewindow: p.addons.largewindow || 0, gutters: p.addons.gutters || 0, travel: p.addons.travel || 0 };
+  state.selectedPackage = p.selectedPackage || null;
+
+  const discEl = document.getElementById('discount-pct');
+  if (discEl) discEl.value = p.discount || 0;
+
+  // Restore addon UI
+  ['largewindow','screens','tracks','hardwater'].forEach(k => {
+    const chk = document.getElementById('chk-' + k);
+    const ctr = document.getElementById('ctr-' + k);
+    const val = document.getElementById('val-' + k);
+    if (chk) chk.checked = state.addons[k] > 0;
+    if (val) val.textContent = state.addons[k] || 0;
+    if (ctr) ctr.style.display = state.addons[k] > 0 ? 'flex' : 'none';
+  });
+  const chkGutters = document.getElementById('chk-gutters');
+  if (chkGutters) chkGutters.checked = state.addons.gutters > 0;
+  const ctrGutters = document.getElementById('ctr-gutters');
+  if (ctrGutters) ctrGutters.style.display = state.addons.gutters > 0 ? 'flex' : 'none';
+  const valGutters = document.getElementById('val-gutters');
+  if (valGutters) valGutters.textContent = state.addons.gutters > 0 ? '$' + state.addons.gutters : '$189';
+
+  // Restore service card selection
+  document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+  if (state.serviceType) {
+    const svcEl = document.getElementById('svc-' + (state.serviceType === 'exterior' ? 'ext' : 'both'));
+    if (svcEl) svcEl.classList.add('selected');
+  }
+
+  syncPaneState();
+  goScreen('scr-quote');
+  syncPaneState();
 }
 
 function shareLead(id) {
@@ -1334,6 +1566,51 @@ function shareAllLeads() {
   }
 }
 
+function exportLeads() {
+  const leads = getLeads();
+  if (!leads.length) { alert('No leads to backup.'); return; }
+  const json = JSON.stringify(leads, null, 2);
+  const date = new Date().toLocaleDateString('en-CA');
+  const filename = 'wagon-windows-leads-' + date + '.json';
+  if (navigator.share) {
+    const file = new File([json], filename, { type: 'application/json' });
+    navigator.share({ files: [file], title: 'WW Leads Backup ' + date }).catch(() => {
+      navigator.clipboard.writeText(json).then(() => alert('Leads copied to clipboard as backup.')).catch(() => {});
+    });
+  } else {
+    const a = document.createElement('a');
+    a.href = 'data:application/json;charset=utf-8,' + encodeURIComponent(json);
+    a.download = filename;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  }
+}
+
+function importLeads() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json,application/json,text/plain';
+  input.onchange = function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      try {
+        const imported = JSON.parse(ev.target.result);
+        if (!Array.isArray(imported)) throw new Error();
+        const existing = getLeads();
+        const existingIds = new Set(existing.map(l => l.id));
+        const merged = [...imported.filter(l => !existingIds.has(l.id)), ...existing];
+        saveLeads(merged);
+        renderLeads();
+        updateHomeCount();
+        alert('Restored ' + imported.length + ' leads.');
+      } catch { alert('Could not read backup file.'); }
+    };
+    reader.readAsText(file);
+  };
+  document.body.appendChild(input); input.click(); document.body.removeChild(input);
+}
+
 function renderLeads() {
   const leads = getLeads();
   const el = document.getElementById('leads-list');
@@ -1344,7 +1621,7 @@ function renderLeads() {
   el.innerHTML = leads.map(l => {
     const date = new Date(l.created_at).toLocaleDateString('en-CA', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit', hour12:true });
     return '<div class="lead-item">'
-      + '<div class="lead-name">' + esc(l.name) + '</div>'
+      + '<div class="lead-name" style="cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px" onclick="loadLeadQuote(' + l.id + ')">' + esc(l.name) + ' ↗</div>'
       + '<div class="lead-meta">'
       + '📞 ' + esc(l.phone) + (l.address ? '<br>📍 ' + esc(l.address) : '')
       + (l.date_pref ? '<br>📅 Preferred: ' + l.date_pref : '')
@@ -1355,12 +1632,13 @@ function renderLeads() {
       + (l.email ? '<button class="lead-btn" style="width:100%;margin-bottom:.5rem;border-color:var(--green);color:var(--green);font-size:.85rem" onclick="emailQuote(' + l.id + ')">✉ Email Quote to ' + esc(l.name.split(' ')[0]) + '</button>' : '')
       + '<div class="lead-actions">'
       + '<button class="lead-btn" onclick="shareLead(' + l.id + ')">Share</button>'
-      + '<button class="lead-btn calendly" onclick="openCalendly()">Book</button>'
+      + '<button class="lead-btn booking" onclick="openBooking()">Book</button>'
       + '<button class="lead-btn" style="border-color:var(--red);color:var(--red)" onclick="openWaiver(' + l.id + ')">Waiver</button>'
       + '</div>'
       + '<div class="lead-actions" style="margin-top:.4rem">'
       + '<button class="lead-btn" onclick="sendReminderMsg(' + l.id + ')">Reminder</button>'
       + '<button class="lead-btn" onclick="sendReviewLink(' + l.id + ')">Review</button>'
+      + '<button class="lead-btn" style="border-color:var(--blue);color:var(--blue)" onclick="editLead(' + l.id + ')">Edit</button>'
       + '<button class="lead-btn delete" onclick="deleteLead(' + l.id + ')">Delete</button>'
       + '</div></div>';
   }).join('');
@@ -1395,6 +1673,16 @@ function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
+function formatPhone(input) {
+  const digits = input.value.replace(/\D/g, '').slice(0, 10);
+  let out = '';
+  if (digits.length === 0)      out = '';
+  else if (digits.length <= 3)  out = '(' + digits;
+  else if (digits.length <= 6)  out = '(' + digits.slice(0,3) + ') ' + digits.slice(3);
+  else                          out = '(' + digits.slice(0,3) + ') ' + digits.slice(3,6) + '-' + digits.slice(6);
+  input.value = out;
+}
+
 // ── Open waiver pre-filled from lead ──────────────────────────────────
 function openWaiver(id) {
   const lead = getLeads().find(l => l.id === id);
@@ -1421,7 +1709,7 @@ function openWaiver(id) {
     email:   lead.email   || '',
     address: lead.address || '',
     price:   lead.quote   || '',
-    windows: Math.round((lead.panes || 0) / 2) || '',
+    windows: lead.params ? (lead.params.breakdown.regular||0) + (lead.params.breakdown.large||0) + (lead.params.breakdown.french||0) : '',
     notes:   lead.notes   || '',
     services: [...new Set(svcs)].join(',')
   });
@@ -1449,7 +1737,7 @@ function resetChecklist() {
 }
 
 // ── Review & reminder ──────────────────────────────────────────────────
-const REVIEW_URL = 'https://www.google.com/maps/search/Wagon+Windows+Salmon+Arm+BC';
+const REVIEW_URL = 'https://g.page/r/CTjjX99dBkfQEBM/review';
 
 function sendReviewRequest() {
   const text = "Hi! David here from Wagon Windows — really appreciate having you as a customer. If you have 30 seconds, a Google review means the world to a small local business: " + REVIEW_URL;
@@ -1463,7 +1751,7 @@ function sendReviewRequest() {
 function sendReviewLink(id) {
   const lead = getLeads().find(l => l.id === id);
   if (!lead) return;
-  const text = "Hi " + lead.name + "! It’s David from Wagon Windows — hope you’re loving the clean windows! If you have a moment, a Google review makes a huge difference for us: " + REVIEW_URL + " Thanks so much!";
+  const text = "Hi " + lead.name + "! It's David from Wagon Windows — hope you're loving the clean windows! If you have a moment, a Google review makes a huge difference for us: " + REVIEW_URL + " Thanks so much!";
   if (navigator.share) {
     navigator.share({ title: 'Review Request — ' + lead.name, text }).catch(() => {});
   } else {
@@ -1507,13 +1795,14 @@ function sendTierQuote() {
   const address = document.getElementById('eq-address').value.trim();
   if (!email) { alert('Customer email is required.'); return; }
 
-  const est      = Math.round(state.panes / 2);
-  const stdRaw   = pkgCalc('exterior', 0,   0,   false);
-  const premRaw  = pkgCalc('both',     0,   0,   false);
-  const supRaw   = pkgCalc('both',     est, est, false);
-  const stdPrice = fmt(stdRaw);
-  const premPrice= fmt(premRaw);
-  const supPrice = fmt(supRaw);
+  const est         = Math.round(state.panes / 2);
+  const userScreens = state.addons.screens || 0;
+  const userTracks  = state.addons.tracks  || 0;
+  const supScreens  = Math.max(userScreens, est);
+  const supTracks   = Math.max(userTracks,  est);
+  const stdPrice    = fmt(pkgCalcFull('exterior', userScreens, userTracks));
+  const premPrice   = fmt(pkgCalcFull('both',     userScreens, userTracks));
+  const supPrice    = fmt(pkgCalcFull('both',     supScreens,  supTracks));
   // Raw base prices (before surcharges + GST) so estimate page can show line-item breakdown
   const bext  = Math.max(MIN_JOB, calcBase(state.panes, 'exterior'));
   const bboth = Math.max(MIN_JOB, calcBase(state.panes, 'both'));
@@ -1573,9 +1862,9 @@ function sendTierQuote() {
     'wagonwindow.com',
   ].join('\n');
 
-  window.location.href = 'mailto:' + email
-    + '?subject=' + encodeURIComponent(subject)
-    + '&body='    + encodeURIComponent(body);
+  const _a1 = document.createElement('a');
+  _a1.href = 'mailto:' + email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  document.body.appendChild(_a1); _a1.click(); document.body.removeChild(_a1);
 
   closeEmailTierQuote();
 }
@@ -1591,36 +1880,91 @@ function emailQuote(id) {
   );
 
   const lines = [
-    'Hi ' + lead.name + ',',
+    'Hi ' + lead.name.split(' ')[0] + ',',
     '',
-    'Thanks for your time' + (lead.address ? ' at ' + lead.address : '') + '. Here’s a summary of your window cleaning estimate.',
+    'Thanks for your time today' + (lead.address ? ' at ' + lead.address : '') + '. Here\'s a full breakdown of your estimate.',
     '',
-    'ESTIMATE',
-    (lead.quote_str || '—'),
-    '',
-    'SERVICES INCLUDED',
-    lead.summary,
-    ''
   ];
+
+  // Build itemized breakdown from params if available
+  const p = lead.params;
+  if (p && p.serviceType) {
+    const bd      = p.breakdown || { regular: 0, large: 0, french: 0 };
+    const addons  = p.addons   || {};
+    const totalPanes = (bd.regular || 0) + (bd.large || 0) + (bd.french || 0);
+    const svcLabel = p.serviceType === 'exterior' ? 'Exterior Window Cleaning' : 'Interior + Exterior Window Cleaning';
+    const base     = Math.max(MIN_JOB, calcBase(totalPanes, p.serviceType));
+    const largeWin = (addons.largewindow || 0) * ADDONS.largewindow;
+    const screens  = (addons.screens     || 0) * ADDONS.screens;
+    const tracks   = (addons.tracks      || 0) * ADDONS.tracks;
+    const hardwater= (addons.hardwater   || 0) * ADDONS.hardwater;
+    const gutters  = addons.gutters  || 0;
+    const travel   = addons.travel   || 0;
+    const subtotal = base + largeWin + screens + tracks + hardwater + gutters + travel;
+    const discPct  = p.discount || 0;
+    const discount = discPct > 0 ? Math.round(subtotal * discPct / 100) : 0;
+    const afterDiscount = subtotal - discount;
+    const gst      = Math.round(afterDiscount * 0.05);
+    const total    = afterDiscount + gst;
+
+    const col = (label, val) => label.padEnd(36, ' ') + val;
+    const div = '─'.repeat(44);
+
+    lines.push('ESTIMATE BREAKDOWN');
+    lines.push(div);
+
+    // Pane breakdown
+    const paneDetail = [];
+    if (bd.regular) paneDetail.push(bd.regular + ' standard');
+    if (bd.large)   paneDetail.push(bd.large   + ' large (+$8/pane)');
+    if (bd.french)  paneDetail.push(bd.french  + ' French (+$8/pane)');
+    lines.push(col(svcLabel + ' (' + totalPanes + ' panes)', '$' + base.toFixed(2)));
+    if (paneDetail.length > 1) lines.push('  ' + paneDetail.join(' · '));
+
+    if (largeWin)  lines.push(col('Large/French window surcharge ×' + addons.largewindow, '+$' + largeWin.toFixed(2)));
+    if (screens)   lines.push(col('Screen cleaning ×' + addons.screens + ' screens', '+$' + screens.toFixed(2)));
+    if (tracks)    lines.push(col('Track cleaning ×' + addons.tracks + ' tracks', '+$' + tracks.toFixed(2)));
+    if (hardwater) lines.push(col('Hard water stain removal ×' + addons.hardwater, '+$' + hardwater.toFixed(2)));
+    if (gutters)   lines.push(col('Gutter cleaning', '+$' + gutters.toFixed(2)));
+    if (travel)    lines.push(col('Travel fee', '+$' + travel.toFixed(2)));
+
+    lines.push(div);
+    lines.push(col('Subtotal', '$' + subtotal.toFixed(2)));
+    if (discount > 0) {
+      lines.push(col('Field discount (' + discPct + '%)', '-$' + discount.toFixed(2)));
+      lines.push(col('After discount', '$' + afterDiscount.toFixed(2)));
+    }
+    lines.push(col('GST (5%)', '$' + gst.toFixed(2)));
+    lines.push(div);
+    lines.push(col('TOTAL', '$' + total.toFixed(2)));
+    lines.push('');
+  } else {
+    // Fallback for old leads without params
+    lines.push('ESTIMATE');
+    lines.push(lead.quote_str || '—');
+    lines.push('');
+    lines.push('SERVICES');
+    lines.push(lead.summary || '—');
+    lines.push('');
+  }
 
   if (lead.notes) { lines.push('NOTES'); lines.push(lead.notes); lines.push(''); }
 
   lines.push(
     'This is an on-site estimate. Final price confirmed before work begins.',
     '',
-    'We guarantee streak-free results — if you’re not satisfied, we come back.',
+    'We guarantee streak-free results — if you\'re not satisfied, we come back.',
     '',
-    'Ready to book? Reply to this email or book online:',
-    'wagonwindow.com/quote/',
+    'Ready to book? Reply to this email or text David at (403) 837-5092.',
     '',
-    'Wagon Windows',
-    'Salmon Arm & Shuswap Region, BC',
-    'wagonwindow.com'
+    '— David',
+    'Wagon Windows · Salmon Arm & Shuswap, BC',
+    '(403) 837-5092 · wagonwindow.com'
   );
 
-  window.location.href = 'mailto:' + lead.email
-    + '?subject=' + subject
-    + '&body=' + encodeURIComponent(lines.join('\n'));
+  const _a = document.createElement('a');
+  _a.href = 'mailto:' + lead.email + '?subject=' + subject + '&body=' + encodeURIComponent(lines.join('\n'));
+  document.body.appendChild(_a); _a.click(); document.body.removeChild(_a);
 }
 
 // ── Session persistence (resume last quote) ────────────────────────────
@@ -1669,7 +2013,7 @@ function resumeSession() {
     const s = JSON.parse(raw);
     state.breakdown = { regular: s.breakdown.regular || 0, large: s.breakdown.large || 0, french: s.breakdown.french || 0 };
     state.serviceType = s.serviceType || null;
-    state.addons = { screens: s.addons.screens || 0, tracks: s.addons.tracks || 0, hardwater: s.addons.hardwater || 0, largewindow: s.addons.largewindow || 0, gutters: !!s.addons.gutters, travel: s.addons.travel || 0 };
+    state.addons = { screens: s.addons.screens || 0, tracks: s.addons.tracks || 0, hardwater: s.addons.hardwater || 0, largewindow: s.addons.largewindow || 0, gutters: s.addons.gutters || 0, travel: s.addons.travel || 0 };
     state.selectedPackage = s.selectedPackage || null;
     const discEl = document.getElementById('discount-pct');
     if (discEl) discEl.value = s.discount || 0;

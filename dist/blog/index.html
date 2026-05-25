@@ -6,6 +6,7 @@
   <title>Window Cleaning Tips &amp; Guides | Wagon Windows Blog</title>
   <meta name="description" content="Window cleaning tips, guides, and advice for Shuswap homeowners and businesses. Hard water stains, seasonal cleaning, gutter care, and more — from Wagon Windows." />
   <link rel="canonical" href="https://wagonwindow.com/blog/" />
+  
 
   <!-- Open Graph -->
   <meta property="og:title"       content="Window Cleaning Tips &amp; Guides | Wagon Windows Blog" />
@@ -205,7 +206,7 @@
     </div>
     <div class="hero-btns">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'blog_index'});">
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'blog_index'});">
         Get an Instant Estimate
       </a>
       <a href="tel:+14038375092" class="btn-outline"
@@ -728,7 +729,7 @@
     <p>Serving Salmon Arm, Blind Bay, Sicamous, Armstrong, and all surrounding communities. Locally owned, streak-free guaranteed.</p>
     <div class="cta-buttons">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'blog_index_cta'});">Get an Instant Estimate</a>
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'blog_index_cta'});">Get an Instant Estimate</a>
       <a href="tel:+14038375092" class="btn-outline"
          onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'blog_index_cta'});">Call (403) 837-5092</a>
     </div>
@@ -776,13 +777,6 @@
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
   }
-  // Calendly conversion tracking
-  window.addEventListener('message', function(e) {
-    if (e.origin !== 'https://calendly.com') return;
-    if (e.data && e.data.event === 'calendly.event_scheduled') {
-      gtag('event', 'calendly_booked', {'event_category': 'contact', 'event_label': 'booking_confirmed'});
-    }
-  });
 </script>
 
 </body>

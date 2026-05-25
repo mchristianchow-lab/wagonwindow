@@ -6,6 +6,7 @@
   <title>Gutter Cleaning Guide for BC Homeowners | Wagon Windows</title>
   <meta name="description" content="The complete gutter cleaning guide for Shuswap &amp; BC homeowners. Why gutters matter, Shuswap debris types, how to clean, DIY vs pro, frequency &amp; cost." />
   <link rel="canonical" href="https://wagonwindow.com/guides/gutter-cleaning-guide-bc/" />
+  
 
   <!-- Open Graph -->
   <meta property="og:title"       content="Gutter Cleaning Guide for BC Homeowners | Wagon Windows" />
@@ -237,7 +238,7 @@
     </div>
     <div class="hero-btns">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'guide_gutter-cleaning-guide-bc'});">
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'guide_gutter-cleaning-guide-bc'});">
         Get an Instant Estimate
       </a>
       <a href="tel:+14038375092" class="btn-outline"
@@ -409,7 +410,7 @@ For comparison to DIY cost: ladder rental is approximately $60–$90/day. Bucket
     <p>Serving the Shuswap region from Salmon Arm. Book online or call us.</p>
     <div class="cta-buttons">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'guide_cta_gutter-cleaning-guide-bc'});">Get an Instant Estimate</a>
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'guide_cta_gutter-cleaning-guide-bc'});">Get an Instant Estimate</a>
       <a href="tel:+14038375092" class="btn-outline"
          onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'guide_cta_gutter-cleaning-guide-bc'});">Call (403) 837-5092</a>
     </div>
@@ -457,13 +458,6 @@ For comparison to DIY cost: ladder rental is approximately $60–$90/day. Bucket
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
   }
-  // Calendly conversion tracking
-  window.addEventListener('message', function(e) {
-    if (e.origin !== 'https://calendly.com') return;
-    if (e.data && e.data.event === 'calendly.event_scheduled') {
-      gtag('event', 'calendly_booked', {'event_category': 'contact', 'event_label': 'booking_confirmed'});
-    }
-  });
 </script>
 
 </body>

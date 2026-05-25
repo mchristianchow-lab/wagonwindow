@@ -6,6 +6,7 @@
   <title>Window Cleaning in Scotch Creek, BC | Wagon Windows</title>
   <meta name="description" content="Professional window cleaning in Scotch Creek, BC. Residential and commercial services by Wagon Windows. Locally owned, streak-free results. Get a free quote." />
   <link rel="canonical" href="https://wagonwindow.com/locations/scotch-creek/" />
+  
 
   <!-- Open Graph -->
   <meta property="og:title"       content="Window Cleaning in Scotch Creek, BC | Wagon Windows" />
@@ -183,7 +184,7 @@
     {
       "@type": "Question",
       "name": "How do I get a quote from Wagon Windows?",
-      "acceptedAnswer": {"@type": "Answer", "text": "The fastest way is to book a free 30-minute consultation via our Calendly link at wagonwindows.com \u2014 you\u0027ll have a confirmed appointment within minutes. You can also call or text (403) 837-5092, or email davidhanna@wagonwindow.com. We respond within a few hours."}
+      "acceptedAnswer": {"@type": "Answer", "text": "The fastest way is to book a free 30-minute consultation via our booking page at wagonwindows.com \u2014 you\u0027ll have a confirmed appointment within minutes. You can also call or text (403) 837-5092, or email davidhanna@wagonwindow.com. We respond within a few hours."}
     },
     
     {
@@ -253,7 +254,7 @@
     </div>
     <div class="hero-btns">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'location_hub_scotch-creek'});">
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'location_hub_scotch-creek'});">
         Get an Instant Estimate
       </a>
       <a href="tel:+14038375092" class="btn-outline"
@@ -426,7 +427,7 @@
       
       <div class="faq-item">
         <h3>How do I get a quote from Wagon Windows?</h3>
-        <p>The fastest way is to book a free 30-minute consultation via our Calendly link at wagonwindows.com — you&#39;ll have a confirmed appointment within minutes. You can also call or text (403) 837-5092, or email davidhanna@wagonwindow.com. We respond within a few hours.</p>
+        <p>The fastest way is to book a free 30-minute consultation via our booking page at wagonwindows.com — you&#39;ll have a confirmed appointment within minutes. You can also call or text (403) 837-5092, or email davidhanna@wagonwindow.com. We respond within a few hours.</p>
       </div>
       
       <div class="faq-item">
@@ -448,7 +449,7 @@
     <p>Book online or call us — we serve Scotch Creek regularly and can often schedule within a week.</p>
     <div class="cta-buttons">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'location_cta_scotch-creek'});">Get an Instant Estimate</a>
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'location_cta_scotch-creek'});">Get an Instant Estimate</a>
       <a href="tel:+14038375092" class="btn-outline"
          onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'location_cta_scotch-creek'});">Call (403) 837-5092</a>
     </div>
@@ -496,13 +497,6 @@
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
   }
-  // Calendly conversion tracking
-  window.addEventListener('message', function(e) {
-    if (e.origin !== 'https://calendly.com') return;
-    if (e.data && e.data.event === 'calendly.event_scheduled') {
-      gtag('event', 'calendly_booked', {'event_category': 'contact', 'event_label': 'booking_confirmed'});
-    }
-  });
 </script>
 
 </body>

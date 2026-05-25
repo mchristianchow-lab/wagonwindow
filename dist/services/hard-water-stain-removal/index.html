@@ -6,6 +6,7 @@
   <title>Hard Water Stain Removal | Wagon Windows | Shuswap Region, BC</title>
   <meta name="description" content="Specialist treatment to remove mineral deposits, calcium buildup, and hard water staining from glass. Common in Shuswap  Wagon Windows serves all of the Shuswap. Get a free quote." />
   <link rel="canonical" href="https://wagonwindow.com/services/hard-water-stain-removal/" />
+  
 
   <!-- Open Graph -->
   <meta property="og:title"       content="Hard Water Stain Removal | Wagon Windows | Shuswap Region, BC" />
@@ -196,7 +197,7 @@
     {
       "@type": "Question",
       "name": "How do I get a quote from Wagon Windows?",
-      "acceptedAnswer": {"@type": "Answer", "text": "The fastest way is to book a free 30-minute consultation via our Calendly link at wagonwindows.com \u2014 you\u0027ll have a confirmed appointment within minutes. You can also call or text (403) 837-5092, or email davidhanna@wagonwindow.com. We respond within a few hours."}
+      "acceptedAnswer": {"@type": "Answer", "text": "The fastest way is to book a free 30-minute consultation via our booking page at wagonwindows.com \u2014 you\u0027ll have a confirmed appointment within minutes. You can also call or text (403) 837-5092, or email davidhanna@wagonwindow.com. We respond within a few hours."}
     },
     
     {
@@ -270,7 +271,7 @@
     </div>
     <div class="hero-btns">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'service_hub_hard-water-stain-removal'});">
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'service_hub_hard-water-stain-removal'});">
         Get an Instant Estimate
       </a>
       <a href="tel:+14038375092" class="btn-outline"
@@ -490,7 +491,7 @@
   <div class="mid-cta">
     <p>Get a free, no-obligation quote for hard water stain removal in the Shuswap.</p>
     <a href="/quote/" class="btn-primary"
-       onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'mid_cta_hard-water-stain-removal'});">Get an Instant Estimate</a>
+       onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'mid_cta_hard-water-stain-removal'});">Get an Instant Estimate</a>
     <a href="tel:+14038375092" class="mid-cta-phone"
        onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'mid_cta_hard-water-stain-removal'});">or call (403) 837-5092</a>
   </div>
@@ -529,7 +530,7 @@
       
       <div class="faq-item">
         <h3>How do I get a quote from Wagon Windows?</h3>
-        <p>The fastest way is to book a free 30-minute consultation via our Calendly link at wagonwindows.com — you&#39;ll have a confirmed appointment within minutes. You can also call or text (403) 837-5092, or email davidhanna@wagonwindow.com. We respond within a few hours.</p>
+        <p>The fastest way is to book a free 30-minute consultation via our booking page at wagonwindows.com — you&#39;ll have a confirmed appointment within minutes. You can also call or text (403) 837-5092, or email davidhanna@wagonwindow.com. We respond within a few hours.</p>
       </div>
       
       <div class="faq-item">
@@ -551,7 +552,7 @@
     <p>Serving all of the Shuswap region — book online or call us for a free quote.</p>
     <div class="cta-buttons">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'service_cta_hard-water-stain-removal'});">Get an Instant Estimate</a>
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'service_cta_hard-water-stain-removal'});">Get an Instant Estimate</a>
       <a href="tel:+14038375092" class="btn-outline"
          onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'service_cta_hard-water-stain-removal'});">Call (403) 837-5092</a>
     </div>
@@ -599,13 +600,6 @@
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
   }
-  // Calendly conversion tracking
-  window.addEventListener('message', function(e) {
-    if (e.origin !== 'https://calendly.com') return;
-    if (e.data && e.data.event === 'calendly.event_scheduled') {
-      gtag('event', 'calendly_booked', {'event_category': 'contact', 'event_label': 'booking_confirmed'});
-    }
-  });
 </script>
 
 </body>

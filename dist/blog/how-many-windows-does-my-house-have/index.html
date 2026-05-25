@@ -6,6 +6,7 @@
   <title>How Many Windows Does My House Have? | Wagon Windows</title>
   <meta name="description" content="Learn how to count windows for a cleaning quote. Understand panes vs units vs openings, typical counts by home size, and how to give an accurate number when booking." />
   <link rel="canonical" href="https://wagonwindow.com/blog/how-many-windows-does-my-house-have/" />
+  
 
   <!-- Open Graph -->
   <meta property="og:title"       content="How Many Windows Does My House Have? | Wagon Windows" />
@@ -154,7 +155,7 @@
   "headline": "How Many Windows Does My House Have? A Guide for Getting Your Quote Right",
   "description": "Learn how to count windows for a cleaning quote. Understand panes vs units vs openings, typical counts by home size, and how to give an accurate number when booking.",
   "datePublished": "2026-05-10",
-  "dateModified": "2026-05-13",
+  "dateModified": "2026-05-18",
   "author": {"@type": "Person", "name": "David Hanna"},
   "publisher": {
     "@type": "Organization",
@@ -251,7 +252,7 @@
     <div class="inline-cta">
       <p>Need professional window cleaning in the Shuswap?</p>
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'blog_how-many-windows-does-my-house-have'});">
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'blog_how-many-windows-does-my-house-have'});">
         Get an Instant Estimate
       </a>
       <a href="tel:+14038375092" class="btn-outline"
@@ -397,7 +398,7 @@ Any time a quote feels surprisingly low for your home&#39;s size, ask how many w
     <h2>Not sure of your window count? Describe your home and we&#39;ll size it right — call (403) 837-5092 or book at wagonwindow.com.</h2>
     <div class="cta-buttons">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'blog_cta_how-many-windows-does-my-house-have'});">
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'blog_cta_how-many-windows-does-my-house-have'});">
         Get an Instant Estimate
       </a>
       <a href="tel:+14038375092" class="btn-outline"
@@ -450,13 +451,6 @@ Any time a quote feels surprisingly low for your home&#39;s size, ask how many w
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
   }
-  // Calendly conversion tracking
-  window.addEventListener('message', function(e) {
-    if (e.origin !== 'https://calendly.com') return;
-    if (e.data && e.data.event === 'calendly.event_scheduled') {
-      gtag('event', 'calendly_booked', {'event_category': 'contact', 'event_label': 'booking_confirmed'});
-    }
-  });
 </script>
 
 </body>

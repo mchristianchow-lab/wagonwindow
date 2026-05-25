@@ -585,6 +585,7 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
     <button class="btn-primary" id="send-btn" onclick="sendAndComplete()" style="background:#166534;font-size:1.05rem">
       Looks Good — Send My Copy ✓
     </button>
+    <button class="btn-outline" onclick="saveToFiles()">Save to Files Instead</button>
     <button class="btn-ghost" onclick="goTo('scr-complete')">← Go Back</button>
   </div>
 </div>
@@ -883,6 +884,22 @@ async function sendAndComplete() {
   await submitCompletionToWeb3Forms().catch(() => {});
   if (state.email) sendCustomerEmail();
 
+  buildDoneScreen();
+  goTo('scr-done');
+}
+
+function saveToFiles() {
+  const name     = state.name || 'Customer';
+  const filename = 'signed-waiver-' + name.replace(/\s+/g, '-') + '-' + state.dateStr + '.html';
+  const html     = buildWaiverHTML(true);
+  const blob     = new Blob([html], { type: 'text/html' });
+  const url      = URL.createObjectURL(blob);
+  const a        = document.createElement('a');
+  a.href         = url;
+  a.download     = filename;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+  submitCompletionToWeb3Forms().catch(() => {});
   buildDoneScreen();
   goTo('scr-done');
 }

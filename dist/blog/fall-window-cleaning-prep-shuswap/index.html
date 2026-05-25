@@ -6,6 +6,7 @@
   <title>Fall Window Cleaning Prep Shuswap BC | Wagon Windows</title>
   <meta name="description" content="Last exterior clean timing, gutter check, and what to skip before BC winter hits the Shuswap. Fall prep guide for Salmon Arm homeowners." />
   <link rel="canonical" href="https://wagonwindow.com/blog/fall-window-cleaning-prep-shuswap/" />
+  
 
   <!-- Open Graph -->
   <meta property="og:title"       content="Fall Window Cleaning Prep Shuswap BC | Wagon Windows" />
@@ -154,7 +155,7 @@
   "headline": "Fall Window Cleaning Prep Before Shuswap Winter: What to Do and What to Skip",
   "description": "Last exterior clean timing, gutter check, and what to skip before BC winter hits the Shuswap. Fall prep guide for Salmon Arm homeowners.",
   "datePublished": "2026-05-17",
-  "dateModified": "2026-05-13",
+  "dateModified": "2026-05-18",
   "author": {"@type": "Person", "name": "David Hanna"},
   "publisher": {
     "@type": "Organization",
@@ -251,7 +252,7 @@
     <div class="inline-cta">
       <p>Need professional window cleaning in the Shuswap?</p>
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'blog_fall-window-cleaning-prep-shuswap'});">
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'blog_fall-window-cleaning-prep-shuswap'});">
         Get an Instant Estimate
       </a>
       <a href="tel:+14038375092" class="btn-outline"
@@ -419,7 +420,7 @@ Wagon Windows serves Salmon Arm and the broader Shuswap region. Residential wind
     <h2>Book Your Fall Window and Gutter Service</h2>
     <div class="cta-buttons">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'blog_cta_fall-window-cleaning-prep-shuswap'});">
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'blog_cta_fall-window-cleaning-prep-shuswap'});">
         Get an Instant Estimate
       </a>
       <a href="tel:+14038375092" class="btn-outline"
@@ -472,13 +473,6 @@ Wagon Windows serves Salmon Arm and the broader Shuswap region. Residential wind
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
   }
-  // Calendly conversion tracking
-  window.addEventListener('message', function(e) {
-    if (e.origin !== 'https://calendly.com') return;
-    if (e.data && e.data.event === 'calendly.event_scheduled') {
-      gtag('event', 'calendly_booked', {'event_category': 'contact', 'event_label': 'booking_confirmed'});
-    }
-  });
 </script>
 
 </body>

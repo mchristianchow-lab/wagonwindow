@@ -192,7 +192,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
   background:var(--surface2);color:var(--text);font-size:.8rem;font-weight:600;
   cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent;text-align:center
 }
-.lead-btn.calendly{border-color:var(--red);color:var(--red)}
+.lead-btn.booking{border-color:var(--red);color:var(--red)}
 .lead-btn.delete{border-color:#555;color:var(--muted)}
 /* ── Edit lead overlay ── */
 #edit-lead-overlay{display:none;position:fixed;inset:0;background:var(--bg);z-index:200;flex-direction:column;overflow-y:auto}
@@ -671,7 +671,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
   <div class="action-strip">
     <button class="btn btn-outline" onclick="showCustomer()">Show Customer →</button>
     <button class="btn btn-green" onclick="goScreen('scr-lead')">✓ They Said YES — Record Sale</button>
-    <button class="btn-ghost" onclick="openCalendly()">Open Calendly (book now)</button>
+    <button class="btn-ghost" onclick="openBooking()">Open Google Calendar (book now)</button>
   </div>
 </div>
 
@@ -729,7 +729,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <div style="height:1rem"></div>
   </div>
   <div class="bottom-nav" style="flex-direction:column;gap:.5rem">
-    <button class="btn btn-green" onclick="saveLead(true)">Save + Open Calendly</button>
+    <button class="btn btn-green" onclick="saveLead(true)">Save + Book on Google Calendar</button>
     <button class="btn btn-outline" onclick="saveLead(false)">Save Lead (book later)</button>
   </div>
 </div>
@@ -924,7 +924,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
 const ADDONS = { screens: 4, tracks: 4, hardwater: 20, largewindow: 8 };
 const GST = 0.05;
 const MIN_JOB = 119;
-const CALENDLY = 'https://calendly.com/davidhanna-wagonwindow/new-meeting';
+const BOOKING_URL = 'https://calendar.app.google/KcgTkongKSkHw8xZ8';
 
 // State
 const state = {
@@ -1349,9 +1349,9 @@ function coRow(label, val, bold) {
     + '</div>';
 }
 
-// ── Calendly ───────────────────────────────────────────────────────────
-function openCalendly() {
-  window.open(CALENDLY, '_blank');
+// ── Google Calendar booking ────────────────────────────────────────────
+function openBooking() {
+  window.open(BOOKING_URL, '_blank');
 }
 
 // ── Lead storage ───────────────────────────────────────────────────────
@@ -1411,7 +1411,7 @@ function saveLead(openCal) {
     document.getElementById(id).value = '';
   });
 
-  if (openCal) openCalendly();
+  if (openCal) openBooking();
   goScreen('scr-leads');
 }
 
@@ -1632,7 +1632,7 @@ function renderLeads() {
       + (l.email ? '<button class="lead-btn" style="width:100%;margin-bottom:.5rem;border-color:var(--green);color:var(--green);font-size:.85rem" onclick="emailQuote(' + l.id + ')">✉ Email Quote to ' + esc(l.name.split(' ')[0]) + '</button>' : '')
       + '<div class="lead-actions">'
       + '<button class="lead-btn" onclick="shareLead(' + l.id + ')">Share</button>'
-      + '<button class="lead-btn calendly" onclick="openCalendly()">Book</button>'
+      + '<button class="lead-btn booking" onclick="openBooking()">Book</button>'
       + '<button class="lead-btn" style="border-color:var(--red);color:var(--red)" onclick="openWaiver(' + l.id + ')">Waiver</button>'
       + '</div>'
       + '<div class="lead-actions" style="margin-top:.4rem">'

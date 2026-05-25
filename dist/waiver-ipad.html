@@ -585,6 +585,7 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
     <button class="btn-primary" id="send-btn" onclick="sendAndComplete()" style="background:#166534;font-size:1.05rem">
       Looks Good — Send My Copy ✓
     </button>
+    <button class="btn-outline" onclick="saveToFiles()">Save to Files Instead</button>
     <button class="btn-ghost" onclick="goTo('scr-complete')">← Go Back</button>
   </div>
 </div>
@@ -599,6 +600,8 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
   <div class="done-card" id="done-card"></div>
   <div style="display:flex;flex-direction:column;gap:.6rem;width:100%;max-width:420px">
     <button class="btn-primary" onclick="saveInvoicePDF()">Save Invoice PDF</button>
+    <button class="btn-primary" style="background:#1a1a2e" onclick="shareSignedWaiver(false)">Save Signed Waiver</button>
+    <button class="btn-primary" style="background:#166534" onclick="shareSignedWaiver(true)">Send Waiver to Customer</button>
     <button class="btn-ghost"   onclick="newAgreement()">Start New Job</button>
   </div>
 </div>
@@ -622,6 +625,7 @@ const state = {
   services: [], price: '', windows: '', notes: '',
   initials: '', initialled: 0,
   printName: '', dateStr: '',
+  sigDataUrl: '',
   completedServices: [], paymentMethod: ''
 };
 
@@ -814,6 +818,7 @@ async function complete() {
   btn.textContent = 'Saving…';
 
   state.printName = document.getElementById('f-printname').value.trim();
+  state.sigDataUrl = sigCanvas ? sigCanvas.toDataURL('image/png') : '';
   saveRecord();
   buildPrintInvoice();
 
@@ -883,6 +888,22 @@ async function sendAndComplete() {
   goTo('scr-done');
 }
 
+function saveToFiles() {
+  const name     = state.name || 'Customer';
+  const filename = 'signed-waiver-' + name.replace(/\s+/g, '-') + '-' + state.dateStr + '.html';
+  const html     = buildWaiverHTML(true);
+  const blob     = new Blob([html], { type: 'text/html' });
+  const url      = URL.createObjectURL(blob);
+  const a        = document.createElement('a');
+  a.href         = url;
+  a.download     = filename;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+  submitCompletionToWeb3Forms().catch(() => {});
+  buildDoneScreen();
+  goTo('scr-done');
+}
+
 async function submitCompletionToWeb3Forms() {
   const price    = parseFloat(state.price) || 0;
   const gst      = Math.round(price * 0.05);
@@ -943,28 +964,163 @@ function sendCustomerEmail() {
 }
 
 // ── Web3Forms auto-email to David ──────────────────────────────────────
-async function submitToWeb3Forms() {
+function buildWaiverHTML(forPDF = false) {
   const services = state.services.map(k => SVC_LABELS[k]).join(', ') || '—';
+  const price = parseFloat(state.price) || 0;
+  const gst   = Math.round(price * 0.05);
+  const total = price + gst;
+  const ini   = state.initials || '—';
+  const clauses = [
+    ['Pre-Existing Damage', 'Wagon Window Washers is not liable for pre-existing damage to glass, frames, seals, screens, or tracks — including chips, cracks, failed seals, fogging between panes, or paint overspray. We document and flag anything we notice before we start.'],
+    ['Tempered & Heat-Treated Glass', 'Some tempered or heat-treated glass contains microscopic manufacturing particles embedded in the surface. These can become dislodged during professional cleaning, causing fine scratches — this is an industry-wide condition unrelated to technique. Wagon Window Washers accepts no liability for scratches on tempered or heat-treated glass.'],
+    ['Hard Water Stains', 'Hard water staining is caused by mineral deposits — not by window cleaning. Standard cleaning will not remove them. Stain removal is a separate chemical treatment quoted independently, and results vary by severity. We are not liable for stains remaining after a standard clean.'],
+    ['Screens & Tracks', 'Screens are handled with care, but we are not liable for screens that are already damaged, loose, or weakened prior to removal. Track cleaning is a best-effort service; heavy buildup may not fully clear without track replacement, which is outside our scope.'],
+    ['Property Access & Ladders', 'We require clear, safe access to all windows. If a window is not safely reachable we will skip it and advise you. We are not liable for minor incidental contact with gardens or outdoor furniture during normal ladder use.'],
+    ['Interior Access', 'For interior cleaning, please clear valuables, electronics, and fragile items from windows before we arrive. We are not liable for items left in the work area. Agreeing to interior service grants Wagon Window Washers access to your home solely for the work described above.'],
+    ['Gutter Cleaning', 'Gutter cleaning includes clearing debris and flushing downspouts. We are not liable for pre-existing gutter damage, separated joints, or blocked underground drainage. If downspouts are blocked or gutters are damaged, we will advise before proceeding.'],
+    ['Satisfaction & Re-Clean Policy', 'If you\'re not satisfied, contact us within 24 hours and we\'ll return to address it at no charge. After 24 hours, or where the issue is caused by weather, re-contamination, or conditions outside our control, we are unable to offer a re-clean under this policy.'],
+    ['Payment', 'Payment is due on the day of service, collected at the time of waiver signing before work begins. We accept cash or e-transfer (davidhanna@wagonwindow.com). The quoted price is the final price — any scope changes are agreed before we proceed.'],
+    ['Cancellations', 'Please provide 24 hours\' notice to cancel or reschedule. Late cancellations may incur a fee of up to $50 to cover travel costs. If weather makes the job unsafe, we reschedule at no cost to either party.'],
+    ['Liability Limit', 'To the fullest extent permitted under BC law, Wagon Window Washers\' total liability for any claim is limited to the amount paid for the service. You agree to hold Wagon Window Washers, its owner, and technicians harmless from third-party claims arising from pre-existing property conditions or circumstances outside our direct control.']
+  ];
+  const clauseRows = clauses.map((c, i) =>
+    '<tr style="border-bottom:1px solid #e5e5e5">' +
+      '<td style="padding:10px 12px;vertical-align:top;width:28px;text-align:center;font-weight:700;color:#1a1a2e;font-size:12px">' + (i+1) + '</td>' +
+      '<td style="padding:10px 12px;vertical-align:top">' +
+        '<div style="font-weight:700;font-size:12px;color:#1a1a2e;margin-bottom:4px">' + c[0] + '</div>' +
+        '<div style="font-size:11px;color:#555;line-height:1.6">' + c[1] + '</div>' +
+      '</td>' +
+      '<td style="padding:10px 12px;vertical-align:middle;text-align:center;white-space:nowrap">' +
+        '<span style="display:inline-block;background:#e8f5e9;border:1.5px solid #4caf50;border-radius:4px;padding:3px 10px;font-weight:700;font-size:12px;color:#1a4d25">' + ini + '</span>' +
+      '</td>' +
+    '</tr>'
+  ).join('');
+
+  const sigBlock = state.sigDataUrl
+    ? (forPDF
+        ? '<img src="' + state.sigDataUrl + '" style="max-width:280px;border:1px solid #ccc;border-radius:4px;display:block" alt="Customer signature">'
+        : '<div style="background:#f0fff4;border:1px solid #bbf7d0;border-radius:6px;padding:10px 12px;font-size:11px;color:#166534">✅ Signature captured on device — open signed waiver on the iPad to view it</div>')
+    : '<div style="height:60px;border:1px solid #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:12px">No signature captured</div>';
+
+  return '<!DOCTYPE html><html><body style="font-family:Arial,sans-serif;max-width:700px;margin:0 auto;padding:24px;color:#1a1a2e">' +
+    '<div style="border-bottom:3px solid #e81010;padding-bottom:14px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:flex-end">' +
+      '<div><div style="font-size:18px;font-weight:800;letter-spacing:-.5px">Wagon Window Washers</div>' +
+      '<div style="font-size:11px;color:#888;margin-top:2px">Salmon Arm &amp; the Shuswap · (403) 837-5092</div></div>' +
+      '<div style="background:#e81010;color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px">Signed Service Agreement</div>' +
+    '</div>' +
+    '<table style="width:100%;border-collapse:collapse;margin-bottom:20px;font-size:12px">' +
+      '<tr><td style="padding:5px 0;color:#888;width:120px">Customer</td><td style="padding:5px 0;font-weight:600">' + (state.name||'—') + '</td>' +
+          '<td style="padding:5px 0;color:#888;width:120px">Phone</td><td style="padding:5px 0;font-weight:600">' + (state.phone||'—') + '</td></tr>' +
+      '<tr><td style="padding:5px 0;color:#888">Address</td><td style="padding:5px 0;font-weight:600" colspan="3">' + (state.address||'—') + '</td></tr>' +
+      '<tr><td style="padding:5px 0;color:#888">Email</td><td style="padding:5px 0;font-weight:600">' + (state.email||'Not provided') + '</td>' +
+          '<td style="padding:5px 0;color:#888">Date</td><td style="padding:5px 0;font-weight:600">' + (state.dateStr||'—') + '</td></tr>' +
+      '<tr><td style="padding:5px 0;color:#888">Services</td><td style="padding:5px 0;font-weight:600" colspan="3">' + services + '</td></tr>' +
+      '<tr><td style="padding:5px 0;color:#888">Quoted Price</td><td style="padding:5px 0;font-weight:700;color:#e81010">$' + price.toFixed(2) + ' + GST $' + gst + ' = <strong>$' + total.toFixed(2) + '</strong></td>' +
+          '<td style="padding:5px 0;color:#888">Windows</td><td style="padding:5px 0;font-weight:600">' + (state.windows||'—') + '</td></tr>' +
+      (state.notes ? '<tr><td style="padding:5px 0;color:#888">Notes</td><td style="padding:5px 0" colspan="3">' + state.notes + '</td></tr>' : '') +
+    '</table>' +
+    '<div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#888;margin-bottom:8px">Service Agreement — Initialled Clauses</div>' +
+    '<table style="width:100%;border-collapse:collapse;border:1px solid #e5e5e5;border-radius:8px;overflow:hidden;margin-bottom:20px">' +
+      '<thead><tr style="background:#1a1a2e">' +
+        '<th style="padding:8px 12px;color:#fff;font-size:10px;text-align:center;width:28px">#</th>' +
+        '<th style="padding:8px 12px;color:#fff;font-size:10px;text-align:left">Clause</th>' +
+        '<th style="padding:8px 12px;color:#fff;font-size:10px;text-align:center">Initialled</th>' +
+      '</tr></thead><tbody>' + clauseRows + '</tbody>' +
+    '</table>' +
+    '<div style="border:1.5px solid #e5e5e5;border-radius:8px;padding:16px 18px;margin-bottom:20px">' +
+      '<div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#888;margin-bottom:12px">Customer Signature</div>' +
+      '<table style="width:100%;font-size:12px"><tr>' +
+        '<td style="width:50%;padding-right:16px;vertical-align:top">' +
+          '<div style="color:#888;margin-bottom:6px">Signature:</div>' + sigBlock +
+        '</td>' +
+        '<td style="vertical-align:top">' +
+          '<div style="margin-bottom:10px"><div style="color:#888;font-size:11px;margin-bottom:3px">Print Name:</div><div style="font-weight:700">' + (state.printName||'—') + '</div></div>' +
+          '<div style="margin-bottom:10px"><div style="color:#888;font-size:11px;margin-bottom:3px">Date:</div><div style="font-weight:700">' + (state.dateStr||'—') + '</div></div>' +
+          '<div><div style="color:#888;font-size:11px;margin-bottom:3px">Initials used:</div><div style="font-weight:700">' + ini + '</div></div>' +
+        '</td>' +
+      '</tr></table>' +
+      '<div style="margin-top:12px;background:#f0fff4;border:1px solid #bbf7d0;border-radius:6px;padding:10px 12px;font-size:11px;color:#166534">✅ Customer confirms they are the property owner or authorized representative, have read and initialled all 11 clauses, and agree to this Service Agreement with Wagon Window Washers.</div>' +
+    '</div>' +
+    '<div style="font-size:10px;color:#aaa;border-top:1px solid #e5e5e5;padding-top:10px">Wagon Window Washers · Salmon Arm, BC · davidhanna@wagonwindow.com · (403) 837-5092 · wagonwindow.com</div>' +
+    (forPDF ? '<script>setTimeout(function(){window.print();},400);<\/script>' : '') +
+    '</body></html>';
+}
+
+
+function buildWaiverEmailText() {
+  const services = state.services.map(k => SVC_LABELS[k]).join(', ') || '—';
+  const price = parseFloat(state.price) || 0;
+  const gst   = Math.round(price * 0.05);
+  const total = price + gst;
+  const ini   = state.initials || '—';
+  const clauseNames = [
+    'Pre-Existing Damage','Tempered & Heat-Treated Glass','Hard Water Stains',
+    'Screens & Tracks','Property Access & Ladders','Interior Access',
+    'Gutter Cleaning','Satisfaction & Re-Clean Policy','Payment',
+    'Cancellations','Liability Limit'
+  ];
+  return [
+    'WAGON WINDOW WASHERS — SIGNED SERVICE AGREEMENT',
+    '='.repeat(50),
+    '',
+    'Customer:  ' + (state.name    || '—'),
+    'Phone:     ' + (state.phone   || '—'),
+    'Address:   ' + (state.address || '—'),
+    'Email:     ' + (state.email   || 'Not provided'),
+    'Date:      ' + (state.dateStr || '—'),
+    'Services:  ' + services,
+    'Quoted:    $' + price.toFixed(2) + ' + GST $' + gst + ' = $' + total.toFixed(2),
+    'Windows:   ' + (state.windows || '—'),
+    (state.notes ? 'Notes:     ' + state.notes : ''),
+    '',
+    'CLAUSES INITIALLED (' + ini + '):',
+    ...clauseNames.map((n, i) => '  ' + (i+1) + '. ' + n + ' — initialled ' + ini),
+    '',
+    'SIGNATURE:',
+    '  Print Name: ' + (state.printName || '—'),
+    '  Date:       ' + (state.dateStr   || '—'),
+    '  Initials:   ' + ini,
+    '  Signature image saved on device — tap "View & Save Signed Waiver" on the iPad to access full document.',
+    '',
+    '-'.repeat(50),
+    'Wagon Window Washers · (403) 837-5092 · davidhanna@wagonwindow.com'
+  ].filter(l => l !== '').join('\n');
+}
+
+async function submitToWeb3Forms() {
   const fd = new FormData();
-  fd.append('access_key',     WEB3FORMS_KEY);
-  fd.append('subject',        'Signed Agreement — ' + state.name + ' — ' + state.dateStr);
-  fd.append('from_name',      'Wagon Windows Waiver');
-  fd.append('replyto',        state.email || DAVID_EMAIL);
-  fd.append('Customer Name',  state.name);
-  fd.append('Phone',          state.phone);
-  fd.append('Email',          state.email || 'Not provided');
-  fd.append('Address',        state.address);
-  fd.append('Services',       services);
-  fd.append('Quoted Price',   '$' + state.price);
-  fd.append('Window Count',   state.windows || '—');
-  fd.append('Notes',          state.notes || '—');
-  fd.append('Initialled By',  state.initials + ' (all 11 clauses)');
-  fd.append('Signed By',      state.printName);
-  fd.append('Date',           state.dateStr);
-  fd.append('redirect',       'false');
+  fd.append('access_key',  WEB3FORMS_KEY);
+  fd.append('subject',     'Signed Agreement — ' + state.name + ' — ' + state.dateStr);
+  fd.append('from_name',   'Wagon Windows Waiver');
+  fd.append('replyto',     state.email || DAVID_EMAIL);
+  fd.append('message',     buildWaiverEmailText());
+  fd.append('redirect',    'false');
   const res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
   const json = await res.json();
   if (json.success) showToast('Agreement emailed to David ✓');
+}
+
+async function shareSignedWaiver(forCustomer) {
+  const name     = state.name || 'Customer';
+  const filename = 'signed-waiver-' + name.replace(/\s+/g, '-') + '-' + state.dateStr + '.html';
+  const html     = buildWaiverHTML(true);
+  const file     = new File([html], filename, { type: 'text/html' });
+  const title    = forCustomer
+    ? 'Signed Service Agreement — ' + name
+    : 'Waiver — ' + name + ' — ' + state.dateStr;
+
+  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    try {
+      await navigator.share({ files: [file], title });
+    } catch (e) {
+      if (e.name !== 'AbortError') showToast('Sharing cancelled');
+    }
+  } else {
+    // Fallback: open in new tab
+    const url = URL.createObjectURL(new Blob([html], { type: 'text/html' }));
+    const win = window.open(url, '_blank');
+    if (!win) showToast('Allow popups to view the waiver');
+  }
 }
 
 // ── Google Sheets webhook ──────────────────────────────────────────────
@@ -1067,6 +1223,14 @@ const SVC_LABELS = {
   screens:'Screen Cleaning', tracks:'Track Cleaning',
   gutters:'Gutter Cleaning', hardwater:'Hard Water Removal'
 };
+
+function saveSignaturePNG() {
+  if (!state.sigDataUrl) { alert('No signature captured.'); return; }
+  const a = document.createElement('a');
+  a.href = state.sigDataUrl;
+  a.download = 'signature-' + state.name.replace(/\s+/g,'-') + '-' + state.dateStr + '.png';
+  a.click();
+}
 
 function buildDoneScreen() {
   const price    = parseFloat(state.price) || 0;

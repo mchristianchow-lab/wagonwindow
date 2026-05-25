@@ -6,6 +6,7 @@
   <title>Is Professional Window Cleaning Worth It? | Wagon Windows</title>
   <meta name="description" content="Honest answer: is hiring a pro window cleaner worth the cost? We cover time savings, safety risks, streak-free results, and when DIY is actually fine for BC homeowners." />
   <link rel="canonical" href="https://wagonwindow.com/blog/is-professional-window-cleaning-worth-it/" />
+  
 
   <!-- Open Graph -->
   <meta property="og:title"       content="Is Professional Window Cleaning Worth It? | Wagon Windows" />
@@ -154,7 +155,7 @@
   "headline": "Is Professional Window Cleaning Worth It? An Honest Assessment for BC Homeowners",
   "description": "Honest answer: is hiring a pro window cleaner worth the cost? We cover time savings, safety risks, streak-free results, and when DIY is actually fine for BC homeowners.",
   "datePublished": "2026-05-10",
-  "dateModified": "2026-05-13",
+  "dateModified": "2026-05-18",
   "author": {"@type": "Person", "name": "David Hanna"},
   "publisher": {
     "@type": "Organization",
@@ -251,7 +252,7 @@
     <div class="inline-cta">
       <p>Need professional window cleaning in the Shuswap?</p>
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'blog_is-professional-window-cleaning-worth-it'});">
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'blog_is-professional-window-cleaning-worth-it'});">
         Get an Instant Estimate
       </a>
       <a href="tel:+14038375092" class="btn-outline"
@@ -402,7 +403,7 @@ Consider also what it costs not to clean properly. Mineral deposits that aren&#3
     <h2>Ready to hand off the ladders and the squeegee? Book professional window cleaning at wagonwindow.com or call (403) 837-5092.</h2>
     <div class="cta-buttons">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'blog_cta_is-professional-window-cleaning-worth-it'});">
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'blog_cta_is-professional-window-cleaning-worth-it'});">
         Get an Instant Estimate
       </a>
       <a href="tel:+14038375092" class="btn-outline"
@@ -455,13 +456,6 @@ Consider also what it costs not to clean properly. Mineral deposits that aren&#3
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
   }
-  // Calendly conversion tracking
-  window.addEventListener('message', function(e) {
-    if (e.origin !== 'https://calendly.com') return;
-    if (e.data && e.data.event === 'calendly.event_scheduled') {
-      gtag('event', 'calendly_booked', {'event_category': 'contact', 'event_label': 'booking_confirmed'});
-    }
-  });
 </script>
 
 </body>

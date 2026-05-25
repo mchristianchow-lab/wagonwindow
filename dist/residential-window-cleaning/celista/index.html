@@ -6,6 +6,7 @@
   <title>Residential Window Cleaning Celista | Wagon Windows | From $169</title>
   <meta name="description" content="Professional residential window cleaning in Celista, BC. Streak-free results from $169. Interior + exterior. Book online — Wagon Windows, locally owned." />
   <link rel="canonical" href="https://wagonwindow.com/residential-window-cleaning/celista/" />
+  
 
   <!-- Open Graph -->
   <meta property="og:title"       content="Residential Window Cleaning Celista | Wagon Windows | From $169" />
@@ -301,7 +302,7 @@
     {
       "@type": "Question",
       "name": "How do I get a quote from Wagon Windows?",
-      "acceptedAnswer": {"@type": "Answer", "text": "The fastest way is to book a free 30-minute consultation via our Calendly link at wagonwindows.com \u2014 you\u0027ll have a confirmed appointment within minutes. You can also call or text (403) 837-5092, or email davidhanna@wagonwindow.com. We respond within a few hours."}
+      "acceptedAnswer": {"@type": "Answer", "text": "The fastest way is to book a free 30-minute consultation via our booking page at wagonwindows.com \u2014 you\u0027ll have a confirmed appointment within minutes. You can also call or text (403) 837-5092, or email davidhanna@wagonwindow.com. We respond within a few hours."}
     },
     
     {
@@ -331,7 +332,7 @@
     {
       "@type": "Question",
       "name": "Can I book a window cleaning appointment online?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Yes \u2014 we offer online booking via Calendly at wagonwindows.com. Pick a date and time that works for you without calling. We confirm all bookings within a few hours."}
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes \u2014 we offer online booking via Google Calendar at wagonwindows.com. Pick a date and time that works for you without calling. We confirm all bookings within a few hours."}
     },
     
     {
@@ -401,7 +402,7 @@
 
     <div class="hero-btns">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'residential-window-cleaning/celista'});">
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'residential-window-cleaning/celista'});">
         Get an Instant Estimate
       </a>
       <a href="tel:+14038375092" class="btn-outline"
@@ -739,7 +740,7 @@
   <div class="inline-cta">
     <p>Ready to book residential in Celista?</p>
     <a href="/quote/" class="btn-primary"
-       onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'inline_residential-window-cleaning/celista'});">
+       onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'inline_residential-window-cleaning/celista'});">
       Get an Instant Estimate
     </a>
     <a href="tel:+14038375092" class="btn-outline"
@@ -792,7 +793,7 @@
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
         <h3 itemprop="name">How do I get a quote from Wagon Windows?</h3>
         <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <p itemprop="text">The fastest way is to book a free 30-minute consultation via our Calendly link at wagonwindows.com — you&#39;ll have a confirmed appointment within minutes. You can also call or text (403) 837-5092, or email davidhanna@wagonwindow.com. We respond within a few hours.</p>
+          <p itemprop="text">The fastest way is to book a free 30-minute consultation via our booking page at wagonwindows.com — you&#39;ll have a confirmed appointment within minutes. You can also call or text (403) 837-5092, or email davidhanna@wagonwindow.com. We respond within a few hours.</p>
         </div>
       </div>
       
@@ -827,7 +828,7 @@
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
         <h3 itemprop="name">Can I book a window cleaning appointment online?</h3>
         <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <p itemprop="text">Yes — we offer online booking via Calendly at wagonwindows.com. Pick a date and time that works for you without calling. We confirm all bookings within a few hours.</p>
+          <p itemprop="text">Yes — we offer online booking via Google Calendar at wagonwindows.com. Pick a date and time that works for you without calling. We confirm all bookings within a few hours.</p>
         </div>
       </div>
       
@@ -848,7 +849,7 @@
     <p>Contact Wagon Windows today for a free quote. We serve Celista and the Shuswap region — locally owned, reliable, and streak-free guaranteed.</p>
     <div class="cta-buttons">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'closing_residential-window-cleaning/celista'});">
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'closing_residential-window-cleaning/celista'});">
         Get an Instant Estimate
       </a>
       <a href="tel:+14038375092" class="btn-outline"
@@ -901,13 +902,6 @@
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
   }
-  // Calendly conversion tracking
-  window.addEventListener('message', function(e) {
-    if (e.origin !== 'https://calendly.com') return;
-    if (e.data && e.data.event === 'calendly.event_scheduled') {
-      gtag('event', 'calendly_booked', {'event_category': 'contact', 'event_label': 'booking_confirmed'});
-    }
-  });
 </script>
 
 </body>
