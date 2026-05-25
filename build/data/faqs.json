@@ -18,7 +18,7 @@
     {
       "id": "g4",
       "q": "What is the minimum job fee?",
-      "a": "Our minimum job fee is $99. This covers smaller jobs, single-room requests, and add-ons like screen cleaning or track cleaning on their own."
+      "a": "Our minimum job fee is $169. This covers smaller jobs, single-room requests, and add-ons like screen cleaning or track cleaning on their own."
     },
     {
       "id": "g5",
@@ -46,7 +46,7 @@
       {
         "id": "r1",
         "q": "Do you clean both inside and outside windows for residential homes?",
-        "a": "Yes — we offer exterior-only or full interior and exterior cleaning. Exterior-only is from $149 for small homes. Interior + exterior is from $199. Most customers choose full service for the best results."
+        "a": "Yes — we offer exterior-only or full interior and exterior cleaning. Exterior-only is from $169 for small homes. Interior + exterior is from $219. Most customers choose full service for the best results."
       },
       {
         "id": "r2",
@@ -56,7 +56,7 @@
       {
         "id": "r3",
         "q": "Do you clean window screens and tracks for residential properties?",
-        "a": "Screens and tracks are available as add-ons. Screens are $3–$4 each. Track cleaning starts at $50. These are often done at the same time as a window clean for the best results."
+        "a": "Screens and tracks are available as add-ons. Screens are $4 each. Track cleaning is $4 per track. These are often done at the same time as a window clean for the best results."
       },
       {
         "id": "r4",
@@ -289,7 +289,7 @@
       },
       {
         "q": "How much does residential window cleaning cost for a typical Salmon Arm home?",
-        "a": "Exterior-only cleaning for a standard Salmon Arm home starts at $149 for smaller properties and typically runs $200–$350 for mid-size homes with 15–25 windows. Full interior and exterior service starts at $199 and averages $280–$450 for most homes. Hillside properties in Raven or Hillcrest with upper-story windows may cost slightly more due to extended equipment needs. We quote on-site at no charge."
+        "a": "Exterior-only cleaning for a standard Salmon Arm home starts at $169 for smaller properties and typically runs $219–$350 for mid-size homes with 15–25 windows. Full interior and exterior service starts at $219 and averages $289–$450 for most homes. Hillside properties in Raven or Hillcrest with upper-story windows may cost slightly more due to extended equipment needs. We quote on-site at no charge."
       },
       {
         "q": "Can you clean the upper-story windows on my Salmon Arm hillside home without scaffolding?",
@@ -433,7 +433,7 @@
       },
       {
         "q": "Can I get exterior-only window cleaning in Salmon Arm if I'm comfortable cleaning the inside myself?",
-        "a": "Exterior-only is one of our most-booked services in Salmon Arm — many homeowners are comfortable with interior cleaning but don't have the equipment or confidence for upper-story exterior access. Our exterior-only service covers all accessible exterior glass, frames, and sills. Pricing starts at $149 for smaller Salmon Arm homes. If you decide you'd like interior cleaning added on the same visit, just let us know when booking."
+        "a": "Exterior-only is one of our most-booked services in Salmon Arm — many homeowners are comfortable with interior cleaning but don't have the equipment or confidence for upper-story exterior access. Our exterior-only service covers all accessible exterior glass, frames, and sills. Pricing starts at $169 for smaller Salmon Arm homes. If you decide you'd like interior cleaning added on the same visit, just let us know when booking."
       },
       {
         "q": "How does exterior window cleaning handle the pine sap and pollen that accumulates on Salmon Arm homes near forested areas?",
