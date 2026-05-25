@@ -111,7 +111,7 @@
 
     <div class="hero-btns">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'{{ page_slug }}'});">
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'{{ page_slug }}'});">
         Get an Instant Estimate
       </a>
       <a href="tel:{{ config.phone_raw }}" class="btn-outline"
@@ -357,7 +357,7 @@
   <div class="inline-cta">
     <p>Ready to book {{ service.short_name | lower }} in {{ location.name }}?</p>
     <a href="/quote/" class="btn-primary"
-       onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'inline_{{ page_slug }}'});">
+       onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'inline_{{ page_slug }}'});">
       Get an Instant Estimate
     </a>
     <a href="tel:{{ config.phone_raw }}" class="btn-outline"
@@ -389,7 +389,7 @@
     <p>Contact Wagon Windows today for a free quote. We serve {{ location.name }} and the {{ location.region }} region — locally owned, reliable, and streak-free guaranteed.</p>
     <div class="cta-buttons">
       <a href="/quote/" class="btn-primary"
-         onclick="gtag('event','calendly_click',{'event_category':'contact','event_label':'closing_{{ page_slug }}'});">
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'closing_{{ page_slug }}'});">
         Get an Instant Estimate
       </a>
       <a href="tel:{{ config.phone_raw }}" class="btn-outline"
