@@ -1407,6 +1407,8 @@ const state = {
   addonsContext: 'packages'
 };
 
+let currentDraftId = null;
+
 // ── Pricing engine (mirrors customer quote tool exactly) ───────────────
 function calcBase(panes, type) {
   let ext = 169, intExt = 219;
@@ -1464,6 +1466,7 @@ function goScreen(id) {
 
 // ── Quote flow ─────────────────────────────────────────────────────────
 function startQuote() {
+  currentDraftId = null;
   clearSession();
   state.serviceType = null;
   state.breakdown = { regular: 0, large: 0, french: 0 };
@@ -1770,6 +1773,7 @@ function renderQuote() {
   rows += brow('GST (5%)', fmt(q.gst));
   rows += brow('Total', fmt(q.total), true);
   document.getElementById('breakdown').innerHTML = rows;
+  autoSaveDraft();
 }
 
 function brow(label, val, bold) {
@@ -1777,6 +1781,47 @@ function brow(label, val, bold) {
     + '<span class="breakdown-label">' + label + '</span>'
     + '<span class="breakdown-val">' + val + '</span>'
     + '</div>';
+}
+
+// ── Auto-save draft ────────────────────────────────────────────────────
+function autoSaveDraft() {
+  const q = buildQuote();
+  if (!q) return;
+  const svcLabel = state.serviceType === 'exterior' ? 'Exterior Only' : 'Int + Ext';
+  const parts = [svcLabel, state.panes + ' panes'];
+  if (state.addons.screens)    parts.push('screens ×' + state.addons.screens);
+  if (state.addons.tracks)     parts.push('tracks ×' + state.addons.tracks);
+  if (state.addons.gutters > 0) parts.push('gutters');
+  if (state.addons.hardwater)  parts.push('hard water ×' + state.addons.hardwater);
+  if (state.addons.largewindow) parts.push('large ×' + state.addons.largewindow);
+  const discEl = document.getElementById('discount-pct');
+  const params = {
+    breakdown: { ...state.breakdown },
+    serviceType: state.serviceType,
+    addons: { ...state.addons },
+    selectedPackage: state.selectedPackage || null,
+    discount: parseFloat(discEl?.value || 0)
+  };
+  const leads = getLeads();
+  if (currentDraftId) {
+    const idx = leads.findIndex(l => l.id === currentDraftId);
+    if (idx !== -1) {
+      leads[idx] = { ...leads[idx], quote: q.total, quote_str: fmt(q.total) + ' incl. GST', summary: parts.join(', '), params };
+      saveLeads(leads);
+      return;
+    }
+  }
+  const draft = {
+    id: Date.now(), draft: true,
+    name: '', phone: '', email: '', address: '', date_pref: '', notes: '',
+    quote: q.total, quote_str: fmt(q.total) + ' incl. GST',
+    summary: parts.join(', '),
+    created_at: new Date().toISOString(), params
+  };
+  currentDraftId = draft.id;
+  leads.unshift(draft);
+  saveLeads(leads);
+  updateHomeCount();
 }
 
 // ── Customer mode ──────────────────────────────────────────────────────
@@ -1875,7 +1920,11 @@ function saveLead(openCal) {
     }
   };
 
-  const leads = getLeads();
+  let leads = getLeads();
+  if (currentDraftId) {
+    leads = leads.filter(l => l.id !== currentDraftId);
+    currentDraftId = null;
+  }
   leads.unshift(lead);
   saveLeads(leads);
 
@@ -1922,6 +1971,7 @@ function saveLeadEdit() {
     if (l.id !== id) return l;
     return {
       ...l,
+      draft: false,
       name,
       phone,
       email:     document.getElementById('edit-lead-email').value.trim(),
@@ -2093,6 +2143,19 @@ function renderLeads() {
   }
   el.innerHTML = leads.map(l => {
     const date = new Date(l.created_at).toLocaleDateString('en-CA', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit', hour12:true });
+    if (l.draft) {
+      return '<div class="lead-item" style="border-color:var(--yellow);opacity:.9">'
+        + '<div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem">'
+        + '<span style="font-size:.65rem;font-weight:800;color:var(--yellow);background:rgba(245,158,11,.12);border-radius:4px;padding:.1rem .4rem;letter-spacing:.08em">AUTO-SAVED</span>'
+        + '<span style="font-size:.75rem;color:var(--muted)">No contact info yet</span>'
+        + '</div>'
+        + '<div class="lead-meta" style="color:var(--muted)">🕐 ' + date + '</div>'
+        + (l.quote_str ? '<div class="lead-quote">' + l.quote_str + ' · ' + esc(l.summary) + '</div>' : '')
+        + '<div class="lead-actions" style="margin-top:.6rem">'
+        + '<button class="lead-btn" style="flex:2;border-color:var(--yellow);color:var(--yellow)" onclick="editLead(' + l.id + ')">+ Add Customer Info</button>'
+        + '<button class="lead-btn delete" onclick="deleteLead(' + l.id + ')">Delete</button>'
+        + '</div></div>';
+    }
     return '<div class="lead-item">'
       + '<div class="lead-name" style="cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px" onclick="loadLeadQuote(' + l.id + ')">' + esc(l.name) + ' ↗</div>'
       + '<div class="lead-meta">'
