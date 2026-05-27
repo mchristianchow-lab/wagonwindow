@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WW Objections">
+  <title>Wagon Windows · Objection Handlers</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#e81010;
+  --bg:#0d0d0d;
+  --surface:#1a1a1a;
+  --surface2:#242424;
+  --border:#2e2e2e;
+  --text:#f0f0f0;
+  --muted:#777;
+  --green:#22c55e;
+  --yellow:#f59e0b;
+}
+html,body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100%}
+.topbar{
+  position:sticky;top:0;z-index:10;
+  background:var(--surface);border-bottom:2px solid var(--red);
+  padding:.85rem 1rem;display:flex;align-items:center;justify-content:space-between
+}
+.topbar-title{font-weight:800;font-size:1rem}
+.topbar-sub{font-size:.72rem;color:var(--muted)}
+.search-wrap{padding:.75rem 1rem .5rem}
+.search-input{
+  width:100%;background:var(--surface);border:1.5px solid var(--border);
+  border-radius:8px;color:var(--text);font-size:.95rem;padding:.7rem 1rem;
+  font-family:inherit;-webkit-appearance:none
+}
+.search-input:focus{outline:none;border-color:var(--red)}
+.search-input::placeholder{color:var(--muted)}
+.category{padding:.5rem 1rem 0}
+.cat-label{
+  font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--muted);padding:.5rem 0 .4rem
+}
+.obj-item{
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  margin-bottom:.6rem;overflow:hidden;transition:border-color .15s
+}
+.obj-item.open{border-color:var(--red)}
+.obj-q{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.95rem 1rem;cursor:pointer;-webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;gap:.75rem;user-select:none
+}
+.obj-q-text{font-weight:600;font-size:.95rem;line-height:1.35;flex:1}
+.obj-chevron{
+  font-size:.75rem;color:var(--muted);flex-shrink:0;
+  transition:transform .2s;display:inline-block
+}
+.obj-item.open .obj-chevron{transform:rotate(180deg);color:var(--red)}
+.obj-body{
+  display:none;padding:0 1rem 1rem;border-top:1px solid var(--border)
+}
+.obj-item.open .obj-body{display:block}
+.obj-tag{
+  display:inline-block;padding:.2rem .6rem;border-radius:4px;
+  font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  margin:.75rem 0 .6rem
+}
+.tag-say{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.25)}
+.tag-tip{background:rgba(245,158,11,.1);color:var(--yellow);border:1px solid rgba(245,158,11,.25)}
+.tag-close{background:rgba(232,16,16,.1);color:var(--red);border:1px solid rgba(232,16,16,.25)}
+.reply-block{margin-bottom:.85rem}
+.reply-text{
+  font-size:.9rem;line-height:1.65;color:#ccc;
+  background:var(--surface2);border-radius:8px;padding:.85rem 1rem;
+  border-left:3px solid var(--green)
+}
+.tip-text{
+  font-size:.85rem;line-height:1.6;color:var(--yellow);
+  background:rgba(245,158,11,.06);border-radius:8px;padding:.75rem 1rem;
+  border-left:3px solid var(--yellow)
+}
+.close-text{
+  font-size:.88rem;line-height:1.6;color:#f0f0f0;font-weight:600;
+  background:rgba(232,16,16,.08);border-radius:8px;padding:.75rem 1rem;
+  border-left:3px solid var(--red)
+}
+.empty{text-align:center;padding:3rem 1.5rem;color:var(--muted);font-size:.9rem}
+.spacer{height:2rem}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">Objection Handlers</div>
+    <div class="topbar-sub">Tap an objection — read the reply</div>
+  </div>
+  <div style="font-size:1.3rem">🪟</div>
+</div>
+
+<div class="search-wrap">
+  <input class="search-input" type="search" placeholder="Search objections…" id="search" oninput="filterObjns(this.value)">
+</div>
+
+<div id="obj-list"></div>
+<div class="spacer"></div>
+
+<script>
+const OBJECTIONS = [
+  {
+    cat: 'Price',
+    items: [
+      {
+        q: '"That\'s too expensive."',
+        reply: 'Totally fair — I get that. What a lot of people find is that when you break it down, it\'s usually one or two visits a year. That\'s maybe $200 for crystal clear windows all season. Compared to what it costs in time, supplies, and the safety of getting up a ladder yourself — most folks find it\'s actually pretty good value.',
+        tip: 'Pause after the value line. Let them do the math in their head. Don\'t fill the silence.',
+        close: '"Would you want to start with just the exterior today to keep the cost down?"'
+      },
+      {
+        q: '"I can get it done cheaper somewhere else."',
+        reply: 'You probably can — and if you\'ve got someone reliable, stick with them. What we offer is a streak-free guarantee: if you\'re not happy, we come back for free. A lot of "cheaper" quotes don\'t include that. We\'re also local — David\'s been based out of Salmon Arm the whole time.',
+        tip: 'Don\'t trash competitors. Just highlight the guarantee and the local angle.',
+        close: '"If the price was the same, would the guarantee matter to you?"'
+      },
+      {
+        q: '"I wasn\'t planning on spending money on this today."',
+        reply: 'That\'s completely fair — I\'m literally showing up at your door unannounced. Here\'s what I can do: I can give you a quote right now, no obligation, and you pick the date that works. You don\'t pay a thing until the job\'s done.',
+        tip: 'Remove the pressure. Make it easy to say yes to a quote, not a commitment.',
+        close: '"Want me to put you down for a call-ahead booking so you can decide closer to the time?"'
+      }
+    ]
+  },
+  {
+    cat: 'Timing',
+    items: [
+      {
+        q: '"We just had them done."',
+        reply: 'Oh perfect — then you already know how much of a difference it makes. We\'re in the area pretty regularly, so we can put you on a reminder for next time. A lot of our customers do twice a year — spring and fall.',
+        tip: 'This is a warm lead. They buy. Get their info for a follow-up.',
+        close: '"Can I grab your name so I can reach out in a few months when it\'s time again?"'
+      },
+      {
+        q: '"It\'s going to get dirty again right away anyway."',
+        reply: 'Ha, that\'s the Shuswap for you. But honestly — it\'s usually a few months before they get back to where they are now. And clean windows actually repel dust better than dirty ones. You\'ll be surprised how long they stay looking good.',
+        tip: 'Keep it light. The dirt argument is usually just a soft no — don\'t over-explain.',
+        close: '"What if we just did the exterior so you can see how long they hold up?"'
+      },
+      {
+        q: '"Can you come back another time / next week?"',
+        reply: 'Absolutely — I just want to make sure we get you a spot before the schedule fills up. We\'re in this area on [day]. If I lock you in now, I can make sure we\'re here at a time that works for you.',
+        tip: 'A "come back later" is usually a soft no. Lock in a specific date or get a phone number — otherwise you\'re unlikely to convert.',
+        close: '"What\'s a good number to text you on so we can confirm?"'
+      }
+    ]
+  },
+  {
+    cat: 'Trust & Credibility',
+    items: [
+      {
+        q: '"How do I know you\'re legit / can I see some ID?"',
+        reply: 'Of course — here\'s my ID. We\'re Wagon Windows, locally owned out of Salmon Arm. You can look us up at wagonwindow.com — all our info\'s there. We\'re also happy to text you a confirmation with David\'s number before we show up.',
+        tip: 'Have your phone ready to show the website. Confidence here is everything — don\'t get defensive.',
+        close: '"Does that give you enough to feel comfortable?"'
+      },
+      {
+        q: '"I don\'t want strangers inside my house."',
+        reply: 'That\'s completely reasonable — and we do a lot of exterior-only jobs for exactly that reason. The outside is usually where most of the buildup is anyway. We can start there and if you\'re ever comfortable with the interior down the road, just let us know.',
+        tip: 'Never push interior on skeptical customers. Exterior is still a sale.',
+        close: '"Want me to quote just the exterior for today?"'
+      },
+      {
+        q: '"I\'ve never heard of you."',
+        reply: 'We\'re newer to the door-to-door side but we\'ve been cleaning windows around the Shuswap for a while now. You can check us out at wagonwindow.com — and honestly, we\'d love the chance to earn your trust. Our guarantee is: if you\'re not happy, we come back for free.',
+        tip: 'Don\'t oversell your history. Lean on the guarantee instead.',
+        close: '"What would it take for you to give us a shot?"'
+      }
+    ]
+  },
+  {
+    cat: 'Decision Making',
+    items: [
+      {
+        q: '"I need to talk to my spouse / partner first."',
+        reply: 'Totally — makes sense. Here\'s what I can do: I\'ll leave you a quote right now with our info on it, and you can reach us when you\'ve had a chance to chat. There\'s no pressure and no deposit.',
+        tip: 'Write down the quote and hand it to them physically if you can. It gives them something to show their partner.',
+        close: '"Is there a number I can text the quote to so you have it handy?"'
+      },
+      {
+        q: '"I need to think about it."',
+        reply: 'Of course — what questions do you still have? Sometimes I can answer something right now that makes it easier. And if you\'d just rather think it over, that\'s completely fine too — I can text you the quote so you have it.',
+        tip: '"I need to think about it" usually means something specific is unresolved. Ask the question — you might be able to close it right there.',
+        close: '"Is it the price, the timing, or something else that you\'re weighing up?"'
+      },
+      {
+        q: '"I\'m really busy right now / bad time."',
+        reply: 'Sorry to catch you at a bad moment — I\'ll be quick. I can text you a quote in 30 seconds so you have it for when things settle down. You don\'t need to decide anything today.',
+        tip: 'Respect their time. Ask for a number — that\'s the micro-conversion here.',
+        close: '"What\'s the best number to send that to?"'
+      }
+    ]
+  },
+  {
+    cat: 'Existing Arrangements',
+    items: [
+      {
+        q: '"We already have someone who does it."',
+        reply: 'That\'s great — if they\'re doing a good job, stick with them. We\'re not trying to replace anybody. But if they\'re ever unavailable, or you want a second quote, we\'re happy to help. Here\'s our card.',
+        tip: 'Don\'t fight this one hard. Plant the seed and move on — these often convert later when the existing person flakes.',
+        close: '"Is there anything about your current service you wish was different?"'
+      },
+      {
+        q: '"I do it myself."',
+        reply: 'Fair enough — nothing wrong with that. Most people find it takes most of a day though, and getting up a ladder safely is no joke. We can usually do a full house in a couple of hours and we\'ve got the right tools to get a streak-free finish that\'s tough to get with a squeegee and a bucket.',
+        tip: 'Don\'t make them feel dumb for DIYing. Frame it as saving time and the ladder risk.',
+        close: '"What if we did just the high or hard-to-reach ones and you handled the rest?"'
+      },
+      {
+        q: '"I\'m renting — the landlord takes care of that."',
+        reply: 'Got it — that makes sense. Do you know if your landlord has someone, or is it just kind of left? A lot of tenants actually book us directly because it\'s a small cost and it makes the place feel way nicer to live in.',
+        tip: 'Some renters will book themselves. Don\'t dismiss it — ask the follow-up.',
+        close: '"Would it be worth a quote? Even just for the exterior it\'s pretty affordable."'
+      }
+    ]
+  },
+  {
+    cat: 'Payment',
+    items: [
+      {
+        q: '"I don\'t have cash / don\'t carry cash."',
+        reply: 'No problem at all — we take e-transfer too. Super easy, you just send it when the job\'s done and you\'re happy with it.',
+        tip: 'Always mention e-transfer. Cash-only is a deal-killer for a lot of people.',
+        close: '"Does e-transfer work for you?"'
+      },
+      {
+        q: '"Can you bill me / invoice me later?"',
+        reply: 'We collect payment on the day the job\'s done — either cash or e-transfer once you\'ve had a look and you\'re happy. That way there\'s no back-and-forth and you\'re in control.',
+        tip: 'Don\'t do net-30 invoicing for residential. Keep it simple: done + happy = pay.',
+        close: '"That work for you?"'
+      }
+    ]
+  },
+  {
+    cat: 'Flat Rejections',
+    items: [
+      {
+        q: '"Not interested."',
+        reply: 'No worries at all — I appreciate you answering the door. Do you mind if I ask, is it more that it\'s not something you\'d ever want, or just not right now?',
+        tip: 'Soft "not interested" often means bad timing. One question can re-open it. If they confirm it\'s a hard no, thank them and move on — no point burning goodwill.',
+        close: 'If timing: "No problem — can I leave a card in case it comes up?"'
+      },
+      {
+        q: '"We\'re good, thanks." (before you even start)',
+        reply: 'Totally — sorry to interrupt. Quick question before I go: when did you last have your windows done? Just trying to figure out if it\'s something worth mentioning.',
+        tip: 'This is a pattern interrupt. Don\'t push a pitch — ask a curious question. Most people will answer, and that opens a conversation.',
+        close: 'If it\'s been a while: "Might be worth a free quote then — takes 30 seconds."'
+      }
+    ]
+  }
+];
+
+function renderAll(filter) {
+  const list = document.getElementById('obj-list');
+  const q = (filter || '').toLowerCase();
+  let html = '';
+  let total = 0;
+
+  OBJECTIONS.forEach(cat => {
+    const items = cat.items.filter(item =>
+      !q || item.q.toLowerCase().includes(q) || item.reply.toLowerCase().includes(q) || item.tip.toLowerCase().includes(q)
+    );
+    if (!items.length) return;
+    total += items.length;
+    html += '<div class="category"><div class="cat-label">' + cat.cat + '</div>';
+    items.forEach((item, i) => {
+      const id = cat.cat.replace(/\s/g,'') + i;
+      html += `
+        <div class="obj-item" id="oi-${id}">
+          <div class="obj-q" onclick="toggle('${id}')" role="button">
+            <div class="obj-q-text">${item.q}</div>
+            <span class="obj-chevron">▼</span>
+          </div>
+          <div class="obj-body">
+            <div class="reply-block">
+              <div class="obj-tag tag-say">Say this</div>
+              <div class="reply-text">"${item.reply}"</div>
+            </div>
+            <div class="reply-block">
+              <div class="obj-tag tag-tip">Tip</div>
+              <div class="tip-text">${item.tip}</div>
+            </div>
+            <div class="reply-block">
+              <div class="obj-tag tag-close">Close with</div>
+              <div class="close-text">${item.close}</div>
+            </div>
+          </div>
+        </div>`;
+    });
+    html += '</div>';
+  });
+
+  if (!total) {
+    html = '<div class="empty">No objections match "' + filter + '"</div>';
+  }
+
+  list.innerHTML = html;
+}
+
+function toggle(id) {
+  const el = document.getElementById('oi-' + id);
+  el.classList.toggle('open');
+}
+
+function filterObjns(val) {
+  renderAll(val);
+}
+
+renderAll();
+</script>
+</body>
+</html>

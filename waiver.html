@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wagon Window Washers — Service Agreement &amp; Invoice</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      font-size: 10.5pt;
+      color: #222;
+      background: #fff;
+      padding: 36px 48px;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .header-left h1 { font-size: 20pt; font-family: 'Arial Black', sans-serif; color: #111; }
+    .header-left .tagline { font-size: 9pt; color: #888; margin-top: 3px; font-family: Arial, sans-serif; }
+    .header-left .contact { font-size: 9pt; color: #555; margin-top: 2px; font-family: Arial, sans-serif; }
+    .header-right { text-align: right; font-size: 9pt; color: #666; font-family: Arial, sans-serif; }
+
+    .red-bar { height: 4px; background: #e81010; border-radius: 2px; margin-bottom: 16px; }
+
+    .doc-title { text-align: center; margin-bottom: 18px; }
+    .doc-title h2 { font-size: 12pt; font-family: Arial, sans-serif; font-weight: 700; color: #111; letter-spacing: 0.5px; }
+    .doc-title p { font-size: 9pt; color: #888; font-family: Arial, sans-serif; margin-top: 3px; }
+
+    .section { margin-bottom: 14px; }
+    .section-title {
+      font-family: Arial, sans-serif;
+      font-size: 9pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #e81010;
+      border-left: 3px solid #e81010;
+      padding-left: 8px;
+      margin-bottom: 10px;
+    }
+
+    .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 22px; margin-bottom: 8px; }
+    .field { display: flex; flex-direction: column; gap: 3px; }
+    .field label { font-family: Arial, sans-serif; font-size: 8pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #888; }
+    .field-line { border: none; border-bottom: 1.5px solid #ccc; height: 20px; width: 100%; }
+    .field-full { grid-column: 1 / -1; }
+
+    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-bottom: 10px; }
+    .service-item { display: flex; align-items: center; gap: 7px; font-size: 10pt; font-family: Arial, sans-serif; color: #333; }
+    .checkbox { width: 13px; height: 13px; border: 1.5px solid #aaa; border-radius: 2px; flex-shrink: 0; }
+
+    .clause {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 7px;
+      padding: 9px 12px;
+      background: #fafafa;
+      border-radius: 5px;
+      border: 1px solid #eee;
+    }
+    .initial-box {
+      border: 1.5px solid #ccc;
+      border-radius: 4px;
+      width: 40px;
+      min-width: 40px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6.5pt;
+      color: #aaa;
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      text-align: center;
+    }
+    .clause-text { font-size: 10pt; flex: 1; }
+    .clause-label { font-family: Arial, sans-serif; font-size: 9pt; font-weight: 700; color: #222; margin-bottom: 3px; }
+    .clause-body { font-size: 9pt; color: #555; line-height: 1.5; font-family: Arial, sans-serif; }
+
+    .sig-block {
+      margin-top: 16px;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      padding: 14px 18px;
+      background: #fafafa;
+    }
+    .sig-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; margin-top: 12px; }
+    .sig-field label { font-family: Arial, sans-serif; font-size: 8pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #888; display: block; margin-bottom: 24px; }
+    .sig-line { border-bottom: 1.5px solid #ccc; margin-top: 24px; }
+    .name-field { margin-top: 10px; }
+    .name-field label { font-family: Arial, sans-serif; font-size: 8pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #888; display: block; margin-bottom: 4px; }
+
+    .consent-box {
+      background: #f0f7f0;
+      border: 1px solid #c3dfc3;
+      border-radius: 5px;
+      padding: 10px 14px;
+      font-family: Arial, sans-serif;
+      font-size: 9pt;
+      color: #2d5a2d;
+      margin: 14px 0;
+      line-height: 1.5;
+    }
+
+    .footer-note {
+      margin-top: 14px;
+      font-size: 8pt;
+      color: #aaa;
+      text-align: center;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ── INVOICE PAGE ── */
+    .page-break {
+      page-break-before: always;
+      padding-top: 36px;
+    }
+
+    .invoice-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 22px;
+    }
+    .invoice-meta-right {
+      text-align: right;
+      font-family: Arial, sans-serif;
+      font-size: 9.5pt;
+      color: #444;
+      line-height: 1.8;
+    }
+    .invoice-meta-right .invoice-label {
+      font-size: 18pt;
+      font-weight: 700;
+      color: #111;
+      font-family: 'Arial Black', sans-serif;
+      letter-spacing: -0.5px;
+    }
+
+    .bill-to-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .bill-box {
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      padding: 12px 16px;
+    }
+    .bill-box .bill-title {
+      font-family: Arial, sans-serif;
+      font-size: 8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #e81010;
+      margin-bottom: 10px;
+    }
+    .bill-box .bill-field {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 8px;
+    }
+    .bill-box .bill-field label {
+      font-family: Arial, sans-serif;
+      font-size: 7.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #aaa;
+    }
+    .bill-box .bill-field .field-line { height: 18px; }
+
+    .line-items {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 0;
+      font-family: Arial, sans-serif;
+      font-size: 10pt;
+    }
+    .line-items thead tr {
+      background: #111;
+      color: #fff;
+    }
+    .line-items thead th {
+      padding: 8px 12px;
+      text-align: left;
+      font-size: 8.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .line-items thead th.right { text-align: right; }
+    .line-items tbody tr { border-bottom: 1px solid #eee; }
+    .line-items tbody tr:last-child { border-bottom: none; }
+    .line-items tbody td {
+      padding: 9px 12px;
+      color: #333;
+      vertical-align: middle;
+    }
+    .line-items tbody td.right { text-align: right; }
+    .line-items tbody tr:nth-child(even) td { background: #fafafa; }
+    .line-items .blank-row td { height: 28px; }
+
+    .totals-block {
+      margin-top: 0;
+      border: 1px solid #eee;
+      border-top: none;
+      border-radius: 0 0 6px 6px;
+      overflow: hidden;
+    }
+    .totals-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+    }
+    .totals-table td {
+      padding: 7px 12px;
+      font-size: 10pt;
+      border-bottom: 1px solid #eee;
+    }
+    .totals-table td:last-child { text-align: right; }
+    .totals-table .total-row td {
+      background: #111;
+      color: #fff;
+      font-weight: 700;
+      font-size: 11pt;
+      border-bottom: none;
+    }
+    .totals-table .total-row td:first-child { border-radius: 0 0 0 6px; }
+    .totals-table .total-row td:last-child { border-radius: 0 0 6px 0; }
+
+    .invoice-footer {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .payment-box {
+      background: #f0f7f0;
+      border: 1px solid #c3dfc3;
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-family: Arial, sans-serif;
+      font-size: 9.5pt;
+      color: #2d5a2d;
+      line-height: 1.7;
+    }
+    .payment-box .pay-title {
+      font-weight: 700;
+      font-size: 9pt;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 6px;
+      color: #1e5c30;
+    }
+    .notes-box {
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-family: Arial, sans-serif;
+    }
+    .notes-box .notes-title {
+      font-size: 8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #aaa;
+      margin-bottom: 8px;
+    }
+    .notes-line { border-bottom: 1px solid #ddd; height: 22px; margin-bottom: 6px; }
+
+    .thank-you {
+      text-align: center;
+      margin-top: 22px;
+      font-family: Arial, sans-serif;
+      font-size: 10pt;
+      color: #888;
+      border-top: 1px solid #eee;
+      padding-top: 14px;
+    }
+    .thank-you strong { color: #111; font-size: 11pt; display: block; margin-bottom: 4px; }
+
+    @media print {
+      body { padding: 18px 26px; }
+      .clause { break-inside: avoid; }
+      .sig-block { break-inside: avoid; }
+      .page-break { page-break-before: always; padding-top: 18px; }
+      .totals-block { break-inside: avoid; }
+      .invoice-footer { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════
+       PAGE 1 — SERVICE AGREEMENT
+  ════════════════════════════════════════ -->
+
+  <div class="header">
+    <div class="header-left">
+      <h1>Wagon Window Washers</h1>
+      <div class="tagline">Professional Window Cleaning — Salmon Arm &amp; Shuswap, BC</div>
+      <div class="contact">(403) 837-5092 &nbsp;·&nbsp; davidhanna@wagonwindow.com &nbsp;·&nbsp; wagonwindow.com</div>
+    </div>
+    <div class="header-right">
+      Job #: _______________<br><br>
+      Date: _______________
+    </div>
+  </div>
+  <div class="red-bar"></div>
+
+  <div class="doc-title">
+    <h2>Service Agreement</h2>
+    <p>Please complete all fields, initial each clause, and sign at the bottom.</p>
+  </div>
+
+  <!-- CUSTOMER INFO -->
+  <div class="section">
+    <div class="section-title">Customer Details</div>
+    <div class="field-grid">
+      <div class="field">
+        <label>Name</label>
+        <div class="field-line"></div>
+      </div>
+      <div class="field">
+        <label>Phone</label>
+        <div class="field-line"></div>
+      </div>
+      <div class="field field-full">
+        <label>Service Address</label>
+        <div class="field-line"></div>
+      </div>
+      <div class="field">
+        <label>City / Town</label>
+        <div class="field-line"></div>
+      </div>
+      <div class="field">
+        <label>Email (for invoice)</label>
+        <div class="field-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="section">
+    <div class="section-title">Services Today</div>
+    <div class="service-grid">
+      <div class="service-item"><div class="checkbox"></div> Exterior Windows</div>
+      <div class="service-item"><div class="checkbox"></div> Interior Windows</div>
+      <div class="service-item"><div class="checkbox"></div> Screen Cleaning</div>
+      <div class="service-item"><div class="checkbox"></div> Track Cleaning</div>
+      <div class="service-item"><div class="checkbox"></div> Gutter Cleaning</div>
+      <div class="service-item"><div class="checkbox"></div> Hard Water Stain Removal</div>
+      <div class="service-item"><div class="checkbox"></div> Commercial Storefront</div>
+    </div>
+    <div class="field-grid">
+      <div class="field">
+        <label>Quoted Price ($)</label>
+        <div class="field-line"></div>
+      </div>
+      <div class="field">
+        <label>Window Count (approx.)</label>
+        <div class="field-line"></div>
+      </div>
+      <div class="field field-full">
+        <label>Special Instructions</label>
+        <div class="field-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TERMS -->
+  <div class="section">
+    <div class="section-title">Terms — Please Initial Each Point</div>
+  </div>
+
+  <div class="clause">
+    <div class="initial-box">Initials</div>
+    <div class="clause-text">
+      <div class="clause-label">Pre-Existing Damage</div>
+      <div class="clause-body">Wagon Window Washers is not liable for pre-existing damage to glass, frames, seals, screens, or tracks — including chips, cracks, failed seals, fogging between panes, or paint overspray. We document and flag anything we notice before we start.</div>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="initial-box">Initials</div>
+    <div class="clause-text">
+      <div class="clause-label">Tempered &amp; Heat-Treated Glass</div>
+      <div class="clause-body">Some tempered or heat-treated glass contains microscopic manufacturing particles embedded in the surface. These can become dislodged during professional cleaning, causing fine scratches — this is an industry-wide condition unrelated to technique. Wagon Window Washers accepts no liability for scratches on tempered or heat-treated glass. Let us know before we start if you'd like us to avoid scrapers on specific panes.</div>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="initial-box">Initials</div>
+    <div class="clause-text">
+      <div class="clause-label">Hard Water Stains</div>
+      <div class="clause-body">Hard water staining is caused by mineral deposits in water — not by window cleaning. Standard cleaning will not remove them. Stain removal is a separate chemical treatment quoted independently, and results vary by severity. We are not liable for stains remaining after a standard clean.</div>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="initial-box">Initials</div>
+    <div class="clause-text">
+      <div class="clause-label">Screens &amp; Tracks</div>
+      <div class="clause-body">Screens are handled with care, but we are not liable for screens that are already damaged, loose, or weakened prior to removal — we will flag anything we notice. Track cleaning is a best-effort service; heavy buildup may not fully clear without track replacement, which is outside our scope.</div>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="initial-box">Initials</div>
+    <div class="clause-text">
+      <div class="clause-label">Property Access &amp; Ladders</div>
+      <div class="clause-body">We require clear, safe access to all windows. If a window is not safely reachable we will skip it and advise you. Ladder placement near landscaping or soft ground is at the technician's professional discretion. We are not liable for minor incidental contact with gardens or outdoor furniture during normal ladder use.</div>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="initial-box">Initials</div>
+    <div class="clause-text">
+      <div class="clause-label">Interior Access</div>
+      <div class="clause-body">For interior cleaning, please clear valuables, electronics, and fragile items from windows before we arrive. We are not liable for items left in the work area. Agreeing to interior service grants Wagon Window Washers access to your home solely for the work described above.</div>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="initial-box">Initials</div>
+    <div class="clause-text">
+      <div class="clause-label">Gutter Cleaning</div>
+      <div class="clause-body">Gutter cleaning includes clearing debris from gutters and flushing downspouts. We are not liable for pre-existing gutter damage, separated joints, or blocked underground drainage. If downspouts appear blocked or gutters are damaged, we will advise before proceeding.</div>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="initial-box">Initials</div>
+    <div class="clause-text">
+      <div class="clause-label">Satisfaction &amp; Re-Clean Policy</div>
+      <div class="clause-body">If you're not satisfied, contact us within 24 hours and we'll return to address it at no charge. After 24 hours, or where the issue is caused by weather, re-contamination, or conditions outside our control, we are unable to offer a re-clean under this policy.</div>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="initial-box">Initials</div>
+    <div class="clause-text">
+      <div class="clause-label">Payment</div>
+      <div class="clause-body">Payment is due on completion. We accept cash or e-transfer (davidhanna@wagonwindow.com). Invoices unpaid after 7 days may incur a 2% monthly late fee. The quoted price is the final price — any scope changes are agreed in writing before we proceed.</div>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="initial-box">Initials</div>
+    <div class="clause-text">
+      <div class="clause-label">Cancellations</div>
+      <div class="clause-body">Please provide 24 hours' notice to cancel or reschedule. Late cancellations may incur a fee of up to $50 to cover travel costs. If weather makes the job unsafe, we reschedule at no cost to either party.</div>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="initial-box">Initials</div>
+    <div class="clause-text">
+      <div class="clause-label">Liability Limit</div>
+      <div class="clause-body">To the fullest extent permitted under BC law, Wagon Window Washers' total liability for any claim is limited to the amount paid for the service. We are not liable for indirect or consequential losses. You agree to hold Wagon Window Washers, its owner, and technicians harmless from third-party claims arising from pre-existing property conditions or circumstances outside our direct control.</div>
+    </div>
+  </div>
+
+  <div class="consent-box">
+    By signing, I confirm I am the property owner or authorized representative, that I have read and initialled all points above, and that I agree to this Service Agreement.
+  </div>
+
+  <div class="sig-block">
+    <div class="section-title" style="margin-bottom:10px;">Signatures</div>
+    <div class="sig-grid">
+      <div class="sig-field">
+        <label>Customer Signature</label>
+        <div class="sig-line"></div>
+      </div>
+      <div class="sig-field">
+        <label>Date</label>
+        <div class="sig-line"></div>
+      </div>
+    </div>
+    <div class="name-field">
+      <label>Print Full Name</label>
+      <div class="field-line"></div>
+    </div>
+    <div class="sig-grid" style="margin-top:14px;">
+      <div class="sig-field">
+        <label>Wagon Window Washers Technician</label>
+        <div class="sig-line"></div>
+      </div>
+      <div class="sig-field">
+        <label>Date</label>
+        <div class="sig-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    Wagon Window Washers · Salmon Arm, BC · (403) 837-5092 · davidhanna@wagonwindow.com · wagonwindow.com<br>
+    Governed by the laws of British Columbia, Canada. Both parties retain a copy.
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       PAGE 2 — INVOICE
+  ════════════════════════════════════════ -->
+
+  <div class="page-break">
+
+    <!-- INVOICE HEADER -->
+    <div class="header">
+      <div class="header-left">
+        <h1>Wagon Window Washers</h1>
+        <div class="tagline">Professional Window Cleaning — Salmon Arm &amp; Shuswap, BC</div>
+        <div class="contact">(403) 837-5092 &nbsp;·&nbsp; davidhanna@wagonwindow.com &nbsp;·&nbsp; wagonwindow.com</div>
+      </div>
+      <div class="invoice-meta-right">
+        <div class="invoice-label">INVOICE</div>
+        Invoice #: _______________<br>
+        Date: _______________<br>
+        Due: On Completion<br>
+        Job #: _______________
+      </div>
+    </div>
+    <div class="red-bar"></div>
+
+    <!-- BILL TO / JOB DETAILS -->
+    <div class="bill-to-grid">
+      <div class="bill-box">
+        <div class="bill-title">Bill To</div>
+        <div class="bill-field">
+          <label>Name</label>
+          <div class="field-line"></div>
+        </div>
+        <div class="bill-field">
+          <label>Address</label>
+          <div class="field-line"></div>
+        </div>
+        <div class="bill-field">
+          <label>City / Town</label>
+          <div class="field-line"></div>
+        </div>
+        <div class="bill-field">
+          <label>Phone</label>
+          <div class="field-line"></div>
+        </div>
+        <div class="bill-field">
+          <label>Email</label>
+          <div class="field-line"></div>
+        </div>
+      </div>
+      <div class="bill-box">
+        <div class="bill-title">Service Details</div>
+        <div class="bill-field">
+          <label>Service Address</label>
+          <div class="field-line"></div>
+        </div>
+        <div class="bill-field">
+          <label>Service Date</label>
+          <div class="field-line"></div>
+        </div>
+        <div class="bill-field">
+          <label>Technician</label>
+          <div class="field-line"></div>
+        </div>
+        <div class="bill-field">
+          <label>Window Count</label>
+          <div class="field-line"></div>
+        </div>
+        <div class="bill-field">
+          <label>Property Type</label>
+          <div class="field-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LINE ITEMS -->
+    <table class="line-items">
+      <thead>
+        <tr>
+          <th style="width:55%">Service Description</th>
+          <th style="width:12%" class="right">Qty</th>
+          <th style="width:16%" class="right">Rate ($)</th>
+          <th style="width:17%" class="right">Amount ($)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Exterior Window Cleaning</td>
+          <td class="right"></td>
+          <td class="right"></td>
+          <td class="right"></td>
+        </tr>
+        <tr>
+          <td>Interior Window Cleaning</td>
+          <td class="right"></td>
+          <td class="right"></td>
+          <td class="right"></td>
+        </tr>
+        <tr>
+          <td>Screen Cleaning</td>
+          <td class="right"></td>
+          <td class="right"></td>
+          <td class="right"></td>
+        </tr>
+        <tr>
+          <td>Window Track Cleaning</td>
+          <td class="right"></td>
+          <td class="right"></td>
+          <td class="right"></td>
+        </tr>
+        <tr>
+          <td>Gutter Cleaning</td>
+          <td class="right"></td>
+          <td class="right"></td>
+          <td class="right"></td>
+        </tr>
+        <tr>
+          <td>Hard Water Stain Removal</td>
+          <td class="right"></td>
+          <td class="right"></td>
+          <td class="right"></td>
+        </tr>
+        <tr class="blank-row">
+          <td></td>
+          <td class="right"></td>
+          <td class="right"></td>
+          <td class="right"></td>
+        </tr>
+        <tr class="blank-row">
+          <td></td>
+          <td class="right"></td>
+          <td class="right"></td>
+          <td class="right"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- TOTALS -->
+    <div class="totals-block">
+      <table class="totals-table">
+        <tr>
+          <td>Subtotal</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Discount</td>
+          <td>−$</td>
+        </tr>
+        <tr>
+          <td>GST (5%)</td>
+          <td>$</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL DUE</td>
+          <td>$</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- PAYMENT + NOTES -->
+    <div class="invoice-footer">
+      <div class="payment-box">
+        <div class="pay-title">Payment Methods</div>
+        <strong>E-Transfer</strong> — davidhanna@wagonwindow.com<br>
+        <strong>Cash</strong> — accepted on completion<br><br>
+        Payment due on day of service.<br>
+        Unpaid invoices after 7 days: 2% monthly fee.
+      </div>
+      <div class="notes-box">
+        <div class="notes-title">Notes</div>
+        <div class="notes-line"></div>
+        <div class="notes-line"></div>
+        <div class="notes-line"></div>
+      </div>
+    </div>
+
+    <div class="thank-you">
+      <strong>Thank you for choosing Wagon Window Washers.</strong>
+      We appreciate your business and look forward to keeping your windows spotless.
+    </div>
+
+    <div class="footer-note" style="margin-top:14px;">
+      Wagon Window Washers · Salmon Arm, BC · (403) 837-5092 · davidhanna@wagonwindow.com · wagonwindow.com<br>
+      Governed by the laws of British Columbia, Canada.
+    </div>
+
+  </div><!-- end page-break -->
+
+</body>
+</html>

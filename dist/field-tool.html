@@ -264,6 +264,62 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
   cursor:pointer;font-family:inherit;width:100%;-webkit-tap-highlight-color:transparent;
   margin:0 0 1rem
 }
+/* ── COMMERCIAL TOOL ── */
+.comm-badge{display:inline-block;font-size:.68rem;font-weight:800;color:var(--blue);letter-spacing:.1em;background:rgba(59,130,246,.12);border-radius:6px;padding:.15rem .45rem}
+.comm-counters{background:var(--surface);border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:1rem}
+.comm-counter-row{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1rem;border-bottom:1px solid var(--border)}
+.comm-counter-row:last-child{border-bottom:none}
+.comm-clabel{font-size:.88rem;font-weight:600;color:var(--text);line-height:1.25}
+.comm-csub{font-size:.7rem;color:var(--muted);margin-top:.1rem}
+.comm-ccontrols{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
+.comm-cbtn{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);background:var(--surface2);color:var(--text);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;font-family:inherit}
+.comm-cbtn:active{border-color:var(--blue)}
+.comm-cval{font-size:1.15rem;font-weight:800;min-width:32px;text-align:center;color:var(--text)}
+.pill-row{display:flex;gap:.5rem;flex-wrap:wrap}
+.pill{flex:1;padding:.6rem .4rem;border-radius:8px;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);font-size:.8rem;font-weight:700;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;line-height:1.3;font-family:inherit}
+.pill.on{border-color:var(--blue);color:var(--blue);background:rgba(59,130,246,.08)}
+.comm-toggle-row{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0;border-bottom:1px solid var(--border)}
+.comm-toggle-row:last-child{border-bottom:none}
+.comm-tlabel{font-size:.9rem;font-weight:600;color:var(--text)}
+.comm-tsub{font-size:.72rem;color:var(--muted);margin-top:.1rem}
+.sw{position:relative;width:44px;height:24px;cursor:pointer;flex-shrink:0;display:inline-block}
+.sw input{opacity:0;position:absolute;width:0;height:0}
+.sw-track{position:absolute;inset:0;background:var(--border);border-radius:24px;transition:.2s}
+.sw-track:before{content:'';position:absolute;height:18px;width:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.2s}
+.sw input:checked ~ .sw-track{background:var(--blue)}
+.sw input:checked ~ .sw-track:before{transform:translateX(20px)}
+.pw-surfaces{background:var(--surface);border-radius:12px;overflow:hidden;border:1px solid var(--border);margin:.75rem 0}
+.pw-row{display:flex;align-items:center;padding:.7rem 1rem;border-bottom:1px solid var(--border);gap:.5rem}
+.pw-row:last-child{border-bottom:none}
+.pw-rlabel{font-size:.87rem;font-weight:600;color:var(--text);flex:1}
+.pw-rrate{font-size:.7rem;color:var(--blue);font-weight:700;white-space:nowrap}
+.pw-rinput{width:72px;background:var(--surface2);border:1.5px solid var(--border);border-radius:7px;padding:.35rem .5rem;color:var(--text);font-size:.9rem;font-family:inherit;text-align:right}
+.pw-runit{font-size:.72rem;color:var(--muted);white-space:nowrap}
+.freq-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.5rem 0 1rem}
+.freq-opt{padding:.9rem .75rem;border-radius:10px;border:1.5px solid var(--border);background:var(--surface);cursor:pointer;-webkit-tap-highlight-color:transparent;font-family:inherit;text-align:left}
+.freq-opt.on{border-color:var(--blue);background:rgba(59,130,246,.07)}
+.freq-opt-name{font-size:.88rem;font-weight:700;color:var(--text);display:block}
+.freq-opt-disc{font-size:.72rem;color:var(--muted);margin-top:.15rem;display:block}
+.freq-opt.on .freq-opt-disc{color:var(--blue)}
+.comm-quote-hero{text-align:center;padding:1.25rem 1rem;background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(59,130,246,.03));border-bottom:1px solid var(--border);flex-shrink:0}
+.comm-qlabel{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:.3rem}
+.comm-qamt{font-size:3.2rem;font-weight:800;color:var(--text);line-height:1;letter-spacing:-.03em}
+.comm-qrange{font-size:.78rem;color:var(--muted);margin-top:.3rem}
+.comm-breakdown{padding:.5rem 1rem .25rem;flex:1;overflow-y:auto}
+.cbrow{display:flex;justify-content:space-between;align-items:baseline;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.85rem;color:var(--muted)}
+.cbrow span:first-child{color:var(--text)}
+.cbrow.hi span:last-child{color:var(--green)}
+.cbrow.total{font-weight:800;font-size:1rem;color:var(--text)!important;border-top:1px solid var(--border);padding-top:.7rem;margin-top:.1rem}
+.cbrow.total span{color:var(--text)!important}
+.comm-bar{padding:.9rem 1rem 1.25rem;border-top:1px solid var(--border);background:var(--bg);flex-shrink:0}
+.btn-blue{background:var(--blue);color:#fff;border:none;border-radius:10px;padding:.95rem;font-size:.95rem;font-weight:700;font-family:inherit;cursor:pointer;width:100%;-webkit-tap-highlight-color:transparent}
+.btn-blue:active{opacity:.85}
+.lift-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;margin:.4rem 0}
+.lift-opt{padding:.75rem .4rem;border-radius:9px;border:1.5px solid var(--border);background:var(--surface);cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent;font-family:inherit;width:100%}
+.lift-opt.on{border-color:var(--blue);background:rgba(59,130,246,.08)}
+.lift-opt-name{font-size:.8rem;font-weight:700;color:var(--text);display:block}
+.lift-opt-price{font-size:.68rem;color:var(--muted);margin-top:.1rem;display:block}
+.lift-opt.on .lift-opt-price{color:var(--blue)}
 /* ── Outdoor mode ── */
 body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text:#111;--muted:#555}
 /* ── Revenue bar ── */
@@ -325,6 +381,13 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
       <div>
         <span class="home-btn-label">New Quote</span>
         <span class="home-btn-sub">Count panes → get a price</span>
+      </div>
+    </button>
+    <button class="home-btn" style="border-color:var(--blue)" onclick="startCommercial()">
+      <span class="home-btn-icon">🏢</span>
+      <div>
+        <span class="home-btn-label" style="color:var(--blue)">Commercial Quote</span>
+        <span class="home-btn-sub">Windows · Power Washing · Contracts</span>
       </div>
     </button>
     <button class="home-btn" onclick="goScreen('scr-leads')">
@@ -801,7 +864,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <table class="ref-table">
       <tbody>
         <tr><td>GST (Canada)</td><td>5%</td></tr>
-        <tr><td>Minimum Job</td><td>$119</td></tr>
+        <tr><td>Minimum Job</td><td>$169</td></tr>
         <tr><td>Payment</td><td>Cash, E-Transfer</td></tr>
       </tbody>
     </table>
@@ -881,6 +944,415 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
   </div>
 </div>
 
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║     COMMERCIAL TOOL          ║ -->
+<!-- ╚══════════════════════════════╝ -->
+
+<!-- C1: Business Info -->
+<div id="scr-comm-info" class="screen">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goScreen('scr-home')">← Home</button>
+    <div class="topbar-title">Commercial Quote</div>
+    <span class="comm-badge">COMMERCIAL</span>
+  </div>
+  <div class="section" style="flex:1;overflow-y:auto">
+    <div class="card" style="margin-top:.75rem">
+      <div class="card-label">Business / Property</div>
+      <div class="form-section" style="padding:0;gap:.6rem;margin-top:.5rem">
+        <div class="field-group">
+          <label class="field-label">Business Name</label>
+          <input class="field-input" id="c-biz" type="text" placeholder="Main St Café / Acme Corp" autocomplete="off">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Contact Name</label>
+          <input class="field-input" id="c-contact" type="text" placeholder="Jane Smith" autocomplete="off">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Phone</label>
+          <input class="field-input" id="c-phone" type="tel" placeholder="(250) 555-0123" oninput="formatPhone(this)">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Email</label>
+          <input class="field-input" id="c-email" type="email" placeholder="owner@business.com" autocapitalize="none">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Address *</label>
+          <input class="field-input" id="c-address" type="text" placeholder="123 Main St, Salmon Arm">
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">Property Type</div>
+      <div class="pill-row" style="margin-top:.5rem">
+        <button class="pill on" id="cpt-storefront" onclick="setCommProp('storefront',this)">Storefront</button>
+        <button class="pill" id="cpt-restaurant" onclick="setCommProp('restaurant',this)">Restaurant</button>
+        <button class="pill" id="cpt-office" onclick="setCommProp('office',this)">Office</button>
+      </div>
+      <div class="pill-row" style="margin-top:.5rem">
+        <button class="pill" id="cpt-retail" onclick="setCommProp('retail',this)">Retail</button>
+        <button class="pill" id="cpt-industrial" onclick="setCommProp('industrial',this)">Industrial</button>
+        <button class="pill" id="cpt-other" onclick="setCommProp('other',this)">Other</button>
+      </div>
+    </div>
+  </div>
+  <div class="comm-bar">
+    <button class="btn-blue" onclick="commNext1()">Next: Windows →</button>
+  </div>
+</div>
+
+<!-- C2: Window Count -->
+<div id="scr-comm-windows" class="screen">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goComm('scr-comm-info')">← Back</button>
+    <div class="topbar-title">Windows</div>
+    <span class="comm-badge">COMMERCIAL</span>
+  </div>
+  <div class="section" style="flex:1;overflow-y:auto">
+    <div class="card" style="margin-top:.75rem">
+      <div class="card-label">Pane Count</div>
+      <div style="font-size:.74rem;color:var(--muted);margin:.25rem 0 .6rem">Count each piece of glass separately</div>
+      <div class="comm-counters">
+        <div class="comm-counter-row">
+          <div>
+            <div class="comm-clabel">Standard Panes</div>
+            <div class="comm-csub">Regular commercial glass · ext $6 · in+out $10</div>
+          </div>
+          <div class="comm-ccontrols">
+            <button class="comm-cbtn" onclick="adjComm('std',-1)">−</button>
+            <span class="comm-cval" id="cv-std">0</span>
+            <button class="comm-cbtn" onclick="adjComm('std',1)">+</button>
+          </div>
+        </div>
+        <div class="comm-counter-row">
+          <div>
+            <div class="comm-clabel">Large / Plate Glass</div>
+            <div class="comm-csub">Floor-to-ceiling, picture windows · ext $9 · in+out $15</div>
+          </div>
+          <div class="comm-ccontrols">
+            <button class="comm-cbtn" onclick="adjComm('lrg',-1)">−</button>
+            <span class="comm-cval" id="cv-lrg">0</span>
+            <button class="comm-cbtn" onclick="adjComm('lrg',1)">+</button>
+          </div>
+        </div>
+        <div class="comm-counter-row">
+          <div>
+            <div class="comm-clabel">Specialty Panes</div>
+            <div class="comm-csub">Arched, leaded, shaped · std rate +$5/pane surcharge</div>
+          </div>
+          <div class="comm-ccontrols">
+            <button class="comm-cbtn" onclick="adjComm('spc',-1)">−</button>
+            <span class="comm-cval" id="cv-spc">0</span>
+            <button class="comm-cbtn" onclick="adjComm('spc',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">Building Height</div>
+      <div class="pill-row" style="margin-top:.5rem">
+        <button class="pill on" id="cst-1" onclick="setCommStories(1,this)">1 Storey</button>
+        <button class="pill" id="cst-2" onclick="setCommStories(2,this)">2 Storey +30%</button>
+        <button class="pill" id="cst-3" onclick="setCommStories(3,this)">3+ Storey +65%</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">Service Type</div>
+      <div class="pill-row" style="margin-top:.5rem">
+        <button class="pill on" id="csv-ext" onclick="setCommService('exterior',this)">Exterior Only</button>
+        <button class="pill" id="csv-both" onclick="setCommService('both',this)">Interior + Exterior</button>
+      </div>
+    </div>
+  </div>
+  <div class="comm-bar">
+    <button class="btn-blue" onclick="goComm('scr-comm-powerwash')">Next: Power Washing →</button>
+  </div>
+</div>
+
+<!-- C3: Power Washing -->
+<div id="scr-comm-powerwash" class="screen">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goComm('scr-comm-windows')">← Back</button>
+    <div class="topbar-title">Power Washing</div>
+    <span class="comm-badge">COMMERCIAL</span>
+  </div>
+  <div class="section" style="flex:1;overflow-y:auto">
+    <div class="card" style="margin-top:.75rem">
+      <div class="comm-toggle-row" style="border-bottom:none;padding:.25rem 0">
+        <div>
+          <div class="comm-tlabel">Include Power Washing?</div>
+          <div class="comm-tsub">Add pressure washing to this quote</div>
+        </div>
+        <label class="sw">
+          <input type="checkbox" id="pw-toggle" onchange="togglePW(this.checked)">
+          <span class="sw-track"></span>
+        </label>
+      </div>
+    </div>
+    <div id="pw-detail" style="display:none">
+      <div class="card">
+        <div class="card-label">Surface Areas</div>
+        <div style="font-size:.73rem;color:var(--muted);margin:.25rem 0 .6rem">Enter sq ft for each surface — leave 0 to skip</div>
+        <div class="pw-surfaces">
+          <div class="pw-row">
+            <div><div class="pw-rlabel">Concrete / Pavement</div><div class="pw-rrate">$0.25/sqft</div></div>
+            <input class="pw-rinput" id="pw-concrete" type="number" min="0" value="0" inputmode="numeric" oninput="commState.concrete=+this.value">
+            <span class="pw-runit">ft²</span>
+          </div>
+          <div class="pw-row">
+            <div><div class="pw-rlabel">Siding — Vinyl / Stucco</div><div class="pw-rrate">$0.30/sqft</div></div>
+            <input class="pw-rinput" id="pw-siding" type="number" min="0" value="0" inputmode="numeric" oninput="commState.siding=+this.value">
+            <span class="pw-runit">ft²</span>
+          </div>
+          <div class="pw-row">
+            <div><div class="pw-rlabel">Brick / Stone</div><div class="pw-rrate">$0.40/sqft</div></div>
+            <input class="pw-rinput" id="pw-brick" type="number" min="0" value="0" inputmode="numeric" oninput="commState.brick=+this.value">
+            <span class="pw-runit">ft²</span>
+          </div>
+          <div class="pw-row">
+            <div><div class="pw-rlabel">Wood Deck / Patio</div><div class="pw-rrate">$0.35/sqft</div></div>
+            <input class="pw-rinput" id="pw-deck" type="number" min="0" value="0" inputmode="numeric" oninput="commState.deck=+this.value">
+            <span class="pw-runit">ft²</span>
+          </div>
+          <div class="pw-row">
+            <div><div class="pw-rlabel">Parking Lot</div><div class="pw-rrate">$0.18/sqft</div></div>
+            <input class="pw-rinput" id="pw-parking" type="number" min="0" value="0" inputmode="numeric" oninput="commState.parking=+this.value">
+            <span class="pw-runit">ft²</span>
+          </div>
+        </div>
+        <div style="font-size:.71rem;color:var(--muted);text-align:center;margin-top:.3rem">Minimum power wash charge: $200</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Power Wash Options</div>
+        <div class="comm-toggle-row">
+          <div>
+            <div class="comm-tlabel">Hot Water Unit</div>
+            <div class="comm-tsub">Grease, gum, heavy buildup · +20%</div>
+          </div>
+          <label class="sw"><input type="checkbox" id="pw-hot" onchange="commState.pwHot=this.checked"><span class="sw-track"></span></label>
+        </div>
+        <div class="comm-toggle-row" style="border-bottom:none">
+          <div>
+            <div class="comm-tlabel">2+ Storey Siding</div>
+            <div class="comm-tsub">Extension wand / lift required · +35% on siding</div>
+          </div>
+          <label class="sw"><input type="checkbox" id="pw-stories" onchange="commState.pwStories=this.checked?2:1"><span class="sw-track"></span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="comm-bar">
+    <button class="btn-blue" onclick="goComm('scr-comm-fees')">Next: Add-ons & Fees →</button>
+  </div>
+</div>
+
+<!-- C4: Add-ons & Fees -->
+<div id="scr-comm-fees" class="screen">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goComm('scr-comm-powerwash')">← Back</button>
+    <div class="topbar-title">Add-ons & Fees</div>
+    <span class="comm-badge">COMMERCIAL</span>
+  </div>
+  <div class="section" style="flex:1;overflow-y:auto">
+    <div class="card" style="margin-top:.75rem">
+      <div class="card-label">Cleaning Add-ons</div>
+      <div class="comm-counters" style="margin-bottom:0">
+        <div class="comm-counter-row">
+          <div><div class="comm-clabel">Window Screens</div><div class="comm-csub">$4 each</div></div>
+          <div class="comm-ccontrols">
+            <button class="comm-cbtn" onclick="adjCommFee('screens',-1)">−</button>
+            <span class="comm-cval" id="cf-screens">0</span>
+            <button class="comm-cbtn" onclick="adjCommFee('screens',1)">+</button>
+          </div>
+        </div>
+        <div class="comm-counter-row">
+          <div><div class="comm-clabel">Window Tracks</div><div class="comm-csub">$4 each</div></div>
+          <div class="comm-ccontrols">
+            <button class="comm-cbtn" onclick="adjCommFee('tracks',-1)">−</button>
+            <span class="comm-cval" id="cf-tracks">0</span>
+            <button class="comm-cbtn" onclick="adjCommFee('tracks',1)">+</button>
+          </div>
+        </div>
+        <div class="comm-counter-row">
+          <div><div class="comm-clabel">Hard Water Panes</div><div class="comm-csub">$20/pane — mineral & scale removal</div></div>
+          <div class="comm-ccontrols">
+            <button class="comm-cbtn" onclick="adjCommFee('hardwater',-1)">−</button>
+            <span class="comm-cval" id="cf-hardwater">0</span>
+            <button class="comm-cbtn" onclick="adjCommFee('hardwater',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">Commercial Fees</div>
+      <div class="comm-toggle-row">
+        <div>
+          <div class="comm-tlabel">After-Hours Service</div>
+          <div class="comm-tsub">Outside 8am–6pm · +25% on window total</div>
+        </div>
+        <label class="sw"><input type="checkbox" id="fee-afterhours" onchange="commState.afterHours=this.checked"><span class="sw-track"></span></label>
+      </div>
+      <div class="comm-toggle-row">
+        <div>
+          <div class="comm-tlabel">Traffic Control Required</div>
+          <div class="comm-tsub">Cones / signage for public-facing work · +$150</div>
+        </div>
+        <label class="sw"><input type="checkbox" id="fee-traffic" onchange="commState.trafficCtrl=this.checked"><span class="sw-track"></span></label>
+      </div>
+      <div style="padding:.8rem 0;border-bottom:1px solid var(--border)">
+        <div class="comm-tlabel" style="margin-bottom:.5rem">Lift Equipment</div>
+        <div class="lift-grid">
+          <button class="lift-opt on" id="lift-none" onclick="setLift('none',this)">
+            <span class="lift-opt-name">None</span>
+            <span class="lift-opt-price">No charge</span>
+          </button>
+          <button class="lift-opt" id="lift-scissor" onclick="setLift('scissor',this)">
+            <span class="lift-opt-name">Scissor Lift</span>
+            <span class="lift-opt-price">+$250/day</span>
+          </button>
+          <button class="lift-opt" id="lift-boom" onclick="setLift('boom',this)">
+            <span class="lift-opt-name">Boom Lift</span>
+            <span class="lift-opt-price">+$450/day</span>
+          </button>
+        </div>
+      </div>
+      <div style="padding:.75rem 0 0">
+        <div class="comm-tlabel" style="margin-bottom:.3rem">Travel Beyond 30km</div>
+        <div class="comm-tsub" style="margin-bottom:.55rem">$2.00/km each way from Salmon Arm</div>
+        <div style="display:flex;align-items:center;gap:.65rem">
+          <input class="field-input" id="fee-travel" type="number" min="0" value="0" inputmode="numeric" style="width:80px;text-align:right" oninput="updateTravelDisplay()">
+          <span style="font-size:.85rem;color:var(--muted)">km</span>
+          <span class="comm-badge" id="travel-fee-display">+$0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="comm-bar">
+    <button class="btn-blue" onclick="goComm('scr-comm-contract')">Next: Contract →</button>
+  </div>
+</div>
+
+<!-- C5: Contract / Frequency -->
+<div id="scr-comm-contract" class="screen">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goComm('scr-comm-fees')">← Back</button>
+    <div class="topbar-title">Contract</div>
+    <span class="comm-badge">COMMERCIAL</span>
+  </div>
+  <div class="section" style="flex:1;overflow-y:auto">
+    <div class="card" style="margin-top:.75rem">
+      <div class="card-label">Service Frequency</div>
+      <div style="font-size:.74rem;color:var(--muted);margin:.25rem 0 .6rem">Recurring contracts receive a loyalty discount</div>
+      <div class="freq-grid">
+        <button class="freq-opt on" id="freq-once" onclick="setFreq('once',this)">
+          <span class="freq-opt-name">One-Time</span>
+          <span class="freq-opt-disc">No discount</span>
+        </button>
+        <button class="freq-opt" id="freq-monthly" onclick="setFreq('monthly',this)">
+          <span class="freq-opt-name">Monthly</span>
+          <span class="freq-opt-disc">−12%</span>
+        </button>
+        <button class="freq-opt" id="freq-biweekly" onclick="setFreq('biweekly',this)">
+          <span class="freq-opt-name">Bi-Weekly</span>
+          <span class="freq-opt-disc">−15%</span>
+        </button>
+        <button class="freq-opt" id="freq-weekly" onclick="setFreq('weekly',this)">
+          <span class="freq-opt-name">Weekly</span>
+          <span class="freq-opt-disc">−20%</span>
+        </button>
+        <button class="freq-opt" id="freq-quarterly" onclick="setFreq('quarterly',this)">
+          <span class="freq-opt-name">Quarterly</span>
+          <span class="freq-opt-disc">−8%</span>
+        </button>
+        <button class="freq-opt" id="freq-annual" onclick="setFreq('annual',this)">
+          <span class="freq-opt-name">Annual</span>
+          <span class="freq-opt-disc">−5%</span>
+        </button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">Field Discount</div>
+      <div style="font-size:.74rem;color:var(--muted);margin:.25rem 0 .7rem">Applied on top of any contract discount · max 40%</div>
+      <div style="display:flex;align-items:center;gap:.75rem">
+        <input class="field-input" id="comm-discount" type="number" min="0" max="40" value="0" style="width:70px;text-align:center" oninput="commState.discount=Math.min(40,Math.max(0,+this.value))">
+        <span style="font-size:1rem;color:var(--muted)">%</span>
+      </div>
+    </div>
+  </div>
+  <div class="comm-bar">
+    <button class="btn-blue" onclick="goComm('scr-comm-quote')">View Quote →</button>
+  </div>
+</div>
+
+<!-- C6: Quote Display -->
+<div id="scr-comm-quote" class="screen">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goComm('scr-comm-contract')">← Back</button>
+    <div class="topbar-title">Commercial Quote</div>
+    <span class="comm-badge">COMMERCIAL</span>
+  </div>
+  <div class="comm-quote-hero">
+    <div class="comm-qlabel">Estimated Total (incl. GST)</div>
+    <div class="comm-qamt" id="cq-total">$—</div>
+    <div class="comm-qrange" id="cq-range"></div>
+  </div>
+  <div class="comm-breakdown" id="comm-breakdown"></div>
+  <div class="comm-bar" style="display:flex;flex-direction:column;gap:.6rem">
+    <button class="btn-blue" onclick="showCommCustomer()">Show Customer →</button>
+    <div style="display:flex;gap:.6rem">
+      <button class="btn btn-outline" style="flex:1" onclick="goComm('scr-comm-save')">Save Lead</button>
+      <button class="btn btn-green" style="flex:1" onclick="goComm('scr-comm-save')">They Said YES ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- C7: Save Lead -->
+<div id="scr-comm-save" class="screen">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goComm('scr-comm-quote')">← Quote</button>
+    <div class="topbar-title">Save Lead</div>
+    <span class="comm-badge">COMMERCIAL</span>
+  </div>
+  <div class="section" style="flex:1;overflow-y:auto">
+    <div class="card" style="margin-top:.75rem">
+      <div class="card-label">Confirm Details</div>
+      <div class="form-section" style="padding:0;gap:.6rem;margin-top:.5rem">
+        <div class="field-group">
+          <label class="field-label">Business Name</label>
+          <input class="field-input" id="cs-biz" type="text" autocomplete="off">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Contact Name</label>
+          <input class="field-input" id="cs-contact" type="text" autocomplete="off">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Phone *</label>
+          <input class="field-input" id="cs-phone" type="tel" oninput="formatPhone(this)">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Email</label>
+          <input class="field-input" id="cs-email" type="email" autocapitalize="none">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Address</label>
+          <input class="field-input" id="cs-address" type="text">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Preferred Date</label>
+          <input class="field-input" id="cs-date" type="date">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Notes</label>
+          <input class="field-input" id="cs-notes" type="text" placeholder="Access instructions, gate code, special requests…">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="comm-bar" style="display:flex;gap:.6rem">
+    <button class="btn btn-outline" style="flex:1" onclick="saveCommLead(false)">Save</button>
+    <button class="btn btn-green" style="flex:2" onclick="saveCommLead(true)">Save + Book →</button>
+  </div>
+</div>
+
 </div><!-- /#app -->
 
 <!-- ── Edit Lead Overlay ── -->
@@ -923,7 +1395,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
 // ── Pricing constants ──────────────────────────────────────────────────
 const ADDONS = { screens: 4, tracks: 4, hardwater: 20, largewindow: 8 };
 const GST = 0.05;
-const MIN_JOB = 119;
+const MIN_JOB = 169;
 const BOOKING_URL = 'https://calendar.app.google/KcgTkongKSkHw8xZ8';
 
 // State
@@ -935,13 +1407,16 @@ const state = {
   addonsContext: 'packages'
 };
 
+let currentDraftId = null;
+
 // ── Pricing engine (mirrors customer quote tool exactly) ───────────────
 function calcBase(panes, type) {
   let ext = 169, intExt = 219;
   let rem = Math.max(0, panes - 30);
   const t1 = Math.min(rem, 20); rem -= t1; ext += t1 * 2.50; intExt += t1 * 3.50;
   const t2 = Math.min(rem, 20); rem -= t2; ext += t2 * 3.50; intExt += t2 * 4.00;
-  const t3 = Math.min(rem, 29);            ext += t3 * 4.00; intExt += t3 * 4.50;
+  const t3 = Math.min(rem, 29); rem -= t3; ext += t3 * 4.00; intExt += t3 * 4.50;
+  ext += rem * 4.00; intExt += rem * 7.00;
   return type === 'exterior' ? Math.round(ext) : Math.round(intExt);
 }
 
@@ -991,6 +1466,7 @@ function goScreen(id) {
 
 // ── Quote flow ─────────────────────────────────────────────────────────
 function startQuote() {
+  currentDraftId = null;
   clearSession();
   state.serviceType = null;
   state.breakdown = { regular: 0, large: 0, french: 0 };
@@ -1297,6 +1773,7 @@ function renderQuote() {
   rows += brow('GST (5%)', fmt(q.gst));
   rows += brow('Total', fmt(q.total), true);
   document.getElementById('breakdown').innerHTML = rows;
+  autoSaveDraft();
 }
 
 function brow(label, val, bold) {
@@ -1304,6 +1781,47 @@ function brow(label, val, bold) {
     + '<span class="breakdown-label">' + label + '</span>'
     + '<span class="breakdown-val">' + val + '</span>'
     + '</div>';
+}
+
+// ── Auto-save draft ────────────────────────────────────────────────────
+function autoSaveDraft() {
+  const q = buildQuote();
+  if (!q) return;
+  const svcLabel = state.serviceType === 'exterior' ? 'Exterior Only' : 'Int + Ext';
+  const parts = [svcLabel, state.panes + ' panes'];
+  if (state.addons.screens)    parts.push('screens ×' + state.addons.screens);
+  if (state.addons.tracks)     parts.push('tracks ×' + state.addons.tracks);
+  if (state.addons.gutters > 0) parts.push('gutters');
+  if (state.addons.hardwater)  parts.push('hard water ×' + state.addons.hardwater);
+  if (state.addons.largewindow) parts.push('large ×' + state.addons.largewindow);
+  const discEl = document.getElementById('discount-pct');
+  const params = {
+    breakdown: { ...state.breakdown },
+    serviceType: state.serviceType,
+    addons: { ...state.addons },
+    selectedPackage: state.selectedPackage || null,
+    discount: parseFloat(discEl?.value || 0)
+  };
+  const leads = getLeads();
+  if (currentDraftId) {
+    const idx = leads.findIndex(l => l.id === currentDraftId);
+    if (idx !== -1) {
+      leads[idx] = { ...leads[idx], quote: q.total, quote_str: fmt(q.total) + ' incl. GST', summary: parts.join(', '), params };
+      saveLeads(leads);
+      return;
+    }
+  }
+  const draft = {
+    id: Date.now(), draft: true,
+    name: '', phone: '', email: '', address: '', date_pref: '', notes: '',
+    quote: q.total, quote_str: fmt(q.total) + ' incl. GST',
+    summary: parts.join(', '),
+    created_at: new Date().toISOString(), params
+  };
+  currentDraftId = draft.id;
+  leads.unshift(draft);
+  saveLeads(leads);
+  updateHomeCount();
 }
 
 // ── Customer mode ──────────────────────────────────────────────────────
@@ -1402,7 +1920,11 @@ function saveLead(openCal) {
     }
   };
 
-  const leads = getLeads();
+  let leads = getLeads();
+  if (currentDraftId) {
+    leads = leads.filter(l => l.id !== currentDraftId);
+    currentDraftId = null;
+  }
   leads.unshift(lead);
   saveLeads(leads);
 
@@ -1449,6 +1971,7 @@ function saveLeadEdit() {
     if (l.id !== id) return l;
     return {
       ...l,
+      draft: false,
       name,
       phone,
       email:     document.getElementById('edit-lead-email').value.trim(),
@@ -1620,6 +2143,19 @@ function renderLeads() {
   }
   el.innerHTML = leads.map(l => {
     const date = new Date(l.created_at).toLocaleDateString('en-CA', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit', hour12:true });
+    if (l.draft) {
+      return '<div class="lead-item" style="border-color:var(--yellow);opacity:.9">'
+        + '<div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem">'
+        + '<span style="font-size:.65rem;font-weight:800;color:var(--yellow);background:rgba(245,158,11,.12);border-radius:4px;padding:.1rem .4rem;letter-spacing:.08em">AUTO-SAVED</span>'
+        + '<span style="font-size:.75rem;color:var(--muted)">No contact info yet</span>'
+        + '</div>'
+        + '<div class="lead-meta" style="color:var(--muted)">🕐 ' + date + '</div>'
+        + (l.quote_str ? '<div class="lead-quote">' + l.quote_str + ' · ' + esc(l.summary) + '</div>' : '')
+        + '<div class="lead-actions" style="margin-top:.6rem">'
+        + '<button class="lead-btn" style="flex:2;border-color:var(--yellow);color:var(--yellow)" onclick="editLead(' + l.id + ')">+ Add Customer Info</button>'
+        + '<button class="lead-btn delete" onclick="deleteLead(' + l.id + ')">Delete</button>'
+        + '</div></div>';
+    }
     return '<div class="lead-item">'
       + '<div class="lead-name" style="cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px" onclick="loadLeadQuote(' + l.id + ')">' + esc(l.name) + ' ↗</div>'
       + '<div class="lead-meta">'
@@ -2043,6 +2579,354 @@ function resumeSession() {
     if (target === 'scr-quote')    renderQuote();
     window.scrollTo(0, 0);
   } catch { clearSession(); goScreen('scr-count'); }
+}
+
+// ══════════════════════════════════════════════════════════════════════
+// COMMERCIAL TOOL
+// ══════════════════════════════════════════════════════════════════════
+
+const COMM = {
+  std:  { ext: 6.00, both: 10.00 },
+  lrg:  { ext: 9.00, both: 15.00 },
+  spc:  5.00,
+  storyMult: [0, 1.0, 1.30, 1.65],
+  screens: 4, tracks: 4, hardwater: 20,
+  pw: { concrete: 0.25, siding: 0.30, brick: 0.40, deck: 0.35, parking: 0.18 },
+  pwMin: 200, pwHot: 0.20, pwStory2: 0.35,
+  afterHours: 0.25,
+  trafficCtrl: 150,
+  lift: { none: 0, scissor: 250, boom: 450 },
+  travelPkm: 2.00,
+  minJob: 169, gst: 0.05,
+  freq: { once:0, monthly:0.12, biweekly:0.15, weekly:0.20, quarterly:0.08, annual:0.05 }
+};
+
+let commState = {};
+
+function resetCommState() {
+  commState = {
+    biz:'', contact:'', phone:'', email:'', address:'',
+    propType:'storefront',
+    std:0, lrg:0, spc:0,
+    stories:1, service:'exterior',
+    pwOn:false, pw:{ concrete:0, siding:0, brick:0, deck:0, parking:0 },
+    pwHot:false, pwStory2:false,
+    screens:0, tracks:0, hardwater:0,
+    afterHours:false, trafficCtrl:false,
+    lift:'none', travelKm:0,
+    freq:'once', fieldDiscount:0,
+    quote:null
+  };
+}
+resetCommState();
+
+function startCommercial() {
+  resetCommState();
+  ['c-biz','c-contact','c-phone','c-email','c-address'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  ['cv-std','cv-lrg','cv-spc'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = '0';
+  });
+  setCommPropUI('storefront');
+  setCommStoriesUI(1);
+  setCommServiceUI('exterior');
+  const pwTog = document.getElementById('pw-toggle');
+  if (pwTog) pwTog.checked = false;
+  const pwDet = document.getElementById('pw-detail');
+  if (pwDet) pwDet.style.display = 'none';
+  ['pw-concrete','pw-siding','pw-brick','pw-deck','pw-parking'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  const pwHot = document.getElementById('pw-hot');
+  if (pwHot) pwHot.checked = false;
+  const pwSt = document.getElementById('pw-stories');
+  if (pwSt) pwSt.checked = false;
+  ['cf-screens','cf-tracks','cf-hardwater'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = '0';
+  });
+  const ahEl = document.getElementById('fee-afterhours');
+  if (ahEl) ahEl.checked = false;
+  const tcEl = document.getElementById('fee-traffic');
+  if (tcEl) tcEl.checked = false;
+  setLiftUI('none');
+  const travelEl = document.getElementById('fee-travel');
+  if (travelEl) travelEl.value = '';
+  const travelDisp = document.getElementById('travel-fee-display');
+  if (travelDisp) travelDisp.textContent = '+$0';
+  setFreqUI('once');
+  const fdEl = document.getElementById('comm-discount');
+  if (fdEl) fdEl.value = '';
+  goScreen('scr-comm-info');
+}
+
+function goComm(id) {
+  if (id === 'scr-comm-quote') renderCommQuote();
+  if (id === 'scr-comm-save')  fillCommSaveForm();
+  goScreen(id);
+}
+
+function setCommProp(type) {
+  commState.propType = type;
+  setCommPropUI(type);
+}
+function setCommPropUI(type) {
+  ['storefront','restaurant','office','retail','industrial','other'].forEach(t => {
+    const el = document.getElementById('cpt-' + t);
+    if (el) el.classList.toggle('on', t === type);
+  });
+}
+
+function adjComm(field, delta) {
+  commState[field] = Math.max(0, (commState[field] || 0) + delta);
+  const el = document.getElementById('cv-' + field);
+  if (el) el.textContent = commState[field];
+}
+
+function setCommStories(n) {
+  commState.stories = n;
+  setCommStoriesUI(n);
+}
+function setCommStoriesUI(n) {
+  [1,2,3].forEach(i => {
+    const el = document.getElementById('cst-' + i);
+    if (el) el.classList.toggle('on', i === n);
+  });
+}
+
+function setCommService(s) {
+  commState.service = s;
+  setCommServiceUI(s);
+}
+function setCommServiceUI(s) {
+  const map = { exterior:'csv-ext', both:'csv-both' };
+  Object.keys(map).forEach(k => {
+    const el = document.getElementById(map[k]);
+    if (el) el.classList.toggle('on', k === s);
+  });
+}
+
+function togglePW(checked) {
+  commState.pwOn = checked;
+  const det = document.getElementById('pw-detail');
+  if (det) det.style.display = checked ? 'block' : 'none';
+}
+
+function adjCommFee(field, delta) {
+  commState[field] = Math.max(0, (commState[field] || 0) + delta);
+  const el = document.getElementById('cf-' + field);
+  if (el) el.textContent = commState[field];
+}
+
+function setLift(type) {
+  commState.lift = type;
+  setLiftUI(type);
+}
+function setLiftUI(type) {
+  ['none','scissor','boom'].forEach(k => {
+    const el = document.getElementById('lift-' + k);
+    if (el) el.classList.toggle('on', k === type);
+  });
+}
+
+function updateTravelDisplay() {
+  const km = parseFloat(document.getElementById('fee-travel').value) || 0;
+  commState.travelKm = km;
+  const cost = km * COMM.travelPkm;
+  const disp = document.getElementById('travel-fee-display');
+  if (disp) disp.textContent = cost > 0 ? '+$' + cost.toFixed(0) : '+$0';
+}
+
+function setFreq(f) {
+  commState.freq = f;
+  setFreqUI(f);
+}
+function setFreqUI(f) {
+  ['once','monthly','biweekly','weekly','quarterly','annual'].forEach(k => {
+    const el = document.getElementById('freq-' + k);
+    if (el) el.classList.toggle('on', k === f);
+  });
+}
+
+function commNext1() {
+  const biz = document.getElementById('c-biz').value.trim();
+  if (!biz) { alert('Business name is required.'); return; }
+  commState.biz     = biz;
+  commState.contact = document.getElementById('c-contact').value.trim();
+  commState.phone   = document.getElementById('c-phone').value.trim();
+  commState.email   = document.getElementById('c-email').value.trim();
+  commState.address = document.getElementById('c-address').value.trim();
+  goScreen('scr-comm-windows');
+}
+
+function commSaveState() {
+  ['concrete','siding','brick','deck','parking'].forEach(k => {
+    const el = document.getElementById('pw-' + k);
+    commState.pw[k] = el ? (parseFloat(el.value) || 0) : 0;
+  });
+  const pwHot = document.getElementById('pw-hot');
+  commState.pwHot    = pwHot ? pwHot.checked : false;
+  const pwSt = document.getElementById('pw-stories');
+  commState.pwStory2 = pwSt ? pwSt.checked : false;
+  // afterHours + trafficCtrl set inline via onchange already in commState
+  commState.travelKm    = parseFloat(document.getElementById('fee-travel').value) || 0;
+  commState.fieldDiscount = parseFloat(document.getElementById('comm-discount').value) || 0;
+}
+
+function calcCommQuote() {
+  commSaveState();
+  const s = commState;
+  const mult = COMM.storyMult[Math.min(s.stories, 3)];
+  const svcKey = s.service === 'exterior' ? 'ext' : 'both';
+
+  let windows = (s.std * COMM.std[svcKey] + s.lrg * COMM.lrg[svcKey]) * mult;
+  windows += s.spc * COMM.spc;
+
+  let pw = 0;
+  if (s.pwOn) {
+    let sqftCost = 0;
+    Object.keys(COMM.pw).forEach(k => { sqftCost += (s.pw[k] || 0) * COMM.pw[k]; });
+    if (s.pwStory2) sqftCost *= (1 + COMM.pwStory2);
+    if (s.pwHot)    sqftCost *= (1 + COMM.pwHot);
+    pw = sqftCost > 0 ? Math.max(sqftCost, COMM.pwMin) : 0;
+  }
+
+  const screensCost    = s.screens   * COMM.screens;
+  const tracksCost     = s.tracks    * COMM.tracks;
+  const hardwaterCost  = s.hardwater * COMM.hardwater;
+
+  let subtotal = windows + pw + screensCost + tracksCost + hardwaterCost;
+  if (s.afterHours)  subtotal *= (1 + COMM.afterHours);
+  if (s.trafficCtrl) subtotal += COMM.trafficCtrl;
+  subtotal += COMM.lift[s.lift] || 0;
+  subtotal += s.travelKm * COMM.travelPkm;
+
+  const freqDisc  = COMM.freq[s.freq] || 0;
+  const fieldDisc = Math.min(s.fieldDiscount / 100, 0.40);
+  const totalDisc = Math.min(freqDisc + fieldDisc, 0.45);
+  const discAmt   = subtotal * totalDisc;
+  const afterDisc = subtotal - discAmt;
+
+  const minApplied = afterDisc < COMM.minJob;
+  const final = Math.max(afterDisc, COMM.minJob);
+  const gst   = final * COMM.gst;
+  const total = final + gst;
+
+  return {
+    windows, pw, screensCost, tracksCost, hardwaterCost,
+    subtotal, discAmt, totalDisc, afterDisc, minApplied,
+    final, gst, total, mult, svcKey
+  };
+}
+
+function renderCommQuote() {
+  const q = calcCommQuote();
+  commState.quote = q;
+
+  const fmt = n => '$' + Math.round(n).toLocaleString();
+  const pct = n => (n * 100).toFixed(0) + '%';
+
+  document.getElementById('cq-total').textContent = fmt(q.total);
+  document.getElementById('cq-range').textContent = fmt(q.final) + ' + GST';
+
+  let rows = '';
+  if (q.windows > 0)       rows += `<div class="cbrow"><span>Windows (×${q.mult.toFixed(2)} story)</span><span>${fmt(q.windows)}</span></div>`;
+  if (q.pw > 0)            rows += `<div class="cbrow"><span>Power Washing</span><span>${fmt(q.pw)}</span></div>`;
+  if (q.screensCost > 0)   rows += `<div class="cbrow"><span>Screens (${commState.screens})</span><span>${fmt(q.screensCost)}</span></div>`;
+  if (q.tracksCost > 0)    rows += `<div class="cbrow"><span>Tracks (${commState.tracks})</span><span>${fmt(q.tracksCost)}</span></div>`;
+  if (q.hardwaterCost > 0) rows += `<div class="cbrow"><span>Hard Water Removal (${commState.hardwater})</span><span>${fmt(q.hardwaterCost)}</span></div>`;
+  if (commState.afterHours)  rows += `<div class="cbrow"><span>After-Hours Premium (25%)</span><span>included</span></div>`;
+  if (commState.trafficCtrl) rows += `<div class="cbrow"><span>Traffic Control</span><span>${fmt(COMM.trafficCtrl)}</span></div>`;
+  if (commState.lift !== 'none') rows += `<div class="cbrow"><span>Lift Equipment (${commState.lift})</span><span>${fmt(COMM.lift[commState.lift])}</span></div>`;
+  if (commState.travelKm > 0) rows += `<div class="cbrow"><span>Travel (${commState.travelKm} km)</span><span>${fmt(commState.travelKm * COMM.travelPkm)}</span></div>`;
+  if (q.discAmt > 0) rows += `<div class="cbrow" style="color:var(--green)"><span>Discount (${pct(q.totalDisc)})</span><span>-${fmt(q.discAmt)}</span></div>`;
+  if (q.minApplied)  rows += `<div class="cbrow" style="color:var(--yellow)"><span>Minimum Job Applied</span><span>${fmt(COMM.minJob)}</span></div>`;
+  rows += `<div class="cbrow" style="border-top:1px solid var(--border);margin-top:.5rem;padding-top:.5rem"><span>Before Tax</span><span>${fmt(q.final)}</span></div>`;
+  rows += `<div class="cbrow"><span>GST (5%)</span><span>${fmt(q.gst)}</span></div>`;
+
+  document.getElementById('comm-breakdown').innerHTML = rows;
+}
+
+function showCommCustomer() {
+  const q = commState.quote;
+  if (!q) return;
+  const fmt = n => '$' + Math.round(n).toLocaleString();
+  const lines = [
+    '🏢 COMMERCIAL ESTIMATE — WAGON WINDOWS',
+    '',
+    `Business: ${commState.biz}`,
+    commState.address ? `Address: ${commState.address}` : '',
+    '',
+    '── SERVICE ──',
+    `Windows: ${commState.std} standard · ${commState.lrg} large · ${commState.spc} specialty pane(s)`,
+    `Stories: ${commState.stories} · Service: ${commState.service === 'exterior' ? 'Exterior Only' : 'Interior + Exterior'}`,
+    commState.pwOn ? 'Power Washing: included' : '',
+    '',
+    '── PRICING ──',
+    `Subtotal: ${fmt(q.subtotal)}`,
+    q.discAmt > 0 ? `Discount (${(q.totalDisc*100).toFixed(0)}%): -${fmt(q.discAmt)}` : '',
+    `Before Tax: ${fmt(q.final)}`,
+    `GST (5%): ${fmt(q.gst)}`,
+    `TOTAL: ${fmt(q.total)}`,
+    '',
+    commState.freq !== 'once' ? `Frequency: ${commState.freq} contract` : '',
+    '── WAGON WINDOWS ──',
+    'wagonwindow.com · (403) 837-5092',
+  ].filter(Boolean).join('\n');
+
+  const overlay = document.getElementById('customer-overlay');
+  const text    = document.getElementById('customer-text');
+  if (overlay && text) {
+    text.textContent = lines;
+    overlay.classList.remove('hidden');
+  }
+}
+
+function fillCommSaveForm() {
+  const q = commState.quote || calcCommQuote();
+  document.getElementById('cs-biz').value     = commState.biz     || '';
+  document.getElementById('cs-contact').value = commState.contact || '';
+  document.getElementById('cs-phone').value   = commState.phone   || '';
+  document.getElementById('cs-email').value   = commState.email   || '';
+  document.getElementById('cs-address').value = commState.address || '';
+}
+
+function saveCommLead(book) {
+  const q = commState.quote || calcCommQuote();
+  const notes = document.getElementById('cs-notes').value.trim();
+  const lead = {
+    id: Date.now(),
+    type: 'commercial',
+    date: new Date().toLocaleDateString(),
+    biz: commState.biz,
+    contact: commState.contact,
+    phone: commState.phone,
+    email: commState.email,
+    address: commState.address,
+    propType: commState.propType,
+    stories: commState.stories,
+    service: commState.service,
+    std: commState.std, lrg: commState.lrg, spc: commState.spc,
+    pwOn: commState.pwOn,
+    screens: commState.screens, tracks: commState.tracks, hardwater: commState.hardwater,
+    lift: commState.lift, travelKm: commState.travelKm,
+    freq: commState.freq, fieldDiscount: commState.fieldDiscount,
+    total: Math.round(q.total),
+    pretax: Math.round(q.final),
+    notes
+  };
+  const leads = JSON.parse(localStorage.getItem('ww_leads') || '[]');
+  leads.unshift(lead);
+  localStorage.setItem('ww_leads', JSON.stringify(leads));
+  updateHomeCount();
+  if (book) {
+    window.open('https://calendar.app.google/KcgTkongKSkHw8xZ8', '_blank');
+  }
+  goScreen('scr-home');
 }
 
 // ── Init ───────────────────────────────────────────────────────────────

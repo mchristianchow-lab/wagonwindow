@@ -236,8 +236,8 @@
   function buildRows(bd, baseLabel) {
     let r = '';
     r += '<div class="bd-row"><span>' + baseLabel + '</span><span>' + fmt(bd.base) + '</span></div>';
-    if (lrg > 0) r += '<div class="bd-row"><span>Large windows (' + lrg + ' × $5)</span><span>' + fmt(bd.largeSurcharge) + '</span></div>';
-    if (frn > 0) r += '<div class="bd-row"><span>French / complicated (' + frn + ' × $5)</span><span>' + fmt(bd.frenchSurcharge) + '</span></div>';
+    if (lrg > 0) r += '<div class="bd-row"><span>Large windows (' + lrg + ' × $8)</span><span>' + fmt(bd.largeSurcharge) + '</span></div>';
+    if (frn > 0) r += '<div class="bd-row"><span>French / complicated (' + frn + ' × $8)</span><span>' + fmt(bd.frenchSurcharge) + '</span></div>';
     if (bd.screenTotal) r += '<div class="bd-row"><span>Screen cleaning (~' + est + ' screens × $4)</span><span>' + fmt(bd.screenTotal) + '</span></div>';
     if (bd.trackTotal)  r += '<div class="bd-row"><span>Track cleaning (~' + est + ' tracks × $4)</span><span>' + fmt(bd.trackTotal) + '</span></div>';
     r += '<div class="bd-row bd-gst"><span>GST (5%)</span><span>' + fmt(bd.gst) + '</span></div>';

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WW Follow-Up">
+  <title>Wagon Windows · Follow-Up Call</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#e81010;
+  --bg:#0d0d0d;
+  --surface:#1a1a1a;
+  --surface2:#242424;
+  --border:#2e2e2e;
+  --text:#f0f0f0;
+  --muted:#777;
+  --green:#22c55e;
+  --yellow:#f59e0b;
+  --blue:#3b82f6;
+}
+html,body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100%}
+
+/* Top bar */
+.topbar{position:sticky;top:0;z-index:10;background:var(--surface);border-bottom:2px solid var(--red);padding:.85rem 1rem;display:flex;align-items:center;justify-content:space-between}
+.topbar-title{font-weight:800;font-size:1rem}
+.topbar-sub{font-size:.72rem;color:var(--muted);margin-top:.1rem}
+.reset-btn{background:none;border:1.5px solid var(--border);border-radius:6px;color:var(--muted);font-size:.78rem;font-weight:600;padding:.35rem .75rem;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+
+/* Progress bar */
+.progress-wrap{padding:.75rem 1rem .5rem;display:flex;gap:.4rem}
+.prog-dot{flex:1;height:4px;border-radius:2px;background:var(--border);transition:background .2s}
+.prog-dot.done{background:var(--green)}
+.prog-dot.active{background:var(--red)}
+
+/* Section */
+.section{padding:.5rem 1rem 0}
+.section-spacer{height:1.5rem}
+
+/* Step card */
+.step-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:.75rem;overflow:hidden}
+.step-card.active-step{border-color:var(--red)}
+.step-head{display:flex;align-items:center;gap:.85rem;padding:1rem;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none}
+.step-num{width:30px;height:30px;border-radius:50%;background:var(--surface2);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;color:var(--muted)}
+.step-num.done{background:var(--green);border-color:var(--green);color:#000}
+.step-num.active{background:var(--red);border-color:var(--red);color:#fff}
+.step-info{flex:1;min-width:0}
+.step-title{font-weight:700;font-size:.95rem;line-height:1.2}
+.step-sub{font-size:.78rem;color:var(--muted);margin-top:.15rem}
+.step-chevron{color:var(--muted);font-size:.75rem;flex-shrink:0;transition:transform .2s}
+.step-card.open .step-chevron{transform:rotate(180deg)}
+.step-body{display:none;padding:0 1rem 1rem;border-top:1px solid var(--border)}
+.step-card.open .step-body{display:block}
+
+/* Script line */
+.script-tag{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--green);margin:1rem 0 .4rem;display:block}
+.script-tag.yellow{color:var(--yellow)}
+.script-tag.blue{color:var(--blue)}
+.script-line{background:var(--surface2);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:.85rem 1rem;font-size:.92rem;line-height:1.65;color:#ddd;margin-bottom:.75rem}
+.script-line.yellow{border-left-color:var(--yellow)}
+.script-line.blue{border-left-color:var(--blue)}
+
+/* Questions / checklist */
+.q-list{display:flex;flex-direction:column;gap:.5rem;margin:.75rem 0}
+.q-item{display:flex;align-items:flex-start;gap:.85rem;background:var(--surface2);border-radius:9px;padding:.85rem 1rem;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.q-item.checked{opacity:.55}
+.q-check{width:22px;height:22px;border-radius:6px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.05rem;transition:all .15s;background:var(--surface)}
+.q-item.checked .q-check{background:var(--green);border-color:var(--green)}
+.q-check-icon{font-size:.8rem;display:none}
+.q-item.checked .q-check-icon{display:block}
+.q-text{flex:1;min-width:0}
+.q-main{font-size:.9rem;font-weight:600;line-height:1.3;color:var(--text)}
+.q-item.checked .q-main{text-decoration:line-through;color:var(--muted)}
+.q-detail{font-size:.8rem;color:var(--muted);margin-top:.25rem;line-height:1.5}
+
+/* Input fields */
+.field-group{margin:.6rem 0}
+.field-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.3rem;display:block}
+.field-input{width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-size:.95rem;padding:.7rem .9rem;font-family:inherit;-webkit-appearance:none}
+.field-input:focus{outline:none;border-color:var(--red)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+
+/* Warning box */
+.warn-box{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-radius:8px;padding:.85rem 1rem;font-size:.85rem;color:var(--yellow);line-height:1.6;margin:.75rem 0}
+.info-box{background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.2);border-radius:8px;padding:.85rem 1rem;font-size:.85rem;color:#93c5fd;line-height:1.6;margin:.75rem 0}
+.green-box{background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);border-radius:8px;padding:.85rem 1rem;font-size:.85rem;color:var(--green);line-height:1.6;margin:.75rem 0}
+
+/* Action buttons */
+.btn-wrap{padding:1rem;display:flex;flex-direction:column;gap:.6rem}
+.btn{display:block;width:100%;padding:.95rem 1.5rem;border-radius:10px;border:none;font-family:inherit;font-size:1rem;font-weight:700;cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.btn-red{background:var(--red);color:#fff}
+.btn-green{background:var(--green);color:#000}
+.btn-outline{background:var(--surface);border:1.5px solid var(--border);color:var(--text)}
+.btn-ghost{background:none;border:none;color:var(--muted);font-size:.85rem;cursor:pointer;padding:.5rem;font-family:inherit;display:block;width:100%;text-align:center}
+
+/* Complete state */
+.complete-screen{display:none;padding:2.5rem 1.5rem;text-align:center;flex-direction:column;align-items:center;gap:1rem}
+.complete-screen.visible{display:flex}
+.complete-icon{font-size:3.5rem}
+.complete-title{font-size:1.3rem;font-weight:800}
+.complete-sub{font-size:.9rem;color:var(--muted);line-height:1.6;max-width:280px}
+
+.spacer{height:2rem}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">Follow-Up Call</div>
+    <div class="topbar-sub">Instant Estimate Confirmation</div>
+  </div>
+  <button class="reset-btn" onclick="resetAll()">Reset</button>
+</div>
+
+<div class="progress-wrap" id="progress-bar"></div>
+
+<div id="main-content">
+<div class="section" style="padding-top:.75rem">
+
+  <!-- ── STEP 1: Opening ── -->
+  <div class="step-card open active-step" id="step-0" data-step="0">
+    <div class="step-head" onclick="toggleStep(0)">
+      <div class="step-num active" id="num-0">1</div>
+      <div class="step-info">
+        <div class="step-title">Opening the Call</div>
+        <div class="step-sub">Confirm who you're speaking to</div>
+      </div>
+      <div class="step-chevron">▼</div>
+    </div>
+    <div class="step-body">
+      <span class="script-tag">Say this</span>
+      <div class="script-line">
+        "Hi, can I speak with [Customer Name]? … Hi [Name], it's [Your Name] calling from Wagon Windows — you submitted an instant estimate on our website for window cleaning. I'm just calling to go over a few quick details and get you confirmed. Is now an okay time?"
+      </div>
+      <div class="warn-box">
+        If they say it's a bad time — ask for a better time and call back. Don't rush through the questions.
+      </div>
+      <div class="q-list" id="ql-0">
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Got the right person on the line</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">They have a couple of minutes</div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-wrap" style="padding:1rem 0 0">
+        <button class="btn btn-red" onclick="nextStep(0)">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 2: Confirm Details ── -->
+  <div class="step-card" id="step-1" data-step="1">
+    <div class="step-head" onclick="toggleStep(1)">
+      <div class="step-num" id="num-1">2</div>
+      <div class="step-info">
+        <div class="step-title">Confirm the Basics</div>
+        <div class="step-sub">Address, property type, contact</div>
+      </div>
+      <div class="step-chevron">▼</div>
+    </div>
+    <div class="step-body">
+      <span class="script-tag">Say this</span>
+      <div class="script-line">
+        "I've got your estimate in front of me. I just want to confirm a few things to make sure the price is accurate for your place."
+      </div>
+      <div class="q-list">
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Confirm full service address</div>
+            <div class="q-detail">Ask even if you have it — people sometimes submit from a different device or address.</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Confirm city / area</div>
+            <div class="q-detail">Salmon Arm, Sorrento, Blind Bay, Sicamous, etc. — affects scheduling and drive time.</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Best phone number to reach them</div>
+            <div class="q-detail">Confirm it matches what they submitted. Get a backup if it's a landline.</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Property type matches estimate</div>
+            <div class="q-detail">House / townhouse / condo. Condo may have restrictions on exterior work.</div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-wrap" style="padding:1rem 0 0">
+        <button class="btn btn-red" onclick="nextStep(1)">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 3: Pane Count & Scope ── -->
+  <div class="step-card" id="step-2" data-step="2">
+    <div class="step-head" onclick="toggleStep(2)">
+      <div class="step-num" id="num-2">3</div>
+      <div class="step-info">
+        <div class="step-title">Verify the Scope</div>
+        <div class="step-sub">Pane count, service type, add-ons</div>
+      </div>
+      <div class="step-chevron">▼</div>
+    </div>
+    <div class="step-body">
+      <span class="script-tag">Say this</span>
+      <div class="script-line">
+        "The estimate you got was based on [X] panes and [service type]. I just want to make sure that's accurate — sometimes people estimate a bit differently than how we count."
+      </div>
+      <div class="info-box">
+        <strong>How we count:</strong> Each individual piece of glass = 1 pane. A standard window = 2 panes. A sliding patio door = 2 panes. A skylight = 1 pane. If their count is off, adjust the quote — don't just confirm a number that's wrong.
+      </div>
+      <div class="q-list">
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Pane count sounds right for the home</div>
+            <div class="q-detail">Ask: "How many windows would you say you have roughly — is [X] about right?" If off by more than 5, recalculate.</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Exterior only or interior + exterior confirmed</div>
+            <div class="q-detail">If interior: someone must be home the whole time. Confirm this upfront.</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Any large / oversized windows</div>
+            <div class="q-detail">Picture windows, floor-to-ceiling, bay windows — $5 extra per pane. Worth asking if not already on the estimate.</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Screens included / confirmed count</div>
+            <div class="q-detail">Do all windows have screens? Any damaged or missing ones we should know about?</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Track cleaning confirmed</div>
+            <div class="q-detail">Some customers don't realize this is separate. Confirm they want it if it's on the quote.</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Gutter cleaning — if selected, confirm length</div>
+            <div class="q-detail">Ask if there are any areas that are hard to access (steep pitch, tall sections, attached garage).</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Hard water stains — if selected, which windows</div>
+            <div class="q-detail">We assess on arrival and confirm price before starting — let them know. Typically near sprinklers, hose areas, or bathroom windows.</div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-wrap" style="padding:1rem 0 0">
+        <button class="btn btn-red" onclick="nextStep(2)">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 4: Access ── -->
+  <div class="step-card" id="step-3" data-step="3">
+    <div class="step-head" onclick="toggleStep(3)">
+      <div class="step-num" id="num-3">4</div>
+      <div class="step-info">
+        <div class="step-title">Access & Property Notes</div>
+        <div class="step-sub">Everything that affects showing up</div>
+      </div>
+      <div class="step-chevron">▼</div>
+    </div>
+    <div class="step-body">
+      <span class="script-tag">Say this</span>
+      <div class="script-line">
+        "A few quick logistical things — just want to make sure we can get to everything when we arrive."
+      </div>
+      <div class="q-list">
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Gate or fence — is there a code or do they need to be home to open it?</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Dog in the yard?</div>
+            <div class="q-detail">Ask if it needs to be secured or if there's a safe area to work. Important for exterior.</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Any windows that are hard to reach</div>
+            <div class="q-detail">Two-storey sections, steeply pitched roof areas, windows above a deck or retaining wall. We bring ladders but good to know in advance.</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Water source available outside</div>
+            <div class="q-detail">We need a working outdoor tap. If there isn't one, let us know — we may be able to bring water.</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Will someone be home when we arrive?</div>
+            <div class="q-detail">Required for all jobs — waiver and payment happen before work starts. For exterior-only they can leave after that, as long as we have backyard access.</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Any window condition issues to flag</div>
+            <div class="q-detail">Cracked seals (foggy glass), broken frames, stuck windows — good to know before we arrive. These don't affect cleaning but can set expectations.</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Any plants, furniture, or objects near windows</div>
+            <div class="q-detail">We work around them but good to know about rose bushes, deck furniture right against the house, etc.</div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-wrap" style="padding:1rem 0 0">
+        <button class="btn btn-red" onclick="nextStep(3)">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 5: Date & Payment ── -->
+  <div class="step-card" id="step-4" data-step="4">
+    <div class="step-head" onclick="toggleStep(4)">
+      <div class="step-num" id="num-4">5</div>
+      <div class="step-info">
+        <div class="step-title">Date, Time & Payment</div>
+        <div class="step-sub">Lock in the booking</div>
+      </div>
+      <div class="step-chevron">▼</div>
+    </div>
+    <div class="step-body">
+      <span class="script-tag">Say this</span>
+      <div class="script-line">
+        "Perfect — sounds like we're good to go. Let me get you booked in. What does your schedule look like? We're generally available [days you work] and we like to give a 2-hour arrival window so we're not locking you to an exact time."
+      </div>
+      <div class="q-list">
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Preferred date confirmed</div>
+            <div class="q-detail">Offer 2–3 options if possible rather than asking open-ended "when works for you?"</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Morning or afternoon preference</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Payment method confirmed — cash or e-transfer</div>
+            <div class="q-detail">Payment is collected on arrival, at the same time as signing the waiver — before work begins. Let them know upfront so there are no surprises on the day.</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Someone will be home and available to pay at arrival</div>
+            <div class="q-detail">Payment and waiver happen before we start. If no one is home when we arrive, we can't begin the job.</div>
+          </div>
+        </div>
+      </div>
+      <span class="script-tag">Say this about payment:</span>
+      <div class="script-line">
+        "Just so you know how it works on our end — when we arrive we'll confirm the final price with you, have you sign a quick service waiver, and collect payment before we get started. It's cash or e-transfer. That way everything's agreed upfront and there are no surprises."
+      </div>
+      <span class="script-tag yellow">If they ask for a hard time (not a window):</span>
+      <div class="script-line yellow">
+        "We try to give a 2-hour window because drive times between jobs can vary — but I'll text you the morning of with a more accurate ETA. Does that work?"
+      </div>
+      <span class="script-tag yellow">If they want to pay by credit card:</span>
+      <div class="script-line yellow">
+        "We do cash or e-transfer right now — e-transfer's really quick, you can send it right from your phone when we arrive. Does that work for you?"
+      </div>
+      <span class="script-tag yellow">If they won't be home:</span>
+      <div class="script-line yellow">
+        "We do need someone there when we arrive — payment and the waiver happen before we start work. Is there another day where you'd be around, or someone else who could be there?"
+      </div>
+      <div class="btn-wrap" style="padding:1rem 0 0">
+        <button class="btn btn-red" onclick="nextStep(4)">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 6: Confirm Quote & Close ── -->
+  <div class="step-card" id="step-5" data-step="5">
+    <div class="step-head" onclick="toggleStep(5)">
+      <div class="step-num" id="num-5">6</div>
+      <div class="step-info">
+        <div class="step-title">Confirm the Quote & Close</div>
+        <div class="step-sub">Set expectations, send confirmation</div>
+      </div>
+      <div class="step-chevron">▼</div>
+    </div>
+    <div class="step-body">
+      <span class="script-tag">Say this</span>
+      <div class="script-line">
+        "Just to confirm — your online estimate came to [price]. When we arrive we'll do a quick walk-around, lock in the final price, have you sign a short service waiver, and collect payment before we get started. Cash or e-transfer, whichever works for you.
+        <br><br>
+        I'll send you a confirmation text now with the date, time window, and our number. If anything comes up, just text us."
+      </div>
+      <div class="green-box">
+        <strong>Send a confirmation text immediately after the call.</strong> Include: their name, address, date, time window, estimated price range, and your number. Customers who get a written confirmation are much less likely to cancel or forget.
+      </div>
+      <div class="q-list">
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Restated the estimate price and that final price confirmed on arrival</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Told them we text an ETA the morning of the job</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Confirmation text sent</div>
+          </div>
+        </div>
+        <div class="q-item" onclick="toggleQ(this)">
+          <div class="q-check"><span class="q-check-icon">✓</span></div>
+          <div class="q-text">
+            <div class="q-main">Lead saved / booking logged</div>
+          </div>
+        </div>
+      </div>
+      <span class="script-tag blue">Confirmation text template:</span>
+      <div class="script-line blue">
+        "Hi [Name], it's David from Wagon Windows confirming your window cleaning at [address] on [date] between [time window]. Estimated price [range] — we'll confirm the exact cost on arrival, sign a quick waiver, and collect payment before we start. Cash or e-transfer. Any questions just text this number. See you [day]! 🪟"
+      </div>
+      <div class="btn-wrap" style="padding:1rem 0 0">
+        <button class="btn btn-green" onclick="completeCall()">✓ Call Complete</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+</div>
+</div>
+
+<!-- Complete screen -->
+<div id="complete-screen" class="complete-screen">
+  <div class="complete-icon">✅</div>
+  <div class="complete-title">Call Complete</div>
+  <div class="complete-sub">Confirmation text sent, booking logged. See you on the job.</div>
+  <button class="btn btn-outline" style="margin-top:1rem;max-width:280px;width:100%" onclick="resetAll()">Start a New Call</button>
+</div>
+
+<script>
+const TOTAL_STEPS = 6;
+let stepStates = Array(TOTAL_STEPS).fill('pending');
+stepStates[0] = 'active';
+
+function renderProgress() {
+  const bar = document.getElementById('progress-bar');
+  bar.innerHTML = '';
+  stepStates.forEach((s, i) => {
+    const d = document.createElement('div');
+    d.className = 'prog-dot' + (s === 'done' ? ' done' : s === 'active' ? ' active' : '');
+    bar.appendChild(d);
+  });
+}
+
+function toggleStep(idx) {
+  const card = document.getElementById('step-' + idx);
+  card.classList.toggle('open');
+}
+
+function nextStep(idx) {
+  // Mark current done
+  stepStates[idx] = 'done';
+  const num = document.getElementById('num-' + idx);
+  num.classList.remove('active');
+  num.classList.add('done');
+  num.textContent = '✓';
+  document.getElementById('step-' + idx).classList.remove('active-step', 'open');
+
+  // Open next
+  const next = idx + 1;
+  if (next < TOTAL_STEPS) {
+    stepStates[next] = 'active';
+    const nextCard = document.getElementById('step-' + next);
+    nextCard.classList.add('open', 'active-step');
+    const nextNum = document.getElementById('num-' + next);
+    nextNum.classList.add('active');
+    nextCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  renderProgress();
+}
+
+function toggleQ(el) {
+  el.classList.toggle('checked');
+}
+
+function completeCall() {
+  document.getElementById('main-content').style.display = 'none';
+  document.getElementById('complete-screen').classList.add('visible');
+  document.getElementById('progress-bar').innerHTML = '';
+  // Fill progress bar green
+  const bar = document.getElementById('progress-bar');
+  for (let i = 0; i < TOTAL_STEPS; i++) {
+    const d = document.createElement('div');
+    d.className = 'prog-dot done';
+    bar.appendChild(d);
+  }
+}
+
+function resetAll() {
+  stepStates = Array(TOTAL_STEPS).fill('pending');
+  stepStates[0] = 'active';
+
+  // Reset all step cards
+  for (let i = 0; i < TOTAL_STEPS; i++) {
+    const card = document.getElementById('step-' + i);
+    const num = document.getElementById('num-' + i);
+    card.classList.remove('open', 'active-step', 'done');
+    num.classList.remove('done', 'active');
+    num.textContent = i + 1;
+  }
+  // Open and activate first step
+  document.getElementById('step-0').classList.add('open', 'active-step');
+  document.getElementById('num-0').classList.add('active');
+
+  // Uncheck all q-items
+  document.querySelectorAll('.q-item').forEach(q => q.classList.remove('checked'));
+
+  // Hide complete, show main
+  document.getElementById('complete-screen').classList.remove('visible');
+  document.getElementById('main-content').style.display = '';
+
+  window.scrollTo(0, 0);
+  renderProgress();
+}
+
+renderProgress();
+</script>
+</body>
+</html>
