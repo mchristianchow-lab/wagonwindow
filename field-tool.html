@@ -653,6 +653,16 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         <div class="service-price-val" id="price-ext">$—</div>
       </div>
     </div>
+    <div class="service-card" id="svc-int" onclick="selectService('interior')">
+      <div class="service-card-left">
+        <div class="service-card-name">Interior Only</div>
+        <div class="service-card-desc">Inside surfaces only</div>
+      </div>
+      <div class="service-card-price">
+        <div class="service-price-from">from</div>
+        <div class="service-price-val" id="price-int">$—</div>
+      </div>
+    </div>
     <div class="service-card" id="svc-both" onclick="selectService('both')">
       <div class="service-card-left">
         <div class="service-card-name">Interior + Exterior</div>
@@ -1498,13 +1508,15 @@ let currentDraftId = null;
 
 // ── Pricing engine (mirrors customer quote tool exactly) ───────────────
 function calcBase(panes, type) {
-  let ext = 169, intExt = 219;
+  let ext = 169, int = 169, intExt = 219;
   let rem = Math.max(0, panes - 30);
-  const t1 = Math.min(rem, 20); rem -= t1; ext += t1 * 2.50; intExt += t1 * 3.50;
-  const t2 = Math.min(rem, 20); rem -= t2; ext += t2 * 3.50; intExt += t2 * 4.00;
-  const t3 = Math.min(rem, 29); rem -= t3; ext += t3 * 4.00; intExt += t3 * 4.50;
-  ext += rem * 4.00; intExt += rem * 7.00;
-  return type === 'exterior' ? Math.round(ext) : Math.round(intExt);
+  const t1 = Math.min(rem, 20); rem -= t1; ext += t1 * 2.50; int += t1 * 2.50; intExt += t1 * 3.50;
+  const t2 = Math.min(rem, 20); rem -= t2; ext += t2 * 3.50; int += t2 * 3.50; intExt += t2 * 4.00;
+  const t3 = Math.min(rem, 29); rem -= t3; ext += t3 * 4.00; int += t3 * 4.00; intExt += t3 * 4.50;
+  ext += rem * 4.00; int += rem * 4.00; intExt += rem * 7.00;
+  if (type === 'exterior') return Math.round(ext);
+  if (type === 'interior') return Math.round(int);
+  return Math.round(intExt);
 }
 
 function gutterPrice() { return 189; }
@@ -1749,7 +1761,8 @@ function selectPackage(tier) {
 function selectService(type) {
   state.serviceType = type;
   document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
-  document.getElementById('svc-' + (type === 'exterior' ? 'ext' : 'both')).classList.add('selected');
+  const idMap = { exterior: 'ext', interior: 'int', both: 'both' };
+  document.getElementById('svc-' + idMap[type]).classList.add('selected');
   // Auto-fill screens/tracks for int+ext
   if (type === 'both') {
     const est = Math.round(state.panes / 2);
@@ -1764,7 +1777,8 @@ function selectService(type) {
 
 function updateServicePrices() {
   document.getElementById('svc-pane-count').textContent = state.panes;
-  document.getElementById('price-ext').textContent = fmt(Math.max(MIN_JOB, calcBase(state.panes, 'exterior')));
+  document.getElementById('price-ext').textContent  = fmt(Math.max(MIN_JOB, calcBase(state.panes, 'exterior')));
+  document.getElementById('price-int').textContent  = fmt(Math.max(MIN_JOB, calcBase(state.panes, 'interior')));
   document.getElementById('price-both').textContent = fmt(Math.max(MIN_JOB, calcBase(state.panes, 'both')));
 }
 
@@ -1848,7 +1862,7 @@ function renderQuote() {
   document.getElementById('q-from-label').textContent = pkgLabel || 'Estimated starting from';
   document.getElementById('q-subtotal').textContent = q.discPct > 0 ? q.discPct + '% field discount applied' : '';
 
-  const svcLabel = state.serviceType === 'exterior' ? 'Exterior Only' : 'Interior + Exterior';
+  const svcLabel = state.serviceType === 'interior' ? 'Interior Only' : state.serviceType === 'both' ? 'Interior + Exterior' : 'Exterior Only';
   let rows = '';
   rows += brow(svcLabel + ' (' + state.panes + ' panes)', fmt(q.base));
   if (q.largeWin) rows += brow('Large windows ×' + state.addons.largewindow, fmt(q.largeWin));
@@ -1875,7 +1889,7 @@ function brow(label, val, bold) {
 function autoSaveDraft() {
   const q = buildQuote();
   if (!q) return;
-  const svcLabel = state.serviceType === 'exterior' ? 'Exterior Only' : 'Int + Ext';
+  const svcLabel = state.serviceType === 'interior' ? 'Interior Only' : state.serviceType === 'both' ? 'Int + Ext' : 'Exterior Only';
   const parts = [svcLabel, state.panes + ' panes'];
   if (state.addons.screens)    parts.push('screens ×' + state.addons.screens);
   if (state.addons.tracks)     parts.push('tracks ×' + state.addons.tracks);
@@ -1919,7 +1933,7 @@ function showCustomer() {
   document.getElementById('co-price').textContent = fmt(q.total);
 
   const parts = [];
-  const svcLabel = state.serviceType === 'exterior' ? 'Exterior window cleaning' : 'Interior + exterior window cleaning';
+  const svcLabel = state.serviceType === 'interior' ? 'Interior window cleaning' : state.serviceType === 'both' ? 'Interior + exterior window cleaning' : 'Exterior window cleaning';
   parts.push(svcLabel);
   if (q.screens)  parts.push('screen cleaning');
   if (q.tracks)   parts.push('track cleaning');
@@ -1978,7 +1992,7 @@ function saveLead(openCal) {
   }
 
   const q = buildQuote();
-  const svcLabel = state.serviceType === 'exterior' ? 'Exterior Only' : 'Int + Ext';
+  const svcLabel = state.serviceType === 'interior' ? 'Interior Only' : state.serviceType === 'both' ? 'Int + Ext' : 'Exterior Only';
   const parts = [svcLabel, state.panes + ' panes'];
   if (state.addons.screens)   parts.push('screens ×' + state.addons.screens);
   if (state.addons.tracks)    parts.push('tracks ×' + state.addons.tracks);
@@ -2132,7 +2146,8 @@ function loadLeadQuote(id) {
   // Restore service card selection
   document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
   if (state.serviceType) {
-    const svcEl = document.getElementById('svc-' + (state.serviceType === 'exterior' ? 'ext' : 'both'));
+    const _idMap = { exterior: 'ext', interior: 'int', both: 'both' };
+    const svcEl = document.getElementById('svc-' + (_idMap[state.serviceType] || 'ext'));
     if (svcEl) svcEl.classList.add('selected');
   }
 
@@ -2516,7 +2531,7 @@ function emailQuote(id) {
     const bd      = p.breakdown || { regular: 0, large: 0, french: 0 };
     const addons  = p.addons   || {};
     const totalPanes = (bd.regular || 0) + (bd.large || 0) + (bd.french || 0);
-    const svcLabel = p.serviceType === 'exterior' ? 'Exterior Window Cleaning' : 'Interior + Exterior Window Cleaning';
+    const svcLabel = p.serviceType === 'interior' ? 'Interior Window Cleaning' : p.serviceType === 'both' ? 'Interior + Exterior Window Cleaning' : 'Exterior Window Cleaning';
     const base     = Math.max(MIN_JOB, calcBase(totalPanes, p.serviceType));
     const largeWin = (addons.largewindow || 0) * ADDONS.largewindow;
     const screens  = (addons.screens     || 0) * ADDONS.screens;
@@ -2623,7 +2638,7 @@ function updateResumeBtn() {
     if (!total) { btn.style.display = 'none'; return; }
     let summary = total + ' panes';
     if (s.selectedPackage) summary += ' · ' + s.selectedPackage.charAt(0).toUpperCase() + s.selectedPackage.slice(1);
-    else if (s.serviceType) summary += ' · ' + (s.serviceType === 'exterior' ? 'Exterior Only' : 'Int + Ext');
+    else if (s.serviceType) summary += ' · ' + (s.serviceType === 'interior' ? 'Interior Only' : s.serviceType === 'both' ? 'Int + Ext' : 'Exterior Only');
     else summary += ' · Tap to continue';
     sub.textContent = summary;
     btn.style.display = 'flex';
@@ -2655,7 +2670,8 @@ function resumeSession() {
     // Restore service card selection
     document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
     if (state.serviceType) {
-      const svcEl = document.getElementById('svc-' + (state.serviceType === 'exterior' ? 'ext' : 'both'));
+      const _m = { exterior: 'ext', interior: 'int', both: 'both' };
+      const svcEl = document.getElementById('svc-' + (_m[state.serviceType] || 'ext'));
       if (svcEl) svcEl.classList.add('selected');
     }
     syncPaneState();
