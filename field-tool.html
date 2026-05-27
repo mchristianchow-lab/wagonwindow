@@ -23,6 +23,30 @@
 }
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;overflow:hidden}
 #app{height:100%;display:flex;flex-direction:column;max-width:500px;margin:0 auto}
+@media(min-width:768px){
+  html,body{overflow:auto}
+  #app{max-width:860px;height:auto;min-height:100%}
+  .screen{min-height:100vh}
+  .screen.active{display:flex}
+  .topbar{padding:.85rem 2rem}
+  .section{padding:1.25rem 2rem 0}
+  .home-btns{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:1.5rem 2rem}
+  .home-header{padding:2.5rem 2rem 1rem}
+  .counter-btn{width:68px;height:68px;font-size:1.8rem}
+  .counter-btn.wide{padding:0 1.25rem;font-size:1.1rem}
+  .counter-val{font-size:5rem;min-width:120px}
+  .card{padding:1.5rem}
+  .comm-bar{padding:1rem 2rem 1.5rem}
+  .bottom-nav{padding:1rem 2rem 1.5rem}
+  .form-section{padding:1.25rem 2rem}
+  .action-strip{padding:1.25rem 2rem}
+  .quote-hero{padding:2rem 2rem 1.25rem}
+  .quote-amount{font-size:4.5rem}
+  .discount-row{margin:.75rem 2rem}
+  .breakdown-card{margin:.5rem 2rem}
+  .leads-list{padding:0 2rem}
+  .lead-item{padding:1rem 1.25rem}
+}
 /* ── Top bar ── */
 .topbar{
   display:flex;align-items:center;justify-content:space-between;
@@ -265,6 +289,29 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
   margin:0 0 1rem
 }
 /* ── COMMERCIAL TOOL ── */
+/* ── Unit multiplier ── */
+.um-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:.75rem 1rem;cursor:pointer;font-family:inherit;font-size:.88rem;font-weight:700;color:var(--muted);-webkit-tap-highlight-color:transparent}
+.um-toggle.on{border-color:var(--blue);color:var(--blue)}
+.um-panel{background:var(--surface);border-radius:12px;border:1px solid var(--border);padding:.75rem;margin-top:.5rem}
+.um-row{background:var(--surface2);border-radius:10px;padding:.75rem;margin-bottom:.5rem;border:1px solid var(--border)}
+.um-row-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem}
+.um-name{flex:1;background:transparent;border:none;border-bottom:1.5px solid var(--border);color:var(--text);font-size:.92rem;font-weight:700;font-family:inherit;padding:.2rem .3rem;outline:none}
+.um-name::placeholder{color:var(--muted);font-weight:400}
+.um-name:focus{border-color:var(--blue)}
+.um-del{background:none;border:1.5px solid var(--border);border-radius:6px;color:var(--muted);width:28px;height:28px;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.um-calcs{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.um-grp{display:flex;flex-direction:column;align-items:center;gap:.2rem}
+.um-grp-label{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.um-grp-ctrl{display:flex;align-items:center;gap:.3rem}
+.um-grp-val{min-width:2rem;text-align:center;font-weight:800;font-size:.95rem;color:var(--text)}
+.um-sep{color:var(--muted);font-size:1.1rem;font-weight:300;align-self:flex-end;padding-bottom:.15rem}
+.um-result{font-size:.82rem;font-weight:700;color:var(--green);margin-left:auto;align-self:flex-end;padding-bottom:.1rem;white-space:nowrap}
+.um-footer{display:flex;align-items:center;justify-content:space-between;margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--border)}
+.um-total-label{font-size:.78rem;color:var(--muted)}
+.um-total-val{font-size:1.4rem;font-weight:800;color:var(--text)}
+.um-apply{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:.55rem 1.1rem;font-size:.85rem;font-weight:700;font-family:inherit;cursor:pointer}
+.um-add{width:100%;background:none;border:1.5px dashed var(--border);border-radius:8px;padding:.6rem;color:var(--muted);font-size:.85rem;font-weight:600;font-family:inherit;cursor:pointer;margin-top:.25rem}
+.um-add:active{border-color:var(--blue);color:var(--blue)}
 .comm-badge{display:inline-block;font-size:.68rem;font-weight:800;color:var(--blue);letter-spacing:.1em;background:rgba(59,130,246,.12);border-radius:6px;padding:.15rem .45rem}
 .comm-counters{background:var(--surface);border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:1rem}
 .comm-counter-row{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1rem;border-bottom:1px solid var(--border)}
@@ -479,6 +526,25 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <div style="text-align:right">
       <div style="font-size:2.2rem;font-weight:800;color:var(--text);line-height:1" id="total-pane-display">0</div>
       <div style="font-size:.72rem;margin-top:.1rem"><span class="size-badge" id="pane-size-badge">—</span></div>
+    </div>
+  </div>
+
+  <!-- Unit Multiplier (residential) -->
+  <div style="padding:0 1rem .5rem">
+    <button class="um-toggle" id="res-um-toggle" onclick="toggleResUnitMult()">
+      <span>Unit Multiplier</span>
+      <span id="res-um-badge" style="font-size:.78rem;font-weight:400;color:var(--muted)">off</span>
+    </button>
+    <div class="um-panel" id="res-um-panel" style="display:none">
+      <div id="res-um-rows"></div>
+      <div class="um-footer">
+        <div>
+          <div class="um-total-label">Total Panes</div>
+          <div class="um-total-val" id="res-um-total">0</div>
+        </div>
+        <button class="um-apply" onclick="applyResUnitTotal()">Apply to Counter</button>
+      </div>
+      <button class="um-add" onclick="addResUnitRow()">+ Add Unit Type</button>
     </div>
   </div>
 
@@ -1047,6 +1113,24 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         </div>
       </div>
     </div>
+    <!-- Unit Multiplier (commercial) -->
+    <div style="margin-bottom:1rem">
+      <button class="um-toggle" id="comm-um-toggle" onclick="toggleCommUnitMult()">
+        <span>Unit Multiplier</span>
+        <span id="comm-um-badge" style="font-size:.78rem;font-weight:400;color:var(--muted)">off</span>
+      </button>
+      <div class="um-panel" id="comm-um-panel" style="display:none">
+        <div id="comm-um-rows"></div>
+        <div class="um-footer">
+          <div>
+            <div class="um-total-label">Total Panes</div>
+            <div class="um-total-val" id="comm-um-total" style="font-size:1.1rem">0 std · 0 lrg · 0 spc</div>
+          </div>
+          <button class="um-apply" onclick="applyCommUnitTotal()">Apply</button>
+        </div>
+        <button class="um-add" onclick="addCommUnitRow()">+ Add Unit Type</button>
+      </div>
+    </div>
     <div class="card">
       <div class="card-label">Building Height</div>
       <div class="pill-row" style="margin-top:.5rem">
@@ -1468,6 +1552,7 @@ function goScreen(id) {
 function startQuote() {
   currentDraftId = null;
   clearSession();
+  resUnitRows = [];
   state.serviceType = null;
   state.breakdown = { regular: 0, large: 0, french: 0 };
   state.panes = 0;
@@ -2621,6 +2706,7 @@ function resetCommState() {
 resetCommState();
 
 function startCommercial() {
+  commUnitRows = [];
   resetCommState();
   ['c-biz','c-contact','c-phone','c-email','c-address'].forEach(id => {
     const el = document.getElementById(id);
@@ -2927,6 +3013,202 @@ function saveCommLead(book) {
     window.open('https://calendar.app.google/KcgTkongKSkHw8xZ8', '_blank');
   }
   goScreen('scr-home');
+}
+
+// ── Unit Multiplier ────────────────────────────────────────────────────
+
+// Residential
+let resUnitRows = [];
+
+function toggleResUnitMult() {
+  const panel = document.getElementById('res-um-panel');
+  const btn   = document.getElementById('res-um-toggle');
+  const badge = document.getElementById('res-um-badge');
+  const open  = panel.style.display === 'none';
+  panel.style.display = open ? 'block' : 'none';
+  btn.classList.toggle('on', open);
+  badge.textContent = open ? 'on' : 'off';
+  if (open && resUnitRows.length === 0) addResUnitRow();
+}
+
+function addResUnitRow() {
+  resUnitRows.push({ name: '', units: 1, ppu: 1 });
+  renderResUnitRows();
+}
+
+function removeResUnitRow(i) {
+  resUnitRows.splice(i, 1);
+  renderResUnitRows();
+}
+
+function updateResUnit(i, field, val) {
+  resUnitRows[i][field] = field === 'name' ? val : Math.max(0, parseInt(val) || 0);
+  renderResUnitRows();
+}
+
+function calcResUnitTotal() {
+  return resUnitRows.reduce((s, r) => s + r.units * r.ppu, 0);
+}
+
+function renderResUnitRows() {
+  const container = document.getElementById('res-um-rows');
+  if (!container) return;
+  container.innerHTML = resUnitRows.map((r, i) => `
+    <div class="um-row">
+      <div class="um-row-head">
+        <input class="um-name" type="text" placeholder="Unit name (e.g. Corner Unit)" value="${r.name.replace(/"/g,'&quot;')}"
+          oninput="resUnitRows[${i}].name=this.value" />
+        <button class="um-del" onclick="removeResUnitRow(${i})">✕</button>
+      </div>
+      <div class="um-calcs">
+        <div class="um-grp">
+          <div class="um-grp-label">Units</div>
+          <div class="um-grp-ctrl">
+            <button class="adj-btn" onclick="updateResUnit(${i},'units',${r.units}-1)">−</button>
+            <div class="um-grp-val">${r.units}</div>
+            <button class="adj-btn" onclick="updateResUnit(${i},'units',${r.units}+1)">+</button>
+          </div>
+        </div>
+        <div class="um-sep">×</div>
+        <div class="um-grp">
+          <div class="um-grp-label">Panes / Unit</div>
+          <div class="um-grp-ctrl">
+            <button class="adj-btn" onclick="updateResUnit(${i},'ppu',${r.ppu}-1)">−</button>
+            <div class="um-grp-val">${r.ppu}</div>
+            <button class="adj-btn" onclick="updateResUnit(${i},'ppu',${r.ppu}+1)">+</button>
+          </div>
+        </div>
+        <div class="um-sep">=</div>
+        <div class="um-result">${r.units * r.ppu} panes</div>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('res-um-total').textContent = calcResUnitTotal();
+}
+
+function applyResUnitTotal() {
+  const total = calcResUnitTotal();
+  state.breakdown.regular = total;
+  state.breakdown.large   = 0;
+  state.breakdown.french  = 0;
+  syncPaneState();
+  const panel = document.getElementById('res-um-panel');
+  const btn   = document.getElementById('res-um-toggle');
+  const badge = document.getElementById('res-um-badge');
+  if (panel) panel.style.display = 'none';
+  if (btn)   btn.classList.remove('on');
+  if (badge) badge.textContent = 'off';
+}
+
+// Commercial
+let commUnitRows = [];
+
+function toggleCommUnitMult() {
+  const panel = document.getElementById('comm-um-panel');
+  const btn   = document.getElementById('comm-um-toggle');
+  const badge = document.getElementById('comm-um-badge');
+  const open  = panel.style.display === 'none';
+  panel.style.display = open ? 'block' : 'none';
+  btn.classList.toggle('on', open);
+  badge.textContent = open ? 'on' : 'off';
+  if (open && commUnitRows.length === 0) addCommUnitRow();
+}
+
+function addCommUnitRow() {
+  commUnitRows.push({ name: '', units: 1, std: 1, lrg: 0, spc: 0 });
+  renderCommUnitRows();
+}
+
+function removeCommUnitRow(i) {
+  commUnitRows.splice(i, 1);
+  renderCommUnitRows();
+}
+
+function updateCommUnit(i, field, val) {
+  commUnitRows[i][field] = field === 'name' ? val : Math.max(0, parseInt(val) || 0);
+  renderCommUnitRows();
+}
+
+function calcCommUnitTotals() {
+  return commUnitRows.reduce((s, r) => ({
+    std: s.std + r.units * r.std,
+    lrg: s.lrg + r.units * r.lrg,
+    spc: s.spc + r.units * r.spc
+  }), { std: 0, lrg: 0, spc: 0 });
+}
+
+function renderCommUnitRows() {
+  const container = document.getElementById('comm-um-rows');
+  if (!container) return;
+  container.innerHTML = commUnitRows.map((r, i) => `
+    <div class="um-row">
+      <div class="um-row-head">
+        <input class="um-name" type="text" placeholder="Unit name (e.g. Corner Unit)" value="${r.name.replace(/"/g,'&quot;')}"
+          oninput="commUnitRows[${i}].name=this.value" />
+        <button class="um-del" onclick="removeCommUnitRow(${i})">✕</button>
+      </div>
+      <div class="um-calcs" style="margin-bottom:.4rem">
+        <div class="um-grp">
+          <div class="um-grp-label">Units</div>
+          <div class="um-grp-ctrl">
+            <button class="adj-btn" onclick="updateCommUnit(${i},'units',${r.units}-1)">−</button>
+            <div class="um-grp-val">${r.units}</div>
+            <button class="adj-btn" onclick="updateCommUnit(${i},'units',${r.units}+1)">+</button>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.4rem">
+        <div style="background:var(--bg);border-radius:6px;padding:.4rem .5rem">
+          <div style="color:var(--muted);font-size:.64rem;font-weight:700;text-transform:uppercase;margin-bottom:.3rem">Std / Unit</div>
+          <div style="display:flex;align-items:center;gap:.3rem;justify-content:center">
+            <button class="adj-btn" onclick="updateCommUnit(${i},'std',${r.std}-1)">−</button>
+            <span style="font-weight:800;font-size:.95rem;min-width:1.5rem;text-align:center">${r.std}</span>
+            <button class="adj-btn" onclick="updateCommUnit(${i},'std',${r.std}+1)">+</button>
+          </div>
+        </div>
+        <div style="background:var(--bg);border-radius:6px;padding:.4rem .5rem">
+          <div style="color:var(--yellow);font-size:.64rem;font-weight:700;text-transform:uppercase;margin-bottom:.3rem">Lrg / Unit</div>
+          <div style="display:flex;align-items:center;gap:.3rem;justify-content:center">
+            <button class="adj-btn" onclick="updateCommUnit(${i},'lrg',${r.lrg}-1)">−</button>
+            <span style="font-weight:800;font-size:.95rem;min-width:1.5rem;text-align:center">${r.lrg}</span>
+            <button class="adj-btn" onclick="updateCommUnit(${i},'lrg',${r.lrg}+1)">+</button>
+          </div>
+        </div>
+        <div style="background:var(--bg);border-radius:6px;padding:.4rem .5rem">
+          <div style="color:var(--red);font-size:.64rem;font-weight:700;text-transform:uppercase;margin-bottom:.3rem">Spc / Unit</div>
+          <div style="display:flex;align-items:center;gap:.3rem;justify-content:center">
+            <button class="adj-btn" onclick="updateCommUnit(${i},'spc',${r.spc}-1)">−</button>
+            <span style="font-weight:800;font-size:.95rem;min-width:1.5rem;text-align:center">${r.spc}</span>
+            <button class="adj-btn" onclick="updateCommUnit(${i},'spc',${r.spc}+1)">+</button>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:right;margin-top:.35rem;font-size:.76rem;color:var(--green);font-weight:700">
+        = ${r.units * r.std} std · ${r.units * r.lrg} lrg · ${r.units * r.spc} spc
+      </div>
+    </div>
+  `).join('');
+  const t = calcCommUnitTotals();
+  document.getElementById('comm-um-total').textContent = `${t.std} std · ${t.lrg} lrg · ${t.spc} spc`;
+}
+
+function applyCommUnitTotal() {
+  const t = calcCommUnitTotals();
+  commState.std = t.std;
+  commState.lrg = t.lrg;
+  commState.spc = t.spc;
+  const sEl = document.getElementById('cv-std');
+  const lEl = document.getElementById('cv-lrg');
+  const pEl = document.getElementById('cv-spc');
+  if (sEl) sEl.textContent = t.std;
+  if (lEl) lEl.textContent = t.lrg;
+  if (pEl) pEl.textContent = t.spc;
+  const panel = document.getElementById('comm-um-panel');
+  const btn   = document.getElementById('comm-um-toggle');
+  const badge = document.getElementById('comm-um-badge');
+  if (panel) panel.style.display = 'none';
+  if (btn)   btn.classList.remove('on');
+  if (badge) badge.textContent = 'off';
 }
 
 // ── Init ───────────────────────────────────────────────────────────────
