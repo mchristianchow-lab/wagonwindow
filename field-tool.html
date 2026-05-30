@@ -440,6 +440,13 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         <span class="home-btn-sub">Windows · Power Washing · Contracts</span>
       </div>
     </button>
+    <button class="home-btn" style="border-color:var(--yellow)" onclick="startCustom()">
+      <span class="home-btn-icon">✏️</span>
+      <div>
+        <span class="home-btn-label" style="color:var(--yellow)">Custom Quote</span>
+        <span class="home-btn-sub">Flat price · your rate · invoice</span>
+      </div>
+    </button>
     <button class="home-btn" onclick="goScreen('scr-leads')">
       <span class="home-btn-icon">📋</span>
       <div>
@@ -835,11 +842,57 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
 </div>
 
 <!-- ╔══════════════════════════════╗ -->
+<!-- ║       CUSTOM QUOTE           ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<div id="scr-custom" class="screen">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goScreen('scr-home')">← Home</button>
+    <div class="topbar-title">Custom Quote</div>
+    <div style="width:60px"></div>
+  </div>
+  <div class="form-section">
+    <div class="field-group">
+      <label class="field-label">Description</label>
+      <input class="field-input" id="cq-desc" type="text" placeholder="e.g. Storefront, Office, Café…">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Pane Count</label>
+      <input class="field-input" id="cq-panes" type="number" inputmode="numeric" min="0" placeholder="0" oninput="calcCustomGST()">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Your Price (before GST)</label>
+      <div style="display:flex;align-items:center;background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:.75rem 1rem;gap:.35rem" id="cq-price-wrap">
+        <span style="font-size:1.1rem;font-weight:700;color:var(--muted)">$</span>
+        <input style="background:none;border:none;outline:none;color:var(--text);font-size:1.6rem;font-weight:800;font-family:inherit;width:100%;-moz-appearance:textfield" id="cq-price" type="number" inputmode="decimal" min="0" step="0.01" placeholder="40.00" oninput="calcCustomGST()">
+      </div>
+    </div>
+    <div id="cq-total-card" style="display:none;background:var(--surface2);border-radius:10px;border:1px solid var(--border);overflow:hidden">
+      <div class="breakdown-row">
+        <span class="breakdown-label">Subtotal</span>
+        <span class="breakdown-val" id="cq-subtotal">—</span>
+      </div>
+      <div class="breakdown-row">
+        <span class="breakdown-label">GST (5%)</span>
+        <span class="breakdown-val" id="cq-gst">—</span>
+      </div>
+      <div class="breakdown-row total" style="background:var(--surface)">
+        <span class="breakdown-label" style="color:var(--text);font-weight:700">Total</span>
+        <span style="color:var(--yellow);font-size:1.2rem;font-weight:800" id="cq-total">—</span>
+      </div>
+    </div>
+    <div style="height:1rem"></div>
+  </div>
+  <div class="bottom-nav">
+    <button class="btn btn-outline" style="border-color:var(--yellow);color:var(--yellow);flex:1" onclick="goCustomerFromCustom()">Next — Add Customer Info</button>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════╗ -->
 <!-- ║       LEAD CAPTURE           ║ -->
 <!-- ╚══════════════════════════════╝ -->
 <div id="scr-lead" class="screen">
   <div class="topbar">
-    <button class="topbar-back" onclick="goScreen('scr-quote')">← Quote</button>
+    <button class="topbar-back" onclick="goLeadBack()">← Back</button>
     <div class="topbar-title">Record Sale</div>
     <div style="width:60px"></div>
   </div>
@@ -1505,6 +1558,8 @@ const state = {
 };
 
 let currentDraftId = null;
+let leadBackScreen = 'scr-quote';
+let customState = null;
 
 // ── Pricing engine (mirrors customer quote tool exactly) ───────────────
 function calcBase(panes, type) {
@@ -1563,8 +1618,52 @@ function goScreen(id) {
   saveSession(id);
 }
 
+// ── Custom quote flow ──────────────────────────────────────────────────
+function startCustom() {
+  customState = null;
+  document.getElementById('cq-desc').value = '';
+  document.getElementById('cq-panes').value = '';
+  document.getElementById('cq-price').value = '';
+  document.getElementById('cq-total-card').style.display = 'none';
+  goScreen('scr-custom');
+}
+
+function calcCustomGST() {
+  const price = parseFloat(document.getElementById('cq-price').value) || 0;
+  const card = document.getElementById('cq-total-card');
+  if (!price) { card.style.display = 'none'; return; }
+  const gst = Math.round(price * 5) / 100;
+  const total = price + gst;
+  document.getElementById('cq-subtotal').textContent = '$' + price.toFixed(2);
+  document.getElementById('cq-gst').textContent = '$' + gst.toFixed(2);
+  document.getElementById('cq-total').textContent = '$' + total.toFixed(2);
+  card.style.display = 'block';
+}
+
+function goCustomerFromCustom() {
+  const price = parseFloat(document.getElementById('cq-price').value) || 0;
+  if (!price) { alert('Enter a price first.'); return; }
+  customState = {
+    active: true,
+    price,
+    panes: parseInt(document.getElementById('cq-panes').value) || 0,
+    description: document.getElementById('cq-desc').value.trim() || 'Custom Quote'
+  };
+  leadBackScreen = 'scr-custom';
+  ['lead-name','lead-phone','lead-email','lead-address','lead-date','lead-notes'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  goScreen('scr-lead');
+}
+
+function goLeadBack() {
+  goScreen(leadBackScreen || 'scr-quote');
+}
+
 // ── Quote flow ─────────────────────────────────────────────────────────
 function startQuote() {
+  customState = null;
+  leadBackScreen = 'scr-quote';
   currentDraftId = null;
   clearSession();
   resUnitRows = [];
@@ -1991,36 +2090,62 @@ function saveLead(openCal) {
     return;
   }
 
-  const q = buildQuote();
-  const svcLabel = state.serviceType === 'interior' ? 'Interior Only' : state.serviceType === 'both' ? 'Int + Ext' : 'Exterior Only';
-  const parts = [svcLabel, state.panes + ' panes'];
-  if (state.addons.screens)   parts.push('screens ×' + state.addons.screens);
-  if (state.addons.tracks)    parts.push('tracks ×' + state.addons.tracks);
-  if (state.addons.gutters > 0) parts.push('gutters');
-  if (state.addons.hardwater) parts.push('hard water ×' + state.addons.hardwater);
-  if (state.addons.largewindow) parts.push('large ×' + state.addons.largewindow);
+  let lead;
 
-  const discEl = document.getElementById('discount-pct');
-  const lead = {
-    id: Date.now(),
-    name,
-    phone,
-    email: document.getElementById('lead-email').value.trim(),
-    address: document.getElementById('lead-address').value.trim(),
-    date_pref: document.getElementById('lead-date').value,
-    notes: document.getElementById('lead-notes').value.trim(),
-    quote: q ? q.total : null,
-    quote_str: q ? fmt(q.total) + ' incl. GST' : null,
-    summary: parts.join(', '),
-    created_at: new Date().toISOString(),
-    params: {
-      breakdown: { ...state.breakdown },
-      serviceType: state.serviceType,
-      addons: { ...state.addons },
-      selectedPackage: state.selectedPackage || null,
-      discount: parseFloat(discEl?.value || 0)
-    }
-  };
+  if (customState && customState.active) {
+    const gst = Math.round(customState.price * 5) / 100;
+    const total = customState.price + gst;
+    lead = {
+      id: Date.now(),
+      name,
+      phone,
+      email: document.getElementById('lead-email').value.trim(),
+      address: document.getElementById('lead-address').value.trim(),
+      date_pref: document.getElementById('lead-date').value,
+      notes: document.getElementById('lead-notes').value.trim(),
+      quote: total,
+      quote_str: fmt(total) + ' incl. GST',
+      summary: customState.description + (customState.panes ? ' · ' + customState.panes + ' panes' : '') + ' · flat $' + customState.price.toFixed(2),
+      created_at: new Date().toISOString(),
+      params: {
+        type: 'custom',
+        price: customState.price,
+        panes: customState.panes,
+        description: customState.description
+      }
+    };
+    customState = null;
+  } else {
+    const q = buildQuote();
+    const svcLabel = state.serviceType === 'interior' ? 'Interior Only' : state.serviceType === 'both' ? 'Int + Ext' : 'Exterior Only';
+    const parts = [svcLabel, state.panes + ' panes'];
+    if (state.addons.screens)   parts.push('screens ×' + state.addons.screens);
+    if (state.addons.tracks)    parts.push('tracks ×' + state.addons.tracks);
+    if (state.addons.gutters > 0) parts.push('gutters');
+    if (state.addons.hardwater) parts.push('hard water ×' + state.addons.hardwater);
+    if (state.addons.largewindow) parts.push('large ×' + state.addons.largewindow);
+    const discEl = document.getElementById('discount-pct');
+    lead = {
+      id: Date.now(),
+      name,
+      phone,
+      email: document.getElementById('lead-email').value.trim(),
+      address: document.getElementById('lead-address').value.trim(),
+      date_pref: document.getElementById('lead-date').value,
+      notes: document.getElementById('lead-notes').value.trim(),
+      quote: q ? q.total : null,
+      quote_str: q ? fmt(q.total) + ' incl. GST' : null,
+      summary: parts.join(', '),
+      created_at: new Date().toISOString(),
+      params: {
+        breakdown: { ...state.breakdown },
+        serviceType: state.serviceType,
+        addons: { ...state.addons },
+        selectedPackage: state.selectedPackage || null,
+        discount: parseFloat(discEl?.value || 0)
+      }
+    };
+  }
 
   let leads = getLeads();
   if (currentDraftId) {
@@ -2514,19 +2639,55 @@ function emailQuote(id) {
   if (!lead) return;
   if (!lead.email) { alert('No email saved for this lead.'); return; }
 
+  const p = lead.params;
+  const isCustom = p && p.type === 'custom';
+
   const subject = encodeURIComponent(
-    'Wagon Windows — Your Estimate' + (lead.address ? ' for ' + lead.address : '')
+    isCustom
+      ? 'Wagon Windows — Invoice' + (lead.address ? ' for ' + lead.address : '')
+      : 'Wagon Windows — Your Estimate' + (lead.address ? ' for ' + lead.address : '')
   );
 
   const lines = [
     'Hi ' + lead.name.split(' ')[0] + ',',
     '',
-    'Thanks for your time today' + (lead.address ? ' at ' + lead.address : '') + '. Here\'s a full breakdown of your estimate.',
+    isCustom
+      ? 'Here\'s your invoice for today\'s service' + (lead.address ? ' at ' + lead.address : '') + '.'
+      : 'Thanks for your time today' + (lead.address ? ' at ' + lead.address : '') + '. Here\'s a full breakdown of your estimate.',
     '',
   ];
 
+  if (isCustom) {
+    const price = p.price || 0;
+    const gst = Math.round(price * 5) / 100;
+    const total = price + gst;
+    const col = (label, val) => label.padEnd(36, ' ') + val;
+    const div = '─'.repeat(44);
+    lines.push('INVOICE');
+    lines.push(div);
+    lines.push(col(p.description + (p.panes ? ' (' + p.panes + ' panes)' : ''), '$' + price.toFixed(2)));
+    lines.push(div);
+    lines.push(col('GST (5%)', '$' + gst.toFixed(2)));
+    lines.push(col('TOTAL DUE', '$' + total.toFixed(2)));
+    lines.push('');
+    if (lead.notes) { lines.push('NOTES'); lines.push(lead.notes); lines.push(''); }
+    lines.push(
+      'Payment via e-transfer: davidhanna@wagonwindow.com',
+      'Or cheque payable to: David Hanna Wagon Window Washers',
+      '',
+      'Thank you for your business!',
+      '',
+      '— David',
+      'Wagon Windows · Salmon Arm & Shuswap, BC',
+      '(403) 837-5092 · wagonwindow.com'
+    );
+    const _a = document.createElement('a');
+    _a.href = 'mailto:' + lead.email + '?subject=' + subject + '&body=' + encodeURIComponent(lines.join('\n'));
+    document.body.appendChild(_a); _a.click(); document.body.removeChild(_a);
+    return;
+  }
+
   // Build itemized breakdown from params if available
-  const p = lead.params;
   if (p && p.serviceType) {
     const bd      = p.breakdown || { regular: 0, large: 0, french: 0 };
     const addons  = p.addons   || {};
