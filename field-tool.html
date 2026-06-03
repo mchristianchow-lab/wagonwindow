@@ -899,27 +899,27 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
   <div class="form-section">
     <div class="field-group">
       <label class="field-label">Customer Name *</label>
-      <input class="field-input" id="lead-name" type="text" placeholder="Jane Smith" autocomplete="name">
+      <input class="field-input" id="lead-name" type="text" placeholder="Jane Smith" autocomplete="name" oninput="autoSaveDraft()">
     </div>
     <div class="field-group">
       <label class="field-label">Phone *</label>
-      <input class="field-input" id="lead-phone" type="tel" placeholder="(250) 555-0123" autocomplete="tel" oninput="formatPhone(this)">
+      <input class="field-input" id="lead-phone" type="tel" placeholder="(250) 555-0123" autocomplete="tel" oninput="formatPhone(this);autoSaveDraft()">
     </div>
     <div class="field-group">
       <label class="field-label">Email</label>
-      <input class="field-input" id="lead-email" type="email" placeholder="customer@email.com" autocapitalize="none" autocomplete="email">
+      <input class="field-input" id="lead-email" type="email" placeholder="customer@email.com" autocapitalize="none" autocomplete="email" oninput="autoSaveDraft()">
     </div>
     <div class="field-group">
       <label class="field-label">Address</label>
-      <input class="field-input" id="lead-address" type="text" placeholder="123 Main St, Salmon Arm">
+      <input class="field-input" id="lead-address" type="text" placeholder="123 Main St, Salmon Arm" oninput="autoSaveDraft()">
     </div>
     <div class="field-group">
       <label class="field-label">Preferred Date</label>
-      <input class="field-input" id="lead-date" type="date">
+      <input class="field-input" id="lead-date" type="date" onchange="autoSaveDraft()">
     </div>
     <div class="field-group">
       <label class="field-label">Notes</label>
-      <input class="field-input" id="lead-notes" type="text" placeholder="Gate code, dog, special instructions…">
+      <input class="field-input" id="lead-notes" type="text" placeholder="Gate code, dog, special instructions…" oninput="autoSaveDraft()">
     </div>
     <div style="height:1rem"></div>
   </div>
@@ -1660,6 +1660,66 @@ function goLeadBack() {
   goScreen(leadBackScreen || 'scr-quote');
 }
 
+function autoSaveDraft() {
+  const name    = document.getElementById('lead-name').value.trim();
+  const phone   = document.getElementById('lead-phone').value.trim();
+  const email   = document.getElementById('lead-email').value.trim();
+  const address = document.getElementById('lead-address').value.trim();
+  const notes   = document.getElementById('lead-notes').value.trim();
+
+  if (!name && !phone && !email && !address && !notes) return;
+
+  const isCustom = customState && customState.active;
+  let quote = null, quote_str = null, summary = 'Draft';
+
+  if (isCustom) {
+    const gst = Math.round(customState.price * 5) / 100;
+    quote = customState.price + gst;
+    quote_str = fmt(quote) + ' incl. GST';
+    summary = customState.description + (customState.panes ? ' · ' + customState.panes + ' panes' : '') + ' · flat $' + customState.price.toFixed(2);
+  } else {
+    const q = buildQuote();
+    if (q) {
+      quote = q.total;
+      quote_str = fmt(q.total) + ' incl. GST';
+      const svcLabel = state.serviceType === 'interior' ? 'Interior Only' : state.serviceType === 'both' ? 'Int + Ext' : 'Exterior Only';
+      summary = svcLabel + ', ' + state.panes + ' panes';
+    }
+  }
+
+  const draftId = currentDraftId || Date.now();
+  if (!currentDraftId) currentDraftId = draftId;
+
+  const draft = {
+    id: draftId,
+    draft: true,
+    name: name || '(no name)',
+    phone, email, address,
+    date_pref: document.getElementById('lead-date').value,
+    notes, quote, quote_str, summary,
+    created_at: new Date().toISOString(),
+    params: isCustom ? {
+      type: 'custom',
+      price: customState.price,
+      panes: customState.panes,
+      description: customState.description
+    } : {
+      breakdown: { ...state.breakdown },
+      serviceType: state.serviceType,
+      addons: { ...state.addons },
+      selectedPackage: state.selectedPackage || null,
+      discount: parseFloat(document.getElementById('discount-pct')?.value || 0)
+    }
+  };
+
+  let leads = getLeads();
+  const idx = leads.findIndex(l => l.id === draftId);
+  if (idx !== -1) leads[idx] = draft;
+  else leads.unshift(draft);
+  saveLeads(leads);
+  updateHomeCount();
+}
+
 // ── Quote flow ─────────────────────────────────────────────────────────
 function startQuote() {
   customState = null;
@@ -2372,15 +2432,21 @@ function renderLeads() {
   el.innerHTML = leads.map(l => {
     const date = new Date(l.created_at).toLocaleDateString('en-CA', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit', hour12:true });
     if (l.draft) {
-      return '<div class="lead-item" style="border-color:var(--yellow);opacity:.9">'
-        + '<div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem">'
-        + '<span style="font-size:.65rem;font-weight:800;color:var(--yellow);background:rgba(245,158,11,.12);border-radius:4px;padding:.1rem .4rem;letter-spacing:.08em">AUTO-SAVED</span>'
-        + '<span style="font-size:.75rem;color:var(--muted)">No contact info yet</span>'
+      return '<div class="lead-item" style="border-color:var(--yellow);opacity:.95">'
+        + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem">'
+        + '<span style="font-size:.65rem;font-weight:800;color:var(--yellow);background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);border-radius:4px;padding:.1rem .45rem;letter-spacing:.08em">DRAFT</span>'
+        + '<span style="font-size:.72rem;color:var(--muted)">🕐 ' + date + '</span>'
         + '</div>'
-        + '<div class="lead-meta" style="color:var(--muted)">🕐 ' + date + '</div>'
+        + '<div class="lead-name">' + esc(l.name) + '</div>'
+        + '<div class="lead-meta">'
+        + (l.phone   ? '📞 ' + esc(l.phone)   + '<br>' : '')
+        + (l.email   ? '✉ '  + esc(l.email)   + '<br>' : '')
+        + (l.address ? '📍 ' + esc(l.address) + '<br>' : '')
+        + (l.notes   ? '💬 ' + esc(l.notes)            : '')
+        + '</div>'
         + (l.quote_str ? '<div class="lead-quote">' + l.quote_str + ' · ' + esc(l.summary) + '</div>' : '')
         + '<div class="lead-actions" style="margin-top:.6rem">'
-        + '<button class="lead-btn" style="flex:2;border-color:var(--yellow);color:var(--yellow)" onclick="editLead(' + l.id + ')">+ Add Customer Info</button>'
+        + (l.email ? '<button class="lead-btn" style="flex:2;border-color:var(--green);color:var(--green)" onclick="emailQuote(' + l.id + ')">✉ Email Invoice</button>' : '<button class="lead-btn" style="flex:2;border-color:var(--yellow);color:var(--yellow)" onclick="editLead(' + l.id + ')">+ Complete Info</button>')
         + '<button class="lead-btn delete" onclick="deleteLead(' + l.id + ')">Delete</button>'
         + '</div></div>';
     }
