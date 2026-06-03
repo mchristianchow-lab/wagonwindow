@@ -461,7 +461,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         <span class="home-btn-sub">Cheat sheet — all rates</span>
       </div>
     </button>
-    <button class="home-btn" onclick="window.open('https://wagonwindow.com/waiver-ipad.html','_blank')">
+    <button class="home-btn" onclick="const _wa=document.createElement('a');_wa.href='https://wagonwindow.com/waiver-ipad.html';_wa.target='_blank';_wa.rel='noopener';document.body.appendChild(_wa);_wa.click();document.body.removeChild(_wa)">
       <span class="home-btn-icon">📝</span>
       <div>
         <span class="home-btn-label">Service Waiver</span>
@@ -2546,7 +2546,10 @@ function openWaiver(id) {
     notes:   lead.notes   || '',
     services: [...new Set(svcs)].join(',')
   });
-  window.open('https://wagonwindow.com/waiver-ipad.html?' + params.toString(), '_blank');
+  const _a = document.createElement('a');
+  _a.href = 'https://wagonwindow.com/waiver-ipad.html?' + params.toString();
+  _a.target = '_blank'; _a.rel = 'noopener';
+  document.body.appendChild(_a); _a.click(); document.body.removeChild(_a);
 }
 
 // ── Outdoor mode ──────────────────────────────────────────────────────
