@@ -1621,6 +1621,7 @@ function goScreen(id) {
 // ── Custom quote flow ──────────────────────────────────────────────────
 function startCustom() {
   customState = null;
+  currentDraftId = null;
   document.getElementById('cq-desc').value = '';
   document.getElementById('cq-panes').value = '';
   document.getElementById('cq-price').value = '';
@@ -1690,6 +1691,9 @@ function autoSaveDraft() {
   const draftId = currentDraftId || Date.now();
   if (!currentDraftId) currentDraftId = draftId;
 
+  const leads = getLeads();
+  const existing = leads.find(l => l.id === draftId);
+
   const draft = {
     id: draftId,
     draft: true,
@@ -1697,7 +1701,7 @@ function autoSaveDraft() {
     phone, email, address,
     date_pref: document.getElementById('lead-date').value,
     notes, quote, quote_str, summary,
-    created_at: new Date().toISOString(),
+    created_at: existing ? existing.created_at : new Date().toISOString(),
     params: isCustom ? {
       type: 'custom',
       price: customState.price,
@@ -1712,7 +1716,6 @@ function autoSaveDraft() {
     }
   };
 
-  let leads = getLeads();
   const idx = leads.findIndex(l => l.id === draftId);
   if (idx !== -1) leads[idx] = draft;
   else leads.unshift(draft);
@@ -2715,7 +2718,7 @@ function emailQuote(id) {
   );
 
   const lines = [
-    'Hi ' + lead.name.split(' ')[0] + ',',
+    'Hi ' + (lead.name && lead.name !== '(no name)' ? lead.name.split(' ')[0] : 'there') + ',',
     '',
     isCustom
       ? 'Here\'s your invoice for today\'s service' + (lead.address ? ' at ' + lead.address : '') + '.'
