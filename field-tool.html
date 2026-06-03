@@ -877,7 +877,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
       </div>
       <div class="breakdown-row total" style="background:var(--surface)">
         <span class="breakdown-label" style="color:var(--text);font-weight:700">Total</span>
-        <span style="color:var(--yellow);font-size:1.2rem;font-weight:800" id="cq-total">—</span>
+        <span style="color:var(--yellow);font-size:1.2rem;font-weight:800" id="custom-total">—</span>
       </div>
     </div>
     <div style="height:1rem"></div>
@@ -1637,7 +1637,7 @@ function calcCustomGST() {
   const total = price + gst;
   document.getElementById('cq-subtotal').textContent = '$' + price.toFixed(2);
   document.getElementById('cq-gst').textContent = '$' + gst.toFixed(2);
-  document.getElementById('cq-total').textContent = '$' + total.toFixed(2);
+  document.getElementById('custom-total').textContent = '$' + total.toFixed(2);
   card.style.display = 'block';
 }
 
