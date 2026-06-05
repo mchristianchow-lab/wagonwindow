@@ -2809,6 +2809,7 @@ function emailQuote(id) {
 // ── Session persistence (resume last quote) ────────────────────────────
 function saveSession(screenId) {
   if (screenId === 'scr-home' || screenId === 'scr-leads' || screenId === 'scr-ref' || screenId === 'scr-complete') return;
+  if (screenId.startsWith('scr-comm-')) return;
   const session = {
     breakdown: { ...state.breakdown },
     serviceType: state.serviceType,
