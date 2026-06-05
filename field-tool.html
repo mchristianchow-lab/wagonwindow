@@ -2451,7 +2451,7 @@ function updateRevenue() {
   const leads = getLeads();
   const today = new Date().toLocaleDateString('en-CA');
   const todayLeads = leads.filter(l => new Date(l.created_at).toLocaleDateString('en-CA') === today);
-  const total = todayLeads.reduce((sum, l) => sum + (l.quote || 0), 0);
+  const total = todayLeads.reduce((sum, l) => sum + (l.quote || l.total || 0), 0);
   const bar = document.getElementById('revenue-bar');
   if (!bar) return;
   if (todayLeads.length) {
@@ -2487,23 +2487,29 @@ function openWaiver(id) {
     'exterior':      'exterior',
     'both':          'exterior,interior'
   };
-  // Parse services from lead summary
+  // Parse services from lead summary (handles both residential and commercial)
   const svcs = [];
+  const svcType = lead.service || lead.serviceType || '';
   if (lead.summary) {
-    if (lead.summary.toLowerCase().includes('exterior') || lead.serviceType === 'exterior') svcs.push('exterior');
-    if (lead.summary.toLowerCase().includes('int + ext') || lead.serviceType === 'both') { svcs.push('exterior'); svcs.push('interior'); }
-    if (lead.summary.toLowerCase().includes('screens')) svcs.push('screens');
-    if (lead.summary.toLowerCase().includes('tracks'))  svcs.push('tracks');
-    if (lead.summary.toLowerCase().includes('gutters')) svcs.push('gutters');
-    if (lead.summary.toLowerCase().includes('hard water')) svcs.push('hardwater');
+    const sum = lead.summary.toLowerCase();
+    if (sum.includes('exterior') || sum.includes(' ext') || svcType === 'exterior') svcs.push('exterior');
+    if (sum.includes('int + ext') || sum.includes('int+ext') || svcType === 'both') { svcs.push('exterior'); svcs.push('interior'); }
+    if (sum.includes('screens')) svcs.push('screens');
+    if (sum.includes('tracks'))  svcs.push('tracks');
+    if (sum.includes('gutters')) svcs.push('gutters');
+    if (sum.includes('hard water')) svcs.push('hardwater');
   }
+  // Window count: residential has params.breakdown, commercial has std/lrg/spc directly
+  const winCount = lead.params?.breakdown
+    ? (lead.params.breakdown.regular||0) + (lead.params.breakdown.large||0) + (lead.params.breakdown.french||0)
+    : (lead.params?.panes || (lead.std !== undefined ? (lead.std||0) + (lead.lrg||0) + (lead.spc||0) : ''));
   const params = new URLSearchParams({
     name:    lead.name    || '',
     phone:   lead.phone   || '',
     email:   lead.email   || '',
     address: lead.address || '',
-    price:   lead.quote   || '',
-    windows: lead.params?.breakdown ? (lead.params.breakdown.regular||0) + (lead.params.breakdown.large||0) + (lead.params.breakdown.french||0) : (lead.params?.panes || ''),
+    price:   lead.quote || lead.total || '',
+    windows: winCount,
     notes:   lead.notes   || '',
     services: [...new Set(svcs)].join(',')
   });
