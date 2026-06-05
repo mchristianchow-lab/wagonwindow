@@ -21,3 +21,13 @@ Project-specific lessons for `field-tool.html` — the iOS PWA field quoting too
 [2026-05-21] PATTERN: Phone formatting uses (250) 555-0123 style. Apply formatPhone(this) via oninput on any phone input. Strips non-digits, formats progressively as user types.
 
 [2026-05-21] GOTCHA!: lead.panes doesn't exist in the lead object — pane count must be computed from lead.params.breakdown (sum of regular + large + french values).
+
+[2026-05-27] ARCH!: Commercial tool JS uses specific element IDs — cv-std/cv-lrg/cv-spc (counter values), cf-screens/cf-tracks/cf-hardwater (fee counters), pw-toggle/pw-detail (power wash), fee-travel/travel-fee-display (travel), c-biz/c-contact/c-phone/c-email/c-address (info form), cq-total/cq-range/comm-breakdown (quote display). Always read HTML before writing commercial JS.
+
+[2026-05-28] MECHANIC!: Residential pricing — $169 base (ext/int), $219 base (both). Per-pane tiers: T1 (31-50) $2.50/$3.50, T2 (51-70) $3.50/$4.00, T3 (71-99) $4.00/$4.50, overflow $4.00/$7.00. Interior-only priced same as exterior for now. Rate ≈ $4/pane at scale.
+
+[2026-05-28] MECHANIC!: Unit pricing for strata — corner unit (20 reg panes + 4 door panes = 24 total) = $100. Regular unit (16 reg panes + 4 door panes = 20 total) = $80. Rate ≈ $4/pane. All-inclusive: interior glass + screens + tracks.
+
+[2026-05-28] ARCH: Unit multiplier feature added to both residential (scr-count) and commercial (scr-comm-windows) screens. State: resUnitRows[] = [{name, units, reg, lrg, fre}], commUnitRows[] = [{name, units, std, lrg, spc}]. Apply buttons push totals into state.breakdown (res) or commState.std/lrg/spc (comm). Both reset in startQuote() and startCommercial().
+
+[2026-05-28] GOTCHA: Sony ILME-FX30 files appear as .JPG but are TIFF-based RAW — sips and ImageMagick cannot process them. Fix: `exiftool -b -JpgFromRaw "$f" > output.jpg` extracts the full embedded JPEG. Requires `brew install exiftool`.

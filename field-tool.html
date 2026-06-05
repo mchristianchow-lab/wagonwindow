@@ -2047,47 +2047,6 @@ function brow(label, val, bold) {
     + '</div>';
 }
 
-// ── Auto-save draft ────────────────────────────────────────────────────
-function autoSaveDraft() {
-  const q = buildQuote();
-  if (!q) return;
-  const svcLabel = state.serviceType === 'interior' ? 'Interior Only' : state.serviceType === 'both' ? 'Int + Ext' : 'Exterior Only';
-  const parts = [svcLabel, state.panes + ' panes'];
-  if (state.addons.screens)    parts.push('screens ×' + state.addons.screens);
-  if (state.addons.tracks)     parts.push('tracks ×' + state.addons.tracks);
-  if (state.addons.gutters > 0) parts.push('gutters');
-  if (state.addons.hardwater)  parts.push('hard water ×' + state.addons.hardwater);
-  if (state.addons.largewindow) parts.push('large ×' + state.addons.largewindow);
-  const discEl = document.getElementById('discount-pct');
-  const params = {
-    breakdown: { ...state.breakdown },
-    serviceType: state.serviceType,
-    addons: { ...state.addons },
-    selectedPackage: state.selectedPackage || null,
-    discount: parseFloat(discEl?.value || 0)
-  };
-  const leads = getLeads();
-  if (currentDraftId) {
-    const idx = leads.findIndex(l => l.id === currentDraftId);
-    if (idx !== -1) {
-      leads[idx] = { ...leads[idx], quote: q.total, quote_str: fmt(q.total) + ' incl. GST', summary: parts.join(', '), params };
-      saveLeads(leads);
-      return;
-    }
-  }
-  const draft = {
-    id: Date.now(), draft: true,
-    name: '', phone: '', email: '', address: '', date_pref: '', notes: '',
-    quote: q.total, quote_str: fmt(q.total) + ' incl. GST',
-    summary: parts.join(', '),
-    created_at: new Date().toISOString(), params
-  };
-  currentDraftId = draft.id;
-  leads.unshift(draft);
-  saveLeads(leads);
-  updateHomeCount();
-}
-
 // ── Customer mode ──────────────────────────────────────────────────────
 function showCustomer() {
   const q = buildQuote();
