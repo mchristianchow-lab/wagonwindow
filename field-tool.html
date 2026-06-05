@@ -1937,11 +1937,12 @@ function selectService(type) {
   setTimeout(() => goScreen('scr-addons'), 120);
 }
 
+function withGST(base) { return base + Math.round(base * GST); }
 function updateServicePrices() {
   document.getElementById('svc-pane-count').textContent = state.panes;
-  document.getElementById('price-ext').textContent  = fmt(Math.max(MIN_JOB, calcBase(state.panes, 'exterior')));
-  document.getElementById('price-int').textContent  = fmt(Math.max(MIN_JOB, calcBase(state.panes, 'interior')));
-  document.getElementById('price-both').textContent = fmt(Math.max(MIN_JOB, calcBase(state.panes, 'both')));
+  document.getElementById('price-ext').textContent  = fmt(withGST(Math.max(MIN_JOB, calcBase(state.panes, 'exterior'))));
+  document.getElementById('price-int').textContent  = fmt(withGST(Math.max(MIN_JOB, calcBase(state.panes, 'interior'))));
+  document.getElementById('price-both').textContent = fmt(withGST(Math.max(MIN_JOB, calcBase(state.panes, 'both'))));
 }
 
 // ── Add-on helpers ─────────────────────────────────────────────────────
@@ -2421,7 +2422,7 @@ function renderLeads() {
       + '<br>🕐 ' + date
       + '</div>'
       + (l.quote_str ? '<div class="lead-quote">' + l.quote_str + ' · ' + esc(l.summary) + '</div>' : '')
-      + (l.email ? '<button class="lead-btn" style="width:100%;margin-bottom:.5rem;border-color:var(--green);color:var(--green);font-size:.85rem" onclick="emailQuote(' + l.id + ')">✉ Email Quote to ' + esc(l.name.split(' ')[0]) + '</button>' : '')
+      + (l.email ? '<button class="lead-btn" style="width:100%;margin-bottom:.5rem;border-color:var(--green);color:var(--green);font-size:.85rem" onclick="emailQuote(' + l.id + ')">✉ Email Quote to ' + esc((l.name || 'Customer').split(' ')[0]) + '</button>' : '')
       + '<div class="lead-actions">'
       + '<button class="lead-btn" onclick="shareLead(' + l.id + ')">Share</button>'
       + '<button class="lead-btn booking" onclick="openBooking()">Book</button>'
@@ -3194,16 +3195,26 @@ function fillCommSaveForm() {
 
 function saveCommLead(book) {
   const q = commState.quote || calcCommQuote();
-  const notes = document.getElementById('cs-notes').value.trim();
+  const biz     = document.getElementById('cs-biz').value.trim()     || commState.biz     || '';
+  const contact = document.getElementById('cs-contact').value.trim() || commState.contact || '';
+  const phone   = document.getElementById('cs-phone').value.trim()   || commState.phone   || '';
+  const email   = document.getElementById('cs-email').value.trim()   || commState.email   || '';
+  const address = document.getElementById('cs-address').value.trim() || commState.address || '';
+  const notes   = document.getElementById('cs-notes').value.trim();
+  const displayName = contact || biz || 'Commercial Lead';
   const lead = {
     id: Date.now(),
+    created_at: Date.now(),
     type: 'commercial',
     date: new Date().toLocaleDateString(),
-    biz: commState.biz,
-    contact: commState.contact,
-    phone: commState.phone,
-    email: commState.email,
-    address: commState.address,
+    name: displayName,
+    biz,
+    contact,
+    phone,
+    email,
+    address,
+    quote_str: '$' + Math.round(q.total).toLocaleString() + ' incl. GST',
+    summary: (commState.std + commState.lrg + commState.spc) + ' windows · ' + (commState.service === 'exterior' ? 'Ext' : 'Int+Ext'),
     propType: commState.propType,
     stories: commState.stories,
     service: commState.service,
