@@ -2501,7 +2501,7 @@ function openWaiver(id) {
     email:   lead.email   || '',
     address: lead.address || '',
     price:   lead.quote   || '',
-    windows: lead.params ? (lead.params.breakdown.regular||0) + (lead.params.breakdown.large||0) + (lead.params.breakdown.french||0) : '',
+    windows: lead.params?.breakdown ? (lead.params.breakdown.regular||0) + (lead.params.breakdown.large||0) + (lead.params.breakdown.french||0) : (lead.params?.panes || ''),
     notes:   lead.notes   || '',
     services: [...new Set(svcs)].join(',')
   });
