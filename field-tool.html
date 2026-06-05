@@ -2238,6 +2238,7 @@ function saveLeadEdit() {
 function loadLeadQuote(id) {
   const lead = getLeads().find(l => l.id === id);
   if (!lead) return;
+  if (lead.type === 'commercial') return;
 
   // Build params — use stored params if available, otherwise parse summary
   let p = lead.params;
@@ -2416,7 +2417,7 @@ function renderLeads() {
     return '<div class="lead-item">'
       + '<div class="lead-name" style="cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px" onclick="loadLeadQuote(' + l.id + ')">' + esc(l.name) + ' ↗</div>'
       + '<div class="lead-meta">'
-      + '📞 ' + esc(l.phone) + (l.address ? '<br>📍 ' + esc(l.address) : '')
+      + (l.phone ? '📞 ' + esc(l.phone) : '') + (l.address ? (l.phone ? '<br>' : '') + '📍 ' + esc(l.address) : '')
       + (l.date_pref ? '<br>📅 Preferred: ' + l.date_pref : '')
       + (l.notes ? '<br>💬 ' + esc(l.notes) : '')
       + '<br>🕐 ' + date
@@ -3176,12 +3177,18 @@ function showCommCustomer() {
     'wagonwindow.com · (403) 837-5092',
   ].filter(Boolean).join('\n');
 
-  const overlay = document.getElementById('customer-overlay');
-  const text    = document.getElementById('customer-text');
-  if (overlay && text) {
-    text.textContent = lines;
-    overlay.classList.remove('hidden');
-  }
+  const fmt2 = n => '$' + Math.round(n).toLocaleString();
+  const parts = [];
+  const winCount = commState.std + commState.lrg + commState.spc;
+  parts.push(winCount + ' window' + (winCount !== 1 ? 's' : ''));
+  parts.push(commState.service === 'exterior' ? 'exterior only' : 'interior + exterior');
+  if (commState.stories > 1) parts.push(commState.stories + ' stories');
+  if (commState.pwOn) parts.push('power wash included');
+  if (commState.freq !== 'once') parts.push(commState.freq + ' contract');
+  parts.push('GST included');
+  document.getElementById('co-price').textContent = fmt2(q.total);
+  document.getElementById('co-includes').textContent = parts.join(' · ') + '.';
+  document.getElementById('customer-overlay').classList.add('visible');
 }
 
 function fillCommSaveForm() {
@@ -3200,7 +3207,8 @@ function saveCommLead(book) {
   const phone   = document.getElementById('cs-phone').value.trim()   || commState.phone   || '';
   const email   = document.getElementById('cs-email').value.trim()   || commState.email   || '';
   const address = document.getElementById('cs-address').value.trim() || commState.address || '';
-  const notes   = document.getElementById('cs-notes').value.trim();
+  const notes    = document.getElementById('cs-notes').value.trim();
+  const date_pref = document.getElementById('cs-date').value.trim();
   const displayName = contact || biz || 'Commercial Lead';
   const lead = {
     id: Date.now(),
@@ -3225,7 +3233,7 @@ function saveCommLead(book) {
     freq: commState.freq, fieldDiscount: commState.fieldDiscount,
     total: Math.round(q.total),
     pretax: Math.round(q.final),
-    notes
+    notes, date_pref
   };
   const leads = JSON.parse(localStorage.getItem('ww_leads') || '[]');
   leads.unshift(lead);
