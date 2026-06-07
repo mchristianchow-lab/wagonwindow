@@ -23,6 +23,30 @@
 }
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;overflow:hidden}
 #app{height:100%;display:flex;flex-direction:column;max-width:500px;margin:0 auto}
+@media(min-width:768px){
+  html,body{overflow:auto}
+  #app{max-width:860px;height:auto;min-height:100%}
+  .screen{min-height:100vh}
+  .screen.active{display:flex}
+  .topbar{padding:.85rem 2rem}
+  .section{padding:1.25rem 2rem 0}
+  .home-btns{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:1.5rem 2rem}
+  .home-header{padding:2.5rem 2rem 1rem}
+  .counter-btn{width:68px;height:68px;font-size:1.8rem}
+  .counter-btn.wide{padding:0 1.25rem;font-size:1.1rem}
+  .counter-val{font-size:5rem;min-width:120px}
+  .card{padding:1.5rem}
+  .comm-bar{padding:1rem 2rem 1.5rem}
+  .bottom-nav{padding:1rem 2rem 1.5rem}
+  .form-section{padding:1.25rem 2rem}
+  .action-strip{padding:1.25rem 2rem}
+  .quote-hero{padding:2rem 2rem 1.25rem}
+  .quote-amount{font-size:4.5rem}
+  .discount-row{margin:.75rem 2rem}
+  .breakdown-card{margin:.5rem 2rem}
+  .leads-list{padding:0 2rem}
+  .lead-item{padding:1rem 1.25rem}
+}
 /* ── Top bar ── */
 .topbar{
   display:flex;align-items:center;justify-content:space-between;
@@ -265,6 +289,32 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
   margin:0 0 1rem
 }
 /* ── COMMERCIAL TOOL ── */
+/* ── Unit multiplier ── */
+.um-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:.75rem 1rem;cursor:pointer;font-family:inherit;font-size:.88rem;font-weight:700;color:var(--muted);-webkit-tap-highlight-color:transparent}
+.um-toggle.on{border-color:var(--blue);color:var(--blue)}
+.um-panel{background:var(--surface);border-radius:12px;border:1px solid var(--border);padding:.75rem;margin-top:.5rem}
+.um-row{background:var(--surface2);border-radius:10px;padding:.75rem;margin-bottom:.5rem;border:1px solid var(--border)}
+.um-row-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem}
+.um-name{flex:1;background:transparent;border:none;border-bottom:1.5px solid var(--border);color:var(--text);font-size:.92rem;font-weight:700;font-family:inherit;padding:.2rem .3rem;outline:none}
+.um-name::placeholder{color:var(--muted);font-weight:400}
+.um-name:focus{border-color:var(--blue)}
+.um-del{background:none;border:1.5px solid var(--border);border-radius:6px;color:var(--muted);width:28px;height:28px;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.um-calcs{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.um-grp{display:flex;flex-direction:column;align-items:center;gap:.2rem}
+.um-grp-label{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.um-grp-ctrl{display:flex;align-items:center;gap:.3rem}
+.um-grp-val{min-width:2rem;text-align:center;font-weight:800;font-size:.95rem;color:var(--text)}
+.um-sep{color:var(--muted);font-size:1.1rem;font-weight:300;align-self:flex-end;padding-bottom:.15rem}
+.um-result{font-size:.82rem;font-weight:700;color:var(--green);margin-left:auto;align-self:flex-end;padding-bottom:.1rem;white-space:nowrap}
+.um-footer{display:flex;align-items:center;justify-content:space-between;margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--border)}
+.um-total-label{font-size:.78rem;color:var(--muted)}
+.um-total-val{font-size:1.4rem;font-weight:800;color:var(--text)}
+.um-apply{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:.55rem 1.1rem;font-size:.85rem;font-weight:700;font-family:inherit;cursor:pointer}
+.um-add{width:100%;background:none;border:1.5px dashed var(--border);border-radius:8px;padding:.6rem;color:var(--muted);font-size:.85rem;font-weight:600;font-family:inherit;cursor:pointer;margin-top:.25rem}
+.um-add:active{border-color:var(--blue);color:var(--blue)}
+.um-pane-input{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:7px;color:var(--text);font-size:1.2rem;font-weight:800;font-family:inherit;text-align:center;padding:.4rem .25rem;outline:none;-moz-appearance:textfield}
+.um-pane-input::-webkit-inner-spin-button,.um-pane-input::-webkit-outer-spin-button{-webkit-appearance:none}
+.um-pane-input:focus{border-color:var(--blue)}
 .comm-badge{display:inline-block;font-size:.68rem;font-weight:800;color:var(--blue);letter-spacing:.1em;background:rgba(59,130,246,.12);border-radius:6px;padding:.15rem .45rem}
 .comm-counters{background:var(--surface);border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:1rem}
 .comm-counter-row{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1rem;border-bottom:1px solid var(--border)}
@@ -390,6 +440,13 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         <span class="home-btn-sub">Windows · Power Washing · Contracts</span>
       </div>
     </button>
+    <button class="home-btn" style="border-color:var(--yellow)" onclick="startCustom()">
+      <span class="home-btn-icon">✏️</span>
+      <div>
+        <span class="home-btn-label" style="color:var(--yellow)">Custom Quote</span>
+        <span class="home-btn-sub">Flat price · your rate · invoice</span>
+      </div>
+    </button>
     <button class="home-btn" onclick="goScreen('scr-leads')">
       <span class="home-btn-icon">📋</span>
       <div>
@@ -404,7 +461,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         <span class="home-btn-sub">Cheat sheet — all rates</span>
       </div>
     </button>
-    <button class="home-btn" onclick="window.open('https://wagonwindow.com/waiver-ipad.html','_blank')">
+    <button class="home-btn" onclick="const _wa=document.createElement('a');_wa.href='https://wagonwindow.com/waiver-ipad.html';_wa.target='_blank';_wa.rel='noopener';document.body.appendChild(_wa);_wa.click();document.body.removeChild(_wa)">
       <span class="home-btn-icon">📝</span>
       <div>
         <span class="home-btn-label">Service Waiver</span>
@@ -479,6 +536,25 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <div style="text-align:right">
       <div style="font-size:2.2rem;font-weight:800;color:var(--text);line-height:1" id="total-pane-display">0</div>
       <div style="font-size:.72rem;margin-top:.1rem"><span class="size-badge" id="pane-size-badge">—</span></div>
+    </div>
+  </div>
+
+  <!-- Unit Multiplier (residential) -->
+  <div style="padding:0 1rem .5rem">
+    <button class="um-toggle" id="res-um-toggle" onclick="toggleResUnitMult()">
+      <span>Unit Multiplier</span>
+      <span id="res-um-badge" style="font-size:.78rem;font-weight:400;color:var(--muted)">off</span>
+    </button>
+    <div class="um-panel" id="res-um-panel" style="display:none">
+      <div id="res-um-rows"></div>
+      <div class="um-footer">
+        <div>
+          <div class="um-total-label">Total Panes</div>
+          <div class="um-total-val" id="res-um-total">0</div>
+        </div>
+        <button class="um-apply" onclick="applyResUnitTotal()">Apply to Counter</button>
+      </div>
+      <button class="um-add" onclick="addResUnitRow()">+ Add Unit Type</button>
     </div>
   </div>
 
@@ -582,6 +658,16 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
       <div class="service-card-price">
         <div class="service-price-from">from</div>
         <div class="service-price-val" id="price-ext">$—</div>
+      </div>
+    </div>
+    <div class="service-card" id="svc-int" onclick="selectService('interior')">
+      <div class="service-card-left">
+        <div class="service-card-name">Interior Only</div>
+        <div class="service-card-desc">Inside surfaces only</div>
+      </div>
+      <div class="service-card-price">
+        <div class="service-price-from">from</div>
+        <div class="service-price-val" id="price-int">$—</div>
       </div>
     </div>
     <div class="service-card" id="svc-both" onclick="selectService('both')">
@@ -756,38 +842,84 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
 </div>
 
 <!-- ╔══════════════════════════════╗ -->
+<!-- ║       CUSTOM QUOTE           ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<div id="scr-custom" class="screen">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goScreen('scr-home')">← Home</button>
+    <div class="topbar-title">Custom Quote</div>
+    <div style="width:60px"></div>
+  </div>
+  <div class="form-section">
+    <div class="field-group">
+      <label class="field-label">Description</label>
+      <input class="field-input" id="cq-desc" type="text" placeholder="e.g. Storefront, Office, Café…">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Pane Count</label>
+      <input class="field-input" id="cq-panes" type="number" inputmode="numeric" min="0" placeholder="0" oninput="calcCustomGST()">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Your Price (before GST)</label>
+      <div style="display:flex;align-items:center;background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:.75rem 1rem;gap:.35rem" id="cq-price-wrap">
+        <span style="font-size:1.1rem;font-weight:700;color:var(--muted)">$</span>
+        <input style="background:none;border:none;outline:none;color:var(--text);font-size:1.6rem;font-weight:800;font-family:inherit;width:100%;-moz-appearance:textfield" id="cq-price" type="number" inputmode="decimal" min="0" step="0.01" placeholder="40.00" oninput="calcCustomGST()">
+      </div>
+    </div>
+    <div id="cq-total-card" style="display:none;background:var(--surface2);border-radius:10px;border:1px solid var(--border);overflow:hidden">
+      <div class="breakdown-row">
+        <span class="breakdown-label">Subtotal</span>
+        <span class="breakdown-val" id="cq-subtotal">—</span>
+      </div>
+      <div class="breakdown-row">
+        <span class="breakdown-label">GST (5%)</span>
+        <span class="breakdown-val" id="cq-gst">—</span>
+      </div>
+      <div class="breakdown-row total" style="background:var(--surface)">
+        <span class="breakdown-label" style="color:var(--text);font-weight:700">Total</span>
+        <span style="color:var(--yellow);font-size:1.2rem;font-weight:800" id="custom-total">—</span>
+      </div>
+    </div>
+    <div style="height:1rem"></div>
+  </div>
+  <div class="bottom-nav">
+    <button class="btn btn-outline" style="border-color:var(--yellow);color:var(--yellow);flex:1" onclick="goCustomerFromCustom()">Next — Add Customer Info</button>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════╗ -->
 <!-- ║       LEAD CAPTURE           ║ -->
 <!-- ╚══════════════════════════════╝ -->
 <div id="scr-lead" class="screen">
   <div class="topbar">
-    <button class="topbar-back" onclick="goScreen('scr-quote')">← Quote</button>
+    <button class="topbar-back" onclick="goLeadBack()">← Back</button>
     <div class="topbar-title">Record Sale</div>
     <div style="width:60px"></div>
   </div>
   <div class="form-section">
     <div class="field-group">
       <label class="field-label">Customer Name *</label>
-      <input class="field-input" id="lead-name" type="text" placeholder="Jane Smith" autocomplete="name">
+      <input class="field-input" id="lead-name" type="text" placeholder="Jane Smith" autocomplete="name" oninput="autoSaveDraft()">
     </div>
     <div class="field-group">
       <label class="field-label">Phone *</label>
-      <input class="field-input" id="lead-phone" type="tel" placeholder="(250) 555-0123" autocomplete="tel" oninput="formatPhone(this)">
+      <input class="field-input" id="lead-phone" type="tel" placeholder="(250) 555-0123" autocomplete="tel" oninput="formatPhone(this);autoSaveDraft()">
     </div>
     <div class="field-group">
       <label class="field-label">Email</label>
-      <input class="field-input" id="lead-email" type="email" placeholder="customer@email.com" autocapitalize="none" autocomplete="email">
+      <input class="field-input" id="lead-email" type="email" placeholder="customer@email.com" autocapitalize="none" autocomplete="email" oninput="autoSaveDraft()">
     </div>
     <div class="field-group">
       <label class="field-label">Address</label>
-      <input class="field-input" id="lead-address" type="text" placeholder="123 Main St, Salmon Arm">
+      <input class="field-input" id="lead-address" type="text" placeholder="123 Main St, Salmon Arm" oninput="autoSaveDraft()">
     </div>
     <div class="field-group">
       <label class="field-label">Preferred Date</label>
-      <input class="field-input" id="lead-date" type="date">
+      <input class="field-input" id="lead-date" type="date" onchange="autoSaveDraft()">
     </div>
     <div class="field-group">
       <label class="field-label">Notes</label>
-      <input class="field-input" id="lead-notes" type="text" placeholder="Gate code, dog, special instructions…">
+      <input class="field-input" id="lead-notes" type="text" placeholder="Gate code, dog, special instructions…" oninput="autoSaveDraft()">
     </div>
     <div style="height:1rem"></div>
   </div>
@@ -1045,6 +1177,24 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
             <button class="comm-cbtn" onclick="adjComm('spc',1)">+</button>
           </div>
         </div>
+      </div>
+    </div>
+    <!-- Unit Multiplier (commercial) -->
+    <div style="margin-bottom:1rem">
+      <button class="um-toggle" id="comm-um-toggle" onclick="toggleCommUnitMult()">
+        <span>Unit Multiplier</span>
+        <span id="comm-um-badge" style="font-size:.78rem;font-weight:400;color:var(--muted)">off</span>
+      </button>
+      <div class="um-panel" id="comm-um-panel" style="display:none">
+        <div id="comm-um-rows"></div>
+        <div class="um-footer">
+          <div>
+            <div class="um-total-label">Total Panes</div>
+            <div class="um-total-val" id="comm-um-total" style="font-size:1.1rem">0 std · 0 lrg · 0 spc</div>
+          </div>
+          <button class="um-apply" onclick="applyCommUnitTotal()">Apply</button>
+        </div>
+        <button class="um-add" onclick="addCommUnitRow()">+ Add Unit Type</button>
       </div>
     </div>
     <div class="card">
@@ -1408,16 +1558,20 @@ const state = {
 };
 
 let currentDraftId = null;
+let leadBackScreen = 'scr-quote';
+let customState = null;
 
 // ── Pricing engine (mirrors customer quote tool exactly) ───────────────
 function calcBase(panes, type) {
-  let ext = 169, intExt = 219;
+  let ext = 169, int = 169, intExt = 219;
   let rem = Math.max(0, panes - 30);
-  const t1 = Math.min(rem, 20); rem -= t1; ext += t1 * 2.50; intExt += t1 * 3.50;
-  const t2 = Math.min(rem, 20); rem -= t2; ext += t2 * 3.50; intExt += t2 * 4.00;
-  const t3 = Math.min(rem, 29); rem -= t3; ext += t3 * 4.00; intExt += t3 * 4.50;
-  ext += rem * 4.00; intExt += rem * 7.00;
-  return type === 'exterior' ? Math.round(ext) : Math.round(intExt);
+  const t1 = Math.min(rem, 20); rem -= t1; ext += t1 * 2.50; int += t1 * 2.50; intExt += t1 * 3.50;
+  const t2 = Math.min(rem, 20); rem -= t2; ext += t2 * 3.50; int += t2 * 3.50; intExt += t2 * 4.00;
+  const t3 = Math.min(rem, 29); rem -= t3; ext += t3 * 4.00; int += t3 * 4.00; intExt += t3 * 4.50;
+  ext += rem * 4.00; int += rem * 4.00; intExt += rem * 7.00;
+  if (type === 'exterior') return Math.round(ext);
+  if (type === 'interior') return Math.round(int);
+  return Math.round(intExt);
 }
 
 function gutterPrice() { return 189; }
@@ -1464,10 +1618,118 @@ function goScreen(id) {
   saveSession(id);
 }
 
+// ── Custom quote flow ──────────────────────────────────────────────────
+function startCustom() {
+  customState = null;
+  currentDraftId = null;
+  document.getElementById('cq-desc').value = '';
+  document.getElementById('cq-panes').value = '';
+  document.getElementById('cq-price').value = '';
+  document.getElementById('cq-total-card').style.display = 'none';
+  goScreen('scr-custom');
+}
+
+function calcCustomGST() {
+  const price = parseFloat(document.getElementById('cq-price').value) || 0;
+  const card = document.getElementById('cq-total-card');
+  if (!price) { card.style.display = 'none'; return; }
+  const gst = Math.round(price * 5) / 100;
+  const total = price + gst;
+  document.getElementById('cq-subtotal').textContent = '$' + price.toFixed(2);
+  document.getElementById('cq-gst').textContent = '$' + gst.toFixed(2);
+  document.getElementById('custom-total').textContent = '$' + total.toFixed(2);
+  card.style.display = 'block';
+}
+
+function goCustomerFromCustom() {
+  const price = parseFloat(document.getElementById('cq-price').value) || 0;
+  if (!price) { alert('Enter a price first.'); return; }
+  customState = {
+    active: true,
+    price,
+    panes: parseInt(document.getElementById('cq-panes').value) || 0,
+    description: document.getElementById('cq-desc').value.trim() || 'Custom Quote'
+  };
+  leadBackScreen = 'scr-custom';
+  ['lead-name','lead-phone','lead-email','lead-address','lead-date','lead-notes'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  goScreen('scr-lead');
+}
+
+function goLeadBack() {
+  goScreen(leadBackScreen || 'scr-quote');
+}
+
+function autoSaveDraft() {
+  const name    = document.getElementById('lead-name').value.trim();
+  const phone   = document.getElementById('lead-phone').value.trim();
+  const email   = document.getElementById('lead-email').value.trim();
+  const address = document.getElementById('lead-address').value.trim();
+  const notes   = document.getElementById('lead-notes').value.trim();
+
+  if (!name && !phone && !email && !address && !notes) return;
+
+  const isCustom = customState && customState.active;
+  let quote = null, quote_str = null, summary = 'Draft';
+
+  if (isCustom) {
+    const gst = Math.round(customState.price * 5) / 100;
+    quote = customState.price + gst;
+    quote_str = fmt(quote) + ' incl. GST';
+    summary = customState.description + (customState.panes ? ' · ' + customState.panes + ' panes' : '') + ' · flat $' + customState.price.toFixed(2);
+  } else {
+    const q = buildQuote();
+    if (q) {
+      quote = q.total;
+      quote_str = fmt(q.total) + ' incl. GST';
+      const svcLabel = state.serviceType === 'interior' ? 'Interior Only' : state.serviceType === 'both' ? 'Int + Ext' : 'Exterior Only';
+      summary = svcLabel + ', ' + state.panes + ' panes';
+    }
+  }
+
+  const draftId = currentDraftId || Date.now();
+  if (!currentDraftId) currentDraftId = draftId;
+
+  const leads = getLeads();
+  const existing = leads.find(l => l.id === draftId);
+
+  const draft = {
+    id: draftId,
+    draft: true,
+    name: name || '(no name)',
+    phone, email, address,
+    date_pref: document.getElementById('lead-date').value,
+    notes, quote, quote_str, summary,
+    created_at: existing ? existing.created_at : new Date().toISOString(),
+    params: isCustom ? {
+      type: 'custom',
+      price: customState.price,
+      panes: customState.panes,
+      description: customState.description
+    } : {
+      breakdown: { ...state.breakdown },
+      serviceType: state.serviceType,
+      addons: { ...state.addons },
+      selectedPackage: state.selectedPackage || null,
+      discount: parseFloat(document.getElementById('discount-pct')?.value || 0)
+    }
+  };
+
+  const idx = leads.findIndex(l => l.id === draftId);
+  if (idx !== -1) leads[idx] = draft;
+  else leads.unshift(draft);
+  saveLeads(leads);
+  updateHomeCount();
+}
+
 // ── Quote flow ─────────────────────────────────────────────────────────
 function startQuote() {
+  customState = null;
+  leadBackScreen = 'scr-quote';
   currentDraftId = null;
   clearSession();
+  resUnitRows = [];
   state.serviceType = null;
   state.breakdown = { regular: 0, large: 0, french: 0 };
   state.panes = 0;
@@ -1661,7 +1923,8 @@ function selectPackage(tier) {
 function selectService(type) {
   state.serviceType = type;
   document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
-  document.getElementById('svc-' + (type === 'exterior' ? 'ext' : 'both')).classList.add('selected');
+  const idMap = { exterior: 'ext', interior: 'int', both: 'both' };
+  document.getElementById('svc-' + idMap[type]).classList.add('selected');
   // Auto-fill screens/tracks for int+ext
   if (type === 'both') {
     const est = Math.round(state.panes / 2);
@@ -1674,10 +1937,12 @@ function selectService(type) {
   setTimeout(() => goScreen('scr-addons'), 120);
 }
 
+function withGST(base) { return base + Math.round(base * GST); }
 function updateServicePrices() {
   document.getElementById('svc-pane-count').textContent = state.panes;
-  document.getElementById('price-ext').textContent = fmt(Math.max(MIN_JOB, calcBase(state.panes, 'exterior')));
-  document.getElementById('price-both').textContent = fmt(Math.max(MIN_JOB, calcBase(state.panes, 'both')));
+  document.getElementById('price-ext').textContent  = fmt(withGST(Math.max(MIN_JOB, calcBase(state.panes, 'exterior'))));
+  document.getElementById('price-int').textContent  = fmt(withGST(Math.max(MIN_JOB, calcBase(state.panes, 'interior'))));
+  document.getElementById('price-both').textContent = fmt(withGST(Math.max(MIN_JOB, calcBase(state.panes, 'both'))));
 }
 
 // ── Add-on helpers ─────────────────────────────────────────────────────
@@ -1760,7 +2025,7 @@ function renderQuote() {
   document.getElementById('q-from-label').textContent = pkgLabel || 'Estimated starting from';
   document.getElementById('q-subtotal').textContent = q.discPct > 0 ? q.discPct + '% field discount applied' : '';
 
-  const svcLabel = state.serviceType === 'exterior' ? 'Exterior Only' : 'Interior + Exterior';
+  const svcLabel = state.serviceType === 'interior' ? 'Interior Only' : state.serviceType === 'both' ? 'Interior + Exterior' : 'Exterior Only';
   let rows = '';
   rows += brow(svcLabel + ' (' + state.panes + ' panes)', fmt(q.base));
   if (q.largeWin) rows += brow('Large windows ×' + state.addons.largewindow, fmt(q.largeWin));
@@ -1783,47 +2048,6 @@ function brow(label, val, bold) {
     + '</div>';
 }
 
-// ── Auto-save draft ────────────────────────────────────────────────────
-function autoSaveDraft() {
-  const q = buildQuote();
-  if (!q) return;
-  const svcLabel = state.serviceType === 'exterior' ? 'Exterior Only' : 'Int + Ext';
-  const parts = [svcLabel, state.panes + ' panes'];
-  if (state.addons.screens)    parts.push('screens ×' + state.addons.screens);
-  if (state.addons.tracks)     parts.push('tracks ×' + state.addons.tracks);
-  if (state.addons.gutters > 0) parts.push('gutters');
-  if (state.addons.hardwater)  parts.push('hard water ×' + state.addons.hardwater);
-  if (state.addons.largewindow) parts.push('large ×' + state.addons.largewindow);
-  const discEl = document.getElementById('discount-pct');
-  const params = {
-    breakdown: { ...state.breakdown },
-    serviceType: state.serviceType,
-    addons: { ...state.addons },
-    selectedPackage: state.selectedPackage || null,
-    discount: parseFloat(discEl?.value || 0)
-  };
-  const leads = getLeads();
-  if (currentDraftId) {
-    const idx = leads.findIndex(l => l.id === currentDraftId);
-    if (idx !== -1) {
-      leads[idx] = { ...leads[idx], quote: q.total, quote_str: fmt(q.total) + ' incl. GST', summary: parts.join(', '), params };
-      saveLeads(leads);
-      return;
-    }
-  }
-  const draft = {
-    id: Date.now(), draft: true,
-    name: '', phone: '', email: '', address: '', date_pref: '', notes: '',
-    quote: q.total, quote_str: fmt(q.total) + ' incl. GST',
-    summary: parts.join(', '),
-    created_at: new Date().toISOString(), params
-  };
-  currentDraftId = draft.id;
-  leads.unshift(draft);
-  saveLeads(leads);
-  updateHomeCount();
-}
-
 // ── Customer mode ──────────────────────────────────────────────────────
 function showCustomer() {
   const q = buildQuote();
@@ -1831,7 +2055,7 @@ function showCustomer() {
   document.getElementById('co-price').textContent = fmt(q.total);
 
   const parts = [];
-  const svcLabel = state.serviceType === 'exterior' ? 'Exterior window cleaning' : 'Interior + exterior window cleaning';
+  const svcLabel = state.serviceType === 'interior' ? 'Interior window cleaning' : state.serviceType === 'both' ? 'Interior + exterior window cleaning' : 'Exterior window cleaning';
   parts.push(svcLabel);
   if (q.screens)  parts.push('screen cleaning');
   if (q.tracks)   parts.push('track cleaning');
@@ -1889,36 +2113,62 @@ function saveLead(openCal) {
     return;
   }
 
-  const q = buildQuote();
-  const svcLabel = state.serviceType === 'exterior' ? 'Exterior Only' : 'Int + Ext';
-  const parts = [svcLabel, state.panes + ' panes'];
-  if (state.addons.screens)   parts.push('screens ×' + state.addons.screens);
-  if (state.addons.tracks)    parts.push('tracks ×' + state.addons.tracks);
-  if (state.addons.gutters > 0) parts.push('gutters');
-  if (state.addons.hardwater) parts.push('hard water ×' + state.addons.hardwater);
-  if (state.addons.largewindow) parts.push('large ×' + state.addons.largewindow);
+  let lead;
 
-  const discEl = document.getElementById('discount-pct');
-  const lead = {
-    id: Date.now(),
-    name,
-    phone,
-    email: document.getElementById('lead-email').value.trim(),
-    address: document.getElementById('lead-address').value.trim(),
-    date_pref: document.getElementById('lead-date').value,
-    notes: document.getElementById('lead-notes').value.trim(),
-    quote: q ? q.total : null,
-    quote_str: q ? fmt(q.total) + ' incl. GST' : null,
-    summary: parts.join(', '),
-    created_at: new Date().toISOString(),
-    params: {
-      breakdown: { ...state.breakdown },
-      serviceType: state.serviceType,
-      addons: { ...state.addons },
-      selectedPackage: state.selectedPackage || null,
-      discount: parseFloat(discEl?.value || 0)
-    }
-  };
+  if (customState && customState.active) {
+    const gst = Math.round(customState.price * 5) / 100;
+    const total = customState.price + gst;
+    lead = {
+      id: Date.now(),
+      name,
+      phone,
+      email: document.getElementById('lead-email').value.trim(),
+      address: document.getElementById('lead-address').value.trim(),
+      date_pref: document.getElementById('lead-date').value,
+      notes: document.getElementById('lead-notes').value.trim(),
+      quote: total,
+      quote_str: fmt(total) + ' incl. GST',
+      summary: customState.description + (customState.panes ? ' · ' + customState.panes + ' panes' : '') + ' · flat $' + customState.price.toFixed(2),
+      created_at: new Date().toISOString(),
+      params: {
+        type: 'custom',
+        price: customState.price,
+        panes: customState.panes,
+        description: customState.description
+      }
+    };
+    customState = null;
+  } else {
+    const q = buildQuote();
+    const svcLabel = state.serviceType === 'interior' ? 'Interior Only' : state.serviceType === 'both' ? 'Int + Ext' : 'Exterior Only';
+    const parts = [svcLabel, state.panes + ' panes'];
+    if (state.addons.screens)   parts.push('screens ×' + state.addons.screens);
+    if (state.addons.tracks)    parts.push('tracks ×' + state.addons.tracks);
+    if (state.addons.gutters > 0) parts.push('gutters');
+    if (state.addons.hardwater) parts.push('hard water ×' + state.addons.hardwater);
+    if (state.addons.largewindow) parts.push('large ×' + state.addons.largewindow);
+    const discEl = document.getElementById('discount-pct');
+    lead = {
+      id: Date.now(),
+      name,
+      phone,
+      email: document.getElementById('lead-email').value.trim(),
+      address: document.getElementById('lead-address').value.trim(),
+      date_pref: document.getElementById('lead-date').value,
+      notes: document.getElementById('lead-notes').value.trim(),
+      quote: q ? q.total : null,
+      quote_str: q ? fmt(q.total) + ' incl. GST' : null,
+      summary: parts.join(', '),
+      created_at: new Date().toISOString(),
+      params: {
+        breakdown: { ...state.breakdown },
+        serviceType: state.serviceType,
+        addons: { ...state.addons },
+        selectedPackage: state.selectedPackage || null,
+        discount: parseFloat(discEl?.value || 0)
+      }
+    };
+  }
 
   let leads = getLeads();
   if (currentDraftId) {
@@ -1988,6 +2238,7 @@ function saveLeadEdit() {
 function loadLeadQuote(id) {
   const lead = getLeads().find(l => l.id === id);
   if (!lead) return;
+  if (lead.type === 'commercial') return;
 
   // Build params — use stored params if available, otherwise parse summary
   let p = lead.params;
@@ -2044,7 +2295,8 @@ function loadLeadQuote(id) {
   // Restore service card selection
   document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
   if (state.serviceType) {
-    const svcEl = document.getElementById('svc-' + (state.serviceType === 'exterior' ? 'ext' : 'both'));
+    const _idMap = { exterior: 'ext', interior: 'int', both: 'both' };
+    const svcEl = document.getElementById('svc-' + (_idMap[state.serviceType] || 'ext'));
     if (svcEl) svcEl.classList.add('selected');
   }
 
@@ -2144,28 +2396,34 @@ function renderLeads() {
   el.innerHTML = leads.map(l => {
     const date = new Date(l.created_at).toLocaleDateString('en-CA', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit', hour12:true });
     if (l.draft) {
-      return '<div class="lead-item" style="border-color:var(--yellow);opacity:.9">'
-        + '<div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem">'
-        + '<span style="font-size:.65rem;font-weight:800;color:var(--yellow);background:rgba(245,158,11,.12);border-radius:4px;padding:.1rem .4rem;letter-spacing:.08em">AUTO-SAVED</span>'
-        + '<span style="font-size:.75rem;color:var(--muted)">No contact info yet</span>'
+      return '<div class="lead-item" style="border-color:var(--yellow);opacity:.95">'
+        + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem">'
+        + '<span style="font-size:.65rem;font-weight:800;color:var(--yellow);background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);border-radius:4px;padding:.1rem .45rem;letter-spacing:.08em">DRAFT</span>'
+        + '<span style="font-size:.72rem;color:var(--muted)">🕐 ' + date + '</span>'
         + '</div>'
-        + '<div class="lead-meta" style="color:var(--muted)">🕐 ' + date + '</div>'
+        + '<div class="lead-name">' + esc(l.name) + '</div>'
+        + '<div class="lead-meta">'
+        + (l.phone   ? '📞 ' + esc(l.phone)   + '<br>' : '')
+        + (l.email   ? '✉ '  + esc(l.email)   + '<br>' : '')
+        + (l.address ? '📍 ' + esc(l.address) + '<br>' : '')
+        + (l.notes   ? '💬 ' + esc(l.notes)            : '')
+        + '</div>'
         + (l.quote_str ? '<div class="lead-quote">' + l.quote_str + ' · ' + esc(l.summary) + '</div>' : '')
         + '<div class="lead-actions" style="margin-top:.6rem">'
-        + '<button class="lead-btn" style="flex:2;border-color:var(--yellow);color:var(--yellow)" onclick="editLead(' + l.id + ')">+ Add Customer Info</button>'
+        + (l.email ? '<button class="lead-btn" style="flex:2;border-color:var(--green);color:var(--green)" onclick="emailQuote(' + l.id + ')">✉ Email Invoice</button>' : '<button class="lead-btn" style="flex:2;border-color:var(--yellow);color:var(--yellow)" onclick="editLead(' + l.id + ')">+ Complete Info</button>')
         + '<button class="lead-btn delete" onclick="deleteLead(' + l.id + ')">Delete</button>'
         + '</div></div>';
     }
     return '<div class="lead-item">'
       + '<div class="lead-name" style="cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px" onclick="loadLeadQuote(' + l.id + ')">' + esc(l.name) + ' ↗</div>'
       + '<div class="lead-meta">'
-      + '📞 ' + esc(l.phone) + (l.address ? '<br>📍 ' + esc(l.address) : '')
+      + (l.phone ? '📞 ' + esc(l.phone) : '') + (l.address ? (l.phone ? '<br>' : '') + '📍 ' + esc(l.address) : '')
       + (l.date_pref ? '<br>📅 Preferred: ' + l.date_pref : '')
       + (l.notes ? '<br>💬 ' + esc(l.notes) : '')
       + '<br>🕐 ' + date
       + '</div>'
       + (l.quote_str ? '<div class="lead-quote">' + l.quote_str + ' · ' + esc(l.summary) + '</div>' : '')
-      + (l.email ? '<button class="lead-btn" style="width:100%;margin-bottom:.5rem;border-color:var(--green);color:var(--green);font-size:.85rem" onclick="emailQuote(' + l.id + ')">✉ Email Quote to ' + esc(l.name.split(' ')[0]) + '</button>' : '')
+      + (l.email ? '<button class="lead-btn" style="width:100%;margin-bottom:.5rem;border-color:var(--green);color:var(--green);font-size:.85rem" onclick="emailQuote(' + l.id + ')">✉ Email Quote to ' + esc((l.name || 'Customer').split(' ')[0]) + '</button>' : '')
       + '<div class="lead-actions">'
       + '<button class="lead-btn" onclick="shareLead(' + l.id + ')">Share</button>'
       + '<button class="lead-btn booking" onclick="openBooking()">Book</button>'
@@ -2193,7 +2451,7 @@ function updateRevenue() {
   const leads = getLeads();
   const today = new Date().toLocaleDateString('en-CA');
   const todayLeads = leads.filter(l => new Date(l.created_at).toLocaleDateString('en-CA') === today);
-  const total = todayLeads.reduce((sum, l) => sum + (l.quote || 0), 0);
+  const total = todayLeads.reduce((sum, l) => sum + (l.quote || l.total || 0), 0);
   const bar = document.getElementById('revenue-bar');
   if (!bar) return;
   if (todayLeads.length) {
@@ -2229,27 +2487,36 @@ function openWaiver(id) {
     'exterior':      'exterior',
     'both':          'exterior,interior'
   };
-  // Parse services from lead summary
+  // Parse services from lead summary (handles both residential and commercial)
   const svcs = [];
+  const svcType = lead.service || lead.serviceType || '';
   if (lead.summary) {
-    if (lead.summary.toLowerCase().includes('exterior') || lead.serviceType === 'exterior') svcs.push('exterior');
-    if (lead.summary.toLowerCase().includes('int + ext') || lead.serviceType === 'both') { svcs.push('exterior'); svcs.push('interior'); }
-    if (lead.summary.toLowerCase().includes('screens')) svcs.push('screens');
-    if (lead.summary.toLowerCase().includes('tracks'))  svcs.push('tracks');
-    if (lead.summary.toLowerCase().includes('gutters')) svcs.push('gutters');
-    if (lead.summary.toLowerCase().includes('hard water')) svcs.push('hardwater');
+    const sum = lead.summary.toLowerCase();
+    if (sum.includes('exterior') || sum.includes(' ext') || svcType === 'exterior') svcs.push('exterior');
+    if (sum.includes('int + ext') || sum.includes('int+ext') || svcType === 'both') { svcs.push('exterior'); svcs.push('interior'); }
+    if (sum.includes('screens')) svcs.push('screens');
+    if (sum.includes('tracks'))  svcs.push('tracks');
+    if (sum.includes('gutters')) svcs.push('gutters');
+    if (sum.includes('hard water')) svcs.push('hardwater');
   }
+  // Window count: residential has params.breakdown, commercial has std/lrg/spc directly
+  const winCount = lead.params?.breakdown
+    ? (lead.params.breakdown.regular||0) + (lead.params.breakdown.large||0) + (lead.params.breakdown.french||0)
+    : (lead.params?.panes || (lead.std !== undefined ? (lead.std||0) + (lead.lrg||0) + (lead.spc||0) : ''));
   const params = new URLSearchParams({
     name:    lead.name    || '',
     phone:   lead.phone   || '',
     email:   lead.email   || '',
     address: lead.address || '',
-    price:   lead.quote   || '',
-    windows: lead.params ? (lead.params.breakdown.regular||0) + (lead.params.breakdown.large||0) + (lead.params.breakdown.french||0) : '',
+    price:   lead.quote || lead.total || '',
+    windows: winCount,
     notes:   lead.notes   || '',
     services: [...new Set(svcs)].join(',')
   });
-  window.open('https://wagonwindow.com/waiver-ipad.html?' + params.toString(), '_blank');
+  const _a = document.createElement('a');
+  _a.href = 'https://wagonwindow.com/waiver-ipad.html?' + params.toString();
+  _a.target = '_blank'; _a.rel = 'noopener';
+  document.body.appendChild(_a); _a.click(); document.body.removeChild(_a);
 }
 
 // ── Outdoor mode ──────────────────────────────────────────────────────
@@ -2411,24 +2678,60 @@ function emailQuote(id) {
   if (!lead) return;
   if (!lead.email) { alert('No email saved for this lead.'); return; }
 
+  const p = lead.params;
+  const isCustom = p && p.type === 'custom';
+
   const subject = encodeURIComponent(
-    'Wagon Windows — Your Estimate' + (lead.address ? ' for ' + lead.address : '')
+    isCustom
+      ? 'Wagon Windows — Invoice' + (lead.address ? ' for ' + lead.address : '')
+      : 'Wagon Windows — Your Estimate' + (lead.address ? ' for ' + lead.address : '')
   );
 
   const lines = [
-    'Hi ' + lead.name.split(' ')[0] + ',',
+    'Hi ' + (lead.name && lead.name !== '(no name)' ? lead.name.split(' ')[0] : 'there') + ',',
     '',
-    'Thanks for your time today' + (lead.address ? ' at ' + lead.address : '') + '. Here\'s a full breakdown of your estimate.',
+    isCustom
+      ? 'Here\'s your invoice for today\'s service' + (lead.address ? ' at ' + lead.address : '') + '.'
+      : 'Thanks for your time today' + (lead.address ? ' at ' + lead.address : '') + '. Here\'s a full breakdown of your estimate.',
     '',
   ];
 
+  if (isCustom) {
+    const price = p.price || 0;
+    const gst = Math.round(price * 5) / 100;
+    const total = price + gst;
+    const col = (label, val) => label.padEnd(36, ' ') + val;
+    const div = '─'.repeat(44);
+    lines.push('INVOICE');
+    lines.push(div);
+    lines.push(col(p.description + (p.panes ? ' (' + p.panes + ' panes)' : ''), '$' + price.toFixed(2)));
+    lines.push(div);
+    lines.push(col('GST (5%)', '$' + gst.toFixed(2)));
+    lines.push(col('TOTAL DUE', '$' + total.toFixed(2)));
+    lines.push('');
+    if (lead.notes) { lines.push('NOTES'); lines.push(lead.notes); lines.push(''); }
+    lines.push(
+      'Payment via e-transfer: davidhanna@wagonwindow.com',
+      'Or cheque payable to: David Hanna Wagon Window Washers',
+      '',
+      'Thank you for your business!',
+      '',
+      '— David',
+      'Wagon Windows · Salmon Arm & Shuswap, BC',
+      '(403) 837-5092 · wagonwindow.com'
+    );
+    const _a = document.createElement('a');
+    _a.href = 'mailto:' + lead.email + '?subject=' + subject + '&body=' + encodeURIComponent(lines.join('\n'));
+    document.body.appendChild(_a); _a.click(); document.body.removeChild(_a);
+    return;
+  }
+
   // Build itemized breakdown from params if available
-  const p = lead.params;
   if (p && p.serviceType) {
     const bd      = p.breakdown || { regular: 0, large: 0, french: 0 };
     const addons  = p.addons   || {};
     const totalPanes = (bd.regular || 0) + (bd.large || 0) + (bd.french || 0);
-    const svcLabel = p.serviceType === 'exterior' ? 'Exterior Window Cleaning' : 'Interior + Exterior Window Cleaning';
+    const svcLabel = p.serviceType === 'interior' ? 'Interior Window Cleaning' : p.serviceType === 'both' ? 'Interior + Exterior Window Cleaning' : 'Exterior Window Cleaning';
     const base     = Math.max(MIN_JOB, calcBase(totalPanes, p.serviceType));
     const largeWin = (addons.largewindow || 0) * ADDONS.largewindow;
     const screens  = (addons.screens     || 0) * ADDONS.screens;
@@ -2506,6 +2809,7 @@ function emailQuote(id) {
 // ── Session persistence (resume last quote) ────────────────────────────
 function saveSession(screenId) {
   if (screenId === 'scr-home' || screenId === 'scr-leads' || screenId === 'scr-ref' || screenId === 'scr-complete') return;
+  if (screenId.startsWith('scr-comm-')) return;
   const session = {
     breakdown: { ...state.breakdown },
     serviceType: state.serviceType,
@@ -2535,7 +2839,7 @@ function updateResumeBtn() {
     if (!total) { btn.style.display = 'none'; return; }
     let summary = total + ' panes';
     if (s.selectedPackage) summary += ' · ' + s.selectedPackage.charAt(0).toUpperCase() + s.selectedPackage.slice(1);
-    else if (s.serviceType) summary += ' · ' + (s.serviceType === 'exterior' ? 'Exterior Only' : 'Int + Ext');
+    else if (s.serviceType) summary += ' · ' + (s.serviceType === 'interior' ? 'Interior Only' : s.serviceType === 'both' ? 'Int + Ext' : 'Exterior Only');
     else summary += ' · Tap to continue';
     sub.textContent = summary;
     btn.style.display = 'flex';
@@ -2567,7 +2871,8 @@ function resumeSession() {
     // Restore service card selection
     document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
     if (state.serviceType) {
-      const svcEl = document.getElementById('svc-' + (state.serviceType === 'exterior' ? 'ext' : 'both'));
+      const _m = { exterior: 'ext', interior: 'int', both: 'both' };
+      const svcEl = document.getElementById('svc-' + (_m[state.serviceType] || 'ext'));
       if (svcEl) svcEl.classList.add('selected');
     }
     syncPaneState();
@@ -2621,6 +2926,7 @@ function resetCommState() {
 resetCommState();
 
 function startCommercial() {
+  commUnitRows = [];
   resetCommState();
   ['c-biz','c-contact','c-phone','c-email','c-address'].forEach(id => {
     const el = document.getElementById(id);
@@ -2878,12 +3184,18 @@ function showCommCustomer() {
     'wagonwindow.com · (403) 837-5092',
   ].filter(Boolean).join('\n');
 
-  const overlay = document.getElementById('customer-overlay');
-  const text    = document.getElementById('customer-text');
-  if (overlay && text) {
-    text.textContent = lines;
-    overlay.classList.remove('hidden');
-  }
+  const fmt2 = n => '$' + Math.round(n).toLocaleString();
+  const parts = [];
+  const winCount = commState.std + commState.lrg + commState.spc;
+  parts.push(winCount + ' window' + (winCount !== 1 ? 's' : ''));
+  parts.push(commState.service === 'exterior' ? 'exterior only' : 'interior + exterior');
+  if (commState.stories > 1) parts.push(commState.stories + ' stories');
+  if (commState.pwOn) parts.push('power wash included');
+  if (commState.freq !== 'once') parts.push(commState.freq + ' contract');
+  parts.push('GST included');
+  document.getElementById('co-price').textContent = fmt2(q.total);
+  document.getElementById('co-includes').textContent = parts.join(' · ') + '.';
+  document.getElementById('customer-overlay').classList.add('visible');
 }
 
 function fillCommSaveForm() {
@@ -2897,16 +3209,27 @@ function fillCommSaveForm() {
 
 function saveCommLead(book) {
   const q = commState.quote || calcCommQuote();
-  const notes = document.getElementById('cs-notes').value.trim();
+  const biz     = document.getElementById('cs-biz').value.trim()     || commState.biz     || '';
+  const contact = document.getElementById('cs-contact').value.trim() || commState.contact || '';
+  const phone   = document.getElementById('cs-phone').value.trim()   || commState.phone   || '';
+  const email   = document.getElementById('cs-email').value.trim()   || commState.email   || '';
+  const address = document.getElementById('cs-address').value.trim() || commState.address || '';
+  const notes    = document.getElementById('cs-notes').value.trim();
+  const date_pref = document.getElementById('cs-date').value.trim();
+  const displayName = contact || biz || 'Commercial Lead';
   const lead = {
     id: Date.now(),
+    created_at: Date.now(),
     type: 'commercial',
     date: new Date().toLocaleDateString(),
-    biz: commState.biz,
-    contact: commState.contact,
-    phone: commState.phone,
-    email: commState.email,
-    address: commState.address,
+    name: displayName,
+    biz,
+    contact,
+    phone,
+    email,
+    address,
+    quote_str: '$' + Math.round(q.total).toLocaleString() + ' incl. GST',
+    summary: (commState.std + commState.lrg + commState.spc) + ' windows · ' + (commState.service === 'exterior' ? 'Ext' : 'Int+Ext'),
     propType: commState.propType,
     stories: commState.stories,
     service: commState.service,
@@ -2917,7 +3240,7 @@ function saveCommLead(book) {
     freq: commState.freq, fieldDiscount: commState.fieldDiscount,
     total: Math.round(q.total),
     pretax: Math.round(q.final),
-    notes
+    notes, date_pref
   };
   const leads = JSON.parse(localStorage.getItem('ww_leads') || '[]');
   leads.unshift(lead);
@@ -2927,6 +3250,221 @@ function saveCommLead(book) {
     window.open('https://calendar.app.google/KcgTkongKSkHw8xZ8', '_blank');
   }
   goScreen('scr-home');
+}
+
+// ── Unit Multiplier ────────────────────────────────────────────────────
+
+// Residential
+let resUnitRows = [];
+
+function toggleResUnitMult() {
+  const panel = document.getElementById('res-um-panel');
+  const btn   = document.getElementById('res-um-toggle');
+  const badge = document.getElementById('res-um-badge');
+  const open  = panel.style.display === 'none';
+  panel.style.display = open ? 'block' : 'none';
+  btn.classList.toggle('on', open);
+  badge.textContent = open ? 'on' : 'off';
+  if (open && resUnitRows.length === 0) addResUnitRow();
+}
+
+function addResUnitRow() {
+  resUnitRows.push({ name: '', units: 1, reg: 0, lrg: 0, fre: 0 });
+  renderResUnitRows();
+}
+
+function removeResUnitRow(i) {
+  resUnitRows.splice(i, 1);
+  renderResUnitRows();
+}
+
+function stepResUnit(i, field, delta) {
+  resUnitRows[i][field] = Math.max(0, resUnitRows[i][field] + delta);
+  renderResUnitRows();
+}
+
+function inputResUnit(i, field, val) {
+  resUnitRows[i][field] = Math.max(0, parseInt(val) || 0);
+  renderResUnitRows();
+}
+
+function calcResUnitTotals() {
+  return resUnitRows.reduce((s, r) => ({
+    reg: s.reg + r.units * r.reg,
+    lrg: s.lrg + r.units * r.lrg,
+    fre: s.fre + r.units * r.fre
+  }), { reg: 0, lrg: 0, fre: 0 });
+}
+
+function renderResUnitRows() {
+  const container = document.getElementById('res-um-rows');
+  if (!container) return;
+  container.innerHTML = resUnitRows.map((r, i) => {
+    const rowTotal = r.units * (r.reg + r.lrg + r.fre);
+    const parts = [];
+    if (r.reg) parts.push(`${r.units * r.reg} reg`);
+    if (r.lrg) parts.push(`${r.units * r.lrg} lrg`);
+    if (r.fre) parts.push(`${r.units * r.fre} fre`);
+    return `<div class="um-row">
+      <div class="um-row-head">
+        <input class="um-name" type="text" placeholder="Unit type (e.g. Corner Unit)" value="${r.name.replace(/"/g,'&quot;')}"
+          oninput="resUnitRows[${i}].name=this.value" />
+        <button class="um-del" onclick="removeResUnitRow(${i})">✕</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:.6rem;margin:.55rem 0 .65rem">
+        <div style="font-size:.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;flex-shrink:0">Units</div>
+        <button class="adj-btn" onclick="stepResUnit(${i},'units',-1)">−</button>
+        <div style="font-size:1.6rem;font-weight:800;min-width:2.2rem;text-align:center;color:var(--text)">${r.units}</div>
+        <button class="adj-btn" onclick="stepResUnit(${i},'units',1)">+</button>
+        <div style="font-size:.8rem;color:var(--muted);flex-shrink:0">× each unit has:</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem">
+        <div>
+          <div style="font-size:.65rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem;text-align:center">Reg / unit</div>
+          <input class="um-pane-input" type="number" min="0" inputmode="numeric" value="${r.reg}"
+            onchange="inputResUnit(${i},'reg',this.value)" oninput="inputResUnit(${i},'reg',this.value)" />
+        </div>
+        <div>
+          <div style="font-size:.65rem;font-weight:700;color:var(--yellow);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem;text-align:center">Lrg / unit</div>
+          <input class="um-pane-input" type="number" min="0" inputmode="numeric" value="${r.lrg}"
+            onchange="inputResUnit(${i},'lrg',this.value)" oninput="inputResUnit(${i},'lrg',this.value)" />
+        </div>
+        <div>
+          <div style="font-size:.65rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem;text-align:center">Fre / unit</div>
+          <input class="um-pane-input" type="number" min="0" inputmode="numeric" value="${r.fre}"
+            onchange="inputResUnit(${i},'fre',this.value)" oninput="inputResUnit(${i},'fre',this.value)" />
+        </div>
+      </div>
+      ${parts.length ? `<div style="text-align:right;margin-top:.45rem;font-size:.8rem;font-weight:700;color:var(--green)">${parts.join(' · ')} = ${rowTotal} panes</div>` : ''}
+    </div>`;
+  }).join('');
+  const t = calcResUnitTotals();
+  const total = t.reg + t.lrg + t.fre;
+  document.getElementById('res-um-total').textContent = total;
+}
+
+function applyResUnitTotal() {
+  const t = calcResUnitTotals();
+  state.breakdown.regular = t.reg;
+  state.breakdown.large   = t.lrg;
+  state.breakdown.french  = t.fre;
+  syncPaneState();
+  const panel = document.getElementById('res-um-panel');
+  const btn   = document.getElementById('res-um-toggle');
+  const badge = document.getElementById('res-um-badge');
+  if (panel) panel.style.display = 'none';
+  if (btn)   btn.classList.remove('on');
+  if (badge) badge.textContent = 'off';
+}
+
+// Commercial
+let commUnitRows = [];
+
+function toggleCommUnitMult() {
+  const panel = document.getElementById('comm-um-panel');
+  const btn   = document.getElementById('comm-um-toggle');
+  const badge = document.getElementById('comm-um-badge');
+  const open  = panel.style.display === 'none';
+  panel.style.display = open ? 'block' : 'none';
+  btn.classList.toggle('on', open);
+  badge.textContent = open ? 'on' : 'off';
+  if (open && commUnitRows.length === 0) addCommUnitRow();
+}
+
+function addCommUnitRow() {
+  commUnitRows.push({ name: '', units: 1, std: 0, lrg: 0, spc: 0 });
+  renderCommUnitRows();
+}
+
+function removeCommUnitRow(i) {
+  commUnitRows.splice(i, 1);
+  renderCommUnitRows();
+}
+
+function stepCommUnit(i, field, delta) {
+  commUnitRows[i][field] = Math.max(0, commUnitRows[i][field] + delta);
+  renderCommUnitRows();
+}
+
+function inputCommUnit(i, field, val) {
+  commUnitRows[i][field] = Math.max(0, parseInt(val) || 0);
+  renderCommUnitRows();
+}
+
+function calcCommUnitTotals() {
+  return commUnitRows.reduce((s, r) => ({
+    std: s.std + r.units * r.std,
+    lrg: s.lrg + r.units * r.lrg,
+    spc: s.spc + r.units * r.spc
+  }), { std: 0, lrg: 0, spc: 0 });
+}
+
+function renderCommUnitRows() {
+  const container = document.getElementById('comm-um-rows');
+  if (!container) return;
+  container.innerHTML = commUnitRows.map((r, i) => {
+    const parts = [];
+    if (r.std) parts.push(`${r.units * r.std} std`);
+    if (r.lrg) parts.push(`${r.units * r.lrg} lrg`);
+    if (r.spc) parts.push(`${r.units * r.spc} spc`);
+    return `<div class="um-row">
+      <div class="um-row-head">
+        <input class="um-name" type="text" placeholder="Unit type (e.g. Corner Unit)" value="${r.name.replace(/"/g,'&quot;')}"
+          oninput="commUnitRows[${i}].name=this.value" />
+        <button class="um-del" onclick="removeCommUnitRow(${i})">✕</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:.6rem;margin:.55rem 0 .65rem">
+        <div style="font-size:.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;flex-shrink:0">Units</div>
+        <button class="adj-btn" onclick="stepCommUnit(${i},'units',-1)">−</button>
+        <div style="font-size:1.6rem;font-weight:800;min-width:2.2rem;text-align:center;color:var(--text)">${r.units}</div>
+        <button class="adj-btn" onclick="stepCommUnit(${i},'units',1)">+</button>
+        <div style="font-size:.8rem;color:var(--muted);flex-shrink:0">× each unit has:</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem">
+        <div>
+          <div style="font-size:.65rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem;text-align:center">Std / unit</div>
+          <input class="um-pane-input" type="number" min="0" inputmode="numeric" value="${r.std}"
+            onchange="inputCommUnit(${i},'std',this.value)" oninput="inputCommUnit(${i},'std',this.value)" />
+        </div>
+        <div>
+          <div style="font-size:.65rem;font-weight:700;color:var(--yellow);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem;text-align:center">Lrg / unit</div>
+          <input class="um-pane-input" type="number" min="0" inputmode="numeric" value="${r.lrg}"
+            onchange="inputCommUnit(${i},'lrg',this.value)" oninput="inputCommUnit(${i},'lrg',this.value)" />
+        </div>
+        <div>
+          <div style="font-size:.65rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem;text-align:center">Spc / unit</div>
+          <input class="um-pane-input" type="number" min="0" inputmode="numeric" value="${r.spc}"
+            onchange="inputCommUnit(${i},'spc',this.value)" oninput="inputCommUnit(${i},'spc',this.value)" />
+        </div>
+      </div>
+      ${parts.length ? `<div style="text-align:right;margin-top:.45rem;font-size:.8rem;font-weight:700;color:var(--green)">${parts.join(' · ')}</div>` : ''}
+    </div>`;
+  }).join('');
+  const t = calcCommUnitTotals();
+  const totalParts = [];
+  if (t.std) totalParts.push(`${t.std} std`);
+  if (t.lrg) totalParts.push(`${t.lrg} lrg`);
+  if (t.spc) totalParts.push(`${t.spc} spc`);
+  document.getElementById('comm-um-total').textContent = totalParts.join(' · ') || '0';
+}
+
+function applyCommUnitTotal() {
+  const t = calcCommUnitTotals();
+  commState.std = t.std;
+  commState.lrg = t.lrg;
+  commState.spc = t.spc;
+  const sEl = document.getElementById('cv-std');
+  const lEl = document.getElementById('cv-lrg');
+  const pEl = document.getElementById('cv-spc');
+  if (sEl) sEl.textContent = t.std;
+  if (lEl) lEl.textContent = t.lrg;
+  if (pEl) pEl.textContent = t.spc;
+  const panel = document.getElementById('comm-um-panel');
+  const btn   = document.getElementById('comm-um-toggle');
+  const badge = document.getElementById('comm-um-badge');
+  if (panel) panel.style.display = 'none';
+  if (btn)   btn.classList.remove('on');
+  if (badge) badge.textContent = 'off';
 }
 
 // ── Init ───────────────────────────────────────────────────────────────
