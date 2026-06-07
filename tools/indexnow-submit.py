@@ -34,7 +34,7 @@ except ImportError:
 
 # ── Configuration ────────────────────────────────────────────────────────────
 SITE_URL    = "https://wagonwindow.com"
-KEY         = os.environ.get("INDEXNOW_KEY", "PASTE_YOUR_KEY_HERE")
+KEY         = os.environ.get("INDEXNOW_KEY", "ffebc380c2229846c623cfd17e8d4685")
 KEY_LOCATION = f"{SITE_URL}/{KEY}.txt"
 SITEMAP_URL = f"{SITE_URL}/sitemap.xml"
 BUILD_DIR   = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

@@ -411,7 +411,8 @@ if __name__ == '__main__':
         os.makedirs(DIST_DIR, exist_ok=True)
         copy_assets()
         # Copy standalone tools directly into dist/
-        for fname in ['field-tool.html', 'waiver-ipad.html', 'estimate.html', 'book.html', 'site-quote.html']:
+        for fname in ['field-tool.html', 'waiver-ipad.html', 'estimate.html', 'book.html', 'site-quote.html',
+                       'ffebc380c2229846c623cfd17e8d4685.txt']:
             src = os.path.join(ROOT_DIR, fname)
             if os.path.exists(src):
                 shutil.copy(src, os.path.join(DIST_DIR, fname))
