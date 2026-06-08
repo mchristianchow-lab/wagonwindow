@@ -147,7 +147,7 @@
     <div class="notes-inner">
       <div class="note">All prices include 5% GST — no surprises</div>
       <div class="note">Streak-free guarantee — we come back if you're not satisfied</div>
-      <div class="note">Minimum job $75 · Cash or e-transfer on the day</div>
+      <div class="note">Minimum job $169 · Cash or e-transfer on the day</div>
       <div class="note">Questions? Reply to David's email or text anytime</div>
     </div>
   </div>
@@ -188,11 +188,16 @@
   const reg   = parseInt(p.get('reg'))   || 0;
   const lrg   = parseInt(p.get('lrg'))   || 0;
   const frn   = parseInt(p.get('frn'))   || 0;
-  const bext  = parseInt(p.get('bext'))  || 0;
-  const bboth = parseInt(p.get('bboth')) || 0;
-  const est   = parseInt(p.get('est'))   || Math.round(panes / 2);
-  const name  = p.get('name') || '';
-  const addr  = p.get('addr') || '';
+  const bext       = parseInt(p.get('bext'))       || 0;
+  const bboth      = parseInt(p.get('bboth'))      || 0;
+  const est        = parseInt(p.get('est'))        || Math.round(panes / 2);
+  const supScreens = parseInt(p.get('supscreens')) || est;
+  const supTracks  = parseInt(p.get('suptracks'))  || est;
+  const gutters    = parseInt(p.get('gutters'))    || 0;
+  const hw         = parseInt(p.get('hw'))         || 0;
+  const travel     = parseInt(p.get('travel'))     || 0;
+  const name       = p.get('name') || '';
+  const addr       = p.get('addr') || '';
 
   const ADDON_LARGE  = 8;
   const ADDON_SCREEN = 4;
@@ -223,40 +228,48 @@
     ? chips.join('') + '<span class="bd-total">= ' + panes + ' panes total</span>'
     : '<strong>' + panes + ' panes</strong> counted on-site';
 
-  function calcBreakdown(base, includeScreens, includeTracks) {
+  function calcBreakdown(base, screenCount, trackCount) {
     const largeSurcharge  = lrg * ADDON_LARGE;
     const frenchSurcharge = frn * ADDON_LARGE;
-    const screenTotal     = includeScreens ? est * ADDON_SCREEN : 0;
-    const trackTotal      = includeTracks  ? est * ADDON_TRACK  : 0;
-    const sub = base + largeSurcharge + frenchSurcharge + screenTotal + trackTotal;
+    const screenTotal     = screenCount * ADDON_SCREEN;
+    const trackTotal      = trackCount  * ADDON_TRACK;
+    const sub = base + largeSurcharge + frenchSurcharge + screenTotal + trackTotal + gutters + hw + travel;
     const gst = Math.round(sub * GST);
     return { base, largeSurcharge, frenchSurcharge, screenTotal, trackTotal, sub, gst, total: sub + gst };
   }
 
-  function buildRows(bd, baseLabel) {
+  function buildRows(bd, baseLabel, screenCount, trackCount) {
     let r = '';
     r += '<div class="bd-row"><span>' + baseLabel + '</span><span>' + fmt(bd.base) + '</span></div>';
-    if (lrg > 0) r += '<div class="bd-row"><span>Large windows (' + lrg + ' × $8)</span><span>' + fmt(bd.largeSurcharge) + '</span></div>';
-    if (frn > 0) r += '<div class="bd-row"><span>French / complicated (' + frn + ' × $8)</span><span>' + fmt(bd.frenchSurcharge) + '</span></div>';
-    if (bd.screenTotal) r += '<div class="bd-row"><span>Screen cleaning (~' + est + ' screens × $4)</span><span>' + fmt(bd.screenTotal) + '</span></div>';
-    if (bd.trackTotal)  r += '<div class="bd-row"><span>Track cleaning (~' + est + ' tracks × $4)</span><span>' + fmt(bd.trackTotal) + '</span></div>';
+    if (lrg > 0)         r += '<div class="bd-row"><span>Large windows (' + lrg + ' × $8)</span><span>' + fmt(bd.largeSurcharge) + '</span></div>';
+    if (frn > 0)         r += '<div class="bd-row"><span>French / complicated (' + frn + ' × $8)</span><span>' + fmt(bd.frenchSurcharge) + '</span></div>';
+    if (bd.screenTotal)  r += '<div class="bd-row"><span>Screen cleaning (~' + screenCount + ' screens × $4)</span><span>' + fmt(bd.screenTotal) + '</span></div>';
+    if (bd.trackTotal)   r += '<div class="bd-row"><span>Track cleaning (~' + trackCount + ' tracks × $4)</span><span>' + fmt(bd.trackTotal) + '</span></div>';
+    if (gutters > 0)     r += '<div class="bd-row"><span>Gutter cleaning (flat rate)</span><span>' + fmt(gutters) + '</span></div>';
+    if (hw > 0)          r += '<div class="bd-row"><span>Hard water stain removal</span><span>' + fmt(hw) + '</span></div>';
+    if (travel > 0)      r += '<div class="bd-row"><span>Travel fee</span><span>' + fmt(travel) + '</span></div>';
     r += '<div class="bd-row bd-gst"><span>GST (5%)</span><span>' + fmt(bd.gst) + '</span></div>';
     r += '<div class="bd-row bd-total-row"><span>Total</span><span>' + fmt(bd.total) + '</span></div>';
     return r;
   }
 
-  const stdBd  = calcBreakdown(bext,  false, false);
-  const premBd = calcBreakdown(bboth, false, false);
-  const supBd  = calcBreakdown(bboth, true,  true);
+  const stdBd  = calcBreakdown(bext,  0,          0);
+  const premBd = calcBreakdown(bboth, 0,          0);
+  const supBd  = calcBreakdown(bboth, supScreens, supTracks);
 
   function bookUrl(pkg, total) {
     return 'https://wagonwindow.com/book/'
       + '?pkg='   + pkg
       + '&total=' + total
       + '&panes=' + panes
-      + (name ? '&name=' + encodeURIComponent(name)   : '')
-      + (addr ? '&addr=' + encodeURIComponent(addr)   : '');
+      + (gutters ? '&gutters=' + gutters                  : '')
+      + (name    ? '&name=' + encodeURIComponent(name)    : '')
+      + (addr    ? '&addr=' + encodeURIComponent(addr)    : '');
   }
+
+  const gutterInc = gutters > 0
+    ? '<div class="pkg-inc">Gutter cleaning (flat rate ' + fmt(gutters) + ')</div>'
+    : '';
 
   document.getElementById('pkg-grid').innerHTML = [
 
@@ -268,8 +281,9 @@
       + '<div class="pkg-includes">'
       + '<div class="pkg-inc">Exterior window cleaning</div>'
       + '<div class="pkg-inc">Streak-free guarantee</div>'
+      + gutterInc
       + '</div>'
-      + '<div class="pkg-breakdown">' + buildRows(stdBd, 'Exterior cleaning, ' + panes + ' panes') + '</div>'
+      + '<div class="pkg-breakdown">' + buildRows(stdBd, 'Exterior cleaning, ' + panes + ' panes', 0, 0) + '</div>'
       + '<a href="' + bookUrl('standard', stdBd.total) + '" class="pkg-btn std">Book Standard →</a>'
     + '</div>',
 
@@ -282,8 +296,9 @@
       + '<div class="pkg-includes">'
       + '<div class="pkg-inc">Interior + exterior window cleaning</div>'
       + '<div class="pkg-inc">Streak-free guarantee</div>'
+      + gutterInc
       + '</div>'
-      + '<div class="pkg-breakdown">' + buildRows(premBd, 'Interior + exterior cleaning, ' + panes + ' panes') + '</div>'
+      + '<div class="pkg-breakdown">' + buildRows(premBd, 'Interior + exterior cleaning, ' + panes + ' panes', 0, 0) + '</div>'
       + '<a href="' + bookUrl('premium', premBd.total) + '" class="pkg-btn prem">Book Premium →</a>'
     + '</div>',
 
@@ -294,11 +309,12 @@
       + '<div class="pkg-desc">The complete window service — everything done in a single visit.</div>'
       + '<div class="pkg-includes">'
       + '<div class="pkg-inc">Interior + exterior window cleaning</div>'
-      + '<div class="pkg-inc">Screen cleaning (est. ' + est + ' screens)</div>'
-      + '<div class="pkg-inc">Track cleaning (est. ' + est + ' tracks)</div>'
+      + '<div class="pkg-inc">Screen cleaning (est. ' + supScreens + ' screens)</div>'
+      + '<div class="pkg-inc">Track cleaning (est. ' + supTracks + ' tracks)</div>'
       + '<div class="pkg-inc">Streak-free guarantee</div>'
+      + gutterInc
       + '</div>'
-      + '<div class="pkg-breakdown">' + buildRows(supBd, 'Interior + exterior cleaning, ' + panes + ' panes') + '</div>'
+      + '<div class="pkg-breakdown">' + buildRows(supBd, 'Interior + exterior cleaning, ' + panes + ' panes', supScreens, supTracks) + '</div>'
       + '<a href="' + bookUrl('supreme', supBd.total) + '" class="pkg-btn sup">Book Supreme →</a>'
     + '</div>',
 

@@ -31,3 +31,15 @@ Project-specific lessons for `field-tool.html` — the iOS PWA field quoting too
 [2026-05-28] ARCH: Unit multiplier feature added to both residential (scr-count) and commercial (scr-comm-windows) screens. State: resUnitRows[] = [{name, units, reg, lrg, fre}], commUnitRows[] = [{name, units, std, lrg, spc}]. Apply buttons push totals into state.breakdown (res) or commState.std/lrg/spc (comm). Both reset in startQuote() and startCommercial().
 
 [2026-05-28] GOTCHA: Sony ILME-FX30 files appear as .JPG but are TIFF-based RAW — sips and ImageMagick cannot process them. Fix: `exiftool -b -JpgFromRaw "$f" > output.jpg` extracts the full embedded JPEG. Requires `brew install exiftool`.
+
+[2026-06-04] GOTCHA!: calcCommQuote() calls commSaveState() before computing — directly mutating commState.travelKm, commState.fieldDiscount is stomped by commSaveState() reading DOM inputs (#fee-travel, #comm-discount). Must set BOTH commState AND the DOM element. commState.afterHours is safe (set via onchange, not read by commSaveState).
+
+[2026-06-04] GOTCHA!: Playwright strict mode throws if a locator matches >1 element — scope to parent container (#scr-complete .topbar-action) for buttons that appear on multiple screens. Never assume a text selector is unique across screens.
+
+[2026-06-04] PATTERN: In mega-audit scripts (150+ variables), section-prefix all variable names — `commBreakdown` not `breakdown` when a second breakdown appears in a later section. Collisions cause SyntaxError at parse time, not runtime.
+
+[2026-06-04] GOTCHA!: Price string checks like `!str.includes('0')` fail on valid prices containing zero (e.g. $230, $300). Use parseFloat(str.replace(/[^0-9.]/g,'')) > 0 instead.
+
+[2026-06-04] GOTCHA!: Min-job floor ($169) masks commercial pricing feature differences in tests — if base calculation is below $169, stories multiplier / after-hours / travel all produce the same total. Use std=30+ (base $180) for feature comparison tests.
+
+[2026-06-04] MECHANIC!: 7 bugs found and fixed in field tool (2026-06-04): showCommCustomer() overlay wiring, loadLeadQuote() commercial guard, saveCommLead() date_pref persistence, phone display truthiness, revenue bar summing l.total for commercial leads, waiver URLs for all lead types, saveSession() skipping scr-comm-* screens. 242-check mega-audit clean after fixes.

@@ -507,7 +507,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <!-- Large windows -->
     <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:.85rem .75rem;text-align:center">
       <div style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--yellow);margin-bottom:.3rem">Large Windows</div>
-      <div style="font-size:.72rem;color:var(--muted);margin-bottom:.6rem">Picture, bay, floor-to-ceiling · +$5/pane</div>
+      <div style="font-size:.72rem;color:var(--muted);margin-bottom:.6rem">Picture, bay, floor-to-ceiling · +$8/pane</div>
       <div style="display:flex;align-items:center;justify-content:center;gap:.5rem">
         <button class="adj-btn" onclick="adjustBreakdown('large',-1)" style="touch-action:manipulation">−</button>
         <div style="font-size:1.6rem;font-weight:800;min-width:36px;text-align:center;color:var(--yellow)" id="large-display">0</div>
@@ -518,7 +518,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <!-- French / complicated -->
     <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:.85rem .75rem;text-align:center">
       <div style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--red);margin-bottom:.3rem">French / Complicated</div>
-      <div style="font-size:.72rem;color:var(--muted);margin-bottom:.6rem">Divided lites, grilles, multi-pane · +$5/pane</div>
+      <div style="font-size:.72rem;color:var(--muted);margin-bottom:.6rem">Divided lites, grilles, multi-pane · +$8/pane</div>
       <div style="display:flex;align-items:center;justify-content:center;gap:.5rem">
         <button class="adj-btn" onclick="adjustBreakdown('french',-1)" style="touch-action:manipulation">−</button>
         <div style="font-size:1.6rem;font-weight:800;min-width:36px;text-align:center;color:var(--red)" id="french-display">0</div>
@@ -1594,8 +1594,8 @@ function buildQuote() {
   const travel   = state.addons.travel   || 0;
   const discPct  = Math.min(40, Math.max(0, parseFloat(document.getElementById('discount-pct')?.value || 0)));
   const subtotal = base + largeWin + screens + tracks + hardwater + gutters + travel;
-  const discount = Math.round(subtotal * (discPct / 100));
-  const afterDiscount = subtotal - discount;
+  const discount = (subtotal > MIN_JOB && discPct > 0) ? Math.round(subtotal * (discPct / 100)) : 0;
+  const afterDiscount = Math.max(MIN_JOB, subtotal - discount);
   const gst = Math.round(afterDiscount * GST);
   const total = afterDiscount + gst;
   const high = Math.round(total * 1.15);
@@ -1633,11 +1633,11 @@ function calcCustomGST() {
   const price = parseFloat(document.getElementById('cq-price').value) || 0;
   const card = document.getElementById('cq-total-card');
   if (!price) { card.style.display = 'none'; return; }
-  const gst = Math.round(price * 5) / 100;
+  const gst = Math.round(price * GST);
   const total = price + gst;
-  document.getElementById('cq-subtotal').textContent = '$' + price.toFixed(2);
-  document.getElementById('cq-gst').textContent = '$' + gst.toFixed(2);
-  document.getElementById('custom-total').textContent = '$' + total.toFixed(2);
+  document.getElementById('cq-subtotal').textContent = fmt(price);
+  document.getElementById('cq-gst').textContent = fmt(gst);
+  document.getElementById('custom-total').textContent = fmt(total);
   card.style.display = 'block';
 }
 
@@ -1674,10 +1674,10 @@ function autoSaveDraft() {
   let quote = null, quote_str = null, summary = 'Draft';
 
   if (isCustom) {
-    const gst = Math.round(customState.price * 5) / 100;
-    quote = customState.price + gst;
+    const gst = Math.round(customState.price * GST);
+    quote = Math.round(customState.price) + gst;
     quote_str = fmt(quote) + ' incl. GST';
-    summary = customState.description + (customState.panes ? ' · ' + customState.panes + ' panes' : '') + ' · flat $' + customState.price.toFixed(2);
+    summary = customState.description + (customState.panes ? ' · ' + customState.panes + ' panes' : '') + ' · flat ' + fmt(Math.round(customState.price));
   } else {
     const q = buildQuote();
     if (q) {
@@ -1827,15 +1827,6 @@ function pkgCalcFull(type, screens, tracks) {
   return sub + Math.round(sub * GST);
 }
 
-function pkgCalc(type, screens, tracks, gutters) {
-  const base     = Math.max(MIN_JOB, calcBase(state.panes, type));
-  const largeWin = state.addons.largewindow * ADDONS.largewindow;
-  const s        = screens * ADDONS.screens;
-  const t        = tracks  * ADDONS.tracks;
-  const g        = gutters ? gutterPrice() : 0;
-  const sub      = base + largeWin + s + t + g;
-  return sub + Math.round(sub * GST);
-}
 
 function updatePackagePrices() {
   const est = Math.round(state.panes / 2);
@@ -1951,7 +1942,7 @@ function toggleAddon(key, cb) {
     state.addons.gutters = cb.checked ? 189 : 0;
     const ctr = document.getElementById('ctr-gutters');
     if (ctr) ctr.style.display = cb.checked ? 'flex' : 'none';
-    document.getElementById('val-gutters').textContent = cb.checked ? '$189' : '$189';
+    document.getElementById('val-gutters').textContent = '$189';
     if (document.getElementById('scr-quote').classList.contains('active')) renderQuote();
     return;
   }
@@ -2023,7 +2014,7 @@ function renderQuote() {
   document.getElementById('q-range').textContent = 'to ' + fmt(q.high) + ' (high estimate)';
   const pkgLabel = state.selectedPackage ? state.selectedPackage.charAt(0).toUpperCase() + state.selectedPackage.slice(1) + ' Package' : '';
   document.getElementById('q-from-label').textContent = pkgLabel || 'Estimated starting from';
-  document.getElementById('q-subtotal').textContent = q.discPct > 0 ? q.discPct + '% field discount applied' : '';
+  document.getElementById('q-subtotal').textContent = q.discount > 0 ? q.discPct + '% field discount applied' : '';
 
   const svcLabel = state.serviceType === 'interior' ? 'Interior Only' : state.serviceType === 'both' ? 'Interior + Exterior' : 'Exterior Only';
   let rows = '';
@@ -2116,8 +2107,9 @@ function saveLead(openCal) {
   let lead;
 
   if (customState && customState.active) {
-    const gst = Math.round(customState.price * 5) / 100;
-    const total = customState.price + gst;
+    const price = Math.round(customState.price);
+    const gst = Math.round(price * GST);
+    const total = price + gst;
     lead = {
       id: Date.now(),
       name,
@@ -2128,7 +2120,7 @@ function saveLead(openCal) {
       notes: document.getElementById('lead-notes').value.trim(),
       quote: total,
       quote_str: fmt(total) + ' incl. GST',
-      summary: customState.description + (customState.panes ? ' · ' + customState.panes + ' panes' : '') + ' · flat $' + customState.price.toFixed(2),
+      summary: customState.description + (customState.panes ? ' · ' + customState.panes + ' panes' : '') + ' · flat ' + fmt(price),
       created_at: new Date().toISOString(),
       params: {
         type: 'custom',
@@ -2239,6 +2231,7 @@ function loadLeadQuote(id) {
   const lead = getLeads().find(l => l.id === id);
   if (!lead) return;
   if (lead.type === 'commercial') return;
+  if (lead.params && lead.params.type === 'custom') return;
 
   // Build params — use stored params if available, otherwise parse summary
   let p = lead.params;
@@ -2254,7 +2247,7 @@ function loadLeadQuote(id) {
     const regularCount = Math.max(0, totalPanes - largeCount);
     p = {
       breakdown:       { regular: regularCount, large: largeCount, french: 0 },
-      serviceType:     s.startsWith('Exterior Only') ? 'exterior' : (totalPanes > 0 ? 'both' : null),
+      serviceType:     s.startsWith('Exterior Only') ? 'exterior' : s.startsWith('Interior Only') ? 'interior' : (totalPanes > 0 ? 'both' : null),
       addons:          {
         screens:     screenMatch ? parseInt(screenMatch[1]) : 0,
         tracks:      trackMatch  ? parseInt(trackMatch[1])  : 0,
@@ -2414,8 +2407,14 @@ function renderLeads() {
         + '<button class="lead-btn delete" onclick="deleteLead(' + l.id + ')">Delete</button>'
         + '</div></div>';
     }
+    const isComm   = l.type === 'commercial';
+    const isCustom = l.params && l.params.type === 'custom';
     return '<div class="lead-item">'
-      + '<div class="lead-name" style="cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px" onclick="loadLeadQuote(' + l.id + ')">' + esc(l.name) + ' ↗</div>'
+      + (isComm
+        ? '<div class="lead-name">' + esc(l.name) + ' <span style="font-size:.7rem;color:var(--blue);font-weight:700">COMMERCIAL</span></div>'
+        : isCustom
+          ? '<div class="lead-name">' + esc(l.name) + ' <span style="font-size:.7rem;color:var(--yellow);font-weight:700">CUSTOM</span></div>'
+          : '<div class="lead-name" style="cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px" onclick="loadLeadQuote(' + l.id + ')">' + esc(l.name) + ' ↗</div>')
       + '<div class="lead-meta">'
       + (l.phone ? '📞 ' + esc(l.phone) : '') + (l.address ? (l.phone ? '<br>' : '') + '📍 ' + esc(l.address) : '')
       + (l.date_pref ? '<br>📅 Preferred: ' + l.date_pref : '')
@@ -2616,19 +2615,35 @@ function sendTierQuote() {
   if (state.breakdown.french)  parts.push(state.breakdown.french  + ' French');
   const bdStr = parts.join(', ') || state.panes + ' panes';
 
+  const gutterAmt   = state.addons.gutters   || 0;
+  const hwAmt       = (state.addons.hardwater || 0) * ADDONS.hardwater;
+  const travelAmt   = state.addons.travel    || 0;
+
   const estimateUrl = 'https://wagonwindow.com/estimate/'
-    + '?panes=' + state.panes
-    + '&reg='   + state.breakdown.regular
-    + '&lrg='   + state.breakdown.large
-    + '&frn='   + state.breakdown.french
-    + '&bext='  + bext
-    + '&bboth=' + bboth
-    + '&est='   + est
+    + '?panes='      + state.panes
+    + '&reg='        + state.breakdown.regular
+    + '&lrg='        + state.breakdown.large
+    + '&frn='        + state.breakdown.french
+    + '&bext='       + bext
+    + '&bboth='      + bboth
+    + '&est='        + est
+    + '&supscreens=' + supScreens
+    + '&suptracks='  + supTracks
+    + (gutterAmt ? '&gutters=' + gutterAmt  : '')
+    + (hwAmt     ? '&hw='      + hwAmt      : '')
+    + (travelAmt ? '&travel='  + travelAmt  : '')
     + (name    ? '&name=' + encodeURIComponent(name)    : '')
     + (address ? '&addr=' + encodeURIComponent(address) : '');
 
   const subject = 'Wagon Windows — Your Window Cleaning Estimate'
     + (address ? ' for ' + address : '');
+
+  const gutterLine = gutterAmt
+    ? '+ Gutter cleaning add-on: $' + gutterAmt + ' (included in prices above)'
+    : '';
+  const hwLine = hwAmt
+    ? '+ Hard water stain removal: $' + hwAmt + ' (included in prices above)'
+    : '';
 
   const body = [
     'Hi ' + (name || 'there') + ',',
@@ -2648,11 +2663,13 @@ function sendTierQuote() {
     'Price: ' + premPrice,
     '',
     'SUPREME — Complete Service',
-    'Interior + exterior + screens (˜' + est + ') + tracks (˜' + est + ').',
+    'Interior + exterior + screens (˜' + supScreens + ') + tracks (˜' + supTracks + ').',
     'Everything done in one visit.',
     'Price: ' + supPrice,
     '─────────────────────────',
-    '',
+    ...(gutterLine ? [gutterLine] : []),
+    ...(hwLine     ? [hwLine]     : []),
+    ...((gutterLine || hwLine) ? [''] : []),
     'All prices include 5% GST.',
     '',
     'Review your full estimate and confirm your booking here:',
@@ -2698,16 +2715,16 @@ function emailQuote(id) {
 
   if (isCustom) {
     const price = p.price || 0;
-    const gst = Math.round(price * 5) / 100;
+    const gst = Math.round(price * GST);
     const total = price + gst;
     const col = (label, val) => label.padEnd(36, ' ') + val;
     const div = '─'.repeat(44);
     lines.push('INVOICE');
     lines.push(div);
-    lines.push(col(p.description + (p.panes ? ' (' + p.panes + ' panes)' : ''), '$' + price.toFixed(2)));
+    lines.push(col(p.description + (p.panes ? ' (' + p.panes + ' panes)' : ''), fmt(price)));
     lines.push(div);
-    lines.push(col('GST (5%)', '$' + gst.toFixed(2)));
-    lines.push(col('TOTAL DUE', '$' + total.toFixed(2)));
+    lines.push(col('GST (5%)', fmt(gst)));
+    lines.push(col('TOTAL DUE', fmt(total)));
     lines.push('');
     if (lead.notes) { lines.push('NOTES'); lines.push(lead.notes); lines.push(''); }
     lines.push(
@@ -2741,11 +2758,12 @@ function emailQuote(id) {
     const travel   = addons.travel   || 0;
     const subtotal = base + largeWin + screens + tracks + hardwater + gutters + travel;
     const discPct  = p.discount || 0;
-    const discount = discPct > 0 ? Math.round(subtotal * discPct / 100) : 0;
-    const afterDiscount = subtotal - discount;
-    const gst      = Math.round(afterDiscount * 0.05);
+    const discount = (discPct > 0 && subtotal > MIN_JOB) ? Math.round(subtotal * discPct / 100) : 0;
+    const afterDiscount = Math.max(MIN_JOB, subtotal - discount);
+    const gst      = Math.round(afterDiscount * GST);
     const total    = afterDiscount + gst;
 
+    const $ = n => '$' + Math.round(n).toLocaleString('en-CA');
     const col = (label, val) => label.padEnd(36, ' ') + val;
     const div = '─'.repeat(44);
 
@@ -2757,25 +2775,25 @@ function emailQuote(id) {
     if (bd.regular) paneDetail.push(bd.regular + ' standard');
     if (bd.large)   paneDetail.push(bd.large   + ' large (+$8/pane)');
     if (bd.french)  paneDetail.push(bd.french  + ' French (+$8/pane)');
-    lines.push(col(svcLabel + ' (' + totalPanes + ' panes)', '$' + base.toFixed(2)));
+    lines.push(col(svcLabel + ' (' + totalPanes + ' panes)', $(base)));
     if (paneDetail.length > 1) lines.push('  ' + paneDetail.join(' · '));
 
-    if (largeWin)  lines.push(col('Large/French window surcharge ×' + addons.largewindow, '+$' + largeWin.toFixed(2)));
-    if (screens)   lines.push(col('Screen cleaning ×' + addons.screens + ' screens', '+$' + screens.toFixed(2)));
-    if (tracks)    lines.push(col('Track cleaning ×' + addons.tracks + ' tracks', '+$' + tracks.toFixed(2)));
-    if (hardwater) lines.push(col('Hard water stain removal ×' + addons.hardwater, '+$' + hardwater.toFixed(2)));
-    if (gutters)   lines.push(col('Gutter cleaning', '+$' + gutters.toFixed(2)));
-    if (travel)    lines.push(col('Travel fee', '+$' + travel.toFixed(2)));
+    if (largeWin)  lines.push(col('Large window surcharge (' + addons.largewindow + ' × $8)',   '+' + $(largeWin)));
+    if (screens)   lines.push(col('Screen cleaning (' + addons.screens + ' × $4)',               '+' + $(screens)));
+    if (tracks)    lines.push(col('Track cleaning (' + addons.tracks + ' × $4)',                 '+' + $(tracks)));
+    if (hardwater) lines.push(col('Hard water removal (' + addons.hardwater + ' panes × $20)',   '+' + $(hardwater)));
+    if (gutters)   lines.push(col('Gutter cleaning (flat rate)',                                  '+' + $(gutters)));
+    if (travel)    lines.push(col('Travel fee',                                                   '+' + $(travel)));
 
     lines.push(div);
-    lines.push(col('Subtotal', '$' + subtotal.toFixed(2)));
+    lines.push(col('Subtotal', $(subtotal)));
     if (discount > 0) {
-      lines.push(col('Field discount (' + discPct + '%)', '-$' + discount.toFixed(2)));
-      lines.push(col('After discount', '$' + afterDiscount.toFixed(2)));
+      lines.push(col('Field discount (' + discPct + '%)', '-' + $(discount)));
+      lines.push(col('After discount', $(afterDiscount)));
     }
-    lines.push(col('GST (5%)', '$' + gst.toFixed(2)));
+    lines.push(col('GST (5%)', '+' + $(gst)));
     lines.push(div);
-    lines.push(col('TOTAL', '$' + total.toFixed(2)));
+    lines.push(col('TOTAL', $(total)));
     lines.push('');
   } else {
     // Fallback for old leads without params
@@ -2815,6 +2833,7 @@ function saveSession(screenId) {
     serviceType: state.serviceType,
     addons: { ...state.addons },
     selectedPackage: state.selectedPackage || null,
+    addonsContext: state.addonsContext || 'packages',
     discount: parseFloat(document.getElementById('discount-pct')?.value || 0),
     screen: screenId,
     ts: Date.now()
@@ -2855,6 +2874,7 @@ function resumeSession() {
     state.serviceType = s.serviceType || null;
     state.addons = { screens: s.addons.screens || 0, tracks: s.addons.tracks || 0, hardwater: s.addons.hardwater || 0, largewindow: s.addons.largewindow || 0, gutters: s.addons.gutters || 0, travel: s.addons.travel || 0 };
     state.selectedPackage = s.selectedPackage || null;
+    state.addonsContext = s.addonsContext || 'packages';
     const discEl = document.getElementById('discount-pct');
     if (discEl) discEl.value = s.discount || 0;
     // Restore addon UI
@@ -2867,7 +2887,11 @@ function resumeSession() {
       if (ctr) ctr.style.display = state.addons[k] > 0 ? 'flex' : 'none';
     });
     const chkGutters = document.getElementById('chk-gutters');
-    if (chkGutters) chkGutters.checked = state.addons.gutters;
+    if (chkGutters) chkGutters.checked = state.addons.gutters > 0;
+    const ctrGutters = document.getElementById('ctr-gutters');
+    if (ctrGutters) ctrGutters.style.display = state.addons.gutters > 0 ? 'flex' : 'none';
+    const valGutters = document.getElementById('val-gutters');
+    if (valGutters) valGutters.textContent = state.addons.gutters > 0 ? '$' + state.addons.gutters : '$189';
     // Restore service card selection
     document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
     if (state.serviceType) {
@@ -2881,6 +2905,7 @@ function resumeSession() {
     document.getElementById(target).classList.add('active');
     if (target === 'scr-packages') updatePackagePrices();
     if (target === 'scr-service')  updateServicePrices();
+    if (target === 'scr-addons')   { updateGutterMeta(); updateAddonsContext(); }
     if (target === 'scr-quote')    renderQuote();
     window.scrollTo(0, 0);
   } catch { clearSession(); goScreen('scr-count'); }
@@ -3044,7 +3069,7 @@ function updateTravelDisplay() {
   commState.travelKm = km;
   const cost = km * COMM.travelPkm;
   const disp = document.getElementById('travel-fee-display');
-  if (disp) disp.textContent = cost > 0 ? '+$' + cost.toFixed(0) : '+$0';
+  if (disp) disp.textContent = cost > 0 ? '+$' + Math.round(cost) : '+$0';
 }
 
 function setFreq(f) {
@@ -3111,15 +3136,16 @@ function calcCommQuote() {
   subtotal += COMM.lift[s.lift] || 0;
   subtotal += s.travelKm * COMM.travelPkm;
 
+  subtotal = Math.round(subtotal);
   const freqDisc  = COMM.freq[s.freq] || 0;
   const fieldDisc = Math.min(s.fieldDiscount / 100, 0.40);
   const totalDisc = Math.min(freqDisc + fieldDisc, 0.45);
-  const discAmt   = subtotal * totalDisc;
+  const discAmt   = (subtotal > COMM.minJob && totalDisc > 0) ? Math.round(subtotal * totalDisc) : 0;
   const afterDisc = subtotal - discAmt;
 
   const minApplied = afterDisc < COMM.minJob;
   const final = Math.max(afterDisc, COMM.minJob);
-  const gst   = final * COMM.gst;
+  const gst   = Math.round(final * COMM.gst);
   const total = final + gst;
 
   return {
