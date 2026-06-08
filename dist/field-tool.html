@@ -2646,6 +2646,9 @@ function sendTierQuote() {
   const hwLine = hwAmt
     ? '+ Hard water stain removal: $' + hwAmt + ' (included in prices above)'
     : '';
+  const travelLine = travelAmt
+    ? '+ Travel fee: $' + travelAmt + ' (included in prices above)'
+    : '';
 
   const body = [
     'Hi ' + (name || 'there') + ',',
@@ -2669,9 +2672,10 @@ function sendTierQuote() {
     'Everything done in one visit.',
     'Price: ' + supPrice,
     '─────────────────────────',
-    ...(gutterLine ? [gutterLine] : []),
-    ...(hwLine     ? [hwLine]     : []),
-    ...((gutterLine || hwLine) ? [''] : []),
+    ...(gutterLine  ? [gutterLine]  : []),
+    ...(hwLine      ? [hwLine]      : []),
+    ...(travelLine  ? [travelLine]  : []),
+    ...((gutterLine || hwLine || travelLine) ? [''] : []),
     'All prices include 5% GST.',
     '',
     'Review your full estimate and confirm your booking here:',
