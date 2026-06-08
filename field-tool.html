@@ -1630,9 +1630,10 @@ function startCustom() {
 }
 
 function calcCustomGST() {
-  const price = parseFloat(document.getElementById('cq-price').value) || 0;
+  const raw = parseFloat(document.getElementById('cq-price').value) || 0;
   const card = document.getElementById('cq-total-card');
-  if (!price) { card.style.display = 'none'; return; }
+  if (raw <= 0) { card.style.display = 'none'; return; }
+  const price = Math.round(raw);
   const gst = Math.round(price * GST);
   const total = price + gst;
   document.getElementById('cq-subtotal').textContent = fmt(price);
@@ -2030,6 +2031,7 @@ function renderQuote() {
   rows += brow('Total', fmt(q.total), true);
   document.getElementById('breakdown').innerHTML = rows;
   autoSaveDraft();
+  saveSession('scr-quote');
 }
 
 function brow(label, val, bold) {
