@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="IUUAbRN_Bo7y0YO1wGByTpsGi2toLo80m1kmZE3rR5o" />
   <title>Get an Instant Quote | Wagon Windows — Salmon Arm</title>
-  <meta name="description" content="Get an instant window cleaning quote in 4 steps. Choose your service, count your panes, and see a same-day estimate. Subject to confirmation on arrival." />
+  <meta name="description" content="Get an instant window cleaning quote. Count your panes, see all three package options with live pricing, and book in minutes." />
   <link rel="canonical" href="https://wagonwindow.com/quote/" />
-  
 
   <!-- Open Graph -->
   <meta property="og:title"       content="Get an Instant Quote | Wagon Windows — Salmon Arm" />
-  <meta property="og:description" content="Get an instant window cleaning quote in 4 steps. Choose your service, count your panes, and see a same-day estimate. Subject to confirmation on arrival." />
+  <meta property="og:description" content="Count your panes, see all three package options with live pricing, and book in minutes." />
   <meta property="og:url"         content="https://wagonwindow.com/quote/" />
   <meta property="og:type"        content="website" />
   <meta property="og:image"       content="https://wagonwindow.com/assets/og-image.png" />
@@ -22,7 +22,7 @@
   <!-- Twitter / X Card -->
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="Get an Instant Quote | Wagon Windows — Salmon Arm" />
-  <meta name="twitter:description" content="Get an instant window cleaning quote in 4 steps. Choose your service, count your panes, and see a same-day estimate. Subject to confirmation on arrival." />
+  <meta name="twitter:description" content="Count your panes, see all three package options with live pricing, and book in minutes." />
   <meta name="twitter:image"       content="https://wagonwindow.com/assets/og-image.png" />
 
   <!-- Favicons -->
@@ -30,26 +30,23 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
-  <!-- Preload logo (LCP element) -->
   <link rel="preload" as="image" href="/assets/images/logo.svg" type="image/svg+xml">
 
-  <!-- Inline critical CSS (nav + hero) -->
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--red:#e81010;--black:#111111;--dark:#000000;--light:#f5f5f5;--white:#ffffff}
-    body{font-family:'Inter',sans-serif;color:var(--black);background:var(--white)}
+    :root{
+      --red:#e81010;--black:#111111;--dark:#000000;--light:#f5f5f5;--white:#ffffff;
+      --sky:#e81010;--navy:#111111;--gray:#666666;--border:#e0e0e0;
+      --font:'Inter',sans-serif;--green:#22c55e;
+    }
+    body{font-family:var(--font);color:var(--black);background:var(--white)}
     nav{background:#000;border-bottom:5px solid var(--red);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:88px;position:sticky;top:0;z-index:100;overflow:visible}
     .nav-logo{display:flex;align-items:center;text-decoration:none}
-    .nav-logo-img{height:195px;width:auto;transform:translateY(2mm);}
+    .nav-logo-img{height:195px;width:auto;transform:translateY(2mm)}
     .nav-links{display:flex;list-style:none;gap:2rem;align-items:center}
-    .nav-links a{text-decoration:none;color:#fff;font-weight:500;font-size:0.95rem}
-    .nav-cta{background:var(--red)!important;color:#fff!important;padding:0.5rem 1.2rem;border-radius:4px}
-    .hero{background:linear-gradient(160deg,#000 0%,#111 60%,#220000 100%);color:#fff;padding:5rem 2rem 4rem;text-align:center}
-    .hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.1;margin-bottom:1rem}
-    .hero h1 span{color:var(--red)}
-    .hero p{font-size:1.1rem;max-width:600px;margin:0 auto 2rem;opacity:0.9}
-    .btn-primary{background:var(--red);color:#fff;padding:0.85rem 2rem;border-radius:4px;text-decoration:none;font-weight:600;display:inline-block}
-    .btn-outline{border:2px solid rgba(255,255,255,0.6);color:#fff;padding:0.85rem 2rem;border-radius:4px;text-decoration:none;font-weight:600;display:inline-block}
+    .nav-links a{text-decoration:none;color:#fff;font-weight:500;font-size:.95rem}
+    .nav-cta{background:var(--red)!important;color:#fff!important;padding:.5rem 1.2rem;border-radius:4px}
+    .btn-primary{background:var(--red);color:#fff;padding:.85rem 2rem;border-radius:4px;text-decoration:none;font-weight:600;display:inline-block}
     @media(max-width:900px){.nav-links{display:none}.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer}.hamburger span{width:25px;height:2px;background:rgba(255,255,255,.85);display:block}}
     .hamburger{display:none}
     .nav-links.open{display:flex;flex-direction:column;position:absolute;top:88px;left:0;right:0;background:#fff;padding:1rem 2rem;border-bottom:2px solid var(--red);z-index:99}
@@ -57,70 +54,153 @@
     .nav-links.open li{border-bottom:1px solid #eee;padding:.6rem 0}
     .nav-links.open li:last-child{border-bottom:none}
     .nav-links.open .nav-cta{display:block;text-align:center;margin-top:.5rem}
+
+    /* ── Quote page ── */
+    .quote-hero{background:linear-gradient(160deg,#000 0%,#111 60%,#220000 100%);color:#fff;padding:4rem 5% 3rem;text-align:center}
+    .quote-hero h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:.75rem}
+    .quote-hero h1 span{color:var(--red)}
+    .quote-hero p{opacity:.85;font-size:1.05rem;max-width:560px;margin:0 auto}
+
+    .quote-section{background:var(--light);padding:2.5rem 5% 4rem;min-height:60vh}
+    .quote-wrap{max-width:760px;margin:0 auto}
+
+    /* progress */
+    .progress-bar{display:flex;margin-bottom:2rem;gap:0}
+    .progress-step{flex:1;text-align:center;font-size:.7rem;font-weight:700;color:#aaa;padding:.5rem .2rem .4rem;border-bottom:3px solid #ddd;transition:all .2s;text-transform:uppercase;letter-spacing:.04em}
+    .progress-step.active{color:var(--red);border-bottom-color:var(--red)}
+    .progress-step.done{color:#555;border-bottom-color:#555}
+
+    /* steps */
+    .qstep{display:none}
+    .qstep.active{display:block;animation:fadeIn .2s ease}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+    .step-card{background:#fff;border-radius:12px;padding:2rem;box-shadow:0 2px 16px rgba(0,0,0,.07);margin-bottom:1.5rem}
+    .step-card h2{font-size:1.25rem;font-weight:700;margin-bottom:.3rem;color:var(--navy)}
+    .step-card .sub{color:var(--gray);font-size:.88rem;margin-bottom:1.5rem;line-height:1.5}
+
+    /* property type */
+    .prop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
+    .prop-btn{border:2px solid var(--border);border-radius:10px;padding:1rem;background:#fff;cursor:pointer;text-align:left;transition:all .15s;font-family:var(--font);width:100%}
+    .prop-btn:hover{border-color:#bbb}
+    .prop-btn.selected{border-color:var(--red);background:#fff5f5}
+    .prop-icon{font-size:1.6rem;margin-bottom:.35rem;display:block}
+    .prop-label{font-weight:700;font-size:.95rem;display:block;color:var(--navy)}
+    .prop-sub{font-size:.78rem;color:var(--gray);margin-top:.15rem;display:block}
+
+    /* pane count */
+    .pane-breakdown{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem}
+    .pane-row{display:flex;align-items:center;justify-content:space-between;padding:.8rem 1rem;background:var(--light);border-radius:8px;gap:1rem}
+    .pane-row-info{flex:1}
+    .pane-row-label{font-weight:600;font-size:.9rem;color:var(--navy)}
+    .pane-row-sub{font-size:.76rem;color:var(--gray);margin-top:.1rem}
+    .pane-surcharge{font-size:.76rem;color:var(--red);font-weight:700;margin-top:.1rem}
+    .pane-ctr{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+    .pane-btn{width:36px;height:36px;border-radius:50%;border:2px solid var(--border);background:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;transition:all .15s;line-height:1;touch-action:manipulation;font-family:var(--font)}
+    .pane-btn:hover{border-color:var(--red);color:var(--red)}
+    .pane-val{font-size:1.4rem;font-weight:800;color:var(--navy);min-width:32px;text-align:center}
+    .pane-total{text-align:center;padding:.5rem 0;font-size:.9rem;color:var(--gray);font-weight:600}
+    .pane-total strong{color:var(--navy);font-size:1.1rem}
+
+    .notice-box{border-radius:8px;padding:.85rem 1rem;font-size:.84rem;line-height:1.6;margin:1rem 0}
+    .notice-box.yellow{background:#fffbf0;border:1px solid #e8d760;color:#6b5800}
+    .notice-box.red{background:#fff5f5;border:1.5px solid var(--red);color:#7a0000}
+    .notice-box.green{background:#f0fff4;border:1px solid #4caf50;color:#1b5e20}
+
+    /* package cards */
+    .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+    @media(max-width:640px){.pkg-grid{grid-template-columns:1fr}}
+    .pkg-card{background:#fff;border:2px solid var(--border);border-radius:12px;padding:1.25rem;cursor:pointer;transition:all .18s;position:relative;display:flex;flex-direction:column}
+    .pkg-card:hover{border-color:#bbb;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+    .pkg-card.selected{border-color:var(--red);background:#fff5f5;box-shadow:0 4px 20px rgba(232,16,16,.15)}
+    .pkg-best{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:.25rem .75rem;border-radius:20px;white-space:nowrap}
+    .pkg-tier{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--red);margin-bottom:.3rem}
+    .pkg-name{font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:.2rem}
+    .pkg-desc{font-size:.78rem;color:var(--gray);margin-bottom:.85rem;line-height:1.5;flex:1}
+    .pkg-includes{display:flex;flex-direction:column;gap:.3rem;margin-bottom:1rem}
+    .pkg-include{font-size:.78rem;color:#333;display:flex;gap:.4rem;align-items:flex-start;line-height:1.4}
+    .pkg-include::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+    .pkg-price-row{border-top:1px solid var(--border);padding-top:.85rem;margin-top:auto}
+    .pkg-price-label{font-size:.7rem;color:var(--gray);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.15rem}
+    .pkg-price{font-size:2rem;font-weight:800;color:var(--navy);line-height:1}
+    .pkg-price-sub{font-size:.72rem;color:var(--gray);margin-top:.2rem}
+    .pkg-select-hint{text-align:center;font-size:.75rem;color:var(--gray);margin-top:.6rem;font-weight:500}
+    .pkg-card.selected .pkg-select-hint{color:var(--red);font-weight:700}
+
+    /* add-ons */
+    .addons-heading{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);margin-bottom:.75rem}
+    .addon-row{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:.8rem 1rem;margin-bottom:.6rem;gap:1rem;transition:border-color .15s}
+    .addon-row.checked{border-color:var(--red);background:#fff5f5}
+    .addon-left{display:flex;align-items:center;gap:.65rem;flex:1}
+    .addon-check{width:18px;height:18px;accent-color:var(--red);cursor:pointer;flex-shrink:0}
+    .addon-name{font-weight:600;font-size:.88rem;color:var(--navy)}
+    .addon-meta{font-size:.75rem;color:var(--gray);margin-top:.1rem}
+    .addon-ctr{display:none;align-items:center;gap:.5rem;flex-shrink:0}
+    .addon-ctr button{width:28px;height:28px;border-radius:4px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-size:1rem;font-weight:700;font-family:var(--font);line-height:1;touch-action:manipulation}
+    .addon-ctr span{min-width:22px;text-align:center;font-weight:700;font-size:.95rem}
+    .gutter-note{font-size:.78rem;color:#7a4500;background:#fff8e6;border:1.5px solid #e8a020;border-radius:6px;padding:.6rem .85rem;margin-top:.4rem;line-height:1.55}
+
+    .discount-note{text-align:center;font-size:.78rem;color:#1b5e20;background:#f0fff4;border:1px solid #4caf50;border-radius:6px;padding:.55rem 1rem;margin:1rem 0;font-weight:600}
+
+    /* nav/book buttons */
+    .step-nav{display:flex;gap:.75rem;margin-top:1.25rem}
+    .btn-back{background:none;border:2px solid var(--border);color:var(--navy);padding:.8rem 1.4rem;border-radius:6px;font-family:var(--font);font-weight:600;cursor:pointer;font-size:.92rem;transition:all .15s;white-space:nowrap}
+    .btn-back:hover{border-color:#888}
+    .btn-next{background:var(--red);color:#fff;border:none;padding:.8rem 1.6rem;border-radius:6px;font-family:var(--font);font-weight:700;cursor:pointer;font-size:.95rem;flex:1;transition:background .15s}
+    .btn-next:hover{background:#c00}
+    .btn-next:disabled{background:#ccc;cursor:not-allowed}
+
+    /* booking form */
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem}
+    @media(max-width:560px){.form-row{grid-template-columns:1fr}}
+    .form-group{display:flex;flex-direction:column;gap:.3rem;margin-bottom:0}
+    .form-group label{font-size:.82rem;font-weight:700;color:var(--navy)}
+    .form-group input,.form-group textarea{border:1.5px solid var(--border);border-radius:6px;padding:.7rem .9rem;font-family:var(--font);font-size:.95rem;transition:border-color .15s;background:#fff;width:100%}
+    .form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--red)}
+    .form-group textarea{resize:vertical;min-height:72px}
+    .form-optional{color:var(--gray);font-weight:400}
+
+    /* success / large */
+    .centered-card{text-align:center;padding:2.5rem 1.5rem}
+    .big-icon{font-size:3rem;margin-bottom:1rem}
+    .centered-card h2{font-size:1.35rem;font-weight:700;margin-bottom:.75rem}
+    .centered-card p{color:var(--gray);margin-bottom:1.5rem;line-height:1.6}
   </style>
 
   <!-- Load full stylesheet async -->
   <link rel="preload" href="/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/style.css"></noscript>
 
-  <!-- Fonts async -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://api.web3forms.com">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 
-  <!-- Schema: LocalBusiness (all pages) -->
+  <!-- Schema: LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "HomeAndConstructionBusiness",
     "name": "Wagon Windows",
     "legalName": "Wagon Windows",
-    "description": "Professional window cleaning for homes and businesses across Salmon Arm and the Shuswap region, BC. Residential, commercial, screen, track, gutter, and hard water stain removal services.",
+    "image": "https://wagonwindow.com/assets/images/logo.svg",
+    "description": "Professional window cleaning for homes and businesses across Salmon Arm and the Shuswap region, BC.",
     "url": "https://wagonwindow.com",
     "telephone": "+14038375092",
     "email": "davidhanna@wagonwindow.com",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Salmon Arm",
-      "addressLocality": "Salmon Arm",
-      "addressRegion": "BC",
-      "postalCode": "V1E",
-      "addressCountry": "CA"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 50.6991,
-      "longitude": -119.2780
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": "9",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
+    "address": {"@type":"PostalAddress","addressLocality":"Salmon Arm","addressRegion":"BC","postalCode":"V1E","addressCountry":"CA"},
+    "geo": {"@type":"GeoCoordinates","latitude":50.6991,"longitude":-119.2780},
+    "aggregateRating": {"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"9","bestRating":"5","worstRating":"1"},
     "areaServed": [
-      {"@type": "City", "name": "Salmon Arm"},
-      {"@type": "City", "name": "Sorrento"},
-      {"@type": "City", "name": "Tappen"},
-      {"@type": "City", "name": "Blind Bay"},
-      {"@type": "City", "name": "Sicamous"},
-      {"@type": "City", "name": "Chase"},
-      {"@type": "City", "name": "Enderby"},
-      {"@type": "City", "name": "Armstrong"},
-      {"@type": "City", "name": "Eagle Bay"},
-      {"@type": "City", "name": "Celista"},
-      {"@type": "City", "name": "Scotch Creek"},
-      {"@type": "City", "name": "Grindrod"},
-      {"@type": "City", "name": "Spallumcheen"},
-      {"@type": "City", "name": "Swansea Point"}
+      {"@type":"City","name":"Salmon Arm"},{"@type":"City","name":"Sorrento"},{"@type":"City","name":"Tappen"},
+      {"@type":"City","name":"Blind Bay"},{"@type":"City","name":"Sicamous"},{"@type":"City","name":"Chase"},
+      {"@type":"City","name":"Enderby"},{"@type":"City","name":"Armstrong"},{"@type":"City","name":"Eagle Bay"},
+      {"@type":"City","name":"Celista"},{"@type":"City","name":"Scotch Creek"},{"@type":"City","name":"Grindrod"},
+      {"@type":"City","name":"Spallumcheen"},{"@type":"City","name":"Swansea Point"}
     ],
-    "openingHoursSpecification": [
-      {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "18:00"},
-      {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "09:00", "closes": "18:00"},
-      {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday"], "opens": "11:00", "closes": "18:00"}
-    ],
+    "openingHoursSpecification": [{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"10:30","closes":"18:00"}],
     "priceRange": "$$",
     "currenciesAccepted": "CAD",
     "paymentAccepted": "Cash, E-Transfer",
@@ -129,131 +209,13 @@
   }
   </script>
 
-  <!-- Schema: WebSite -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Wagon Windows",
-    "url": "https://wagonwindow.com",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://wagonwindow.com/quote/",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
-
-  
-<style>
-.quote-hero{background:linear-gradient(160deg,#000 0%,#111 60%,#220000 100%);color:#fff;padding:4rem 5% 3rem;text-align:center}
-.quote-hero h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:.75rem}
-.quote-hero h1 span{color:var(--sky)}
-.quote-hero p{opacity:.85;font-size:1.05rem;max-width:560px;margin:0 auto}
-
-.quote-section{background:var(--light);padding:3rem 5%;min-height:60vh}
-.quote-wrap{max-width:680px;margin:0 auto}
-
-.progress-bar{display:flex;margin-bottom:2rem}
-.progress-step{flex:1;text-align:center;font-size:.72rem;font-weight:600;color:#aaa;padding:.5rem .2rem .4rem;border-bottom:3px solid #ddd;transition:all .2s;text-transform:uppercase;letter-spacing:.03em}
-.progress-step.active{color:var(--sky);border-bottom-color:var(--sky)}
-.progress-step.done{color:#555;border-bottom-color:#555}
-
-.step{display:none}
-.step.active{display:block;animation:fadeIn .25s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-
-.step-card{background:#fff;border-radius:12px;padding:2rem;box-shadow:0 2px 16px rgba(0,0,0,.07);margin-bottom:1.5rem}
-.step-card h2{font-size:1.3rem;font-weight:700;margin-bottom:.35rem;color:var(--navy)}
-.step-card .sub{color:var(--gray);font-size:.9rem;margin-bottom:1.5rem}
-
-.option-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
-.option-btn{border:2px solid var(--border);border-radius:8px;padding:1rem;background:#fff;cursor:pointer;text-align:left;transition:all .15s;font-family:var(--font);width:100%}
-.option-btn:hover{border-color:#999}
-.option-btn.selected{border-color:var(--sky);background:#fff5f5}
-.option-icon{font-size:1.5rem;margin-bottom:.4rem;display:block}
-.option-label{font-weight:600;font-size:.95rem;display:block;color:var(--navy)}
-.option-sub{font-size:.8rem;color:var(--gray);margin-top:.2rem;display:block}
-
-.pane-input-wrap{text-align:center;margin:1.5rem 0}
-.pane-counter{display:flex;align-items:center;justify-content:center;gap:1.2rem}
-.pane-btn{width:48px;height:48px;border-radius:50%;border:2px solid var(--border);background:#fff;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:600;transition:all .15s;line-height:1;touch-action:manipulation}
-.pane-btn:hover{border-color:var(--sky);color:var(--sky)}
-.pane-value{font-size:3rem;font-weight:800;color:var(--navy);min-width:90px;text-align:center;cursor:pointer;user-select:none}
-.pane-hint{font-size:.82rem;color:var(--gray);margin-top:.75rem}
-
-.pane-breakdown{margin:1.25rem 0}
-.pane-row{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;background:var(--light);border-radius:8px;margin-bottom:.5rem;gap:1rem}
-.pane-row-info{flex:1}
-.pane-row-label{font-weight:600;font-size:.9rem;color:var(--navy)}
-.pane-row-sub{font-size:.78rem;color:var(--gray);margin-top:.1rem}
-.pane-surcharge{font-size:.78rem;color:var(--sky);font-weight:700;margin-top:.1rem}
-.pane-counter-sm{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
-.pane-btn-sm{width:36px;height:36px;border-radius:50%;border:2px solid var(--border);background:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:600;transition:all .15s;line-height:1;touch-action:manipulation}
-.pane-btn-sm:hover{border-color:var(--sky);color:var(--sky)}
-.pane-val-sm{font-size:1.5rem;font-weight:800;color:var(--navy);min-width:36px;text-align:center}
-.pane-total-row{text-align:center;padding:.6rem 0 .25rem;font-size:.88rem;color:var(--gray)}
-.pane-total-row strong{color:var(--navy);font-size:1.05rem}
-
-.addon-list{display:flex;flex-direction:column;gap:.75rem}
-.addon-item{display:flex;align-items:center;justify-content:space-between;background:var(--light);border-radius:8px;padding:.9rem 1rem;gap:1rem;transition:opacity .2s}
-.addon-item.disabled{opacity:.45;pointer-events:none}
-.addon-left{display:flex;align-items:center;gap:.75rem}
-.addon-check{width:20px;height:20px;accent-color:var(--sky);cursor:pointer;flex-shrink:0}
-.addon-label{font-weight:600;font-size:.9rem}
-.addon-price{font-size:.8rem;color:var(--gray)}
-.addon-counter{display:none;align-items:center;gap:.5rem}
-.addon-counter button{width:28px;height:28px;border-radius:4px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-size:1rem;line-height:1;flex-shrink:0;touch-action:manipulation}
-.addon-counter span{min-width:24px;text-align:center;font-weight:600}
-
-.quote-total{text-align:center;padding:1.5rem 0 1rem}
-.quote-from{font-size:.8rem;color:var(--gray);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.25rem}
-.quote-amount{font-size:3.2rem;font-weight:800;color:var(--sky);line-height:1}
-.quote-range{font-size:.95rem;color:var(--gray);margin-top:.35rem}
-
-.quote-breakdown{background:var(--light);border-radius:8px;padding:1rem 1.2rem;margin:1rem 0}
-.breakdown-row{display:flex;justify-content:space-between;font-size:.9rem;padding:.3rem 0;gap:1rem}
-.breakdown-row.total{font-weight:700;border-top:1px solid var(--border);margin-top:.5rem;padding-top:.6rem}
-
-.disclaimer-box{background:#fffbf0;border:1px solid #e8d760;border-radius:8px;padding:1rem 1.2rem;font-size:.83rem;color:#6b5800;margin:1rem 0;line-height:1.55}
-.disclaimer-box.red{background:#fff5f5;border-color:var(--sky);color:#800000}
-
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
-.form-group{display:flex;flex-direction:column;gap:.35rem;margin-bottom:0}
-.form-group label{font-size:.85rem;font-weight:600;color:var(--navy)}
-.form-group input,.form-group select,.form-group textarea{border:1.5px solid var(--border);border-radius:6px;padding:.7rem .9rem;font-family:var(--font);font-size:.95rem;transition:border-color .15s;background:#fff;width:100%;box-sizing:border-box}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--sky)}
-.form-group textarea{resize:vertical;min-height:80px}
-
-.step-nav{display:flex;gap:1rem;margin-top:1.5rem}
-.btn-back{background:none;border:2px solid var(--border);color:var(--navy);padding:.8rem 1.5rem;border-radius:6px;font-family:var(--font);font-weight:600;cursor:pointer;font-size:.95rem;transition:all .15s;white-space:nowrap}
-.btn-back:hover{border-color:#888}
-.btn-next{background:var(--sky);color:#fff;border:none;padding:.8rem 1.8rem;border-radius:6px;font-family:var(--font);font-weight:600;cursor:pointer;font-size:.95rem;flex:1;transition:background .15s}
-.btn-next:hover{background:#c00}
-.btn-next:disabled{background:#ccc;cursor:not-allowed}
-
-.centered-card{text-align:center;padding:2.5rem 1.5rem}
-.big-icon{font-size:3rem;margin-bottom:1rem}
-.centered-card h2{font-size:1.4rem;font-weight:700;margin-bottom:.75rem}
-.centered-card p{color:var(--gray);margin-bottom:1.5rem;line-height:1.6}
-
-@media(max-width:768px){
-  .step-card{padding:1.3rem}
-  .option-grid{grid-template-columns:1fr 1fr}
-  .form-row{grid-template-columns:1fr}
-  .progress-step{font-size:.6rem;padding:.4rem .1rem}
-  .pane-value{font-size:2.5rem}
-}
-</style>
-
-
   <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LM67Z9XY8M"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B0YM588Z9K"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-LM67Z9XY8M', {'send_page_view': true});
+    gtag('config', 'G-B0YM588Z9K', {'send_page_view': true});
   </script>
 </head>
 <body>
@@ -270,8 +232,7 @@
     <li><a href="/gutter-cleaning/">Gutter Cleaning</a></li>
     <li><a href="/#pricing">Pricing</a></li>
     <li><a href="/#area">Service Area</a></li>
-    <li><a href="sms:+14038375092"
-         onclick="gtag('event','sms_click',{'event_category':'contact','event_label':'nav'});">Text Us</a></li>
+    <li><a href="sms:+14038375092" onclick="gtag('event','sms_click',{'event_category':'contact','event_label':'nav'});">Text Us</a></li>
     <li><a href="/quote/" class="nav-cta">Instant Estimate</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleNav()">
@@ -279,10 +240,9 @@
   </div>
 </nav>
 
-
 <div class="quote-hero">
   <h1>Get Your <span>Instant Estimate</span></h1>
-  <p>4 quick steps to a same-day estimate. All prices are subject to final confirmation on arrival — we'll never start work without your approval.</p>
+  <p>Count your panes, see your package options, and book in minutes.</p>
 </div>
 
 <section class="quote-section">
@@ -290,63 +250,59 @@
 
     <div class="progress-bar">
       <div class="progress-step active" id="prog-1">Property</div>
-      <div class="progress-step" id="prog-2">Panes</div>
-      <div class="progress-step" id="prog-3">Services</div>
-      <div class="progress-step" id="prog-4">Quote</div>
-      <div class="progress-step" id="prog-5">Book</div>
+      <div class="progress-step" id="prog-2">Count</div>
+      <div class="progress-step" id="prog-3">Packages</div>
+      <div class="progress-step" id="prog-4">Book</div>
     </div>
 
     <!-- ── Step 1: Property Type ── -->
-    <div class="step active" id="step-1">
+    <div class="qstep active" id="step-1">
       <div class="step-card">
         <h2>What type of property?</h2>
-        <p class="sub">This helps us give you the most accurate estimate.</p>
-        <div class="option-grid">
-          <button class="option-btn" onclick="selectOption('propertyType','house',this)">
-            <span class="option-icon">🏠</span>
-            <span class="option-label">House</span>
-            <span class="option-sub">Detached or semi-detached</span>
+        <p class="sub">Helps David know what to expect when he arrives.</p>
+        <div class="prop-grid">
+          <button class="prop-btn" onclick="selectProp('house', this)">
+            <span class="prop-icon">🏠</span>
+            <span class="prop-label">House</span>
+            <span class="prop-sub">Detached or semi-detached</span>
           </button>
-          <button class="option-btn" onclick="selectOption('propertyType','townhouse',this)">
-            <span class="option-icon">🏘</span>
-            <span class="option-label">Townhouse</span>
-            <span class="option-sub">Row home or strata unit</span>
+          <button class="prop-btn" onclick="selectProp('townhouse', this)">
+            <span class="prop-icon">🏘</span>
+            <span class="prop-label">Townhouse</span>
+            <span class="prop-sub">Row home or strata unit</span>
           </button>
-          <button class="option-btn" onclick="selectOption('propertyType','condo',this)">
-            <span class="option-icon">🏢</span>
-            <span class="option-label">Condo / Apartment</span>
-            <span class="option-sub">Suite in a complex</span>
+          <button class="prop-btn" onclick="selectProp('condo', this)">
+            <span class="prop-icon">🏢</span>
+            <span class="prop-label">Condo / Apartment</span>
+            <span class="prop-sub">Suite in a complex</span>
           </button>
-          <button class="option-btn" onclick="selectOption('propertyType','commercial',this)">
-            <span class="option-icon">🏪</span>
-            <span class="option-label">Commercial</span>
-            <span class="option-sub">Office, retail, or other</span>
+          <button class="prop-btn" onclick="selectProp('commercial', this)">
+            <span class="prop-icon">🏪</span>
+            <span class="prop-label">Commercial</span>
+            <span class="prop-sub">Office, retail, or other</span>
           </button>
         </div>
       </div>
       <div class="step-nav">
-        <button class="btn-next" id="next-1" onclick="goTo(2)" disabled>Next →</button>
+        <button class="btn-next" id="next-1" onclick="showStep(2)" disabled>Next →</button>
       </div>
     </div>
 
-    <!-- ── Step 2: Pane Count ── -->
-    <div class="step" id="step-2">
+    <!-- ── Step 2: Count Panes ── -->
+    <div class="qstep" id="step-2">
       <div class="step-card">
-        <h2>How many panes?</h2>
-        <p class="sub">Count each individual piece of glass — not each window frame.</p>
-        <div style="background:#fff5f5;border:2px solid var(--sky);border-radius:8px;padding:.85rem 1rem;margin-bottom:1.25rem;font-size:.87rem;line-height:1.6;color:#6b0000">
-          <strong style="color:var(--sky)">⚠ Count panes, not windows.</strong> Each piece of glass = 1 pane. A standard double-hung window has <strong>2 panes</strong>. A sliding patio door = <strong>2 panes</strong>. A picture window = <strong>1 pane</strong>. Skylights count too.
-        </div>
+        <h2>Count your panes</h2>
+        <p class="sub">Each individual piece of glass = 1 pane. A double-hung window has 2 panes. A sliding patio door = 2 panes.</p>
         <div class="pane-breakdown">
           <div class="pane-row">
             <div class="pane-row-info">
               <div class="pane-row-label">Standard Panes</div>
-              <div class="pane-row-sub">Regular glass — double-hung windows, sliders, patio doors</div>
+              <div class="pane-row-sub">Regular windows, sliders, patio doors</div>
             </div>
-            <div class="pane-counter-sm">
-              <button class="pane-btn-sm" onclick="adjustBreakdown('regular',-1)">−</button>
-              <div class="pane-val-sm" id="bd-regular">20</div>
-              <button class="pane-btn-sm" onclick="adjustBreakdown('regular',1)">+</button>
+            <div class="pane-ctr">
+              <button class="pane-btn" onclick="adjustPane('regular',-1)">−</button>
+              <div class="pane-val" id="bd-regular">0</div>
+              <button class="pane-btn" onclick="adjustPane('regular',1)">+</button>
             </div>
           </div>
           <div class="pane-row">
@@ -355,152 +311,146 @@
               <div class="pane-row-sub">Picture windows, floor-to-ceiling, bay windows</div>
               <div class="pane-surcharge">+$8 per pane</div>
             </div>
-            <div class="pane-counter-sm">
-              <button class="pane-btn-sm" onclick="adjustBreakdown('large',-1)">−</button>
-              <div class="pane-val-sm" id="bd-large">0</div>
-              <button class="pane-btn-sm" onclick="adjustBreakdown('large',1)">+</button>
+            <div class="pane-ctr">
+              <button class="pane-btn" onclick="adjustPane('large',-1)">−</button>
+              <div class="pane-val" id="bd-large">0</div>
+              <button class="pane-btn" onclick="adjustPane('large',1)">+</button>
             </div>
           </div>
           <div class="pane-row">
             <div class="pane-row-info">
               <div class="pane-row-label">French / Complicated</div>
-              <div class="pane-row-sub">Multi-pane french windows, grille patterns, skylights</div>
+              <div class="pane-row-sub">Multi-pane french windows, grilles, skylights</div>
               <div class="pane-surcharge">+$8 per pane</div>
             </div>
-            <div class="pane-counter-sm">
-              <button class="pane-btn-sm" onclick="adjustBreakdown('french',-1)">−</button>
-              <div class="pane-val-sm" id="bd-french">0</div>
-              <button class="pane-btn-sm" onclick="adjustBreakdown('french',1)">+</button>
+            <div class="pane-ctr">
+              <button class="pane-btn" onclick="adjustPane('french',-1)">−</button>
+              <div class="pane-val" id="bd-french">0</div>
+              <button class="pane-btn" onclick="adjustPane('french',1)">+</button>
             </div>
           </div>
-          <div class="pane-total-row">Total panes: <strong id="pane-total-display">20</strong></div>
         </div>
+        <div class="pane-total">Total: <strong id="pane-total">0</strong> panes</div>
         <div id="large-notice" style="display:none">
-          <div class="disclaimer-box red">
-            <strong>Large property.</strong> For homes with 36+ windows (72+ panes) we do a free 30-minute on-site consultation to give you a precise quote — no surprises. Hit Next to book it.
+          <div class="notice-box red">
+            <strong>Bigger job.</strong> For 36+ window homes we do a free on-site consultation to give you a precise quote — no surprises. Hit Next to book it.
           </div>
         </div>
       </div>
       <div class="step-nav">
-        <button class="btn-back" onclick="goTo(1)">← Back</button>
-        <button class="btn-next" id="next-2" onclick="handlePaneNext()">Next →</button>
+        <button class="btn-back" onclick="showStep(1)">← Back</button>
+        <button class="btn-next" id="next-2" onclick="handleCountNext()">See Packages →</button>
       </div>
     </div>
 
-    <!-- ── Step 3: Service + Add-ons ── -->
-    <div class="step" id="step-3">
-      <div class="step-card">
-        <h2>What service do you need?</h2>
-        <p class="sub">Choose your clean type — we can do one or both sides.</p>
-        <div class="option-grid" style="margin-bottom:1.75rem">
-          <button class="option-btn" onclick="selectOption('serviceType','exterior',this)">
-            <span class="option-icon">🌤</span>
-            <span class="option-label">Exterior Only</span>
-            <span class="option-sub">Outside surfaces cleaned</span>
-          </button>
-          <button class="option-btn" onclick="selectOption('serviceType','both',this)">
-            <span class="option-icon">✨</span>
-            <span class="option-label">Interior + Exterior</span>
-            <span class="option-sub">Full clean, both sides</span>
-          </button>
+    <!-- ── Step 3: Packages ── -->
+    <div class="qstep" id="step-3">
+      <div class="pkg-grid">
+
+        <div class="pkg-card" id="pkg-standard" onclick="selectPkg('standard')">
+          <div class="pkg-tier">Standard</div>
+          <div class="pkg-name">Exterior Only</div>
+          <div class="pkg-desc">Outside of every window cleaned streak-free.</div>
+          <div class="pkg-includes">
+            <div class="pkg-include">Outside of every window</div>
+            <div class="pkg-include">Streak-free guarantee</div>
+          </div>
+          <div class="pkg-price-row">
+            <div class="pkg-price-label">Starting from</div>
+            <div class="pkg-price" id="price-standard">$—</div>
+            <div class="pkg-price-sub">incl. GST · 5% online discount applied</div>
+          </div>
+          <div class="pkg-select-hint">Tap to select</div>
         </div>
 
-        <!-- Smart estimate notice — shown after service type picked -->
-        <div id="addon-notice" style="display:none;margin-bottom:1.25rem"></div>
+        <div class="pkg-card" id="pkg-premium" onclick="selectPkg('premium')">
+          <div class="pkg-tier">Premium</div>
+          <div class="pkg-name">Interior + Exterior</div>
+          <div class="pkg-desc">Full clean, both sides of every window.</div>
+          <div class="pkg-includes">
+            <div class="pkg-include">Inside every window</div>
+            <div class="pkg-include">Outside every window</div>
+            <div class="pkg-include">Streak-free guarantee</div>
+          </div>
+          <div class="pkg-price-row">
+            <div class="pkg-price-label">Starting from</div>
+            <div class="pkg-price" id="price-premium">$—</div>
+            <div class="pkg-price-sub">incl. GST · 5% online discount applied</div>
+          </div>
+          <div class="pkg-select-hint">Tap to select</div>
+        </div>
 
-        <div id="addon-section" style="display:none">
-          <h2>Add-ons</h2>
-          <p class="sub" id="addon-sub"></p>
-          <div class="addon-list">
+        <div class="pkg-card" id="pkg-supreme" onclick="selectPkg('supreme')">
+          <div class="pkg-best">Best Value</div>
+          <div class="pkg-tier">Supreme</div>
+          <div class="pkg-name">Complete Service</div>
+          <div class="pkg-desc">Everything done in one visit.</div>
+          <div class="pkg-includes">
+            <div class="pkg-include">Inside + outside every window</div>
+            <div class="pkg-include">Screen cleaning (est. <span id="sup-screens">—</span>)</div>
+            <div class="pkg-include">Track cleaning (est. <span id="sup-tracks">—</span>)</div>
+            <div class="pkg-include">Streak-free guarantee</div>
+          </div>
+          <div class="pkg-price-row">
+            <div class="pkg-price-label">Starting from</div>
+            <div class="pkg-price" id="price-supreme">$—</div>
+            <div class="pkg-price-sub">incl. GST · 5% online discount applied</div>
+          </div>
+          <div class="pkg-select-hint">Tap to select</div>
+        </div>
 
-            <div class="addon-item" id="addon-screens">
-              <div class="addon-left">
-                <input type="checkbox" class="addon-check" id="chk-screens" onchange="toggleAddon('screens',this)">
-                <div>
-                  <div class="addon-label">Screen Cleaning</div>
-                  <div class="addon-price">$4 per screen</div>
-                </div>
-              </div>
-              <div class="addon-counter" id="ctr-screens">
-                <button onclick="adjustAddon('screens',-1)">−</button>
-                <span id="val-screens">0</span>
-                <button onclick="adjustAddon('screens',1)">+</button>
-              </div>
-            </div>
+      </div>
 
-            <div class="addon-item" id="addon-tracks">
-              <div class="addon-left">
-                <input type="checkbox" class="addon-check" id="chk-tracks" onchange="toggleAddon('tracks',this)">
-                <div>
-                  <div class="addon-label">Track Cleaning</div>
-                  <div class="addon-price">$4 per track</div>
-                </div>
-              </div>
-              <div class="addon-counter" id="ctr-tracks">
-                <button onclick="adjustAddon('tracks',-1)">−</button>
-                <span id="val-tracks">0</span>
-                <button onclick="adjustAddon('tracks',1)">+</button>
-              </div>
-            </div>
+      <!-- Add-ons -->
+      <div class="addons-heading">Optional Add-ons</div>
 
-            <div class="addon-item" id="addon-hardwater">
-              <div class="addon-left">
-                <input type="checkbox" class="addon-check" id="chk-hardwater" onchange="toggleAddon('hardwater',this)">
-                <div>
-                  <div class="addon-label">Hard Water Stain Removal</div>
-                  <div class="addon-price">$20 per affected pane</div>
-                </div>
-              </div>
-              <div class="addon-counter" id="ctr-hardwater">
-                <button onclick="adjustAddon('hardwater',-1)">−</button>
-                <span id="val-hardwater">0</span>
-                <button onclick="adjustAddon('hardwater',1)">+</button>
-              </div>
-            </div>
+      <div class="addon-row" id="row-hardwater">
+        <div class="addon-left">
+          <input type="checkbox" class="addon-check" id="chk-hardwater" onchange="toggleHardwater(this)">
+          <div>
+            <div class="addon-name">Hard Water Stain Removal</div>
+            <div class="addon-meta">$20 per affected pane — mineral deposits, spots</div>
+          </div>
+        </div>
+        <div class="addon-ctr" id="ctr-hardwater">
+          <button onclick="adjustHardwater(-1)">−</button>
+          <span id="val-hardwater">0</span>
+          <button onclick="adjustHardwater(1)">+</button>
+        </div>
+      </div>
 
-
+      <div class="addon-row" id="row-gutters">
+        <div class="addon-left">
+          <input type="checkbox" class="addon-check" id="chk-gutters" onchange="toggleGutters(this)">
+          <div>
+            <div class="addon-name">Gutter Cleaning</div>
+            <div class="addon-meta">Custom quote — David will assess on arrival</div>
           </div>
         </div>
       </div>
+      <div id="gutter-note" style="display:none" class="gutter-note">
+        We'll assess your gutters on arrival and give you a firm price before starting — no obligation. Flushing debris, clearing downspouts.
+      </div>
+
+      <div class="discount-note">✅ 5% online booking discount applied to all prices above</div>
+
       <div class="step-nav">
-        <button class="btn-back" onclick="goTo(2)">← Back</button>
-        <button class="btn-next" id="next-3" onclick="goTo(4)" disabled>See My Quote →</button>
+        <button class="btn-back" onclick="showStep(2)">← Back</button>
+        <button class="btn-next" id="next-3" onclick="showStep(4)" disabled>Book This Package →</button>
       </div>
     </div>
 
-    <!-- ── Step 4: Quote Summary ── -->
-    <div class="step" id="step-4">
-      <div class="step-card">
-        <h2>Your Estimate</h2>
-        <p class="sub">Based on your selections — confirm exact price before work begins.</p>
-        <div class="quote-total">
-          <div class="quote-from">Estimated starting from</div>
-          <div class="quote-amount" id="quote-low">$—</div>
-          <div class="quote-range" id="quote-range"></div>
-        </div>
-        <div class="quote-breakdown" id="breakdown"></div>
-        <div class="disclaimer-box">
-          ⚠️ <strong>Subject to change upon arrival.</strong> Final pricing depends on actual pane count, window condition, accessibility, and level of buildup. We confirm the exact price before starting any work — no surprises.
-        </div>
-      </div>
-      <div class="step-nav">
-        <button class="btn-back" onclick="goTo(3)">← Back</button>
-        <button class="btn-next" onclick="goTo(5)">Book This Job →</button>
-      </div>
-    </div>
-
-    <!-- ── Step 5: Contact + Book ── -->
-    <div class="step" id="step-5">
+    <!-- ── Step 4: Book ── -->
+    <div class="qstep" id="step-4">
       <div class="step-card">
         <h2>Book Your Appointment</h2>
         <p class="sub">We'll confirm within 24 hours and lock in your date.</p>
         <form id="booking-form" onsubmit="submitBooking(event)">
-          <!-- Web3Forms key — get yours free at web3forms.com -->
           <input type="hidden" name="access_key" value="cd06c1c4-9648-4bea-b875-03a7cdd6ef61">
-          <input type="hidden" name="subject" id="email-subject">
-          <input type="hidden" name="from_name" value="Wagon Windows Quote Tool">
+          <input type="hidden" name="subject"      id="email-subject">
+          <input type="hidden" name="from_name"    value="Wagon Windows Quote Tool">
           <input type="hidden" name="quote_summary" id="email-summary">
-          <input type="hidden" name="redirect" value="false">
+          <input type="hidden" name="redirect"     value="false">
           <div class="form-row">
             <div class="form-group">
               <label for="f-fname">First Name *</label>
@@ -518,69 +468,68 @@
             </div>
             <div class="form-group">
               <label for="f-email">Email</label>
-              <input id="f-email" type="email" name="email" placeholder="you@email.com">
+              <input id="f-email" type="email" name="replyto" placeholder="you@email.com">
             </div>
           </div>
-          <p id="contact-error" style="display:none;color:var(--sky);font-size:.82rem;margin:-0.5rem 0 .75rem;font-weight:600">Please enter at least a phone number or email so we can reach you.</p>
+          <p id="contact-error" style="display:none;color:var(--red);font-size:.82rem;margin:-.5rem 0 .75rem;font-weight:600">Please enter at least a phone number or email.</p>
           <div class="form-group" style="margin-bottom:1rem">
             <label for="f-address">Service Address *</label>
             <input id="f-address" type="text" name="address" required placeholder="123 Main St, Salmon Arm, BC"
                    oninput="checkTravelFee(this.value)">
-          <p id="travel-fee-note" style="display:none;background:#fff8e6;border:1.5px solid #e8a020;border-radius:6px;padding:.6rem .9rem;font-size:.82rem;color:#7a4500;margin:.25rem 0 0;line-height:1.55"></p>
+            <p id="travel-fee-note" style="display:none;background:#fff8e6;border:1.5px solid #e8a020;border-radius:6px;padding:.6rem .9rem;font-size:.82rem;color:#7a4500;margin:.25rem 0 0;line-height:1.55"></p>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="f-date">Preferred Date</label>
+              <label for="f-date">Preferred Date <span class="form-optional">(optional)</span></label>
               <input id="f-date" type="date" name="preferred_date">
             </div>
             <div class="form-group">
-              <label for="f-city">City / Area</label>
+              <label for="f-city">City / Area <span class="form-optional">(optional)</span></label>
               <input id="f-city" type="text" name="city" placeholder="Salmon Arm">
             </div>
           </div>
           <div class="form-group" style="margin-bottom:1.25rem">
-            <label for="f-notes">Anything we should know?</label>
-            <textarea id="f-notes" name="notes" placeholder="e.g. dog in yard, hard-to-reach windows, gate code…"></textarea>
+            <label for="f-notes">Anything we should know? <span class="form-optional">(optional)</span></label>
+            <textarea id="f-notes" name="notes" placeholder="e.g. dog in yard, gate code, hard-to-reach windows…"></textarea>
           </div>
           <label style="display:flex;align-items:flex-start;gap:.65rem;margin-bottom:1.25rem;cursor:pointer;font-size:.84rem;color:#555;line-height:1.5">
             <input type="checkbox" name="email_consent" required style="margin-top:3px;flex-shrink:0;accent-color:var(--red)">
             I agree to receive email from Wagon Windows regarding my quote and booking.
           </label>
-          <button type="submit" id="submit-btn" class="btn-next" style="width:100%">
+          <button type="submit" id="submit-btn" class="btn-next" style="width:100%;font-size:1rem;padding:1rem">
             Send My Booking Request
           </button>
         </form>
       </div>
       <div class="step-nav" style="margin-top:0">
-        <button class="btn-back" onclick="goTo(4)">← Back to Quote</button>
+        <button class="btn-back" onclick="showStep(3)">← Back to Packages</button>
       </div>
     </div>
 
     <!-- ── Large Home ── -->
-    <div class="step" id="step-large">
+    <div class="qstep" id="step-large">
       <div class="step-card centered-card">
         <div class="big-icon">🏡</div>
         <h2>Sounds Like a Bigger Job</h2>
-        <p>For homes with 36+ windows we come out for a free 30-minute on-site consultation so we can give you an accurate number — no guesswork, no surprises.</p>
+        <p>For homes with 36+ windows we come out for a free on-site consultation — no guesswork, no surprises before we start.</p>
         <a href="https://calendar.app.google/KcgTkongKSkHw8xZ8" class="btn-primary" target="_blank" rel="noopener"
-           style="display:inline-block"
            onclick="gtag('event','booking_click',{'event_category':'quote','event_label':'large_home'});">
           Book Free Consultation
         </a>
         <br>
-        <button class="btn-back" style="margin-top:1rem;display:inline-block" onclick="goTo(2)">← Change Pane Count</button>
+        <button class="btn-back" style="margin-top:1rem;display:inline-block" onclick="showStep(2)">← Change Count</button>
       </div>
     </div>
 
     <!-- ── Success ── -->
-    <div class="step" id="step-success">
+    <div class="qstep" id="step-success">
       <div class="step-card centered-card">
         <div class="big-icon">✅</div>
         <h2>Request Sent!</h2>
-        <p>David will be in touch within 24 hours to confirm your appointment and answer any questions. Want to lock in a time right now?</p>
-        <a href="https://calendar.app.google/KcgTkongKSkHw8xZ8" class="btn-primary" target="_blank" rel="noopener" style="display:inline-block"
+        <p>David will be in touch within 24 hours to confirm your appointment. Want to lock in a time right now?</p>
+        <a href="https://calendar.app.google/KcgTkongKSkHw8xZ8" class="btn-primary" target="_blank" rel="noopener"
            onclick="gtag('event','booking_click',{'event_category':'quote','event_label':'post_submit'});">
-          Schedule Instantly on Google Calendar
+          Schedule on Google Calendar
         </a>
         <br>
         <a href="/" style="display:inline-block;margin-top:1rem;font-size:.9rem;color:var(--gray)">← Back to homepage</a>
@@ -591,18 +540,16 @@
 </section>
 
 <script>
-const PRICING = {
-  addons: { screens: 4, tracks: 4, hardwater: 20, largewindow: 8 },
-  large: 71,
-  discount: 0.05,
-  gst: 0.05
-};
+const MIN_JOB  = 169;
+const GST      = 0.05;
+const DISCOUNT = 0.05;
+const LARGE_PK = 8;
 
 const state = {
   propertyType: null,
-  breakdown: { regular: 20, large: 0, french: 0 },
-  serviceType: null,
-  addons: { screens: 0, tracks: 0, hardwater: 0 }
+  breakdown: { regular: 0, large: 0, french: 0 },
+  addons: { hardwater: 0, gutters: false },
+  selectedPkg: null
 };
 
 function totalPanes() {
@@ -619,154 +566,120 @@ function calcBase(panes, type) {
   return type === 'exterior' ? Math.round(ext) : Math.round(intExt);
 }
 
-function selectOption(key, value, btn) {
-  state[key] = value;
-  btn.closest('.option-grid').querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+function pkgTotal(type, screens, tracks) {
+  const panes   = totalPanes();
+  const base    = Math.max(MIN_JOB, calcBase(panes, type));
+  const lrgWin  = (state.breakdown.large + state.breakdown.french) * LARGE_PK;
+  const scr     = screens * 4;
+  const trk     = tracks  * 4;
+  const hw      = state.addons.hardwater * 20;
+  const sub     = base + lrgWin + scr + trk + hw;
+  const aft     = sub - Math.round(sub * DISCOUNT);
+  return aft + Math.round(aft * GST);
+}
+
+function updatePrices() {
+  const panes = totalPanes();
+  const est   = Math.round(panes / 2);
+  document.getElementById('price-standard').textContent = '$' + pkgTotal('exterior', 0,   0);
+  document.getElementById('price-premium').textContent  = '$' + pkgTotal('both',     0,   0);
+  document.getElementById('price-supreme').textContent  = '$' + pkgTotal('both',     est, est);
+  document.getElementById('sup-screens').textContent    = est;
+  document.getElementById('sup-tracks').textContent     = est;
+}
+
+function selectProp(type, btn) {
+  state.propertyType = type;
+  document.querySelectorAll('.prop-btn').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
-
-  if (key === 'propertyType') document.getElementById('next-1').disabled = false;
-
-  if (key === 'serviceType') {
-    document.getElementById('next-3').disabled = false;
-    const notice  = document.getElementById('addon-notice');
-    const section = document.getElementById('addon-section');
-    const sub     = document.getElementById('addon-sub');
-    section.style.display = 'block';
-
-    const screens = Math.round(totalPanes() / 2);
-    const tracks  = screens;
-
-    if (value === 'both') {
-      // Pre-fill screens + tracks, leave hard water for customer to decide
-      setAddon('screens', screens, true);
-      setAddon('tracks',  tracks,  true);
-      setAddon('hardwater', 0, false);
-
-      notice.style.display = 'block';
-      notice.innerHTML = `<div class="disclaimer-box" style="background:#f0fff4;border-color:#4caf50;color:#1b5e20">
-        ✅ <strong>We've done the math.</strong> Based on ${totalPanes()} panes we've estimated
-        <strong>${screens} screens</strong> and <strong>${tracks} tracks</strong> — adjust below if your home is different.
-      </div>`;
-
-      document.getElementById('addon-screens').style.display = 'flex';
-      document.getElementById('addon-tracks').style.display  = 'flex';
-      sub.textContent = 'Pre-filled based on your pane count — adjust if needed. Hard water stain removal is optional.';
-
-    } else {
-      // Exterior only — screens and tracks don't apply
-      setAddon('screens',   0, false);
-      setAddon('tracks',    0, false);
-      setAddon('hardwater', 0, false);
-
-      notice.style.display = 'block';
-      notice.innerHTML = `<div class="disclaimer-box">
-        Exterior clean only — screens and tracks are not included. They require opening windows from the inside.
-      </div>`;
-
-      document.getElementById('addon-screens').style.display = 'none';
-      document.getElementById('addon-tracks').style.display  = 'none';
-      sub.textContent = 'Do any panes have mineral deposits or spots that won\'t wash off?';
-    }
-  }
+  document.getElementById('next-1').disabled = false;
 }
 
-function setAddon(key, count, checked) {
-  state.addons[key] = count;
-  const cb  = document.getElementById('chk-' + key);
-  const ctr = document.getElementById('ctr-' + key);
-  const val = document.getElementById('val-'  + key);
-  cb.checked = checked && count > 0;
-  val.textContent = count;
-  ctr.style.display = (checked && count > 0) ? 'flex' : 'none';
-}
-
-function adjustBreakdown(type, delta) {
+function adjustPane(type, delta) {
   state.breakdown[type] = Math.max(0, state.breakdown[type] + delta);
   document.getElementById('bd-' + type).textContent = state.breakdown[type];
   const total = totalPanes();
-  document.getElementById('pane-total-display').textContent = total;
-  document.getElementById('large-notice').style.display = total >= PRICING.large ? 'block' : 'none';
-  document.getElementById('next-2').textContent = total >= PRICING.large ? 'Book Consultation →' : 'Next →';
+  document.getElementById('pane-total').textContent = total;
+  document.getElementById('large-notice').style.display = total >= 71 ? 'block' : 'none';
+  document.getElementById('next-2').textContent = total >= 71 ? 'Book Consultation →' : 'See Packages →';
 }
 
-function handlePaneNext() {
-  totalPanes() >= PRICING.large ? showStep('large') : goTo(3);
+function handleCountNext() {
+  if (totalPanes() === 0) { alert('Please count at least 1 pane.'); return; }
+  if (totalPanes() >= 71) { showStep('large'); return; }
+  updatePrices();
+  showStep(3);
 }
 
-function toggleAddon(key, cb) {
-  const ctr = document.getElementById('ctr-' + key);
-  if (cb.checked) {
-    ctr.style.display = 'flex';
-    if (state.addons[key] === 0) { state.addons[key] = 1; document.getElementById('val-' + key).textContent = 1; }
-  } else {
+function selectPkg(tier) {
+  state.selectedPkg = tier;
+  document.querySelectorAll('.pkg-card').forEach(c => {
+    c.classList.remove('selected');
+    c.querySelector('.pkg-select-hint').textContent = 'Tap to select';
+  });
+  document.getElementById('pkg-' + tier).classList.add('selected');
+  document.getElementById('pkg-' + tier).querySelector('.pkg-select-hint').textContent = '✓ Selected';
+  document.getElementById('next-3').disabled = false;
+  buildEmailSummary();
+}
+
+function toggleHardwater(cb) {
+  const ctr = document.getElementById('ctr-hardwater');
+  const row = document.getElementById('row-hardwater');
+  if (!cb.checked) {
+    state.addons.hardwater = 0;
+    document.getElementById('val-hardwater').textContent = 0;
     ctr.style.display = 'none';
-    state.addons[key] = 0;
+  } else {
+    if (state.addons.hardwater === 0) { state.addons.hardwater = 1; document.getElementById('val-hardwater').textContent = 1; }
+    ctr.style.display = 'flex';
   }
+  row.classList.toggle('checked', cb.checked);
+  updatePrices();
+  if (state.selectedPkg) buildEmailSummary();
 }
 
-function adjustAddon(key, delta) {
-  state.addons[key] = Math.max(0, state.addons[key] + delta);
-  document.getElementById('val-' + key).textContent = state.addons[key];
-  if (state.addons[key] === 0) {
-    document.getElementById('chk-' + key).checked = false;
-    document.getElementById('ctr-' + key).style.display = 'none';
+function adjustHardwater(delta) {
+  state.addons.hardwater = Math.max(0, state.addons.hardwater + delta);
+  document.getElementById('val-hardwater').textContent = state.addons.hardwater;
+  if (state.addons.hardwater === 0) {
+    document.getElementById('chk-hardwater').checked = false;
+    document.getElementById('ctr-hardwater').style.display = 'none';
+    document.getElementById('row-hardwater').classList.remove('checked');
   }
+  updatePrices();
+  if (state.selectedPkg) buildEmailSummary();
 }
 
-function buildQuote() {
-  const panes          = totalPanes();
-  const base           = calcBase(panes, state.serviceType);
-  const largeWinTotal  = (state.breakdown.large + state.breakdown.french) * PRICING.addons.largewindow;
-  const addonTotal     =
-    state.addons.screens   * PRICING.addons.screens +
-    state.addons.tracks    * PRICING.addons.tracks +
-    state.addons.hardwater * PRICING.addons.hardwater;
-  const subtotal       = base + largeWinTotal + addonTotal;
-  const discount       = Math.round(subtotal * PRICING.discount);
-  const afterDiscount  = subtotal - discount;
-  const gst            = Math.round(afterDiscount * PRICING.gst);
-  const total          = afterDiscount + gst;
-  const high           = Math.round(Math.round(base * 1.20 + largeWinTotal + addonTotal) * (1 - PRICING.discount) * (1 + PRICING.gst));
-  return { base, largeWinTotal, addonTotal, subtotal, discount, afterDiscount, gst, total, high };
+function toggleGutters(cb) {
+  state.addons.gutters = cb.checked;
+  document.getElementById('gutter-note').style.display = cb.checked ? 'block' : 'none';
+  document.getElementById('row-gutters').classList.toggle('checked', cb.checked);
+  if (state.selectedPkg) buildEmailSummary();
 }
 
-function renderQuote() {
-  const { base, largeWinTotal, addonTotal, subtotal, discount, afterDiscount, gst, total, high } = buildQuote();
-  const labels   = { house:'House', townhouse:'Townhouse', condo:'Condo/Apt', commercial:'Commercial' };
-  const svcLabel = state.serviceType === 'exterior' ? 'Exterior only' : 'Interior + Exterior';
-  const panes    = totalPanes();
+function buildEmailSummary() {
+  const panes   = totalPanes();
+  const est     = Math.round(panes / 2);
+  const pkgLabels = { standard: 'Standard (Exterior Only)', premium: 'Premium (Interior + Exterior)', supreme: 'Supreme (Complete Service)' };
+  const propLabels = { house: 'House', townhouse: 'Townhouse', condo: 'Condo/Apt', commercial: 'Commercial' };
+  const price   = state.selectedPkg === 'supreme'
+    ? pkgTotal('both', est, est)
+    : state.selectedPkg === 'premium'
+      ? pkgTotal('both', 0, 0)
+      : pkgTotal('exterior', 0, 0);
 
-  document.getElementById('quote-low').textContent = '$' + total;
-  document.getElementById('quote-range').textContent = 'estimated range $' + total + '–$' + high + ' depending on window condition';
+  document.getElementById('email-subject').value =
+    `New Estimate Request — ${propLabels[state.propertyType] || ''}, ${panes} panes, ${pkgLabels[state.selectedPkg]}, ~$${price} incl. GST`;
 
-  let rows = `<div class="breakdown-row"><span>${labels[state.propertyType]} — ${panes} panes (${svcLabel})</span><span>$${base}</span></div>`;
-  if (state.breakdown.large > 0)  rows += `<div class="breakdown-row"><span>Large window surcharge × ${state.breakdown.large} panes</span><span>$${state.breakdown.large * PRICING.addons.largewindow}</span></div>`;
-  if (state.breakdown.french > 0) rows += `<div class="breakdown-row"><span>French/complicated surcharge × ${state.breakdown.french} panes</span><span>$${state.breakdown.french * PRICING.addons.largewindow}</span></div>`;
-  if (state.addons.screens > 0)   rows += `<div class="breakdown-row"><span>Screen cleaning × ${state.addons.screens}</span><span>$${state.addons.screens * PRICING.addons.screens}</span></div>`;
-  if (state.addons.tracks > 0)    rows += `<div class="breakdown-row"><span>Track cleaning × ${state.addons.tracks}</span><span>$${state.addons.tracks * PRICING.addons.tracks}</span></div>`;
-  if (state.addons.hardwater > 0) rows += `<div class="breakdown-row"><span>Hard water removal × ${state.addons.hardwater} panes</span><span>$${state.addons.hardwater * PRICING.addons.hardwater}</span></div>`;
-  rows += `<div class="breakdown-row" style="border-top:1px solid var(--border);margin-top:.4rem;padding-top:.5rem"><span>Subtotal</span><span>$${subtotal}</span></div>`;
-  rows += `<div class="breakdown-row" style="color:#1b5e20;font-weight:600"><span>✅ Online booking discount (5%)</span><span>−$${discount}</span></div>`;
-  rows += `<div class="breakdown-row"><span>GST (5%)</span><span>$${gst}</span></div>`;
-  rows += `<div class="breakdown-row total"><span>Total (estimated)</span><span>$${total}</span></div>`;
-  document.getElementById('breakdown').innerHTML = rows;
-
-  const travelFee = parseInt(document.getElementById('travel-fee-note')?.dataset?.fee || '0') || 0;
-  const travelNote = travelFee > 0 ? ` + $${travelFee} TRAVEL FEE` : '';
-  document.getElementById('email-subject').value = `New Estimate Request — ${labels[state.propertyType]}, ${panes} panes, ~$${total} after discount & tax${travelNote}`;
   document.getElementById('email-summary').value =
-    `Property: ${labels[state.propertyType]} | Panes: ${panes} (${state.breakdown.regular} standard, ${state.breakdown.large} large, ${state.breakdown.french} french) | Service: ${svcLabel} | Screens: ${state.addons.screens} | Tracks: ${state.addons.tracks} | Hard water: ${state.addons.hardwater} | Large/French surcharge: $${largeWinTotal} | Subtotal: $${subtotal} | Discount (5%): -$${discount} | GST: $${gst} | Quote total: $${total}${travelFee > 0 ? ` | ⚠ TRAVEL FEE: +$${travelFee} (confirm with customer)` : ''}`;
-}
-
-function goTo(n) {
-  if (n === 4) renderQuote();
-  showStep(n);
+    `Property: ${propLabels[state.propertyType] || '?'} | Panes: ${panes} (${state.breakdown.regular} standard, ${state.breakdown.large} large, ${state.breakdown.french} french) | Package: ${pkgLabels[state.selectedPkg]} | Est. screens: ${est} | Est. tracks: ${est} | Hard water removal: ${state.addons.hardwater} panes | Gutter cleaning requested: ${state.addons.gutters ? 'YES — quote on arrival' : 'No'} | Quote (5% discount + GST): $${price}`;
 }
 
 function showStep(id) {
-  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.qstep').forEach(s => s.classList.remove('active'));
   document.getElementById('step-' + id).classList.add('active');
-  [1,2,3,4,5].forEach(n => {
+  [1,2,3,4].forEach(n => {
     const el = document.getElementById('prog-' + n);
     if (!el) return;
     el.classList.remove('active','done');
@@ -775,8 +688,7 @@ function showStep(id) {
       else if (n === id) el.classList.add('active');
     }
   });
-  const top = document.querySelector('.quote-section');
-  if (top) window.scrollTo({ top: top.offsetTop - 90, behavior: 'smooth' });
+  window.scrollTo({ top: document.querySelector('.quote-section').offsetTop - 90, behavior: 'smooth' });
 }
 
 const TRAVEL_ZONES = [
@@ -789,7 +701,7 @@ function checkTravelFee(address) {
   const note  = document.getElementById('travel-fee-note');
   for (const zone of TRAVEL_ZONES) {
     if (zone.keywords.some(k => lower.includes(k))) {
-      note.innerHTML = `<strong>Travel fee: +$${zone.fee}</strong> — ${zone.label}. This will be confirmed when David contacts you.`;
+      note.innerHTML = `<strong>Travel fee: +$${zone.fee}</strong> — ${zone.label}. Confirmed when David contacts you.`;
       note.style.display = 'block';
       note.dataset.fee = zone.fee;
       return;
@@ -806,13 +718,16 @@ async function submitBooking(e) {
   const err   = document.getElementById('contact-error');
   if (!phone && !email) { err.style.display = 'block'; document.getElementById('f-phone').focus(); return; }
   err.style.display = 'none';
+  const travelFee = parseInt(document.getElementById('travel-fee-note')?.dataset?.fee || '0') || 0;
+  if (travelFee > 0) {
+    const cur = document.getElementById('email-summary').value;
+    document.getElementById('email-summary').value = cur + ` | ⚠ TRAVEL FEE: +$${travelFee} (confirm with customer)`;
+  }
   const btn = document.getElementById('submit-btn');
   btn.textContent = 'Sending…';
   btn.disabled = true;
   try {
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST', body: new FormData(e.target)
-    });
+    const res  = await fetch('https://api.web3forms.com/submit', { method:'POST', body: new FormData(e.target) });
     const json = await res.json();
     if (json.success) {
       showStep('success');
@@ -824,20 +739,7 @@ async function submitBooking(e) {
     alert('Something went wrong. Please call or text us at (403) 837-5092.');
   }
 }
-
-// Pre-fill standard pane count from URL param (e.g. /quote/?panes=50 from pricing cards)
-(function () {
-  const p = parseInt(new URLSearchParams(window.location.search).get('panes'));
-  if (!isNaN(p) && p > 0) {
-    state.breakdown.regular = p;
-    document.getElementById('bd-regular').textContent = p;
-    document.getElementById('pane-total-display').textContent = p;
-    document.getElementById('large-notice').style.display = p >= PRICING.large ? 'block' : 'none';
-    document.getElementById('next-2').textContent = p >= PRICING.large ? 'Book Consultation →' : 'Next →';
-  }
-})();
 </script>
-
 
 <!-- FLOATING CONTACT -->
 <div class="float-contact">
@@ -874,11 +776,6 @@ async function submitBooking(e) {
   <p style="margin-top:1rem;">© 2026 Wagon Windows. All rights reserved.</p>
 </footer>
 
-<script>
-  function toggleNav() {
-    document.getElementById('navLinks').classList.toggle('open');
-  }
-</script>
-
+<script>function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}</script>
 </body>
 </html>
