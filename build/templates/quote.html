@@ -97,6 +97,9 @@
 .form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--sky)}
 .form-group textarea{resize:vertical;min-height:72px}
 .form-optional{color:var(--gray);font-weight:400}
+.consent-row{display:flex;align-items:flex-start;gap:.65rem;margin-bottom:1.25rem}
+.consent-row input[type=checkbox]{width:16px;height:16px;flex-shrink:0;margin-top:2px;accent-color:var(--sky);cursor:pointer}
+.consent-row label{font-size:.84rem;color:#555;line-height:1.5;cursor:pointer}
 
 .centered-card{text-align:center;padding:2.5rem 1.5rem}
 .big-icon{font-size:3rem;margin-bottom:1rem}
@@ -357,10 +360,10 @@
             <label for="f-notes">Anything we should know? <span class="form-optional">(optional)</span></label>
             <textarea id="f-notes" name="notes" placeholder="e.g. dog in yard, gate code, hard-to-reach windows…"></textarea>
           </div>
-          <label style="display:flex;align-items:flex-start;gap:.65rem;margin-bottom:1.25rem;cursor:pointer;font-size:.84rem;color:#555;line-height:1.5">
-            <input type="checkbox" name="email_consent" required style="margin-top:3px;flex-shrink:0;accent-color:var(--sky)">
-            I agree to receive email from Wagon Windows regarding my quote and booking.
-          </label>
+          <div class="consent-row">
+            <input type="checkbox" name="email_consent" id="chk-consent" required>
+            <label for="chk-consent">I agree to receive email from Wagon Windows regarding my quote and booking.</label>
+          </div>
           <button type="submit" id="submit-btn" class="btn-next" style="width:100%;font-size:1rem;padding:1rem">
             Send My Booking Request
           </button>
