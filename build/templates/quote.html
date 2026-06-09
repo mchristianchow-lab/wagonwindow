@@ -571,9 +571,35 @@ const TRAVEL_ZONES = [
   { fee: 35, label: 'Sorrento / Sicamous / Enderby area (~30–50 km from Salmon Arm)', keywords: ['sorrento','blind bay','tappen','celista','scotch creek','eagle bay','swansea point','sicamous','enderby','grindrod','spallumcheen'] }
 ];
 
+const OUT_OF_AREA = [
+  'calgary','edmonton','red deer','lethbridge','medicine hat','fort mcmurray','grande prairie',
+  'alberta',' ab ','ab,',', ab',
+  'vancouver','victoria','burnaby','surrey','richmond','abbotsford','langley','coquitlam',
+  'kelowna','penticton','kamloops','vernon','prince george',
+  'toronto','ottawa','montreal','winnipeg','saskatoon','regina',
+  'ontario','quebec','manitoba','saskatchewan',' on ','on,',', on',' qc ','qc,',', qc'
+];
+
 function checkTravelFee(address) {
   var lower = address.toLowerCase();
   var note  = document.getElementById('travel-fee-note');
+
+  if (OUT_OF_AREA.some(function(k){ return lower.indexOf(k) !== -1; })) {
+    note.innerHTML = '<strong>⚠ Outside our service area.</strong> We serve Salmon Arm and the Shuswap region, BC. If you\'re unsure, submit anyway and David will follow up.';
+    note.style.background = '#fff5f5';
+    note.style.borderColor = 'var(--sky)';
+    note.style.color = '#7a0000';
+    note.style.display = 'block';
+    note.dataset.fee = '0';
+    note.dataset.outOfArea = '1';
+    return;
+  }
+
+  note.dataset.outOfArea = '0';
+  note.style.background = '#fff8e6';
+  note.style.borderColor = '#e8a020';
+  note.style.color = '#7a4500';
+
   for (var i = 0; i < TRAVEL_ZONES.length; i++) {
     var zone = TRAVEL_ZONES[i];
     if (zone.keywords.some(function(k){ return lower.indexOf(k) !== -1; })) {
@@ -594,9 +620,14 @@ async function submitBooking(e) {
   var err   = document.getElementById('contact-error');
   if (!phone && !email) { err.style.display = 'block'; document.getElementById('f-phone').focus(); return; }
   err.style.display = 'none';
-  var travelFee = parseInt((document.getElementById('travel-fee-note').dataset || {}).fee || '0') || 0;
-  if (travelFee > 0) {
-    var cur = document.getElementById('email-summary').value;
+  var noteEl = document.getElementById('travel-fee-note');
+  var travelFee  = parseInt((noteEl.dataset || {}).fee || '0') || 0;
+  var outOfArea  = (noteEl.dataset || {}).outOfArea === '1';
+  var cur = document.getElementById('email-summary').value;
+  if (outOfArea) {
+    document.getElementById('email-subject').value = '⚠ OUT OF AREA — ' + document.getElementById('email-subject').value;
+    document.getElementById('email-summary').value = cur + ' | ⚠ OUT OF SERVICE AREA — address flagged as outside Shuswap region';
+  } else if (travelFee > 0) {
     document.getElementById('email-summary').value = cur + ' | ⚠ TRAVEL FEE: +$' + travelFee + ' (confirm with customer)';
   }
   var btn = document.getElementById('submit-btn');
