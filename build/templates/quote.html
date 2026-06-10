@@ -128,7 +128,7 @@
     <div class="qstep active" id="step-1">
       <div class="step-card">
         <h2>What type of property?</h2>
-        <p class="sub">Helps David know what to expect when he arrives.</p>
+        <p class="sub">Takes 2 minutes. No obligation. No phone call required.</p>
         <div class="prop-grid">
           <button class="prop-btn" onclick="selectProp('house', this)">
             <span class="prop-icon">🏠</span>
@@ -233,6 +233,7 @@
         </div>
 
         <div class="pkg-card" id="pkg-premium" onclick="selectPkg('premium')">
+          <div class="pkg-best">Most Popular</div>
           <div class="pkg-tier">Premium</div>
           <div class="pkg-name">Interior + Exterior</div>
           <div class="pkg-desc">Full clean, both sides of every window.</div>
@@ -277,7 +278,7 @@
           <input type="checkbox" class="addon-check" id="chk-hardwater" onchange="toggleHardwater(this)">
           <div>
             <div class="addon-name">Hard Water Stain Removal</div>
-            <div class="addon-meta">$20 per affected pane — mineral deposits, spots</div>
+            <div class="addon-meta">$20 per affected pane — treat now before deposits etch permanently</div>
           </div>
         </div>
         <div class="addon-ctr" id="ctr-hardwater">
@@ -292,7 +293,7 @@
           <input type="checkbox" class="addon-check" id="chk-gutters" onchange="toggleGutters(this)">
           <div>
             <div class="addon-name">Gutter Cleaning</div>
-            <div class="addon-meta">Custom quote — David will assess on arrival</div>
+            <div class="addon-meta">Custom quote — we'll assess on arrival</div>
           </div>
         </div>
       </div>
@@ -301,6 +302,7 @@
       </div>
 
       <div class="discount-note">✅ 5% online booking discount applied to all prices above</div>
+      <div class="discount-note" style="margin-top:.5rem;">🏆 Lowest price guarantee — find a lower quote for the same job, we'll beat it</div>
 
       <div class="step-nav">
         <button class="btn-back" onclick="showStep(2)">← Back</button>
@@ -394,7 +396,7 @@
       <div class="step-card centered-card">
         <div class="big-icon">✅</div>
         <h2>Request Sent!</h2>
-        <p>David will be in touch within 24 hours to confirm your appointment. Want to lock in a time right now?</p>
+        <p>We'll be in touch within 24 hours to confirm your appointment. Want to lock in a time right now?</p>
         <a href="{{ config.booking_url }}" class="btn-primary" target="_blank" rel="noopener" style="display:inline-block"
            onclick="gtag('event','booking_click',{'event_category':'quote','event_label':'post_submit'});">
           Schedule on Google Calendar
@@ -585,7 +587,7 @@ function checkTravelFee(address) {
   var note  = document.getElementById('travel-fee-note');
 
   if (OUT_OF_AREA.some(function(k){ return lower.indexOf(k) !== -1; })) {
-    note.innerHTML = '<strong>⚠ Outside our service area.</strong> We serve Salmon Arm and the Shuswap region, BC. If you\'re unsure, submit anyway and David will follow up.';
+    note.innerHTML = '<strong>⚠ Outside our service area.</strong> We serve Salmon Arm and the Shuswap region, BC. If you\'re unsure, submit anyway and we\'ll follow up.';
     note.style.background = '#fff5f5';
     note.style.borderColor = 'var(--sky)';
     note.style.color = '#7a0000';
@@ -603,7 +605,7 @@ function checkTravelFee(address) {
   for (var i = 0; i < TRAVEL_ZONES.length; i++) {
     var zone = TRAVEL_ZONES[i];
     if (zone.keywords.some(function(k){ return lower.indexOf(k) !== -1; })) {
-      note.innerHTML = '<strong>Travel fee: +$' + zone.fee + '</strong> — ' + zone.label + '. Confirmed when David contacts you.';
+      note.innerHTML = '<strong>Travel fee: +$' + zone.fee + '</strong> — ' + zone.label + '. Confirmed when we contact you.';
       note.style.display = 'block';
       note.dataset.fee = zone.fee;
       return;

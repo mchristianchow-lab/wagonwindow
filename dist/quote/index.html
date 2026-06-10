@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="IUUAbRN_Bo7y0YO1wGByTpsGi2toLo80m1kmZE3rR5o" />
   <title>Get an Instant Quote | Wagon Windows — Salmon Arm</title>
-  <meta name="description" content="Get an instant window cleaning quote. Count your panes, see all three package options with live pricing, and book in minutes." />
+  <meta name="description" content="Get an instant window cleaning quote in 4 steps. Choose your service, count your panes, and see a same-day estimate. Subject to confirmation on arrival." />
   <link rel="canonical" href="https://wagonwindow.com/quote/" />
+  
 
   <!-- Open Graph -->
   <meta property="og:title"       content="Get an Instant Quote | Wagon Windows — Salmon Arm" />
-  <meta property="og:description" content="Count your panes, see all three package options with live pricing, and book in minutes." />
+  <meta property="og:description" content="Get an instant window cleaning quote in 4 steps. Choose your service, count your panes, and see a same-day estimate. Subject to confirmation on arrival." />
   <meta property="og:url"         content="https://wagonwindow.com/quote/" />
   <meta property="og:type"        content="website" />
   <meta property="og:image"       content="https://wagonwindow.com/assets/og-image.png" />
@@ -22,7 +23,7 @@
   <!-- Twitter / X Card -->
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="Get an Instant Quote | Wagon Windows — Salmon Arm" />
-  <meta name="twitter:description" content="Count your panes, see all three package options with live pricing, and book in minutes." />
+  <meta name="twitter:description" content="Get an instant window cleaning quote in 4 steps. Choose your service, count your panes, and see a same-day estimate. Subject to confirmation on arrival." />
   <meta name="twitter:image"       content="https://wagonwindow.com/assets/og-image.png" />
 
   <!-- Favicons -->
@@ -30,23 +31,26 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
+  <!-- Preload logo (LCP element) -->
   <link rel="preload" as="image" href="/assets/images/logo.svg" type="image/svg+xml">
 
+  <!-- Inline critical CSS (nav + hero) -->
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{
-      --red:#e81010;--black:#111111;--dark:#000000;--light:#f5f5f5;--white:#ffffff;
-      --sky:#e81010;--navy:#111111;--gray:#666666;--border:#e0e0e0;
-      --font:'Inter',sans-serif;--green:#22c55e;
-    }
-    body{font-family:var(--font);color:var(--black);background:var(--white)}
+    :root{--red:#e81010;--black:#111111;--dark:#000000;--light:#f5f5f5;--white:#ffffff}
+    body{font-family:'Inter',sans-serif;color:var(--black);background:var(--white)}
     nav{background:#000;border-bottom:5px solid var(--red);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:88px;position:sticky;top:0;z-index:100;overflow:visible}
     .nav-logo{display:flex;align-items:center;text-decoration:none}
-    .nav-logo-img{height:195px;width:auto;transform:translateY(2mm)}
+    .nav-logo-img{height:195px;width:auto;transform:translateY(2mm);}
     .nav-links{display:flex;list-style:none;gap:2rem;align-items:center}
-    .nav-links a{text-decoration:none;color:#fff;font-weight:500;font-size:.95rem}
-    .nav-cta{background:var(--red)!important;color:#fff!important;padding:.5rem 1.2rem;border-radius:4px}
-    .btn-primary{background:var(--red);color:#fff;padding:.85rem 2rem;border-radius:4px;text-decoration:none;font-weight:600;display:inline-block}
+    .nav-links a{text-decoration:none;color:#fff;font-weight:500;font-size:0.95rem}
+    .nav-cta{background:var(--red)!important;color:#fff!important;padding:0.5rem 1.2rem;border-radius:4px}
+    .hero{background:linear-gradient(160deg,#000 0%,#111 60%,#220000 100%);color:#fff;padding:5rem 2rem 4rem;text-align:center}
+    .hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.1;margin-bottom:1rem}
+    .hero h1 span{color:var(--red)}
+    .hero p{font-size:1.1rem;max-width:600px;margin:0 auto 2rem;opacity:0.9}
+    .btn-primary{background:var(--red);color:#fff;padding:0.85rem 2rem;border-radius:4px;text-decoration:none;font-weight:600;display:inline-block}
+    .btn-outline{border:2px solid rgba(255,255,255,0.6);color:#fff;padding:0.85rem 2rem;border-radius:4px;text-decoration:none;font-weight:600;display:inline-block}
     @media(max-width:900px){.nav-links{display:none}.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer}.hamburger span{width:25px;height:2px;background:rgba(255,255,255,.85);display:block}}
     .hamburger{display:none}
     .nav-links.open{display:flex;flex-direction:column;position:absolute;top:88px;left:0;right:0;background:#fff;padding:1rem 2rem;border-bottom:2px solid var(--red);z-index:99}
@@ -54,123 +58,13 @@
     .nav-links.open li{border-bottom:1px solid #eee;padding:.6rem 0}
     .nav-links.open li:last-child{border-bottom:none}
     .nav-links.open .nav-cta{display:block;text-align:center;margin-top:.5rem}
-
-    /* ── Quote page ── */
-    .quote-hero{background:linear-gradient(160deg,#000 0%,#111 60%,#220000 100%);color:#fff;padding:4rem 5% 3rem;text-align:center}
-    .quote-hero h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:.75rem}
-    .quote-hero h1 span{color:var(--red)}
-    .quote-hero p{opacity:.85;font-size:1.05rem;max-width:560px;margin:0 auto}
-
-    .quote-section{background:var(--light);padding:2.5rem 5% 4rem;min-height:60vh}
-    .quote-wrap{max-width:760px;margin:0 auto}
-
-    /* progress */
-    .progress-bar{display:flex;margin-bottom:2rem;gap:0}
-    .progress-step{flex:1;text-align:center;font-size:.7rem;font-weight:700;color:#aaa;padding:.5rem .2rem .4rem;border-bottom:3px solid #ddd;transition:all .2s;text-transform:uppercase;letter-spacing:.04em}
-    .progress-step.active{color:var(--red);border-bottom-color:var(--red)}
-    .progress-step.done{color:#555;border-bottom-color:#555}
-
-    /* steps */
-    .qstep{display:none}
-    .qstep.active{display:block;animation:fadeIn .2s ease}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-
-    .step-card{background:#fff;border-radius:12px;padding:2rem;box-shadow:0 2px 16px rgba(0,0,0,.07);margin-bottom:1.5rem}
-    .step-card h2{font-size:1.25rem;font-weight:700;margin-bottom:.3rem;color:var(--navy)}
-    .step-card .sub{color:var(--gray);font-size:.88rem;margin-bottom:1.5rem;line-height:1.5}
-
-    /* property type */
-    .prop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
-    .prop-btn{border:2px solid var(--border);border-radius:10px;padding:1rem;background:#fff;cursor:pointer;text-align:left;transition:all .15s;font-family:var(--font);width:100%}
-    .prop-btn:hover{border-color:#bbb}
-    .prop-btn.selected{border-color:var(--red);background:#fff5f5}
-    .prop-icon{font-size:1.6rem;margin-bottom:.35rem;display:block}
-    .prop-label{font-weight:700;font-size:.95rem;display:block;color:var(--navy)}
-    .prop-sub{font-size:.78rem;color:var(--gray);margin-top:.15rem;display:block}
-
-    /* pane count */
-    .pane-breakdown{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem}
-    .pane-row{display:flex;align-items:center;justify-content:space-between;padding:.8rem 1rem;background:var(--light);border-radius:8px;gap:1rem}
-    .pane-row-info{flex:1}
-    .pane-row-label{font-weight:600;font-size:.9rem;color:var(--navy)}
-    .pane-row-sub{font-size:.76rem;color:var(--gray);margin-top:.1rem}
-    .pane-surcharge{font-size:.76rem;color:var(--red);font-weight:700;margin-top:.1rem}
-    .pane-ctr{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
-    .pane-btn{width:36px;height:36px;border-radius:50%;border:2px solid var(--border);background:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;transition:all .15s;line-height:1;touch-action:manipulation;font-family:var(--font)}
-    .pane-btn:hover{border-color:var(--red);color:var(--red)}
-    .pane-val{font-size:1.4rem;font-weight:800;color:var(--navy);min-width:32px;text-align:center}
-    .pane-total{text-align:center;padding:.5rem 0;font-size:.9rem;color:var(--gray);font-weight:600}
-    .pane-total strong{color:var(--navy);font-size:1.1rem}
-
-    .notice-box{border-radius:8px;padding:.85rem 1rem;font-size:.84rem;line-height:1.6;margin:1rem 0}
-    .notice-box.yellow{background:#fffbf0;border:1px solid #e8d760;color:#6b5800}
-    .notice-box.red{background:#fff5f5;border:1.5px solid var(--red);color:#7a0000}
-    .notice-box.green{background:#f0fff4;border:1px solid #4caf50;color:#1b5e20}
-
-    /* package cards */
-    .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
-    @media(max-width:640px){.pkg-grid{grid-template-columns:1fr}}
-    .pkg-card{background:#fff;border:2px solid var(--border);border-radius:12px;padding:1.25rem;cursor:pointer;transition:all .18s;position:relative;display:flex;flex-direction:column}
-    .pkg-card:hover{border-color:#bbb;box-shadow:0 4px 16px rgba(0,0,0,.1)}
-    .pkg-card.selected{border-color:var(--red);background:#fff5f5;box-shadow:0 4px 20px rgba(232,16,16,.15)}
-    .pkg-best{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:.25rem .75rem;border-radius:20px;white-space:nowrap}
-    .pkg-tier{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--red);margin-bottom:.3rem}
-    .pkg-name{font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:.2rem}
-    .pkg-desc{font-size:.78rem;color:var(--gray);margin-bottom:.85rem;line-height:1.5;flex:1}
-    .pkg-includes{display:flex;flex-direction:column;gap:.3rem;margin-bottom:1rem}
-    .pkg-include{font-size:.78rem;color:#333;display:flex;gap:.4rem;align-items:flex-start;line-height:1.4}
-    .pkg-include::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
-    .pkg-price-row{border-top:1px solid var(--border);padding-top:.85rem;margin-top:auto}
-    .pkg-price-label{font-size:.7rem;color:var(--gray);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.15rem}
-    .pkg-price{font-size:2rem;font-weight:800;color:var(--navy);line-height:1}
-    .pkg-price-sub{font-size:.72rem;color:var(--gray);margin-top:.2rem}
-    .pkg-select-hint{text-align:center;font-size:.75rem;color:var(--gray);margin-top:.6rem;font-weight:500}
-    .pkg-card.selected .pkg-select-hint{color:var(--red);font-weight:700}
-
-    /* add-ons */
-    .addons-heading{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);margin-bottom:.75rem}
-    .addon-row{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:.8rem 1rem;margin-bottom:.6rem;gap:1rem;transition:border-color .15s}
-    .addon-row.checked{border-color:var(--red);background:#fff5f5}
-    .addon-left{display:flex;align-items:center;gap:.65rem;flex:1}
-    .addon-check{width:18px;height:18px;accent-color:var(--red);cursor:pointer;flex-shrink:0}
-    .addon-name{font-weight:600;font-size:.88rem;color:var(--navy)}
-    .addon-meta{font-size:.75rem;color:var(--gray);margin-top:.1rem}
-    .addon-ctr{display:none;align-items:center;gap:.5rem;flex-shrink:0}
-    .addon-ctr button{width:28px;height:28px;border-radius:4px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-size:1rem;font-weight:700;font-family:var(--font);line-height:1;touch-action:manipulation}
-    .addon-ctr span{min-width:22px;text-align:center;font-weight:700;font-size:.95rem}
-    .gutter-note{font-size:.78rem;color:#7a4500;background:#fff8e6;border:1.5px solid #e8a020;border-radius:6px;padding:.6rem .85rem;margin-top:.4rem;line-height:1.55}
-
-    .discount-note{text-align:center;font-size:.78rem;color:#1b5e20;background:#f0fff4;border:1px solid #4caf50;border-radius:6px;padding:.55rem 1rem;margin:1rem 0;font-weight:600}
-
-    /* nav/book buttons */
-    .step-nav{display:flex;gap:.75rem;margin-top:1.25rem}
-    .btn-back{background:none;border:2px solid var(--border);color:var(--navy);padding:.8rem 1.4rem;border-radius:6px;font-family:var(--font);font-weight:600;cursor:pointer;font-size:.92rem;transition:all .15s;white-space:nowrap}
-    .btn-back:hover{border-color:#888}
-    .btn-next{background:var(--red);color:#fff;border:none;padding:.8rem 1.6rem;border-radius:6px;font-family:var(--font);font-weight:700;cursor:pointer;font-size:.95rem;flex:1;transition:background .15s}
-    .btn-next:hover{background:#c00}
-    .btn-next:disabled{background:#ccc;cursor:not-allowed}
-
-    /* booking form */
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem}
-    @media(max-width:560px){.form-row{grid-template-columns:1fr}}
-    .form-group{display:flex;flex-direction:column;gap:.3rem;margin-bottom:0}
-    .form-group label{font-size:.82rem;font-weight:700;color:var(--navy)}
-    .form-group input,.form-group textarea{border:1.5px solid var(--border);border-radius:6px;padding:.7rem .9rem;font-family:var(--font);font-size:.95rem;transition:border-color .15s;background:#fff;width:100%}
-    .form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--red)}
-    .form-group textarea{resize:vertical;min-height:72px}
-    .form-optional{color:var(--gray);font-weight:400}
-
-    /* success / large */
-    .centered-card{text-align:center;padding:2.5rem 1.5rem}
-    .big-icon{font-size:3rem;margin-bottom:1rem}
-    .centered-card h2{font-size:1.35rem;font-weight:700;margin-bottom:.75rem}
-    .centered-card p{color:var(--gray);margin-bottom:1.5rem;line-height:1.6}
   </style>
 
   <!-- Load full stylesheet async -->
   <link rel="preload" href="/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/style.css"></noscript>
 
+  <!-- Preconnect external origins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://www.googletagmanager.com">
@@ -178,7 +72,7 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 
-  <!-- Schema: LocalBusiness -->
+  <!-- Schema: LocalBusiness (all pages) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -186,21 +80,48 @@
     "name": "Wagon Windows",
     "legalName": "Wagon Windows",
     "image": "https://wagonwindow.com/assets/images/logo.svg",
-    "description": "Professional window cleaning for homes and businesses across Salmon Arm and the Shuswap region, BC.",
+    "description": "Professional window cleaning for homes and businesses across Salmon Arm and the Shuswap region, BC. Residential, commercial, screen, track, gutter, and hard water stain removal services.",
     "url": "https://wagonwindow.com",
     "telephone": "+14038375092",
     "email": "davidhanna@wagonwindow.com",
-    "address": {"@type":"PostalAddress","addressLocality":"Salmon Arm","addressRegion":"BC","postalCode":"V1E","addressCountry":"CA"},
-    "geo": {"@type":"GeoCoordinates","latitude":50.6991,"longitude":-119.2780},
-    "aggregateRating": {"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"9","bestRating":"5","worstRating":"1"},
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Salmon Arm",
+      "addressRegion": "BC",
+      "postalCode": "V1E",
+      "addressCountry": "CA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 50.6991,
+      "longitude": -119.2780
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "9",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
     "areaServed": [
-      {"@type":"City","name":"Salmon Arm"},{"@type":"City","name":"Sorrento"},{"@type":"City","name":"Tappen"},
-      {"@type":"City","name":"Blind Bay"},{"@type":"City","name":"Sicamous"},{"@type":"City","name":"Chase"},
-      {"@type":"City","name":"Enderby"},{"@type":"City","name":"Armstrong"},{"@type":"City","name":"Eagle Bay"},
-      {"@type":"City","name":"Celista"},{"@type":"City","name":"Scotch Creek"},{"@type":"City","name":"Grindrod"},
-      {"@type":"City","name":"Spallumcheen"},{"@type":"City","name":"Swansea Point"}
+      {"@type": "City", "name": "Salmon Arm"},
+      {"@type": "City", "name": "Sorrento"},
+      {"@type": "City", "name": "Tappen"},
+      {"@type": "City", "name": "Blind Bay"},
+      {"@type": "City", "name": "Sicamous"},
+      {"@type": "City", "name": "Chase"},
+      {"@type": "City", "name": "Enderby"},
+      {"@type": "City", "name": "Armstrong"},
+      {"@type": "City", "name": "Eagle Bay"},
+      {"@type": "City", "name": "Celista"},
+      {"@type": "City", "name": "Scotch Creek"},
+      {"@type": "City", "name": "Grindrod"},
+      {"@type": "City", "name": "Spallumcheen"},
+      {"@type": "City", "name": "Swansea Point"}
     ],
-    "openingHoursSpecification": [{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"10:30","closes":"18:00"}],
+    "openingHoursSpecification": [
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "10:30", "closes": "18:00"}
+    ],
     "priceRange": "$$",
     "currenciesAccepted": "CAD",
     "paymentAccepted": "Cash, E-Transfer",
@@ -208,6 +129,129 @@
     "serviceType": ["Window Cleaning","Gutter Cleaning","Screen Cleaning","Hard Water Stain Removal"]
   }
   </script>
+
+  <!-- Schema: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Wagon Windows",
+    "url": "https://wagonwindow.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://wagonwindow.com/quote/",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  
+<style>
+:root{--sky:#e81010;--navy:#111111;--gray:#666666;--border:#e0e0e0;--light:#f5f5f5;--white:#ffffff;--green:#22c55e}
+
+.quote-hero{background:linear-gradient(160deg,#000 0%,#111 60%,#220000 100%);color:#fff;padding:4rem 5% 3rem;text-align:center}
+.quote-hero h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:.75rem}
+.quote-hero h1 span{color:var(--sky)}
+.quote-hero p{opacity:.85;font-size:1.05rem;max-width:560px;margin:0 auto}
+
+.quote-section{background:var(--light);padding:2.5rem 5% 4rem;min-height:60vh}
+.quote-wrap{max-width:760px;margin:0 auto}
+
+.progress-bar{display:flex;margin-bottom:2rem;gap:0}
+.progress-step{flex:1;text-align:center;font-size:.7rem;font-weight:700;color:#aaa;padding:.5rem .2rem .4rem;border-bottom:3px solid #ddd;transition:all .2s;text-transform:uppercase;letter-spacing:.04em}
+.progress-step.active{color:var(--sky);border-bottom-color:var(--sky)}
+.progress-step.done{color:#555;border-bottom-color:#555}
+
+.qstep{display:none}
+.qstep.active{display:block;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.step-card{background:#fff;border-radius:12px;padding:2rem;box-shadow:0 2px 16px rgba(0,0,0,.07);margin-bottom:1.5rem}
+.step-card h2{font-size:1.25rem;font-weight:700;margin-bottom:.3rem;color:var(--navy)}
+.step-card .sub{color:var(--gray);font-size:.88rem;margin-bottom:1.5rem;line-height:1.5}
+
+.prop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
+.prop-btn{border:2px solid var(--border);border-radius:10px;padding:1rem;background:#fff;cursor:pointer;text-align:left;transition:all .15s;font-family:var(--font);width:100%}
+.prop-btn:hover{border-color:#bbb}
+.prop-btn.selected{border-color:var(--sky);background:#fff5f5}
+.prop-icon{font-size:1.6rem;margin-bottom:.35rem;display:block}
+.prop-label{font-weight:700;font-size:.95rem;display:block;color:var(--navy)}
+.prop-sub{font-size:.78rem;color:var(--gray);margin-top:.15rem;display:block}
+
+.pane-breakdown{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem}
+.pane-row{display:flex;align-items:center;justify-content:space-between;padding:.8rem 1rem;background:var(--light);border-radius:8px;gap:1rem}
+.pane-row-info{flex:1}
+.pane-row-label{font-weight:600;font-size:.9rem;color:var(--navy)}
+.pane-row-sub{font-size:.76rem;color:var(--gray);margin-top:.1rem}
+.pane-surcharge{font-size:.76rem;color:var(--sky);font-weight:700;margin-top:.1rem}
+.pane-ctr{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.pane-btn{width:36px;height:36px;border-radius:50%;border:2px solid var(--border);background:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;transition:all .15s;line-height:1;touch-action:manipulation;font-family:var(--font)}
+.pane-btn:hover{border-color:var(--sky);color:var(--sky)}
+.pane-val{font-size:1.4rem;font-weight:800;color:var(--navy);min-width:32px;text-align:center}
+.pane-total{text-align:center;padding:.5rem 0;font-size:.9rem;color:var(--gray);font-weight:600}
+.pane-total strong{color:var(--navy);font-size:1.1rem}
+
+.notice-box{border-radius:8px;padding:.85rem 1rem;font-size:.84rem;line-height:1.6;margin:1rem 0}
+.notice-box.red{background:#fff5f5;border:1.5px solid var(--sky);color:#7a0000}
+
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+@media(max-width:640px){.pkg-grid{grid-template-columns:1fr}}
+.pkg-card{background:#fff;border:2px solid var(--border);border-radius:12px;padding:1.25rem;cursor:pointer;transition:all .18s;position:relative;display:flex;flex-direction:column}
+.pkg-card:hover{border-color:#bbb;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.pkg-card.selected{border-color:var(--sky);background:#fff5f5;box-shadow:0 4px 20px rgba(232,16,16,.15)}
+.pkg-best{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--sky);color:#fff;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:.25rem .75rem;border-radius:20px;white-space:nowrap}
+.pkg-tier{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--sky);margin-bottom:.3rem}
+.pkg-name{font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:.2rem}
+.pkg-desc{font-size:.78rem;color:var(--gray);margin-bottom:.85rem;line-height:1.5;flex:1}
+.pkg-includes{display:flex;flex-direction:column;gap:.3rem;margin-bottom:1rem}
+.pkg-include{font-size:.78rem;color:#333;display:flex;gap:.4rem;align-items:flex-start;line-height:1.4}
+.pkg-include::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+.pkg-price-row{border-top:1px solid var(--border);padding-top:.85rem;margin-top:auto}
+.pkg-price-label{font-size:.7rem;color:var(--gray);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.15rem}
+.pkg-price{font-size:2rem;font-weight:800;color:var(--navy);line-height:1}
+.pkg-price-sub{font-size:.72rem;color:var(--gray);margin-top:.2rem}
+.pkg-select-hint{text-align:center;font-size:.75rem;color:var(--gray);margin-top:.6rem;font-weight:500}
+.pkg-card.selected .pkg-select-hint{color:var(--sky);font-weight:700}
+
+.addons-heading{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);margin-bottom:.75rem}
+.addon-row{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:.8rem 1rem;margin-bottom:.6rem;gap:1rem;transition:border-color .15s}
+.addon-row.checked{border-color:var(--sky);background:#fff5f5}
+.addon-left{display:flex;align-items:center;gap:.65rem;flex:1}
+.addon-check{width:18px;height:18px;accent-color:var(--sky);cursor:pointer;flex-shrink:0}
+.addon-name{font-weight:600;font-size:.88rem;color:var(--navy)}
+.addon-meta{font-size:.75rem;color:var(--gray);margin-top:.1rem}
+.addon-ctr{display:none;align-items:center;gap:.5rem;flex-shrink:0}
+.addon-ctr button{width:28px;height:28px;border-radius:4px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-size:1rem;font-weight:700;font-family:var(--font);line-height:1;touch-action:manipulation}
+.addon-ctr span{min-width:22px;text-align:center;font-weight:700;font-size:.95rem}
+.gutter-note{font-size:.78rem;color:#7a4500;background:#fff8e6;border:1.5px solid #e8a020;border-radius:6px;padding:.6rem .85rem;margin-top:.4rem;line-height:1.55}
+
+.discount-note{text-align:center;font-size:.78rem;color:#1b5e20;background:#f0fff4;border:1px solid #4caf50;border-radius:6px;padding:.55rem 1rem;margin:1rem 0;font-weight:600}
+
+.step-nav{display:flex;gap:.75rem;margin-top:1.25rem}
+.btn-back{background:none;border:2px solid var(--border);color:var(--navy);padding:.8rem 1.4rem;border-radius:6px;font-family:var(--font);font-weight:600;cursor:pointer;font-size:.92rem;transition:all .15s;white-space:nowrap}
+.btn-back:hover{border-color:#888}
+.btn-next{background:var(--sky);color:#fff;border:none;padding:.8rem 1.6rem;border-radius:6px;font-family:var(--font);font-weight:700;cursor:pointer;font-size:.95rem;flex:1;transition:background .15s}
+.btn-next:hover{background:#c00}
+.btn-next:disabled{background:#ccc;cursor:not-allowed}
+
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem}
+@media(max-width:560px){.form-row{grid-template-columns:1fr}}
+.form-group{display:flex;flex-direction:column;gap:.3rem;margin-bottom:0}
+.form-group label{font-size:.82rem;font-weight:700;color:var(--navy)}
+.form-group input,.form-group textarea{border:1.5px solid var(--border);border-radius:6px;padding:.7rem .9rem;font-family:var(--font);font-size:.95rem;transition:border-color .15s;background:#fff;width:100%}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--sky)}
+.form-group textarea{resize:vertical;min-height:72px}
+.form-optional{color:var(--gray);font-weight:400}
+.consent-row{display:flex;align-items:flex-start;gap:.65rem;margin-bottom:1.25rem}
+.consent-row input[type=checkbox]{width:16px;height:16px;flex-shrink:0;margin-top:2px;accent-color:var(--sky);cursor:pointer}
+.consent-row label{font-size:.84rem;color:#555;line-height:1.5;cursor:pointer}
+
+.centered-card{text-align:center;padding:2.5rem 1.5rem}
+.big-icon{font-size:3rem;margin-bottom:1rem}
+.centered-card h2{font-size:1.35rem;font-weight:700;margin-bottom:.75rem}
+.centered-card p{color:var(--gray);margin-bottom:1.5rem;line-height:1.6}
+</style>
+
 
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-B0YM588Z9K"></script>
@@ -232,13 +276,15 @@
     <li><a href="/gutter-cleaning/">Gutter Cleaning</a></li>
     <li><a href="/#pricing">Pricing</a></li>
     <li><a href="/#area">Service Area</a></li>
-    <li><a href="sms:+14038375092" onclick="gtag('event','sms_click',{'event_category':'contact','event_label':'nav'});">Text Us</a></li>
+    <li><a href="sms:+14038375092"
+         onclick="gtag('event','sms_click',{'event_category':'contact','event_label':'nav'});">Text Us</a></li>
     <li><a href="/quote/" class="nav-cta">Instant Estimate</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleNav()">
     <span></span><span></span><span></span>
   </div>
 </nav>
+
 
 <div class="quote-hero">
   <h1>Get Your <span>Instant Estimate</span></h1>
@@ -259,7 +305,7 @@
     <div class="qstep active" id="step-1">
       <div class="step-card">
         <h2>What type of property?</h2>
-        <p class="sub">Helps David know what to expect when he arrives.</p>
+        <p class="sub">Takes 2 minutes. No obligation. No phone call required.</p>
         <div class="prop-grid">
           <button class="prop-btn" onclick="selectProp('house', this)">
             <span class="prop-icon">🏠</span>
@@ -364,6 +410,7 @@
         </div>
 
         <div class="pkg-card" id="pkg-premium" onclick="selectPkg('premium')">
+          <div class="pkg-best">Most Popular</div>
           <div class="pkg-tier">Premium</div>
           <div class="pkg-name">Interior + Exterior</div>
           <div class="pkg-desc">Full clean, both sides of every window.</div>
@@ -401,7 +448,6 @@
 
       </div>
 
-      <!-- Add-ons -->
       <div class="addons-heading">Optional Add-ons</div>
 
       <div class="addon-row" id="row-hardwater">
@@ -409,7 +455,7 @@
           <input type="checkbox" class="addon-check" id="chk-hardwater" onchange="toggleHardwater(this)">
           <div>
             <div class="addon-name">Hard Water Stain Removal</div>
-            <div class="addon-meta">$20 per affected pane — mineral deposits, spots</div>
+            <div class="addon-meta">$20 per affected pane — treat now before deposits etch permanently</div>
           </div>
         </div>
         <div class="addon-ctr" id="ctr-hardwater">
@@ -424,7 +470,7 @@
           <input type="checkbox" class="addon-check" id="chk-gutters" onchange="toggleGutters(this)">
           <div>
             <div class="addon-name">Gutter Cleaning</div>
-            <div class="addon-meta">Custom quote — David will assess on arrival</div>
+            <div class="addon-meta">Custom quote — we'll assess on arrival</div>
           </div>
         </div>
       </div>
@@ -433,6 +479,7 @@
       </div>
 
       <div class="discount-note">✅ 5% online booking discount applied to all prices above</div>
+      <div class="discount-note" style="margin-top:.5rem;">🏆 Lowest price guarantee — find a lower quote for the same job, we'll beat it</div>
 
       <div class="step-nav">
         <button class="btn-back" onclick="showStep(2)">← Back</button>
@@ -447,10 +494,10 @@
         <p class="sub">We'll confirm within 24 hours and lock in your date.</p>
         <form id="booking-form" onsubmit="submitBooking(event)">
           <input type="hidden" name="access_key" value="cd06c1c4-9648-4bea-b875-03a7cdd6ef61">
-          <input type="hidden" name="subject"      id="email-subject">
-          <input type="hidden" name="from_name"    value="Wagon Windows Quote Tool">
+          <input type="hidden" name="subject"     id="email-subject">
+          <input type="hidden" name="from_name"   value="Wagon Windows Quote Tool">
           <input type="hidden" name="quote_summary" id="email-summary">
-          <input type="hidden" name="redirect"     value="false">
+          <input type="hidden" name="redirect"    value="false">
           <div class="form-row">
             <div class="form-group">
               <label for="f-fname">First Name *</label>
@@ -471,7 +518,7 @@
               <input id="f-email" type="email" name="replyto" placeholder="you@email.com">
             </div>
           </div>
-          <p id="contact-error" style="display:none;color:var(--red);font-size:.82rem;margin:-.5rem 0 .75rem;font-weight:600">Please enter at least a phone number or email.</p>
+          <p id="contact-error" style="display:none;color:var(--sky);font-size:.82rem;margin:-.5rem 0 .75rem;font-weight:600">Please enter at least a phone number or email.</p>
           <div class="form-group" style="margin-bottom:1rem">
             <label for="f-address">Service Address *</label>
             <input id="f-address" type="text" name="address" required placeholder="123 Main St, Salmon Arm, BC"
@@ -492,10 +539,10 @@
             <label for="f-notes">Anything we should know? <span class="form-optional">(optional)</span></label>
             <textarea id="f-notes" name="notes" placeholder="e.g. dog in yard, gate code, hard-to-reach windows…"></textarea>
           </div>
-          <label style="display:flex;align-items:flex-start;gap:.65rem;margin-bottom:1.25rem;cursor:pointer;font-size:.84rem;color:#555;line-height:1.5">
-            <input type="checkbox" name="email_consent" required style="margin-top:3px;flex-shrink:0;accent-color:var(--red)">
-            I agree to receive email from Wagon Windows regarding my quote and booking.
-          </label>
+          <div class="consent-row">
+            <input type="checkbox" name="email_consent" id="chk-consent" required>
+            <label for="chk-consent">I agree to receive email from Wagon Windows regarding my quote and booking.</label>
+          </div>
           <button type="submit" id="submit-btn" class="btn-next" style="width:100%;font-size:1rem;padding:1rem">
             Send My Booking Request
           </button>
@@ -512,7 +559,7 @@
         <div class="big-icon">🏡</div>
         <h2>Sounds Like a Bigger Job</h2>
         <p>For homes with 36+ windows we come out for a free on-site consultation — no guesswork, no surprises before we start.</p>
-        <a href="https://calendar.app.google/KcgTkongKSkHw8xZ8" class="btn-primary" target="_blank" rel="noopener"
+        <a href="https://calendar.app.google/KcgTkongKSkHw8xZ8" class="btn-primary" target="_blank" rel="noopener" style="display:inline-block"
            onclick="gtag('event','booking_click',{'event_category':'quote','event_label':'large_home'});">
           Book Free Consultation
         </a>
@@ -526,8 +573,8 @@
       <div class="step-card centered-card">
         <div class="big-icon">✅</div>
         <h2>Request Sent!</h2>
-        <p>David will be in touch within 24 hours to confirm your appointment. Want to lock in a time right now?</p>
-        <a href="https://calendar.app.google/KcgTkongKSkHw8xZ8" class="btn-primary" target="_blank" rel="noopener"
+        <p>We'll be in touch within 24 hours to confirm your appointment. Want to lock in a time right now?</p>
+        <a href="https://calendar.app.google/KcgTkongKSkHw8xZ8" class="btn-primary" target="_blank" rel="noopener" style="display:inline-block"
            onclick="gtag('event','booking_click',{'event_category':'quote','event_label':'post_submit'});">
           Schedule on Google Calendar
         </a>
@@ -567,14 +614,14 @@ function calcBase(panes, type) {
 }
 
 function pkgTotal(type, screens, tracks) {
-  const panes   = totalPanes();
-  const base    = Math.max(MIN_JOB, calcBase(panes, type));
-  const lrgWin  = (state.breakdown.large + state.breakdown.french) * LARGE_PK;
-  const scr     = screens * 4;
-  const trk     = tracks  * 4;
-  const hw      = state.addons.hardwater * 20;
-  const sub     = base + lrgWin + scr + trk + hw;
-  const aft     = sub - Math.round(sub * DISCOUNT);
+  const panes  = totalPanes();
+  const base   = Math.max(MIN_JOB, calcBase(panes, type));
+  const lrg    = (state.breakdown.large + state.breakdown.french) * LARGE_PK;
+  const scr    = screens * 4;
+  const trk    = tracks  * 4;
+  const hw     = state.addons.hardwater * 20;
+  const sub    = base + lrg + scr + trk + hw;
+  const aft    = sub - Math.round(sub * DISCOUNT);
   return aft + Math.round(aft * GST);
 }
 
@@ -659,28 +706,34 @@ function toggleGutters(cb) {
 }
 
 function buildEmailSummary() {
-  const panes   = totalPanes();
-  const est     = Math.round(panes / 2);
-  const pkgLabels = { standard: 'Standard (Exterior Only)', premium: 'Premium (Interior + Exterior)', supreme: 'Supreme (Complete Service)' };
-  const propLabels = { house: 'House', townhouse: 'Townhouse', condo: 'Condo/Apt', commercial: 'Commercial' };
-  const price   = state.selectedPkg === 'supreme'
+  const panes  = totalPanes();
+  const est    = Math.round(panes / 2);
+  const pkgLbls = { standard:'Standard (Exterior Only)', premium:'Premium (Interior + Exterior)', supreme:'Supreme (Complete Service)' };
+  const propLbls = { house:'House', townhouse:'Townhouse', condo:'Condo/Apt', commercial:'Commercial' };
+  const price  = state.selectedPkg === 'supreme'
     ? pkgTotal('both', est, est)
     : state.selectedPkg === 'premium'
       ? pkgTotal('both', 0, 0)
       : pkgTotal('exterior', 0, 0);
 
   document.getElementById('email-subject').value =
-    `New Estimate Request — ${propLabels[state.propertyType] || ''}, ${panes} panes, ${pkgLabels[state.selectedPkg]}, ~$${price} incl. GST`;
+    'New Estimate Request — ' + (propLbls[state.propertyType] || '') + ', ' + panes + ' panes, ' + pkgLbls[state.selectedPkg] + ', ~$' + price + ' incl. GST';
 
   document.getElementById('email-summary').value =
-    `Property: ${propLabels[state.propertyType] || '?'} | Panes: ${panes} (${state.breakdown.regular} standard, ${state.breakdown.large} large, ${state.breakdown.french} french) | Package: ${pkgLabels[state.selectedPkg]} | Est. screens: ${est} | Est. tracks: ${est} | Hard water removal: ${state.addons.hardwater} panes | Gutter cleaning requested: ${state.addons.gutters ? 'YES — quote on arrival' : 'No'} | Quote (5% discount + GST): $${price}`;
+    'Property: ' + (propLbls[state.propertyType] || '?') +
+    ' | Panes: ' + panes + ' (' + state.breakdown.regular + ' standard, ' + state.breakdown.large + ' large, ' + state.breakdown.french + ' french)' +
+    ' | Package: ' + pkgLbls[state.selectedPkg] +
+    ' | Est. screens: ' + est + ' | Est. tracks: ' + est +
+    ' | Hard water removal: ' + state.addons.hardwater + ' panes' +
+    ' | Gutter cleaning requested: ' + (state.addons.gutters ? 'YES — quote on arrival' : 'No') +
+    ' | Quote (5% discount + GST): $' + price;
 }
 
 function showStep(id) {
   document.querySelectorAll('.qstep').forEach(s => s.classList.remove('active'));
   document.getElementById('step-' + id).classList.add('active');
-  [1,2,3,4].forEach(n => {
-    const el = document.getElementById('prog-' + n);
+  [1,2,3,4].forEach(function(n) {
+    var el = document.getElementById('prog-' + n);
     if (!el) return;
     el.classList.remove('active','done');
     if (typeof id === 'number') {
@@ -688,7 +741,8 @@ function showStep(id) {
       else if (n === id) el.classList.add('active');
     }
   });
-  window.scrollTo({ top: document.querySelector('.quote-section').offsetTop - 90, behavior: 'smooth' });
+  var sec = document.querySelector('.quote-section');
+  if (sec) window.scrollTo({ top: sec.offsetTop - 90, behavior: 'smooth' });
 }
 
 const TRAVEL_ZONES = [
@@ -696,12 +750,39 @@ const TRAVEL_ZONES = [
   { fee: 35, label: 'Sorrento / Sicamous / Enderby area (~30–50 km from Salmon Arm)', keywords: ['sorrento','blind bay','tappen','celista','scotch creek','eagle bay','swansea point','sicamous','enderby','grindrod','spallumcheen'] }
 ];
 
+const OUT_OF_AREA = [
+  'calgary','edmonton','red deer','lethbridge','medicine hat','fort mcmurray','grande prairie',
+  'alberta',' ab ','ab,',', ab',
+  'vancouver','victoria','burnaby','surrey','richmond','abbotsford','langley','coquitlam',
+  'kelowna','penticton','kamloops','vernon','prince george',
+  'toronto','ottawa','montreal','winnipeg','saskatoon','regina',
+  'ontario','quebec','manitoba','saskatchewan',' on ','on,',', on',' qc ','qc,',', qc'
+];
+
 function checkTravelFee(address) {
-  const lower = address.toLowerCase();
-  const note  = document.getElementById('travel-fee-note');
-  for (const zone of TRAVEL_ZONES) {
-    if (zone.keywords.some(k => lower.includes(k))) {
-      note.innerHTML = `<strong>Travel fee: +$${zone.fee}</strong> — ${zone.label}. Confirmed when David contacts you.`;
+  var lower = address.toLowerCase();
+  var note  = document.getElementById('travel-fee-note');
+
+  if (OUT_OF_AREA.some(function(k){ return lower.indexOf(k) !== -1; })) {
+    note.innerHTML = '<strong>⚠ Outside our service area.</strong> We serve Salmon Arm and the Shuswap region, BC. If you\'re unsure, submit anyway and we\'ll follow up.';
+    note.style.background = '#fff5f5';
+    note.style.borderColor = 'var(--sky)';
+    note.style.color = '#7a0000';
+    note.style.display = 'block';
+    note.dataset.fee = '0';
+    note.dataset.outOfArea = '1';
+    return;
+  }
+
+  note.dataset.outOfArea = '0';
+  note.style.background = '#fff8e6';
+  note.style.borderColor = '#e8a020';
+  note.style.color = '#7a4500';
+
+  for (var i = 0; i < TRAVEL_ZONES.length; i++) {
+    var zone = TRAVEL_ZONES[i];
+    if (zone.keywords.some(function(k){ return lower.indexOf(k) !== -1; })) {
+      note.innerHTML = '<strong>Travel fee: +$' + zone.fee + '</strong> — ' + zone.label + '. Confirmed when we contact you.';
       note.style.display = 'block';
       note.dataset.fee = zone.fee;
       return;
@@ -713,33 +794,39 @@ function checkTravelFee(address) {
 
 async function submitBooking(e) {
   e.preventDefault();
-  const phone = document.getElementById('f-phone').value.trim();
-  const email = document.getElementById('f-email').value.trim();
-  const err   = document.getElementById('contact-error');
+  var phone = document.getElementById('f-phone').value.trim();
+  var email = document.getElementById('f-email').value.trim();
+  var err   = document.getElementById('contact-error');
   if (!phone && !email) { err.style.display = 'block'; document.getElementById('f-phone').focus(); return; }
   err.style.display = 'none';
-  const travelFee = parseInt(document.getElementById('travel-fee-note')?.dataset?.fee || '0') || 0;
-  if (travelFee > 0) {
-    const cur = document.getElementById('email-summary').value;
-    document.getElementById('email-summary').value = cur + ` | ⚠ TRAVEL FEE: +$${travelFee} (confirm with customer)`;
+  var noteEl = document.getElementById('travel-fee-note');
+  var travelFee  = parseInt((noteEl.dataset || {}).fee || '0') || 0;
+  var outOfArea  = (noteEl.dataset || {}).outOfArea === '1';
+  var cur = document.getElementById('email-summary').value;
+  if (outOfArea) {
+    document.getElementById('email-subject').value = '⚠ OUT OF AREA — ' + document.getElementById('email-subject').value;
+    document.getElementById('email-summary').value = cur + ' | ⚠ OUT OF SERVICE AREA — address flagged as outside Shuswap region';
+  } else if (travelFee > 0) {
+    document.getElementById('email-summary').value = cur + ' | ⚠ TRAVEL FEE: +$' + travelFee + ' (confirm with customer)';
   }
-  const btn = document.getElementById('submit-btn');
+  var btn = document.getElementById('submit-btn');
   btn.textContent = 'Sending…';
   btn.disabled = true;
   try {
-    const res  = await fetch('https://api.web3forms.com/submit', { method:'POST', body: new FormData(e.target) });
-    const json = await res.json();
+    var res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(e.target) });
+    var json = await res.json();
     if (json.success) {
       showStep('success');
       gtag('event', 'quote_submitted', { event_category: 'conversion', event_label: 'quote_form' });
     } else { throw new Error(json.message); }
-  } catch {
+  } catch(ex) {
     btn.textContent = 'Send My Booking Request';
     btn.disabled = false;
     alert('Something went wrong. Please call or text us at (403) 837-5092.');
   }
 }
 </script>
+
 
 <!-- FLOATING CONTACT -->
 <div class="float-contact">
@@ -776,6 +863,11 @@ async function submitBooking(e) {
   <p style="margin-top:1rem;">© 2026 Wagon Windows. All rights reserved.</p>
 </footer>
 
-<script>function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}</script>
+<script>
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+</script>
+
 </body>
 </html>
