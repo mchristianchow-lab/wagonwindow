@@ -394,6 +394,18 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
   display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#fff}
 .chk-item.done .chk-dot{background:var(--green);border-color:var(--green)}
 .chk-text{font-size:.9rem;font-weight:600;line-height:1.35;color:var(--text)}
+/* ── QR overlay ── */
+#qr-overlay{
+  display:none;position:fixed;inset:0;background:#fff;z-index:1000;
+  flex-direction:column;align-items:center;justify-content:center;padding:2rem;
+  gap:1.25rem
+}
+#qr-overlay.visible{display:flex}
+.qr-label{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:#555;text-align:center}
+.qr-title{font-size:1.4rem;font-weight:800;color:#111;text-align:center;line-height:1.25}
+.qr-box{padding:1rem;background:#fff;border:2px solid #eee;border-radius:16px}
+.qr-url{font-size:.75rem;color:#888;text-align:center;word-break:break-all}
+.qr-close{background:none;border:1.5px solid #ccc;border-radius:8px;padding:.75rem 2rem;font-size:.9rem;font-weight:600;color:#444;cursor:pointer;font-family:inherit;margin-top:.25rem}
 </style>
 </head>
 <body>
@@ -475,6 +487,22 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         <span class="home-btn-sub">End-of-job checklist + review ask</span>
       </div>
     </button>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+      <button class="home-btn" style="border-color:var(--muted)" onclick="showQR('https://wagonwindow.com','Our Website','wagonwindow.com')">
+        <span class="home-btn-icon">🌐</span>
+        <div>
+          <span class="home-btn-label" style="font-size:.9rem">Website QR</span>
+          <span class="home-btn-sub">Scan to visit site</span>
+        </div>
+      </button>
+      <button class="home-btn" style="border-color:var(--yellow)" onclick="showQR('https://g.page/r/CTjjX99dBkfQEBM/review','Leave Us a Review','g.page/r/…/review')">
+        <span class="home-btn-icon">⭐</span>
+        <div>
+          <span class="home-btn-label" style="font-size:.9rem;color:var(--yellow)">Review QR</span>
+          <span class="home-btn-sub">Scan to review us</span>
+        </div>
+      </button>
+    </div>
   </div>
 </div>
 
@@ -1074,6 +1102,17 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
       <button class="btn btn-green" style="flex:2" onclick="sendTierQuote()">Send Email →</button>
     </div>
   </div>
+</div>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║        QR CODE OVERLAY       ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<div id="qr-overlay">
+  <div class="qr-label">Wagon Windows · Salmon Arm, BC</div>
+  <div class="qr-title" id="qr-title">Scan Me</div>
+  <div class="qr-box"><div id="qr-canvas"></div></div>
+  <div class="qr-url" id="qr-url"></div>
+  <button class="qr-close" onclick="hideQR()">✕ Close</button>
 </div>
 
 <!-- ╔══════════════════════════════╗ -->
@@ -3503,6 +3542,36 @@ function applyCommUnitTotal() {
 updateHomeCount();
 updatePaneDisplay();
 updateResumeBtn();
+
+// ── QR Code ────────────────────────────────────────────────────────────
+let _qrInstance = null;
+
+function showQR(url, title, displayUrl) {
+  document.getElementById('qr-title').textContent = title;
+  document.getElementById('qr-url').textContent = displayUrl;
+  const box = document.getElementById('qr-canvas');
+  box.innerHTML = '';
+  if (typeof QRCode !== 'undefined') {
+    _qrInstance = new QRCode(box, {
+      text: url,
+      width: 240,
+      height: 240,
+      colorDark: '#111111',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  } else {
+    box.innerHTML = '<p style="color:#c00;font-size:.85rem;text-align:center">QR library not loaded.<br>Check network connection.</p>';
+  }
+  document.getElementById('qr-overlay').classList.add('visible');
+}
+
+function hideQR() {
+  document.getElementById('qr-overlay').classList.remove('visible');
+  document.getElementById('qr-canvas').innerHTML = '';
+  _qrInstance = null;
+}
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
