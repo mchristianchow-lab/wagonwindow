@@ -20,9 +20,8 @@
       {
         "service": "Screen & Track Cleaning",
         "tiers": [
-          {"label": "Screen cleaning (per screen)", "price": "$6–$10"},
-          {"label": "Track cleaning (per window)", "price": "$4–$8"},
-          {"label": "Full screen + track package", "price": "From $89"}
+          {"label": "Screen cleaning (per screen)", "price": "$4"},
+          {"label": "Track cleaning (per track)", "price": "$4"}
         ]
       },
       {
@@ -75,7 +74,7 @@
       },
       {
         "q": "Is there a minimum job fee?",
-        "a": "Yes — our minimum is $119. This covers travel to your property and the first hour of work. Most residential jobs comfortably exceed this."
+        "a": "Yes — our minimum is $169. Most residential jobs comfortably exceed this."
       },
       {
         "q": "Do you offer discounts for repeat bookings?",
@@ -83,7 +82,7 @@
       },
       {
         "q": "Are these prices for the Salmon Arm area only?",
-        "a": "The prices above apply across our full service area — Salmon Arm, Blind Bay, Sorrento, Sicamous, Chase, Enderby, Armstrong, Eagle Bay, Celista, Scotch Creek, Grindrod, Spallumcheen, Swansea Point, and surrounding communities. Travel surcharges apply only for properties more than 60 minutes from Salmon Arm."
+        "a": "The prices above apply across our full service area. A travel fee applies based on your location — $35 for Salmon Arm, Blind Bay, Sorrento, Tappen, and Chase; $55 for Sicamous, Enderby, Armstrong, Eagle Bay, Celista, Scotch Creek, Grindrod, Spallumcheen, Swansea Point, and Anglemont. Always confirmed before any work begins."
       }
     ]
   },
@@ -92,14 +91,14 @@
     "url_path": "service-area",
     "template_key": "service-area",
     "meta_title": "Window Cleaning Service Area | Shuswap BC | Wagon Windows",
-    "meta_desc": "Wagon Windows serves the full Shuswap region from our Salmon Arm base — 14 communities, 60-minute radius. Residential and commercial window cleaning with free quotes.",
+    "meta_desc": "Wagon Windows serves the full Shuswap region from our Salmon Arm base — 15 communities across the North and South Shuswap. Residential and commercial window cleaning with upfront pricing.",
     "h1": "Our Window Cleaning Service Area — Shuswap Region, BC",
-    "intro": "We operate out of Salmon Arm and cover the full Shuswap — from Swansea Point in the north to Spallumcheen in the south. If you're within about 60 minutes of Salmon Arm, we can come to you. A travel fee applies based on your location — confirmed when you book.",
+    "intro": "We operate out of Salmon Arm and cover the full Shuswap — from Swansea Point in the north to Spallumcheen in the south. A travel fee applies based on your location and is always confirmed before any work begins.",
     "locations_context": "We cover 14 communities across the North and South Shuswap, Salmon River Valley, and surrounding areas. Click any community to see services and pricing specific to that location.",
     "sections": [
       {
         "h2": "How Far We Travel",
-        "body": "Our base is Salmon Arm. On a typical work day we'll cover a route that might include Blind Bay, Sorrento, and Eagle Bay — or head north through Scotch Creek to Celista. The furthest corners of our area are about 55–60 minutes away. For properties within that radius, standard rates apply. Properties beyond 60 minutes may carry a travel fee — we'll tell you upfront if that applies to your address."
+        "body": "Our base is Salmon Arm. On a typical work day we'll cover a route that might include Blind Bay, Sorrento, and Eagle Bay — or head north through Scotch Creek to Celista. A travel fee applies to all service areas: $35 for Salmon Arm and nearby communities, $55 for outlying areas like Sicamous, Enderby, Armstrong, and Anglemont. The fee is always disclosed upfront — no surprises on invoice day."
       },
       {
         "h2": "Rural and Lakefront Properties",

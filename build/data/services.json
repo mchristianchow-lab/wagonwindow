@@ -26,9 +26,9 @@
     "base_price_small": 169,
     "base_price_medium": 229,
     "base_price_large": 299,
-    "base_price_interior_small": 229,
-    "base_price_interior_medium": 309,
-    "base_price_interior_large": 389,
+    "base_price_interior_small": 219,
+    "base_price_interior_medium": 289,
+    "base_price_interior_large": 369,
     "schema_service_type": "WindowCleaningService",
     "icon": "🏡",
     "faq_count_minimum": 8,
@@ -38,7 +38,7 @@
       {
         "step": 1,
         "name": "Walkthrough & Window Inventory",
-        "description": "Before touching anything, we walk the property with the homeowner to identify every window, flag any pre-existing damage, and confirm which areas are in-scope. This prevents disputes and ensures nothing is missed — especially on properties with skylights, hard-to-reach dormers, or custom glass panels common in Shuswap lakefront homes."
+        "description": "Before touching anything, David walks the property with the homeowner to identify every window, flag any pre-existing damage, and confirm which areas are in-scope. This prevents disputes and ensures nothing is missed — especially on properties with skylights, hard-to-reach dormers, or custom glass panels common in Shuswap lakefront homes."
       },
       {
         "step": 2,
@@ -73,10 +73,10 @@
       {
         "step": 8,
         "name": "Screen Reinstallation & Final Inspection",
-        "description": "Cleaned and dried screens are reinstalled by location using the labelling system from Step 2. We do a final walk around the property to inspect each window from the outside for any missed streaks or smears, correcting them on the spot. The homeowner is invited to do their own inspection before the job is signed off."
+        "description": "Cleaned and dried screens are reinstalled by location using the labelling system from Step 2. David does a final walk around the property to inspect each window from the outside for any missed streaks or smears, correcting them on the spot. The homeowner is invited to do their own inspection before the job is signed off."
       }
     ],
-    "differentiator": "Wagon Windows treats residential cleans as a complete service — screens labelled and reinstalled correctly, tracks wiped, and every window inspected before leaving — not a rushed rinse-and-go. Locally owned and operated — the person on your property is accountable by name.",
+    "differentiator": "Wagon Windows treats residential cleans as a complete service — screens labelled and reinstalled correctly, tracks wiped, and every window inspected before leaving — not a rushed rinse-and-go. David Hanna owns and runs the company himself, meaning the person on your property is accountable by name.",
     "common_problems": [
       "Cottonwood pollen season coats every exterior window in a thick film that basic garden hose rinses cannot clear",
       "Lake spray from Shuswap Lake deposits mineral-rich water on lakefront home windows that dries into white haze",
@@ -252,7 +252,7 @@
     "short_name": "Screen Cleaning",
     "h1_template": "Window Screen Cleaning in {location}",
     "meta_title_template": "Window Screen Cleaning {location} | Wagon Windows | $4 Per Screen",
-    "meta_desc_template": "Window screen cleaning in {location}, BC. $4–$5 per screen. Remove dust, pollen, and debris. Add-on to any window clean or standalone. Wagon Windows.",
+    "meta_desc_template": "Window screen cleaning in {location}, BC. $4 per screen. Remove dust, pollen, and debris. Add-on to any window clean or standalone. Wagon Windows.",
     "primary_keyword_template": "window screen cleaning {location}",
     "secondary_keywords": [
       "screen cleaning service {location}",
