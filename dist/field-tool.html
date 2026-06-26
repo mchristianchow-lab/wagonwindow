@@ -992,10 +992,10 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <table class="ref-table">
       <thead><tr><th>Size</th><th>Panes</th><th>Ext Only</th><th>Int + Ext</th></tr></thead>
       <tbody>
-        <tr><td>Small</td><td>≤ 30</td><td>$169+</td><td>$219+</td></tr>
-        <tr><td>Medium</td><td>31–50</td><td>$219+</td><td>$289+</td></tr>
-        <tr><td>Large</td><td>51–70</td><td>$289+</td><td>$369+</td></tr>
-        <tr><td>X-Large</td><td>71–99</td><td>$405+</td><td>$500+</td></tr>
+        <tr><td>Small</td><td>≤ 15</td><td>$169</td><td>$219</td></tr>
+        <tr><td>Medium</td><td>16–25</td><td>$229</td><td>$289</td></tr>
+        <tr><td>Large</td><td>26–35</td><td>$299</td><td>$369</td></tr>
+        <tr><td>X-Large</td><td>36+</td><td>$299+</td><td>$369+</td></tr>
       </tbody>
     </table>
 
@@ -1602,12 +1602,20 @@ let customState = null;
 
 // ── Pricing engine (mirrors customer quote tool exactly) ───────────────
 function calcBase(panes, type) {
-  let ext = 169, int = 169, intExt = 219;
-  let rem = Math.max(0, panes - 30);
-  const t1 = Math.min(rem, 20); rem -= t1; ext += t1 * 2.50; int += t1 * 2.50; intExt += t1 * 3.50;
-  const t2 = Math.min(rem, 20); rem -= t2; ext += t2 * 3.50; int += t2 * 3.50; intExt += t2 * 4.00;
-  const t3 = Math.min(rem, 29); rem -= t3; ext += t3 * 4.00; int += t3 * 4.00; intExt += t3 * 4.50;
-  ext += rem * 4.00; int += rem * 4.00; intExt += rem * 7.00;
+  let ext, int, intExt;
+  if (panes <= 15) {
+    ext = 169; int = 169; intExt = 219;
+  } else if (panes <= 25) {
+    ext = 229; int = 229; intExt = 289;
+  } else if (panes <= 35) {
+    ext = 299; int = 299; intExt = 369;
+  } else {
+    let rem = panes - 35;
+    ext = 299; int = 299; intExt = 369;
+    const t1 = Math.min(rem, 15); rem -= t1; ext += t1 * 5.00; int += t1 * 5.00; intExt += t1 * 6.00;
+    const t2 = Math.min(rem, 20); rem -= t2; ext += t2 * 6.00; int += t2 * 6.00; intExt += t2 * 7.00;
+    ext += rem * 7.00; int += rem * 7.00; intExt += rem * 8.00;
+  }
   if (type === 'exterior') return Math.round(ext);
   if (type === 'interior') return Math.round(int);
   return Math.round(intExt);
@@ -1616,9 +1624,9 @@ function calcBase(panes, type) {
 function gutterPrice() { return 189; }
 
 function sizeBadge(panes) {
-  if (panes <= 30) return 'Small';
-  if (panes <= 50) return 'Medium';
-  if (panes <= 70) return 'Large';
+  if (panes <= 15) return 'Small';
+  if (panes <= 25) return 'Medium';
+  if (panes <= 35) return 'Large';
   return 'X-Large';
 }
 

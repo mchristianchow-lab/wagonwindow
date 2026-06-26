@@ -990,12 +990,20 @@ function totalPanes() {
 }
 
 function calcBase(panes, type) {
-  let ext = 169, intExt = 219;
-  let rem = Math.max(0, panes - 30);
-  const t1 = Math.min(rem, 20); rem -= t1; ext += t1 * 2.50; intExt += t1 * 3.50;
-  const t2 = Math.min(rem, 20); rem -= t2; ext += t2 * 3.50; intExt += t2 * 4.00;
-  const t3 = Math.min(rem, 29); rem -= t3; ext += t3 * 4.00; intExt += t3 * 4.50;
-  ext += rem * 4.00; intExt += rem * 7.00;
+  let ext, intExt;
+  if (panes <= 15) {
+    ext = 169; intExt = 219;
+  } else if (panes <= 25) {
+    ext = 229; intExt = 289;
+  } else if (panes <= 35) {
+    ext = 299; intExt = 369;
+  } else {
+    let rem = panes - 35;
+    ext = 299; intExt = 369;
+    const t1 = Math.min(rem, 15); rem -= t1; ext += t1 * 5.00; intExt += t1 * 6.00;
+    const t2 = Math.min(rem, 20); rem -= t2; ext += t2 * 6.00; intExt += t2 * 7.00;
+    ext += rem * 7.00; intExt += rem * 8.00;
+  }
   return type === 'exterior' ? Math.round(ext) : Math.round(intExt);
 }
 
