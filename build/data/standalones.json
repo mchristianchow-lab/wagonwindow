@@ -4,56 +4,110 @@
     "url_path": "pricing",
     "template_key": "pricing",
     "meta_title": "Window Cleaning Prices Shuswap | Wagon Windows",
-    "meta_desc": "Transparent window cleaning prices for the Shuswap region. Residential from $169, commercial quotes, gutter cleaning from $149. No surprises — all prices listed upfront.",
+    "meta_desc": "Transparent window cleaning prices for the Shuswap region. Residential from $169, commercial quotes, gutter cleaning from $189. No surprises — all prices listed upfront.",
     "h1": "Window Cleaning Prices — Shuswap Region",
     "intro": "Wagon Windows publishes all prices upfront so you can budget without playing phone tag. Prices below cover the most common jobs across Salmon Arm, Blind Bay, Sicamous, and surrounding communities. Every job includes a streak-free guarantee.",
     "pricing_tables": [
       {
         "service": "Residential Exterior Window Cleaning",
         "tiers": [
-          {"label": "Small home (up to 15 windows)", "price": "From $169"},
-          {"label": "Medium home (16–25 windows)", "price": "From $229"},
-          {"label": "Large home (26–35 windows)", "price": "From $299"},
-          {"label": "Interior + exterior add-on", "price": "+$60 typical"}
+          {
+            "label": "Small home (up to 15 windows)",
+            "price": "From $169"
+          },
+          {
+            "label": "Medium home (16–25 windows)",
+            "price": "From $229"
+          },
+          {
+            "label": "Large home (26–35 windows)",
+            "price": "From $299"
+          },
+          {
+            "label": "Interior + exterior add-on",
+            "price": "+$60 typical"
+          }
         ]
       },
       {
         "service": "Screen & Track Cleaning",
         "tiers": [
-          {"label": "Screen cleaning (per screen)", "price": "$4"},
-          {"label": "Track cleaning (per track)", "price": "$4"}
+          {
+            "label": "Screen cleaning (per screen)",
+            "price": "$4"
+          },
+          {
+            "label": "Track cleaning (per track)",
+            "price": "$4"
+          }
         ]
       },
       {
         "service": "Hard Water Stain Removal",
         "tiers": [
-          {"label": "Light mineral deposits", "price": "From $149"},
-          {"label": "Moderate calcium buildup", "price": "From $229"},
-          {"label": "Severe etching / multi-session", "price": "Quoted on site"}
+          {
+            "label": "Light mineral deposits",
+            "price": "From $149"
+          },
+          {
+            "label": "Moderate calcium buildup",
+            "price": "From $229"
+          },
+          {
+            "label": "Severe etching / multi-session",
+            "price": "Quoted on site"
+          }
         ]
       },
       {
         "service": "Commercial Window Cleaning",
         "tiers": [
-          {"label": "Storefronts & small offices", "price": "From $169"},
-          {"label": "Multi-storey commercial", "price": "Quoted on site"},
-          {"label": "Monthly contract (4+ visits/year)", "price": "Discounted rate"}
+          {
+            "label": "Storefronts & small offices",
+            "price": "From $169"
+          },
+          {
+            "label": "Multi-storey commercial",
+            "price": "Quoted on site"
+          },
+          {
+            "label": "Monthly contract (4+ visits/year)",
+            "price": "Discounted rate"
+          }
         ]
       },
       {
         "service": "Gutter Cleaning",
         "tiers": [
-          {"label": "Single storey (up to 150 ft)", "price": "From $149"},
-          {"label": "Two storey (up to 150 ft)", "price": "From $229"},
-          {"label": "Extra length (per 50 ft add-on)", "price": "+$49"}
+          {
+            "label": "Single-storey",
+            "price": "From $189"
+          },
+          {
+            "label": "Two-storey / complex",
+            "price": "Assessed on-site"
+          },
+          {
+            "label": "All sizes",
+            "price": "Confirmed before work begins"
+          }
         ]
       },
       {
         "service": "Seasonal Packages",
         "tiers": [
-          {"label": "Spring package (ext. windows + tracks)", "price": "From $189"},
-          {"label": "Fall package (ext. windows + gutters)", "price": "From $299"},
-          {"label": "Annual (spring + fall combined)", "price": "From $449"}
+          {
+            "label": "Spring package (ext. windows + tracks)",
+            "price": "From $189"
+          },
+          {
+            "label": "Fall package (ext. windows + gutters)",
+            "price": "From $299"
+          },
+          {
+            "label": "Annual (spring + fall combined)",
+            "price": "From $449"
+          }
         ]
       }
     ],

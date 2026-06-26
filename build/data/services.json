@@ -584,8 +584,7 @@
         "description": "Before/after photos of gutter condition taken and available on request. Condition report provided verbally on completion with key findings."
       }
     ],
-    "base_price": 149,
-    "base_price_large": 229,
+    "base_price": 189,
     "price_note": "Standard home (single-storey) from $149. Two-storey or larger homes from $229. Quoted on-site for complex rooflines.",
     "schema_service_type": "HomeAndConstructionService",
     "icon": "🌿",
