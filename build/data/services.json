@@ -166,7 +166,10 @@
     ],
     "result_description": "Once the exterior clean is done, every outward-facing pane is clear, streak-free, and reflective — the difference is visible from the street immediately. Frames and sills look clean rather than grimy, which changes the overall impression of the property more than most people expect. Natural light enters rooms noticeably brighter because there is no haze layer filtering it.",
     "booking_urgency": "Exterior demand in the Shuswap peaks twice a year — immediately after cottonwood season in June, and again in September before fall rains set in. Slots fill fast both windows; booking ahead is the only way to guarantee your preferred date rather than taking whatever is left.",
-    "page_intro_template": "If you're searching for exterior window cleaning in {location}, this page covers exactly what Wagon Windows does, how it's priced, and why local homeowners in {location} book us season after season. We handle every exterior pane — including hard-to-reach windows — with professional tools and a streak-free guarantee. Book your clean online."
+    "page_intro_template": "If you're searching for exterior window cleaning in {location}, this page covers exactly what Wagon Windows does, how it's priced, and why local homeowners in {location} book us season after season. We handle every exterior pane — including hard-to-reach windows — with professional tools and a streak-free guarantee. Book your clean online.",
+    "base_price_interior_small": 219,
+    "base_price_interior_medium": 289,
+    "base_price_interior_large": 369
   },
   {
     "slug": "commercial-window-cleaning",
@@ -335,7 +338,6 @@
       "Wipe-down of weep holes",
       "Roller inspection — issues noted"
     ],
-    "base_price": 65,
     "schema_service_type": "WindowCleaningService",
     "icon": "🔧",
     "faq_count_minimum": 6,
@@ -378,7 +380,8 @@
     ],
     "result_description": "After a proper track clean, windows slide smoothly with one hand and without the grinding or sticking that homeowners have been working around for months or years. The tracks are visually clean — no debris, no grime lining, no visible buildup — and weep holes are draining correctly. Rollers that were catching or skipping move freely again.",
     "booking_urgency": "Track cleaning is most valuable done once after cottonwood season — when the spring and early summer fibre and pollen accumulation has had time to compact — and again before winter when blocked weep holes become a frost-damage risk. Adding track cleaning to a seasonal window clean is the most efficient way to handle both.",
-    "page_intro_template": "This page is for homeowners in {location} with window tracks that are difficult to open, visibly grimy, or showing signs of moisture problems. Wagon Windows provides professional track cleaning in {location} that goes beyond surface wiping — vacuum, brush scrub, weep hole clearing, and roller inspection done in one visit. Book as a standalone service or add it to a window clean."
+    "page_intro_template": "This page is for homeowners in {location} with window tracks that are difficult to open, visibly grimy, or showing signs of moisture problems. Wagon Windows provides professional track cleaning in {location} that goes beyond surface wiping — vacuum, brush scrub, weep hole clearing, and roller inspection done in one visit. Book as a standalone service or add it to a window clean.",
+    "price_per_track": 4
   },
   {
     "slug": "hard-water-stain-removal",

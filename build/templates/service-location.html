@@ -133,6 +133,7 @@
         {% if service.base_price_small %}${{ service.base_price_small }} for homes up to 15 windows (exterior)
         {% elif service.base_price_commercial %}${{ service.base_price_commercial }} for commercial storefronts
         {% elif service.price_per_screen_low %}${{ service.price_per_screen_low }} per screen
+        {% elif service.price_per_track %}${{ service.price_per_track }} per track
         {% elif service.base_price %}${{ service.base_price }}
         {% else %}Quoted on-site
         {% endif %}
@@ -222,6 +223,8 @@
         Commercial window cleaning in {{ location.name }} starts from ${{ service.base_price_commercial }} per visit for storefronts, with recurring contract pricing available.
         {% elif service.price_per_screen_low %}
         Screen cleaning in {{ location.name }} is ${{ service.price_per_screen_low }} per screen with a ${{ config.min_job }} minimum.
+        {% elif service.price_per_track %}
+        Track cleaning in {{ location.name }} is ${{ service.price_per_track }} per track, added to any window cleaning service.
         {% elif service.base_price %}
         {{ service.short_name }} in {{ location.name }} starts from ${{ service.base_price }}.
         {% else %}

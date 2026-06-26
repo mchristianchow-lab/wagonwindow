@@ -779,12 +779,12 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         <input type="checkbox" class="addon-check" id="chk-gutters" onchange="toggleAddon('gutters',this)">
         <div class="addon-text">
           <div class="addon-name">Gutter Cleaning</div>
-          <div class="addon-meta" id="gutter-meta">$189 flat · flush debris, clear downspouts</div>
+          <div class="addon-meta" id="gutter-meta">$149 single-storey · $229 two-storey · flush debris, clear downspouts</div>
         </div>
       </div>
       <div class="addon-ctr" id="ctr-gutters" style="display:none">
         <button class="adj-btn" onclick="adjustGutter(-25)">−</button>
-        <div class="adj-val" id="val-gutters" style="min-width:48px;font-size:.85rem">$189</div>
+        <div class="adj-val" id="val-gutters" style="min-width:48px;font-size:.85rem">$149</div>
         <button class="adj-btn" onclick="adjustGutter(25)">+</button>
       </div>
     </div>
@@ -1003,9 +1003,9 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <table class="ref-table">
       <thead><tr><th>Home Size</th><th>Pane Count</th><th>Price</th></tr></thead>
       <tbody>
-        <tr><td>Small</td><td>≤ 30 panes</td><td>$149</td></tr>
-        <tr><td>Medium</td><td>31–50 panes</td><td>$189</td></tr>
-        <tr><td>Large</td><td>51+ panes</td><td>$229</td></tr>
+        <tr><td>Single-storey</td><td>any size</td><td>$149</td></tr>
+        <tr><td>Two-storey</td><td>any size</td><td>$229</td></tr>
+        <tr><td>Complex roofline</td><td>any size</td><td>Quoted on-site</td></tr>
       </tbody>
     </table>
 
@@ -1621,7 +1621,7 @@ function calcBase(panes, type) {
   return Math.round(intExt);
 }
 
-function gutterPrice() { return 189; }
+function gutterPrice() { return 149; }
 
 function sizeBadge(panes) {
   if (panes <= 15) return 'Small';
@@ -1952,7 +1952,7 @@ function selectPackage(tier) {
   const gutterCtr = document.getElementById('ctr-gutters');
   if (gutterCtr) gutterCtr.style.display = state.addons.gutters > 0 ? 'flex' : 'none';
   const gutterVal = document.getElementById('val-gutters');
-  if (gutterVal) gutterVal.textContent = state.addons.gutters > 0 ? '$' + state.addons.gutters : '$189';
+  if (gutterVal) gutterVal.textContent = state.addons.gutters > 0 ? '$' + state.addons.gutters : '$149';
 
   state.selectedPackage = tier;
   goScreen('scr-quote');
@@ -1987,10 +1987,10 @@ function updateServicePrices() {
 // ── Add-on helpers ─────────────────────────────────────────────────────
 function toggleAddon(key, cb) {
   if (key === 'gutters') {
-    state.addons.gutters = cb.checked ? 189 : 0;
+    state.addons.gutters = cb.checked ? 149 : 0;
     const ctr = document.getElementById('ctr-gutters');
     if (ctr) ctr.style.display = cb.checked ? 'flex' : 'none';
-    document.getElementById('val-gutters').textContent = '$189';
+    document.getElementById('val-gutters').textContent = '$149';
     if (document.getElementById('scr-quote').classList.contains('active')) renderQuote();
     return;
   }
@@ -2010,8 +2010,8 @@ function toggleAddon(key, cb) {
 }
 
 function adjustGutter(delta) {
-  const current = state.addons.gutters || 189;
-  const next = Math.max(189, current + delta);
+  const current = state.addons.gutters || 149;
+  const next = Math.max(149, current + delta);
   state.addons.gutters = next;
   document.getElementById('val-gutters').textContent = '$' + next;
   if (document.getElementById('scr-quote').classList.contains('active')) renderQuote();
@@ -2051,7 +2051,7 @@ function setAddonVal(key, count, checked) {
 
 function updateGutterMeta() {
   const el = document.getElementById('gutter-meta');
-  if (el) el.textContent = '$189 flat · +$25 for larger jobs · flush debris, clear downspouts';
+  if (el) el.textContent = '$149 single-storey · $229 two-storey · +$25 increments for complex jobs';
 }
 
 // ── Quote render ───────────────────────────────────────────────────────
@@ -2302,7 +2302,7 @@ function loadLeadQuote(id) {
         tracks:      trackMatch  ? parseInt(trackMatch[1])  : 0,
         hardwater:   hwMatch     ? parseInt(hwMatch[1])     : 0,
         largewindow: largeCount,
-        gutters:     s.includes('gutters') ? 189 : 0,
+        gutters:     s.includes('gutters') ? 149 : 0,
         travel:      0
       },
       selectedPackage: null,
@@ -2332,7 +2332,7 @@ function loadLeadQuote(id) {
   const ctrGutters = document.getElementById('ctr-gutters');
   if (ctrGutters) ctrGutters.style.display = state.addons.gutters > 0 ? 'flex' : 'none';
   const valGutters = document.getElementById('val-gutters');
-  if (valGutters) valGutters.textContent = state.addons.gutters > 0 ? '$' + state.addons.gutters : '$189';
+  if (valGutters) valGutters.textContent = state.addons.gutters > 0 ? '$' + state.addons.gutters : '$149';
 
   // Restore service card selection
   document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
@@ -2944,7 +2944,7 @@ function resumeSession() {
     const ctrGutters = document.getElementById('ctr-gutters');
     if (ctrGutters) ctrGutters.style.display = state.addons.gutters > 0 ? 'flex' : 'none';
     const valGutters = document.getElementById('val-gutters');
-    if (valGutters) valGutters.textContent = state.addons.gutters > 0 ? '$' + state.addons.gutters : '$189';
+    if (valGutters) valGutters.textContent = state.addons.gutters > 0 ? '$' + state.addons.gutters : '$149';
     // Restore service card selection
     document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
     if (state.serviceType) {

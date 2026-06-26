@@ -162,6 +162,8 @@
     </table>
     {% elif service.price_per_screen_low %}
     <p><strong>Screen cleaning:</strong> ${{ service.price_per_screen_low }} per screen. Minimum job ${{ config.min_job }}.</p>
+    {% elif service.price_per_track %}
+    <p><strong>Track cleaning:</strong> ${{ service.price_per_track }} per track. Added to any window cleaning service. Minimum job ${{ config.min_job }}.</p>
     {% elif service.base_price %}
     <p><strong>Starting from:</strong> ${{ service.base_price }}. Minimum job ${{ config.min_job }}.</p>
     {% elif service.base_price_commercial %}
