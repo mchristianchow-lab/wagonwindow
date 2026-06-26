@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Book Your Wagon Windows Appointment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red:    #e81010;
+      --dark:   #000000;
+      --navy:   #111111;
+      --light:  #f5f5f5;
+      --white:  #ffffff;
+      --gray:   #6b7280;
+      --border: #e0e0e0;
+      --gold:   #9a7200;
+      --font:   'Inter', -apple-system, sans-serif;
+    }
+    body { font-family: var(--font); background: var(--white); color: var(--navy); -webkit-font-smoothing: antialiased; }
+
+    /* TOPBAR */
+    .topbar { background: var(--dark); border-bottom: 4px solid var(--red); padding: 0 1.5rem; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+    .tb-logo { font-size: 1rem; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: .03em; }
+    .tb-logo span { color: var(--red); }
+    .tb-loc { font-size: .75rem; color: rgba(255,255,255,.4); }
+
+    /* PACKAGE CONFIRMATION BAR */
+    .pkg-bar { padding: 1.75rem 1.5rem; text-align: center; }
+    .pkg-bar.std  { background: #f7f7f7; border-bottom: 3px solid #333; }
+    .pkg-bar.prem { background: #1a0000; border-bottom: 3px solid var(--red); }
+    .pkg-bar.sup  { background: #1a1600; border-bottom: 3px solid var(--gold); }
+    .pkg-eyebrow { font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .4rem; }
+    .pkg-bar.std  .pkg-eyebrow { color: #888; }
+    .pkg-bar.prem .pkg-eyebrow { color: rgba(255,255,255,.45); }
+    .pkg-bar.sup  .pkg-eyebrow { color: rgba(245,197,67,.5); }
+    .pkg-chosen { font-size: 1.5rem; font-weight: 800; margin-bottom: .2rem; }
+    .pkg-bar.std  .pkg-chosen { color: var(--navy); }
+    .pkg-bar.prem .pkg-chosen { color: #fff; }
+    .pkg-bar.sup  .pkg-chosen { color: #f5c543; }
+    .pkg-total-label { font-size: .75rem; text-transform: uppercase; letter-spacing: .07em; margin-bottom: .1rem; }
+    .pkg-bar.std  .pkg-total-label { color: #999; }
+    .pkg-bar.prem .pkg-total-label { color: rgba(255,255,255,.4); }
+    .pkg-bar.sup  .pkg-total-label { color: rgba(245,197,67,.45); }
+    .pkg-total { font-size: 2.4rem; font-weight: 800; line-height: 1; }
+    .pkg-bar.std  .pkg-total { color: var(--navy); }
+    .pkg-bar.prem .pkg-total { color: var(--red); }
+    .pkg-bar.sup  .pkg-total { color: #f5c543; }
+    .pkg-gst-note { font-size: .72rem; margin-top: .3rem; }
+    .pkg-bar.std  .pkg-gst-note { color: #aaa; }
+    .pkg-bar.prem .pkg-gst-note { color: rgba(255,255,255,.3); }
+    .pkg-bar.sup  .pkg-gst-note { color: rgba(245,197,67,.4); }
+    .pkg-desc { font-size: .85rem; margin-top: .6rem; }
+    .pkg-bar.std  .pkg-desc { color: #666; }
+    .pkg-bar.prem .pkg-desc { color: rgba(255,255,255,.55); }
+    .pkg-bar.sup  .pkg-desc { color: rgba(245,197,67,.65); }
+
+    /* FORM SECTION */
+    .form-section { padding: 2rem 1.25rem 3rem; max-width: 560px; margin: 0 auto; }
+    .form-title { font-size: 1.25rem; font-weight: 800; margin-bottom: .25rem; }
+    .form-sub { color: var(--gray); font-size: .88rem; margin-bottom: 1.5rem; line-height: 1.5; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; margin-bottom: .85rem; }
+    .form-group { display: flex; flex-direction: column; gap: .3rem; margin-bottom: 0; }
+    .form-group label { font-size: .82rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: .04em; }
+    .form-group input, .form-group textarea {
+      border: 1.5px solid var(--border); border-radius: 7px; padding: .75rem .9rem;
+      font-family: var(--font); font-size: .95rem; background: #fff; width: 100%;
+      transition: border-color .15s;
+    }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #333; }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-full { margin-bottom: .85rem; }
+
+    .submit-btn {
+      width: 100%; padding: 1rem; border-radius: 8px; border: none;
+      font-family: var(--font); font-size: 1rem; font-weight: 800; cursor: pointer;
+      margin-top: .5rem; transition: opacity .15s;
+    }
+    .submit-btn:hover { opacity: .88; }
+    .submit-btn.std  { background: var(--navy); color: #fff; }
+    .submit-btn.prem { background: var(--red);  color: #fff; }
+    .submit-btn.sup  { background: var(--gold); color: #fff; }
+    .submit-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+    .note-row { display: flex; align-items: flex-start; gap: .5rem; font-size: .78rem; color: var(--gray); margin-top: 1rem; line-height: 1.5; }
+
+    /* TRAVEL BADGE */
+    .travel-badge { display: none; align-items: center; gap: .45rem; margin-top: .45rem; font-size: .82rem; font-weight: 600; padding: .45rem .75rem; border-radius: 6px; }
+    .travel-badge.zone1 { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+    .travel-badge.zone2 { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+    .travel-badge svg { flex-shrink: 0; }
+
+    /* SUCCESS */
+    #success-screen { display: none; text-align: center; padding: 4rem 2rem; }
+    .success-icon { font-size: 3rem; margin-bottom: 1rem; }
+    #success-screen h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: .6rem; }
+    #success-screen p  { color: var(--gray); line-height: 1.6; margin-bottom: 1.5rem; }
+    .btn-home { display: inline-block; background: var(--navy); color: #fff; padding: .85rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: .95rem; }
+
+    /* NO DATA */
+    #no-data { text-align: center; padding: 5rem 2rem; display: none; }
+    #no-data h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: .5rem; }
+    #no-data p  { color: var(--gray); margin-bottom: 1.5rem; }
+    .btn-red { background: var(--red); color: #fff; padding: .85rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-block; }
+
+    @media (max-width: 480px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="tb-logo">Wagon <span>Windows</span></div>
+  <div class="tb-loc">Salmon Arm, BC</div>
+</div>
+
+<!-- NO DATA -->
+<div id="no-data">
+  <h2>Missing Booking Details</h2>
+  <p>This link appears to be incomplete. Contact David for a new estimate.</p>
+  <a href="https://wagonwindow.com" class="btn-red">Back to Website →</a>
+</div>
+
+<!-- BOOKING APP -->
+<div id="book-app" style="display:none">
+
+  <div class="pkg-bar" id="pkg-bar">
+    <div class="pkg-eyebrow">You Selected</div>
+    <div class="pkg-chosen" id="pkg-chosen"></div>
+    <div class="pkg-total-label">Your total</div>
+    <div class="pkg-total" id="pkg-total"></div>
+    <div class="pkg-gst-note" id="pkg-gst-note">Includes GST · Confirmed on-site</div>
+    <div class="pkg-desc" id="pkg-desc"></div>
+  </div>
+
+  <div class="form-section" id="form-wrap">
+    <div class="form-title">Book Your Appointment</div>
+    <div class="form-sub">Fill in your details and David will confirm your date within a few hours.</div>
+
+    <form id="booking-form" onsubmit="submitBooking(event)">
+      <input type="hidden" name="access_key" value="cd06c1c4-9648-4bea-b875-03a7cdd6ef61">
+      <input type="hidden" name="subject"      id="f-subject">
+      <input type="hidden" name="from_name"    value="Wagon Windows Booking Tool">
+      <input type="hidden" name="booking_summary" id="f-summary">
+      <input type="hidden" name="redirect"     value="false">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-fname">First Name *</label>
+          <input id="f-fname" type="text" name="first_name" required placeholder="Jane">
+        </div>
+        <div class="form-group">
+          <label for="f-lname">Last Name *</label>
+          <input id="f-lname" type="text" name="last_name" required placeholder="Smith">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-phone">Phone <span style="font-size:.8rem;color:#888">(at least one required)</span></label>
+          <input id="f-phone" type="tel" name="phone" placeholder="(250) 555-0123">
+        </div>
+        <div class="form-group">
+          <label for="f-email">Email <span style="font-size:.8rem;color:#888">(at least one required)</span></label>
+          <input id="f-email" type="email" name="email" placeholder="you@email.com">
+        </div>
+      </div>
+      <div class="form-full form-group">
+        <label for="f-address">Service Address *</label>
+        <input id="f-address" type="text" name="address" required placeholder="123 Main St, Salmon Arm, BC">
+        <div class="travel-badge" id="travel-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          <span id="travel-badge-text"></span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-date">Preferred Date</label>
+          <input id="f-date" type="date" name="preferred_date">
+        </div>
+        <div class="form-group">
+          <label for="f-city">City / Area</label>
+          <input id="f-city" type="text" name="city" placeholder="Salmon Arm">
+        </div>
+      </div>
+      <div class="form-full form-group">
+        <label for="f-notes">Anything we should know?</label>
+        <textarea id="f-notes" name="notes" placeholder="e.g. gate code, dog in yard, hard-to-reach windows…"></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submit-btn">Send My Booking Request</button>
+    </form>
+
+    <div class="note-row">
+      <span>·</span>
+      <span>David will confirm your date within a few hours. Cash or e-transfer on the day — no deposit required.</span>
+    </div>
+  </div>
+
+  <div id="success-screen">
+    <div class="success-icon">✅</div>
+    <h2>Booking Request Sent!</h2>
+    <p>David will be in touch within a few hours to confirm your appointment. Looking forward to making your windows shine.</p>
+    <a href="https://wagonwindow.com" class="btn-home">Back to Wagon Windows →</a>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  const p         = new URLSearchParams(location.search);
+  const pkg       = p.get('pkg')   || '';
+  const baseTotal = parseInt(p.get('total')) || 0;
+  const panes     = parseInt(p.get('panes')) || 0;
+  const name      = p.get('name') || '';
+  const addr      = p.get('addr') || '';
+
+  if (!pkg || !baseTotal) {
+    document.getElementById('no-data').style.display = 'block';
+    return;
+  }
+
+  document.getElementById('book-app').style.display = 'block';
+
+  const PKG_META = {
+    standard: {
+      label:  'Standard Package',
+      desc:   'Exterior window cleaning — every pane, streak-free.',
+      cls:    'std',
+      btnCls: 'std',
+      btnTxt: 'Confirm Standard Booking'
+    },
+    premium: {
+      label:  'Premium Package',
+      desc:   'Interior + exterior — a full clean on both sides.',
+      cls:    'prem',
+      btnCls: 'prem',
+      btnTxt: 'Confirm Premium Booking'
+    },
+    supreme: {
+      label:  'Supreme Package',
+      desc:   'Interior + exterior, plus screen and track cleaning.',
+      cls:    'sup',
+      btnCls: 'sup',
+      btnTxt: 'Confirm Supreme Booking'
+    }
+  };
+
+  const meta = PKG_META[pkg] || PKG_META.standard;
+  const fmt  = n => '$' + Number(n).toLocaleString('en-CA');
+
+  let travelFee = 0;
+
+  // Zone detection — explicit lists only, no catch-all
+  const ZONE1 = [
+    'salmon arm','blind bay','sorrento','tappen','chase'
+  ];
+  const ZONE2 = [
+    'sicamous','enderby','armstrong','eagle bay','celista',
+    'scotch creek','grindrod','spallumcheen','swansea point','anglemont'
+  ];
+
+  function detectTravel(address) {
+    const a = (address || '').toLowerCase();
+    const z1match = ZONE1.find(c => a.includes(c));
+    if (z1match) return { fee: 35, place: z1match.replace(/\b\w/g, l => l.toUpperCase()) };
+    const z2match = ZONE2.find(c => a.includes(c));
+    if (z2match) return { fee: 55, place: z2match.replace(/\b\w/g, l => l.toUpperCase()) };
+    // Unknown address — minimum $35 applies
+    if (a.trim().length > 6) return { fee: 35, place: null };
+    return null;
+  }
+
+  function updateTravelBadge(address) {
+    const result = detectTravel(address);
+    const badge  = document.getElementById('travel-badge');
+    const label  = document.getElementById('travel-badge-text');
+    travelFee = result ? result.fee : 0;
+
+    if (result && result.fee === 55) {
+      badge.className = 'travel-badge zone2';
+      label.textContent = '$55 travel fee — ' + result.place;
+      badge.style.display = 'flex';
+    } else if (result && result.fee === 35) {
+      badge.className = 'travel-badge zone1';
+      label.textContent = result.place ? '$35 travel fee — ' + result.place : '$35 travel fee (minimum)';
+      badge.style.display = 'flex';
+    } else {
+      badge.style.display = 'none';
+    }
+
+    // Update displayed total
+    const displayed = baseTotal + travelFee;
+    document.getElementById('pkg-total').textContent = fmt(displayed);
+    document.getElementById('pkg-gst-note').textContent =
+      travelFee > 0
+        ? 'Includes GST · ' + fmt(travelFee) + ' travel · Confirmed on-site'
+        : 'Includes GST · Confirmed on-site';
+
+    updateSummary();
+  }
+
+  // Style the bar
+  document.getElementById('pkg-bar').classList.add(meta.cls);
+  document.getElementById('pkg-chosen').textContent = meta.label;
+  document.getElementById('pkg-total').textContent  = fmt(baseTotal);
+  document.getElementById('pkg-desc').textContent   = meta.desc;
+
+  // Style the submit button
+  const btn = document.getElementById('submit-btn');
+  btn.classList.add(meta.btnCls);
+  btn.textContent = meta.btnTxt;
+
+  // Pre-fill from URL params
+  if (name) {
+    const parts = name.trim().split(/\s+/);
+    document.getElementById('f-fname').value = parts[0] || '';
+    document.getElementById('f-lname').value = parts.slice(1).join(' ') || '';
+  }
+  if (addr) {
+    document.getElementById('f-address').value = addr;
+    updateTravelBadge(addr);
+  }
+
+  // Set hidden fields
+  document.getElementById('f-subject').value =
+    'New Booking — ' + meta.label + ', ' + fmt(baseTotal) + (name ? ', ' + name : '');
+  document.getElementById('f-summary').value =
+    'Package: ' + meta.label +
+    ' | Total: ' + fmt(baseTotal) +
+    ' | Panes: ' + panes +
+    (name ? ' | Name: ' + name : '') +
+    (addr ? ' | Address: ' + addr : '');
+
+  // Keep summary in sync as fields are filled
+  function updateSummary() {
+    const fn   = document.getElementById('f-fname').value.trim();
+    const ln   = document.getElementById('f-lname').value.trim();
+    const ph   = document.getElementById('f-phone').value.trim();
+    const em   = document.getElementById('f-email').value.trim();
+    const ad   = document.getElementById('f-address').value.trim();
+    const dt   = document.getElementById('f-date').value;
+    const city = document.getElementById('f-city').value.trim();
+    const nm   = [fn, ln].filter(Boolean).join(' ');
+    const displayed = baseTotal + travelFee;
+    document.getElementById('f-subject').value =
+      'New Booking — ' + meta.label + ', ' + fmt(displayed) + (nm ? ', ' + nm : '');
+    document.getElementById('f-summary').value =
+      'Package: ' + meta.label +
+      ' | Base: ' + fmt(baseTotal) +
+      (travelFee > 0 ? ' | Travel: ' + fmt(travelFee) : '') +
+      ' | Total: ' + fmt(displayed) +
+      ' | Panes: ' + panes +
+      ' | Name: ' + (nm || '—') +
+      ' | Phone: ' + (ph || '—') +
+      ' | Email: ' + (em || '—') +
+      ' | Address: ' + (ad || '—') +
+      (city ? ' | City: ' + city : '') +
+      (dt   ? ' | Preferred date: ' + dt : '');
+  }
+
+  document.getElementById('f-address').addEventListener('input', function () {
+    updateTravelBadge(this.value);
+  });
+
+  ['f-fname','f-lname','f-phone','f-email','f-date','f-city'].forEach(id => {
+    document.getElementById(id).addEventListener('input', updateSummary);
+  });
+
+  // Submit
+  window.submitBooking = async function (e) {
+    e.preventDefault();
+    const ph = document.getElementById('f-phone').value.trim();
+    const em = document.getElementById('f-email').value.trim();
+    if (!ph && !em) {
+      alert('Please enter at least a phone number or email address so we can reach you.');
+      document.getElementById('f-phone').focus();
+      return;
+    }
+    updateSummary();
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    try {
+      const res  = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST', body: new FormData(e.target)
+      });
+      const json = await res.json();
+      if (json.success) {
+        document.getElementById('form-wrap').style.display    = 'none';
+        document.getElementById('success-screen').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else { throw new Error(json.message); }
+    } catch {
+      btn.textContent = meta.btnTxt;
+      btn.disabled = false;
+      alert('Something went wrong. Please call or text David directly.');
+    }
+  };
+})();
+</script>
+</body>
+</html>

@@ -117,7 +117,8 @@
       {"@type": "City", "name": "Scotch Creek"},
       {"@type": "City", "name": "Grindrod"},
       {"@type": "City", "name": "Spallumcheen"},
-      {"@type": "City", "name": "Swansea Point"}
+      {"@type": "City", "name": "Swansea Point"},
+      {"@type": "City", "name": "Anglemont"}
     ],
     "openingHoursSpecification": [
       {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "10:30", "closes": "18:00"}
@@ -136,12 +137,7 @@
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Wagon Windows",
-    "url": "https://wagonwindow.com",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://wagonwindow.com/quote/",
-      "query-input": "required name=search_term_string"
-    }
+    "url": "https://wagonwindow.com"
   }
   </script>
 
@@ -169,6 +165,20 @@
 .step-card{background:#fff;border-radius:12px;padding:2rem;box-shadow:0 2px 16px rgba(0,0,0,.07);margin-bottom:1.5rem}
 .step-card h2{font-size:1.25rem;font-weight:700;margin-bottom:.3rem;color:var(--navy)}
 .step-card .sub{color:var(--gray);font-size:.88rem;margin-bottom:1.5rem;line-height:1.5}
+
+/* LOCATION STEP */
+.area-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem}
+@media(max-width:480px){.area-grid{grid-template-columns:repeat(2,1fr)}}
+.area-btn{border:2px solid var(--border);border-radius:8px;padding:.65rem .5rem;background:#fff;cursor:pointer;font-family:var(--font);font-size:.88rem;font-weight:600;color:var(--navy);transition:all .15s;text-align:center;line-height:1.2}
+.area-btn:hover{border-color:#bbb;background:#fafafa}
+.area-btn.selected{border-color:var(--sky);background:#fff5f5;color:var(--sky)}
+/* travel fee modal */
+.travel-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999;display:flex;align-items:center;justify-content:center;padding:1rem}
+.travel-modal-card{background:#fff;border-radius:16px;padding:2.25rem 2rem;max-width:360px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.travel-modal-fee{font-size:2.1rem;font-weight:800;color:var(--sky);margin:.6rem 0 .5rem}
+.travel-modal-joke{font-size:.93rem;color:var(--gray);font-style:italic;margin-bottom:1.75rem;line-height:1.55}
+.travel-modal-confirm{width:100%;padding:.9rem;background:var(--sky);color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;font-family:var(--font);transition:opacity .15s}
+.travel-modal-confirm:hover{opacity:.88}
 
 .prop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
 .prop-btn{border:2px solid var(--border);border-radius:10px;padding:1rem;background:#fff;cursor:pointer;text-align:left;transition:all .15s;font-family:var(--font);width:100%}
@@ -602,8 +612,19 @@
     <div class="progress-bar">
       <div class="progress-step active" id="prog-1">Property</div>
       <div class="progress-step" id="prog-2">Count</div>
-      <div class="progress-step" id="prog-3">Packages</div>
-      <div class="progress-step" id="prog-4">Book</div>
+      <div class="progress-step" id="prog-3">Location</div>
+      <div class="progress-step" id="prog-4">Packages</div>
+      <div class="progress-step" id="prog-5">Book</div>
+    </div>
+
+    <!-- ── Travel fee modal ── -->
+    <div id="travel-modal" class="travel-modal-overlay" style="display:none" onclick="if(event.target===this){}">
+      <div class="travel-modal-card">
+        <div style="font-size:5rem;line-height:1">🐎</div>
+        <div class="travel-modal-fee" id="modal-fee">$—</div>
+        <div class="travel-modal-joke" id="modal-joke"></div>
+        <button class="travel-modal-confirm" onclick="confirmArea()">Got it — show me pricing →</button>
+      </div>
     </div>
 
     <!-- ── Step 1: Property Type ── -->
@@ -684,18 +705,47 @@
         <div class="pane-total">Total: <strong id="pane-total">0</strong> panes</div>
         <div id="large-notice" style="display:none">
           <div class="notice-box red">
-            <strong>Bigger job.</strong> For 36+ window homes we do a free on-site consultation to give you a precise quote — no surprises. Hit Next to book it.
+            <strong>Bigger job.</strong> For homes with 71+ panes we do a free on-site consultation to give you a precise quote — no surprises. Hit Next to book it.
           </div>
         </div>
       </div>
       <div class="step-nav">
         <button class="btn-back" onclick="showStep(1)">← Back</button>
-        <button class="btn-next" id="next-2" onclick="handleCountNext()">See Packages →</button>
+        <button class="btn-next" id="next-2" onclick="handleCountNext()">Next →</button>
       </div>
     </div>
 
-    <!-- ── Step 3: Packages ── -->
+    <!-- ── Step 3: Location ── -->
     <div class="qstep" id="step-3">
+      <div class="step-card">
+        <h2>Where are you located?</h2>
+        <p class="sub">Tap your area — we'll let you know about travel before you see any pricing. No surprises.</p>
+        <div class="area-grid">
+          <button class="area-btn" onclick="selectArea('Salmon Arm', 35, this)">Salmon Arm</button>
+          <button class="area-btn" onclick="selectArea('Blind Bay', 35, this)">Blind Bay</button>
+          <button class="area-btn" onclick="selectArea('Sorrento', 35, this)">Sorrento</button>
+          <button class="area-btn" onclick="selectArea('Tappen', 35, this)">Tappen</button>
+          <button class="area-btn" onclick="selectArea('Chase', 35, this)">Chase</button>
+          <button class="area-btn" onclick="selectArea('Sicamous', 55, this)">Sicamous</button>
+          <button class="area-btn" onclick="selectArea('Enderby', 55, this)">Enderby</button>
+          <button class="area-btn" onclick="selectArea('Armstrong', 55, this)">Armstrong</button>
+          <button class="area-btn" onclick="selectArea('Eagle Bay', 55, this)">Eagle Bay</button>
+          <button class="area-btn" onclick="selectArea('Celista', 55, this)">Celista</button>
+          <button class="area-btn" onclick="selectArea('Scotch Creek', 55, this)">Scotch Creek</button>
+          <button class="area-btn" onclick="selectArea('Grindrod', 55, this)">Grindrod</button>
+          <button class="area-btn" onclick="selectArea('Spallumcheen', 55, this)">Spallumcheen</button>
+          <button class="area-btn" onclick="selectArea('Swansea Point', 55, this)">Swansea Point</button>
+          <button class="area-btn" onclick="selectArea('Anglemont', 55, this)">Anglemont</button>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="showStep(2)">← Back</button>
+        <button class="btn-next" id="next-3" onclick="updatePrices();showStep(4)" disabled>See Pricing →</button>
+      </div>
+    </div>
+
+    <!-- ── Step 4: Packages ── -->
+    <div class="qstep" id="step-4">
       <div class="pkg-grid">
 
         <div class="pkg-card" id="pkg-standard" onclick="selectPkg('standard')">
@@ -709,7 +759,7 @@
           <div class="pkg-price-row">
             <div class="pkg-price-label">Starting from</div>
             <div class="pkg-price" id="price-standard">$—</div>
-            <div class="pkg-price-sub">incl. GST · 5% online discount applied</div>
+            <div class="pkg-price-sub">incl. GST, travel &amp; 5% online discount</div>
           </div>
           <div class="pkg-select-hint">Tap to select</div>
         </div>
@@ -727,7 +777,7 @@
           <div class="pkg-price-row">
             <div class="pkg-price-label">Starting from</div>
             <div class="pkg-price" id="price-premium">$—</div>
-            <div class="pkg-price-sub">incl. GST · 5% online discount applied</div>
+            <div class="pkg-price-sub">incl. GST, travel &amp; 5% online discount</div>
           </div>
           <div class="pkg-select-hint">Tap to select</div>
         </div>
@@ -746,7 +796,7 @@
           <div class="pkg-price-row">
             <div class="pkg-price-label">Starting from</div>
             <div class="pkg-price" id="price-supreme">$—</div>
-            <div class="pkg-price-sub">incl. GST · 5% online discount applied</div>
+            <div class="pkg-price-sub">incl. GST, travel &amp; 5% online discount</div>
           </div>
           <div class="pkg-select-hint">Tap to select</div>
         </div>
@@ -787,13 +837,13 @@
       <div class="discount-note" style="margin-top:.5rem;">🏆 Lowest price guarantee — find a lower quote for the same job, we'll beat it</div>
 
       <div class="step-nav">
-        <button class="btn-back" onclick="showStep(2)">← Back</button>
-        <button class="btn-next" id="next-3" onclick="showStep(4)" disabled>Book This Package →</button>
+        <button class="btn-back" onclick="showStep(3)">← Back</button>
+        <button class="btn-next" id="next-4" onclick="showStep(5)" disabled>Book This Package →</button>
       </div>
     </div>
 
-    <!-- ── Step 4: Book ── -->
-    <div class="qstep" id="step-4">
+    <!-- ── Step 5: Book ── -->
+    <div class="qstep" id="step-5">
       <div class="step-card">
         <h2>Book Your Appointment</h2>
         <p class="sub">We'll confirm within 24 hours and lock in your date.</p>
@@ -854,7 +904,7 @@
         </form>
       </div>
       <div class="step-nav" style="margin-top:0">
-        <button class="btn-back" onclick="showStep(3)">← Back to Packages</button>
+        <button class="btn-back" onclick="showStep(4)">← Back to Packages</button>
       </div>
     </div>
 
@@ -863,7 +913,7 @@
       <div class="step-card centered-card">
         <div class="big-icon">🏡</div>
         <h2>Sounds Like a Bigger Job</h2>
-        <p>For homes with 36+ windows we come out for a free on-site consultation — no guesswork, no surprises before we start.</p>
+        <p>For homes with 71+ panes we come out for a free on-site consultation — no guesswork, no surprises before we start.</p>
         <a href="https://calendar.app.google/KcgTkongKSkHw8xZ8" class="btn-primary" target="_blank" rel="noopener" style="display:inline-block"
            onclick="gtag('event','booking_click',{'event_category':'quote','event_label':'large_home'});">
           Book Free Consultation
@@ -898,11 +948,42 @@ const DISCOUNT = 0.05;
 const LARGE_PK = 8;
 
 const state = {
+  area: null,
+  travelFee: 0,
   propertyType: null,
   breakdown: { regular: 0, large: 0, french: 0 },
   addons: { hardwater: 0, gutters: false },
   selectedPkg: null
 };
+
+let _pendingAreaName = null;
+let _pendingAreaFee  = null;
+let _pendingAreaBtn  = null;
+
+const AREA_JOKES = [
+  "Honestly, we'd waive it — but Petro-Canada hasn't extended us that courtesy yet."
+];
+
+function selectArea(name, fee, btn) {
+  _pendingAreaName = name;
+  _pendingAreaFee  = fee;
+  _pendingAreaBtn  = btn;
+  const joke = AREA_JOKES[Math.floor(Math.random() * AREA_JOKES.length)];
+  document.getElementById('modal-fee').textContent  = '$' + fee + ' travel fee';
+  document.getElementById('modal-joke').textContent = joke;
+  document.getElementById('travel-modal').style.display = 'flex';
+}
+
+function confirmArea() {
+  state.area      = _pendingAreaName;
+  state.travelFee = _pendingAreaFee;
+  document.querySelectorAll('.area-btn').forEach(b => b.classList.remove('selected'));
+  if (_pendingAreaBtn) _pendingAreaBtn.classList.add('selected');
+  document.getElementById('travel-modal').style.display = 'none';
+  document.getElementById('next-3').disabled = false;
+  updatePrices();
+  showStep(4);
+}
 
 function totalPanes() {
   return state.breakdown.regular + state.breakdown.large + state.breakdown.french;
@@ -927,7 +1008,7 @@ function pkgTotal(type, screens, tracks) {
   const hw     = state.addons.hardwater * 20;
   const sub    = base + lrg + scr + trk + hw;
   const aft    = sub - Math.round(sub * DISCOUNT);
-  return aft + Math.round(aft * GST);
+  return aft + Math.round(aft * GST) + state.travelFee;
 }
 
 function updatePrices() {
@@ -959,7 +1040,6 @@ function adjustPane(type, delta) {
 function handleCountNext() {
   if (totalPanes() === 0) { alert('Please count at least 1 pane.'); return; }
   if (totalPanes() >= 71) { showStep('large'); return; }
-  updatePrices();
   showStep(3);
 }
 
@@ -971,7 +1051,7 @@ function selectPkg(tier) {
   });
   document.getElementById('pkg-' + tier).classList.add('selected');
   document.getElementById('pkg-' + tier).querySelector('.pkg-select-hint').textContent = '✓ Selected';
-  document.getElementById('next-3').disabled = false;
+  document.getElementById('next-4').disabled = false;
   buildEmailSummary();
 }
 
@@ -1025,19 +1105,20 @@ function buildEmailSummary() {
     'New Estimate Request — ' + (propLbls[state.propertyType] || '') + ', ' + panes + ' panes, ' + pkgLbls[state.selectedPkg] + ', ~$' + price + ' incl. GST';
 
   document.getElementById('email-summary').value =
-    'Property: ' + (propLbls[state.propertyType] || '?') +
+    'Location: ' + (state.area || '?') + ' | Travel fee: $' + state.travelFee +
+    ' | Property: ' + (propLbls[state.propertyType] || '?') +
     ' | Panes: ' + panes + ' (' + state.breakdown.regular + ' standard, ' + state.breakdown.large + ' large, ' + state.breakdown.french + ' french)' +
     ' | Package: ' + pkgLbls[state.selectedPkg] +
     ' | Est. screens: ' + est + ' | Est. tracks: ' + est +
     ' | Hard water removal: ' + state.addons.hardwater + ' panes' +
     ' | Gutter cleaning requested: ' + (state.addons.gutters ? 'YES — quote on arrival' : 'No') +
-    ' | Quote (5% discount + GST): $' + price;
+    ' | Quote (5% discount + GST + travel): $' + price;
 }
 
 function showStep(id) {
   document.querySelectorAll('.qstep').forEach(s => s.classList.remove('active'));
   document.getElementById('step-' + id).classList.add('active');
-  [1,2,3,4].forEach(function(n) {
+  [1,2,3,4,5].forEach(function(n) {
     var el = document.getElementById('prog-' + n);
     if (!el) return;
     el.classList.remove('active','done');
@@ -1048,11 +1129,15 @@ function showStep(id) {
   });
   var sec = document.querySelector('.quote-section');
   if (sec) window.scrollTo({ top: sec.offsetTop - 90, behavior: 'smooth' });
+  var inTool = typeof id === 'number' || id === 'large';
+  document.querySelectorAll('.float-contact,.mobile-book-bar').forEach(function(el) {
+    el.style.display = inTool ? 'none' : '';
+  });
 }
 
 const TRAVEL_ZONES = [
-  { fee: 55, label: 'Armstrong / Chase area (~50–60 km from Salmon Arm)', keywords: ['armstrong','chase','falkland'] },
-  { fee: 35, label: 'Sorrento / Sicamous / Enderby area (~30–50 km from Salmon Arm)', keywords: ['sorrento','blind bay','tappen','celista','scotch creek','eagle bay','swansea point','sicamous','enderby','grindrod','spallumcheen'] }
+  { fee: 35, label: 'Salmon Arm area', keywords: ['salmon arm','blind bay','sorrento','tappen','chase'] },
+  { fee: 55, label: 'Outlying area', keywords: ['sicamous','enderby','armstrong','eagle bay','celista','scotch creek','grindrod','spallumcheen','swansea point','anglemont'] }
 ];
 
 const OUT_OF_AREA = [
@@ -1130,6 +1215,12 @@ async function submitBooking(e) {
     alert('Something went wrong. Please call or text us at (403) 837-5092.');
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.float-contact,.mobile-book-bar').forEach(function(el) {
+    el.style.display = 'none';
+  });
+});
 </script>
 
 
