@@ -11,9 +11,9 @@
       {
         "service": "Residential Exterior Window Cleaning",
         "tiers": [
-          {"label": "Small home (up to 10 windows)", "price": "From $169"},
-          {"label": "Medium home (11–20 windows)", "price": "From $229"},
-          {"label": "Large home (21+ windows)", "price": "From $299"},
+          {"label": "Small home (up to 15 windows)", "price": "From $169"},
+          {"label": "Medium home (16–25 windows)", "price": "From $229"},
+          {"label": "Large home (26–35 windows)", "price": "From $299"},
           {"label": "Interior + exterior add-on", "price": "+$60 typical"}
         ]
       },
@@ -35,7 +35,7 @@
       {
         "service": "Commercial Window Cleaning",
         "tiers": [
-          {"label": "Storefronts & small offices", "price": "From $119"},
+          {"label": "Storefronts & small offices", "price": "From $169"},
           {"label": "Multi-storey commercial", "price": "Quoted on site"},
           {"label": "Monthly contract (4+ visits/year)", "price": "Discounted rate"}
         ]

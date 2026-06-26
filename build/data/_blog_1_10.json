@@ -11,15 +11,15 @@
     "sections": [
       {
         "h2": "Wagon Windows Pricing for Salmon Arm Homes",
-        "body": "Wagon Windows uses flat-rate pricing based on home size rather than a per-window count that fluctuates with every measurement. This means you get a firm number before anyone shows up at your door, and the price doesn't change unless the scope does.\n\nFor residential exterior-only cleaning, pricing starts at $169 for a small home (roughly under 1,400 sq ft), $169 for a medium home (1,400–2,200 sq ft), and $219 for a large home over 2,200 sq ft. Interior and exterior combined starts at $169 for small homes. Gutter cleaning starts at $149 for single-storey and $169 for two-storey properties.\n\nScreen cleaning is priced per screen — typically $4–5 per screen — and track cleaning is available as an add-on. Hard water stain removal is quoted separately because severity varies too much to flat-rate: a minor mineral haze and a years-old calcium deposit require entirely different treatment.",
+        "body": "Wagon Windows uses flat-rate pricing based on home size rather than a per-window count that fluctuates with every measurement. This means you get a firm number before anyone shows up at your door, and the price doesn't change unless the scope does.\n\nFor residential exterior-only cleaning, pricing starts at $169 for a small home (up to 15 windows), $229 for a medium home (16–25 windows), and $299 for a large home (26–35 windows). Interior and exterior combined starts at $219 for small homes. Gutter cleaning starts at $149 for single-storey and $229 for two-storey properties.\n\nScreen cleaning is $4 per screen and track cleaning is available as an add-on. Hard water stain removal is quoted separately because severity varies too much to flat-rate: a minor mineral haze and a years-old calcium deposit require entirely different treatment.",
         "bullets": [
-          "Exterior only (small, under 1,400 sq ft): $169",
-          "Exterior only (medium, 1,400–2,200 sq ft): $169",
-          "Exterior only (large, 2,200+ sq ft): $219",
-          "Interior + exterior (small): from $169",
+          "Exterior only (small, up to 15 windows): $169",
+          "Exterior only (medium, 16–25 windows): $229",
+          "Exterior only (large, 26–35 windows): $299",
+          "Interior + exterior (small): from $219",
           "Gutter cleaning (single-storey): $149",
-          "Gutter cleaning (two-storey): $169",
-          "Screen cleaning: $4–5 per screen",
+          "Gutter cleaning (two-storey): $229",
+          "Screen cleaning: $4 per screen",
           "Hard water stain removal: custom quote"
         ],
         "body2": "These prices reflect the Salmon Arm market and the actual time it takes to do the job properly. Low-ball quotes that surface on community boards often omit screen cleaning, skip tracks entirely, or charge extra for anything above ground level."
@@ -100,7 +100,7 @@
       },
       {
         "h2": "What Shuswap Window Cleaning Prices Actually Include",
-        "body": "In the Shuswap market, a legitimate quote from a professional operation should include: cleaning all exterior glass surfaces up to the quoted storey height, squeegee-finishing every pane, and wiping frames and sills dry. Screens are typically priced separately — a good company will tell you this upfront rather than leaving you to discover it later.\n\nWagon Windows includes frame wipe-down with every clean. Tracks are a priced add-on. Screens are $4–5 per screen. Hard water stain removal is quoted separately because severity varies so much: a light haze on a lakeside window is a different job from calcified deposits that have been accumulating for five or six summers.\n\nDownspout flushing and condition reporting come with gutter cleaning ($149 for single-storey, $169 for two-storey). These aren't extras — they're part of a complete gutter service because a cleaned gutter with a blocked downspout is still a failed gutter.\n\nKnowing what's included means you can make an accurate price comparison. A $120 quote that doesn't include screens or sill wiping is not a better deal than a $169 quote that does — it's a lower number for less work.",
+        "body": "In the Shuswap market, a legitimate quote from a professional operation should include: cleaning all exterior glass surfaces up to the quoted storey height, squeegee-finishing every pane, and wiping frames and sills dry. Screens are typically priced separately — a good company will tell you this upfront rather than leaving you to discover it later.\n\nWagon Windows includes frame wipe-down with every clean. Tracks are a priced add-on. Screens are $4 per screen. Hard water stain removal is quoted separately because severity varies so much: a light haze on a lakeside window is a different job from calcified deposits that have been accumulating for five or six summers.\n\nDownspout flushing and condition reporting come with gutter cleaning ($149 for single-storey, $229 for two-storey). These aren't extras — they're part of a complete gutter service because a cleaned gutter with a blocked downspout is still a failed gutter.\n\nKnowing what's included means you can make an accurate price comparison. A $120 quote that doesn't include screens or sill wiping is not a better deal than a $169 quote that does — it's a lower number for less work.",
         "bullets": []
       },
       {
@@ -300,8 +300,8 @@
       },
       {
         "h2": "Add-On Costs That Apply Regardless of Pricing Model",
-        "body": "Whether a company quotes per window or by flat rate, certain services are almost always priced separately because they represent genuinely separate scope.\n\nScreen cleaning is the most common add-on. In the Shuswap, screens clog with cottonwood pollen, insect debris, and fine organic matter through the spring and summer. Cleaning them properly requires removing each screen, washing the mesh and frame, and reinstalling. Wagon Windows charges $4–5 per screen. Most companies in BC run $3–6 per screen depending on size.\n\nTrack cleaning is another separate service. Window tracks — the channel in the frame where the sash slides — accumulate dead insects, dirt, and moisture that standard window cleaning doesn't address. Track cleaning involves brushing and vacuuming the tracks and wiping them down, which takes additional time. It's worth doing when tracks are visibly dirty or when windows are sticking.\n\nHard water stain removal is always a separate line item because the severity varies enormously. A light haze from a single summer's mineral exposure is a 20-minute treatment on a standard window. Years of accumulated lake spray on 15 windows facing Shuswap Lake is a multi-hour job requiring multiple treatment passes. Lumping this into a per-window rate would either overcharge clean windows or underprice badly stained ones.",
-        "bullets": ["Screen cleaning: $3–6 per screen (Wagon Windows: $4–5)", "Track cleaning: typically quoted as an add-on", "Hard water stain removal: custom quote based on severity and count"]
+        "body": "Whether a company quotes per window or by flat rate, certain services are almost always priced separately because they represent genuinely separate scope.\n\nScreen cleaning is the most common add-on. In the Shuswap, screens clog with cottonwood pollen, insect debris, and fine organic matter through the spring and summer. Cleaning them properly requires removing each screen, washing the mesh and frame, and reinstalling. Wagon Windows charges $4 per screen. Most companies in BC run $3–6 per screen depending on size.\n\nTrack cleaning is another separate service. Window tracks — the channel in the frame where the sash slides — accumulate dead insects, dirt, and moisture that standard window cleaning doesn't address. Track cleaning involves brushing and vacuuming the tracks and wiping them down, which takes additional time. It's worth doing when tracks are visibly dirty or when windows are sticking.\n\nHard water stain removal is always a separate line item because the severity varies enormously. A light haze from a single summer's mineral exposure is a 20-minute treatment on a standard window. Years of accumulated lake spray on 15 windows facing Shuswap Lake is a multi-hour job requiring multiple treatment passes. Lumping this into a per-window rate would either overcharge clean windows or underprice badly stained ones.",
+        "bullets": ["Screen cleaning: $3–6 per screen (Wagon Windows: $4)", "Track cleaning: typically quoted as an add-on", "Hard water stain removal: custom quote based on severity and count"]
       },
       {
         "h2": "Flat Rate vs Per Window: Which Is Better for Shuswap Homeowners",
@@ -346,10 +346,10 @@
     "sections": [
       {
         "h2": "Shuswap Gutter Cleaning Prices: What Wagon Windows Charges",
-        "body": "Wagon Windows prices gutter cleaning at $149 for single-storey homes and $169 for two-storey homes in the Shuswap. These are flat rates that apply across the service area — Salmon Arm, Blind Bay, Sorrento, Sicamous, Chase, Enderby, Armstrong, and surrounding communities.\n\nWhat's included in the flat rate: all gutters cleared of debris (leaves, cottonwood seed pods, conifer needles, organic matter), downspout flushing to clear blockages and confirm flow, and a basic condition report noting any visible damage to gutters, fascia, or downspout connections. The condition report isn't a formal inspection, but it's a professional eye on the state of your drainage system — useful information about problems that need attention before water damage sets in.\n\nWhat's not included: gutter repairs, gutter guard installation, or remediation of existing water damage. If cleaning reveals a section of gutter pulling away from fascia or a cracked downspout elbow, that's flagged in the condition report and is a separate repair. Knowing about those issues early is the point — catching a loose gutter bracket before it fails is a $40 hardware store fix; missing it until the gutter pulls away and directs water down the siding is an insurance claim.",
+        "body": "Wagon Windows prices gutter cleaning at $149 for single-storey homes and $229 for two-storey homes in the Shuswap. These are flat rates that apply across the service area — Salmon Arm, Blind Bay, Sorrento, Sicamous, Chase, Enderby, Armstrong, and surrounding communities.\n\nWhat's included in the flat rate: all gutters cleared of debris (leaves, cottonwood seed pods, conifer needles, organic matter), downspout flushing to clear blockages and confirm flow, and a basic condition report noting any visible damage to gutters, fascia, or downspout connections. The condition report isn't a formal inspection, but it's a professional eye on the state of your drainage system — useful information about problems that need attention before water damage sets in.\n\nWhat's not included: gutter repairs, gutter guard installation, or remediation of existing water damage. If cleaning reveals a section of gutter pulling away from fascia or a cracked downspout elbow, that's flagged in the condition report and is a separate repair. Knowing about those issues early is the point — catching a loose gutter bracket before it fails is a $40 hardware store fix; missing it until the gutter pulls away and directs water down the siding is an insurance claim.",
         "bullets": [
           "Single-storey gutter cleaning: $149",
-          "Two-storey gutter cleaning: $169",
+          "Two-storey gutter cleaning: $229",
           "Included: debris removal, downspout flush, condition report",
           "Not included: repairs, gutter guard installation, water damage remediation"
         ]
@@ -404,7 +404,7 @@
   {
     "slug": "screen-cleaning-cost-bc",
     "meta_title": "Screen Cleaning Cost BC 2026 | Wagon Windows",
-    "meta_desc": "BC screen cleaning costs $4–5 per screen at Wagon Windows. Learn what's included, when professional cleaning beats a garden hose, and the pollen problem in the Shuswap.",
+    "meta_desc": "BC screen cleaning costs $4 per screen at Wagon Windows. Learn what's included, when professional cleaning beats a garden hose, and the pollen problem in the Shuswap.",
     "h1": "Screen Cleaning Cost in BC: What to Expect and When It's Worth It",
     "category": "cost-pricing",
     "tags": ["screen cleaning cost BC", "window screen cleaning price", "screen cleaning Shuswap"],
@@ -413,12 +413,12 @@
     "sections": [
       {
         "h2": "Screen Cleaning Prices in BC: What You'll Pay",
-        "body": "In BC, professional window screen cleaning typically runs $3–6 per screen, with most quality operators in Interior BC — including the Shuswap — landing in the $4–5 range. The price per screen varies with size: standard window screens at the lower end, large patio door screens or oversized specialty screens at the higher end.\n\nWagon Windows charges $4–5 per screen as an add-on to window cleaning service. A medium Salmon Arm home with 20 screens would add $80–$100 to a window cleaning bill — a modest cost relative to the difference it makes in appearance and airflow.\n\nLow-end operators often advertise screen cleaning as 'free' or 'included' — and then deliver exactly the level of care that implies: a quick spray that moves dirt around without removing it. Professional screen cleaning involves removing each screen from the window, washing the mesh and aluminum frame with a soft brush and cleaning solution, rinsing, and reinstalling. That process can't be rushed and can't be meaningfully free as part of a bundle.",
+        "body": "In BC, professional window screen cleaning typically runs $3–6 per screen, with most quality operators in Interior BC — including the Shuswap — landing in the $4–5 range. The price per screen varies with size: standard window screens at the lower end, large patio door screens or oversized specialty screens at the higher end.\n\nWagon Windows charges $4 per screen as an add-on to window cleaning service. A medium Salmon Arm home with 20 screens would add $80 to a window cleaning bill — a modest cost relative to the difference it makes in appearance and airflow.\n\nLow-end operators often advertise screen cleaning as 'free' or 'included' — and then deliver exactly the level of care that implies: a quick spray that moves dirt around without removing it. Professional screen cleaning involves removing each screen from the window, washing the mesh and aluminum frame with a soft brush and cleaning solution, rinsing, and reinstalling. That process can't be rushed and can't be meaningfully free as part of a bundle.",
         "bullets": [
           "BC market range: $3–6 per screen",
-          "Wagon Windows: $4–5 per screen",
-          "Large patio door screens: typically at the upper end of the range",
-          "Average medium home (20 screens): $80–$100 add-on"
+          "Wagon Windows: $4 per screen",
+          "Large patio door screens: same flat $4 rate",
+          "Average medium home (20 screens): $80 add-on"
         ]
       },
       {

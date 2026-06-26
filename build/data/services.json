@@ -191,7 +191,7 @@
       "After-hours scheduling available on request",
       "Commercial invoice and receipt provided"
     ],
-    "base_price_commercial": 119,
+    "base_price_commercial": 169,
     "schema_service_type": "WindowCleaningService",
     "icon": "🏢",
     "faq_count_minimum": 8,
