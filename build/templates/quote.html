@@ -956,6 +956,10 @@ function showStep(id) {
   });
   var sec = document.querySelector('.quote-section');
   if (sec) window.scrollTo({ top: sec.offsetTop - 90, behavior: 'smooth' });
+  var inTool = typeof id === 'number' || id === 'large';
+  document.querySelectorAll('.float-contact,.mobile-book-bar').forEach(function(el) {
+    el.style.display = inTool ? 'none' : '';
+  });
 }
 
 const TRAVEL_ZONES = [
@@ -1038,5 +1042,11 @@ async function submitBooking(e) {
     alert('Something went wrong. Please call or text us at {{ config.phone }}.');
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.float-contact,.mobile-book-bar').forEach(function(el) {
+    el.style.display = 'none';
+  });
+});
 </script>
 {% endblock %}
