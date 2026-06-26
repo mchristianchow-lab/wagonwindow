@@ -15,14 +15,14 @@
     "sections": [
       {
         "h2": "Wagon Windows Pricing for Salmon Arm Homes",
-        "body": "Wagon Windows uses flat-rate pricing based on home size rather than a per-window count that fluctuates with every measurement. This means you get a firm number before anyone shows up at your door, and the price doesn't change unless the scope does.\n\nFor residential exterior-only cleaning, pricing starts at $169 for a small home (roughly under 1,400 sq ft), $229 for a medium home (1,400–2,200 sq ft), and $299 for a large home over 2,200 sq ft. Interior and exterior combined starts at $229 for small homes. Gutter cleaning starts at $149 for single-storey and $229 for two-storey properties.\n\nScreen cleaning is priced per screen — typically $4–5 per screen — and track cleaning is available as an add-on. Hard water stain removal is quoted separately because severity varies too much to flat-rate: a minor mineral haze and a years-old calcium deposit require entirely different treatment.",
+        "body": "Wagon Windows uses flat-rate pricing based on home size rather than a per-window count that fluctuates with every measurement. This means you get a firm number before anyone shows up at your door, and the price doesn't change unless the scope does.\n\nFor residential exterior-only cleaning, pricing starts at $169 for a small home (roughly under 1,400 sq ft), $169 for a medium home (1,400–2,200 sq ft), and $219 for a large home over 2,200 sq ft. Interior and exterior combined starts at $169 for small homes. Gutter cleaning starts at $149 for single-storey and $169 for two-storey properties.\n\nScreen cleaning is priced per screen — typically $4–5 per screen — and track cleaning is available as an add-on. Hard water stain removal is quoted separately because severity varies too much to flat-rate: a minor mineral haze and a years-old calcium deposit require entirely different treatment.",
         "bullets": [
           "Exterior only (small, under 1,400 sq ft): $169",
-          "Exterior only (medium, 1,400–2,200 sq ft): $229",
-          "Exterior only (large, 2,200+ sq ft): $299",
-          "Interior + exterior (small): from $229",
+          "Exterior only (medium, 1,400–2,200 sq ft): $169",
+          "Exterior only (large, 2,200+ sq ft): $219",
+          "Interior + exterior (small): from $169",
           "Gutter cleaning (single-storey): $149",
-          "Gutter cleaning (two-storey): $229",
+          "Gutter cleaning (two-storey): $169",
           "Screen cleaning: $4–5 per screen",
           "Hard water stain removal: custom quote"
         ],
@@ -57,7 +57,7 @@
     "faqs": [
       {
         "q": "How much does window cleaning cost for an average Salmon Arm home?",
-        "a": "An average Salmon Arm home in the 1,400–2,200 sq ft range runs $229 for exterior-only or from $299 for interior and exterior combined. Homes outside that range are priced up or down accordingly. Screens and gutter cleaning are separate add-ons."
+        "a": "An average Salmon Arm home in the 1,400–2,200 sq ft range runs $169 for exterior-only or from $219 for interior and exterior combined. Homes outside that range are priced up or down accordingly. Screens and gutter cleaning are separate add-ons."
       },
       {
         "q": "Does the price change if my home has hard water stains?",
@@ -65,7 +65,7 @@
       },
       {
         "q": "Is interior window cleaning included in the base price?",
-        "a": "No. The base price covers exterior only. Interior cleaning is available as an add-on or as a combined interior-exterior service, which starts at $229 for small homes. Most customers doing a full seasonal clean choose the combined option."
+        "a": "No. The base price covers exterior only. Interior cleaning is available as an add-on or as a combined interior-exterior service, which starts at $169 for small homes. Most customers doing a full seasonal clean choose the combined option."
       },
       {
         "q": "How far in advance do I need to book for spring cleaning?",
@@ -109,7 +109,7 @@
         "bullets": [
           "Lower Mainland (Metro Vancouver): $180–$500+ for residential exterior",
           "Okanagan / Interior BC (Kelowna, Vernon): $150–$350 exterior",
-          "Shuswap region (Salmon Arm, Blind Bay): $169–$299 exterior",
+          "Shuswap region (Salmon Arm, Blind Bay): $169–$219 exterior",
           "Northern BC (Prince George, Kamloops area): $130–$280 exterior",
           "Screen cleaning province-wide: $3–$6 per screen"
         ],
@@ -122,7 +122,7 @@
       },
       {
         "h2": "What Shuswap Window Cleaning Prices Actually Include",
-        "body": "In the Shuswap market, a legitimate quote from a professional operation should include: cleaning all exterior glass surfaces up to the quoted storey height, squeegee-finishing every pane, and wiping frames and sills dry. Screens are typically priced separately — a good company will tell you this upfront rather than leaving you to discover it later.\n\nWagon Windows includes frame wipe-down with every clean. Tracks are a priced add-on. Screens are $4–5 per screen. Hard water stain removal is quoted separately because severity varies so much: a light haze on a lakeside window is a different job from calcified deposits that have been accumulating for five or six summers.\n\nDownspout flushing and condition reporting come with gutter cleaning ($149 for single-storey, $229 for two-storey). These aren't extras — they're part of a complete gutter service because a cleaned gutter with a blocked downspout is still a failed gutter.\n\nKnowing what's included means you can make an accurate price comparison. A $120 quote that doesn't include screens or sill wiping is not a better deal than a $169 quote that does — it's a lower number for less work.",
+        "body": "In the Shuswap market, a legitimate quote from a professional operation should include: cleaning all exterior glass surfaces up to the quoted storey height, squeegee-finishing every pane, and wiping frames and sills dry. Screens are typically priced separately — a good company will tell you this upfront rather than leaving you to discover it later.\n\nWagon Windows includes frame wipe-down with every clean. Tracks are a priced add-on. Screens are $4–5 per screen. Hard water stain removal is quoted separately because severity varies so much: a light haze on a lakeside window is a different job from calcified deposits that have been accumulating for five or six summers.\n\nDownspout flushing and condition reporting come with gutter cleaning ($149 for single-storey, $169 for two-storey). These aren't extras — they're part of a complete gutter service because a cleaned gutter with a blocked downspout is still a failed gutter.\n\nKnowing what's included means you can make an accurate price comparison. A $120 quote that doesn't include screens or sill wiping is not a better deal than a $169 quote that does — it's a lower number for less work.",
         "bullets": []
       },
       {
@@ -152,7 +152,7 @@
       },
       {
         "q": "Is there a travel surcharge for properties outside Salmon Arm?",
-        "a": "Wagon Windows serves the full Shuswap — Blind Bay, Sorrento, Sicamous, Chase, Enderby, Armstrong, and surrounding communities — without a travel surcharge within the service area. Confirm coverage for your specific location when booking."
+        "a": "A travel fee applies based on your location within our service area. Salmon Arm and nearby communities are $35; outlying areas are $55. We confirm the fee before any work begins — no surprises on invoice day."
       },
       {
         "q": "Why are some online quotes for BC window cleaning under $100?",
@@ -268,7 +268,7 @@
     "sections": [
       {
         "h2": "The Real Time Cost of DIY Window Cleaning",
-        "body": "Most homeowners significantly underestimate how long it takes to clean their windows to a streak-free finish. A medium-sized home with 30 panes inside and out, plus screens, takes an experienced professional roughly 3–4 hours. An inexperienced homeowner working with a bucket, a squeegee they've never used properly, and multiple trips up and down a ladder is looking at 6–8 hours — or more, if they're also dealing with streaks that require a second pass.\n\nThat time cost is real. At a professional rate of $229–$299 for a full exterior clean on a medium-to-large Salmon Arm home, you're paying roughly $60–75 per hour for someone who brings the right tools, the right technique, and no learning curve. Whether that's worth it is a personal calculation, but most people who try DIY once and then hire a professional don't go back.\n\nThe technique gap matters more than it sounds. Professional squeegee work leaves glass truly streak-free because the tool is maintained, the solution is correct, and the stroke technique is consistent. Consumer squeegees from hardware stores are usually adequate; the limitation is almost always technique, not equipment. YouTube can teach the basics, but the first few windows will demonstrate the gap between watching and doing.",
+        "body": "Most homeowners significantly underestimate how long it takes to clean their windows to a streak-free finish. A medium-sized home with 30 panes inside and out, plus screens, takes an experienced professional roughly 3–4 hours. An inexperienced homeowner working with a bucket, a squeegee they've never used properly, and multiple trips up and down a ladder is looking at 6–8 hours — or more, if they're also dealing with streaks that require a second pass.\n\nThat time cost is real. At a professional rate of $169–$219 for a full exterior clean on a medium-to-large Salmon Arm home, you're paying roughly $60–75 per hour for someone who brings the right tools, the right technique, and no learning curve. Whether that's worth it is a personal calculation, but most people who try DIY once and then hire a professional don't go back.\n\nThe technique gap matters more than it sounds. Professional squeegee work leaves glass truly streak-free because the tool is maintained, the solution is correct, and the stroke technique is consistent. Consumer squeegees from hardware stores are usually adequate; the limitation is almost always technique, not equipment. YouTube can teach the basics, but the first few windows will demonstrate the gap between watching and doing.",
         "bullets": []
       },
       {
@@ -296,7 +296,7 @@
       },
       {
         "h2": "Amortizing the Cost: What Professional Cleaning Costs Per Year",
-        "body": "A full-service professional window clean on a medium Salmon Arm home — exterior clean, screens, and tracks — runs roughly $229–$280. If you do this twice a year (spring post-pollen and fall pre-freeze), that's $460–$560 annually.\n\nSpread across 12 months, that's roughly $40–$47 per month to have professionally cleaned windows year-round. For most homeowners who think carefully about it, that number is smaller than expected.\n\nConsider also what it costs not to clean properly. Mineral deposits that aren't treated eventually etch into the glass permanently. Screens blocked with pollen and organic matter corrode faster. Window frames that aren't wiped down accumulate grime that accelerates paint failure and seal degradation. The cost of regular professional cleaning is, in part, preventive maintenance — cheaper by a wide margin than the glass replacement or repainting it defers.",
+        "body": "A full-service professional window clean on a medium Salmon Arm home — exterior clean, screens, and tracks — runs roughly $169–$280. If you do this twice a year (spring post-pollen and fall pre-freeze), that's $460–$560 annually.\n\nSpread across 12 months, that's roughly $40–$47 per month to have professionally cleaned windows year-round. For most homeowners who think carefully about it, that number is smaller than expected.\n\nConsider also what it costs not to clean properly. Mineral deposits that aren't treated eventually etch into the glass permanently. Screens blocked with pollen and organic matter corrode faster. Window frames that aren't wiped down accumulate grime that accelerates paint failure and seal degradation. The cost of regular professional cleaning is, in part, preventive maintenance — cheaper by a wide margin than the glass replacement or repainting it defers.",
         "bullets": []
       }
     ],
@@ -426,10 +426,10 @@
     "sections": [
       {
         "h2": "Shuswap Gutter Cleaning Prices: What Wagon Windows Charges",
-        "body": "Wagon Windows prices gutter cleaning at $149 for single-storey homes and $229 for two-storey homes in the Shuswap. These are flat rates that apply across the service area — Salmon Arm, Blind Bay, Sorrento, Sicamous, Chase, Enderby, Armstrong, and surrounding communities.\n\nWhat's included in the flat rate: all gutters cleared of debris (leaves, cottonwood seed pods, conifer needles, organic matter), downspout flushing to clear blockages and confirm flow, and a basic condition report noting any visible damage to gutters, fascia, or downspout connections. The condition report isn't a formal inspection, but it's a professional eye on the state of your drainage system — useful information about problems that need attention before water damage sets in.\n\nWhat's not included: gutter repairs, gutter guard installation, or remediation of existing water damage. If cleaning reveals a section of gutter pulling away from fascia or a cracked downspout elbow, that's flagged in the condition report and is a separate repair. Knowing about those issues early is the point — catching a loose gutter bracket before it fails is a $40 hardware store fix; missing it until the gutter pulls away and directs water down the siding is an insurance claim.",
+        "body": "Wagon Windows prices gutter cleaning at $149 for single-storey homes and $169 for two-storey homes in the Shuswap. These are flat rates that apply across the service area — Salmon Arm, Blind Bay, Sorrento, Sicamous, Chase, Enderby, Armstrong, and surrounding communities.\n\nWhat's included in the flat rate: all gutters cleared of debris (leaves, cottonwood seed pods, conifer needles, organic matter), downspout flushing to clear blockages and confirm flow, and a basic condition report noting any visible damage to gutters, fascia, or downspout connections. The condition report isn't a formal inspection, but it's a professional eye on the state of your drainage system — useful information about problems that need attention before water damage sets in.\n\nWhat's not included: gutter repairs, gutter guard installation, or remediation of existing water damage. If cleaning reveals a section of gutter pulling away from fascia or a cracked downspout elbow, that's flagged in the condition report and is a separate repair. Knowing about those issues early is the point — catching a loose gutter bracket before it fails is a $40 hardware store fix; missing it until the gutter pulls away and directs water down the siding is an insurance claim.",
         "bullets": [
           "Single-storey gutter cleaning: $149",
-          "Two-storey gutter cleaning: $229",
+          "Two-storey gutter cleaning: $169",
           "Included: debris removal, downspout flush, condition report",
           "Not included: repairs, gutter guard installation, water damage remediation"
         ]
@@ -445,7 +445,7 @@
       },
       {
         "h2": "What Happens When Shuswap Gutters Don't Get Cleaned",
-        "body": "The consequences of blocked gutters are well-documented and genuinely expensive. Understanding them makes the $149–$229 annual or biannual cost feel different.\n\nOverflowing gutters don't just look bad — they dump water at the foundation. Salmon Arm gets sufficient summer rainfall and spring snowmelt that a single blocked-gutter overflow event during a heavy rain can direct hundreds of litres of water against the foundation. Over years, this causes foundation cracking and basement moisture intrusion. In older Shuswap homes — many built in the 1960s through 1980s with foundations that weren't designed for modern drainage expectations — this risk is meaningful.\n\nWater overflowing behind the gutter soaks the fascia board. Fascia rot typically develops slowly and invisibly until it's extensive. By the time it's visible, replacement is often required on large sections. Fascia replacement on a two-storey Shuswap home runs $800–$3,000+ depending on extent and access. A $149 annual gutter clean is objectively better use of the money.\n\nBlocked downspouts add another failure mode: water that can't exit through the downspout backs up in the gutter and eventually overflows in the gutter section above the blockage, often at an uncontrolled point away from any drainage control.\n\nIn Shuswap winters, blocked gutters fill with standing water that freezes. Ice dams add weight that pulls gutters from fascia and can force water under shingles at the eave. Cleaning gutters in the fall prevents the conditions that create spring ice dam damage.",
+        "body": "The consequences of blocked gutters are well-documented and genuinely expensive. Understanding them makes the $149–$169 annual or biannual cost feel different.\n\nOverflowing gutters don't just look bad — they dump water at the foundation. Salmon Arm gets sufficient summer rainfall and spring snowmelt that a single blocked-gutter overflow event during a heavy rain can direct hundreds of litres of water against the foundation. Over years, this causes foundation cracking and basement moisture intrusion. In older Shuswap homes — many built in the 1960s through 1980s with foundations that weren't designed for modern drainage expectations — this risk is meaningful.\n\nWater overflowing behind the gutter soaks the fascia board. Fascia rot typically develops slowly and invisibly until it's extensive. By the time it's visible, replacement is often required on large sections. Fascia replacement on a two-storey Shuswap home runs $800–$3,000+ depending on extent and access. A $149 annual gutter clean is objectively better use of the money.\n\nBlocked downspouts add another failure mode: water that can't exit through the downspout backs up in the gutter and eventually overflows in the gutter section above the blockage, often at an uncontrolled point away from any drainage control.\n\nIn Shuswap winters, blocked gutters fill with standing water that freezes. Ice dams add weight that pulls gutters from fascia and can force water under shingles at the eave. Cleaning gutters in the fall prevents the conditions that create spring ice dam damage.",
         "bullets": []
       },
       {
@@ -689,7 +689,7 @@
       },
       {
         "h2": "How Lake Proximity Changes the Frequency Recommendation",
-        "body": "For properties on or near Shuswap Lake — in Blind Bay, Sorrento, along the east and south arms of the lake, and in Sicamous — the recommended clean frequency is higher than for Salmon Arm inland properties.\n\nThe reasons are the same as those driving hard water staining: lake water carries dissolved minerals, wind-driven spray deposits them on glass, and each evaporation cycle adds to the accumulation. On a wind-exposed lakefront property in Blind Bay, a spring clean may be partially undone within four to six weeks by summer lake spray.\n\nFor lake-adjacent homes, four cleans per year is defensible — spring, midsummer, late summer, and fall — particularly if large picture windows face the water. The economics still work: $229–$299 per clean on a medium lake home adds up to $900–$1,200 annually, against the cost of hard water etching that requires treatment or glass replacement.\n\nAn alternative for lake properties is three professional cleans with interim DIY spot maintenance on the most-exposed windows between visits. A daily or weekly wipe of lake-facing glass with a squeegee and clean water prevents mineral accumulation without the cost of full professional visits.",
+        "body": "For properties on or near Shuswap Lake — in Blind Bay, Sorrento, along the east and south arms of the lake, and in Sicamous — the recommended clean frequency is higher than for Salmon Arm inland properties.\n\nThe reasons are the same as those driving hard water staining: lake water carries dissolved minerals, wind-driven spray deposits them on glass, and each evaporation cycle adds to the accumulation. On a wind-exposed lakefront property in Blind Bay, a spring clean may be partially undone within four to six weeks by summer lake spray.\n\nFor lake-adjacent homes, four cleans per year is defensible — spring, midsummer, late summer, and fall — particularly if large picture windows face the water. The economics still work: $169–$219 per clean on a medium lake home adds up to $900–$1,200 annually, against the cost of hard water etching that requires treatment or glass replacement.\n\nAn alternative for lake properties is three professional cleans with interim DIY spot maintenance on the most-exposed windows between visits. A daily or weekly wipe of lake-facing glass with a squeegee and clean water prevents mineral accumulation without the cost of full professional visits.",
         "bullets": [
           "Lake-adjacent (within ~300m of shore): 3–4 professional cleans/year",
           "Severe exposure (directly lakefront, wind-exposed): consider 4 cleans",
@@ -3062,12 +3062,12 @@
       },
       {
         "h2": "Salmon Arm Window Cleaning Pricing",
-        "body": "Window cleaning pricing in Salmon Arm is based on pane count, storey access, and condition. A standard single-storey residential home with 15-20 windows runs $150–$250 depending on size and condition. Two-storey homes range $250–$400 for standard service. Lakefront properties with large picture windows and hard water staining requiring mineral treatment are priced individually based on an assessment.\n\nWagon Windows provides transparent per-job pricing — we quote before we start and the price doesn't change unless the scope does (for example, if hard water staining discovered during the clean requires a specialist treatment that wasn't anticipated). We do not charge travel surcharges for Salmon Arm properties.\n\nFor comparison, the average Salmon Arm homeowner who cleans twice yearly pays $300–$600 annually — roughly equivalent to one hour of plumber time — to maintain the condition and appearance of windows that represent a significant portion of the home's street appeal and interior light quality. When factored against the cost of window replacement for glass damaged by neglected hard water deposits, preventive professional cleaning is consistently the lower-cost option.",
+        "body": "Window cleaning pricing in Salmon Arm is based on pane count, storey access, and condition. A standard single-storey residential home with 15-20 windows runs $150–$250 depending on size and condition. Two-storey homes range $250–$400 for standard service. Lakefront properties with large picture windows and hard water staining requiring mineral treatment are priced individually based on an assessment.\n\nWagon Windows provides transparent per-job pricing — we quote before we start and the price doesn't change unless the scope does (for example, if hard water staining discovered during the clean requires a specialist treatment that wasn't anticipated). A travel fee applies based on your location and is confirmed upfront.\n\nFor comparison, the average Salmon Arm homeowner who cleans twice yearly pays $300–$600 annually — roughly equivalent to one hour of plumber time — to maintain the condition and appearance of windows that represent a significant portion of the home's street appeal and interior light quality. When factored against the cost of window replacement for glass damaged by neglected hard water deposits, preventive professional cleaning is consistently the lower-cost option.",
         "bullets": [
           "Single-storey Salmon Arm homes: $150–$250 standard service",
           "Two-storey homes: $250–$400 standard",
           "Lakefront with hard water staining: on-site quote",
-          "No travel surcharges for Salmon Arm",
+          "Travel fee confirmed upfront before work begins",
           "Transparent pricing — fixed quote before work begins"
         ]
       }
@@ -3336,12 +3336,12 @@
       },
       {
         "h2": "Wagon Windows Serving Armstrong: Distance, Access, and the Interior Fair",
-        "body": "Armstrong is approximately 45 minutes south of Wagon Windows' Salmon Arm base — a service distance we cover for residential and commercial properties throughout the Spallumcheen Valley. Armstrong is not a remote outpost for us; it's a regular service area, and we understand the specific conditions that Armstrong properties face.\n\nFor Armstrong commercial operations, the Interior Provincial Exhibition (IPE) fairgrounds and the commercial strip along Pleasant Valley Road represent a significant pre-fair cleaning window each September. The IPE draws major provincial attendance and is one of the highest-profile community events in the North Okanagan — commercial properties adjacent to the fairgrounds and on high-visibility routes benefit substantially from a pre-fair clean that accounts for the summer dust accumulation.\n\nWagon Windows accepts Armstrong bookings year-round. We schedule Armstrong-area runs to optimize travel efficiency, which means pricing for Armstrong is competitive and does not include punitive travel surcharges. For Armstrong homeowners who want to book alongside neighbors to reduce travel cost further, we offer group booking discounts when three or more addresses in the same neighborhood are scheduled on the same day. Call (403) 837-5092 to arrange.",
+        "body": "Armstrong is approximately 45 minutes south of Wagon Windows' Salmon Arm base — a service distance we cover for residential and commercial properties throughout the Spallumcheen Valley. Armstrong is not a remote outpost for us; it's a regular service area, and we understand the specific conditions that Armstrong properties face.\n\nFor Armstrong commercial operations, the Interior Provincial Exhibition (IPE) fairgrounds and the commercial strip along Pleasant Valley Road represent a significant pre-fair cleaning window each September. The IPE draws major provincial attendance and is one of the highest-profile community events in the North Okanagan — commercial properties adjacent to the fairgrounds and on high-visibility routes benefit substantially from a pre-fair clean that accounts for the summer dust accumulation.\n\nWagon Windows accepts Armstrong bookings year-round. We schedule Armstrong-area runs to optimize travel efficiency, which means pricing for Armstrong is competitive and includes a travel fee confirmed upfront before any work begins. For Armstrong homeowners who want to book alongside neighbors to reduce travel cost further, we offer group booking discounts when three or more addresses in the same neighborhood are scheduled on the same day. Call (403) 837-5092 to arrange.",
         "bullets": [
           "Armstrong: 45 minutes from Salmon Arm base — regular service area",
           "Pre-IPE commercial cleaning: September, targeted to fairground-adjacent businesses",
           "Group booking discount: 3+ addresses same neighborhood, same day",
-          "No punitive travel surcharges for Armstrong and Spallumcheen"
+          "Travel fee confirmed upfront — no surprises on invoice day"
         ]
       }
     ],

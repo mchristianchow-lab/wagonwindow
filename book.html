@@ -88,6 +88,12 @@
 
     .note-row { display: flex; align-items: flex-start; gap: .5rem; font-size: .78rem; color: var(--gray); margin-top: 1rem; line-height: 1.5; }
 
+    /* TRAVEL BADGE */
+    .travel-badge { display: none; align-items: center; gap: .45rem; margin-top: .45rem; font-size: .82rem; font-weight: 600; padding: .45rem .75rem; border-radius: 6px; }
+    .travel-badge.zone1 { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+    .travel-badge.zone2 { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+    .travel-badge svg { flex-shrink: 0; }
+
     /* SUCCESS */
     #success-screen { display: none; text-align: center; padding: 4rem 2rem; }
     .success-icon { font-size: 3rem; margin-bottom: 1rem; }
@@ -167,6 +173,10 @@
       <div class="form-full form-group">
         <label for="f-address">Service Address *</label>
         <input id="f-address" type="text" name="address" required placeholder="123 Main St, Salmon Arm, BC">
+        <div class="travel-badge" id="travel-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          <span id="travel-badge-text"></span>
+        </div>
       </div>
       <div class="form-row">
         <div class="form-group">
@@ -203,14 +213,14 @@
 
 <script>
 (function () {
-  const p     = new URLSearchParams(location.search);
-  const pkg   = p.get('pkg')   || '';
-  const total = parseInt(p.get('total')) || 0;
-  const panes = parseInt(p.get('panes')) || 0;
-  const name  = p.get('name') || '';
-  const addr  = p.get('addr') || '';
+  const p         = new URLSearchParams(location.search);
+  const pkg       = p.get('pkg')   || '';
+  const baseTotal = parseInt(p.get('total')) || 0;
+  const panes     = parseInt(p.get('panes')) || 0;
+  const name      = p.get('name') || '';
+  const addr      = p.get('addr') || '';
 
-  if (!pkg || !total) {
+  if (!pkg || !baseTotal) {
     document.getElementById('no-data').style.display = 'block';
     return;
   }
@@ -244,10 +254,61 @@
   const meta = PKG_META[pkg] || PKG_META.standard;
   const fmt  = n => '$' + Number(n).toLocaleString('en-CA');
 
+  let travelFee = 0;
+
+  // Zone detection — explicit lists only, no catch-all
+  const ZONE1 = [
+    'salmon arm','blind bay','sorrento','tappen','chase'
+  ];
+  const ZONE2 = [
+    'sicamous','enderby','armstrong','eagle bay','celista',
+    'scotch creek','grindrod','spallumcheen','swansea point','anglemont'
+  ];
+
+  function detectTravel(address) {
+    const a = (address || '').toLowerCase();
+    const z1match = ZONE1.find(c => a.includes(c));
+    if (z1match) return { fee: 35, place: z1match.replace(/\b\w/g, l => l.toUpperCase()) };
+    const z2match = ZONE2.find(c => a.includes(c));
+    if (z2match) return { fee: 55, place: z2match.replace(/\b\w/g, l => l.toUpperCase()) };
+    // Unknown address — minimum $35 applies
+    if (a.trim().length > 6) return { fee: 35, place: null };
+    return null;
+  }
+
+  function updateTravelBadge(address) {
+    const result = detectTravel(address);
+    const badge  = document.getElementById('travel-badge');
+    const label  = document.getElementById('travel-badge-text');
+    travelFee = result ? result.fee : 0;
+
+    if (result && result.fee === 55) {
+      badge.className = 'travel-badge zone2';
+      label.textContent = '$55 travel fee — ' + result.place;
+      badge.style.display = 'flex';
+    } else if (result && result.fee === 35) {
+      badge.className = 'travel-badge zone1';
+      label.textContent = result.place ? '$35 travel fee — ' + result.place : '$35 travel fee (minimum)';
+      badge.style.display = 'flex';
+    } else {
+      badge.style.display = 'none';
+    }
+
+    // Update displayed total
+    const displayed = baseTotal + travelFee;
+    document.getElementById('pkg-total').textContent = fmt(displayed);
+    document.getElementById('pkg-gst-note').textContent =
+      travelFee > 0
+        ? 'Includes GST · ' + fmt(travelFee) + ' travel · Confirmed on-site'
+        : 'Includes GST · Confirmed on-site';
+
+    updateSummary();
+  }
+
   // Style the bar
   document.getElementById('pkg-bar').classList.add(meta.cls);
   document.getElementById('pkg-chosen').textContent = meta.label;
-  document.getElementById('pkg-total').textContent  = fmt(total);
+  document.getElementById('pkg-total').textContent  = fmt(baseTotal);
   document.getElementById('pkg-desc').textContent   = meta.desc;
 
   // Style the submit button
@@ -263,14 +324,15 @@
   }
   if (addr) {
     document.getElementById('f-address').value = addr;
+    updateTravelBadge(addr);
   }
 
   // Set hidden fields
   document.getElementById('f-subject').value =
-    'New Booking — ' + meta.label + ', ' + fmt(total) + (name ? ', ' + name : '');
+    'New Booking — ' + meta.label + ', ' + fmt(baseTotal) + (name ? ', ' + name : '');
   document.getElementById('f-summary').value =
     'Package: ' + meta.label +
-    ' | Total: ' + fmt(total) +
+    ' | Total: ' + fmt(baseTotal) +
     ' | Panes: ' + panes +
     (name ? ' | Name: ' + name : '') +
     (addr ? ' | Address: ' + addr : '');
@@ -285,11 +347,14 @@
     const dt   = document.getElementById('f-date').value;
     const city = document.getElementById('f-city').value.trim();
     const nm   = [fn, ln].filter(Boolean).join(' ');
+    const displayed = baseTotal + travelFee;
     document.getElementById('f-subject').value =
-      'New Booking — ' + meta.label + ', ' + fmt(total) + (nm ? ', ' + nm : '');
+      'New Booking — ' + meta.label + ', ' + fmt(displayed) + (nm ? ', ' + nm : '');
     document.getElementById('f-summary').value =
       'Package: ' + meta.label +
-      ' | Total: ' + fmt(total) +
+      ' | Base: ' + fmt(baseTotal) +
+      (travelFee > 0 ? ' | Travel: ' + fmt(travelFee) : '') +
+      ' | Total: ' + fmt(displayed) +
       ' | Panes: ' + panes +
       ' | Name: ' + (nm || '—') +
       ' | Phone: ' + (ph || '—') +
@@ -299,7 +364,11 @@
       (dt   ? ' | Preferred date: ' + dt : '');
   }
 
-  ['f-fname','f-lname','f-phone','f-email','f-address','f-date','f-city'].forEach(id => {
+  document.getElementById('f-address').addEventListener('input', function () {
+    updateTravelBadge(this.value);
+  });
+
+  ['f-fname','f-lname','f-phone','f-email','f-date','f-city'].forEach(id => {
     document.getElementById(id).addEventListener('input', updateSummary);
   });
 

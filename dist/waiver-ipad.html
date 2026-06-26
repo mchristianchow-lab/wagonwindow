@@ -397,7 +397,7 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
       <div class="initials-set-bar">
         <label>Your Initials</label>
         <input class="initials-input" id="initials-input" type="text" maxlength="4" placeholder="AB" oninput="onInitialsChange(this.value)">
-        <div class="progress-count" id="init-count">0 of 11</div>
+        <div class="progress-count" id="init-count">0 of 12</div>
       </div>
     </div>
 
@@ -492,12 +492,20 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
         <div class="clause-body">To the fullest extent permitted under BC law, Wagon Window Washers' total liability for any claim is limited to the amount paid for the service. You agree to hold Wagon Window Washers, its owner, and technicians harmless from third-party claims arising from pre-existing property conditions or circumstances outside our direct control.</div>
       </div>
 
+      <div class="clause" data-clause="12">
+        <div class="clause-header" onclick="expandClause(this)">
+          <div class="clause-name">WCB Coverage &amp; Worker Injury Liability</div>
+          <button class="initial-btn" onclick="stampInitial(event,this)">Initial</button>
+        </div>
+        <div class="clause-body">Wagon Window Washers and all technicians performing services under this agreement carry WorkSafeBC (WCB) coverage. In accordance with the Workers Compensation Act of British Columbia, the property owner, strata corporation, property manager, or any authorized representative signing this agreement bears no liability for any injury, illness, or death sustained by Wagon Window Washers employees or contractors while performing services on or around the premises. All worker safety obligations and injury claims are the sole responsibility of Wagon Window Washers and are administered through WorkSafeBC. By initialling this clause, you acknowledge that your property and organization are fully indemnified against workplace injury claims arising from our work on your premises.</div>
+      </div>
+
     </div><!-- /clauses-list -->
     <div class="spacer"></div>
   </div>
   <div class="btn-stack">
     <button class="btn-primary" id="next-terms" onclick="goTo('scr-sign')" disabled>Continue to Signature →</button>
-    <div style="font-size:.78rem;color:var(--gray);text-align:center">All 11 clauses must be initialled to continue</div>
+    <div style="font-size:.78rem;color:var(--gray);text-align:center">All 12 clauses must be initialled to continue</div>
   </div>
 </div>
 
@@ -509,7 +517,7 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
     <div class="card">
       <div class="section-label">Step 4 of 4 · Customer</div>
       <div class="card-title">Sign the Agreement</div>
-      <div class="card-sub">By signing below you confirm you have read and agreed to all 11 clauses above.</div>
+      <div class="card-sub">By signing below you confirm you have read and agreed to all 12 clauses above.</div>
 
       <div class="sig-wrap" style="margin-bottom:1rem">
         <canvas id="sig-canvas" height="180"></canvas>
@@ -530,7 +538,7 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
     </div>
 
     <div style="background:#f0fff4;border:1px solid #bbf7d0;border-radius:8px;padding:1rem 1.1rem;font-size:.83rem;color:#166534;line-height:1.6">
-      ✅ <strong>I confirm</strong> I am the property owner or authorized representative, that I have read and initialled all 11 clauses, and that I agree to this Service Agreement with Wagon Window Washers.
+      ✅ <strong>I confirm</strong> I am the property owner or authorized representative, that I have read and initialled all 12 clauses, and that I agree to this Service Agreement with Wagon Window Washers.
     </div>
     <div class="spacer"></div>
   </div>
@@ -737,8 +745,8 @@ function stampInitial(e, btn) {
   clause.classList.add('initialled');
   btn.textContent = '✓ ' + state.initials;
   state.initialled++;
-  document.getElementById('init-count').textContent = state.initialled + ' of 11';
-  if (state.initialled === 11) {
+  document.getElementById('init-count').textContent = state.initialled + ' of 12';
+  if (state.initialled === 12) {
     document.getElementById('next-terms').disabled = false;
   }
 }
@@ -981,7 +989,8 @@ function buildWaiverHTML(forPDF = false) {
     ['Satisfaction & Re-Clean Policy', 'If you\'re not satisfied, contact us within 24 hours and we\'ll return to address it at no charge. After 24 hours, or where the issue is caused by weather, re-contamination, or conditions outside our control, we are unable to offer a re-clean under this policy.'],
     ['Payment', 'Payment is due on the day of service, collected at the time of waiver signing before work begins. We accept cash or e-transfer (davidhanna@wagonwindow.com). The quoted price is the final price — any scope changes are agreed before we proceed.'],
     ['Cancellations', 'Please provide 24 hours\' notice to cancel or reschedule. Late cancellations may incur a fee of up to $50 to cover travel costs. If weather makes the job unsafe, we reschedule at no cost to either party.'],
-    ['Liability Limit', 'To the fullest extent permitted under BC law, Wagon Window Washers\' total liability for any claim is limited to the amount paid for the service. You agree to hold Wagon Window Washers, its owner, and technicians harmless from third-party claims arising from pre-existing property conditions or circumstances outside our direct control.']
+    ['Liability Limit', 'To the fullest extent permitted under BC law, Wagon Window Washers\' total liability for any claim is limited to the amount paid for the service. You agree to hold Wagon Window Washers, its owner, and technicians harmless from third-party claims arising from pre-existing property conditions or circumstances outside our direct control.'],
+    ['WCB Coverage & Worker Injury Liability', 'Wagon Window Washers and all technicians performing services under this agreement carry WorkSafeBC (WCB) coverage. In accordance with the Workers Compensation Act of British Columbia, the property owner, strata corporation, property manager, or any authorized representative signing this agreement bears no liability for any injury, illness, or death sustained by Wagon Window Washers employees or contractors while performing services on or around the premises. All worker safety obligations and injury claims are the sole responsibility of Wagon Window Washers and are administered through WorkSafeBC.']
   ];
   const clauseRows = clauses.map((c, i) =>
     '<tr style="border-bottom:1px solid #e5e5e5">' +
@@ -1039,7 +1048,7 @@ function buildWaiverHTML(forPDF = false) {
           '<div><div style="color:#888;font-size:11px;margin-bottom:3px">Initials used:</div><div style="font-weight:700">' + ini + '</div></div>' +
         '</td>' +
       '</tr></table>' +
-      '<div style="margin-top:12px;background:#f0fff4;border:1px solid #bbf7d0;border-radius:6px;padding:10px 12px;font-size:11px;color:#166534">✅ Customer confirms they are the property owner or authorized representative, have read and initialled all 11 clauses, and agree to this Service Agreement with Wagon Window Washers.</div>' +
+      '<div style="margin-top:12px;background:#f0fff4;border:1px solid #bbf7d0;border-radius:6px;padding:10px 12px;font-size:11px;color:#166534">✅ Customer confirms they are the property owner or authorized representative, have read and initialled all 12 clauses, and agree to this Service Agreement with Wagon Window Washers.</div>' +
     '</div>' +
     '<div style="font-size:10px;color:#aaa;border-top:1px solid #e5e5e5;padding-top:10px">Wagon Window Washers · Salmon Arm, BC · davidhanna@wagonwindow.com · (403) 837-5092 · wagonwindow.com</div>' +
     (forPDF ? '<script>setTimeout(function(){window.print();},400);<\/script>' : '') +
@@ -1057,7 +1066,7 @@ function buildWaiverEmailText() {
     'Pre-Existing Damage','Tempered & Heat-Treated Glass','Hard Water Stains',
     'Screens & Tracks','Property Access & Ladders','Interior Access',
     'Gutter Cleaning','Satisfaction & Re-Clean Policy','Payment',
-    'Cancellations','Liability Limit'
+    'Cancellations','Liability Limit','WCB Coverage & Worker Injury Liability'
   ];
   return [
     'WAGON WINDOW WASHERS — SIGNED SERVICE AGREEMENT',
@@ -1271,7 +1280,7 @@ function buildSummaryText() {
     state.windows ? 'Window Count: ~' + state.windows : null,
     state.notes ? 'Notes: ' + state.notes : null,
     '',
-    'All 11 clauses initialled by: ' + state.initials,
+    'All 12 clauses initialled by: ' + state.initials,
     'Signed by: ' + state.printName,
     'Date: ' + state.dateStr,
     '',
@@ -1341,7 +1350,7 @@ function newAgreement() {
     if (btn) btn.textContent = 'Initial';
   });
   document.getElementById('initials-input').value = '';
-  document.getElementById('init-count').textContent = '0 of 11';
+  document.getElementById('init-count').textContent = '0 of 12';
   document.getElementById('next-terms').disabled = true;
   document.getElementById('next-1').disabled = true;
   document.getElementById('next-2').disabled = true;
