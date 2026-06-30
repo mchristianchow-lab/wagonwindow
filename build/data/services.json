@@ -24,11 +24,11 @@
       "Streak-free squeegee finish on every pane"
     ],
     "base_price_small": 169,
-    "base_price_medium": 229,
+    "base_price_medium": 200,
     "base_price_large": 299,
-    "base_price_interior_small": 219,
-    "base_price_interior_medium": 289,
-    "base_price_interior_large": 369,
+    "base_price_interior_small": 195,
+    "base_price_interior_medium": 260,
+    "base_price_interior_large": 389,
     "schema_service_type": "WindowCleaningService",
     "icon": "🏡",
     "faq_count_minimum": 8,
@@ -112,7 +112,7 @@
       "Eco-friendly cleaning solution — safe for gardens and pets"
     ],
     "base_price_small": 169,
-    "base_price_medium": 229,
+    "base_price_medium": 200,
     "base_price_large": 299,
     "schema_service_type": "WindowCleaningService",
     "icon": "🪟",
@@ -167,9 +167,9 @@
     "result_description": "Once the exterior clean is done, every outward-facing pane is clear, streak-free, and reflective — the difference is visible from the street immediately. Frames and sills look clean rather than grimy, which changes the overall impression of the property more than most people expect. Natural light enters rooms noticeably brighter because there is no haze layer filtering it.",
     "booking_urgency": "Exterior demand in the Shuswap peaks twice a year — immediately after cottonwood season in June, and again in September before fall rains set in. Slots fill fast both windows; booking ahead is the only way to guarantee your preferred date rather than taking whatever is left.",
     "page_intro_template": "If you're searching for exterior window cleaning in {location}, this page covers exactly what Wagon Windows does, how it's priced, and why local homeowners in {location} book us season after season. We handle every exterior pane — including hard-to-reach windows — with professional tools and a streak-free guarantee. Book your clean online.",
-    "base_price_interior_small": 219,
-    "base_price_interior_medium": 289,
-    "base_price_interior_large": 369
+    "base_price_interior_small": 195,
+    "base_price_interior_medium": 260,
+    "base_price_interior_large": 389
   },
   {
     "slug": "commercial-window-cleaning",
