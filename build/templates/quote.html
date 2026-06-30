@@ -818,7 +818,7 @@ function totalPanes() {
 
 function calcBase(panes, type) {
   const ext    = Math.max(MIN_JOB, panes * 10);
-  const intExt = Math.max(MIN_JOB, panes * 13);
+  const intExt = Math.max(MIN_JOB, panes * 17);
   return type === 'exterior' ? Math.round(ext) : Math.round(intExt);
 }
 
