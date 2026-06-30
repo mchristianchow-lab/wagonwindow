@@ -400,13 +400,9 @@
 const WEB3FORMS_KEY = 'cd06c1c4-9648-4bea-b875-03a7cdd6ef61';
 const DAVID_EMAIL = 'davidhanna@wagonwindow.com';
 
-const TIERS = [
-  { label:'Small Home',   range:'Up to 15 windows', min:0,  max:15,       ext:169, intExt:229 },
-  { label:'Medium Home',  range:'16–25 windows',    min:16, max:25,        ext:229, intExt:309 },
-  { label:'Large Home',   range:'26–35 windows',    min:26, max:35,        ext:299, intExt:389 },
-  { label:'Custom Quote', range:'36+ windows',      min:36, max:Infinity,  ext:null,intExt:null }
-];
-const SCREEN_PRICE = 4;
+const EXT_RATE         = 10;
+const INT_RATE         = 13;
+const SCREEN_PRICE     = 4;
 const TRACK_PRICE_EACH = 4;
 const MIN_JOB          = 169;
 
@@ -526,22 +522,21 @@ function setStory(n) {
 
 // ---- CALCULATION ----
 function calc() {
-  const w    = sv.windows;
-  const tier = TIERS.find(t => w >= t.min && w <= t.max);
-  const isCustom = tier.ext === null;
-  const base = isCustom ? 0 : (sv.interior ? tier.intExt : tier.ext);
+  const w         = sv.windows;
+  const rate      = sv.interior ? INT_RATE : EXT_RATE;
+  const base      = Math.max(MIN_JOB, w * rate);
   const screenAdd = sv.screens * SCREEN_PRICE;
   const trackAdd  = sv.tracks  ? sv.windows * TRACK_PRICE_EACH : 0;
-  let sub = base + screenAdd + trackAdd;
-  if (!isCustom && sub > 0) sub = Math.max(sub, MIN_JOB);
-  const total = sv.customPrice || sub;
-  return { tier, isCustom, base, screenAdd, trackAdd, sub, total };
+  const sub       = base + screenAdd + trackAdd;
+  const total     = sv.customPrice || sub;
+  return { base, screenAdd, trackAdd, sub, total };
 }
 
 function updateLive() {
   const q = calc();
-  document.getElementById('lb-tier').textContent  = q.tier.label + ' · ' + q.tier.range;
-  document.getElementById('lb-total').textContent = q.isCustom ? 'Custom' : '$'+q.total;
+  const rate = sv.interior ? INT_RATE : EXT_RATE;
+  document.getElementById('lb-tier').textContent  = sv.windows + ' panes × $' + rate;
+  document.getElementById('lb-total').textContent = '$' + q.total;
 }
 
 // ---- REVIEW ----
@@ -558,7 +553,7 @@ function buildReview() {
   if (sv.stories >= 3) html += `<div class="rev-row"><span>3+ Storey Access</span><span class="flag-pill">Note in quote</span></div>`;
   html += `<div class="rev-row" style="margin-top:0.5rem;padding-top:0.6rem;border-top:2px solid var(--border)">
     <strong>Estimated Total</strong>
-    <span class="rev-total">${q.isCustom ? 'Custom' : '$'+q.total}</span>
+    <span class="rev-total">$${q.total}</span>
   </div>`;
   if (sv.notes) html += `<div style="margin-top:0.75rem;padding:0.55rem 0.75rem;background:var(--light);border-radius:6px;font-size:0.8rem;color:var(--gray)">${sv.notes}</div>`;
   document.getElementById('rev-summary').innerHTML = html;
@@ -587,21 +582,18 @@ function buildPresent() {
     </div>
     <div class="pres-tiers">`;
 
-  TIERS.slice(0,3).forEach(tier => {
-    const isMatch = tier.label === q.tier.label;
-    const price   = sv.interior ? tier.intExt : tier.ext;
-    html += `
-      <div class="pt-card${isMatch?' match':''}">
-        <div>
-          ${isMatch ? '<span class="pt-badge">Your Home</span>' : ''}
-          <div class="pt-name">${tier.label}</div>
-          <div class="pt-range">${tier.range}</div>
-        </div>
-        <div style="text-align:right">
-          <div class="pt-price">from $${price}<small>${sv.interior?'interior + exterior':'exterior only'}</small></div>
-        </div>
-      </div>`;
-  });
+  const rate = sv.interior ? INT_RATE : EXT_RATE;
+  html += `
+    <div class="pt-card match">
+      <div>
+        <span class="pt-badge">Your Home</span>
+        <div class="pt-name">${sv.windows} panes</div>
+        <div class="pt-range">${sv.interior ? 'Interior + Exterior' : 'Exterior only'}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="pt-price">$${q.base}<small>$${rate}/pane</small></div>
+      </div>
+    </div>`;
   html += '</div>';
 
   const hasAddons = sv.screens || sv.tracks || sv.hardWater || sv.gutters;
@@ -614,21 +606,12 @@ function buildPresent() {
     html += '</div>';
   }
 
-  if (!q.isCustom) {
-    html += `
-      <div class="pres-total">
-        <div class="pres-total-label">Your Estimate</div>
-        <div class="pres-total-price">$${q.total}</div>
-        <div class="pres-total-note">Streak-free guaranteed · Fully insured · No hidden fees</div>
-      </div>`;
-  } else {
-    html += `
-      <div class="pres-total">
-        <div class="pres-total-label">Large Property</div>
-        <div class="pres-total-price">Custom Quote</div>
-        <div class="pres-total-note">We'll follow up with a detailed written estimate</div>
-      </div>`;
-  }
+  html += `
+    <div class="pres-total">
+      <div class="pres-total-label">Your Estimate</div>
+      <div class="pres-total-price">$${q.total}</div>
+      <div class="pres-total-note">Streak-free guaranteed · Fully insured · No hidden fees</div>
+    </div>`;
 
   html += `
     <div class="pres-cta-row">
@@ -672,9 +655,8 @@ WHAT WE FOUND
 • Service: ${sv.interior ? 'Interior + Exterior clean' : 'Exterior clean'}${sv.screens ? '\n• '+sv.screens+' screens ($'+(sv.screens*SCREEN_PRICE)+')' : ''}${sv.tracks ? '\n• Track cleaning ($'+(sv.windows * TRACK_PRICE_EACH)+')' : ''}${flags.length ? '\n'+flags.join('\n') : ''}
 
 ESTIMATE
-${q.isCustom
-  ? 'Custom quote — we will follow up with a detailed written estimate.'
-  : 'Total: $'+q.total+'\n(On-site estimate — final price confirmed before work begins)'}
+Total: $${q.total}
+(On-site estimate — final price confirmed before work begins)
 
 We guarantee streak-free results. If you\'re not satisfied, we come back.
 
@@ -709,7 +691,7 @@ function saveLead() {
     gutters:   sv.gutters,
     stories:   sv.stories,
     price:  q.total,
-    tier:   q.tier.label,
+    tier:   sv.windows + ' panes @ $' + (sv.interior ? INT_RATE : EXT_RATE) + '/pane',
     jobType: c.jobType,
     notes:  sv.notes,
     source: 'site-quote',
@@ -745,8 +727,8 @@ Tracks:   ${sv.tracks   ? 'Yes' : 'No'}
 Hard Water: ${sv.hardWater ? 'YES — quote separately' : 'No'}
 Gutters:  ${sv.gutters  ? 'YES — quote separately' : 'No'}
 
-ESTIMATE: ${q.isCustom ? 'Custom quote required' : '$'+q.total}
-Tier: ${q.tier.label}
+ESTIMATE: $${q.total}
+Rate: ${sv.windows} panes × $${sv.interior ? INT_RATE : EXT_RATE}/pane
 
 Site Notes:     ${sv.notes         || '—'}
 Internal Notes: ${sv.internalNotes || '—'}
