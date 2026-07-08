@@ -804,6 +804,18 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
       </div>
     </div>
 
+    <!-- 2-Storey / Ladder Access -->
+    <div style="margin-top:1rem">
+      <div class="card-label" style="padding-left:.25rem;margin-bottom:.5rem">2-Storey / Ladder Access</div>
+      <div style="display:flex;gap:.5rem">
+        <button class="btn btn-outline" id="ladder-btn-0"   style="flex:1;padding:.65rem .5rem;font-size:.85rem;border-radius:8px;border-color:var(--green);color:var(--green)" onclick="setLadder(0)">None</button>
+        <button class="btn btn-outline" id="ladder-btn-15"  style="flex:1;padding:.65rem .5rem;font-size:.85rem;border-radius:8px" onclick="setLadder(0.15)">+15%</button>
+        <button class="btn btn-outline" id="ladder-btn-20"  style="flex:1;padding:.65rem .5rem;font-size:.85rem;border-radius:8px" onclick="setLadder(0.20)">+20%</button>
+        <button class="btn btn-outline" id="ladder-btn-25"  style="flex:1;padding:.65rem .5rem;font-size:.85rem;border-radius:8px" onclick="setLadder(0.25)">+25%</button>
+      </div>
+      <div style="font-size:.72rem;color:var(--muted);margin-top:.4rem;padding-left:.1rem">Applied to base window price · 2-storey homes, difficult access, extended ladder work</div>
+    </div>
+
     <!-- Travel Fee -->
     <div style="margin-top:1rem">
       <div class="card-label" style="padding-left:.25rem;margin-bottom:.5rem">Travel Fee</div>
@@ -1594,7 +1606,7 @@ const state = {
   panes: 0,
   breakdown: { regular: 0, large: 0, french: 0 },
   serviceType: null,
-  addons: { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: 0, travel: 0 },
+  addons: { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: 0, travel: 0, ladder: 0 },
   addonsContext: 'packages'
 };
 
@@ -1626,14 +1638,15 @@ function buildQuote() {
   const hardwater= state.addons.hardwater* ADDONS.hardwater;
   const gutters  = state.addons.gutters  || 0;
   const travel   = state.addons.travel   || 0;
+  const ladder   = state.addons.ladder   ? Math.round(base * state.addons.ladder) : 0;
   const discPct  = Math.min(40, Math.max(0, parseFloat(document.getElementById('discount-pct')?.value || 0)));
-  const subtotal = base + largeWin + screens + tracks + hardwater + gutters + travel;
+  const subtotal = base + largeWin + screens + tracks + hardwater + gutters + travel + ladder;
   const discount = (subtotal > MIN_JOB && discPct > 0) ? Math.round(subtotal * (discPct / 100)) : 0;
   const afterDiscount = Math.max(MIN_JOB, subtotal - discount);
   const gst = Math.round(afterDiscount * GST);
   const total = afterDiscount + gst;
   const high = Math.round(total * 1.15);
-  return { base, largeWin, screens, tracks, hardwater, gutters, travel, subtotal, discPct, discount, afterDiscount, gst, total, high };
+  return { base, largeWin, screens, tracks, hardwater, gutters, travel, ladder, subtotal, discPct, discount, afterDiscount, gst, total, high };
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-CA'); }
@@ -1768,9 +1781,10 @@ function startQuote() {
   state.serviceType = null;
   state.breakdown = { regular: 0, large: 0, french: 0 };
   state.panes = 0;
-  state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: 0, travel: 0 };
+  state.addons = { screens: 0, tracks: 0, hardwater: 0, largewindow: 0, gutters: 0, travel: 0, ladder: 0 };
   // Reset addon checkboxes
   setTravel(0);
+  setLadder(0);
   ['largewindow','screens','tracks','hardwater','gutters'].forEach(k => {
     const el = document.getElementById('chk-' + k);
     if (el) el.checked = false;
@@ -2025,6 +2039,19 @@ function setTravel(fee) {
   if (document.getElementById('scr-quote').classList.contains('active')) renderQuote();
 }
 
+function setLadder(pct) {
+  state.addons.ladder = pct;
+  const keys = { 0: 'ladder-btn-0', 0.15: 'ladder-btn-15', 0.20: 'ladder-btn-20', 0.25: 'ladder-btn-25' };
+  Object.entries(keys).forEach(([val, id]) => {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+    const active = parseFloat(val) === pct;
+    btn.style.borderColor = active ? 'var(--red)' : 'var(--border)';
+    btn.style.color       = active ? 'var(--red)' : 'var(--text)';
+  });
+  if (document.getElementById('scr-quote').classList.contains('active')) renderQuote();
+}
+
 function setAddonVal(key, count, checked) {
   state.addons[key] = count;
   const chk = document.getElementById('chk-' + key);
@@ -2059,6 +2086,7 @@ function renderQuote() {
   if (q.tracks)   rows += brow('Tracks ×' + state.addons.tracks, fmt(q.tracks));
   if (q.gutters)  rows += brow('Gutter cleaning', fmt(q.gutters));
   if (q.hardwater)rows += brow('Hard water ×' + state.addons.hardwater, fmt(q.hardwater));
+  if (q.ladder)   rows += brow('2-Storey / Ladder access (+' + Math.round(state.addons.ladder * 100) + '%)', fmt(q.ladder));
   if (q.travel)   rows += brow('Travel fee', fmt(q.travel));
   if (q.discount) rows += brow('Discount (' + q.discPct + '%)', '−' + fmt(q.discount));
   rows += brow('GST (5%)', fmt(q.gst));
@@ -2089,6 +2117,7 @@ function showCustomer() {
   if (q.gutters)  parts.push('gutter cleaning');
   if (q.hardwater)parts.push('hard water treatment');
   if (q.largeWin) parts.push('oversized window surcharge');
+  if (q.ladder)   parts.push('2-storey / ladder access surcharge');
   if (q.travel)   parts.push('travel fee');
   document.getElementById('co-includes').textContent = parts.join(', ') + '.';
 
@@ -2098,6 +2127,7 @@ function showCustomer() {
   if (q.tracks)   coRows += coRow('Track cleaning', fmt(q.tracks));
   if (q.gutters)  coRows += coRow('Gutter cleaning', fmt(q.gutters));
   if (q.hardwater)coRows += coRow('Hard water removal', fmt(q.hardwater));
+  if (q.ladder)   coRows += coRow('2-Storey / Ladder access', fmt(q.ladder));
   if (q.travel)   coRows += coRow('Travel fee', fmt(q.travel));
   if (q.discount) coRows += coRow('Discount', '−' + fmt(q.discount));
   coRows += coRow('GST', fmt(q.gst));
