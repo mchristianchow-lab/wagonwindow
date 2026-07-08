@@ -2329,7 +2329,7 @@ function loadLeadQuote(id) {
 
   state.breakdown       = { regular: p.breakdown.regular || 0, large: p.breakdown.large || 0, french: p.breakdown.french || 0 };
   state.serviceType     = p.serviceType || null;
-  state.addons          = { screens: p.addons.screens || 0, tracks: p.addons.tracks || 0, hardwater: p.addons.hardwater || 0, largewindow: p.addons.largewindow || 0, gutters: p.addons.gutters || 0, travel: p.addons.travel || 0 };
+  state.addons          = { screens: p.addons.screens || 0, tracks: p.addons.tracks || 0, hardwater: p.addons.hardwater || 0, largewindow: p.addons.largewindow || 0, gutters: p.addons.gutters || 0, travel: p.addons.travel || 0, ladder: p.addons.ladder || 0 };
   state.selectedPackage = p.selectedPackage || null;
 
   const discEl = document.getElementById('discount-pct');
@@ -2826,7 +2826,8 @@ function emailQuote(id) {
     const hardwater= (addons.hardwater   || 0) * ADDONS.hardwater;
     const gutters  = addons.gutters  || 0;
     const travel   = addons.travel   || 0;
-    const subtotal = base + largeWin + screens + tracks + hardwater + gutters + travel;
+    const ladder   = (addons.ladder || 0) ? Math.round(base * addons.ladder) : 0;
+    const subtotal = base + largeWin + screens + tracks + hardwater + gutters + travel + ladder;
     const discPct  = p.discount || 0;
     const discount = (discPct > 0 && subtotal > MIN_JOB) ? Math.round(subtotal * discPct / 100) : 0;
     const afterDiscount = Math.max(MIN_JOB, subtotal - discount);
@@ -2853,6 +2854,7 @@ function emailQuote(id) {
     if (tracks)    lines.push(col('Track cleaning (' + addons.tracks + ' × $4)',                 '+' + $(tracks)));
     if (hardwater) lines.push(col('Hard water removal (' + addons.hardwater + ' panes × $20)',   '+' + $(hardwater)));
     if (gutters)   lines.push(col('Gutter cleaning (flat rate)',                                  '+' + $(gutters)));
+    if (ladder)    lines.push(col('2-Storey / Ladder access (+' + Math.round((addons.ladder||0)*100) + '%)', '+' + $(ladder)));
     if (travel)    lines.push(col('Travel fee',                                                   '+' + $(travel)));
 
     lines.push(div);
@@ -2942,7 +2944,7 @@ function resumeSession() {
     const s = JSON.parse(raw);
     state.breakdown = { regular: s.breakdown.regular || 0, large: s.breakdown.large || 0, french: s.breakdown.french || 0 };
     state.serviceType = s.serviceType || null;
-    state.addons = { screens: s.addons.screens || 0, tracks: s.addons.tracks || 0, hardwater: s.addons.hardwater || 0, largewindow: s.addons.largewindow || 0, gutters: s.addons.gutters || 0, travel: s.addons.travel || 0 };
+    state.addons = { screens: s.addons.screens || 0, tracks: s.addons.tracks || 0, hardwater: s.addons.hardwater || 0, largewindow: s.addons.largewindow || 0, gutters: s.addons.gutters || 0, travel: s.addons.travel || 0, ladder: s.addons.ladder || 0 };
     state.selectedPackage = s.selectedPackage || null;
     state.addonsContext = s.addonsContext || 'packages';
     const discEl = document.getElementById('discount-pct');
