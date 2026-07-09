@@ -196,6 +196,7 @@
   const gutters    = parseInt(p.get('gutters'))    || 0;
   const hw         = parseInt(p.get('hw'))         || 0;
   const travel     = parseInt(p.get('travel'))     || 0;
+  const ladder     = parseFloat(p.get('ladder'))   || 0;
   const name       = p.get('name') || '';
   const addr       = p.get('addr') || '';
 
@@ -233,9 +234,10 @@
     const frenchSurcharge = frn * ADDON_LARGE;
     const screenTotal     = screenCount * ADDON_SCREEN;
     const trackTotal      = trackCount  * ADDON_TRACK;
-    const sub = base + largeSurcharge + frenchSurcharge + screenTotal + trackTotal + gutters + hw + travel;
+    const ladderAmt       = ladder ? Math.round(base * ladder) : 0;
+    const sub = base + largeSurcharge + frenchSurcharge + screenTotal + trackTotal + gutters + hw + travel + ladderAmt;
     const gst = Math.round(sub * GST);
-    return { base, largeSurcharge, frenchSurcharge, screenTotal, trackTotal, sub, gst, total: sub + gst };
+    return { base, largeSurcharge, frenchSurcharge, screenTotal, trackTotal, ladderAmt, sub, gst, total: sub + gst };
   }
 
   function buildRows(bd, baseLabel, screenCount, trackCount) {
@@ -247,6 +249,7 @@
     if (bd.trackTotal)   r += '<div class="bd-row"><span>Track cleaning (~' + trackCount + ' tracks × $4)</span><span>' + fmt(bd.trackTotal) + '</span></div>';
     if (gutters > 0)     r += '<div class="bd-row"><span>Gutter cleaning (flat rate)</span><span>' + fmt(gutters) + '</span></div>';
     if (hw > 0)          r += '<div class="bd-row"><span>Hard water stain removal</span><span>' + fmt(hw) + '</span></div>';
+    if (bd.ladderAmt > 0) r += '<div class="bd-row"><span>2-Storey / Ladder access (+' + Math.round(ladder * 100) + '%)</span><span>' + fmt(bd.ladderAmt) + '</span></div>';
     if (travel > 0)      r += '<div class="bd-row"><span>Travel fee</span><span>' + fmt(travel) + '</span></div>';
     r += '<div class="bd-row bd-gst"><span>GST (5%)</span><span>' + fmt(bd.gst) + '</span></div>';
     r += '<div class="bd-row bd-total-row"><span>Total</span><span>' + fmt(bd.total) + '</span></div>';

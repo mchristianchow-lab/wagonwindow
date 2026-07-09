@@ -2697,15 +2697,17 @@ function sendTierQuote() {
     + '&est='        + est
     + '&supscreens=' + supScreens
     + '&suptracks='  + supTracks
-    + (gutterAmt ? '&gutters=' + gutterAmt  : '')
-    + (hwAmt     ? '&hw='      + hwAmt      : '')
-    + (travelAmt ? '&travel='  + travelAmt  : '')
+    + (gutterAmt              ? '&gutters=' + gutterAmt              : '')
+    + (hwAmt                  ? '&hw='      + hwAmt                  : '')
+    + (travelAmt              ? '&travel='  + travelAmt              : '')
+    + (state.addons.ladder    ? '&ladder='  + state.addons.ladder    : '')
     + (name    ? '&name=' + encodeURIComponent(name)    : '')
     + (address ? '&addr=' + encodeURIComponent(address) : '');
 
   const subject = 'Wagon Windows — Your Window Cleaning Estimate'
     + (address ? ' for ' + address : '');
 
+  const ladderAmt  = state.addons.ladder || 0;
   const gutterLine = gutterAmt
     ? '+ Gutter cleaning add-on: $' + gutterAmt + ' (included in prices above)'
     : '';
@@ -2714,6 +2716,9 @@ function sendTierQuote() {
     : '';
   const travelLine = travelAmt
     ? '+ Travel fee: $' + travelAmt + ' (included in prices above)'
+    : '';
+  const ladderLine = ladderAmt
+    ? '+ 2-storey / ladder access surcharge: +' + Math.round(ladderAmt * 100) + '% (included in prices above)'
     : '';
 
   const body = [
@@ -2741,7 +2746,8 @@ function sendTierQuote() {
     ...(gutterLine  ? [gutterLine]  : []),
     ...(hwLine      ? [hwLine]      : []),
     ...(travelLine  ? [travelLine]  : []),
-    ...((gutterLine || hwLine || travelLine) ? [''] : []),
+    ...(ladderLine  ? [ladderLine]  : []),
+    ...((gutterLine || hwLine || travelLine || ladderLine) ? [''] : []),
     'All prices include 5% GST.',
     '',
     'Review your full estimate and confirm your booking here:',
