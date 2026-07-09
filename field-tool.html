@@ -2887,9 +2887,40 @@ function emailQuote(id) {
 
   if (lead.notes) { lines.push('NOTES'); lines.push(lead.notes); lines.push(''); }
 
+  // Build estimate link so the customer can view the same breakdown online
+  if (p && p.serviceType) {
+    const bd      = p.breakdown || { regular: 0, large: 0, french: 0 };
+    const addons  = p.addons   || {};
+    const totalPanes = (bd.regular || 0) + (bd.large || 0) + (bd.french || 0);
+    const bext  = Math.max(MIN_JOB, calcBase(totalPanes, 'exterior'));
+    const bboth = Math.max(MIN_JOB, calcBase(totalPanes, 'both'));
+    const est = Math.round(totalPanes / 2);
+    const supScreens = Math.max(addons.screens || 0, est);
+    const supTracks  = Math.max(addons.tracks  || 0, est);
+    const gutterAmt  = addons.gutters   || 0;
+    const hwAmt      = (addons.hardwater || 0) * ADDONS.hardwater;
+    const travelAmt  = addons.travel    || 0;
+    const ladderVal  = addons.ladder    || 0;
+    const estimateUrl = 'https://wagonwindow.com/estimate/'
+      + '?panes='      + totalPanes
+      + '&reg='        + (bd.regular || 0)
+      + '&lrg='        + (bd.large   || 0)
+      + '&frn='        + (bd.french  || 0)
+      + '&bext='       + bext
+      + '&bboth='      + bboth
+      + '&est='        + est
+      + '&supscreens=' + supScreens
+      + '&suptracks='  + supTracks
+      + (gutterAmt ? '&gutters=' + gutterAmt : '')
+      + (hwAmt     ? '&hw='      + hwAmt     : '')
+      + (travelAmt ? '&travel='  + travelAmt : '')
+      + (ladderVal ? '&ladder='  + ladderVal : '')
+      + (lead.name    ? '&name=' + encodeURIComponent(lead.name)    : '')
+      + (lead.address ? '&addr=' + encodeURIComponent(lead.address) : '');
+    lines.push('View your full estimate here:', estimateUrl, '');
+  }
+
   lines.push(
-    'This is an on-site estimate. Final price confirmed before work begins.',
-    '',
     'We guarantee streak-free results — if you\'re not satisfied, we come back.',
     '',
     'Ready to book? Reply to this email or text David at (403) 837-5092.',
