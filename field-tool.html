@@ -1872,7 +1872,8 @@ function pkgCalcFull(type, screens, tracks) {
   const g        = state.addons.gutters  || 0;
   const hw       = state.addons.hardwater * ADDONS.hardwater;
   const travel   = state.addons.travel   || 0;
-  const sub      = base + largeWin + s + t + g + hw + travel;
+  const ladder   = state.addons.ladder   ? Math.round(base * state.addons.ladder) : 0;
+  const sub      = base + largeWin + s + t + g + hw + travel + ladder;
   return sub + Math.round(sub * GST);
 }
 
@@ -1901,6 +1902,7 @@ function updatePackagePrices() {
     if (state.addons.gutters > 0)  addonParts.push('gutters $' + state.addons.gutters);
     if (state.addons.hardwater)    addonParts.push('hard water ×' + state.addons.hardwater);
     if (state.addons.travel)       addonParts.push('travel $' + state.addons.travel);
+    if (state.addons.ladder)       addonParts.push('ladder +' + Math.round(state.addons.ladder * 100) + '%');
     if (addonParts.length) {
       addonsNote.textContent = '✓ Prices include your add-ons: ' + addonParts.join(', ');
       addonsNote.style.display = 'block';
