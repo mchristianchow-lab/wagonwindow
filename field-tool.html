@@ -810,8 +810,8 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
       <div style="display:flex;gap:.5rem">
         <button class="btn btn-outline" id="ladder-btn-0"   style="flex:1;padding:.65rem .5rem;font-size:.85rem;border-radius:8px;border-color:var(--green);color:var(--green)" onclick="setLadder(0)">None</button>
         <button class="btn btn-outline" id="ladder-btn-15"  style="flex:1;padding:.65rem .5rem;font-size:.85rem;border-radius:8px" onclick="setLadder(0.15)">+15%</button>
-        <button class="btn btn-outline" id="ladder-btn-20"  style="flex:1;padding:.65rem .5rem;font-size:.85rem;border-radius:8px" onclick="setLadder(0.20)">+20%</button>
         <button class="btn btn-outline" id="ladder-btn-25"  style="flex:1;padding:.65rem .5rem;font-size:.85rem;border-radius:8px" onclick="setLadder(0.25)">+25%</button>
+        <button class="btn btn-outline" id="ladder-btn-35"  style="flex:1;padding:.65rem .5rem;font-size:.85rem;border-radius:8px" onclick="setLadder(0.35)">+35%</button>
       </div>
       <div style="font-size:.72rem;color:var(--muted);margin-top:.4rem;padding-left:.1rem">Applied to base window price · 2-storey homes, difficult access, extended ladder work</div>
     </div>
@@ -2041,7 +2041,7 @@ function setTravel(fee) {
 
 function setLadder(pct) {
   state.addons.ladder = pct;
-  const keys = { 0: 'ladder-btn-0', 0.15: 'ladder-btn-15', 0.20: 'ladder-btn-20', 0.25: 'ladder-btn-25' };
+  const keys = { 0: 'ladder-btn-0', 0.15: 'ladder-btn-15', 0.25: 'ladder-btn-25', 0.35: 'ladder-btn-35' };
   Object.entries(keys).forEach(([val, id]) => {
     const btn = document.getElementById(id);
     if (!btn) return;
