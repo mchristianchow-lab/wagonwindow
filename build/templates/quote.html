@@ -589,7 +589,7 @@
           <div class="pkg-price-row">
             <div class="pkg-price-label">Starting from</div>
             <div class="pkg-price" id="price-standard">$—</div>
-            <div class="pkg-price-sub">incl. GST, travel &amp; 5% online discount</div>
+            <div class="pkg-price-sub">travel &amp; 5% online discount</div>
           </div>
           <div class="pkg-select-hint">Tap to select</div>
         </div>
@@ -607,7 +607,7 @@
           <div class="pkg-price-row">
             <div class="pkg-price-label">Starting from</div>
             <div class="pkg-price" id="price-premium">$—</div>
-            <div class="pkg-price-sub">incl. GST, travel &amp; 5% online discount</div>
+            <div class="pkg-price-sub">travel &amp; 5% online discount</div>
           </div>
           <div class="pkg-select-hint">Tap to select</div>
         </div>
@@ -626,7 +626,7 @@
           <div class="pkg-price-row">
             <div class="pkg-price-label">Starting from</div>
             <div class="pkg-price" id="price-supreme">$—</div>
-            <div class="pkg-price-sub">incl. GST, travel &amp; 5% online discount</div>
+            <div class="pkg-price-sub">travel &amp; 5% online discount</div>
           </div>
           <div class="pkg-select-hint">Tap to select</div>
         </div>
@@ -773,7 +773,7 @@
 
 <script>
 const MIN_JOB  = 169;
-const GST      = 0.05;
+const GST      = 0;
 const DISCOUNT = 0.05;
 const LARGE_PK = 8;
 
@@ -928,7 +928,7 @@ function buildEmailSummary() {
       : pkgTotal('exterior', 0, 0);
 
   document.getElementById('email-subject').value =
-    'New Estimate Request — ' + (propLbls[state.propertyType] || '') + ', ' + panes + ' panes, ' + pkgLbls[state.selectedPkg] + ', ~$' + price + ' incl. GST';
+    'New Estimate Request — ' + (propLbls[state.propertyType] || '') + ', ' + panes + ' panes, ' + pkgLbls[state.selectedPkg] + ', ~$' + price + '';
 
   document.getElementById('email-summary').value =
     'Location: ' + (state.area || '?') + ' | Travel fee: $' + state.travelFee +
@@ -938,7 +938,7 @@ function buildEmailSummary() {
     ' | Est. screens: ' + est + ' | Est. tracks: ' + est +
     ' | Hard water removal: ' + state.addons.hardwater + ' panes' +
     ' | Gutter cleaning requested: ' + (state.addons.gutters ? 'YES — quote on arrival' : 'No') +
-    ' | Quote (5% discount + GST + travel): $' + price;
+    ' | Quote (5% discount + travel): $' + price;
 }
 
 function showStep(id) {
