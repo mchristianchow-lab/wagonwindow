@@ -90,7 +90,7 @@
       {
         "id": "c3",
         "q": "Do you provide invoices for commercial window cleaning?",
-        "a": "Yes — we provide commercial invoices and receipts for every job. GST/HST documentation available on request."
+        "a": "Yes — we provide commercial invoices and receipts for every job. Receipts available on request."
       }
     ],
     "hard-water-stain-removal": [
@@ -617,7 +617,7 @@
       },
       {
         "q": "Can Tappen commercial clients get invoiced for window cleaning services?",
-        "a": "Yes — all commercial clients receive proper invoices with GST documentation regardless of location. Tappen commercial accounts are handled identically to our Salmon Arm commercial clients: invoiced per job, with recurring contract options if needed. We track your service history and reach out proactively before your next scheduled clean."
+        "a": "Yes — all commercial clients receive proper invoices regardless of location. Tappen commercial accounts are handled identically to our Salmon Arm commercial clients: invoiced per job, with recurring contract options if needed. We track your service history and reach out proactively before your next scheduled clean."
       },
       {
         "q": "Do you service large multi-building commercial properties in Tappen?",
@@ -693,7 +693,7 @@
       },
       {
         "q": "Do you provide commercial invoices for Enderby businesses claiming window cleaning as a business expense?",
-        "a": "Yes — all commercial Enderby clients receive properly formatted invoices with GST documentation for business expense claims. We can set up recurring invoicing on your preferred schedule (per-visit or monthly consolidated). Enderby businesses on contract also get service records, which some clients use for property maintenance documentation."
+        "a": "Yes — all commercial Enderby clients receive properly formatted invoices for business expense claims. We can set up recurring invoicing on your preferred schedule (per-visit or monthly consolidated). Enderby businesses on contract also get service records, which some clients use for property maintenance documentation."
       }
     ],
     "commercial-window-cleaning/armstrong": [
