@@ -3311,8 +3311,6 @@ function showCommCustomer() {
     '── PRICING ──',
     `Subtotal: ${fmt(q.subtotal)}`,
     q.discAmt > 0 ? `Discount (${(q.totalDisc*100).toFixed(0)}%): -${fmt(q.discAmt)}` : '',
-    `Before Tax: ${fmt(q.final)}`,
-    `GST (5%): ${fmt(q.gst)}`,
     `TOTAL: ${fmt(q.total)}`,
     '',
     commState.freq !== 'once' ? `Frequency: ${commState.freq} contract` : '',
