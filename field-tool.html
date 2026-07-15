@@ -1683,7 +1683,7 @@ function calcCustomGST() {
   const gst = Math.round(price * GST);
   const total = price + gst;
   document.getElementById('cq-subtotal').textContent = fmt(price);
-  document.getElementById('cq-gst').textContent = fmt(gst);
+  // GST removed — not registered
   document.getElementById('custom-total').textContent = fmt(total);
   card.style.display = 'block';
 }
