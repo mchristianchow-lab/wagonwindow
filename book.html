@@ -49,10 +49,6 @@
     .pkg-bar.std  .pkg-total { color: var(--navy); }
     .pkg-bar.prem .pkg-total { color: var(--red); }
     .pkg-bar.sup  .pkg-total { color: #f5c543; }
-    .pkg-gst-note { font-size: .72rem; margin-top: .3rem; }
-    .pkg-bar.std  .pkg-gst-note { color: #aaa; }
-    .pkg-bar.prem .pkg-gst-note { color: rgba(255,255,255,.3); }
-    .pkg-bar.sup  .pkg-gst-note { color: rgba(245,197,67,.4); }
     .pkg-desc { font-size: .85rem; margin-top: .6rem; }
     .pkg-bar.std  .pkg-desc { color: #666; }
     .pkg-bar.prem .pkg-desc { color: rgba(255,255,255,.55); }
@@ -297,10 +293,6 @@
     // Update displayed total
     const displayed = baseTotal + travelFee;
     document.getElementById('pkg-total').textContent = fmt(displayed);
-    // document.getElementById('pkg-gst-note').textContent =
-      travelFee > 0
-        // ? 'Includes GST · ' + fmt(travelFee) + ' travel · Confirmed on-site'
-        // : 'Includes GST · Confirmed on-site'
 
     updateSummary();
   }

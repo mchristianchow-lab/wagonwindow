@@ -2663,7 +2663,7 @@ function sendTierQuote() {
   const stdPrice    = fmt(pkgCalcFull('exterior', userScreens, userTracks));
   const premPrice   = fmt(pkgCalcFull('both',     userScreens, userTracks));
   const supPrice    = fmt(pkgCalcFull('both',     supScreens,  supTracks));
-  // Raw base prices (before surcharges + GST) so estimate page can show line-item breakdown
+  // Raw base prices (before surcharges + margin) so estimate page can show line-item breakdown
   const bext  = Math.max(MIN_JOB, calcBase(state.panes, 'exterior'));
   const bboth = Math.max(MIN_JOB, calcBase(state.panes, 'both'));
 
