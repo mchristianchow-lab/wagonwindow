@@ -135,7 +135,7 @@
     <div class="pkg-chosen" id="pkg-chosen"></div>
     <div class="pkg-total-label">Your total</div>
     <div class="pkg-total" id="pkg-total"></div>
-    <div class="pkg-gst-note" id="pkg-gst-note">Includes GST · Confirmed on-site</div>
+    
     <div class="pkg-desc" id="pkg-desc"></div>
   </div>
 
@@ -297,10 +297,10 @@
     // Update displayed total
     const displayed = baseTotal + travelFee;
     document.getElementById('pkg-total').textContent = fmt(displayed);
-    document.getElementById('pkg-gst-note').textContent =
+    // document.getElementById('pkg-gst-note').textContent =
       travelFee > 0
-        ? 'Includes GST · ' + fmt(travelFee) + ' travel · Confirmed on-site'
-        : 'Includes GST · Confirmed on-site';
+        // ? 'Includes GST · ' + fmt(travelFee) + ' travel · Confirmed on-site'
+        // : 'Includes GST · Confirmed on-site'
 
     updateSummary();
   }

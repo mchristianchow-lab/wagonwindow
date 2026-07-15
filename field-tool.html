@@ -611,7 +611,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         <div class="pkg-include-row">✓ <span>Streak-free guarantee</span></div>
       </div>
       <div class="pkg-price-row">
-        <div class="pkg-price-label">Total incl. GST</div>
+        <div class="pkg-price-label">Total </div>
         <div class="pkg-price" id="pkg-price-standard">$—</div>
       </div>
     </div>
@@ -628,7 +628,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
       <span id="pkg-screens-count" style="display:none">—</span>
       <span id="pkg-tracks-count" style="display:none">—</span>
       <div class="pkg-price-row">
-        <div class="pkg-price-label">Total incl. GST</div>
+        <div class="pkg-price-label">Total </div>
         <div class="pkg-price" id="pkg-price-premium">$—</div>
       </div>
     </div>
@@ -645,7 +645,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         <div class="pkg-include-row">✓ <span>Streak-free guarantee</span></div>
       </div>
       <div class="pkg-price-row">
-        <div class="pkg-price-label">Total incl. GST</div>
+        <div class="pkg-price-label">Total </div>
         <div class="pkg-price" id="pkg-price-supreme">$—</div>
       </div>
     </div>
@@ -900,7 +900,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
       <input class="field-input" id="cq-panes" type="number" inputmode="numeric" min="0" placeholder="0" oninput="calcCustomGST()">
     </div>
     <div class="field-group">
-      <label class="field-label">Your Price (before GST)</label>
+      <label class="field-label">Your Price</label>
       <div style="display:flex;align-items:center;background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:.75rem 1rem;gap:.35rem" id="cq-price-wrap">
         <span style="font-size:1.1rem;font-weight:700;color:var(--muted)">$</span>
         <input style="background:none;border:none;outline:none;color:var(--text);font-size:1.6rem;font-weight:800;font-family:inherit;width:100%;-moz-appearance:textfield" id="cq-price" type="number" inputmode="decimal" min="0" step="0.01" placeholder="40.00" oninput="calcCustomGST()">
@@ -912,8 +912,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         <span class="breakdown-val" id="cq-subtotal">—</span>
       </div>
       <div class="breakdown-row">
-        <span class="breakdown-label">GST (5%)</span>
-        <span class="breakdown-val" id="cq-gst">—</span>
+
       </div>
       <div class="breakdown-row total" style="background:var(--surface)">
         <span class="breakdown-label" style="color:var(--text);font-weight:700">Total</span>
@@ -1037,7 +1036,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <div class="card-label" style="padding-left:.25rem;margin-bottom:.75rem">Taxes & Policy</div>
     <table class="ref-table">
       <tbody>
-        <tr><td>GST (Canada)</td><td>5%</td></tr>
+        
         <tr><td>Minimum Job</td><td>$169</td></tr>
         <tr><td>Payment</td><td>Cash, E-Transfer</td></tr>
       </tbody>
@@ -1494,7 +1493,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <span class="comm-badge">COMMERCIAL</span>
   </div>
   <div class="comm-quote-hero">
-    <div class="comm-qlabel">Estimated Total (incl. GST)</div>
+    <div class="comm-qlabel">Estimated Total</div>
     <div class="comm-qamt" id="cq-total">$—</div>
     <div class="comm-qrange" id="cq-range"></div>
   </div>
@@ -1597,7 +1596,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
 <script>
 // ── Pricing constants ──────────────────────────────────────────────────
 const ADDONS = { screens: 4, tracks: 4, hardwater: 20, largewindow: 8 };
-const GST = 0.05;
+const GST = 0;
 const MIN_JOB = 169;
 const BOOKING_URL = 'https://calendar.app.google/KcgTkongKSkHw8xZ8';
 
@@ -1724,13 +1723,13 @@ function autoSaveDraft() {
   if (isCustom) {
     const gst = Math.round(customState.price * GST);
     quote = Math.round(customState.price) + gst;
-    quote_str = fmt(quote) + ' incl. GST';
+    quote_str = fmt(quote);
     summary = customState.description + (customState.panes ? ' · ' + customState.panes + ' panes' : '') + ' · flat ' + fmt(Math.round(customState.price));
   } else {
     const q = buildQuote();
     if (q) {
       quote = q.total;
-      quote_str = fmt(q.total) + ' incl. GST';
+      quote_str = fmt(q.total);
       const svcLabel = state.serviceType === 'interior' ? 'Interior Only' : state.serviceType === 'both' ? 'Int + Ext' : 'Exterior Only';
       summary = svcLabel + ', ' + state.panes + ' panes';
     }
@@ -2091,7 +2090,7 @@ function renderQuote() {
   if (q.ladder)   rows += brow('2-Storey / Ladder access (+' + Math.round(state.addons.ladder * 100) + '%)', fmt(q.ladder));
   if (q.travel)   rows += brow('Travel fee', fmt(q.travel));
   if (q.discount) rows += brow('Discount (' + q.discPct + '%)', '−' + fmt(q.discount));
-  rows += brow('GST (5%)', fmt(q.gst));
+  
   rows += brow('Total', fmt(q.total), true);
   document.getElementById('breakdown').innerHTML = rows;
   autoSaveDraft();
@@ -2132,7 +2131,7 @@ function showCustomer() {
   if (q.ladder)   coRows += coRow('2-Storey / Ladder access', fmt(q.ladder));
   if (q.travel)   coRows += coRow('Travel fee', fmt(q.travel));
   if (q.discount) coRows += coRow('Discount', '−' + fmt(q.discount));
-  coRows += coRow('GST', fmt(q.gst));
+  
   coRows += coRow('Total', fmt(q.total), true);
   document.getElementById('co-breakdown').innerHTML = coRows;
 
@@ -2187,7 +2186,7 @@ function saveLead(openCal) {
       date_pref: document.getElementById('lead-date').value,
       notes: document.getElementById('lead-notes').value.trim(),
       quote: total,
-      quote_str: fmt(total) + ' incl. GST',
+      quote_str: fmt(total),
       summary: customState.description + (customState.panes ? ' · ' + customState.panes + ' panes' : '') + ' · flat ' + fmt(price),
       created_at: new Date().toISOString(),
       params: {
@@ -2217,7 +2216,7 @@ function saveLead(openCal) {
       date_pref: document.getElementById('lead-date').value,
       notes: document.getElementById('lead-notes').value.trim(),
       quote: q ? q.total : null,
-      quote_str: q ? fmt(q.total) + ' incl. GST' : null,
+      quote_str: q ? fmt(q.total) : null,
       summary: parts.join(', '),
       created_at: new Date().toISOString(),
       params: {
@@ -2748,7 +2747,7 @@ function sendTierQuote() {
     ...(travelLine  ? [travelLine]  : []),
     ...(ladderLine  ? [ladderLine]  : []),
     ...((gutterLine || hwLine || travelLine || ladderLine) ? [''] : []),
-    'All prices include 5% GST.',
+    
     '',
     'Review your full estimate and confirm your booking here:',
     estimateUrl,
@@ -2801,7 +2800,7 @@ function emailQuote(id) {
     lines.push(div);
     lines.push(col(p.description + (p.panes ? ' (' + p.panes + ' panes)' : ''), fmt(price)));
     lines.push(div);
-    lines.push(col('GST (5%)', fmt(gst)));
+    
     lines.push(col('TOTAL DUE', fmt(total)));
     lines.push('');
     if (lead.notes) { lines.push('NOTES'); lines.push(lead.notes); lines.push(''); }
@@ -2871,7 +2870,7 @@ function emailQuote(id) {
       lines.push(col('Field discount (' + discPct + '%)', '-' + $(discount)));
       lines.push(col('After discount', $(afterDiscount)));
     }
-    lines.push(col('GST (5%)', '+' + $(gst)));
+    
     lines.push(div);
     lines.push(col('TOTAL', $(total)));
     lines.push('');
@@ -3038,7 +3037,7 @@ const COMM = {
   trafficCtrl: 150,
   lift: { none: 0, scissor: 250, boom: 450 },
   travelPkm: 2.00,
-  minJob: 169, gst: 0.05,
+  minJob: 169, gst: 0,
   freq: { once:0, monthly:0.12, biweekly:0.15, weekly:0.20, quarterly:0.08, annual:0.05 }
 };
 
@@ -3274,7 +3273,7 @@ function renderCommQuote() {
   const pct = n => (n * 100).toFixed(0) + '%';
 
   document.getElementById('cq-total').textContent = fmt(q.total);
-  document.getElementById('cq-range').textContent = fmt(q.final) + ' + GST';
+  document.getElementById('cq-range').textContent = fmt(q.final) ;
 
   let rows = '';
   if (q.windows > 0)       rows += `<div class="cbrow"><span>Windows (×${q.mult.toFixed(2)} story)</span><span>${fmt(q.windows)}</span></div>`;
@@ -3289,7 +3288,7 @@ function renderCommQuote() {
   if (q.discAmt > 0) rows += `<div class="cbrow" style="color:var(--green)"><span>Discount (${pct(q.totalDisc)})</span><span>-${fmt(q.discAmt)}</span></div>`;
   if (q.minApplied)  rows += `<div class="cbrow" style="color:var(--yellow)"><span>Minimum Job Applied</span><span>${fmt(COMM.minJob)}</span></div>`;
   rows += `<div class="cbrow" style="border-top:1px solid var(--border);margin-top:.5rem;padding-top:.5rem"><span>Before Tax</span><span>${fmt(q.final)}</span></div>`;
-  rows += `<div class="cbrow"><span>GST (5%)</span><span>${fmt(q.gst)}</span></div>`;
+  rows += ;
 
   document.getElementById('comm-breakdown').innerHTML = rows;
 }
@@ -3329,7 +3328,7 @@ function showCommCustomer() {
   if (commState.stories > 1) parts.push(commState.stories + ' stories');
   if (commState.pwOn) parts.push('power wash included');
   if (commState.freq !== 'once') parts.push(commState.freq + ' contract');
-  parts.push('GST included');
+  
   document.getElementById('co-price').textContent = fmt2(q.total);
   document.getElementById('co-includes').textContent = parts.join(' · ') + '.';
   document.getElementById('customer-overlay').classList.add('visible');
@@ -3365,7 +3364,7 @@ function saveCommLead(book) {
     phone,
     email,
     address,
-    quote_str: '$' + Math.round(q.total).toLocaleString() + ' incl. GST',
+    quote_str: '$' + Math.round(q.total).toLocaleString(),
     summary: (commState.std + commState.lrg + commState.spc) + ' windows · ' + (commState.service === 'exterior' ? 'Ext' : 'Int+Ext'),
     propType: commState.propType,
     stories: commState.stories,

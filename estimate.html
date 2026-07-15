@@ -145,8 +145,7 @@
 
   <div class="notes">
     <div class="notes-inner">
-      <div class="note">All prices include 5% GST — no surprises</div>
-      <div class="note">Streak-free guarantee — we come back if you're not satisfied</div>
+            <div class="note">Streak-free guarantee — we come back if you're not satisfied</div>
       <div class="note">Minimum job $169 · Cash or e-transfer on the day</div>
       <div class="note">Questions? Reply to David's email or text anytime</div>
     </div>
@@ -203,7 +202,7 @@
   const ADDON_LARGE  = 8;
   const ADDON_SCREEN = 4;
   const ADDON_TRACK  = 4;
-  const GST          = 0.05;
+  const GST          = 0;
 
   function fmt(n) { return '$' + Number(n).toLocaleString('en-CA'); }
 
@@ -251,7 +250,7 @@
     if (hw > 0)          r += '<div class="bd-row"><span>Hard water stain removal</span><span>' + fmt(hw) + '</span></div>';
     if (bd.ladderAmt > 0) r += '<div class="bd-row"><span>2-Storey / Ladder access (+' + Math.round(ladder * 100) + '%)</span><span>' + fmt(bd.ladderAmt) + '</span></div>';
     if (travel > 0)      r += '<div class="bd-row"><span>Travel fee</span><span>' + fmt(travel) + '</span></div>';
-    r += '<div class="bd-row bd-gst"><span>GST (5%)</span><span>' + fmt(bd.gst) + '</span></div>';
+    
     r += '<div class="bd-row bd-total-row"><span>Total</span><span>' + fmt(bd.total) + '</span></div>';
     return r;
   }

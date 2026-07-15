@@ -611,7 +611,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         <div class="pkg-include-row">✓ <span>Streak-free guarantee</span></div>
       </div>
       <div class="pkg-price-row">
-        <div class="pkg-price-label">Total incl. GST</div>
+        <div class="pkg-price-label">Total </div>
         <div class="pkg-price" id="pkg-price-standard">$—</div>
       </div>
     </div>
@@ -628,7 +628,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
       <span id="pkg-screens-count" style="display:none">—</span>
       <span id="pkg-tracks-count" style="display:none">—</span>
       <div class="pkg-price-row">
-        <div class="pkg-price-label">Total incl. GST</div>
+        <div class="pkg-price-label">Total </div>
         <div class="pkg-price" id="pkg-price-premium">$—</div>
       </div>
     </div>
@@ -645,7 +645,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         <div class="pkg-include-row">✓ <span>Streak-free guarantee</span></div>
       </div>
       <div class="pkg-price-row">
-        <div class="pkg-price-label">Total incl. GST</div>
+        <div class="pkg-price-label">Total </div>
         <div class="pkg-price" id="pkg-price-supreme">$—</div>
       </div>
     </div>
@@ -810,8 +810,8 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
       <div style="display:flex;gap:.5rem">
         <button class="btn btn-outline" id="ladder-btn-0"   style="flex:1;padding:.65rem .5rem;font-size:.85rem;border-radius:8px;border-color:var(--green);color:var(--green)" onclick="setLadder(0)">None</button>
         <button class="btn btn-outline" id="ladder-btn-15"  style="flex:1;padding:.65rem .5rem;font-size:.85rem;border-radius:8px" onclick="setLadder(0.15)">+15%</button>
-        <button class="btn btn-outline" id="ladder-btn-20"  style="flex:1;padding:.65rem .5rem;font-size:.85rem;border-radius:8px" onclick="setLadder(0.20)">+20%</button>
         <button class="btn btn-outline" id="ladder-btn-25"  style="flex:1;padding:.65rem .5rem;font-size:.85rem;border-radius:8px" onclick="setLadder(0.25)">+25%</button>
+        <button class="btn btn-outline" id="ladder-btn-35"  style="flex:1;padding:.65rem .5rem;font-size:.85rem;border-radius:8px" onclick="setLadder(0.35)">+35%</button>
       </div>
       <div style="font-size:.72rem;color:var(--muted);margin-top:.4rem;padding-left:.1rem">Applied to base window price · 2-storey homes, difficult access, extended ladder work</div>
     </div>
@@ -900,7 +900,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
       <input class="field-input" id="cq-panes" type="number" inputmode="numeric" min="0" placeholder="0" oninput="calcCustomGST()">
     </div>
     <div class="field-group">
-      <label class="field-label">Your Price (before GST)</label>
+      <label class="field-label">Your Price</label>
       <div style="display:flex;align-items:center;background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:.75rem 1rem;gap:.35rem" id="cq-price-wrap">
         <span style="font-size:1.1rem;font-weight:700;color:var(--muted)">$</span>
         <input style="background:none;border:none;outline:none;color:var(--text);font-size:1.6rem;font-weight:800;font-family:inherit;width:100%;-moz-appearance:textfield" id="cq-price" type="number" inputmode="decimal" min="0" step="0.01" placeholder="40.00" oninput="calcCustomGST()">
@@ -912,8 +912,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
         <span class="breakdown-val" id="cq-subtotal">—</span>
       </div>
       <div class="breakdown-row">
-        <span class="breakdown-label">GST (5%)</span>
-        <span class="breakdown-val" id="cq-gst">—</span>
+
       </div>
       <div class="breakdown-row total" style="background:var(--surface)">
         <span class="breakdown-label" style="color:var(--text);font-weight:700">Total</span>
@@ -1037,7 +1036,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <div class="card-label" style="padding-left:.25rem;margin-bottom:.75rem">Taxes & Policy</div>
     <table class="ref-table">
       <tbody>
-        <tr><td>GST (Canada)</td><td>5%</td></tr>
+        
         <tr><td>Minimum Job</td><td>$169</td></tr>
         <tr><td>Payment</td><td>Cash, E-Transfer</td></tr>
       </tbody>
@@ -1494,7 +1493,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     <span class="comm-badge">COMMERCIAL</span>
   </div>
   <div class="comm-quote-hero">
-    <div class="comm-qlabel">Estimated Total (incl. GST)</div>
+    <div class="comm-qlabel">Estimated Total</div>
     <div class="comm-qamt" id="cq-total">$—</div>
     <div class="comm-qrange" id="cq-range"></div>
   </div>
@@ -1597,7 +1596,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
 <script>
 // ── Pricing constants ──────────────────────────────────────────────────
 const ADDONS = { screens: 4, tracks: 4, hardwater: 20, largewindow: 8 };
-const GST = 0.05;
+const GST = 0;
 const MIN_JOB = 169;
 const BOOKING_URL = 'https://calendar.app.google/KcgTkongKSkHw8xZ8';
 
@@ -1724,13 +1723,13 @@ function autoSaveDraft() {
   if (isCustom) {
     const gst = Math.round(customState.price * GST);
     quote = Math.round(customState.price) + gst;
-    quote_str = fmt(quote) + ' incl. GST';
+    quote_str = fmt(quote);
     summary = customState.description + (customState.panes ? ' · ' + customState.panes + ' panes' : '') + ' · flat ' + fmt(Math.round(customState.price));
   } else {
     const q = buildQuote();
     if (q) {
       quote = q.total;
-      quote_str = fmt(q.total) + ' incl. GST';
+      quote_str = fmt(q.total);
       const svcLabel = state.serviceType === 'interior' ? 'Interior Only' : state.serviceType === 'both' ? 'Int + Ext' : 'Exterior Only';
       summary = svcLabel + ', ' + state.panes + ' panes';
     }
@@ -1872,7 +1871,8 @@ function pkgCalcFull(type, screens, tracks) {
   const g        = state.addons.gutters  || 0;
   const hw       = state.addons.hardwater * ADDONS.hardwater;
   const travel   = state.addons.travel   || 0;
-  const sub      = base + largeWin + s + t + g + hw + travel;
+  const ladder   = state.addons.ladder   ? Math.round(base * state.addons.ladder) : 0;
+  const sub      = base + largeWin + s + t + g + hw + travel + ladder;
   return sub + Math.round(sub * GST);
 }
 
@@ -1901,6 +1901,7 @@ function updatePackagePrices() {
     if (state.addons.gutters > 0)  addonParts.push('gutters $' + state.addons.gutters);
     if (state.addons.hardwater)    addonParts.push('hard water ×' + state.addons.hardwater);
     if (state.addons.travel)       addonParts.push('travel $' + state.addons.travel);
+    if (state.addons.ladder)       addonParts.push('ladder +' + Math.round(state.addons.ladder * 100) + '%');
     if (addonParts.length) {
       addonsNote.textContent = '✓ Prices include your add-ons: ' + addonParts.join(', ');
       addonsNote.style.display = 'block';
@@ -2041,7 +2042,7 @@ function setTravel(fee) {
 
 function setLadder(pct) {
   state.addons.ladder = pct;
-  const keys = { 0: 'ladder-btn-0', 0.15: 'ladder-btn-15', 0.20: 'ladder-btn-20', 0.25: 'ladder-btn-25' };
+  const keys = { 0: 'ladder-btn-0', 0.15: 'ladder-btn-15', 0.25: 'ladder-btn-25', 0.35: 'ladder-btn-35' };
   Object.entries(keys).forEach(([val, id]) => {
     const btn = document.getElementById(id);
     if (!btn) return;
@@ -2089,7 +2090,7 @@ function renderQuote() {
   if (q.ladder)   rows += brow('2-Storey / Ladder access (+' + Math.round(state.addons.ladder * 100) + '%)', fmt(q.ladder));
   if (q.travel)   rows += brow('Travel fee', fmt(q.travel));
   if (q.discount) rows += brow('Discount (' + q.discPct + '%)', '−' + fmt(q.discount));
-  rows += brow('GST (5%)', fmt(q.gst));
+  
   rows += brow('Total', fmt(q.total), true);
   document.getElementById('breakdown').innerHTML = rows;
   autoSaveDraft();
@@ -2130,7 +2131,7 @@ function showCustomer() {
   if (q.ladder)   coRows += coRow('2-Storey / Ladder access', fmt(q.ladder));
   if (q.travel)   coRows += coRow('Travel fee', fmt(q.travel));
   if (q.discount) coRows += coRow('Discount', '−' + fmt(q.discount));
-  coRows += coRow('GST', fmt(q.gst));
+  
   coRows += coRow('Total', fmt(q.total), true);
   document.getElementById('co-breakdown').innerHTML = coRows;
 
@@ -2185,7 +2186,7 @@ function saveLead(openCal) {
       date_pref: document.getElementById('lead-date').value,
       notes: document.getElementById('lead-notes').value.trim(),
       quote: total,
-      quote_str: fmt(total) + ' incl. GST',
+      quote_str: fmt(total),
       summary: customState.description + (customState.panes ? ' · ' + customState.panes + ' panes' : '') + ' · flat ' + fmt(price),
       created_at: new Date().toISOString(),
       params: {
@@ -2215,7 +2216,7 @@ function saveLead(openCal) {
       date_pref: document.getElementById('lead-date').value,
       notes: document.getElementById('lead-notes').value.trim(),
       quote: q ? q.total : null,
-      quote_str: q ? fmt(q.total) + ' incl. GST' : null,
+      quote_str: q ? fmt(q.total) : null,
       summary: parts.join(', '),
       created_at: new Date().toISOString(),
       params: {
@@ -2329,7 +2330,7 @@ function loadLeadQuote(id) {
 
   state.breakdown       = { regular: p.breakdown.regular || 0, large: p.breakdown.large || 0, french: p.breakdown.french || 0 };
   state.serviceType     = p.serviceType || null;
-  state.addons          = { screens: p.addons.screens || 0, tracks: p.addons.tracks || 0, hardwater: p.addons.hardwater || 0, largewindow: p.addons.largewindow || 0, gutters: p.addons.gutters || 0, travel: p.addons.travel || 0 };
+  state.addons          = { screens: p.addons.screens || 0, tracks: p.addons.tracks || 0, hardwater: p.addons.hardwater || 0, largewindow: p.addons.largewindow || 0, gutters: p.addons.gutters || 0, travel: p.addons.travel || 0, ladder: p.addons.ladder || 0 };
   state.selectedPackage = p.selectedPackage || null;
 
   const discEl = document.getElementById('discount-pct');
@@ -2695,15 +2696,17 @@ function sendTierQuote() {
     + '&est='        + est
     + '&supscreens=' + supScreens
     + '&suptracks='  + supTracks
-    + (gutterAmt ? '&gutters=' + gutterAmt  : '')
-    + (hwAmt     ? '&hw='      + hwAmt      : '')
-    + (travelAmt ? '&travel='  + travelAmt  : '')
+    + (gutterAmt              ? '&gutters=' + gutterAmt              : '')
+    + (hwAmt                  ? '&hw='      + hwAmt                  : '')
+    + (travelAmt              ? '&travel='  + travelAmt              : '')
+    + (state.addons.ladder    ? '&ladder='  + state.addons.ladder    : '')
     + (name    ? '&name=' + encodeURIComponent(name)    : '')
     + (address ? '&addr=' + encodeURIComponent(address) : '');
 
   const subject = 'Wagon Windows — Your Window Cleaning Estimate'
     + (address ? ' for ' + address : '');
 
+  const ladderAmt  = state.addons.ladder || 0;
   const gutterLine = gutterAmt
     ? '+ Gutter cleaning add-on: $' + gutterAmt + ' (included in prices above)'
     : '';
@@ -2712,6 +2715,9 @@ function sendTierQuote() {
     : '';
   const travelLine = travelAmt
     ? '+ Travel fee: $' + travelAmt + ' (included in prices above)'
+    : '';
+  const ladderLine = ladderAmt
+    ? '+ 2-storey / ladder access surcharge: +' + Math.round(ladderAmt * 100) + '% (included in prices above)'
     : '';
 
   const body = [
@@ -2739,8 +2745,9 @@ function sendTierQuote() {
     ...(gutterLine  ? [gutterLine]  : []),
     ...(hwLine      ? [hwLine]      : []),
     ...(travelLine  ? [travelLine]  : []),
-    ...((gutterLine || hwLine || travelLine) ? [''] : []),
-    'All prices include 5% GST.',
+    ...(ladderLine  ? [ladderLine]  : []),
+    ...((gutterLine || hwLine || travelLine || ladderLine) ? [''] : []),
+    
     '',
     'Review your full estimate and confirm your booking here:',
     estimateUrl,
@@ -2793,7 +2800,7 @@ function emailQuote(id) {
     lines.push(div);
     lines.push(col(p.description + (p.panes ? ' (' + p.panes + ' panes)' : ''), fmt(price)));
     lines.push(div);
-    lines.push(col('GST (5%)', fmt(gst)));
+    
     lines.push(col('TOTAL DUE', fmt(total)));
     lines.push('');
     if (lead.notes) { lines.push('NOTES'); lines.push(lead.notes); lines.push(''); }
@@ -2826,7 +2833,8 @@ function emailQuote(id) {
     const hardwater= (addons.hardwater   || 0) * ADDONS.hardwater;
     const gutters  = addons.gutters  || 0;
     const travel   = addons.travel   || 0;
-    const subtotal = base + largeWin + screens + tracks + hardwater + gutters + travel;
+    const ladder   = (addons.ladder || 0) ? Math.round(base * addons.ladder) : 0;
+    const subtotal = base + largeWin + screens + tracks + hardwater + gutters + travel + ladder;
     const discPct  = p.discount || 0;
     const discount = (discPct > 0 && subtotal > MIN_JOB) ? Math.round(subtotal * discPct / 100) : 0;
     const afterDiscount = Math.max(MIN_JOB, subtotal - discount);
@@ -2853,6 +2861,7 @@ function emailQuote(id) {
     if (tracks)    lines.push(col('Track cleaning (' + addons.tracks + ' × $4)',                 '+' + $(tracks)));
     if (hardwater) lines.push(col('Hard water removal (' + addons.hardwater + ' panes × $20)',   '+' + $(hardwater)));
     if (gutters)   lines.push(col('Gutter cleaning (flat rate)',                                  '+' + $(gutters)));
+    if (ladder)    lines.push(col('2-Storey / Ladder access (+' + Math.round((addons.ladder||0)*100) + '%)', '+' + $(ladder)));
     if (travel)    lines.push(col('Travel fee',                                                   '+' + $(travel)));
 
     lines.push(div);
@@ -2861,7 +2870,7 @@ function emailQuote(id) {
       lines.push(col('Field discount (' + discPct + '%)', '-' + $(discount)));
       lines.push(col('After discount', $(afterDiscount)));
     }
-    lines.push(col('GST (5%)', '+' + $(gst)));
+    
     lines.push(div);
     lines.push(col('TOTAL', $(total)));
     lines.push('');
@@ -2877,9 +2886,40 @@ function emailQuote(id) {
 
   if (lead.notes) { lines.push('NOTES'); lines.push(lead.notes); lines.push(''); }
 
+  // Build estimate link so the customer can view the same breakdown online
+  if (p && p.serviceType) {
+    const bd      = p.breakdown || { regular: 0, large: 0, french: 0 };
+    const addons  = p.addons   || {};
+    const totalPanes = (bd.regular || 0) + (bd.large || 0) + (bd.french || 0);
+    const bext  = Math.max(MIN_JOB, calcBase(totalPanes, 'exterior'));
+    const bboth = Math.max(MIN_JOB, calcBase(totalPanes, 'both'));
+    const est = Math.round(totalPanes / 2);
+    const supScreens = Math.max(addons.screens || 0, est);
+    const supTracks  = Math.max(addons.tracks  || 0, est);
+    const gutterAmt  = addons.gutters   || 0;
+    const hwAmt      = (addons.hardwater || 0) * ADDONS.hardwater;
+    const travelAmt  = addons.travel    || 0;
+    const ladderVal  = addons.ladder    || 0;
+    const estimateUrl = 'https://wagonwindow.com/estimate/'
+      + '?panes='      + totalPanes
+      + '&reg='        + (bd.regular || 0)
+      + '&lrg='        + (bd.large   || 0)
+      + '&frn='        + (bd.french  || 0)
+      + '&bext='       + bext
+      + '&bboth='      + bboth
+      + '&est='        + est
+      + '&supscreens=' + supScreens
+      + '&suptracks='  + supTracks
+      + (gutterAmt ? '&gutters=' + gutterAmt : '')
+      + (hwAmt     ? '&hw='      + hwAmt     : '')
+      + (travelAmt ? '&travel='  + travelAmt : '')
+      + (ladderVal ? '&ladder='  + ladderVal : '')
+      + (lead.name    ? '&name=' + encodeURIComponent(lead.name)    : '')
+      + (lead.address ? '&addr=' + encodeURIComponent(lead.address) : '');
+    lines.push('View your full estimate here:', estimateUrl, '');
+  }
+
   lines.push(
-    'This is an on-site estimate. Final price confirmed before work begins.',
-    '',
     'We guarantee streak-free results — if you\'re not satisfied, we come back.',
     '',
     'Ready to book? Reply to this email or text David at (403) 837-5092.',
@@ -2942,7 +2982,7 @@ function resumeSession() {
     const s = JSON.parse(raw);
     state.breakdown = { regular: s.breakdown.regular || 0, large: s.breakdown.large || 0, french: s.breakdown.french || 0 };
     state.serviceType = s.serviceType || null;
-    state.addons = { screens: s.addons.screens || 0, tracks: s.addons.tracks || 0, hardwater: s.addons.hardwater || 0, largewindow: s.addons.largewindow || 0, gutters: s.addons.gutters || 0, travel: s.addons.travel || 0 };
+    state.addons = { screens: s.addons.screens || 0, tracks: s.addons.tracks || 0, hardwater: s.addons.hardwater || 0, largewindow: s.addons.largewindow || 0, gutters: s.addons.gutters || 0, travel: s.addons.travel || 0, ladder: s.addons.ladder || 0 };
     state.selectedPackage = s.selectedPackage || null;
     state.addonsContext = s.addonsContext || 'packages';
     const discEl = document.getElementById('discount-pct');
@@ -2997,7 +3037,7 @@ const COMM = {
   trafficCtrl: 150,
   lift: { none: 0, scissor: 250, boom: 450 },
   travelPkm: 2.00,
-  minJob: 169, gst: 0.05,
+  minJob: 169, gst: 0,
   freq: { once:0, monthly:0.12, biweekly:0.15, weekly:0.20, quarterly:0.08, annual:0.05 }
 };
 
@@ -3233,7 +3273,7 @@ function renderCommQuote() {
   const pct = n => (n * 100).toFixed(0) + '%';
 
   document.getElementById('cq-total').textContent = fmt(q.total);
-  document.getElementById('cq-range').textContent = fmt(q.final) + ' + GST';
+  document.getElementById('cq-range').textContent = fmt(q.final) ;
 
   let rows = '';
   if (q.windows > 0)       rows += `<div class="cbrow"><span>Windows (×${q.mult.toFixed(2)} story)</span><span>${fmt(q.windows)}</span></div>`;
@@ -3248,7 +3288,7 @@ function renderCommQuote() {
   if (q.discAmt > 0) rows += `<div class="cbrow" style="color:var(--green)"><span>Discount (${pct(q.totalDisc)})</span><span>-${fmt(q.discAmt)}</span></div>`;
   if (q.minApplied)  rows += `<div class="cbrow" style="color:var(--yellow)"><span>Minimum Job Applied</span><span>${fmt(COMM.minJob)}</span></div>`;
   rows += `<div class="cbrow" style="border-top:1px solid var(--border);margin-top:.5rem;padding-top:.5rem"><span>Before Tax</span><span>${fmt(q.final)}</span></div>`;
-  rows += `<div class="cbrow"><span>GST (5%)</span><span>${fmt(q.gst)}</span></div>`;
+  rows += ;
 
   document.getElementById('comm-breakdown').innerHTML = rows;
 }
@@ -3288,7 +3328,7 @@ function showCommCustomer() {
   if (commState.stories > 1) parts.push(commState.stories + ' stories');
   if (commState.pwOn) parts.push('power wash included');
   if (commState.freq !== 'once') parts.push(commState.freq + ' contract');
-  parts.push('GST included');
+  
   document.getElementById('co-price').textContent = fmt2(q.total);
   document.getElementById('co-includes').textContent = parts.join(' · ') + '.';
   document.getElementById('customer-overlay').classList.add('visible');
@@ -3324,7 +3364,7 @@ function saveCommLead(book) {
     phone,
     email,
     address,
-    quote_str: '$' + Math.round(q.total).toLocaleString() + ' incl. GST',
+    quote_str: '$' + Math.round(q.total).toLocaleString(),
     summary: (commState.std + commState.lrg + commState.spc) + ' windows · ' + (commState.service === 'exterior' ? 'Ext' : 'Int+Ext'),
     propType: commState.propType,
     stories: commState.stories,
