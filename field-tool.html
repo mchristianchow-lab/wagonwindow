@@ -907,13 +907,6 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
       </div>
     </div>
     <div id="cq-total-card" style="display:none;background:var(--surface2);border-radius:10px;border:1px solid var(--border);overflow:hidden">
-      <div class="breakdown-row">
-        <span class="breakdown-label">Subtotal</span>
-        <span class="breakdown-val" id="cq-subtotal">—</span>
-      </div>
-      <div class="breakdown-row">
-
-      </div>
       <div class="breakdown-row total" style="background:var(--surface)">
         <span class="breakdown-label" style="color:var(--text);font-weight:700">Total</span>
         <span style="color:var(--yellow);font-size:1.2rem;font-weight:800" id="custom-total">—</span>
@@ -1682,8 +1675,6 @@ function calcCustomGST() {
   const price = Math.round(raw);
   const gst = Math.round(price * GST);
   const total = price + gst;
-  document.getElementById('cq-subtotal').textContent = fmt(price);
-  // GST removed — not registered
   document.getElementById('custom-total').textContent = fmt(total);
   card.style.display = 'block';
 }
