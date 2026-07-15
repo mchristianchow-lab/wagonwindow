@@ -773,7 +773,7 @@
 
 <script>
 const MIN_JOB  = 169;
-const GST      = 0.05;
+const MARGIN   = 0.05;
 const DISCOUNT = 0.05;
 const LARGE_PK = 8;
 
@@ -834,7 +834,7 @@ function pkgTotal(type, screens, tracks) {
   const hw     = state.addons.hardwater * 20;
   const sub    = base + lrg + scr + trk + hw;
   const aft    = sub - Math.round(sub * DISCOUNT);
-  return aft + Math.round(aft * GST) + state.travelFee;
+  return aft + Math.round(aft * MARGIN) + state.travelFee;
 }
 
 function updatePrices() {

@@ -202,7 +202,7 @@
   const ADDON_LARGE  = 8;
   const ADDON_SCREEN = 4;
   const ADDON_TRACK  = 4;
-  const GST          = 0.05;
+  const MARGIN       = 0.05;
 
   function fmt(n) { return '$' + Number(n).toLocaleString('en-CA'); }
 
@@ -235,7 +235,7 @@
     const trackTotal      = trackCount  * ADDON_TRACK;
     const ladderAmt       = ladder ? Math.round(base * ladder) : 0;
     const sub = base + largeSurcharge + frenchSurcharge + screenTotal + trackTotal + gutters + hw + travel + ladderAmt;
-    const gst = Math.round(sub * GST);
+    const gst = Math.round(sub * MARGIN);
     return { base, largeSurcharge, frenchSurcharge, screenTotal, trackTotal, ladderAmt, sub, gst, total: sub + gst };
   }
 
