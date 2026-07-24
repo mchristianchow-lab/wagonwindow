@@ -32,7 +32,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
   <!-- Preload logo (LCP element) -->
-  <link rel="preload" as="image" href="/assets/images/logo.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="/assets/images/logo-oval.png" type="image/png">
 
   <!-- Inline critical CSS (nav + hero) -->
   <style>
@@ -41,7 +41,7 @@
     body{font-family:'Inter',sans-serif;color:var(--black);background:var(--white)}
     nav{background:#000;border-bottom:5px solid var(--red);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:88px;position:sticky;top:0;z-index:100;overflow:visible}
     .nav-logo{display:flex;align-items:center;text-decoration:none}
-    .nav-logo-img{height:195px;width:auto;transform:translateY(2mm);}
+    .nav-logo-img{height:54px;width:auto;}
     .nav-links{display:flex;list-style:none;gap:2rem;align-items:center}
     .nav-links a{text-decoration:none;color:#fff;font-weight:500;font-size:0.95rem}
     .nav-cta{background:var(--red)!important;color:#fff!important;padding:0.5rem 1.2rem;border-radius:4px}
@@ -79,7 +79,7 @@
     "@type": "HomeAndConstructionBusiness",
     "name": "{{ config.business_name }}",
     "legalName": "Wagon Windows",
-    "image": "{{ config.site_url }}/assets/images/logo.svg",
+    "image": "{{ config.site_url }}/assets/images/logo-oval.png",
     "description": "Professional window cleaning for homes and businesses across Salmon Arm and the Shuswap region, BC. Residential, commercial, screen, track, gutter, and hard water stain removal services.",
     "url": "{{ config.site_url }}",
     "telephone": "{{ config.phone_raw }}",
@@ -157,8 +157,8 @@
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">
-    <img src="/assets/images/logo.svg" alt="Wagon Windows" class="nav-logo-img"
-         width="1024" height="1024" loading="eager" fetchpriority="high">
+    <img src="/assets/images/logo-oval.png" alt="Wagon Windows" class="nav-logo-img"
+         width="820" height="184" loading="eager" fetchpriority="high">
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="/#services">Services</a></li>
