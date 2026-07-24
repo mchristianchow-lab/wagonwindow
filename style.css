@@ -1167,11 +1167,11 @@ footer p + p { margin-top: 0.6rem; }
 
 /* ---- NAV COLLAPSE: iPad portrait + mobile ---- */
 @media (max-width: 900px) {
-  nav { height: 64px; justify-content: center; background: var(--dark); box-shadow: none; }
+  nav { height: 74px; justify-content: center; background: var(--dark); box-shadow: none; }
   .nav-logo-img { height: 49px; }
   .hamburger { display: flex; position: absolute; right: 5%; top: 50%; transform: translateY(-50%); }
   .hamburger span { background: rgba(255,255,255,0.85); }
-  .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--dark); padding: 1.5rem 5%; gap: 1.2rem; border-top: 3px solid var(--sky); }
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 74px; left: 0; right: 0; background: var(--dark); padding: 1.5rem 5%; gap: 1.2rem; border-top: 3px solid var(--sky); }
   .nav-links a { color: var(--white); }
   .nav-links.open { display: flex; }
 }
