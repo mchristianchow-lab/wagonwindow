@@ -52,7 +52,7 @@ nav {
 }
 
 .nav-logo-img {
-  height: 80px;
+  height: 60px;
   width: auto;
   display: block;
   transform: translateY(calc(7.5% + 8px));
