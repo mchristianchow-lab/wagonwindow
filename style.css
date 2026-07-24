@@ -41,7 +41,6 @@ nav {
   justify-content: space-between;
   height: 88px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.3);
-  border-bottom: 5px solid var(--sky);
 
 }
 
@@ -1168,7 +1167,7 @@ footer p + p { margin-top: 0.6rem; }
 
 /* ---- NAV COLLAPSE: iPad portrait + mobile ---- */
 @media (max-width: 900px) {
-  nav { height: 64px; justify-content: center; background: var(--dark); border-bottom-color: var(--dark); box-shadow: none; }
+  nav { height: 64px; justify-content: center; background: var(--dark); box-shadow: none; }
   .nav-logo-img { height: 54px; }
   .hamburger { display: flex; position: absolute; right: 5%; top: 50%; transform: translateY(-50%); }
   .hamburger span { background: rgba(255,255,255,0.85); }
