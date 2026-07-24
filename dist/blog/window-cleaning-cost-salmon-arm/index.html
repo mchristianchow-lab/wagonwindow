@@ -32,16 +32,16 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
   <!-- Preload logo (LCP element) -->
-  <link rel="preload" as="image" href="/assets/images/logo.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="/assets/images/logo-oval.png" type="image/png">
 
   <!-- Inline critical CSS (nav + hero) -->
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--red:#e81010;--black:#111111;--dark:#000000;--light:#f5f5f5;--white:#ffffff}
     body{font-family:'Inter',sans-serif;color:var(--black);background:var(--white)}
-    nav{background:#000;border-bottom:5px solid var(--red);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:88px;position:sticky;top:0;z-index:100;overflow:visible}
+    nav{background:#000;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:88px;position:sticky;top:0;z-index:100;overflow:visible}
     .nav-logo{display:flex;align-items:center;text-decoration:none}
-    .nav-logo-img{height:195px;width:auto;transform:translateY(2mm);}
+    .nav-logo-img{height:80px;width:auto;transform:translateY(calc(7.5% + 8px));}
     .nav-links{display:flex;list-style:none;gap:2rem;align-items:center}
     .nav-links a{text-decoration:none;color:#fff;font-weight:500;font-size:0.95rem}
     .nav-cta{background:var(--red)!important;color:#fff!important;padding:0.5rem 1.2rem;border-radius:4px}
@@ -79,7 +79,7 @@
     "@type": "HomeAndConstructionBusiness",
     "name": "Wagon Windows",
     "legalName": "Wagon Windows",
-    "image": "https://wagonwindow.com/assets/images/logo.svg",
+    "image": "https://wagonwindow.com/assets/images/logo-oval.png",
     "description": "Professional window cleaning for homes and businesses across Salmon Arm and the Shuswap region, BC. Residential, commercial, screen, track, gutter, and hard water stain removal services.",
     "url": "https://wagonwindow.com",
     "telephone": "+14038375092",
@@ -160,7 +160,7 @@
   "headline": "Window Cleaning Cost in Salmon Arm: What You\u0027ll Actually Pay",
   "description": "See exact window cleaning prices for Salmon Arm homes. Learn what affects your quote \u2014 window count, interior vs exterior, add-ons \u2014 and book online today.",
   "datePublished": "2026-05-09",
-  "dateModified": "2026-06-25",
+  "dateModified": "2026-07-23",
   "author": {"@type": "Person", "name": "David Hanna"},
   "publisher": {
     "@type": "Organization",
@@ -181,7 +181,7 @@
     {
       "@type": "Question",
       "name": "How much does window cleaning cost for an average Salmon Arm home?",
-      "acceptedAnswer": {"@type": "Answer", "text": "An average Salmon Arm home in the 1,400\u20132,200 sq ft range runs $169 for exterior-only or from $219 for interior and exterior combined. Homes outside that range are priced up or down accordingly. Screens and gutter cleaning are separate add-ons."}
+      "acceptedAnswer": {"@type": "Answer", "text": "We price by the pane at $10/pane exterior or $17/pane interior + exterior, with a $169 minimum. An average Salmon Arm home in the 1,400\u20132,200 sq ft range typically has 20\u201330 panes, which runs $200\u2013$300 exterior-only or $340\u2013$510 for a full interior + exterior clean. Screens and gutter cleaning are separate add-ons."}
     },
     
     {
@@ -222,8 +222,8 @@
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">
-    <img src="/assets/images/logo.svg" alt="Wagon Windows" class="nav-logo-img"
-         width="1024" height="1024" loading="eager" fetchpriority="high">
+    <img src="/assets/images/logo-oval.png" alt="Wagon Windows" class="nav-logo-img"
+         width="682" height="145" loading="eager" fetchpriority="high">
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="/#services">Services</a></li>
@@ -270,21 +270,19 @@
   
   <section class="content-section">
     <h2>Wagon Windows Pricing for Salmon Arm Homes</h2>
-    <p>Wagon Windows uses flat-rate pricing based on home size rather than a per-window count that fluctuates with every measurement. This means you get a firm number before anyone shows up at your door, and the price doesn&#39;t change unless the scope does.
-
-For residential exterior-only cleaning, pricing starts at $169 for a small home (up to 15 windows), $229 for a medium home (16–25 windows), and $299 for a large home (26–35 windows). Interior and exterior combined starts at $219 for small homes. Gutter cleaning starts from $189, assessed on-site based on property size and condition.
+    <p>Wagon Windows prices by the pane — each individual piece of glass is one pane — so you pay for exactly what gets cleaned. Exterior-only cleaning is $10 per pane with a $169 minimum. Interior and exterior combined is $17 per pane with the same minimum. A typical Salmon Arm home with 20–30 panes runs $200–$300 exterior-only or $340–$510 for a full interior + exterior clean. The price doesn&#39;t change on the day unless the scope changes. Gutter cleaning starts from $189, assessed on-site based on property size and condition.
 
 Screen cleaning is $4 per screen and track cleaning is available as an add-on. Hard water stain removal is quoted separately because severity varies too much to flat-rate: a minor mineral haze and a years-old calcium deposit require entirely different treatment.</p>
     
     <ul class="service-bullets">
       
-      <li>Exterior only (small, up to 15 windows): $169</li>
+      <li>Exterior only: $10/pane, $169 minimum</li>
       
-      <li>Exterior only (medium, 16–25 windows): $229</li>
+      <li>Interior + exterior: $17/pane, $169 minimum</li>
       
-      <li>Exterior only (large, 26–35 windows): $299</li>
+      <li>Typical home (20–30 panes) exterior: $200–$300</li>
       
-      <li>Interior + exterior (small): from $219</li>
+      <li>Typical home interior + exterior: $340–$510</li>
       
       <li>Gutter cleaning: From $189, assessed on-site</li>
       
@@ -374,7 +372,7 @@ Call (403) 837-5092 or use the online booking form at wagonwindow.com. Most quot
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
         <h3 itemprop="name">How much does window cleaning cost for an average Salmon Arm home?</h3>
         <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <p itemprop="text">An average Salmon Arm home in the 1,400–2,200 sq ft range runs $169 for exterior-only or from $219 for interior and exterior combined. Homes outside that range are priced up or down accordingly. Screens and gutter cleaning are separate add-ons.</p>
+          <p itemprop="text">We price by the pane at $10/pane exterior or $17/pane interior + exterior, with a $169 minimum. An average Salmon Arm home in the 1,400–2,200 sq ft range typically has 20–30 panes, which runs $200–$300 exterior-only or $340–$510 for a full interior + exterior clean. Screens and gutter cleaning are separate add-ons.</p>
         </div>
       </div>
       
