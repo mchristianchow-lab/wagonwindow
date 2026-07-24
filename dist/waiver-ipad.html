@@ -867,15 +867,15 @@ function selectPayment(method) {
 
 function goToApprove() {
   const price = parseFloat(state.price) || 0;
-  const gst   = 0;
-  const total = price;
+  const gst   = Math.round(price * 0.05);
+  const total = price + gst;
   document.getElementById('approve-name').textContent = state.name.split(' ')[0] || 'there';
   document.getElementById('approve-list').innerHTML = state.completedServices.map(k =>
     '<div class="approve-row"><span class="approve-check">✓</span>' + SVC_LABELS[k] + '</div>'
   ).join('');
   document.getElementById('approve-price').textContent   = '$' + total.toFixed(2);
   document.getElementById('approve-payment').textContent =
-    'Paid by ' + (state.paymentMethod === 'cash' ? 'cash' : 'e-transfer') ;
+    'Paid by ' + (state.paymentMethod === 'cash' ? 'cash' : 'e-transfer') + ' · Includes GST';
   const sendBtn = document.getElementById('send-btn');
   sendBtn.disabled = false;
   sendBtn.textContent = state.email
@@ -914,8 +914,8 @@ function saveToFiles() {
 
 async function submitCompletionToWeb3Forms() {
   const price    = parseFloat(state.price) || 0;
-  const gst      = 0;
-  const total    = price;
+  const gst      = Math.round(price * 0.05);
+  const total    = price + gst;
   const services = state.completedServices.map(k => SVC_LABELS[k]).join(', ') || '—';
   const fd = new FormData();
   fd.append('access_key',         WEB3FORMS_KEY);
@@ -940,8 +940,8 @@ async function submitCompletionToWeb3Forms() {
 
 function sendCustomerEmail() {
   const price    = parseFloat(state.price) || 0;
-  const gst      = 0;
-  const total    = price;
+  const gst      = Math.round(price * 0.05);
+  const total    = price + gst;
   const services = state.completedServices.map(k => '✓ ' + SVC_LABELS[k]).join('\n');
   const payLabel = state.paymentMethod === 'cash' ? 'Cash' : 'E-Transfer';
   const firstName = state.name.split(' ')[0];
@@ -956,7 +956,7 @@ function sendCustomerEmail() {
     '',
     services,
     '',
-    'Total: $' + total.toFixed(2) + '',
+    'Total: $' + total.toFixed(2) + ' (incl. GST)',
     'Paid by: ' + payLabel,
     reviewLine,
     '— Streak-Free Guarantee —',
@@ -975,8 +975,8 @@ function sendCustomerEmail() {
 function buildWaiverHTML(forPDF = false) {
   const services = state.services.map(k => SVC_LABELS[k]).join(', ') || '—';
   const price = parseFloat(state.price) || 0;
-  const gst   = 0;
-  const total = price;
+  const gst   = Math.round(price * 0.05);
+  const total = price + gst;
   const ini   = state.initials || '—';
   const clauses = [
     ['Pre-Existing Damage', 'Wagon Window Washers is not liable for pre-existing damage to glass, frames, seals, screens, or tracks — including chips, cracks, failed seals, fogging between panes, or paint overspray. We document and flag anything we notice before we start.'],
@@ -1024,7 +1024,7 @@ function buildWaiverHTML(forPDF = false) {
       '<tr><td style="padding:5px 0;color:#888">Email</td><td style="padding:5px 0;font-weight:600">' + (state.email||'Not provided') + '</td>' +
           '<td style="padding:5px 0;color:#888">Date</td><td style="padding:5px 0;font-weight:600">' + (state.dateStr||'—') + '</td></tr>' +
       '<tr><td style="padding:5px 0;color:#888">Services</td><td style="padding:5px 0;font-weight:600" colspan="3">' + services + '</td></tr>' +
-      '<tr><td style="padding:5px 0;color:#888">Quoted Price</td><td style="padding:5px 0;font-weight:700;color:#e81010">$' + price.toFixed(2)  + ' = <strong>$' + total.toFixed(2) + '</strong></td>' +
+      '<tr><td style="padding:5px 0;color:#888">Quoted Price</td><td style="padding:5px 0;font-weight:700;color:#e81010">$' + price.toFixed(2) + ' + GST $' + gst + ' = <strong>$' + total.toFixed(2) + '</strong></td>' +
           '<td style="padding:5px 0;color:#888">Windows</td><td style="padding:5px 0;font-weight:600">' + (state.windows||'—') + '</td></tr>' +
       (state.notes ? '<tr><td style="padding:5px 0;color:#888">Notes</td><td style="padding:5px 0" colspan="3">' + state.notes + '</td></tr>' : '') +
     '</table>' +
@@ -1059,8 +1059,8 @@ function buildWaiverHTML(forPDF = false) {
 function buildWaiverEmailText() {
   const services = state.services.map(k => SVC_LABELS[k]).join(', ') || '—';
   const price = parseFloat(state.price) || 0;
-  const gst   = 0;
-  const total = price;
+  const gst   = Math.round(price * 0.05);
+  const total = price + gst;
   const ini   = state.initials || '—';
   const clauseNames = [
     'Pre-Existing Damage','Tempered & Heat-Treated Glass','Hard Water Stains',
@@ -1078,7 +1078,7 @@ function buildWaiverEmailText() {
     'Email:     ' + (state.email   || 'Not provided'),
     'Date:      ' + (state.dateStr || '—'),
     'Services:  ' + services,
-    'Quoted:    $' + price.toFixed(2)  + ' = $' + total.toFixed(2),
+    'Quoted:    $' + price.toFixed(2) + ' + GST $' + gst + ' = $' + total.toFixed(2),
     'Windows:   ' + (state.windows || '—'),
     (state.notes ? 'Notes:     ' + state.notes : ''),
     '',
@@ -1154,8 +1154,8 @@ async function postToSheets() {
 function buildPrintInvoice() {
   const services   = state.services.map(k => SVC_LABELS[k]);
   const price      = parseFloat(state.price) || 0;
-  const gst        = 0;
-  const total      = price;
+  const gst        = Math.round(price * 0.05);
+  const total      = price + gst;
   const invoiceNum = 'WW-' + Date.now().toString().slice(-6);
   const rows       = services.map(s =>
     `<tr><td>${s}</td><td class="r">1</td><td class="r">—</td><td class="r">—</td></tr>`
@@ -1200,7 +1200,7 @@ function buildPrintInvoice() {
     </table>
     <div class="pi-totals">
       <div class="pi-tot-row"><span>Subtotal</span><span>$${price.toFixed(2)}</span></div>
-      
+      <div class="pi-tot-row"><span>GST (5%)</span><span>$${gst.toFixed(2)}</span></div>
       <div class="pi-tot-row total"><span>TOTAL DUE</span><span>$${total.toFixed(2)}</span></div>
     </div>
     <div class="pi-footer-grid">
@@ -1243,8 +1243,8 @@ function saveSignaturePNG() {
 
 function buildDoneScreen() {
   const price    = parseFloat(state.price) || 0;
-  const gst      = 0;
-  const total    = price;
+  const gst      = Math.round(price * 0.05);
+  const total    = price + gst;
   const services = state.completedServices.map(k => SVC_LABELS[k]).join(', ') || state.services.map(k => SVC_LABELS[k]).join(', ');
   const payLabel = state.paymentMethod === 'cash' ? 'Cash' : state.paymentMethod === 'etransfer' ? 'E-Transfer' : '—';
   document.getElementById('done-sub').textContent = state.email

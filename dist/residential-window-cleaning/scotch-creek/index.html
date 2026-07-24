@@ -32,16 +32,16 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
   <!-- Preload logo (LCP element) -->
-  <link rel="preload" as="image" href="/assets/images/logo-oval.png" type="image/png">
+  <link rel="preload" as="image" href="/assets/images/logo.svg" type="image/svg+xml">
 
   <!-- Inline critical CSS (nav + hero) -->
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--red:#e81010;--black:#111111;--dark:#000000;--light:#f5f5f5;--white:#ffffff}
     body{font-family:'Inter',sans-serif;color:var(--black);background:var(--white)}
-    nav{background:#000;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:88px;position:sticky;top:0;z-index:100;overflow:visible}
+    nav{background:#000;border-bottom:5px solid var(--red);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:88px;position:sticky;top:0;z-index:100;overflow:visible}
     .nav-logo{display:flex;align-items:center;text-decoration:none}
-    .nav-logo-img{height:80px;width:auto;transform:translateY(calc(7.5% + 8px));}
+    .nav-logo-img{height:195px;width:auto;transform:translateY(2mm);}
     .nav-links{display:flex;list-style:none;gap:2rem;align-items:center}
     .nav-links a{text-decoration:none;color:#fff;font-weight:500;font-size:0.95rem}
     .nav-cta{background:var(--red)!important;color:#fff!important;padding:0.5rem 1.2rem;border-radius:4px}
@@ -79,7 +79,7 @@
     "@type": "HomeAndConstructionBusiness",
     "name": "Wagon Windows",
     "legalName": "Wagon Windows",
-    "image": "https://wagonwindow.com/assets/images/logo-oval.png",
+    "image": "https://wagonwindow.com/assets/images/logo.svg",
     "description": "Professional window cleaning for homes and businesses across Salmon Arm and the Shuswap region, BC. Residential, commercial, screen, track, gutter, and hard water stain removal services.",
     "url": "https://wagonwindow.com",
     "telephone": "+14038375092",
@@ -365,8 +365,8 @@
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">
-    <img src="/assets/images/logo-oval.png" alt="Wagon Windows" class="nav-logo-img"
-         width="682" height="145" loading="eager" fetchpriority="high">
+    <img src="/assets/images/logo.svg" alt="Wagon Windows" class="nav-logo-img"
+         width="1024" height="1024" loading="eager" fetchpriority="high">
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="/#services">Services</a></li>
@@ -512,7 +512,7 @@
     <div class="short-answer" itemprop="speakable" itemscope itemtype="https://schema.org/WebPageElement">
       <p>
         
-        Window cleaning in Scotch Creek starts from $169 for exterior-only on a small home (up to 15 windows) and from $255 for full interior + exterior.
+        Window cleaning in Scotch Creek starts from $169 for exterior-only on a small home (up to 15 windows) and from $219 for full interior + exterior.
         
         We publish our prices upfront — no mystery quotes.
       </p>
@@ -524,9 +524,9 @@
         <tr><th>Home Size</th><th>Windows</th><th>Exterior Only</th><th>Interior + Exterior</th></tr>
       </thead>
       <tbody>
-        <tr><td>Small</td><td>Up to 15</td><td>From $169</td><td>From $255</td></tr>
-        <tr><td>Medium</td><td>16–25</td><td>From $200</td><td>From $340</td></tr>
-        <tr><td>Large</td><td>26–35</td><td>From $299</td><td>From $510</td></tr>
+        <tr><td>Small</td><td>Up to 15</td><td>From $169</td><td>From $219</td></tr>
+        <tr><td>Medium</td><td>16–25</td><td>From $229</td><td>From $289</td></tr>
+        <tr><td>Large</td><td>26–35</td><td>From $299</td><td>From $369</td></tr>
       </tbody>
     </table>
     

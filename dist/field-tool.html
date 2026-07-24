@@ -897,16 +897,23 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
     </div>
     <div class="field-group">
       <label class="field-label">Pane Count</label>
-      <input class="field-input" id="cq-panes" type="number" inputmode="numeric" min="0" placeholder="0" oninput="calcCustomMargin()">
+      <input class="field-input" id="cq-panes" type="number" inputmode="numeric" min="0" placeholder="0" oninput="calcCustomGST()">
     </div>
     <div class="field-group">
       <label class="field-label">Your Price</label>
       <div style="display:flex;align-items:center;background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:.75rem 1rem;gap:.35rem" id="cq-price-wrap">
         <span style="font-size:1.1rem;font-weight:700;color:var(--muted)">$</span>
-        <input style="background:none;border:none;outline:none;color:var(--text);font-size:1.6rem;font-weight:800;font-family:inherit;width:100%;-moz-appearance:textfield" id="cq-price" type="number" inputmode="decimal" min="0" step="0.01" placeholder="40.00" oninput="calcCustomMargin()">
+        <input style="background:none;border:none;outline:none;color:var(--text);font-size:1.6rem;font-weight:800;font-family:inherit;width:100%;-moz-appearance:textfield" id="cq-price" type="number" inputmode="decimal" min="0" step="0.01" placeholder="40.00" oninput="calcCustomGST()">
       </div>
     </div>
     <div id="cq-total-card" style="display:none;background:var(--surface2);border-radius:10px;border:1px solid var(--border);overflow:hidden">
+      <div class="breakdown-row">
+        <span class="breakdown-label">Subtotal</span>
+        <span class="breakdown-val" id="cq-subtotal">—</span>
+      </div>
+      <div class="breakdown-row">
+
+      </div>
       <div class="breakdown-row total" style="background:var(--surface)">
         <span class="breakdown-label" style="color:var(--text);font-weight:700">Total</span>
         <span style="color:var(--yellow);font-size:1.2rem;font-weight:800" id="custom-total">—</span>
@@ -1589,7 +1596,7 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
 <script>
 // ── Pricing constants ──────────────────────────────────────────────────
 const ADDONS = { screens: 4, tracks: 4, hardwater: 20, largewindow: 8 };
-const MARGIN = 0.05;
+const GST = 0;
 const MIN_JOB = 169;
 const BOOKING_URL = 'https://calendar.app.google/KcgTkongKSkHw8xZ8';
 
@@ -1608,7 +1615,7 @@ let customState = null;
 
 // ── Pricing engine ─────────────────────────────────────────────────────
 const EXT_RATE = 10;
-const INT_EXT_RATE = 17;
+const INT_EXT_RATE = 13;
 
 function calcBase(panes, type) {
   if (type === 'exterior') return Math.max(MIN_JOB, Math.round(panes * EXT_RATE));
@@ -1635,7 +1642,7 @@ function buildQuote() {
   const subtotal = base + largeWin + screens + tracks + hardwater + gutters + travel + ladder;
   const discount = (subtotal > MIN_JOB && discPct > 0) ? Math.round(subtotal * (discPct / 100)) : 0;
   const afterDiscount = Math.max(MIN_JOB, subtotal - discount);
-  const gst = Math.round(afterDiscount * MARGIN);
+  const gst = Math.round(afterDiscount * GST);
   const total = afterDiscount + gst;
   const high = Math.round(total * 1.15);
   return { base, largeWin, screens, tracks, hardwater, gutters, travel, ladder, subtotal, discPct, discount, afterDiscount, gst, total, high };
@@ -1668,13 +1675,15 @@ function startCustom() {
   goScreen('scr-custom');
 }
 
-function calcCustomMargin() {
+function calcCustomGST() {
   const raw = parseFloat(document.getElementById('cq-price').value) || 0;
   const card = document.getElementById('cq-total-card');
   if (raw <= 0) { card.style.display = 'none'; return; }
   const price = Math.round(raw);
-  const gst = Math.round(price * MARGIN);
+  const gst = Math.round(price * GST);
   const total = price + gst;
+  document.getElementById('cq-subtotal').textContent = fmt(price);
+  document.getElementById('cq-gst').textContent = fmt(gst);
   document.getElementById('custom-total').textContent = fmt(total);
   card.style.display = 'block';
 }
@@ -1712,7 +1721,7 @@ function autoSaveDraft() {
   let quote = null, quote_str = null, summary = 'Draft';
 
   if (isCustom) {
-    const gst = Math.round(customState.price * MARGIN);
+    const gst = Math.round(customState.price * GST);
     quote = Math.round(customState.price) + gst;
     quote_str = fmt(quote);
     summary = customState.description + (customState.panes ? ' · ' + customState.panes + ' panes' : '') + ' · flat ' + fmt(Math.round(customState.price));
@@ -1864,7 +1873,7 @@ function pkgCalcFull(type, screens, tracks) {
   const travel   = state.addons.travel   || 0;
   const ladder   = state.addons.ladder   ? Math.round(base * state.addons.ladder) : 0;
   const sub      = base + largeWin + s + t + g + hw + travel + ladder;
-  return sub + Math.round(sub * MARGIN);
+  return sub + Math.round(sub * GST);
 }
 
 
@@ -1969,12 +1978,12 @@ function selectService(type) {
   setTimeout(() => goScreen('scr-addons'), 120);
 }
 
-function withMargin(base) { return base + Math.round(base * MARGIN); }
+function withGST(base) { return base + Math.round(base * GST); }
 function updateServicePrices() {
   document.getElementById('svc-pane-count').textContent = state.panes;
-  document.getElementById('price-ext').textContent  = fmt(withMargin(Math.max(MIN_JOB, calcBase(state.panes, 'exterior'))));
-  document.getElementById('price-int').textContent  = fmt(withMargin(Math.max(MIN_JOB, calcBase(state.panes, 'interior'))));
-  document.getElementById('price-both').textContent = fmt(withMargin(Math.max(MIN_JOB, calcBase(state.panes, 'both'))));
+  document.getElementById('price-ext').textContent  = fmt(withGST(Math.max(MIN_JOB, calcBase(state.panes, 'exterior'))));
+  document.getElementById('price-int').textContent  = fmt(withGST(Math.max(MIN_JOB, calcBase(state.panes, 'interior'))));
+  document.getElementById('price-both').textContent = fmt(withGST(Math.max(MIN_JOB, calcBase(state.panes, 'both'))));
 }
 
 // ── Add-on helpers ─────────────────────────────────────────────────────
@@ -2166,7 +2175,7 @@ function saveLead(openCal) {
 
   if (customState && customState.active) {
     const price = Math.round(customState.price);
-    const gst = Math.round(price * MARGIN);
+    const gst = Math.round(price * GST);
     const total = price + gst;
     lead = {
       id: Date.now(),
@@ -2663,7 +2672,7 @@ function sendTierQuote() {
   const stdPrice    = fmt(pkgCalcFull('exterior', userScreens, userTracks));
   const premPrice   = fmt(pkgCalcFull('both',     userScreens, userTracks));
   const supPrice    = fmt(pkgCalcFull('both',     supScreens,  supTracks));
-  // Raw base prices (before surcharges + margin) so estimate page can show line-item breakdown
+  // Raw base prices (before surcharges + GST) so estimate page can show line-item breakdown
   const bext  = Math.max(MIN_JOB, calcBase(state.panes, 'exterior'));
   const bboth = Math.max(MIN_JOB, calcBase(state.panes, 'both'));
 
@@ -2783,7 +2792,7 @@ function emailQuote(id) {
 
   if (isCustom) {
     const price = p.price || 0;
-    const gst = Math.round(price * MARGIN);
+    const gst = Math.round(price * GST);
     const total = price + gst;
     const col = (label, val) => label.padEnd(36, ' ') + val;
     const div = '─'.repeat(44);
@@ -2829,7 +2838,7 @@ function emailQuote(id) {
     const discPct  = p.discount || 0;
     const discount = (discPct > 0 && subtotal > MIN_JOB) ? Math.round(subtotal * discPct / 100) : 0;
     const afterDiscount = Math.max(MIN_JOB, subtotal - discount);
-    const gst      = Math.round(afterDiscount * MARGIN);
+    const gst      = Math.round(afterDiscount * GST);
     const total    = afterDiscount + gst;
 
     const $ = n => '$' + Math.round(n).toLocaleString('en-CA');
@@ -3028,7 +3037,7 @@ const COMM = {
   trafficCtrl: 150,
   lift: { none: 0, scissor: 250, boom: 450 },
   travelPkm: 2.00,
-  minJob: 169, margin: 0.05,
+  minJob: 169, gst: 0,
   freq: { once:0, monthly:0.12, biweekly:0.15, weekly:0.20, quarterly:0.08, annual:0.05 }
 };
 
@@ -3246,7 +3255,7 @@ function calcCommQuote() {
 
   const minApplied = afterDisc < COMM.minJob;
   const final = Math.max(afterDisc, COMM.minJob);
-  const gst   = Math.round(final * COMM.margin);
+  const gst   = Math.round(final * COMM.gst);
   const total = final + gst;
 
   return {
@@ -3278,7 +3287,8 @@ function renderCommQuote() {
   if (commState.travelKm > 0) rows += `<div class="cbrow"><span>Travel (${commState.travelKm} km)</span><span>${fmt(commState.travelKm * COMM.travelPkm)}</span></div>`;
   if (q.discAmt > 0) rows += `<div class="cbrow" style="color:var(--green)"><span>Discount (${pct(q.totalDisc)})</span><span>-${fmt(q.discAmt)}</span></div>`;
   if (q.minApplied)  rows += `<div class="cbrow" style="color:var(--yellow)"><span>Minimum Job Applied</span><span>${fmt(COMM.minJob)}</span></div>`;
-  rows += `<div class="cbrow" style="border-top:1px solid var(--border);margin-top:.5rem;padding-top:.5rem"><span>Subtotal</span><span>${fmt(q.final)}</span></div>`;
+  rows += `<div class="cbrow" style="border-top:1px solid var(--border);margin-top:.5rem;padding-top:.5rem"><span>Before Tax</span><span>${fmt(q.final)}</span></div>`;
+  rows += ;
 
   document.getElementById('comm-breakdown').innerHTML = rows;
 }
@@ -3301,6 +3311,8 @@ function showCommCustomer() {
     '── PRICING ──',
     `Subtotal: ${fmt(q.subtotal)}`,
     q.discAmt > 0 ? `Discount (${(q.totalDisc*100).toFixed(0)}%): -${fmt(q.discAmt)}` : '',
+    `Before Tax: ${fmt(q.final)}`,
+    `GST (5%): ${fmt(q.gst)}`,
     `TOTAL: ${fmt(q.total)}`,
     '',
     commState.freq !== 'once' ? `Frequency: ${commState.freq} contract` : '',
