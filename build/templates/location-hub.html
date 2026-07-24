@@ -89,7 +89,7 @@
     <div class="services-grid-compact">
       {% for svc in services %}
       <a href="/{{ svc.slug }}/{{ location.slug }}/" class="service-link-card">
-        <span class="service-icon-sm">{{ svc.icon }}</span>
+        <span class="service-icon-sm">{{ svc.icon|safe }}</span>
         <div>
           <strong>{{ svc.name }}</strong>
           <span>{{ svc.service_description | truncate(80) }}</span>

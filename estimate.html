@@ -216,7 +216,7 @@
   document.getElementById('hero-h1').textContent = name
     ? 'Hi ' + name.split(' ')[0] + ' — Here\'s Your Estimate'
     : 'Your Window Cleaning Estimate';
-  if (addr) document.getElementById('hero-addr').textContent = '📍 ' + addr;
+  if (addr) document.getElementById('hero-addr').textContent = addr;
 
   const chips = [];
   if (reg) chips.push('<span class="bd-chip">'         + reg + ' standard</span>');

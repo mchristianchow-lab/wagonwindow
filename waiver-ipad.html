@@ -85,7 +85,7 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
 
 /* ── Hand-off screen ── */
 #scr-handoff{background:#000;justify-content:center;align-items:center;text-align:center;padding:2.5rem 2rem}
-.handoff-icon{font-size:5rem;margin-bottom:1.5rem}
+.handoff-icon{font-size:5rem;margin-bottom:1.5rem;color:#fff}
 .handoff-title{font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:.6rem}
 .handoff-sub{font-size:1rem;color:rgba(255,255,255,.6);line-height:1.6;max-width:340px;margin:0 auto 2rem}
 .handoff-btn{
@@ -151,7 +151,7 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
 
 /* ── Done screen ── */
 #scr-done{background:var(--white);justify-content:center;align-items:center;text-align:center;padding:2rem}
-.done-icon{font-size:4.5rem;margin-bottom:1.25rem}
+.done-icon{font-size:4.5rem;margin-bottom:1.25rem;color:#22c55e}
 .done-title{font-size:1.5rem;font-weight:800;color:var(--navy);margin-bottom:.4rem}
 .done-sub{font-size:.9rem;color:var(--gray);line-height:1.6;margin-bottom:1.75rem}
 .done-card{
@@ -379,7 +379,7 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
      SCREEN 3 — HAND-OFF
 ════════════════════════════ -->
 <div id="scr-handoff" class="screen">
-  <div class="handoff-icon">🤝</div>
+  <div class="handoff-icon"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></div>
   <div class="handoff-title">Hand the iPad to your customer</div>
   <div class="handoff-sub">They'll read through the service agreement, initial each clause, and sign at the end. Takes about 2 minutes.</div>
   <button class="handoff-btn" onclick="goTo('scr-terms')">I'm Ready to Sign →</button>
@@ -538,7 +538,7 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
     </div>
 
     <div style="background:#f0fff4;border:1px solid #bbf7d0;border-radius:8px;padding:1rem 1.1rem;font-size:.83rem;color:#166534;line-height:1.6">
-      ✅ <strong>I confirm</strong> I am the property owner or authorized representative, that I have read and initialled all 12 clauses, and that I agree to this Service Agreement with Wagon Window Washers.
+      <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;margin-right:.3em"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 11 15 16 9"></polyline></svg><strong>I confirm</strong> I am the property owner or authorized representative, that I have read and initialled all 12 clauses, and that I agree to this Service Agreement with Wagon Window Washers.
     </div>
     <div class="spacer"></div>
   </div>
@@ -562,8 +562,8 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
       <div class="section-label">Payment</div>
       <div class="card-title">How did they pay?</div>
       <div class="pay-toggle">
-        <button class="pay-btn" id="pay-cash"      onclick="selectPayment('cash')">💵 Cash</button>
-        <button class="pay-btn" id="pay-etransfer" onclick="selectPayment('etransfer')">📱 E-Transfer</button>
+        <button class="pay-btn" id="pay-cash"      onclick="selectPayment('cash')"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;margin-right:.3em"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="3"></circle></svg>Cash</button>
+        <button class="pay-btn" id="pay-etransfer" onclick="selectPayment('etransfer')"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;margin-right:.3em"><rect x="5" y="2" width="14" height="20" rx="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>E-Transfer</button>
       </div>
     </div>
     <div class="spacer"></div>
@@ -578,7 +578,7 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
 ════════════════════════════ -->
 <div id="scr-approve" class="screen">
   <div class="approve-header">
-    <div style="font-size:2.5rem;margin-bottom:.5rem">✅</div>
+    <div style="font-size:2.5rem;margin-bottom:.5rem"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 11 15 16 9"></polyline></svg></div>
     <h2>All Done, <span id="approve-name">there</span>!</h2>
     <p>Here's everything we completed today. Tap the button below and we'll send you a copy.</p>
   </div>
@@ -602,7 +602,7 @@ html,body{height:100%;background:var(--light);color:var(--navy);font-family:var(
      SCREEN 8 — DONE
 ════════════════════════════ -->
 <div id="scr-done" class="screen">
-  <div class="done-icon">🎉</div>
+  <div class="done-icon"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 11 15 16 9"></polyline></svg></div>
   <div class="done-title">All Done!</div>
   <div class="done-sub" id="done-sub">Job complete.</div>
   <div class="done-card" id="done-card"></div>
@@ -946,7 +946,7 @@ function sendCustomerEmail() {
   const payLabel = state.paymentMethod === 'cash' ? 'Cash' : 'E-Transfer';
   const firstName = state.name.split(' ')[0];
   const reviewLine = REVIEW_URL
-    ? '\n⭐ Enjoying your clean windows? We\'d love a Google review:\n' + REVIEW_URL + '\n'
+    ? '\nEnjoying your clean windows? We\'d love a Google review:\n' + REVIEW_URL + '\n'
     : '';
   const subject = 'Your Wagon Windows job is complete — ' + state.dateStr;
   const body = [
@@ -1008,7 +1008,7 @@ function buildWaiverHTML(forPDF = false) {
   const sigBlock = state.sigDataUrl
     ? (forPDF
         ? '<img src="' + state.sigDataUrl + '" style="max-width:280px;border:1px solid #ccc;border-radius:4px;display:block" alt="Customer signature">'
-        : '<div style="background:#f0fff4;border:1px solid #bbf7d0;border-radius:6px;padding:10px 12px;font-size:11px;color:#166534">✅ Signature captured on device — open signed waiver on the iPad to view it</div>')
+        : '<div style="background:#f0fff4;border:1px solid #bbf7d0;border-radius:6px;padding:10px 12px;font-size:11px;color:#166534"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;margin-right:.3em"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 11 15 16 9"></polyline></svg>Signature captured on device — open signed waiver on the iPad to view it</div>')
     : '<div style="height:60px;border:1px solid #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:12px">No signature captured</div>';
 
   return '<!DOCTYPE html><html><body style="font-family:Arial,sans-serif;max-width:700px;margin:0 auto;padding:24px;color:#1a1a2e">' +
@@ -1048,7 +1048,7 @@ function buildWaiverHTML(forPDF = false) {
           '<div><div style="color:#888;font-size:11px;margin-bottom:3px">Initials used:</div><div style="font-weight:700">' + ini + '</div></div>' +
         '</td>' +
       '</tr></table>' +
-      '<div style="margin-top:12px;background:#f0fff4;border:1px solid #bbf7d0;border-radius:6px;padding:10px 12px;font-size:11px;color:#166534">✅ Customer confirms they are the property owner or authorized representative, have read and initialled all 12 clauses, and agree to this Service Agreement with Wagon Window Washers.</div>' +
+      '<div style="margin-top:12px;background:#f0fff4;border:1px solid #bbf7d0;border-radius:6px;padding:10px 12px;font-size:11px;color:#166534"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;margin-right:.3em"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 11 15 16 9"></polyline></svg>Customer confirms they are the property owner or authorized representative, have read and initialled all 12 clauses, and agree to this Service Agreement with Wagon Window Washers.</div>' +
     '</div>' +
     '<div style="font-size:10px;color:#aaa;border-top:1px solid #e5e5e5;padding-top:10px">Wagon Window Washers · Salmon Arm, BC · davidhanna@wagonwindow.com · (403) 837-5092 · wagonwindow.com</div>' +
     (forPDF ? '<script>setTimeout(function(){window.print();},400);<\/script>' : '') +
