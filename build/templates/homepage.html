@@ -45,7 +45,7 @@
 <!-- SEASONAL BANNER -->
 <div class="seasonal-banner">
   <div class="seasonal-banner-inner">
-    <span class="seasonal-icon">{{ season_banner.icon }}</span>
+    <span class="seasonal-icon">{{ season_banner.icon|safe }}</span>
     <div class="seasonal-text">
       <strong>{{ season_banner.strong }}</strong> {{ season_banner.text }}
     </div>
@@ -175,7 +175,7 @@
     </div>
   </div>
   <div style="max-width:680px;margin:1.25rem auto .25rem;background:#fff5f5;border:2px solid #e81010;border-radius:10px;padding:.9rem 1.2rem;font-size:.88rem;line-height:1.65;color:#6b0000;text-align:center">
-    <strong style="color:#e81010">⚠ We price by the pane, not the window.</strong> Each individual piece of glass = 1 pane. A typical double-hung window has 2 panes — so a home with 15 windows likely has 30+ panes. Not sure? Our quote tool walks you through it, or we can count on arrival.
+    <strong style="color:#e81010"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:.25em"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>We price by the pane, not the window.</strong> Each individual piece of glass = 1 pane. A typical double-hung window has 2 panes — so a home with 15 windows likely has 30+ panes. Not sure? Our quote tool walks you through it, or we can count on arrival.
   </div>
   <div class="pricing-notes">
     <div class="pricing-note">Commercial storefronts from $169/visit — recurring contracts available</div>
@@ -215,7 +215,7 @@
   </div>
   <div class="quote-split">
     <div class="quote-split-card quote-split-primary">
-      <span class="split-icon">⚡</span>
+      <span class="split-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span>
       <h3>Instant Estimate</h3>
       <p>Answer 4 quick questions and get a real price in under 2 minutes. No phone call, no waiting.</p>
       <ul class="split-list">
@@ -228,7 +228,7 @@
     </div>
     <div class="quote-split-divider">or</div>
     <div class="quote-split-card quote-split-secondary">
-      <span class="split-icon">🏡</span>
+      <span class="split-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"></path><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"></path></svg></span>
       <h3>Book a Consultation</h3>
       <p>For larger or more complex properties — a free 30-minute on-site visit to give you a precise number.</p>
       <ul class="split-list">

@@ -48,16 +48,22 @@ env.globals['now']    = datetime.now().strftime('%Y-%m-%d')
 env.globals['faqs']   = faqs_db
 
 _month = datetime.now().month
+_ICON_SNOWFLAKE = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line></svg>'
+_ICON_BLOSSOM   = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"></path><path d="M12 16a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"></path><path d="M22 12a3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3z"></path><path d="M8 12a3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3z"></path></svg>'
+_ICON_TAG       = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41L13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>'
+_ICON_LEAF      = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>'
+_ICON_GIFT      = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8"></path><path d="M16.5 8a2.5 2.5 0 0 0 0-5C13 3 12 8 12 8"></path></svg>'
+
 if   _month in (1, 2, 3):
-    _season_banner = {'icon': '❄️', 'strong': 'Beat the spring rush — book now.', 'text': 'Early-season slots fill quickly. Lock in your date before spring demand peaks.'}
+    _season_banner = {'icon': _ICON_SNOWFLAKE, 'strong': 'Beat the spring rush — book now.', 'text': 'Early-season slots fill quickly. Lock in your date before spring demand peaks.'}
 elif _month in (4, 5):
-    _season_banner = {'icon': '🌸', 'strong': 'Spring bookings are filling up fast.', 'text': 'April and May dates are going quick — secure your window clean before the calendar fills.'}
+    _season_banner = {'icon': _ICON_BLOSSOM, 'strong': 'Spring bookings are filling up fast.', 'text': 'April and May dates are going quick — secure your window clean before the calendar fills.'}
 elif _month in (6, 7, 8):
-    _season_banner = {'icon': '🏷️', 'strong': 'Save 5% when you book online.', 'text': 'Summer deal — book your clean online today and save 5% off your total. Limited summer slots available.'}
+    _season_banner = {'icon': _ICON_TAG, 'strong': 'Save 5% when you book online.', 'text': 'Summer deal — book your clean online today and save 5% off your total. Limited summer slots available.'}
 elif _month in (9, 10):
-    _season_banner = {'icon': '🍂', 'strong': 'Fall is the best time for a pre-winter clean.', 'text': 'Clear out summer buildup before the rain and frost sets in. Book your fall clean now.'}
+    _season_banner = {'icon': _ICON_LEAF, 'strong': 'Fall is the best time for a pre-winter clean.', 'text': 'Clear out summer buildup before the rain and frost sets in. Book your fall clean now.'}
 else:
-    _season_banner = {'icon': '🌨️', 'strong': 'End-of-year bookings going fast.', 'text': 'Lock in your date before the holidays — limited spots remain before year-end.'}
+    _season_banner = {'icon': _ICON_GIFT, 'strong': 'End-of-year bookings going fast.', 'text': 'Lock in your date before the holidays — limited spots remain before year-end.'}
 env.globals['season_banner'] = _season_banner
 
 # ── Page Registry (for sitemap) ─────────────────────────────────────────────
