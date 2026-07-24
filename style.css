@@ -55,7 +55,7 @@ nav {
   height: 80px;
   width: auto;
   display: block;
-  transform: translateY(7.5%);
+  transform: translateY(calc(7.5% + 8px));
 }
 
 
