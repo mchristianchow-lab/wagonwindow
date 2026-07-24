@@ -53,7 +53,7 @@ nav {
 }
 
 .nav-logo-img {
-  height: 54px;
+  height: 64px;
   width: auto;
   display: block;
 }
@@ -1159,7 +1159,7 @@ footer p + p { margin-top: 0.6rem; }
 /* ---- TABLET (iPad landscape + smaller desktop) ---- */
 @media (min-width: 901px) and (max-width: 1180px) {
   nav { padding: 0 3%; }
-  .nav-logo-img { height: 44px; }
+  .nav-logo-img { height: 52px; }
   .nav-links { gap: 1.1rem; }
   .nav-links a { font-size: 0.81rem; }
   .nav-cta { padding: 0.45rem 0.9rem !important; font-size: 0.79rem !important; }
@@ -1168,7 +1168,7 @@ footer p + p { margin-top: 0.6rem; }
 /* ---- NAV COLLAPSE: iPad portrait + mobile ---- */
 @media (max-width: 900px) {
   nav { height: 64px; justify-content: center; background: var(--dark); border-bottom-color: var(--dark); box-shadow: none; }
-  .nav-logo-img { height: 33px; }
+  .nav-logo-img { height: 39px; }
   .hamburger { display: flex; position: absolute; right: 5%; top: 50%; transform: translateY(-50%); }
   .hamburger span { background: rgba(255,255,255,0.85); }
   .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--dark); padding: 1.5rem 5%; gap: 1.2rem; border-top: 3px solid var(--sky); }
