@@ -56,7 +56,7 @@ nav {
   width: auto;
   display: block;
   transform: translateY(7.5%);
-  filter: drop-shadow(0 0 3px rgba(232,16,16,0.8)) drop-shadow(0 0 8px rgba(232,16,16,0.4));
+  filter: drop-shadow(0 0 3px rgba(255,255,255,0.8)) drop-shadow(0 0 8px rgba(255,255,255,0.4));
 }
 
 
