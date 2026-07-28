@@ -32,16 +32,16 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
   <!-- Preload logo (LCP element) -->
-  <link rel="preload" as="image" href="/assets/images/logo.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="/assets/images/logo-oval.png" type="image/png">
 
   <!-- Inline critical CSS (nav + hero) -->
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--red:#e81010;--black:#111111;--dark:#000000;--light:#f5f5f5;--white:#ffffff}
     body{font-family:'Inter',sans-serif;color:var(--black);background:var(--white)}
-    nav{background:#000;border-bottom:5px solid var(--red);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:88px;position:sticky;top:0;z-index:100;overflow:visible}
+    nav{background:#000;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:88px;position:sticky;top:0;z-index:100;overflow:visible}
     .nav-logo{display:flex;align-items:center;text-decoration:none}
-    .nav-logo-img{height:195px;width:auto;transform:translateY(2mm);}
+    .nav-logo-img{height:60px;width:auto;transform:translateY(calc(7.5% + 8px));}
     .nav-links{display:flex;list-style:none;gap:2rem;align-items:center}
     .nav-links a{text-decoration:none;color:#fff;font-weight:500;font-size:0.95rem}
     .nav-cta{background:var(--red)!important;color:#fff!important;padding:0.5rem 1.2rem;border-radius:4px}
@@ -51,7 +51,7 @@
     .hero p{font-size:1.1rem;max-width:600px;margin:0 auto 2rem;opacity:0.9}
     .btn-primary{background:var(--red);color:#fff;padding:0.85rem 2rem;border-radius:4px;text-decoration:none;font-weight:600;display:inline-block}
     .btn-outline{border:2px solid rgba(255,255,255,0.6);color:#fff;padding:0.85rem 2rem;border-radius:4px;text-decoration:none;font-weight:600;display:inline-block}
-    @media(max-width:900px){.nav-links{display:none}.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer}.hamburger span{width:25px;height:2px;background:rgba(255,255,255,.85);display:block}}
+    @media(max-width:1060px){.nav-links{display:none}.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer}.hamburger span{width:25px;height:2px;background:rgba(255,255,255,.85);display:block}}
     .hamburger{display:none}
     .nav-links.open{display:flex;flex-direction:column;position:absolute;top:88px;left:0;right:0;background:#fff;padding:1rem 2rem;border-bottom:2px solid var(--red);z-index:99}
     .nav-links.open li a{color:var(--black)!important}
@@ -79,7 +79,7 @@
     "@type": "HomeAndConstructionBusiness",
     "name": "Wagon Windows",
     "legalName": "Wagon Windows",
-    "image": "https://wagonwindow.com/assets/images/logo.svg",
+    "image": "https://wagonwindow.com/assets/images/logo-oval.png",
     "description": "Professional window cleaning for homes and businesses across Salmon Arm and the Shuswap region, BC. Residential, commercial, screen, track, gutter, and hard water stain removal services.",
     "url": "https://wagonwindow.com",
     "telephone": "+14038375092",
@@ -224,8 +224,8 @@
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">
-    <img src="/assets/images/logo.svg" alt="Wagon Windows" class="nav-logo-img"
-         width="1024" height="1024" loading="eager" fetchpriority="high">
+    <img src="/assets/images/logo-oval.png" alt="Wagon Windows" class="nav-logo-img"
+         width="682" height="145" loading="eager" fetchpriority="high">
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="/#services">Services</a></li>
@@ -280,7 +280,7 @@
     <div class="services-grid-compact">
       
       <a href="/residential-window-cleaning/anglemont/" class="service-link-card">
-        <span class="service-icon-sm">🏡</span>
+        <span class="service-icon-sm"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"></path><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"></path></svg></span>
         <div>
           <strong>Residential Window Cleaning</strong>
           <span>Full residential window cleaning for homes of all sizes across the Shuswap....</span>
@@ -288,7 +288,7 @@
       </a>
       
       <a href="/exterior-window-cleaning/anglemont/" class="service-link-card">
-        <span class="service-icon-sm">🪟</span>
+        <span class="service-icon-sm"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="1"></rect><line x1="12" y1="3" x2="12" y2="21"></line><line x1="3" y1="12" x2="21" y2="12"></line></svg></span>
         <div>
           <strong>Exterior Window Cleaning</strong>
           <span>Exterior-only window cleaning for homeowners who want the most visible...</span>
@@ -296,7 +296,7 @@
       </a>
       
       <a href="/commercial-window-cleaning/anglemont/" class="service-link-card">
-        <span class="service-icon-sm">🏢</span>
+        <span class="service-icon-sm"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="1"></rect><line x1="9" y1="6" x2="9" y2="6.01"></line><line x1="15" y1="6" x2="15" y2="6.01"></line><line x1="9" y1="10" x2="9" y2="10.01"></line><line x1="15" y1="10" x2="15" y2="10.01"></line><line x1="9" y1="14" x2="9" y2="14.01"></line><line x1="15" y1="14" x2="15" y2="14.01"></line><line x1="9" y1="18" x2="15" y2="18"></line></svg></span>
         <div>
           <strong>Commercial Window Cleaning</strong>
           <span>Professional window cleaning for storefronts, offices, and commercial...</span>
@@ -304,7 +304,7 @@
       </a>
       
       <a href="/screen-cleaning/anglemont/" class="service-link-card">
-        <span class="service-icon-sm">🕸️</span>
+        <span class="service-icon-sm"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="1"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg></span>
         <div>
           <strong>Window Screen Cleaning</strong>
           <span>Screen removal, washing, and reinstallation. Removes pollen, dust, and...</span>
@@ -312,7 +312,7 @@
       </a>
       
       <a href="/track-cleaning/anglemont/" class="service-link-card">
-        <span class="service-icon-sm">🔧</span>
+        <span class="service-icon-sm"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></span>
         <div>
           <strong>Window Track Cleaning</strong>
           <span>Detailed cleaning of window tracks and channels. Removes accumulated grime,...</span>
@@ -320,7 +320,7 @@
       </a>
       
       <a href="/hard-water-stain-removal/anglemont/" class="service-link-card">
-        <span class="service-icon-sm">💧</span>
+        <span class="service-icon-sm"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg></span>
         <div>
           <strong>Hard Water Stain Removal</strong>
           <span>Specialist treatment to remove mineral deposits, calcium buildup, and hard...</span>
@@ -328,7 +328,7 @@
       </a>
       
       <a href="/seasonal-window-cleaning/anglemont/" class="service-link-card">
-        <span class="service-icon-sm">🍂</span>
+        <span class="service-icon-sm"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></span>
         <div>
           <strong>Seasonal Window Cleaning Packages</strong>
           <span>Pre-scheduled seasonal cleans timed to the Shuswap climate cycle. Spring...</span>
@@ -336,7 +336,7 @@
       </a>
       
       <a href="/gutter-cleaning/anglemont/" class="service-link-card">
-        <span class="service-icon-sm">🌿</span>
+        <span class="service-icon-sm"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M6 6v4a2 2 0 0 0 2 2h2"></path><line x1="10" y1="12" x2="10" y2="22"></line></svg></span>
         <div>
           <strong>Gutter Cleaning</strong>
           <span>Professional gutter and eavestrough cleaning for homes and businesses across...</span>
@@ -411,9 +411,9 @@
     <table class="pricing-table">
       <thead><tr><th>Home Size</th><th>Windows</th><th>Exterior Only</th><th>Interior + Exterior</th></tr></thead>
       <tbody>
-        <tr><td>Small</td><td>Up to 15</td><td>From $169</td><td>From $219</td></tr>
-        <tr><td>Medium</td><td>16–25</td><td>From $229</td><td>From $289</td></tr>
-        <tr><td>Large</td><td>26–35</td><td>From $299</td><td>From $369</td></tr>
+        <tr><td>Small</td><td>Up to 15</td><td>From $169</td><td>From $255</td></tr>
+        <tr><td>Medium</td><td>16–25</td><td>From $200</td><td>From $340</td></tr>
+        <tr><td>Large</td><td>26–35</td><td>From $299</td><td>From $510</td></tr>
       </tbody>
     </table>
     <p>Commercial storefronts from $169. Screens $4 each. Tracks $4 each. Minimum job $169.</p>
