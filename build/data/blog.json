@@ -4445,5 +4445,66 @@
       }
     ],
     "word_count_target": 1400
+  },
+  {
+    "slug": "bug-splatter-window-screen-cleaning-shuswap",
+    "meta_title": "Bug Splatter on Windows & Screens BC | Wagon Windows",
+    "meta_desc": "Lake flies, mayflies, and summer bugs leave splatter and residue on Shuswap windows and screens. Why it etches glass if left too long, and when to clean.",
+    "h1": "Bug Splatter on Your Windows and Screens: A Shuswap Summer Problem",
+    "category": "troubleshooting",
+    "tags": [
+      "bug splatter windows",
+      "lake fly residue",
+      "window screen cleaning",
+      "Shuswap summer bugs",
+      "mayfly hatch windows",
+      "insect residue glass"
+    ],
+    "published_date": "2026-07-28",
+    "intro": "Shuswap Lake's summer bug season is as predictable as pollen in spring. Mayfly hatches along the shoreline, mosquitoes drawn to porch lights, and the general insect volume that comes with lake-adjacent living all end up on the same surface: your windows and screens. Left long enough, that residue does more than look bad.",
+    "sections": [
+      {
+        "h2": "Why Bug Residue Is Worse Than It Looks",
+        "body": "Insect remains are acidic. The same way bug splatter etches a car's clearcoat if it sits through a hot afternoon, residue left on glass for weeks can bond to the surface and become part of a hard water or mineral film problem instead of a simple wipe-off. On screens, dead insects and the oils they leave behind clog the mesh, which cuts airflow and makes the screen itself harder to clean the longer it's ignored."
+      },
+      {
+        "h2": "Shuswap's Mayfly and Lake Fly Season",
+        "body": "Lake-adjacent properties around Blind Bay, Sorrento, and Scotch Creek see heavier insect activity than homes further from the water, especially during mayfly hatches in the warmer months. Porch lights and reflective glass attract them at night, and mornings after a hatch often mean a visible layer on east- and south-facing windows. This is a normal part of lake living — it just means those windows need attention more often than an inland home's would."
+      },
+      {
+        "h2": "When to Clean During Bug Season",
+        "body": "The practical rule: don't let it go past a couple of weeks in peak summer. A quick clean before residue has time to bake onto the glass in direct sun is far easier than treating etched or bonded residue later. If you're already booking a mid-summer clean for lake spray or dust (see our seasonal timing guide), bug residue is usually part of the same visit — no need to schedule separately."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Does bug splatter permanently damage glass?",
+        "a": "Not if it's cleaned within a reasonable window. The risk is residue sitting through repeated hot afternoons, which can bond it to the glass surface similar to hard water etching. Regular cleaning during peak bug season avoids this entirely."
+      },
+      {
+        "q": "Can I just hose off my screens instead of booking a cleaning?",
+        "a": "A hose helps with loose debris, but bug residue and the oils insects leave behind usually need actual cleaning to fully clear the mesh. If screens are heavily built up, a proper screen cleaning gets more airflow back than rinsing alone."
+      },
+      {
+        "q": "Is bug season worse some years than others?",
+        "a": "Yes — hatch volume varies year to year with lake conditions and weather. In heavier years, a mid-season check between your spring and fall cleans is worth it for lakefront properties specifically."
+      }
+    ],
+    "cta_text": "Book Bug Residue and Screen Cleaning for Your Shuswap Home",
+    "internal_links": [
+      {
+        "url": "/blog/window-screen-cleaning-guide/",
+        "anchor": "window screen cleaning guide"
+      },
+      {
+        "url": "/blog/wildfire-smoke-ash-windows-bc/",
+        "anchor": "summer window cleaning timing"
+      },
+      {
+        "url": "/blog/shuswap-lake-property-window-care/",
+        "anchor": "Shuswap lakefront window care"
+      }
+    ],
+    "word_count_target": 900
   }
 ]
