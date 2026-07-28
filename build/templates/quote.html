@@ -538,7 +538,7 @@
         <div class="pane-total">Total: <strong id="pane-total">0</strong> panes</div>
         <div id="large-notice" style="display:none">
           <div class="notice-box red">
-            <strong>Bigger job.</strong> For homes with 71+ panes we do a free on-site consultation to give you a precise quote — no surprises. Hit Next to book it.
+            <strong>Bigger job.</strong> Your price below is a solid estimate — for 71+ panes we may follow up to confirm details on-site before your appointment, just to make sure there are no surprises.
           </div>
         </div>
       </div>
@@ -863,12 +863,10 @@ function adjustPane(type, delta) {
   const total = totalPanes();
   document.getElementById('pane-total').textContent = total;
   document.getElementById('large-notice').style.display = total >= 71 ? 'block' : 'none';
-  document.getElementById('next-2').textContent = total >= 71 ? 'Book Consultation →' : 'See Packages →';
 }
 
 function handleCountNext() {
   if (totalPanes() === 0) { alert('Please count at least 1 pane.'); return; }
-  if (totalPanes() >= 71) { showStep('large'); return; }
   showStep(3);
 }
 
