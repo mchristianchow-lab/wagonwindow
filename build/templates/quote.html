@@ -122,8 +122,9 @@
 
 /* PANE INTRO OVERLAY */
 .pane-intro{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:999;display:none;align-items:flex-end;justify-content:center;padding:0}
-.pane-help-btn{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;border:2px solid var(--border);background:#fff;color:var(--gray);font-size:.75rem;font-weight:800;cursor:pointer;vertical-align:middle;margin-left:.4rem;line-height:1;font-family:var(--font);transition:all .15s}
-.pane-help-btn:hover{border-color:var(--sky);color:var(--sky)}
+.pane-help-btn{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;border:2px solid var(--sky);background:#fff;color:var(--sky);font-size:.75rem;font-weight:800;cursor:pointer;vertical-align:middle;margin-left:.4rem;line-height:1;font-family:var(--font);transition:all .15s}
+.pane-help-btn:hover{background:var(--sky);color:#fff}
+.pane-sub-highlight{color:var(--sky)!important;font-weight:700}
 @media(min-width:560px){.pane-intro{align-items:center;padding:1.5rem}}
 .pane-intro-card{background:#fff;width:100%;max-width:580px;border-radius:20px 20px 0 0;padding:2rem 1.5rem 2.5rem;max-height:92vh;overflow-y:auto}
 @media(min-width:560px){.pane-intro-card{border-radius:20px;padding:2.25rem 2rem 2.25rem}}
@@ -493,7 +494,7 @@
     <div class="qstep" id="step-2">
       <div class="step-card">
         <h2>Count your panes<button type="button" class="pane-help-btn" aria-label="What's a pane?" onclick="document.getElementById('pane-intro').style.display='flex'">?</button></h2>
-        <p class="sub">Each individual piece of glass = 1 pane. A double-hung window has 2 panes. A sliding patio door = 2 panes.</p>
+        <p class="sub pane-sub-highlight">Each individual piece of glass = 1 pane. A double-hung window has 2 panes. A sliding patio door = 2 panes.</p>
         <div class="pane-breakdown">
           <div class="pane-row">
             <div class="pane-row-info">
