@@ -32,16 +32,16 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
   <!-- Preload logo (LCP element) -->
-  <link rel="preload" as="image" href="/assets/images/logo.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="/assets/images/logo-oval.png" type="image/png">
 
   <!-- Inline critical CSS (nav + hero) -->
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--red:#e81010;--black:#111111;--dark:#000000;--light:#f5f5f5;--white:#ffffff}
     body{font-family:'Inter',sans-serif;color:var(--black);background:var(--white)}
-    nav{background:#000;border-bottom:5px solid var(--red);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:88px;position:sticky;top:0;z-index:100;overflow:visible}
+    nav{background:#000;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:88px;position:sticky;top:0;z-index:100;overflow:visible}
     .nav-logo{display:flex;align-items:center;text-decoration:none}
-    .nav-logo-img{height:195px;width:auto;transform:translateY(2mm);}
+    .nav-logo-img{height:60px;width:auto;transform:translateY(calc(7.5% + 8px));}
     .nav-links{display:flex;list-style:none;gap:2rem;align-items:center}
     .nav-links a{text-decoration:none;color:#fff;font-weight:500;font-size:0.95rem}
     .nav-cta{background:var(--red)!important;color:#fff!important;padding:0.5rem 1.2rem;border-radius:4px}
@@ -51,7 +51,7 @@
     .hero p{font-size:1.1rem;max-width:600px;margin:0 auto 2rem;opacity:0.9}
     .btn-primary{background:var(--red);color:#fff;padding:0.85rem 2rem;border-radius:4px;text-decoration:none;font-weight:600;display:inline-block}
     .btn-outline{border:2px solid rgba(255,255,255,0.6);color:#fff;padding:0.85rem 2rem;border-radius:4px;text-decoration:none;font-weight:600;display:inline-block}
-    @media(max-width:900px){.nav-links{display:none}.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer}.hamburger span{width:25px;height:2px;background:rgba(255,255,255,.85);display:block}}
+    @media(max-width:1060px){.nav-links{display:none}.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer}.hamburger span{width:25px;height:2px;background:rgba(255,255,255,.85);display:block}}
     .hamburger{display:none}
     .nav-links.open{display:flex;flex-direction:column;position:absolute;top:88px;left:0;right:0;background:#fff;padding:1rem 2rem;border-bottom:2px solid var(--red);z-index:99}
     .nav-links.open li a{color:var(--black)!important}
@@ -79,7 +79,7 @@
     "@type": "HomeAndConstructionBusiness",
     "name": "Wagon Windows",
     "legalName": "Wagon Windows",
-    "image": "https://wagonwindow.com/assets/images/logo.svg",
+    "image": "https://wagonwindow.com/assets/images/logo-oval.png",
     "description": "Professional window cleaning for homes and businesses across Salmon Arm and the Shuswap region, BC. Residential, commercial, screen, track, gutter, and hard water stain removal services.",
     "url": "https://wagonwindow.com",
     "telephone": "+14038375092",
@@ -262,7 +262,9 @@
 .centered-card p{color:var(--gray);margin-bottom:1.5rem;line-height:1.6}
 
 /* PANE INTRO OVERLAY */
-.pane-intro{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:999;display:flex;align-items:flex-end;justify-content:center;padding:0}
+.pane-intro{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:999;display:none;align-items:flex-end;justify-content:center;padding:0}
+.pane-help-btn{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;border:2px solid var(--border);background:#fff;color:var(--gray);font-size:.75rem;font-weight:800;cursor:pointer;vertical-align:middle;margin-left:.4rem;line-height:1;font-family:var(--font);transition:all .15s}
+.pane-help-btn:hover{border-color:var(--sky);color:var(--sky)}
 @media(min-width:560px){.pane-intro{align-items:center;padding:1.5rem}}
 .pane-intro-card{background:#fff;width:100%;max-width:580px;border-radius:20px 20px 0 0;padding:2rem 1.5rem 2.5rem;max-height:92vh;overflow-y:auto}
 @media(min-width:560px){.pane-intro-card{border-radius:20px;padding:2.25rem 2rem 2.25rem}}
@@ -294,8 +296,8 @@
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">
-    <img src="/assets/images/logo.svg" alt="Wagon Windows" class="nav-logo-img"
-         width="1024" height="1024" loading="eager" fetchpriority="high">
+    <img src="/assets/images/logo-oval.png" alt="Wagon Windows" class="nav-logo-img"
+         width="682" height="145" loading="eager" fetchpriority="high">
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="/#services">Services</a></li>
@@ -634,22 +636,22 @@
         <p class="sub">Takes 2 minutes. No obligation. No phone call required.</p>
         <div class="prop-grid">
           <button class="prop-btn" onclick="selectProp('house', this)">
-            <span class="prop-icon">🏠</span>
+            <span class="prop-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"></path><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"></path></svg></span>
             <span class="prop-label">House</span>
             <span class="prop-sub">Detached or semi-detached</span>
           </button>
           <button class="prop-btn" onclick="selectProp('townhouse', this)">
-            <span class="prop-icon">🏘</span>
+            <span class="prop-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l6-4 6 4v12"></path><path d="M15 21V13l6-3v11"></path><line x1="9" y1="15" x2="9" y2="15.01"></line></svg></span>
             <span class="prop-label">Townhouse</span>
             <span class="prop-sub">Row home or strata unit</span>
           </button>
           <button class="prop-btn" onclick="selectProp('condo', this)">
-            <span class="prop-icon">🏢</span>
+            <span class="prop-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="1"></rect><line x1="9" y1="6" x2="9" y2="6.01"></line><line x1="15" y1="6" x2="15" y2="6.01"></line><line x1="9" y1="10" x2="9" y2="10.01"></line><line x1="15" y1="10" x2="15" y2="10.01"></line><line x1="9" y1="14" x2="9" y2="14.01"></line><line x1="15" y1="14" x2="15" y2="14.01"></line><line x1="9" y1="18" x2="15" y2="18"></line></svg></span>
             <span class="prop-label">Condo / Apartment</span>
             <span class="prop-sub">Suite in a complex</span>
           </button>
           <button class="prop-btn" onclick="selectProp('commercial', this)">
-            <span class="prop-icon">🏪</span>
+            <span class="prop-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1-5h16l1 5"></path><path d="M3 9a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"></path><path d="M4 9v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9"></path><path d="M9 21v-6h6v6"></path></svg></span>
             <span class="prop-label">Commercial</span>
             <span class="prop-sub">Office, retail, or other</span>
           </button>
@@ -663,7 +665,7 @@
     <!-- ── Step 2: Count Panes ── -->
     <div class="qstep" id="step-2">
       <div class="step-card">
-        <h2>Count your panes</h2>
+        <h2>Count your panes<button type="button" class="pane-help-btn" aria-label="What's a pane?" onclick="document.getElementById('pane-intro').style.display='flex'">?</button></h2>
         <p class="sub">Each individual piece of glass = 1 pane. A double-hung window has 2 panes. A sliding patio door = 2 panes.</p>
         <div class="pane-breakdown">
           <div class="pane-row">
@@ -836,8 +838,8 @@
         We'll assess your gutters on arrival and give you a firm price before starting — no obligation. Flushing debris, clearing downspouts.
       </div>
 
-      <div class="discount-note">✅ 5% online booking discount applied to all prices above</div>
-      <div class="discount-note" style="margin-top:.5rem;">🏆 Lowest price guarantee — find a lower quote for the same job, we'll beat it</div>
+      <div class="discount-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:.3em"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 11 15 16 9"></polyline></svg>5% online booking discount applied to all prices above</div>
+      <div class="discount-note" style="margin-top:.5rem;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:.3em"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>Lowest price guarantee — find a lower quote for the same job, we'll beat it</div>
 
       <div class="step-nav">
         <button class="btn-back" onclick="showStep(3)">← Back</button>
@@ -914,7 +916,7 @@
     <!-- ── Large Home ── -->
     <div class="qstep" id="step-large">
       <div class="step-card centered-card">
-        <div class="big-icon">🏡</div>
+        <div class="big-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"></path><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"></path></svg></div>
         <h2>Sounds Like a Bigger Job</h2>
         <p>For homes with 71+ panes we come out for a free on-site consultation — no guesswork, no surprises before we start.</p>
         <a href="https://calendar.app.google/KcgTkongKSkHw8xZ8" class="btn-primary" target="_blank" rel="noopener" style="display:inline-block"
@@ -929,7 +931,7 @@
     <!-- ── Success ── -->
     <div class="qstep" id="step-success">
       <div class="step-card centered-card">
-        <div class="big-icon">✅</div>
+        <div class="big-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 11 15 16 9"></polyline></svg></div>
         <h2>Request Sent!</h2>
         <p>We'll be in touch within 24 hours to confirm your appointment. Want to lock in a time right now?</p>
         <a href="https://calendar.app.google/KcgTkongKSkHw8xZ8" class="btn-primary" target="_blank" rel="noopener" style="display:inline-block"
@@ -946,7 +948,7 @@
 
 <script>
 const MIN_JOB  = 169;
-const GST      = 0;
+const MARGIN   = 0.05;
 const DISCOUNT = 0.05;
 const LARGE_PK = 8;
 
@@ -1007,7 +1009,7 @@ function pkgTotal(type, screens, tracks) {
   const hw     = state.addons.hardwater * 20;
   const sub    = base + lrg + scr + trk + hw;
   const aft    = sub - Math.round(sub * DISCOUNT);
-  return aft + Math.round(aft * GST) + state.travelFee;
+  return aft + Math.round(aft * MARGIN) + state.travelFee;
 }
 
 function updatePrices() {
@@ -1153,7 +1155,7 @@ function checkTravelFee(address) {
   var note  = document.getElementById('travel-fee-note');
 
   if (OUT_OF_AREA.some(function(k){ return lower.indexOf(k) !== -1; })) {
-    note.innerHTML = '<strong>⚠ Outside our service area.</strong> We serve Salmon Arm and the Shuswap region, BC. If you\'re unsure, submit anyway and we\'ll follow up.';
+    note.innerHTML = '<strong><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:.3em"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>Outside our service area.</strong> We serve Salmon Arm and the Shuswap region, BC. If you\'re unsure, submit anyway and we\'ll follow up.';
     note.style.background = '#fff5f5';
     note.style.borderColor = 'var(--sky)';
     note.style.color = '#7a0000';
@@ -1193,10 +1195,10 @@ async function submitBooking(e) {
   var outOfArea  = (noteEl.dataset || {}).outOfArea === '1';
   var cur = document.getElementById('email-summary').value;
   if (outOfArea) {
-    document.getElementById('email-subject').value = '⚠ OUT OF AREA — ' + document.getElementById('email-subject').value;
-    document.getElementById('email-summary').value = cur + ' | ⚠ OUT OF SERVICE AREA — address flagged as outside Shuswap region';
+    document.getElementById('email-subject').value = 'OUT OF AREA — ' + document.getElementById('email-subject').value;
+    document.getElementById('email-summary').value = cur + ' | OUT OF SERVICE AREA — address flagged as outside Shuswap region';
   } else if (travelFee > 0) {
-    document.getElementById('email-summary').value = cur + ' | ⚠ TRAVEL FEE: +$' + travelFee + ' (confirm with customer)';
+    document.getElementById('email-summary').value = cur + ' | TRAVEL FEE: +$' + travelFee + ' (confirm with customer)';
   }
   var btn = document.getElementById('submit-btn');
   btn.textContent = 'Sending…';
