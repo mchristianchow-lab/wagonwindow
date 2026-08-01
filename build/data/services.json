@@ -585,7 +585,7 @@
       }
     ],
     "base_price": 189,
-    "price_note": "Standard home (single-storey) from $149. Two-storey or larger homes from $229. Quoted on-site for complex rooflines.",
+    "price_note": "Standard home (single-storey) from $189. Two-storey or larger homes assessed on-site.",
     "schema_service_type": "HomeAndConstructionService",
     "icon": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 6h18\"></path><path d=\"M6 6v4a2 2 0 0 0 2 2h2\"></path><line x1=\"10\" y1=\"12\" x2=\"10\" y2=\"22\"></line></svg>",
     "faq_count_minimum": 8,
