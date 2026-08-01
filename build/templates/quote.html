@@ -775,7 +775,8 @@
 </section>
 
 <script>
-const MIN_JOB  = 169;
+const MIN_JOB_EXT     = 169;
+const MIN_JOB_INT_EXT = 221;
 const MARGIN   = 0.05;
 const DISCOUNT = 0.05;
 const LARGE_PK = 8;
@@ -823,14 +824,14 @@ function totalPanes() {
 }
 
 function calcBase(panes, type) {
-  const ext    = Math.max(MIN_JOB, panes * 10);
-  const intExt = Math.max(MIN_JOB, panes * 17);
+  const ext    = Math.max(MIN_JOB_EXT, panes * 10);
+  const intExt = Math.max(MIN_JOB_INT_EXT, panes * 17);
   return type === 'exterior' ? Math.round(ext) : Math.round(intExt);
 }
 
 function pkgTotal(type, screens, tracks) {
   const panes  = totalPanes();
-  const base   = Math.max(MIN_JOB, calcBase(panes, type));
+  const base   = calcBase(panes, type);
   const lrg    = (state.breakdown.large + state.breakdown.french) * LARGE_PK;
   const scr    = screens * 4;
   const trk    = tracks  * 4;

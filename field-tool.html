@@ -1590,7 +1590,9 @@ body.outdoor{--bg:#fff;--surface:#f0f0f0;--surface2:#e4e4e4;--border:#ccc;--text
 // ── Pricing constants ──────────────────────────────────────────────────
 const ADDONS = { screens: 4, tracks: 4, hardwater: 20, largewindow: 8 };
 const MARGIN = 0.05;
-const MIN_JOB = 169;
+const MIN_JOB_EXT = 169;
+const MIN_JOB_INT_EXT = 221;
+function minJobFor(type) { return type === 'exterior' ? MIN_JOB_EXT : MIN_JOB_INT_EXT; }
 const BOOKING_URL = 'https://calendar.app.google/KcgTkongKSkHw8xZ8';
 
 // State
@@ -1611,8 +1613,8 @@ const EXT_RATE = 10;
 const INT_EXT_RATE = 17;
 
 function calcBase(panes, type) {
-  if (type === 'exterior') return Math.max(MIN_JOB, Math.round(panes * EXT_RATE));
-  return Math.max(MIN_JOB, Math.round(panes * INT_EXT_RATE));
+  if (type === 'exterior') return Math.max(MIN_JOB_EXT, Math.round(panes * EXT_RATE));
+  return Math.max(MIN_JOB_INT_EXT, Math.round(panes * INT_EXT_RATE));
 }
 
 function gutterPrice() { return 189; }
@@ -1623,7 +1625,7 @@ function sizeBadge(panes) {
 
 function buildQuote() {
   if (!state.serviceType) return null;
-  const base = Math.max(MIN_JOB, calcBase(state.panes, state.serviceType));
+  const base = calcBase(state.panes, state.serviceType);
   const largeWin = state.addons.largewindow * ADDONS.largewindow;
   const screens  = state.addons.screens  * ADDONS.screens;
   const tracks   = state.addons.tracks   * ADDONS.tracks;
@@ -1633,8 +1635,8 @@ function buildQuote() {
   const ladder   = state.addons.ladder   ? Math.round(base * state.addons.ladder) : 0;
   const discPct  = Math.min(40, Math.max(0, parseFloat(document.getElementById('discount-pct')?.value || 0)));
   const subtotal = base + largeWin + screens + tracks + hardwater + gutters + travel + ladder;
-  const discount = (subtotal > MIN_JOB && discPct > 0) ? Math.round(subtotal * (discPct / 100)) : 0;
-  const afterDiscount = Math.max(MIN_JOB, subtotal - discount);
+  const discount = (subtotal > minJobFor(state.serviceType) && discPct > 0) ? Math.round(subtotal * (discPct / 100)) : 0;
+  const afterDiscount = Math.max(minJobFor(state.serviceType), subtotal - discount);
   const gst = Math.round(afterDiscount * MARGIN);
   const total = afterDiscount + gst;
   const high = Math.round(total * 1.15);
@@ -1855,7 +1857,7 @@ function updateAddonsContext() {
 }
 
 function pkgCalcFull(type, screens, tracks) {
-  const base     = Math.max(MIN_JOB, calcBase(state.panes, type));
+  const base     = calcBase(state.panes, type);
   const largeWin = state.addons.largewindow * ADDONS.largewindow;
   const s        = screens * ADDONS.screens;
   const t        = tracks  * ADDONS.tracks;
@@ -1972,9 +1974,9 @@ function selectService(type) {
 function withMargin(base) { return base + Math.round(base * MARGIN); }
 function updateServicePrices() {
   document.getElementById('svc-pane-count').textContent = state.panes;
-  document.getElementById('price-ext').textContent  = fmt(withMargin(Math.max(MIN_JOB, calcBase(state.panes, 'exterior'))));
-  document.getElementById('price-int').textContent  = fmt(withMargin(Math.max(MIN_JOB, calcBase(state.panes, 'interior'))));
-  document.getElementById('price-both').textContent = fmt(withMargin(Math.max(MIN_JOB, calcBase(state.panes, 'both'))));
+  document.getElementById('price-ext').textContent  = fmt(withMargin(calcBase(state.panes, 'exterior')));
+  document.getElementById('price-int').textContent  = fmt(withMargin(calcBase(state.panes, 'interior')));
+  document.getElementById('price-both').textContent = fmt(withMargin(calcBase(state.panes, 'both')));
 }
 
 // ── Add-on helpers ─────────────────────────────────────────────────────
@@ -2666,8 +2668,8 @@ function sendTierQuote() {
   const premPrice   = fmt(pkgCalcFull('both',     userScreens, userTracks));
   const supPrice    = fmt(pkgCalcFull('both',     supScreens,  supTracks));
   // Raw base prices (before surcharges + margin) so estimate page can show line-item breakdown
-  const bext  = Math.max(MIN_JOB, calcBase(state.panes, 'exterior'));
-  const bboth = Math.max(MIN_JOB, calcBase(state.panes, 'both'));
+  const bext  = calcBase(state.panes, 'exterior');
+  const bboth = calcBase(state.panes, 'both');
 
   const parts = [];
   if (state.breakdown.regular) parts.push(state.breakdown.regular + ' standard');
@@ -2819,7 +2821,7 @@ function emailQuote(id) {
     const addons  = p.addons   || {};
     const totalPanes = (bd.regular || 0) + (bd.large || 0) + (bd.french || 0);
     const svcLabel = p.serviceType === 'interior' ? 'Interior Window Cleaning' : p.serviceType === 'both' ? 'Interior + Exterior Window Cleaning' : 'Exterior Window Cleaning';
-    const base     = Math.max(MIN_JOB, calcBase(totalPanes, p.serviceType));
+    const base     = calcBase(totalPanes, p.serviceType);
     const largeWin = (addons.largewindow || 0) * ADDONS.largewindow;
     const screens  = (addons.screens     || 0) * ADDONS.screens;
     const tracks   = (addons.tracks      || 0) * ADDONS.tracks;
@@ -2829,8 +2831,8 @@ function emailQuote(id) {
     const ladder   = (addons.ladder || 0) ? Math.round(base * addons.ladder) : 0;
     const subtotal = base + largeWin + screens + tracks + hardwater + gutters + travel + ladder;
     const discPct  = p.discount || 0;
-    const discount = (discPct > 0 && subtotal > MIN_JOB) ? Math.round(subtotal * discPct / 100) : 0;
-    const afterDiscount = Math.max(MIN_JOB, subtotal - discount);
+    const discount = (discPct > 0 && subtotal > minJobFor(p.serviceType)) ? Math.round(subtotal * discPct / 100) : 0;
+    const afterDiscount = Math.max(minJobFor(p.serviceType), subtotal - discount);
     const gst      = Math.round(afterDiscount * MARGIN);
     const total    = afterDiscount + gst;
 
@@ -2884,8 +2886,8 @@ function emailQuote(id) {
     const bd      = p.breakdown || { regular: 0, large: 0, french: 0 };
     const addons  = p.addons   || {};
     const totalPanes = (bd.regular || 0) + (bd.large || 0) + (bd.french || 0);
-    const bext  = Math.max(MIN_JOB, calcBase(totalPanes, 'exterior'));
-    const bboth = Math.max(MIN_JOB, calcBase(totalPanes, 'both'));
+    const bext  = calcBase(totalPanes, 'exterior');
+    const bboth = calcBase(totalPanes, 'both');
     const est = Math.round(totalPanes / 2);
     const supScreens = Math.max(addons.screens || 0, est);
     const supTracks  = Math.max(addons.tracks  || 0, est);
