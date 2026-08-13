@@ -395,6 +395,19 @@ def build_404():
     print("  404 page ✓")
 
 
+def build_redirects():
+    """_redirects is read by Cloudflare Pages. Service hubs live at /services/<slug>/ but
+    the site linked /<slug>/ for a long time, and those bare paths may be bookmarked or
+    linked externally. 301 them rather than 404."""
+    if CHECK_ONLY:
+        return
+    lines = [f"/{svc['slug']}/  /services/{svc['slug']}/  301" for svc in services]
+    lines.append("/guides/  /blog/  301")
+    with open(os.path.join(DIST_DIR, '_redirects'), 'w', encoding='utf-8') as f:
+        f.write("\n".join(lines) + "\n")
+    print(f"  _redirects ✓ ({len(lines)} rules)")
+
+
 def build_headers():
     """_headers is read by Cloudflare Pages to set response headers."""
     if CHECK_ONLY:
@@ -468,6 +481,7 @@ if __name__ == '__main__':
 
     if not CHECK_ONLY:
         build_headers()
+        build_redirects()
         generate_sitemap()
         generate_robots()
 
