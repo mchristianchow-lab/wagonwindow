@@ -381,6 +381,36 @@ def build_quote_page():
     print("  Quote page ✓")
 
 # ── Build: Standalone Pages ─────────────────────────────────────────────────
+def build_404():
+    """404 page. Cloudflare Pages serves /404.html for unmatched routes with a real
+    404 status. Without it every bogus URL returned 200 with the homepage (soft-404)."""
+    ctx = {
+        'page_title': 'Page Not Found | Wagon Windows',
+        'meta_desc': 'That page could not be found. Get an instant window cleaning quote or browse our services across Salmon Arm and the Shuswap.',
+        'h1': "This page doesn't exist.",
+        'canonical': f"{config['site_url']}/404.html",
+    }
+    if not CHECK_ONLY:
+        render('404.html', os.path.join(DIST_DIR, '404.html'), ctx)
+    print("  404 page ✓")
+
+
+def build_headers():
+    """_headers is read by Cloudflare Pages to set response headers."""
+    if CHECK_ONLY:
+        return
+    rules = """/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
+"""
+    with open(os.path.join(DIST_DIR, '_headers'), 'w', encoding='utf-8') as f:
+        f.write(rules)
+    print("  _headers ✓")
+
+
 def build_standalones():
     try:
         standalones = load('standalones.json')
@@ -434,8 +464,10 @@ if __name__ == '__main__':
     build_blog()
     build_blog_index()
     build_standalones()
+    build_404()
 
     if not CHECK_ONLY:
+        build_headers()
         generate_sitemap()
         generate_robots()
 
