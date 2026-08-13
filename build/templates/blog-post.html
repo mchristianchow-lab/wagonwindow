@@ -19,7 +19,7 @@
   "headline": {{ post.h1 | tojson }},
   "description": {{ post.meta_desc | tojson }},
   "datePublished": "{{ post.published_date }}",
-  "dateModified": "{{ now }}",
+  "dateModified": "{{ post.updated_date or post.published_date }}",
   "author": {"@type": "Person", "name": "David Hanna"},
   "publisher": {
     "@type": "Organization",
