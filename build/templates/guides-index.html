@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block head_extra %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "{{ config.site_url }}/"},
+    {"@type": "ListItem", "position": 2, "name": "Guides", "item": "{{ canonical }}"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Wagon Windows Guides",
+  "description": "In-depth window cleaning, hard water, gutter, and commercial guides for the Shuswap.",
+  "url": "{{ canonical }}",
+  "publisher": {"@type": "Organization", "name": "Wagon Windows", "url": "{{ config.site_url }}"}
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a> › Guides
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-badge">Shuswap Region, BC · In-Depth Guides</div>
+    <h1>{{ h1 }}</h1>
+    <div class="quick-answer">
+      <p>Long-form guides covering what a job actually costs, how hard water damages glass, when gutters need clearing, and what commercial contracts involve. Written from work done across Salmon Arm and the Shuswap, not scraped from anywhere else.</p>
+    </div>
+    <div class="hero-btns">
+      <a href="/quote/" class="btn-primary"
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'guides_index'});">
+        Get an Instant Estimate
+      </a>
+      <a href="tel:{{ config.phone_raw }}" class="btn-outline"
+         onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'guides_index'});">
+        {{ config.phone }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<article class="page-content">
+  <section class="content-section">
+    <h2>Complete Guides</h2>
+    <div class="blog-grid">
+      {% for g in guides %}
+      <article class="blog-card">
+        <div class="blog-card-meta"><span class="blog-category">Guide</span></div>
+        <h2 class="blog-card-title"><a href="/guides/{{ g.slug }}/">{{ g.h1 }}</a></h2>
+        <p class="blog-card-intro">{{ g.intro[:150] }}{% if g.intro|length > 150 %}…{% endif %}</p>
+        <a href="/guides/{{ g.slug }}/" class="blog-read-more">Read the guide →</a>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>Seasonal Window Cleaning</h2>
+    <p>What changes on Shuswap glass through the year, and when each clean is worth booking.</p>
+    <div class="blog-grid">
+      {% for s in seasonal %}
+      <article class="blog-card">
+        <div class="blog-card-meta">
+          <span class="blog-category">{{ s.season | default('Seasonal') | title }}</span>
+          {% if s.timing %}<span class="blog-date">{{ s.timing }}</span>{% endif %}
+        </div>
+        <h2 class="blog-card-title"><a href="/seasonal/{{ s.slug }}/">{{ s.h1 }}</a></h2>
+        <p class="blog-card-intro">{{ s.intro[:150] }}{% if s.intro|length > 150 %}…{% endif %}</p>
+        <a href="/seasonal/{{ s.slug }}/" class="blog-read-more">Read more →</a>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>Shorter Reads</h2>
+    <p>Fifty-plus articles on specific problems — streaking, foggy glass, screen damage, wildfire ash, pollen, and pricing questions.</p>
+    <p><a href="/blog/" class="blog-read-more">Browse all tips &amp; articles →</a></p>
+  </section>
+
+  <section class="page-cta">
+    <h2>Ready to Book Window Cleaning in the Shuswap?</h2>
+    <p>Serving Salmon Arm, Blind Bay, Sicamous, Mara, Armstrong, and surrounding communities. Locally owned, streak-free guaranteed.</p>
+    <div class="cta-buttons">
+      <a href="/quote/" class="btn-primary"
+         onclick="gtag('event','booking_click',{'event_category':'contact','event_label':'guides_index_cta'});">Get an Instant Estimate</a>
+      <a href="tel:{{ config.phone_raw }}" class="btn-outline"
+         onclick="gtag('event','phone_click',{'event_category':'contact','event_label':'guides_index_cta'});">Call {{ config.phone }}</a>
+    </div>
+  </section>
+</article>
+
+{% endblock %}

@@ -395,6 +395,23 @@ def build_404():
     print("  404 page ✓")
 
 
+def build_guides_index():
+    """Index for /guides/ and /seasonal/. Both sets were orphaned — built and in the
+    sitemap, but with no internal links pointing at them, so nothing could crawl to them."""
+    canonical = f"{config['site_url']}/guides/"
+    ctx = {
+        'guides': guides,
+        'seasonal': seasonal,
+        'page_title': 'Window Cleaning Guides | Wagon Windows | Shuswap, BC',
+        'meta_desc': 'In-depth window cleaning guides for the Shuswap — costs, hard water stains, gutter cleaning, commercial contracts, and seasonal timing.',
+        'h1': 'Window Cleaning Guides',
+        'canonical': canonical,
+    }
+    render('guides-index.html', dist_path('guides'), ctx)
+    register(canonical, priority='0.7', changefreq='monthly')
+    print("  Guides index ✓")
+
+
 def build_redirects():
     """_redirects is read by Cloudflare Pages. Service hubs live at /services/<slug>/ but
     the site linked /<slug>/ for a long time, and those bare paths may be bookmarked or
@@ -402,7 +419,6 @@ def build_redirects():
     if CHECK_ONLY:
         return
     lines = [f"/{svc['slug']}/  /services/{svc['slug']}/  301" for svc in services]
-    lines.append("/guides/  /blog/  301")
     with open(os.path.join(DIST_DIR, '_redirects'), 'w', encoding='utf-8') as f:
         f.write("\n".join(lines) + "\n")
     print(f"  _redirects ✓ ({len(lines)} rules)")
@@ -477,6 +493,7 @@ if __name__ == '__main__':
     build_blog()
     build_blog_index()
     build_standalones()
+    build_guides_index()
     build_404()
 
     if not CHECK_ONLY:
