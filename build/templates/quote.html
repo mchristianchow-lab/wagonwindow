@@ -31,6 +31,14 @@
 .area-btn{border:2px solid var(--border);border-radius:8px;padding:.65rem .5rem;background:#fff;cursor:pointer;font-family:var(--font);font-size:.88rem;font-weight:600;color:var(--navy);transition:all .15s;text-align:center;line-height:1.2}
 .area-btn:hover{border-color:#bbb;background:#fafafa}
 .area-btn.selected{border-color:var(--sky);background:#fff5f5;color:var(--sky)}
+.area-group{margin-bottom:1.1rem}
+.area-group-label{font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);margin:0 0 .45rem}
+.area-other{margin-top:1.25rem;padding-top:1.1rem;border-top:1px solid var(--border)}
+.area-other-wrap{display:none;margin-top:.75rem}
+.area-other-copy{font-size:.84rem;color:var(--gray);line-height:1.55;margin:0 0 .7rem}
+.area-other-wrap input{width:100%;padding:.65rem .75rem;border:2px solid var(--border);border-radius:8px;font-family:var(--font);font-size:.92rem;margin-bottom:.55rem}
+.area-other-wrap button{width:100%;padding:.7rem;background:var(--sky);color:#fff;border:none;border-radius:8px;font-family:var(--font);font-size:.92rem;font-weight:700;cursor:pointer}
+.custom-quote-note{display:none;background:#fff8e6;border:1.5px solid #e8a020;border-radius:8px;padding:.75rem 1rem;font-size:.84rem;color:#7a4500;line-height:1.55;margin-bottom:1.1rem}
 /* travel fee modal */
 .travel-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999;display:flex;align-items:center;justify-content:center;padding:1rem}
 .travel-modal-card{background:#fff;border-radius:16px;padding:2.25rem 2rem;max-width:360px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.25)}
@@ -553,22 +561,96 @@
       <div class="step-card">
         <h2>Where are you located?</h2>
         <p class="sub">Tap your area — we'll let you know about travel before you see any pricing. No surprises.</p>
-        <div class="area-grid">
-          <button class="area-btn" onclick="selectArea('Salmon Arm', 35, this)">Salmon Arm</button>
-          <button class="area-btn" onclick="selectArea('Blind Bay', 35, this)">Blind Bay</button>
-          <button class="area-btn" onclick="selectArea('Sorrento', 35, this)">Sorrento</button>
-          <button class="area-btn" onclick="selectArea('Tappen', 35, this)">Tappen</button>
-          <button class="area-btn" onclick="selectArea('Chase', 35, this)">Chase</button>
-          <button class="area-btn" onclick="selectArea('Sicamous', 55, this)">Sicamous</button>
-          <button class="area-btn" onclick="selectArea('Enderby', 55, this)">Enderby</button>
-          <button class="area-btn" onclick="selectArea('Armstrong', 55, this)">Armstrong</button>
-          <button class="area-btn" onclick="selectArea('Eagle Bay', 55, this)">Eagle Bay</button>
-          <button class="area-btn" onclick="selectArea('Celista', 55, this)">Celista</button>
-          <button class="area-btn" onclick="selectArea('Scotch Creek', 55, this)">Scotch Creek</button>
-          <button class="area-btn" onclick="selectArea('Grindrod', 55, this)">Grindrod</button>
-          <button class="area-btn" onclick="selectArea('Spallumcheen', 55, this)">Spallumcheen</button>
-          <button class="area-btn" onclick="selectArea('Swansea Point', 55, this)">Swansea Point</button>
-          <button class="area-btn" onclick="selectArea('Anglemont', 55, this)">Anglemont</button>
+        <div class="area-group">
+          <h3 class="area-group-label">Salmon Arm &amp; Area</h3>
+          <div class="area-grid">
+            <button class="area-btn" onclick="selectArea('Salmon Arm', 35, this)">Salmon Arm</button>
+            <button class="area-btn" onclick="selectArea('Canoe', 35, this)">Canoe</button>
+            <button class="area-btn" onclick="selectArea('Sunnybrae', 35, this)">Sunnybrae</button>
+            <button class="area-btn" onclick="selectArea('Gleneden', 35, this)">Gleneden</button>
+            <button class="area-btn" onclick="selectArea('Deep Creek', 35, this)">Deep Creek</button>
+            <button class="area-btn" onclick="selectArea('Silver Creek', 35, this)">Silver Creek</button>
+            <button class="area-btn" onclick="selectArea('Ranchero', 35, this)">Ranchero</button>
+            <button class="area-btn" onclick="selectArea('Tappen', 35, this)">Tappen</button>
+            <button class="area-btn" onclick="selectArea('Carlin', 35, this)">Carlin</button>
+          </div>
+        </div>
+
+        <div class="area-group">
+          <h3 class="area-group-label">South Shuswap</h3>
+          <div class="area-grid">
+            <button class="area-btn" onclick="selectArea('Sorrento', 35, this)">Sorrento</button>
+            <button class="area-btn" onclick="selectArea('Blind Bay', 35, this)">Blind Bay</button>
+            <button class="area-btn" onclick="selectArea('Notch Hill', 35, this)">Notch Hill</button>
+            <button class="area-btn" onclick="selectArea('White Lake', 35, this)">White Lake</button>
+            <button class="area-btn" onclick="selectArea('Squilax', 35, this)">Squilax</button>
+            <button class="area-btn" onclick="selectArea('Eagle Bay', 55, this)">Eagle Bay</button>
+          </div>
+        </div>
+
+        <div class="area-group">
+          <h3 class="area-group-label">North Shuswap</h3>
+          <div class="area-grid">
+            <button class="area-btn" onclick="selectArea('Scotch Creek', 55, this)">Scotch Creek</button>
+            <button class="area-btn" onclick="selectArea('Celista', 55, this)">Celista</button>
+            <button class="area-btn" onclick="selectArea('Lee Creek', 55, this)">Lee Creek</button>
+            <button class="area-btn" onclick="selectArea('Magna Bay', 55, this)">Magna Bay</button>
+            <button class="area-btn" onclick="selectArea('St. Ives', 55, this)">St. Ives</button>
+            <button class="area-btn" onclick="selectArea('Anglemont', 55, this)">Anglemont</button>
+          </div>
+        </div>
+
+        <div class="area-group">
+          <h3 class="area-group-label">Sicamous &amp; Eagle Valley</h3>
+          <div class="area-grid">
+            <button class="area-btn" onclick="selectArea('Sicamous', 55, this)">Sicamous</button>
+            <button class="area-btn" onclick="selectArea('Swansea Point', 55, this)">Swansea Point</button>
+            <button class="area-btn" onclick="selectArea('Mara', 55, this)">Mara</button>
+            <button class="area-btn" onclick="selectArea('Malakwa', 55, this)">Malakwa</button>
+            <button class="area-btn" onclick="selectArea('Solsqua', 55, this)">Solsqua</button>
+            <button class="area-btn" onclick="selectArea('Craigellachie', 55, this)">Craigellachie</button>
+          </div>
+        </div>
+
+        <div class="area-group">
+          <h3 class="area-group-label">North Okanagan</h3>
+          <div class="area-grid">
+            <button class="area-btn" onclick="selectArea('Enderby', 55, this)">Enderby</button>
+            <button class="area-btn" onclick="selectArea('Grindrod', 55, this)">Grindrod</button>
+            <button class="area-btn" onclick="selectArea('Armstrong', 55, this)">Armstrong</button>
+            <button class="area-btn" onclick="selectArea('Spallumcheen', 55, this)">Spallumcheen</button>
+            <button class="area-btn" onclick="selectArea('Ashton Creek', 55, this)">Ashton Creek</button>
+          </div>
+        </div>
+
+        <div class="area-group">
+          <h3 class="area-group-label">Chase &amp; Thompson</h3>
+          <div class="area-grid">
+            <button class="area-btn" onclick="selectArea('Chase', 35, this)">Chase</button>
+            <button class="area-btn" onclick="selectArea('Adams Lake', 55, this)">Adams Lake</button>
+            <button class="area-btn" onclick="selectArea('Turtle Valley', 55, this)">Turtle Valley</button>
+            <button class="area-btn" onclick="selectArea('Pritchard', 55, this)">Pritchard</button>
+            <button class="area-btn" onclick="selectArea('Monte Creek', 55, this)">Monte Creek</button>
+          </div>
+        </div>
+
+        <div class="area-group">
+          <h3 class="area-group-label">Extended Area</h3>
+          <div class="area-grid">
+            <button class="area-btn" onclick="selectArea('Kingfisher', 100, this)">Kingfisher</button>
+            <button class="area-btn" onclick="selectArea('Falkland', 100, this)">Falkland</button>
+            <button class="area-btn" onclick="selectArea('Westwold', 100, this)">Westwold</button>
+          </div>
+        </div>
+
+        <div class="area-other">
+          <button class="area-btn" style="width:100%" onclick="showOtherArea()">My area isn't listed</button>
+          <div class="area-other-wrap" id="other-area-wrap">
+            <p class="area-other-copy">No problem — tell us where you are and finish your quote. We'll save it and get back to you with a custom price, including whether we can reach you.</p>
+            <input id="f-other-area" type="text" placeholder="Your town or area"
+                   onkeydown="if(event.key==='Enter'){event.preventDefault();confirmOtherArea()}">
+            <button type="button" onclick="confirmOtherArea()">Continue My Quote</button>
+          </div>
         </div>
       </div>
       <div class="step-nav">
@@ -579,6 +661,7 @@
 
     <!-- ── Step 4: Packages ── -->
     <div class="qstep" id="step-4">
+      <p class="custom-quote-note"></p>
       <div class="pkg-grid">
 
         <div class="pkg-card" id="pkg-standard" onclick="selectPkg('standard')">
@@ -680,6 +763,7 @@
       <div class="step-card">
         <h2>Book Your Appointment</h2>
         <p class="sub">We'll confirm within 24 hours and lock in your date.</p>
+        <p class="custom-quote-note"></p>
         <form id="booking-form" onsubmit="submitBooking(event)">
           <input type="hidden" name="access_key" value="{{ config.web3forms_key }}">
           <input type="hidden" name="subject"     id="email-subject">
@@ -727,6 +811,7 @@
             <label for="f-notes">Anything we should know? <span class="form-optional">(optional)</span></label>
             <textarea id="f-notes" name="notes" placeholder="e.g. dog in yard, gate code, hard-to-reach windows…"></textarea>
           </div>
+          <input type="hidden" name="email_address" id="f-email-mirror">
           <div class="consent-row">
             <input type="checkbox" name="email_consent" id="chk-consent" required>
             <label for="chk-consent">I agree to receive email from Wagon Windows regarding my quote and booking.</label>
@@ -787,7 +872,8 @@ const state = {
   propertyType: null,
   breakdown: { regular: 0, large: 0, french: 0 },
   addons: { hardwater: 0, gutters: false },
-  selectedPkg: null
+  selectedPkg: null,
+  customQuote: false
 };
 
 let _pendingAreaName = null;
@@ -808,9 +894,35 @@ function selectArea(name, fee, btn) {
   document.getElementById('travel-modal').style.display = 'flex';
 }
 
+function showOtherArea() {
+  document.getElementById('other-area-wrap').style.display = 'block';
+  document.getElementById('f-other-area').focus();
+}
+
+function confirmOtherArea() {
+  var input = document.getElementById('f-other-area');
+  var name  = input.value.trim();
+  if (!name) { input.focus(); return; }
+  state.area        = name;
+  state.travelFee   = 0;
+  state.customQuote = true;
+  var cityEl = document.getElementById('f-city');
+  if (cityEl && !cityEl.value.trim()) cityEl.value = name;
+  document.querySelectorAll('.area-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('.custom-quote-note').forEach(function(el) {
+    el.textContent = 'Your area (' + name + ') is outside our standard service zones, so this estimate does not include travel. Send it through and we\'ll get back to you with a custom price and confirm we can reach you.';
+    el.style.display = 'block';
+  });
+  document.getElementById('next-3').disabled = false;
+  updatePrices();
+  showStep(4);
+}
+
 function confirmArea() {
-  state.area      = _pendingAreaName;
-  state.travelFee = _pendingAreaFee;
+  state.area        = _pendingAreaName;
+  state.travelFee   = _pendingAreaFee;
+  state.customQuote = false;
+  document.querySelectorAll('.custom-quote-note').forEach(function(el) { el.style.display = 'none'; });
   document.querySelectorAll('.area-btn').forEach(b => b.classList.remove('selected'));
   if (_pendingAreaBtn) _pendingAreaBtn.classList.add('selected');
   document.getElementById('travel-modal').style.display = 'none';
@@ -930,9 +1042,10 @@ function buildEmailSummary() {
       : pkgTotal('exterior', 0, 0);
 
   document.getElementById('email-subject').value =
-    'New Estimate Request — ' + (propLbls[state.propertyType] || '') + ', ' + panes + ' panes, ' + pkgLbls[state.selectedPkg] + ', ~$' + price + '';
+    (state.customQuote ? 'CUSTOM QUOTE — ' : 'New Estimate Request — ') + (propLbls[state.propertyType] || '') + ', ' + panes + ' panes, ' + pkgLbls[state.selectedPkg] + ', ~$' + price + '';
 
   document.getElementById('email-summary').value =
+    (state.customQuote ? 'CUSTOM QUOTE — OUTSIDE STANDARD SERVICE ZONES — travel fee TBD, confirm reachability | ' : '') +
     'Location: ' + (state.area || '?') + ' | Travel fee: $' + state.travelFee +
     ' | Property: ' + (propLbls[state.propertyType] || '?') +
     ' | Panes: ' + panes + ' (' + state.breakdown.regular + ' standard, ' + state.breakdown.large + ' large, ' + state.breakdown.french + ' french)' +
@@ -964,8 +1077,9 @@ function showStep(id) {
 }
 
 const TRAVEL_ZONES = [
-  { fee: 35, label: 'Salmon Arm area', keywords: ['salmon arm','blind bay','sorrento','tappen','chase'] },
-  { fee: 55, label: 'Outlying area', keywords: ['sicamous','enderby','armstrong','eagle bay','celista','scotch creek','grindrod','spallumcheen','swansea point','anglemont'] }
+  { fee: 35, label: 'Salmon Arm area', keywords: ['salmon arm','blind bay','sorrento','tappen','chase','canoe','sunnybrae','gleneden','deep creek','silver creek','ranchero','carlin','notch hill','white lake','squilax'] },
+  { fee: 55, label: 'Outlying area', keywords: ['sicamous','enderby','armstrong','eagle bay','celista','scotch creek','grindrod','spallumcheen','swansea point','anglemont','mara','malakwa','solsqua','craigellachie','lee creek','magna bay','st. ives','st ives','ashton creek','adams lake','turtle valley','pritchard','monte creek'] },
+  { fee: 100, label: 'Extended travel area', keywords: ['kingfisher','falkland','westwold'] }
 ];
 
 const OUT_OF_AREA = [
@@ -1017,6 +1131,7 @@ async function submitBooking(e) {
   var err   = document.getElementById('contact-error');
   if (!phone && !email) { err.style.display = 'block'; document.getElementById('f-phone').focus(); return; }
   err.style.display = 'none';
+  document.getElementById('f-email-mirror').value = email || '(none given)';
   var noteEl = document.getElementById('travel-fee-note');
   var travelFee  = parseInt((noteEl.dataset || {}).fee || '0') || 0;
   var outOfArea  = (noteEl.dataset || {}).outOfArea === '1';
